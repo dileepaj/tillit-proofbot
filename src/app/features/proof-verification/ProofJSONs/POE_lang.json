@@ -1,0 +1,727 @@
+{
+  "Segments": {
+    "SegName1": {
+      "jp":"",
+      "en": "Retrieve TDP Data"
+    },
+    "SegName2": {
+      "jp":"",
+      "en": "Retrieve blockchain transaction"
+    },
+    "SegName3": {
+      "jp":"",
+      "en": "Decode CurrentTXN Hash"
+    },
+    "SegName4": {
+      "jp":"",
+      "en": "Retrieve blockchain CurrentTX"
+    },
+    "SegName5": {
+      "jp":"",
+      "en": "Comparison"
+    },
+    "SegName6": {
+      "jp":"",
+      "en": "Summary"
+    }
+  },
+  "Actions": [
+    {
+      "SegmentNo": 1,
+      "StepNo": 1,
+      "Languages": {
+        "Text0": {
+          "jp":"",
+          "en": "Step 1 - Retrieve TDP Data"
+        },
+        "Text149": {
+          "jp":"",
+          "en":"Request TDP Data"
+        },
+        "Text1": {
+          "jp":"",
+          "en": "Current TDP"
+        },
+        "Text2": {
+          "jp":"",
+          "en": "Retrieve TDP data from Tracified Gateway."
+        },
+        "Text3": {
+          "jp":"",
+          "en": "Step 1 - Retrieve TDP Data"
+        },
+        "Text4": {
+          "jp":"",
+          "en": "Save API Response"
+        },
+        "Text5": {
+          "jp":"",
+          "en": "Save the response data of the transaction"
+        },
+        "Text6": {
+          "jp":"",
+          "en": "Step 1 - Retrieve TDP Data"
+        },
+        "Text7": {
+          "jp":"",
+          "en": "Format Response (JSON)"
+        },
+        "Text8": {
+          "jp":"",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+        
+        
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 2,
+      "Languages": {
+        "Text9": {
+          "jp":"",
+          "en": "Select TDP identifier"
+        },
+        "Text10": {
+          "jp":"",
+          "en": "Select the identifier from TDP details."
+        }
+      }
+    },
+    
+    {
+      "SegmentNo": 1,
+      "StepNo": 3,
+      "Languages": {
+        "Text11": {
+          "jp":"",
+          "en": "identifier from the TDP details"
+        },
+        "Text12": {
+          "jp":"",
+          "en": "Highlight the Identifier"
+        },
+        "Text13": {
+          "jp":"",
+          "en": "Select the identifier from the TDP details"
+        },
+        "Text14": {
+          "jp":"",
+          "en": "test"
+        },
+        "Text15": {
+          "jp":"",
+          "en": "Highlight the TDPIdentifier"
+        },
+        "Text16": {
+          "jp":"",
+          "en": "Select the identifier from the TDP details"
+        }
+       
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 4,
+      "Languages": {
+        "Text17": {
+          "jp":"",
+          "en": "Save TDP Identifier"
+        },
+        "Text18": {
+          "jp":"",
+          "en": "Save the Identifier value for future usage."
+        },
+        "Text19": {
+          "jp":"",
+          "en": "TDP Identifier"
+        } 
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 5,
+      "Languages": {
+        "Text20": {
+          "jp":"",
+          "en": "Select TDP DataHash"
+        },
+        "Text21": {
+          "jp":"",
+          "en": "Select the Data Hash from TDP details."
+        }
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 6,
+      "Languages": {
+        "Text22": {
+          "jp":"",
+          "en": "Datahash from the TDP details"
+        },
+        "Text23": {
+          "jp":"",
+          "en": "Highlight the DataHash"
+        },
+        "Text24": {
+          "jp":"",
+          "en": "Select the Datahash from the TDP details"
+        },
+        "Text25": {
+          "jp":"",
+          "en": "test"
+        },
+        "Text26": {
+          "jp":"",
+          "en":  "Highlight the TDPDatahash"
+        },
+        "Text27": {
+          "jp":"",
+          "en": "Select the Datahash from the TDP details"
+        }
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 7,
+      "Languages": {
+        "Text28": {
+          "jp":"",
+          "en": "Save TDP DataHash"
+        },
+        "Text29": {
+          "jp":"",
+          "en": "Save Data Hash value for future usage."
+        },
+        "Text30": {
+          "jp":"",
+          "en": "TDP Data Hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 8,
+      "Languages": {
+        "Text31": {
+          "jp":"",
+          "en": "Select TDP Txnhash"
+        },
+        "Text32": {
+          "jp":"",
+          "en": "Select the Txnhash from TDP details."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 9,
+      "Languages": {
+        "Text34": {
+          "jp":"",
+          "en": "Highlight the Txnhash"
+        },
+        "Text35": {
+          "jp":"",
+          "en": "Select the txnhash from the TDP details"
+        },
+        "Text37": {
+          "jp":"",
+          "en": "Highlight the TDPTxnhash"
+        },
+        "Text38": {
+          "jp":"",
+          "en": "Select the txnhash from the TDP details"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 10,
+      "Languages": {
+        "Text39": {
+          "jp":"",
+          "en": "Save TDP Txnhash"
+        },
+        "Text40": {
+          "jp":"",
+          "en": "Save Txnhash value for future usage."
+        },
+        "Text150":{
+          "jp":"",
+          "en":"TDP Txnhash"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 11,
+      "Languages": {
+        "Text42": {
+          "jp":"",
+          "en": "Step 5 - Retrieve TDP Transaction"
+        },
+        "Text43": {
+          "jp":"",
+          "en": "Request Stellar HorizonAPI"
+        },
+        "Text44": {
+          "jp":"",
+          "en": "Retrieve the current transaction from Stellar Blockchain."
+        },
+        "Text45": {
+          "jp":"",
+          "en": "Save API Response"
+        },
+        "Text46": {
+          "jp":"",
+          "en": "Save the response data of the transaction"
+        },
+        "Text47": {
+          "jp":"",
+          "en": "Format Response (JSON)"
+        },
+        "Text48": {
+          "jp":"",
+          "en":  "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 12,
+      "Languages": {
+        "Text49": {
+          "jp":"",
+          "en": "Select CurrentTXN Hash"
+        },
+        "Text50": {
+          "jp":"",
+          "en": "Select the CurrentTXN Hash (base64 encoded) from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 13,
+      "Languages": {
+        "Text51": {
+          "jp":"",
+          "en": "Highlight the encoded CurrentTXN Hash from the transaction details"
+        },
+        "Text52": {
+          "jp":"",
+          "en": "Select the encoded CurrentTXN Hash from the transaction details"
+        },
+        "Text53": {
+          "jp":"",
+          "en": "Highlight the encoded CurrentTXN Hash value from the transaction details"
+        },
+        "Text54": {
+          "jp":"",
+          "en": "Select the encoded CurrentTXN Hash value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": 3,
+      "StepNo": 14,
+      "Languages": {
+        "Text55": {
+          "jp":"",
+          "en": "Save Base64Encoded CurrentTXN"
+        },
+        "Text56": {
+          "jp":"",
+          "en": "Save the base64 encoded CurrentTXN Hash value for future usage."
+        },
+        "Text151":{
+          "jp":"",
+          "en":"CurrentTXN (base64)"
+        }
+       
+      }
+    },
+    {
+      "SegmentNo": 3,
+      "StepNo": 15,
+      "Languages": {
+        "Text58": {
+          "jp":"",
+          "en": "Step 15 - Decode CurrentTXN"
+        },
+        "Text59": {
+          "jp":"",
+          "en": "Load the base64 decode website"
+        },
+        "Text60": {
+          "jp":"",
+          "en": "Decode the base64 encoded #{DecodeKeyName}"
+        },
+        "Text61": {
+          "jp":"",
+          "en": "Input base64 encoded current txn hash"
+        },
+        "Text62": {
+          "jp":"",
+          "en": "Input the base64 encoded #{DecodeKeyName}"
+        },
+        "Text63": {
+          "jp":"",
+          "en": "Click decode button"
+        },
+        "Text64": {
+          "jp":"",
+          "en": "Click the decode button"
+        },
+        "Text65": {
+          "jp":"",
+          "en": "View Base64Decoded Data"
+        },
+        "Text66": {
+          "jp":"",
+          "en": "Get the output of the decoded current txn hash"
+        },
+        "Text67": {
+          "jp":"",
+          "en": "Save the decoded value in information storage"
+        },
+        "Text68": {
+          "jp":"",
+          "en":"Save the decoded CurrentTXN Hash for future usage."
+        },
+        "Text69": {
+          "jp":"",
+          "en": "Current txn Hash (decoded)"
+        },
+        "Text70": {
+          "jp":"",
+          "en": "Decoded current txn hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": 4,
+      "StepNo": 16,
+      "Languages": {
+        "Text71": {
+          "jp":"",
+          "en": "Step 16 - Retrieve Current Transaction"
+        },
+        "Text72": {
+          "jp":"",
+          "en": "current transaction of the gateway transaction"
+        },
+        "Text73": {
+          "jp":"",
+          "en": "Request Stellar HorizonAPI"
+        },
+        "Text74": {
+          "jp":"",
+          "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
+        },
+        "Text76": {
+          "jp":"",
+          "en": "Save API Response"
+        },
+        "Text77": {
+          "jp":"",
+          "en": "Save the response data of the transaction"
+        },
+        "Text125": {
+          "jp":"",
+          "en": "Format Response (JSON)"
+        },
+        "Text126": {
+          "jp":"",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+
+    {
+      "SegmentNo": 5,
+      "StepNo": 17,
+      "Languages": {
+        "Text78": {
+          "jp":"",
+          "en": "Select Base64Encoded CurrentTxn Identifier"
+        },
+        "Text79": {
+          "jp":"",
+          "en": "Select the encoded currentTxn Identifier from the transaction details."
+        },
+        "Text80": {
+          "jp":"",
+          "en": "FormatMetaData"
+        }
+      }
+    },
+    
+    {
+      "SegmentNo": 5,
+      "StepNo": 18,
+      "Languages": {
+        "Text81": {
+          "jp":"",
+          "en": "Highlight the encoded Identifier from the transaction details"
+        },
+        "Text82": {
+          "jp":"",
+          "en": "Select the encoded Identifier value from the transaction details"
+        },
+        "Text83":{
+         "en":"test" 
+        },
+        "Text84": {
+          "jp":"",
+          "en": "Highlight the MainTXNCurrentTXNDataIdentifier from the transaction details"
+        },
+        "Text85": {
+          "jp":"",
+          "en": "Select the encoded Identifier value from the transaction details"
+        }
+        
+      }
+    },
+
+    {
+      "SegmentNo": 5,
+      "StepNo": 19,
+      "Languages": {
+        "Text87": {
+          "jp":"",
+          "en": "Save Base64Encoded CurrentTxn Identifier"
+        },
+        "Text88": {
+          "jp":"",
+          "en": "Save the base64 encoded Identifier value for future usage."
+        },
+        "Text89": {
+          "jp":"",
+          "en": "InformationStorage"
+        },
+        "Text152": {
+          "en" : "Identifier (base64)"
+        }
+       
+      }
+    },
+
+  {
+    "SegmentNo": 5,
+      "StepNo": 20,
+      "Languages": {
+        "Text90": {
+          "jp":"",
+          "en": "Step 5 - Decode CurrentTXN Identifier"
+        },
+        "Text91": {
+          "jp":"",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "Text92": {
+          "jp":"",
+          "en": "Decode the base64 encoded CurrentTXN Identifier"
+        },
+        "Text93": {
+          "jp":"",
+          "en":  "Input Base64Encoded Data"
+        },
+        "Text94": {
+          "jp":"",
+          "en": "Input the base64 encoded CurrentTXN Identifier"
+        },
+        "Text95": {
+          "jp":"",
+          "en": "Click Decode Button"
+        },
+        "Text127": {
+          "jp":"",
+          "en": "Click the decode button"
+        },
+        "Text128": {
+          "jp":"",
+          "en": "View Base64Decoded Data"
+        },
+        "Text129": {
+          "jp":"",
+          "en": "Get the output of the decoded CurrentTXN Identifier"
+        },
+        "Text130": {
+          "jp":"",
+          "en": "Save Base64Decoded Data"
+        },
+        "Text131": {
+          "jp":"",
+          "en": "Save the decoded CurrentTXN Identifier for future usage."
+        },
+        "Text132": {
+          "jp":"",
+          "en": "CurrentTXN Identifier"
+        },
+        "Text133": {
+          "jp":"",
+          "en":  "Decoded CurrentTXN Identifier"
+        }
+      }
+    },
+
+    {
+      "SegmentNo": 5,
+        "StepNo": 21,
+        "Languages": {
+          "Text96": {
+            "en": "Select Base64Encoded datahash"
+          },
+          "Text97": {
+            "en": "Select the encoded datahash from the transaction details."
+          }
+         
+        }
+      },
+
+      {
+        "SegmentNo": 5,
+          "StepNo": 22,
+          "Languages": {
+            "Text100": {
+              "en": "Highlight the dataHash"
+            },
+            "Text101": {
+              "en": "Select the encoded datahash from the transaction details."
+            },
+            "Text102": {
+              "en": "Highlight the MainTXNCurentTXNDatadatahash"
+            },
+            "Text103": {
+              "en": "Select the encoded datahash value from the transaction details"
+            }
+          }
+        },
+
+        {
+          "SegmentNo": 5,
+            "StepNo": 23,
+            "Languages": {
+              "Text106": {
+                "en": "Save Base64Encoded datahash"
+              },
+              "Text107": {
+                "en": "Save the base64 encoded datahash value for future usage."
+              },
+              "Text109": {
+                "en": "CurrentTXN datahash (base64)"
+              } 
+           
+            }
+          },
+
+          {
+              "SegmentNo": 5,
+                "StepNo": 24,
+                "Languages": {
+                  "Text110": {
+                    "en": "Step 9 - Decode CurrentTXN Datahash"
+                  },
+                  "Text111": {
+                    "en": "Load Base64Decoder Webpage"
+                  },
+                  "Text112": {
+                    "en": "Decode the base64 encoded CurrentTXN datahash"
+                  },
+                  "Text113": {
+                    "en": "Input Base64Encoded Data"
+                  }, 
+                  "Text134": {
+                    "en": "Input the base64 encoded CurrentTXN datahash"
+                  }, 
+                  "Text135": {
+                    "en": "Click Decode Button"
+                  }, 
+                  "Text136": {
+                    "en": "Click the decode button"
+                  }, 
+                  "Text137": {
+                    "en": "View Base64Decoded Data"
+                  }, 
+                  "Text138": {
+                    "en": "Get the output of the decoded CurrentTXN datahash"
+                  }, 
+                  "Text139": {
+                    "en": "Save Base64Decoded Data"
+                  }, 
+                  "Text140": {
+                    "en": "Save the decoded CurrentTXN datahash for future usage."
+                  }, 
+                  "Text141": {
+                    "en": "Decoded CurrentTXN datahash"
+                  } 
+               
+                }
+              },
+
+              {
+                "SegmentNo": 5,
+                  "StepNo": 25,
+                  "Languages": {
+                    "Text115": {
+                      "en": "Step 10 - Compare datahash"
+                    },
+                    "Text116": {
+                      "en": "Online TextComparison Webpage"
+                    },
+                    "Text117": {
+                      "en": "Load the online text comparison webpage"
+                    }, 
+                    "Text118": {
+                      "en": "Step 10 - Compare datahash"
+                    }, 
+                    "Text119": {
+                      "en": "Input comparison values"
+                    }, 
+                    "Text142": {
+                      "en": "Input the base64 decoded Datahash values from the transactions."
+                    },
+                    "Text143": {
+                      "en": "Step 10 - Compare datahash"
+                    }, 
+                    "Text144": {
+                      "en": "Click compare button"
+                    }, 
+                    "Text145": {
+                      "en": "Click the compare button"
+                    }, 
+                    "Text146": {
+                      "en": "Step 10 - Compare datahash"
+                    },  
+                    "Text147": {
+                      "en": "Scroll to result"
+                    }, 
+                    "Text148": {
+                      "en": "Scroll to the result"
+                    }  
+                    } 
+                 
+                  },
+                 {
+                  "SegmentNo": 6,
+                    "StepNo": 26,
+                    "Languages": {
+                      "Text120": {
+                        "en": "Step 11 - Verification Summary"
+                      },
+                      "Text121": {
+                        "en": "Verification Summary"
+                      },
+                      "Text123": {
+                        "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
+                      }
+                   
+                    }
+                  }
+        
+     
+  ]
+}
