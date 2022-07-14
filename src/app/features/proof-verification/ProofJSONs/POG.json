@@ -11,35 +11,35 @@
     "Segments": [
       {
         "NO": 1,
-        "Name": "GET Stellar Transaction"
+        "Name": "&{SegName1}"
       },
       {
         "NO": 2,
-        "Name": "Decode Current TXNHash"
+        "Name": "&{SegName2}"
       },
       {
         "NO": 3,
-        "Name": "GET Current Transaction"
+        "Name": "&{SegName4}"
       },
       {
         "NO": 4,
-        "Name": "Decode Identifier"
+        "Name": "&{SegName5}"
       },
       {
         "NO": 5,
-        "Name": "Decode Product ID"
+        "Name": "&{SegName6}"
       },
       {
         "NO": 6,
-        "Name": "Decode Backlink TXNHash"
+        "Name": "&{SegName7}"
       },
       {
         "NO": 7,
-        "Name": "Decode Transaction Type"
+        "Name": "&{SegName8}"
       },
       {
         "NO": 8,
-        "Name": "Summary"
+        "Name": "&{SegName1}"
       }
     ]
   },
