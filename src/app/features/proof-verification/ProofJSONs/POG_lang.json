@@ -1,174 +1,216 @@
 {
     "Segments": {
         "SegName1": {
-            "en": "GET Stellar Transaction"
+            "ja": "ステラ・トランザクションの取得",
+            "en": "GeT Stellar Transaction"
         },
         "SegName2": {
-            "en":  "Decode Current TXNHash"
+            "ja": "現在のTXNHashをデコード",
+            "en": "Decode Current TXNHash"
         },
         "SegName3": {
-            "en":  "GET Current Transaction"
+            "ja": "現在のトランザクションの取得",
+            "en": "GeT Current Transaction"
         },
         "SegName4": {
-            "en":  "Decode Identifier"
+            "ja": "デコード 識別子",
+            "en": "Decode Identifier"
         },
         "SegName5": {
-            "en":  "Decode Product ID"
+            "ja": "プロダクトIDのデコード",
+            "en": "Decode Product ID"
         },
         "SegName6": {
-            "en":  "Decode BackLink TXNHash"
+            "ja": "バックリンクTXNHashのデコード",
+            "en": "Decode BackLink TXNHash"
         },
         "SegName7": {
-            "en":  "Decode Transaction Type"
+            "ja": "トランザクションの種類をデコード",
+            "en": "Decode Transaction Type"
         },
         "SegName8": {
-            "en":  "Summary"
+            "ja": "概要",
+            "en": "Summary"
         }
     },
-
-    "Actions" : [
+    "Actions": [
         {
             "SegmentNo": 1,
             "StepNo": 1,
             "Languages": {
+                "Text0": {
+                    "ja": "現在のトランザクションの取得",
+                    "en": "Retrieve Current Transaction"
+                },
                 "Text1": {
-                    "en":  "Retrieve Current Transaction"
+                    "ja": "現在のトランザクションの取得",
+                    "en": "Retrieve Current Transaction"
                 },
                 "Text2": {
-                    "en":  "Retrieve the current transaction from Stellar Blockchain."
+                    "ja": "ステップ１ー現在のトランザクションの取得",
+                    "en": "Step 1 - Retrieve Current Transaction"
                 },
                 "Text3": {
-                    "en":  "Step 1 - Retrieve Current Transaction"
-                },
-                "Text101": {
-                    "en":  "Request Stellar HorizonAPI"
-                },
-                "Text102": {
-                    "en":  "Retrieve the current transaction from Stellar Blockchain."
+                    "ja": "ステラホライズンAPIのリクエスト",
+                    "en": "Request Stellar HorizonAPI"
                 },
                 "Text4": {
-                    "en":  "Save API Response"
+                    "ja": "ステラブロックチェーンから現在の取引を取得する",
+                    "en": "Retrieve the current transaction from Stellar Blockchain."
                 },
                 "Text5": {
-                    "en":  "Save the response data of the transaction"
+                    "ja": "API レスポンスの保存",
+                    "en": "Save API Response"
                 },
                 "Text6": {
-                    "en":  "Format Response (JSON)"
+                    "ja": "トランザクションのレスポンスデータの保存",
+                    "en": "Save the response data of the transaction"
                 },
                 "Text7": {
-                    "en":  "Format transaction data to JSON (Javascript Object Notation)"
+                    "ja": "フォーマットレスポンス（JSON）",
+                    "en": "Format Response (JSON)"
+                },
+                "Text8": {
+                    "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+                    "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
             }
         },
-
         {
             "SegmentNo": 2,
             "StepNo": 2,
             "Languages": {
-                "Text8": {
-                    "en":  "Extract CurrentTXN Hash"
-                },
                 "Text9": {
-                    "en":  "Select the CurrentTXN Hash (base64 encoded) from the transaction details."
-                }      
+                    "ja": "CurrentTXNハッシュを抽出",
+                    "en": "Extract CurrentTXN Hash"
+                },
+                "Text10": {
+                    "ja": "トランザクションの詳細からCurrentTXNハッシュ（base64エンコード）を選択",
+                    "en": "Select the CurrentTXN Hash (base64 encoded) from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 2,
             "StepNo": 3,
             "Languages": {
-                "Text10": {
-                    "en":  "Highlight the CurrentTXN"
-                },
                 "Text11": {
-                    "en":  "Select the encoded CurrentTXN Hash from the transaction details"
+                    "ja": "現在のTXNをハイライト表示",
+                    "en": "Highlight the CurrentTXN"
                 },
                 "Text12": {
-                    "en":  "Highlight the MainTXNCurrentTXNHash"
+                    "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+                    "en": "Select the encoded CurrentTXN Hash from the transaction details"
                 },
                 "Text13": {
-                    "en":  "Select the encoded CurrentTXN Hash from the transaction details"
-                }        
+                    "ja": "MainTXNCurrentTXNHashをハイライト表示",
+                    "en": "Highlight the MainTXNCurrentTXNHash"
+                },
+                "Text14": {
+                    "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+                    "en": "Select the encoded CurrentTXN Hash from the transaction details"
+                }
             }
         },
         {
             "SegmentNo": 2,
             "StepNo": 4,
-            "Languages" : {
-                "Text14": {
-                    "en":  "Save Base64Encoded CurrentTXN"
-                },
+            "Languages": {
                 "Text15": {
-                    "en":  "Save the base64 encoded CurrentTXN Hash value for future usage."
-                }       
+                    "ja": "Base64エンコードされたCurrentTXNの保存",
+                    "en": "Save Base64Encoded CurrentTXN"
+                },
+                "Text16": {
+                    "ja": "将来の使用にBase64でエンコードされたCurrentTXNハッシュ値を保存",
+                    "en": "Save the base64 encoded CurrentTXN Hash value for future usage."
+                }
             }
         },
         {
             "SegmentNo": 2,
             "StepNo": 5,
             "Languages": {
-                "Text26": {
-                    "en":  "Step 2 - Decode CurrentTXN"
-                },
-                "Text16": {
-                    "en":  "Load Base64Decoder Webpage"
-                },
                 "Text17": {
-                    "en":  "Decode the base64 encoded CurrentTXN Hash"
+                    "ja": "ステップ２ーデコード CurrentTXN",
+                    "en": "Step 2 - Decode CurrentTXN"
                 },
                 "Text18": {
-                    "en":  "Input Base64Encoded Data"
+                    "ja": "Base64Decoderのウェブページを読み込む",
+                    "en": "Load Base64Decoder Webpage"
                 },
                 "Text19": {
-                    "en":  "Input the base64 encoded CurrentTXN Hash"
+                    "ja": "Base64でエンコードされたCurrentTXNのハッシュをデコード",
+                    "en": "Decode the base64 encoded CurrentTXN Hash"
                 },
                 "Text20": {
-                    "en":  "Click Decode Button"
+                    "ja": "Base64エンコードされたデータの入力",
+                    "en": "Input Base64Encoded Data"
                 },
                 "Text21": {
-                    "en":  "Click the decode button"
+                    "ja": "Base64でエンコードされたCurrentTXNハッシュを入力",
+                    "en": "Input the base64 encoded CurrentTXN Hash"
                 },
                 "Text22": {
-                    "en":  "View Base64Decoded Data"
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click Decode Button"
                 },
                 "Text23": {
-                    "en":  "Get the output of the decoded CurrentTXN Hash"
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click the decode button"
                 },
                 "Text24": {
-                    "en":  "Save Base64Decoded Data"
+                    "ja": "Base64デコードデータの表示",
+                    "en": "View Base64Decoded Data"
                 },
                 "Text25": {
-                    "en":  "Save the decoded CurrentTXN Hash for future usage."
+                    "ja": "デコードされたCurrentTXNハッシュの出力を取得",
+                    "en": "Get the output of the decoded CurrentTXN Hash"
                 },
-                "Text110": {
-                    "en":  "Decoded CurrentTXN Hash"
-                }        
+                "Text26": {
+                    "ja": "Base64デコードデータの保存",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text27": {
+                    "ja": "将来の使用のためにデコードされたCurrentTXNハッシュを保存",
+                    "en": "Save the decoded CurrentTXN Hash for future usage."
+                },
+                "Text104": {
+                    "ja": "デコードされたCurrentTXNハッシュ",
+                    "en": "Decoded CurrentTXN Hash"
+                }
             }
         },
         {
             "SegmentNo": 3,
             "StepNo": 6,
             "Languages": {
+                "Text28": {
+                    "ja": "ステップ３－現在のトランザクションの取得",
+                    "en": "Step 3 - Retrieve Current Transaction"
+                },
                 "Text29": {
-                    "en":  "Step 3 - Retrieve Current Transaction"
-                },
-                "Text103": {
-                    "en":  "Request Stellar HorizonAPI"
-                },
-                "Text104": {
-                    "en":  "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
+                    "ja": "ステラホライズンAPIのリクエスト",
+                    "en": "Request Stellar HorizonAPI"
                 },
                 "Text30": {
-                    "en":  "Save API Response"
+                    "ja": "ゲートウェイトランザクションの現在のトランザクションをステラブロックチェーンから取得",
+                    "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
                 },
                 "Text31": {
-                    "en":  "Save the response data of the transaction"
+                    "ja": "API レスポンスの保存",
+                    "en": "Save API Response"
                 },
                 "Text32": {
-                    "en":  "Format Response (JSON)"
+                    "ja": "トランザクションのレスポンスデータの保存",
+                    "en": "Save the response data of the transaction"
                 },
                 "Text33": {
-                    "en":  "Format transaction data to JSON (Javascript Object Notation)"
+                    "ja": "フォーマットレスポンス（JSON）",
+                    "en": "Format Response (JSON)"
+                },
+                "Text34": {
+                    "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+                    "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
             }
         },
@@ -176,302 +218,377 @@
             "SegmentNo": 4,
             "StepNo": 7,
             "Languages": {
-                "Text34": {
-                    "en":  "Select Base64Encoded Identifier"
-                },
                 "Text35": {
-                    "en":  "Select the encoded Identifier from the transaction details."
-                }      
+                    "ja": "Base64Encodedの識別子を選択",
+                    "en": "Select Base64Encoded Identifier"
+                },
+                "Text36": {
+                    "ja": "トランザクションの詳細からエンコードされたIdentifierを選択",
+                    "en": "Select the encoded Identifier from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 4,
             "StepNo": 8,
             "Languages": {
-                "Text36": {
-                    "en":  "Highlight the identifier"
-                },
                 "Text37": {
-                    "en":  "Select the encoded Identifier from the transaction details"
+                    "ja": "識別子をハイライト表示",
+                    "en": "Highlight the identifier."
                 },
                 "Text38": {
-                    "en":  "Highlight the MainTXNCurrentTXNDataIdentifier"
+                    "ja": "トランザクションの詳細からエンコードされたIdentifierを選択",
+                    "en": "Select the encoded Identifier from the transaction details."
                 },
                 "Text39": {
-                    "en":  "Select the encoded Identifier value from the transaction details"
-                }        
+                    "ja": "MainTXNCurrentTXNDataIdentifierをハイライト表示",
+                    "en": "Highlight the MainTXNCurrentTXNDataIdentifier."
+                },
+                "Text40": {
+                    "ja": "トランザクションの詳細から、エンコードされた識別子の値を選択",
+                    "en": "Select the encoded Identifier value from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 4,
             "StepNo": 9,
             "Languages": {
-                "Text40": {
-                    "en":  "Save Base64Encoded Identifier"
-                },
                 "Text41": {
-                    "en":  "Save the base64 encoded Identifier value for future usage."
-                }       
+                    "ja": "Base64Encodeされた識別子の保存",
+                    "en": "Save Base64Encoded Identifier"
+                },
+                "Text42": {
+                    "ja": "将来の使用のために、base64 エンコードされた 識別子の 値を保存",
+                    "en": "Save the base64 encoded Identifier value for future usage."
+                }
             }
         },
         {
             "SegmentNo": 4,
             "StepNo": 10,
             "Languages": {
-                "Text52": {
-                    "en":  "Step 4 - Decode MainTXN Identifier"
-                },
-                "Text42": {
-                    "en":  "Load Base64Decoder Webpage"
-                },
-                "Text43": {
-                    "en":  "Decode the base64 encoded MainTXN Identifier"
-                },
-                "Text44": {
-                    "en":  "Input Base64Encoded Data"
-                },
                 "Text45": {
-                    "en":  "Input the base64 encoded MainTXN Identifier"
+                    "ja": "ステップ４ーMainTXN 識別子のデコード",
+                    "en": "Step 4 - Decode MainTXN Identifier"
                 },
                 "Text46": {
-                    "en":  "Click Decode Button"
+                    "ja": "Base64Decoderのウェブページを読み込む",
+                    "en": "Load Base64Decoder Webpage"
                 },
                 "Text47": {
-                    "en":  "Click the decode button"
+                    "ja": "base64でエンコードされたMainTXN識別子をデコード",
+                    "en": "Decode the base64 encoded MainTXN Identifier"
                 },
                 "Text48": {
-                    "en":  "View Base64Decoded Data"
+                    "ja": "Base64エンコードされたデータの入力",
+                    "en": "Input Base64Encoded Data"
                 },
                 "Text49": {
-                    "en":  "Get the output of the decoded MainTXN Identifier"
+                    "ja": "MainTXN 識別子を base64 でエンコードしたものを入力",
+                    "en": "Input the base64 encoded MainTXN Identifier"
                 },
                 "Text50": {
-                    "en":  "Save Base64Decoded Data"
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click Decode Button"
                 },
                 "Text51": {
-                    "en":  "Save the decoded MainTXN Identifier for future usage."
-                }       
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click the decode button"
+                },
+                "Text52": {
+                    "ja": "Base64デコードデータの表示",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text53": {
+                    "ja": "デコードされたMainTXN識別子の出力を取得",
+                    "en": "Get the output of the decoded MainTXN Identifier"
+                },
+                "Text54": {
+                    "ja": "Base64デコードデータの保存",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text55": {
+                    "ja": "将来の使用のためにデコードされたMainTXN識別子を保存",
+                    "en": "Save the decoded MainTXN Identifier for future usage."
+                },
+                "Text105": {
+                    "ja": "デコードされたMainTXN識別子",
+                    "en": "Decoded MainTXN Identifier"
+                }
             }
         },
         {
             "SegmentNo": 5,
             "StepNo": 11,
             "Languages": {
-                "Text53": {
-                    "en":  "Select Base64Encoded ProductID"
+                "Text56": {
+                    "ja": "Base64EncodedのProductIDを選択",
+                    "en": "Select Base64Encoded ProductID"
                 },
-                "Text54": {
-                    "en":  "Select the encoded Product ID from the transaction details."
-                }      
+                "Text57": {
+                    "ja": "取引内容からエンコードされたプロダクトIDを選択",
+                    "en": "Select the encoded Product ID from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 5,
             "StepNo": 12,
             "Languages": {
-                "Text55": {
-                    "en":  "Highlight the productId"
-                },
-                "Text56": {
-                    "en":  "Select the encoded ProductID from the transaction details"
-                },
-                "Text57": {
-                    "en":  "Highlight the MainTXNCurrentTXNDataProductId"
-                },
                 "Text58": {
-                    "en":  "Select the encoded ProductID value from the transaction details"
-                }        
+                    "ja": "productId をハイライト表示",
+                    "en": "Highlight the productId"
+                },
+                "Text59": {
+                    "ja": "取引内容からエンコードされたProductIDを選択",
+                    "en": "Select the encoded ProductID from the transaction details"
+                },
+                "Text60": {
+                    "ja": "MainTXNCurrentTXNDataProductIdをハイライト表示",
+                    "en": "Highlight the MainTXNCurrentTXNDataProductId"
+                },
+                "Text61": {
+                    "ja": "トランザクションの詳細から、エンコードされたProductIDの値を選択",
+                    "en": "Select the encoded ProductID value from the transaction details"
+                }
             }
         },
         {
             "SegmentNo": 5,
             "StepNo": 13,
             "Languages": {
-                "Text59": {
-                    "en":  "Save Base64Encoded ProductID"
+                "Text62": {
+                    "ja": "Base64EncodeされたProductIDの保存",
+                    "en": "Save Base64Encoded ProductID"
                 },
-                "Text60": {
-                    "en" : "Save the base64 encoded ProductID value for future usage."
-                }       
+                "Text63": {
+                    "ja": "将来の使用のために、Base64エンコードされたProductIDの値を保存",
+                    "en": "Save the base64 encoded ProductID value for future usage."
+                }
             }
         },
         {
             "SegmentNo": 5,
             "StepNo": 14,
             "Languages": {
+                "Text64": {
+                    "ja": "ステップー５MainTXN ProductIDのデコード",
+                    "en": "Step 5 - Decode MainTXN ProductID"
+                },
+                "Text65": {
+                    "ja": "Base64Decoderのウェブページを読み込む",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text66": {
+                    "ja": "MainTXN ProductID を base64 でデコード",
+                    "en": "Decode the base64 encoded MainTXN ProductID"
+                },
+                "Text67": {
+                    "ja": "Base64エンコードされたデータの入力",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text68": {
+                    "ja": "MainTXN ProductID を base64 でエンコードして入力",
+                    "en": "Input the base64 encoded MainTXN ProductID"
+                },
+                "Text69": {
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click Decode Button"
+                },
+                "Text70": {
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click the decode button"
+                },
                 "Text71": {
-                    "en" : "Step 5 - Decode MainTXN ProductID"
+                    "ja": "Base64デコードデータの表示",
+                    "en": "View Base64Decoded Data"
                 },
-                "Text61": {
-                    "en" : "Load Base64Decoder Webpage"
+                "Text72": {
+                    "ja": "デコードしたMainTXN ProductIDの出力を取得",
+                    "en": "Get the output of the decoded MainTXN ProductID"
                 },
-                "Text62" : {
-                    "en" : "Decode the base64 encoded MainTXN ProductID"
+                "Text73": {
+                    "ja": "Base64デコードデータの保存",
+                    "en": "Save Base64Decoded Data"
                 },
-                "Text63" : {
-                    "en" : "Input Base64Encoded Data"
+                "Text74": {
+                    "ja": "将来の使用のためにデコードされたMainTXN ProductIDを保存",
+                    "en": "Save the decoded MainTXN ProductID for future usage."
                 },
-                "Text64" : {
-                    "en" : "Input the base64 encoded MainTXN ProductID"
-                },
-                "Text65" : {
-                    "en" : "Click Decode Button"
-                },
-                "Text66" : {
-                    "en" : "Click the decode button"
-                },
-                "Text67" : {
-                    "en" : "View Base64Decoded Data"
-                },
-                "Text68" : {
-                    "en" : "Get the output of the decoded MainTXN ProductID"
-                },
-                "Text69" : {
-                    "en" : "Save Base64Decoded Data"
-                },
-                "Text70" : {
-                    "en" : "Save the decoded MainTXN ProductID for future usage."
-                }         
+                "Text106": {
+                    "ja": "デコードされたMainTXN ProductID",
+                    "en": "Decoded MainTXN ProductID"
+                }
             }
         },
         {
             "SegmentNo": 6,
             "StepNo": 15,
             "Languages": {
-                "Text71" : {
-                    "en" : "Select Base64Encoded PreviousTXN"
+                "Text75": {
+                    "ja": "Base64Encodeされた前のTXNを選択",
+                    "en": "Select Base64Encoded PreviousTXN"
                 },
-                "Text72" : {
-                    "en" : "Select the encoded PreviousTXN Hash value from the transaction details."
-                }      
+                "Text76": {
+                    "ja": "トランザクションの詳細から、エンコードされた前のTXNハッシュ値を選択",
+                    "en": "Select the encoded PreviousTXN Hash value from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 6,
             "StepNo": 16,
             "Languages": {
-                "Text73" : {
-                    "en" : "Highlight the PreviousTXN"
+                "Text77": {
+                    "ja": "前のTXNをハイライト表示",
+                    "en": "Highlight the PreviousTXN"
                 },
-                "Text74" : {
-                    "en" : "Select the encoded PreviousTXN Hash from the transaction details."
+                "Text78": {
+                    "ja": "トランザクションの詳細からエンコードされた前のTXNハッシュを選択",
+                    "en": "Select the encoded PreviousTXN Hash from the transaction details."
                 },
-                "Text75" : {
-                    "en" : "Highlight the MainTXNPreviousTXN"
+                "Text79": {
+                    "ja": "MainTXNPreviousTXNをハイライト表示",
+                    "en": "Highlight the MainTXNPreviousTXN"
                 },
-                "Text76" : {
-                    "en" : "Select the encoded PreviousTXN Hash value from the transaction details."
-                }        
+                "Text80": {
+                    "ja": "トランザクションの詳細から、エンコードされたMainTXNPreviousTXNハッシュ値を選択",
+                    "en": "Select the encoded MainTXNPreviousTXN Hash value from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 6,
             "StepNo": 17,
             "Languages": {
-                "Text77" : {
-                    "en" : "Save Base64Encoded PreviousTXN"
+                "Text81": {
+                    "ja": "Base64エンコードされた前のTXNの保存",
+                    "en": "Save Base64Encoded PreviousTXN"
                 },
-                "Text78" : {
-                    "en" : "Save the base64 encoded Previous TXN Hash value for future usage."
-                }       
+                "Text82": {
+                    "ja": "将来の使用のためにBase64エンコードされた前のTXNハッシュ値を保存",
+                    "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+                }
             }
         },
         {
             "SegmentNo": 7,
             "StepNo": 18,
             "Languages": {
-                "Text79" : {
-                    "en" : "Select Base64Encoded Transaction Type"
+                "Text83": {
+                    "ja": "Base64Encodedトランザクションタイプの選択",
+                    "en": "Select Base64Encoded Transaction Type"
                 },
-                "Text80" : {
-                    "en" : "Select the encoded Transaction Type value from the transaction details."
-                }       
+                "Text84": {
+                    "ja": "トランザクションの詳細から、エンコードされたトランザクションタイプの値を選択",
+                    "en": "Select the encoded Transaction Type value from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 7,
             "StepNo": 19,
             "Languages": {
-                "Text81" : {
-                    "en" : "Highlight the Type"
+                "Text85": {
+                    "ja": "タイプをハイライト表示",
+                    "en": "Highlight the Type"
                 },
-                "Text82" : {
-                    "en" : "Select the encoded Transaction Type from the transaction details"
+                "Text86": {
+                    "ja": "トランザクションの詳細から、エンコードされたトランザクションタイプを選択",
+                    "en": "Select the encoded Transaction Type from the transaction details."
                 },
-                "Text83" : {
-                    "en" : "Highlight the MainTXNTXType"
+                "Text87": {
+                    "ja": "MainTXNTXTypeをハイライト表示",
+                    "en": "Highlight the MainTXNTXType"
                 },
-                "Text84" : {
-                    "en" : "Select the encoded Transaction Type value from the transaction details."
-                }        
+                "Text88": {
+                    "ja": "トランザクションの詳細から、エンコードされたトランザクションタイプの値を選択",
+                    "en": "Select the encoded Transaction Type value from the transaction details."
+                }
             }
         },
         {
             "SegmentNo": 7,
             "StepNo": 20,
             "Languages": {
-                "Text85" : {
-                    "en" : "Save Base64Encoded PreviousTXN"
+                "Text89": {
+                    "ja": "Base64エンコードされた前のTXNの保存",
+                    "en": "Save Base64Encoded PreviousTXN"
                 },
-                "Text86" : {
-                    "en" : "Save the base64 encoded Previous TXN Hash value for future usage."
-                }       
+                "Text90": {
+                    "ja": "将来の使用のためにBase64エンコードされた前のTXNハッシュ値を保存",
+                    "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+                }
             }
         },
         {
             "SegmentNo": 7,
             "StepNo": 21,
             "Languages": {
-                "Text97" : {
-                    "en" : "Step 04  - Decode Transaction Type"
+                "Text91": {
+                    "ja": "ステップ４－トランザクションタイプをデコード",
+                    "en": "Step 04 - Decode Transaction Type"
                 },
-                "Text87" : {
-                    "en" : "Load Base64Decoder Webpage"
+                "Text92": {
+                    "ja": "Base64Decoderのウェブページを読み込む",
+                    "en": "Load Base64Decoder Webpage"
                 },
-                "Text88" : {
-                    "en" : "Decode the base64 encoded Transaction Type"
+                "Text93": {
+                    "ja": "base64でエンコードされたトランザクションタイプをデコード",
+                    "en": "Decode the base64 encoded Transaction Type"
                 },
-                "Text89" : {
-                    "en" : "Input Base64Encoded Data"
+                "Text94": {
+                    "ja": "Base64エンコードされたデータの入力",
+                    "en": "Input Base64Encoded Data"
                 },
-                "Text90" : {
-                    "en" : "Input the base64 encoded Transaction Type"
+                "Text95": {
+                    "ja": "Base64でエンコードされたトランザクションタイプを入力",
+                    "en": "Input the base64 encoded Transaction Type"
                 },
-                "Text91" : {
-                    "en" : "Click Decode Button"
+                "Text96": {
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click Decode Button"
                 },
-                "Text92" : {
-                    "en" : "Click the decode button"
+                "Text97": {
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click the decode button"
                 },
-                "Text93" : {
-                    "en" : "View Base64Decoded Data"
+                "Text98": {
+                    "ja": "Base64デコードデータの表示",
+                    "en": "View Base64Decoded Data"
                 },
-                "Text94" : {
-                    "en" : "Get the output of the decoded Transaction Type"
+                "Text99": {
+                    "ja": "デコードしたトランザクションタイプの出力を取得",
+                    "en": "Get the output of the decoded Transaction Type"
                 },
-                "Text95" : {
-                    "en" : "Save Base64Decoded Data"
+                "Text100": {
+                    "ja": "Base64デコードデータの保存",
+                    "en": "Save Base64Decoded Data"
                 },
-                "Text96" : {
-                    "en" : "Save the decoded Transaction Type for future usage."
-                }       
+                "Text101": {
+                    "ja": "将来の使用のためにデコードしたトランザクションタイプを保存",
+                    "en": "Save the decoded Transaction Type for future usage."
+                },
+                "Text107": {
+                    "ja": "デコードされたトランザクションのタイプ",
+                    "en": "Decoded Transaction Type"
+                }
             }
         },
         {
             "SegmentNo": 8,
             "StepNo": 22,
             "Languages": {
-                "Text98" : {
-                    "en" : "Step 05 - Verification Summary"
+                "Text102": {
+                    "ja": "ステップ５－検証の概要",
+                    "en": "Step 05 - Verification Summary"
                 },
-                "Text99" : {
-                    "en" : "Verification Summary"
-                },
-                "Text100" : {
-                    "en" : "Verification Summary"
-                }       
+                "Text103": {
+                    "ja": "検証の概要",
+                    "en": "Verification Summary"
+                }
             }
         }
-        
     ]
 }

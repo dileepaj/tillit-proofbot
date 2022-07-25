@@ -98,7 +98,7 @@ export class ProofBotComponent implements OnInit {
   toastLeft: string = "32%";
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe"];
+  availableProofs: any[] = ["poe","pog"];
   proofType: string = "";
   lang: string = "en";
   Name: string =""

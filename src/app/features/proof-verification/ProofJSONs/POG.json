@@ -19,27 +19,27 @@
       },
       {
         "NO": 3,
-        "Name": "&{SegName3}"
-      },
-      {
-        "NO": 4,
         "Name": "&{SegName4}"
       },
       {
-        "NO": 5,
+        "NO": 4,
         "Name": "&{SegName5}"
       },
       {
-        "NO": 6,
+        "NO": 5,
         "Name": "&{SegName6}"
       },
       {
-        "NO": 7,
+        "NO": 6,
         "Name": "&{SegName7}"
       },
       {
-        "NO": 8,
+        "NO": 7,
         "Name": "&{SegName8}"
+      },
+      {
+        "NO": 8,
+        "Name": "&{SegName1}"
       }
     ]
   },
@@ -52,8 +52,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text1}",
-        "ActionDescription": "&{Text2}",
+        "ActionTitle": "&{Text0}",
+        "ActionDescription": "&{Text1}",
         "ActionType": "MultiStepAction",
         "ActionParameters": {
           "ExternalURL": "",
@@ -80,13 +80,13 @@
             "StepNo": 1,
             "SegmentNo": 1,
             "FrameID": 1,
-            "FrameTitle": "&{Text3}",
-            "ActionTitle":"&{Text101}",
-            "ActionDescription":"&{Text102}",
-            "ActionTitle_1":"&{Text4}",
-            "ActionDescription_1":"&{Text5}",
-            "ActionTitle_2":"&{Text6}",
-            "ActionDescription_2":"&{Text7}",
+            "FrameTitle": "&{Text2}",
+            "ActionTitle": "&{Text3}",
+            "ActionDescription": "&{Text4}",
+            "ActionTitle_1": "&{Text5}",
+            "ActionDescription_1": "&{Text6}",
+            "ActionTitle_2": "&{Text7}",
+            "ActionDescription_2": "&{Text8}",
             "TXNHash": "${TXNhash}",
             "OperationName": "current transaction",
             "ResponseVariable": "MainTXNDataString",
@@ -114,8 +114,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text8}",
-        "ActionDescription": "&{Text9}",
+        "ActionTitle": "&{Text9}",
+        "ActionDescription": "&{Text10}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -139,7 +139,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNHash",
-        "MetaData": ["MainTXNData", "CurrentTXN", false, "value"]
+        "MetaData": [
+          "MainTXNData",
+          "CurrentTXN",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -187,12 +192,12 @@
             "SegmentNo": 2,
             "FrameID": 1,
             "FrameTitle": "",
-            "ActionTitle":"&{Text10}",
-            "ActionDescription": "&{Text11}",
-            "ActionTitle_1": "&{Text12}",
-            "ActionDescription_1": "&{Text13}",
+            "ActionTitle": "&{Text11}",
+            "ActionDescription": "&{Text12}",
+            "ActionTitle_1": "&{Text13}",
+            "ActionDescription_1": "&{Text14}",
             "OperationKey": "CurrentTXN",
-            "OperationValue": "MainTXNCurentTXNHash",
+            "OperationValue": "MainTXNCurrentTXNHash",
             "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
             "OperationValueName": "encoded CurrentTXN Hash from the transaction details"
           }
@@ -218,8 +223,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text14}",
-        "ActionDescription": "&{Text15}",
+        "ActionTitle": "&{Text15}",
+        "ActionDescription": "&{Text16}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -243,7 +248,7 @@
           "StorageData": [
             {
               "Key": "TXN2 CurrentTXN (base64)",
-              "Value": "${MainTXNCurentTXNHash}"
+              "Value": "${MainTXNCurrentTXNHash}"
             }
           ]
         },
@@ -295,17 +300,18 @@
             "StepNo": 5,
             "SegmentNo": 2,
             "FrameID": 2,
-            "FrameTitle": "&{Text26}",
-            "ActionTitle": "&{Text16}",
-            "ActionDescription": "&{Text17}",
-            "ActionTitle_1": "&{Text18}",
-            "ActionDescription_1": "&{Text19}",
-            "ActionTitle_2": "&{Text20}",
-            "ActionDescription_2": "&{Text21}",
-            "ActionTitle_3": "&{Text22}",
-            "ActionDescription_3": "&{Text23}",
-            "ActionTitle_4": "&{Text24}",
-            "ActionDescription_4": "&{Text25}",
+            "FrameTitle": "&{Text17}",
+            "ActionTitle": "&{Text18}",
+            "ActionDescription": "&{Text19}",
+            "ActionTitle_1": "&{Text20}",
+            "ActionDescription_1": "&{Text21}",
+            "ActionTitle_2": "&{Text22}",
+            "ActionDescription_2": "&{Text23}",
+            "ActionTitle_3": "&{Text24}",
+            "ActionDescription_3": "&{Text25}",
+            "ActionTitle_4": "&{Text26}",
+            "ActionDescription_4": "&{Text27}",
+            "ToastMessage": "&{Text104}",
             "DecodeKeyName": "CurrentTXN Hash",
             "EncodedInputValue": "${MainTXNCurrentTXNHash}",
             "DecodedResultVariable": "var_currenttxn",
@@ -320,7 +326,7 @@
         "ScrollToPointer": false,
         "FrameAutoScroll": true,
         "FrameScrollBars": "",
-        "ToastMessage": "&{Text110}",
+        "ToastMessage": "",
         "ToastPosition": null,
         "ActionDuration": 10
       }
@@ -360,13 +366,13 @@
             "StepNo": 6,
             "SegmentNo": 3,
             "FrameID": 3,
-            "FrameTitle": "&{Text29}",
-            "ActionTitle":"&{Text103}",
-            "ActionDescription":"&{Text104}",
-            "ActionTitle_1": "&{Text30}",
-            "ActionDescription_1": "&{Text31}",
-            "ActionTitle_2": "&{Text32}",
-            "ActionDescription_2": "&{Text33}",
+            "FrameTitle": "&{Text28}",
+            "ActionTitle": "&{Text29}",
+            "ActionDescription": "&{Text30}",
+            "ActionTitle_1": "&{Text31}",
+            "ActionDescription_1": "&{Text32}",
+            "ActionTitle_2": "&{Text33}",
+            "ActionDescription_2": "&{Text34}",
             "TXNHash": "${var_currenttxn}",
             "OperationName": "current transaction of the gateway transaction",
             "ResponseVariable": "MainTXNCurrentTXNDataString",
@@ -394,8 +400,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text34}",
-        "ActionDescription": "&{Text35}",
+        "ActionTitle": "&{Text35}",
+        "ActionDescription": "&{Text36}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -419,7 +425,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNDataIdentifier",
-        "MetaData": ["MainTXNCurentTXNData", "identifier", false, "value"]
+        "MetaData": [
+          "MainTXNCurentTXNData",
+          "identifier",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -467,12 +478,12 @@
             "SegmentNo": 4,
             "FrameID": 3,
             "FrameTitle": "",
-            "ActionTitle": "&{Text36}",
-            "ActionDescription": "&{Text37}",
-            "ActionTitle_1": "&{Text38}",
-            "ActionDescription_1": "&{Text39}",
+            "ActionTitle": "&{Text37}",
+            "ActionDescription": "&{Text38}",
+            "ActionTitle_1": "&{Text39}",
+            "ActionDescription_1": "&{Text40}",
             "OperationKey": "identifier",
-            "OperationValue": "MainTXNCurentTXNDataIdentifier",
+            "OperationValue": "MainTXNCurrentTXNDataIdentifier",
             "OperationKeyName": "encoded Identifier from the transaction details",
             "OperationValueName": "encoded Identifier value from the transaction details"
           }
@@ -498,8 +509,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text40}",
-        "ActionDescription": "&{Text41}",
+        "ActionTitle": "&{Text41}",
+        "ActionDescription": "&{Text42}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -575,17 +586,18 @@
             "StepNo": 10,
             "SegmentNo": 4,
             "FrameID": 4,
-            "FrameTitle": "&{Text52}",
-            "ActionTitle": "&{Text42}",
-            "ActionDescription": "&{Text43}",
-            "ActionTitle_1": "&{Text44}",
-            "ActionDescription_1": "&{Text45}",
-            "ActionTitle_2": "&{Text46}",
-            "ActionDescription_2": "&{Text47}",
-            "ActionTitle_3": "&{Text48}",
-            "ActionDescription_3": "&{Text49}",
-            "ActionTitle_4": "&{Text50}",
-            "ActionDescription_4": "&{Text51}",
+            "FrameTitle": "&{Text45}",
+            "ActionTitle": "&{Text46}",
+            "ActionDescription": "&{Text47}",
+            "ActionTitle_1": "&{Text48}",
+            "ActionDescription_1": "&{Text49}",
+            "ActionTitle_2": "&{Text50}",
+            "ActionDescription_2": "&{Text51}",
+            "ActionTitle_3": "&{Text52}",
+            "ActionDescription_3": "&{Text53}",
+            "ActionTitle_4": "&{Text54}",
+            "ActionDescription_4": "&{Text55}",
+            "ToastMessage": "&{Text105}",
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
@@ -600,12 +612,11 @@
         "ScrollToPointer": false,
         "FrameAutoScroll": true,
         "FrameScrollBars": "",
-        "ToastMessage": "&{Text48}",
+        "ToastMessage": "",
         "ToastPosition": null,
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 11,
@@ -614,8 +625,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text53}",
-        "ActionDescription": "&{Text54}",
+        "ActionTitle": "&{Text56}",
+        "ActionDescription": "&{Text57}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -639,7 +650,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNDataProductId",
-        "MetaData": ["MainTXNCurentTXNData", "productId", false, "value"]
+        "MetaData": [
+          "MainTXNCurentTXNData",
+          "productId",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -687,10 +703,10 @@
             "SegmentNo": 5,
             "FrameID": 3,
             "FrameTitle": "",
-            "ActionTitle": "&{Text55}",
-            "ActionDescription": "&{Text56}",
-            "ActionTitle_1": "&{Text57}",
-            "ActionDescription_1": "&{Text58}",
+            "ActionTitle": "&{Text58}",
+            "ActionDescription": "&{Text59}",
+            "ActionTitle_1": "&{Text60}",
+            "ActionDescription_1": "&{Text61}",
             "OperationKey": "productId",
             "OperationValue": "MainTXNCurentTXNDataProductId",
             "OperationKeyName": "encoded ProductID from the transaction details",
@@ -718,8 +734,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text59}",
-        "ActionDescription": "&{Text60}",
+        "ActionTitle": "&{Text62}",
+        "ActionDescription": "&{Text63}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -795,17 +811,18 @@
             "StepNo": 14,
             "SegmentNo": 5,
             "FrameID": 3,
-            "FrameTitle": "&{Text71}",
-            "ActionTitle": "&{Text61}",
-            "ActionDescription": "&{Text62}",
-            "ActionTitle_1": "&{Text63}",
-            "ActionDescription_1": "&{Text64}",
-            "ActionTitle_2":"&{Text65}",
-            "ActionDescription_2":"&{Text66}",
-            "ActionTitle_3":"&{Text67}",
-            "ActionDescription_3":"&{Text68}",
-            "ActionTitle_4":"&{Text69}",
-            "ActionDescription_4":"&{Text70}",
+            "FrameTitle": "&{Text64}",
+            "ActionTitle": "&{Text65}",
+            "ActionDescription": "&{Text66}",
+            "ActionTitle_1": "&{Text67}",
+            "ActionDescription_1": "&{Text68}",
+            "ActionTitle_2": "&{Text69}",
+            "ActionDescription_2": "&{Text70}",
+            "ActionTitle_3": "&{Text71}",
+            "ActionDescription_3": "&{Text72}",
+            "ActionTitle_4": "&{Text73}",
+            "ActionDescription_4": "&{Text74}",
+            "ToastMessage": "&{Text106}",
             "DecodeKeyName": "MainTXN ProductID",
             "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
             "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
@@ -820,12 +837,11 @@
         "ScrollToPointer": false,
         "FrameAutoScroll": true,
         "FrameScrollBars": "",
-        "ToastMessage": "&{Text70}",
+        "ToastMessage": "",
         "ToastPosition": null,
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 15,
@@ -834,8 +850,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text71}",
-        "ActionDescription": "&{Text72}",
+        "ActionTitle": "&{Text75}",
+        "ActionDescription": "&{Text76}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -859,7 +875,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNPreviousTXN",
-        "MetaData": ["MainTXNData", "PreviousTXN", false, "value"]
+        "MetaData": [
+          "MainTXNData",
+          "PreviousTXN",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -907,10 +928,10 @@
             "SegmentNo": 6,
             "FrameID": 1,
             "FrameTitle": "",
-            "ActionTitle":"&{Text73}",
-            "ActionDescription": "&{Text74}",
-            "ActionTitle_1":"&{Text75}",
-            "ActionDescription_1":"&{Text76}",
+            "ActionTitle": "&{Text77}",
+            "ActionDescription": "&{Text78}",
+            "ActionTitle_1": "&{Text79}",
+            "ActionDescription_1": "&{Text80}",
             "OperationKey": "PreviousTXN",
             "OperationValue": "MainTXNPreviousTXN",
             "OperationKeyName": "encoded PreviousTXN Hash from the transaction details.",
@@ -938,8 +959,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text77}",
-        "ActionDescription": "&{Text78}",
+        "ActionTitle": "&{Text81}",
+        "ActionDescription": "&{Text82}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -980,7 +1001,6 @@
         "ActionDuration": 30
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 18,
@@ -989,8 +1009,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text79}",
-        "ActionDescription": "&{Text80}",
+        "ActionTitle": "&{Text83}",
+        "ActionDescription": "&{Text84}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1014,7 +1034,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNTXType",
-        "MetaData": ["MainTXNData", "Type", false, "value"]
+        "MetaData": [
+          "MainTXNData",
+          "Type",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -1062,10 +1087,10 @@
             "SegmentNo": 7,
             "FrameID": 1,
             "FrameTitle": "",
-            "ActionTitle":"&{Text81}",
-            "ActionDescription": "&{Text82}",
-            "ActionTitle_1":"&{Text83}",
-            "ActionDescription_1":"&{Text84}",
+            "ActionTitle": "&{Text85}",
+            "ActionDescription": "&{Text86}",
+            "ActionTitle_1": "&{Text87}",
+            "ActionDescription_1": "&{Text88}",
             "OperationKey": "Type",
             "OperationValue": "MainTXNTXType",
             "OperationKeyName": "encoded Transaction Type from the transaction details.",
@@ -1093,8 +1118,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "&{Text77}",
-        "ActionDescription": "&{Text86}",
+        "ActionTitle": "&{Text89}",
+        "ActionDescription": "&{Text90}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1135,7 +1160,6 @@
         "ActionDuration": 30
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 21,
@@ -1171,17 +1195,18 @@
             "StepNo": 21,
             "SegmentNo": 7,
             "FrameID": 4,
-            "FrameTitle": "&{Text97}",
-            "ActionTitle":"&{Text87}",
-            "ActionDescription": "&{Text88}",
-            "ActionTitle_1":"&{Text89}",
-            "ActionDescription_1":"&{Text90}",
-            "ActionTitle_2":"&{Text91}",
-            "ActionDescription_2":"&{Text92}",
-            "ActionTitle_3":"&{Text93}",
-            "ActionDescription_3":"&{Text94}",
-            "ActionTitle_4":"&{Text95}",
-            "ActionDescription_4":"&{Text96}",
+            "FrameTitle": "&{Text91}",
+            "ActionTitle": "&{Text92}",
+            "ActionDescription": "&{Text93}",
+            "ActionTitle_1": "&{Text94}",
+            "ActionDescription_1": "&{Text95}",
+            "ActionTitle_2": "&{Text96}",
+            "ActionDescription_2": "&{Text97}",
+            "ActionTitle_3": "&{Text98}",
+            "ActionDescription_3": "&{Text99}",
+            "ActionTitle_4": "&{Text100}",
+            "ActionDescription_4": "&{Text101}",
+            "ToastMessage": "&{Text107}",
             "DecodeKeyName": "Transaction Type",
             "EncodedInputValue": "${MainTXNTXType}",
             "DecodedResultVariable": "MainTXNTXTypeDecoded",
@@ -1196,22 +1221,22 @@
         "ScrollToPointer": false,
         "FrameAutoScroll": true,
         "FrameScrollBars": "",
-        "ToastMessage": "&{Text96}",
+        "ToastMessage": "",
         "ToastPosition": null,
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 22,
         "SegmentNo": 8,
         "FrameID": 5,
-        "FrameTitle": "&{Text98}"
+        "FrameTitle": "&{Text102}"
       },
       "Action": {
-        "ActionTitle": "&{Text99}",
-        "ActionDescription": "&{Text100}",
+        "ActionTitle": "&{Text103}",
+        "ActionDescription": "&{Text103}",
+        "FrameTitle": "&{Text102}",
         "ActionType": "BrowserScreen",
         "ActionParameters": {
           "ExternalURL": "",
