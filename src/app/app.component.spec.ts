@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Tillit-Explorer'`, () => {
+  it(`should have as title 'Tiilit-Proofbot'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Tillit-Explorer');
+    expect(app.title).toEqual('Tiilit-Proofbot');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Tillit-Explorer app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Tiilit-Proofbot app is running!');
   });
 });
