@@ -9,55 +9,55 @@
     "Segments": [
       {
         "NO": 1,
-        "Name": "GET Stellar Transaction"
+        "Name": "&{SegName1}"
       },
       {
         "NO": 2,
-        "Name": "Decode Current TXNHash"
+        "Name": "&{SegName2}"
       },
       {
         "NO": 3,
-        "Name": "GET Current Transaction"
+        "Name": "&{SegName3}"
       },
       {
         "NO": 4,
-        "Name": "Decode Identifier"
+        "Name": "&{SegName4}"
       },
       {
         "NO": 5,
-        "Name": "Decode Product ID"
+        "Name": "&{SegName5}"
       },
       {
         "NO": 6,
-        "Name": "Decode Backlink TXNHash"
+        "Name": "&{SegName6}"
       },
       {
         "NO": 7,
-        "Name": "GET Backlink Transaction"
+        "Name": "&{SegName7}"
       },
       {
         "NO": 8,
-        "Name": "Decode Current Transaction"
+        "Name": "&{SegName8}"
       },
       {
         "NO": 9,
-        "Name": "GET Current Transaction"
+        "Name": "&{SegName9}"
       },
       {
         "NO": 10,
-        "Name": "Decode Identifier"
+        "Name": "&{SegName10}"
       },
       {
         "NO": 11,
-        "Name": "Decode Product ID"
+        "Name": "&{SegName11}"
       },
       {
         "NO": 12,
-        "Name": "Comparison"
+        "Name": "&{SegName12}"
       },
       {
         "NO": 13,
-        "Name": "Summary"
+        "Name": "&{SegName13}"
       }
     ]
   },
@@ -70,7 +70,7 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Retrieve Current Transaction",
+        "ActionTitle": "&{Text0}",
         "ActionDescription": "",
         "ActionType": "MultiStepAction",
         "ActionParameters": {
@@ -98,7 +98,13 @@
             "StepNo": 1,
             "SegmentNo": 1,
             "FrameID": 1,
-            "FrameTitle": "Step 1 - Retrieve Current Transaction",
+            "FrameTitle": "&{Text1}",
+            "ActionTitle": "&{Text2}",
+            "ActionDescription": "&{Text4}",
+            "ActionTitle_1": "&{Text5}",
+            "ActionDescription_1": "&{Text6}",
+            "ActionTitle_2": "&{Text7}",
+            "ActionDescription_2": "&{Text8}",
             "TXNHash": "${TXNhash}",
             "OperationName": "current transaction",
             "ResponseVariable": "MainTXNDataString",
@@ -126,8 +132,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Extract CurrentTXN Hash",
-        "ActionDescription": "Select the CurrentTXN Hash (base64 encoded) from the transaction details.",
+        "ActionTitle": "&{Text9}",
+        "ActionDescription": "&{Text10}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -151,7 +157,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNHash",
-        "MetaData": ["MainTXNData", "CurrentTXN", false, "value"]
+        "MetaData": [
+          "MainTXNData",
+          "CurrentTXN",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -199,8 +210,12 @@
             "SegmentNo": 2,
             "FrameID": 1,
             "FrameTitle": "",
+            "ActionTitle": "&{Text11}",
+            "ActionDescription": "&{Text12}",
+            "ActionTitle_1": "&{Text13}",
+            "ActionDescription_1": "&{Text14}",
             "OperationKey": "CurrentTXN",
-            "OperationValue": "MainTXNCurentTXNHash",
+            "OperationValue": "MainTXNCurrentTXNHash",
             "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
             "OperationValueName": "encoded CurrentTXN Hash from the transaction details"
           }
@@ -226,8 +241,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded CurrentTXN",
-        "ActionDescription": "Save the base64 encoded CurrentTXN Hash value for future usage.",
+        "ActionTitle": "&{Text15}",
+        "ActionDescription": "&{Text16}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -303,10 +318,21 @@
             "StepNo": 5,
             "SegmentNo": 2,
             "FrameID": 2,
-            "FrameTitle": "Step 2 - Decode CurrentTXN",
+            "FrameTitle": "&{Text17}",
+            "ActionTitle": "&{Text18}",
+            "ActionDescription": "&{Text19}",
+            "ActionTitle_1": "&{Text20}",
+            "ActionDescription_1": "&{Text21}",
+            "ActionTitle_2": "&{Text22}",
+            "ActionDescription_2": "&{Text23}",
+            "ActionTitle_3": "&{Text24}",
+            "ActionDescription_3": "&{Text25}",
+            "ActionTitle_4": "&{Text26}",
+            "ActionDescription_4": "&{Text27}",
+            "ToastMessage": "Decoded CurrentTXN Hash",
             "DecodeKeyName": "CurrentTXN Hash",
-            "EncodedInputValue": "${MainTXNCurentTXNHash}",
-            "DecodedResultVariable": "var_currenttxn",
+            "EncodedInputValue": "${MainTXNCurrentTXNHash}",
+            "DecodedResultVariable": "var_CurrentTxn",
             "InformationStorageKey": "TXN2 CurrentTXN"
           }
         },
@@ -358,7 +384,13 @@
             "StepNo": 6,
             "SegmentNo": 3,
             "FrameID": 3,
-            "FrameTitle": "Step 3 - Retrieve Current Transaction",
+            "FrameTitle": "&{Text28}",
+            "ActionTitle": "&{Text29}",
+            "ActionDescription": "&{Text30}",
+            "ActionTitle_1": "&{Text31}",
+            "ActionDescription_1": "&{Text32}",
+            "ActionTitle_2": "&{Text33}",
+            "ActionDescription_2": "&{Text34}",
             "TXNHash": "${var_currenttxn}",
             "OperationName": "current transaction of the gateway transaction",
             "ResponseVariable": "MainTXNCurentTXNDataString",
@@ -386,8 +418,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded Identifier",
-        "ActionDescription": "Select the encoded Identifier from the transaction details.",
+        "ActionTitle": "&{Text35}",
+        "ActionDescription": "&{Text36}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -411,7 +443,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNDataIdentifier",
-        "MetaData": ["MainTXNCurentTXNData", "identifier", false, "value"]
+        "MetaData": [
+          "MainTXNCurentTXNData",
+          "identifier",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -459,6 +496,10 @@
             "SegmentNo": 4,
             "FrameID": 3,
             "FrameTitle": "",
+            "ActionTitle": "&{Text37}",
+            "ActionDescription": "&{Text38}",
+            "ActionTitle_1": "&{Text39}",
+            "ActionDescription_1": "&{Text40}",
             "OperationKey": "identifier",
             "OperationValue": "MainTXNCurentTXNDataIdentifier",
             "OperationKeyName": "encoded Identifier from the transaction details",
@@ -486,8 +527,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded Identifier",
-        "ActionDescription": "Save the base64 encoded Identifier value for future usage.",
+        "ActionTitle": "&{Text41}",
+        "ActionDescription": "&{Text42}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -563,7 +604,18 @@
             "StepNo": 10,
             "SegmentNo": 4,
             "FrameID": 4,
-            "FrameTitle": "Step 4 - Decode MainTXN Identifier",
+            "FrameTitle": "&{Text45}",
+            "ActionTitle": "&{Text46}",
+            "ActionDescription": "&{Text47}",
+            "ActionTitle_1": "&{Text48}",
+            "ActionDescription_1": "&{Text49}",
+            "ActionTitle_2": "&{Text50}",
+            "ActionDescription_2": "&{Text51}",
+            "ActionTitle_3": "&{Text52}",
+            "ActionDescription_3": "&{Text53}",
+            "ActionTitle_4": "&{Text54}",
+            "ActionDescription_4": "&{Text55}",
+            "ToastMessage": "&{Text105}",
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
@@ -583,7 +635,6 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 11,
@@ -592,8 +643,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded ProductID",
-        "ActionDescription": "Select the encoded Product ID from the transaction details.",
+        "ActionTitle": "&{Text56}",
+        "ActionDescription": "&{Text57}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -617,7 +668,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNDataProductId",
-        "MetaData": ["MainTXNCurentTXNData", "productId", false, "value"]
+        "MetaData": [
+          "MainTXNCurentTXNData",
+          "productId",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -665,6 +721,10 @@
             "SegmentNo": 5,
             "FrameID": 3,
             "FrameTitle": "",
+            "ActionTitle": "&{Text58}",
+            "ActionDescription": "&{Text59}",
+            "ActionTitle_1": "&{Text60}",
+            "ActionDescription_1": "&{Text61}",
             "OperationKey": "productId",
             "OperationValue": "MainTXNCurentTXNDataProductId",
             "OperationKeyName": "encoded ProductID from the transaction details",
@@ -692,8 +752,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded ProductID",
-        "ActionDescription": "Save the base64 encoded ProductID value for future usage.",
+        "ActionTitle": "&{Text62}",
+        "ActionDescription": "&{Text63}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -769,7 +829,18 @@
             "StepNo": 14,
             "SegmentNo": 5,
             "FrameID": 3,
-            "FrameTitle": "Step 5 - Decode MainTXN ProductID",
+            "FrameTitle": "&{Text}64",
+            "ActionTitle": "&{Text65}",
+            "ActionDescription": "&{Text66}",
+            "ActionTitle_1": "&{Text67}",
+            "ActionDescription_1": "&{Text68}",
+            "ActionTitle_2": "&{Text69}",
+            "ActionDescription_2": "&{Text70}",
+            "ActionTitle_3": "&{Text71}",
+            "ActionDescription_3": "&{Text72}",
+            "ActionTitle_4": "&{Text73}",
+            "ActionDescription_4": "&{Text74}",
+            "ToastMessage": "&{Text106}",
             "DecodeKeyName": "MainTXN ProductID",
             "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
             "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
@@ -789,7 +860,6 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 15,
@@ -798,8 +868,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded PreviousTXN",
-        "ActionDescription": "Select the encoded PreviousTXN Hash value from the transaction details.",
+        "ActionTitle": "&{Text75}",
+        "ActionDescription": "&{Text76}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -823,7 +893,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNPreviousTXN",
-        "MetaData": ["MainTXNData", "PreviousTXN", false, "value"]
+        "MetaData": [
+          "MainTXNData",
+          "PreviousTXN",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -871,6 +946,10 @@
             "SegmentNo": 6,
             "FrameID": 1,
             "FrameTitle": "",
+            "ActionTitle": "&{Text77}",
+            "ActionDescription": "&{Text78}",
+            "ActionTitle_1": "&{Text79}",
+            "ActionDescription_1": "&{Text80}",
             "OperationKey": "PreviousTXN",
             "OperationValue": "MainTXNPreviousTXN",
             "OperationKeyName": "encoded PreviousTXN Hash from the transaction details.",
@@ -898,8 +977,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded PreviousTXN",
-        "ActionDescription": "Save the base64 encoded Previous TXN Hash value for future usage.",
+        "ActionTitle": "&{Text81}",
+        "ActionDescription": "&{Text82}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -975,7 +1054,18 @@
             "StepNo": 18,
             "SegmentNo": 6,
             "FrameID": 1,
-            "FrameTitle": "Step 6 - Decode MainTXN Previous hash",
+            "FrameTitle": "&{Text83}",
+            "ActionTitle": "&{Text84}",
+            "ActionDescription": "&{Text85}",
+            "ActionTitle_1": "&{Text86}",
+            "ActionDescription_1": "&{Text87}",
+            "ActionTitle_2": "&{Text88}",
+            "ActionDescription_2": "&{Text89}",
+            "ActionTitle_3": "&{Text90}",
+            "ActionDescription_3": "&{Text91}",
+            "ActionTitle_4": "&{Text92}",
+            "ActionDescription_4": "&{Text93}",
+            "ToastMessage": "Decoded MainTXN Previous hash",
             "DecodeKeyName": "MainTXN Previous hash",
             "EncodedInputValue": "${MainTXNPreviousTXN}",
             "DecodedResultVariable": "MainTXNPreviousTXNDecoded",
@@ -995,7 +1085,6 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 19,
@@ -1031,9 +1120,15 @@
             "StepNo": 19,
             "SegmentNo": 7,
             "FrameID": 8,
-            "FrameTitle": "Step 7 - Retrieve Backlink Transaction",
+            "FrameTitle": "&{Text94}",
+            "ActionTitle": "&{Text95}",
+            "ActionDescription": "&{Text96}",
+            "ActionTitle_1": "&{Text97}",
+            "ActionDescription_1": "&{Text98}",
+            "ActionTitle_2": "&{Text99}",
+            "ActionDescription_2": "&{Text100}",
             "TXNHash": "${MainTXNPreviousTXNDecoded}",
-            "OperationName": "Backlink transaction from Stellar Blockchain.",
+            "OperationName": "BackLink transaction from Stellar Blockchain.",
             "ResponseVariable": "MainTXNPreviousTXNDataString",
             "JSONResultVariable": "MainTXNPreviousTXNData"
           }
@@ -1059,8 +1154,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded CurrentTXN",
-        "ActionDescription": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details.",
+        "ActionTitle": "&{Text101}",
+        "ActionDescription": "&{Text102}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1084,7 +1179,12 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNPreviousTXNCurrentTXNHash",
-        "MetaData": ["MainTXNPreviousTXNData", "CurrentTXN", false, "value"]
+        "MetaData": [
+          "MainTXNPreviousTXNData",
+          "CurrentTXN",
+          false,
+          "value"
+        ]
       },
       "Customizations": {
         "PointerData": "",
@@ -1132,10 +1232,14 @@
             "SegmentNo": 8,
             "FrameID": 8,
             "FrameTitle": "",
+            "ActionTitle": "&{Text103}",
+            "ActionDescription": "&{Text104}",
+            "ActionTitle_1": "&{Text105}",
+            "ActionDescription_1": "&{Text106}",
             "OperationKey": "CurrentTXN",
             "OperationValue": "MainTXNPreviousTXNCurrentTXNHash",
-            "OperationKeyName": "encoded CurrentTXN Hash of the Backlink transaction from the transaction details.",
-            "OperationValueName": "encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
+            "OperationKeyName": "encoded CurrentTXN Hash of the BackLink transaction from the transaction details.",
+            "OperationValueName": "encoded CurrentTXN Hash of the BackLink transaction from the transaction details."
           }
         },
         "ActionResultVariable": "",
@@ -1159,8 +1263,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded CurrentTXN",
-        "ActionDescription": "Save the base64 encoded CurrentTXN Hash value of the Previuos TXN for future usage.",
+        "ActionTitle": "&{Text107}",
+        "ActionDescription": "&{Text108}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1236,7 +1340,18 @@
             "StepNo": 23,
             "SegmentNo": 8,
             "FrameID": 9,
-            "FrameTitle": "Step 9 - Decode PreviousTXN CurentTXN Hash",
+            "FrameTitle": "&{Text109}",
+            "ActionTitle": "&{Text110}",
+            "ActionDescription": "&{Text111}",
+            "ActionTitle_1": "&{Text112}",
+            "ActionDescription_1": "&{Text113}",
+            "ActionTitle_2": "&{Text114}",
+            "ActionDescription_2": "&{Text115}",
+            "ActionTitle_3": "&{Text116}",
+            "ActionDescription_3": "&{Text117}",
+            "ActionTitle_4": "&{Text118}",
+            "ActionDescription_4": "&{Text119}",
+            "ToastMessage": "Decoded MainTXN Identifier",
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNHash}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNHashDecoded",
@@ -1256,7 +1371,6 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 24,
@@ -1292,9 +1406,15 @@
             "StepNo": 24,
             "SegmentNo": 9,
             "FrameID": 10,
-            "FrameTitle": "Step 10 - Retrieve Backlink Current Transaction",
+            "FrameTitle": "&{Text120}",
+            "ActionTitle": "&{Text121}",
+            "ActionDescription": "&{Text122}",
+            "ActionTitle_1": "&{Text123}",
+            "ActionDescription_1": "&{Text124}",
+            "ActionTitle_2": "&{Text125}",
+            "ActionDescription_2": "&{Text126}",
             "TXNHash": "${MainTXNPreviousTXNCurrentTXNHashDecoded}",
-            "OperationName": "current transaction of the backlink transaction",
+            "OperationName": "current transaction of the backLink transaction",
             "ResponseVariable": "MainTXNPreviousTXNCurrentTXNDataString",
             "JSONResultVariable": "MainTXNPreviousTXNCurrentTXNData"
           }
@@ -1320,8 +1440,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded Identifier",
-        "ActionDescription": "Select the encoded Identifier from the transaction details.",
+        "ActionTitle": "&{Text127}",
+        "ActionDescription": "&{Text128}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1398,6 +1518,10 @@
             "SegmentNo": 10,
             "FrameID": 10,
             "FrameTitle": "",
+            "ActionTitle": "&{Text129}",
+            "ActionDescription": "&{Text130}",
+            "ActionTitle_1": "&{Text131}",
+            "ActionDescription_1": "&{Text132}",
             "OperationKey": "identifier",
             "OperationValue": "MainTXNPreviousTXNCurrentTXNDataIdentifier",
             "OperationKeyName": "encoded Identifier from the transaction details",
@@ -1502,7 +1626,18 @@
             "StepNo": 28,
             "SegmentNo": 10,
             "FrameID": 11,
-            "FrameTitle": "Step 11 - Decode PreviousTXN's CurrentTXN's Identifier",
+            "FrameTitle": "&{Text135}",
+            "ActionTitle": "&{Text136}",
+            "ActionDescription": "&{Text137}",
+            "ActionTitle_1": "&{Text138}",
+            "ActionDescription_1": "&{Text139}",
+            "ActionTitle_2": "&{Text140}",
+            "ActionDescription_2": "&{Text141}",
+            "ActionTitle_3": "&{Text142}",
+            "ActionDescription_3": "&{Text143}",
+            "ActionTitle_4": "&{Text144}",
+            "ActionDescription_4": "&{Text145}",
+            "ToastMessage": "Decoded PreviousTXN's CurrentTXN' Identifier",
             "DecodeKeyName": "PreviousTXN's CurrentTXN' Identifier",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded",
@@ -1522,7 +1657,6 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 29,
@@ -1531,8 +1665,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded ProductID",
-        "ActionDescription": "Select the encoded Product ID from the transaction details.",
+        "ActionTitle": "&{Text146}",
+        "ActionDescription": "&{Text147}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1609,6 +1743,10 @@
             "SegmentNo": 11,
             "FrameID": 10,
             "FrameTitle": "",
+            "ActionTitle": "&{Text148}",
+            "ActionDescription": "&{Text149}",
+            "ActionTitle_1": "&{Text150}",
+            "ActionDescription_1": "&{Text151}",
             "OperationKey": "productId",
             "OperationValue": "MainTXNPreviousTXNCurrentTXNDataProductID",
             "OperationKeyName": "encoded ProductID from the transaction details",
@@ -1636,8 +1774,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded ProductID",
-        "ActionDescription": "Save the base64 encoded ProductID value for future usage.",
+        "ActionTitle": "&{Text152}",
+        "ActionDescription": "&{Text153}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1713,7 +1851,18 @@
             "StepNo": 32,
             "SegmentNo": 11,
             "FrameID": 11,
-            "FrameTitle": "Step 12 - Decode PreviousTXN's CurrentTXN's ProductID",
+            "FrameTitle": "&{Text154}",
+            "ActionTitle": "&{Text155}",
+            "ActionDescription": "&{Text156}",
+            "ActionTitle_1": "&{Text157}",
+            "ActionDescription_1": "&{Text158}",
+            "ActionTitle_2": "&{Text159}",
+            "ActionDescription_2": "&{Text160}",
+            "ActionTitle_3": "&{Text161}",
+            "ActionDescription_3": "&{Text162}",
+            "ActionTitle_4": "&{Text163}",
+            "ActionDescription_4": "&{Text164}",
+            "ToastMessage": "Decoded PreviousTXN's CurrentTXN's ProductID",
             "DecodeKeyName": "PreviousTXN's CurrentTXN's ProductID",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataProductID}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataProductIDDecoded",
@@ -1733,13 +1882,12 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 34,
         "SegmentNo": 12,
         "FrameID": 12,
-        "FrameTitle": ""
+        "FrameTitle": "&{Text165}"
       },
       "Action": {
         "ActionDescription": "",
@@ -1769,7 +1917,19 @@
             "StepNo": 34,
             "SegmentNo": 12,
             "FrameID": 12,
-            "FrameTitle": "Step 13 - Compare the base64 decoded Identifier",
+            "FrameTitle": "&{Text165}",
+            "ActionTitle": "&{Text166}",
+            "ActionDescription": "&{Text167}",
+            "ActionTitle_1": "&{Text168}",
+            "ActionDescription_1": "&{Text169}",
+            "FrameTitle_1": "&{Text165}",
+            "ActionTitle_2": "&{Text170}",
+            "ActionDescription_2": "&{Text171}",
+            "FrameTitle_2": "&{Text165}",
+            "ActionTitle_3": "&{Text172}",
+            "ActionDescription_3": "&{Text173}",
+            "FrameTitle_3": "&{Text165}",
+            "ToastMessage": "Comparison result",
             "InputKeyName": "the base64 decoded Identifier values from the transactions.",
             "InputValue": "[{\"title\": \"Identifiers from the Main transaction and Backlink transaction\", \"t1\": \"${MainTXNCurentTXNDataIdentifierDecoded}\", \"t2\": \"${MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded}\"}]"
           }
@@ -1787,17 +1947,17 @@
         "ActionDuration": 10
       }
     },
-
     {
       "StepHeader": {
         "StepNo": 35,
         "SegmentNo": 13,
         "FrameID": 13,
-        "FrameTitle": "Step 14 - Verification Summary"
+        "FrameTitle": "&{Text176}"
       },
       "Action": {
-        "ActionTitle": "Verification Summary",
-        "ActionDescription": "Verification Summary",
+        "ActionTitle": "&{Text174}",
+        "ActionDescription": "&{Text175}",
+        "FrameTitle": "&{Text176}",
         "ActionType": "BrowserScreen",
         "ActionParameters": {
           "ExternalURL": "",

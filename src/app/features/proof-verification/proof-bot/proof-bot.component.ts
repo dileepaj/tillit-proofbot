@@ -18,6 +18,7 @@ import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
+import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json"
 import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
 
 @Component({
@@ -98,7 +99,7 @@ export class ProofBotComponent implements OnInit {
   toastLeft: string = "32%";
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe","pog"];
+  availableProofs: any[] = ['poe','pog','pobl'];
   proofType: string = "";
   lang: string = "en";
   Name: string =""
@@ -191,6 +192,7 @@ export class ProofBotComponent implements OnInit {
     switch (this.proofType) {
       case "pobl":
         protocolJson = POBLJSON;
+        langJson = POBLLangJSON;
         break;
       case "pog":
         protocolJson = POGJSON;
@@ -221,7 +223,7 @@ export class ProofBotComponent implements OnInit {
     }
 
     this.proofJSON = this.parseLangData(this.proofJSON, variables);
-    //console.log(' this.proofJSONss', this.parseLangData(this.proofJSON, variables));
+    console.log(' this.proofJSONss', this.parseLangData(this.proofJSON, variables));
     //console.log( this.proofJSON )
   }
 
@@ -248,20 +250,20 @@ export class ProofBotComponent implements OnInit {
             replaceValue = JSON.stringify(replaceValue);
 
           data = data.replace(a[0], replaceValue);
-         // console.log('replaceValue:', replaceValue);
-         // console.log('valueType:',valueType);
-          //console.log('data:',data);
+         console.log('replaceValue:', replaceValue);
+         console.log('valueType:',valueType);
+          console.log('data:',data);
         }
       } catch (error) {}
     });
-    //console.log('parseLangDataJSon: under me');
-    //console.log('parseLangDataJSon:', JSON.parse(data));
+    console.log('parseLangDataJSon: under me');
+    console.log('parseLangDataJSon:', JSON.parse(data));
     return JSON.parse(data);
   }
 
   getActionConfigurations() {
     var actionConfigs: any = ActionConfigurations;
-    //console.log('ActionConfigs',actionConfigs);
+    console.log('ActionConfigs',actionConfigs);
     return actionConfigs.default;
   }
 
@@ -321,7 +323,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) {}
     });
-    //console.log('Data----',data);
+    console.log('Data----',data);
     //console.log('parseSubActionDataParseSubActionData', JSON.parse(data));
     return JSON.parse(data);
   }

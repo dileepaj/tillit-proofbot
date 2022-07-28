@@ -1,0 +1,961 @@
+{
+    "Segments": {
+        "SegName1": {
+            "en": "GET Stellar Transaction"
+        },
+        "SegName2": {
+            "en": "Decode Current TXNHash"
+        },
+        "SegName3": {
+            "en": "GET Current Transaction"
+        },
+        "SegName4": {
+            "en": "Decode Identifier"
+        },
+        "SegName5": {
+            "en": "Decode Product ID"
+        },
+        "SegName6": {
+            "en": "Decode BackLink TXNHash"
+        },
+        "SegName7": {
+            "en": "GET BackLink Transaction"
+        },
+        "SegName8": {
+            "en": "Decode Current Transaction"
+        },
+        "SegName9": {
+            "en": "GET Current Transaction"
+        },
+        "SegName10": {
+            "en": "Decode Identifier"
+        },
+        "SegName11": {
+            "en": "Decode Product ID"
+        },
+        "SegName12": {
+            "en": "Comparison"
+        },
+        "SegName13": {
+            "en": "Summary"
+        }
+    },
+    "Actions": [
+        {
+            "SegmentNo": 1,
+            "StepNo": 1,
+            "Languages": {
+                "Text0": {
+                    "ja": "",
+                    "en": "Retrieve Current Transaction"
+                },
+                "Text1": {
+                    "ja": "",
+                    "en": "Step 1 - Retrieve Current Transaction"
+                },
+                "Text2": {
+                    "ja": "",
+                    "en": "Request Stellar HorizonAPI"
+                },
+                "Text3": {
+                    "ja": "",
+                    "en": "Request Stellar HorizonAPI"
+                },
+                "Text4": {
+                    "ja": "",
+                    "en": "Retrieve the current transaction from Stellar Blockchain."
+                },
+                "Text5": {
+                    "ja": "",
+                    "en": "Save API Response"
+                },
+                "Text6": {
+                    "ja": "",
+                    "en": "Save the response data of the transaction"
+                },
+                "Text7": {
+                    "ja": "",
+                    "en": "Format Response (JSON)"
+                },
+                "Text8": {
+                    "ja": "",
+                    "en": "Format transaction data to JSON (Javascript Object Notation)"
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 2,
+            "Languages": {
+                "Text9": {
+                    "ja": "",
+                    "en": "Extract CurrentTXN Hash"
+                },
+                "Text10": {
+                    "ja": "",
+                    "en": "Select the CurrentTXN Hash (base64 encoded) from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 3,
+            "Languages": {
+                "Text11": {
+                    "ja": "",
+                    "en": "Highlight the CurrentTXN"
+                },
+                "Text12": {
+                    "ja": "",
+                    "en": "Select the encoded CurrentTXN Hash from the transaction details"
+                },
+                "Text13": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNCurrentTXNHash"
+                },
+                "Text14": {
+                    "ja": "",
+                    "en": "Select the encoded CurrentTXN Hash from the transaction details"
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 4,
+            "Languages": {
+                "Text15": {
+                    "ja": "",
+                    "en": "Save Base64Encoded CurrentTXN"
+                },
+                "Text16": {
+                    "ja": "",
+                    "en": "Save the base64 encoded CurrentTXN Hash value for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 5,
+            "Languages": {
+                "Text17": {
+                    "ja": "",
+                    "en": "Step 2 - Decode CurrentTXN"
+                },
+                "Text18": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text19": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded CurrentTXN Hash"
+                },
+                "Text20": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text21": {
+                    "ja": "",
+                    "en": "Input the base64 encoded CurrentTXN Hash"
+                },
+                "Text22": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text23": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text24": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text25": {
+                    "ja": "",
+                    "en": "Get the output of the decoded CurrentTXN Hash"
+                },
+                "Text26": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text27": {
+                    "ja": "",
+                    "en": "Save the decoded CurrentTXN Hash for future usage."
+                },
+                "Text104": {
+                    "ja": "",
+                    "en": "Decoded CurrentTXN Hash"
+                }
+            }
+        },
+        {
+            "SegmentNo": 3,
+            "StepNo": 6,
+            "Languages": {
+                "Text28": {
+                    "ja": "",
+                    "en": "Step 3 - Retrieve Current Transaction"
+                },
+                "Text29": {
+                    "ja": "",
+                    "en": "Request Stellar HorizonAPI"
+                },
+                "Text30": {
+                    "ja": "",
+                    "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
+                },
+                "Text31": {
+                    "ja": "",
+                    "en": "Save API Response"
+                },
+                "Text32": {
+                    "ja": "",
+                    "en": "Save the response data of the transaction"
+                },
+                "Text33": {
+                    "ja": "",
+                    "en": "Format Response (JSON)"
+                },
+                "Text34": {
+                    "ja": "",
+                    "en": "Format transaction data to JSON (Javascript Object Notation)"
+                }
+            }
+        },
+        {
+            "SegmentNo": 4,
+            "StepNo": 7,
+            "Languages": {
+                "Text35": {
+                    "ja": "",
+                    "en": "Select Base64Encoded Identifier"
+                },
+                "Text36": {
+                    "ja": "",
+                    "en": "Select the encoded Identifier from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 4,
+            "StepNo": 8,
+            "Languages": {
+                "Text37": {
+                    "ja": "",
+                    "en": "Highlight the identifier."
+                },
+                "Text38": {
+                    "ja": "",
+                    "en": "Select the encoded Identifier from the transaction details."
+                },
+                "Text39": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNCurrentTXNDataIdentifier."
+                },
+                "Text40": {
+                    "ja": "",
+                    "en": "Select the encoded Identifier value from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 4,
+            "StepNo": 9,
+            "Languages": {
+                "Text41": {
+                    "ja": "",
+                    "en": "Save Base64Encoded Identifier"
+                },
+                "Text42": {
+                    "ja": "",
+                    "en": "Save the base64 encoded Identifier value for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 4,
+            "StepNo": 10,
+            "Languages": {
+                "Text45": {
+                    "ja": "",
+                    "en": "Step 4 - Decode MainTXN Identifier"
+                },
+                "Text46": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text47": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded MainTXN Identifier"
+                },
+                "Text48": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text49": {
+                    "ja": "",
+                    "en": "Input the base64 encoded MainTXN Identifier"
+                },
+                "Text50": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text51": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text52": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text53": {
+                    "ja": "",
+                    "en": "Get the output of the decoded MainTXN Identifier"
+                },
+                "Text54": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text55": {
+                    "ja": "",
+                    "en": "Save the decoded MainTXN Identifier for future usage."
+                },
+                "Text105": {
+                    "ja": "",
+                    "en": "Decoded MainTXN Identifier"
+                }
+            }
+        },
+        {
+            "SegmentNo": 5,
+            "StepNo": 11,
+            "Languages": {
+                "Text56": {
+                    "ja": "",
+                    "en": "Select Base64Encoded ProductID"
+                },
+                "Text57": {
+                    "ja": "",
+                    "en": "Select the encoded Product ID from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 5,
+            "StepNo": 12,
+            "Languages": {
+                "Text58": {
+                    "ja": "",
+                    "en": "Highlight the productId"
+                },
+                "Text59": {
+                    "ja": "",
+                    "en": "Select the encoded ProductID from the transaction details"
+                },
+                "Text60": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNCurrentTXNDataProductId"
+                },
+                "Text61": {
+                    "ja": "",
+                    "en": "Select the encoded ProductID value from the transaction details"
+                }
+            }
+        },
+        {
+            "SegmentNo": 5,
+            "StepNo": 13,
+            "Languages": {
+                "Text62": {
+                    "ja": "",
+                    "en": "Save Base64Encoded ProductID"
+                },
+                "Text63": {
+                    "ja": "",
+                    "en": "Save the base64 encoded ProductID value for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 5,
+            "StepNo": 14,
+            "Languages": {
+                "Text64": {
+                    "ja": "",
+                    "en": "Step 5 - Decode MainTXN ProductID"
+                },
+                "Text65": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text66": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded MainTXN ProductID"
+                },
+                "Text67": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text68": {
+                    "ja": "",
+                    "en": "Input the base64 encoded MainTXN ProductID"
+                },
+                "Text69": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text70": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text71": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text72": {
+                    "ja": "",
+                    "en": "Get the output of the decoded MainTXN ProductID"
+                },
+                "Text73": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text74": {
+                    "ja": "",
+                    "en": "Save the decoded MainTXN ProductID for future usage."
+                },
+                "Text106": {
+                    "ja": "",
+                    "en": "Decoded MainTXN ProductID"
+                }
+            }
+        },
+        {
+            "SegmentNo": 6,
+            "StepNo": 15,
+            "Languages": {
+                "Text75": {
+                    "ja": "",
+                    "en": "Select Base64Encoded PreviousTXN"
+                },
+                "Text76": {
+                    "ja": "",
+                    "en": "Select the encoded PreviousTXN Hash value from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 6,
+            "StepNo": 16,
+            "Languages": {
+                "Text77": {
+                    "ja": "",
+                    "en": "Highlight the PreviousTXN"
+                },
+                "Text78": {
+                    "ja": "",
+                    "en": "Select the encoded PreviousTXN Hash from the transaction details."
+                },
+                "Text79": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNPreviousTXN"
+                },
+                "Text80": {
+                    "ja": "",
+                    "en": "Select the encoded MainTXNPreviousTXN Hash value from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 6,
+            "StepNo": 17,
+            "Languages": {
+                "Text81": {
+                    "ja": "",
+                    "en": "Save Base64Encoded PreviousTXN"
+                },
+                "Text82": {
+                    "ja": "",
+                    "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 6,
+            "StepNo": 18,
+            "Languages": {
+                "Text83": {
+                    "ja": "",
+                    "en": "Step 6 - Decode MainTXN Previous hash"
+                },
+                "Text84": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text85": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded MainTXN Previous hash"
+                },
+                "Text86": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Dat"
+                },
+                "Text87": {
+                    "ja": "",
+                    "en": "Input the base64 encoded MainTXN Previous hash"
+                },
+                "Text88": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text89": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text90": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text91": {
+                    "ja": "",
+                    "en": "Get the output of the decoded MainTXN Previous hash"
+                },
+                "Text92": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text93": {
+                    "ja": "",
+                    "en": "Save the decoded MainTXN Previous hash for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 7,
+            "StepNo": 19,
+            "Languages": {
+                "Text94": {
+                    "ja": "",
+                    "en": "Step 7 - Retrieve BackLink Transaction"
+                },
+                "Text95": {
+                    "ja": "",
+                    "en": "Request Stellar HorizonAPI"
+                },
+                "Text96": {
+                    "ja": "",
+                    "en": "Retrieve the BackLink transaction from Stellar Blockchain from Stellar Blockchain."
+                },
+                "Text97": {
+                    "ja": "",
+                    "en": "Save API Response"
+                },
+                "Text98": {
+                    "ja": "",
+                    "en": "Save the response data of the transaction"
+                },
+                "Text99": {
+                    "ja": "",
+                    "en": "Format Response (JSON)"
+                },
+                "Text100": {
+                    "ja": "",
+                    "en": "Format transaction data to JSON (Javascript Object Notation)"
+                }
+            }
+        },
+        {
+            "SegmentNo": 8,
+            "StepNo": 20,
+            "Languages": {
+                "Text101": {
+                    "ja": "",
+                    "en": "Select Base64Encoded CurrentTXN"
+                },
+                "Text102": {
+                    "ja": "",
+                    "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 8,
+            "StepNo": 21,
+            "Languages": {
+                "Text103": {
+                    "ja": "",
+                    "en": "Highlight the CurrentTXN"
+                },
+                "Text104": {
+                    "ja": "",
+                    "en": "Select the encoded CurrentTXN Hash of the BackLink transaction from the transaction details."
+                },
+                "Text105": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNPreviousTXNCurrentTXNHash"
+                },
+                "Text106": {
+                    "ja": "",
+                    "en": "Select the encoded CurrentTXN Hash of the BackLink transaction from the transaction details"
+                }
+            }
+        },
+        {
+            "SegmentNo": 8,
+            "StepNo": 22,
+            "Languages": {
+                "Text107": {
+                    "ja": "",
+                    "en": "Save Base64Encoded CurrentTXN"
+                },
+                "Text108": {
+                    "ja": "",
+                    "en": "Save the base64 encoded CurrentTXN Hash value of the Previuos TXN for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 8,
+            "StepNo": 23,
+            "Languages": {
+                "Text109": {
+                    "ja": "",
+                    "en": "Step 9 - Decode MainTXN Previous hash"
+                },
+                "Text110": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text111": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded MainTXN Previous hash"
+                },
+                "Text112": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text113": {
+                    "ja": "",
+                    "en": "Input the base64 encoded MainTXN Previous hash"
+                },
+                "Text114": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text115": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text116": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text117": {
+                    "ja": "",
+                    "en": "Get the output of the decoded MainTXN Identifier"
+                },
+                "Text118": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text119": {
+                    "ja": "",
+                    "en": "Save the decoded MainTXN Previous hash for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 9,
+            "StepNo": 24,
+            "Languages": {
+                "Text120": {
+                    "ja": "",
+                    "en": "Step 10 - Retrieve BackLink Transaction"
+                },
+                "Text121": {
+                    "ja": "",
+                    "en": "Request Stellar HorizonAPI"
+                },
+                "Text122": {
+                    "ja": "",
+                    "en": "Retrieve the BackLink transaction from Stellar Blockchain from Stellar Blockchain."
+                },
+                "Text123": {
+                    "ja": "",
+                    "en": "Save API Response"
+                },
+                "Text124": {
+                    "ja": "",
+                    "en": "Save the response data of the transaction"
+                },
+                "Text125": {
+                    "ja": "",
+                    "en": "Format Response (JSON)"
+                },
+                "Text126": {
+                    "ja": "",
+                    "en": "Format transaction data to JSON (Javascript Object Notation)"
+                }
+            }
+        },
+        {
+            "SegmentNo": 10,
+            "StepNo": 25,
+            "Languages": {
+                "Text127": {
+                    "ja": "",
+                    "en": "Select Base64Encoded Identifier"
+                },
+                "Text128": {
+                    "ja": "",
+                    "en": "Select the encoded Identifier from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 10,
+            "StepNo": 26,
+            "Languages": {
+                "Text129": {
+                    "ja": "",
+                    "en": "Highlight the identifier"
+                },
+                "Text130": {
+                    "ja": "",
+                    "en": "Select the encoded Identifier from the transaction details"
+                },
+                "Text131": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNPreviousTXNCurrentTXNDataIdentifier"
+                },
+                "Text132": {
+                    "ja": "",
+                    "en": "Select the encoded Identifier value from the transaction details"
+                }
+            }
+        },
+        {
+            "SegmentNo": 10,
+            "StepNo": 27,
+            "Languages": {
+                "Text133": {
+                    "ja": "",
+                    "en": "Save Base64Encoded Identifier"
+                },
+                "Text134": {
+                    "ja": "",
+                    "en": "Save the base64 encoded Identifier value of the PreviousTX for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 10,
+            "StepNo": 28,
+            "Languages": {
+                "Text135": {
+                    "ja": "",
+                    "en": "Step 11 - Decode PreviousTXN's CurrentTXN's Identifier"
+                },
+                "Text136": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text137": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded PreviousTXN's CurrentTXN' Identifier"
+                },
+                "Text138": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text139": {
+                    "ja": "",
+                    "en": "Input the base64 encoded PreviousTXN's CurrentTXN' Identifier"
+                },
+                "Text140": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text141": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text142": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text143": {
+                    "ja": "",
+                    "en": "Get the output of the decoded PreviousTXN's CurrentTXN' Identifier"
+                },
+                "Text144": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text145": {
+                    "ja": "",
+                    "en": "Save the decoded PreviousTXN's CurrentTXN' Identifier for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 11,
+            "StepNo": 29,
+            "Languages": {
+                "Text146": {
+                    "ja": "",
+                    "en": "Select Base64Encoded ProductID"
+                },
+                "Text147": {
+                    "ja": "",
+                    "en": "Select the encoded Product ID from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 11,
+            "StepNo": 30,
+            "Languages": {
+                "Text148": {
+                    "ja": "",
+                    "en": "Highlight the identifier"
+                },
+                "Text149": {
+                    "ja": "",
+                    "en": "Select the encoded ProductID from the transaction details"
+                },
+                "Text150": {
+                    "ja": "",
+                    "en": "Highlight the MainTXNPreviousTXNCurrentTXNDataProductID"
+                },
+                "Text151": {
+                    "ja": "",
+                    "en": "Select the encoded ProductID value from the transaction details"
+                }
+            }
+        },
+        {
+            "SegmentNo": 11,
+            "StepNo": 31,
+            "Languages": {
+                "Text152": {
+                    "ja": "",
+                    "en": "Save Base64Encoded ProductID"
+                },
+                "Text153": {
+                    "ja": "",
+                    "en": "Save the base64 encoded ProductID value for future usage"
+                }
+            }
+        },
+        {
+            "SegmentNo": 11,
+            "StepNo": 32,
+            "Languages": {
+                "Text154": {
+                    "ja": "",
+                    "en": "Step 12 - Decode PreviousTXN's CurrentTXN's ProductID"
+                },
+                "Text155": {
+                    "ja": "",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text156": {
+                    "ja": "",
+                    "en": "Decode the base64 encoded PreviousTXN's CurrentTXN's ProductID"
+                },
+                "Text157": {
+                    "ja": "",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text158": {
+                    "ja": "",
+                    "en": "Input the base64 encoded PreviousTXN's CurrentTXN's ProductID"
+                },
+                "Text159": {
+                    "ja": "",
+                    "en": "Click Decode Button"
+                },
+                "Text160": {
+                    "ja": "",
+                    "en": "Click the decode button"
+                },
+                "Text161": {
+                    "ja": "",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text162": {
+                    "ja": "",
+                    "en": "Get the output of the decoded PreviousTXN's CurrentTXN's ProductID"
+                },
+                "Text163": {
+                    "ja": "",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text164": {
+                    "ja": "",
+                    "en": "Save the decoded PreviousTXN's CurrentTXN's ProductID for future usage."
+                }
+            }
+        },
+        {
+            "SegmentNo": 12,
+            "StepNo": 34,
+            "Languages": {
+                "Text165": {
+                    "ja": "",
+                    "en": "Step 13 - Compare the base64 decoded Identifier"
+                },
+                "Text166": {
+                    "ja": "",
+                    "en": "Online TextComparison Webpage"
+                },
+                "Text167": {
+                    "ja": "",
+                    "en": "Load the online text comparison webpage"
+                },
+                "Text168": {
+                    "ja": "",
+                    "en": "Input comparison values"
+                },
+                "Text169": {
+                    "ja": "",
+                    "en": "Input the base64 decoded Identifier values from the transactions."
+                },
+                "Text170": {
+                    "ja": "",
+                    "en": "Click compare button"
+                },
+                "Text171": {
+                    "ja": "",
+                    "en": "Click the compare button"
+                },
+                "Text172": {
+                    "ja": "",
+                    "en": "Scroll to result"
+                },
+                "Text173": {
+                    "ja": "",
+                    "en": "Scroll to the result"
+                }
+            }
+        },
+        {
+            "SegmentNo": 13,
+            "StepNo": 35,
+            "Languages": {
+                "Text174": {
+                    "ja": "",
+                    "en": "Verification Summary"
+                },
+                "Text175": {
+                    "ja": "",
+                    "en": "Verification Summary"
+                },
+                "Text176": {
+                    "ja": "",
+                    "en": "Step 14 - Verification Summary"
+                }
+            }
+        }
+    ]
+}
