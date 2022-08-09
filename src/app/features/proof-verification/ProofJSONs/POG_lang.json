@@ -2,7 +2,7 @@
     "Segments": {
         "SegName1": {
             "ja": "ステラ・トランザクションの取得",
-            "en": "GeT Stellar Transaction"
+            "en": "Get Stellar Transaction"
         },
         "SegName2": {
             "ja": "現在のTXNHashをデコード",
@@ -10,7 +10,7 @@
         },
         "SegName3": {
             "ja": "現在のトランザクションの取得",
-            "en": "GeT Current Transaction"
+            "en": "Get Current Transaction"
         },
         "SegName4": {
             "ja": "デコード 識別子",
