@@ -505,7 +505,6 @@
         },
         "Text152": {
           "ja":"識別子 (base64)",
-          
           "en" : "Identifier (base64)"
         }
        
@@ -625,8 +624,8 @@
               },
               "Text109": {
                 "ja":"Current TXN データハッシュ（base64）。",
-                "en": "Current TXN Data Hash (base64)"
-              } 
+                "en":"Current TXN Data Hash (base64)"
+              }
            
             }
           },
@@ -682,7 +681,11 @@
                   "Text141": {
                     "ja":"デコードされたCurrent TXN データハッシュ",
                     "en": "Decoded Current TXN Data Hash"
-                  } 
+                  },
+                  "Text153": {
+                    "ja":"Current TXN データハッシュ",
+                    "en": "CurrentTXN data hash"
+                  }  
                
                 }
               },
