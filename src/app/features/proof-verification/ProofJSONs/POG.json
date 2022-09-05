@@ -247,8 +247,8 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "TXN2 CurrentTXN (base64)",
-              "Value": "${MainTXNCurrentTXNHash}"
+              "Key": "&{Text108}",
+              "Value": "${MainTXNCurentTXNHash}"
             }
           ]
         },
@@ -313,9 +313,9 @@
             "ActionDescription_4": "&{Text27}",
             "ToastMessage": "&{Text104}",
             "DecodeKeyName": "CurrentTXN Hash",
-            "EncodedInputValue": "${MainTXNCurrentTXNHash}",
+            "EncodedInputValue": "${MainTXNCurentTXNHash}",
             "DecodedResultVariable": "var_currenttxn",
-            "InformationStorageKey": "TXN2 CurrentTXN"
+            "InformationStorageKey": "&{Text114}"
           }
         },
         "ActionResultVariable": "",
@@ -425,12 +425,7 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNDataIdentifier",
-        "MetaData": [
-          "MainTXNCurentTXNData",
-          "identifier",
-          false,
-          "value"
-        ]
+        "MetaData": ["MainTXNCurentTXNData", "identifier", false, "value"]
       },
       "Customizations": {
         "PointerData": "",
@@ -483,7 +478,7 @@
             "ActionTitle_1": "&{Text39}",
             "ActionDescription_1": "&{Text40}",
             "OperationKey": "identifier",
-            "OperationValue": "MainTXNCurrentTXNDataIdentifier",
+            "OperationValue": "MainTXNCurentTXNDataIdentifier",
             "OperationKeyName": "encoded Identifier from the transaction details",
             "OperationValueName": "encoded Identifier value from the transaction details"
           }
@@ -533,7 +528,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Identifier (base64)",
+              "Key": "&{Text109}",
               "Value": "${MainTXNCurentTXNDataIdentifier}"
             }
           ]
@@ -601,7 +596,7 @@
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
-            "InformationStorageKey": "Identifier"
+            "InformationStorageKey": "&{Text116}"
           }
         },
         "ActionResultVariable": "",
@@ -758,7 +753,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Product ID (base64)",
+              "Key": "&{Text110}",
               "Value": "${MainTXNCurentTXNDataProductId}"
             }
           ]
@@ -826,7 +821,7 @@
             "DecodeKeyName": "MainTXN ProductID",
             "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
             "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
-            "InformationStorageKey": "ProductID"
+            "InformationStorageKey": "&{Text118}"
           }
         },
         "ActionResultVariable": "",
@@ -983,7 +978,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "PreviousTXN Hash (base64)",
+              "Key": "&{Text111}",
               "Value": "${MainTXNPreviousTXN}"
             }
           ]
@@ -1142,7 +1137,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Transaction Type (base64)",
+              "Key": "&{Text112}",
               "Value": "${MainTXNTXType}"
             }
           ]
@@ -1210,7 +1205,7 @@
             "DecodeKeyName": "Transaction Type",
             "EncodedInputValue": "${MainTXNTXType}",
             "DecodedResultVariable": "MainTXNTXTypeDecoded",
-            "InformationStorageKey": "Transaction Type"
+            "InformationStorageKey": "&{Text113}"
           }
         },
         "ActionResultVariable": "",

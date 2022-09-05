@@ -1328,8 +1328,8 @@
             "ToastMessage":"&{Text141}",
             "EncodedInputValue": "${MainTXNCurentTXNDatadatahash}",
             "DecodedResultVariable": "MainTXNCurentTXNDatadatahashDecoded",
-            "InformationStorageKey": "CurrentTXN datahash",
-            "DecodeKeyName": "CurrentTXN datahash"
+            "InformationStorageKey": "&{Text153}",
+            "DecodeKeyName": "&{Text153}"
           }
         },
         "ActionResultVariable": "",
