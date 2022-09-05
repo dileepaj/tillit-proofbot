@@ -109,6 +109,14 @@
                 "Text14": {
                     "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
                     "en": "Select the encoded Current TXN Hash from the transaction details"
+                },
+                "Text114": {
+                    "ja": "TXN2 CurrentTXN",
+                    "en": "TXN2 CurrentTXN"
+                },
+                "Text115": {
+                    "ja": "CurrentTXN ハッシュ",
+                    "en": "CurrentTXN Hash"
                 }
             }
         },
@@ -123,6 +131,10 @@
                 "Text16": {
                     "ja": "将来の使用にBase64でエンコードされたCurrent TXNハッシュ値を保存",
                     "en": "Save the base64 encoded Current TXN Hash value for future usage."
+                },
+                "Text108": {
+                    "ja":"TXN2 CurrentTXN (base64)",
+                    "en":"TXN2 CurrentTXN (base64)"
                 }
             }
         },
@@ -261,6 +273,10 @@
                 "Text42": {
                     "ja": "将来の使用のために、base64 エンコードされた 識別子の 値を保存",
                     "en": "Save the base64 encoded Identifier value for future usage."
+                },
+                "Text109": {
+                    "ja":"識別子 (base64)",
+                    "en":"Identifier (base64)"
                 }
             }
         },
@@ -313,8 +329,16 @@
                     "en": "Save the decoded Main TXN Identifier for future usage."
                 },
                 "Text105": {
-                    "ja": "デコードされたMain TXN識別子",
+                    "ja": "デコードされたMainTXN識別子",
                     "en": "Decoded Main TXN Identifier"
+                },
+                "Text116": {
+                    "ja": "識別子",
+                    "en": "Identifier"
+                },
+                "Text117": {
+                    "ja": "MainTXN識別子",
+                    "en": "MainTXN Identifier"
                 }
             }
         },
@@ -365,6 +389,10 @@
                 "Text63": {
                     "ja": "将来の使用のために、Base64エンコードされたProduct IDの値を保存",
                     "en": "Save the base64 encoded Product ID value for future usage."
+                },
+                "Text110": {
+                    "ja":"製品 ID (base64)",
+                    "en":"Product ID (base64)"
                 }
             }
         },
@@ -419,6 +447,14 @@
                 "Text106": {
                     "ja": "デコードされたMain TXN Product ID",
                     "en": "Decoded Main TXN Product ID"
+                },
+                "Text118": {
+                    "ja": "製品番号",
+                    "en": "ProductID"
+                },
+                "Text119": {
+                    "ja": "MainTXN製品番号",
+                    "en": "MainTXN ProductID"
                 }
             }
         },
@@ -469,6 +505,10 @@
                 "Text82": {
                     "ja": "将来の使用のためにBase64エンコードされた前のTXNハッシュ値を保存",
                     "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+                },
+                "Text111": {
+                    "ja": "PreviousTXN ハッシュ (base64)",
+                    "en": "PreviousTXN Hash (base64)"
                 }
             }
         },
@@ -519,6 +559,10 @@
                 "Text90": {
                     "ja": "将来の使用のためにBase64エンコードされた前のTXNハッシュ値を保存",
                     "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+                },
+                "Text112": {
+                    "ja": "トランザクション タイプ (base64)",
+                    "en": "Transaction Type (base64)"
                 }
             }
         },
@@ -573,6 +617,10 @@
                 "Text107": {
                     "ja": "デコードされたトランザクションのタイプ",
                     "en": "Decoded Transaction Type"
+                },
+                "Text113": {
+                    "ja": "取引タイプ",
+                    "en": "Transaction Type"
                 }
             }
         },
