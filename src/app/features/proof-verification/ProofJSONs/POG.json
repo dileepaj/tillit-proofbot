@@ -139,12 +139,7 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNCurentTXNHash",
-        "MetaData": [
-          "MainTXNData",
-          "CurrentTXN",
-          false,
-          "value"
-        ]
+        "MetaData": ["MainTXNData", "CurrentTXN", false, "value"]
       },
       "Customizations": {
         "PointerData": "",
@@ -197,7 +192,7 @@
             "ActionTitle_1": "&{Text13}",
             "ActionDescription_1": "&{Text14}",
             "OperationKey": "CurrentTXN",
-            "OperationValue": "MainTXNCurrentTXNHash",
+            "OperationValue": "MainTXNCurentTXNHash",
             "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
             "OperationValueName": "encoded CurrentTXN Hash from the transaction details"
           }
@@ -375,8 +370,8 @@
             "ActionDescription_2": "&{Text34}",
             "TXNHash": "${var_currenttxn}",
             "OperationName": "current transaction of the gateway transaction",
-            "ResponseVariable": "MainTXNCurrentTXNDataString",
-            "JSONResultVariable": "MainTXNCurrentTXNData"
+            "ResponseVariable": "MainTXNCurentTXNDataString",
+            "JSONResultVariable": "MainTXNCurentTXNData"
           }
         },
         "ActionResultVariable": "",
@@ -870,12 +865,7 @@
           "StorageData": []
         },
         "ActionResultVariable": "MainTXNPreviousTXN",
-        "MetaData": [
-          "MainTXNData",
-          "PreviousTXN",
-          false,
-          "value"
-        ]
+        "MetaData": ["MainTXNData", "PreviousTXN", false, "value"]
       },
       "Customizations": {
         "PointerData": "",
