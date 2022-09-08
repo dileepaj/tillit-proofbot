@@ -19,7 +19,9 @@ import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
-
+import { Logs } from "selenium-webdriver";
+import { VerificationServiceService } from "src/app/services/verification-service.service";
+import { environment } from 'src/environments/environment';
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -98,28 +100,29 @@ export class ProofBotComponent implements OnInit {
   toastLeft: string = "32%";
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe","pog"];
+  availableProofs: any[] = ["poe", "pog"];
   proofType: string = "";
   lang: string = "en";
-  Name: string =""
+  Name: string = "";
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private verificationHttpService: VerificationServiceService
   ) {}
 
   ngOnInit() {
     if (!this.isEmbedded) {
       this.route.queryParamMap.subscribe(params => {
         this.proofBotParams = {
-          params:{
-          txn: params.get('txn'),
-          type: params.get('type')
+          params: {
+            txn: params.get("txn"),
+            type: params.get("type")
           }
-        }
+        };
       });
     }
     this.proofType = this.proofBotParams.params.type;
@@ -131,23 +134,39 @@ export class ProofBotComponent implements OnInit {
   }
 
   async startDemoFn() {
-    if (
-      this.proofBotParams &&
-      this.proofBotParams.params &&
-      this.availableProofs.includes(this.proofBotParams.params.type)
-    ) {
-      this.TXNhash = this.proofBotParams.params.txn;
-      this.TXNhash2 = this.proofBotParams.params.txn2;
-      this.variableStorage['TXNhash'] = this.proofBotParams.params.txn //'be22a568072abfc106f2f1e37809befb4c260d7ebe21f89ba8e2e7dcda27e8e7'
-      this.isLoading = true;
+    this.verificationHttpService.loadPage(environment.blockchain.getTransactionData+"?txn="+ this.proofBotParams.params.txn +"&page=1&perPage=10").subscribe(
+        async data => {
+          try {
+            if (!data) {
+              alert("Proof verification is not yet available for the given trasacion hash");
+            }else{
+              let proof=JSON.parse(data)
+            if (
+              proof[0].AvailableProof.includes(this.proofBotParams.params.type) &&
+              this.proofBotParams &&
+              this.proofBotParams.params
+            ) {
+              this.TXNhash = this.proofBotParams.params.txn;
+              this.TXNhash2 = this.proofBotParams.params.txn2;
+              this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+              this.isLoading = true;
 
-      // backend call
-      await new Promise(resolveTime => setTimeout(resolveTime, 4200));
+              // backend call
+              await new Promise(resolveTime => setTimeout(resolveTime, 4200));
 
-      // start demo (not -verifing)
-      this.initiateProofDemo();
-    } else
-      alert('Proof verification is not yet available for the selected type.');
+              // start demo (not -verifing)
+              this.initiateProofDemo();
+            } else
+              alert("Proof verification is not yet available for the selected type");
+            }
+          } catch (error) {
+            alert("Invalid trasaction URLa");
+          }
+        },
+        error => {
+          alert("Invalid trasaction URLaq");
+        }
+      );
   }
 
   async initiateProofDemo() {
@@ -169,18 +188,18 @@ export class ProofBotComponent implements OnInit {
     this.StorageTitle = Header.StorageTitle;
     this.ProofContainerTitle = Header.ProofContainerTitle;
     this.steppers = this.filterSegmentsAndActions(Header.Segments);
-    
+
     //console.log('Steppers',this.steppers);
     this.playbackSpeed = Header.PlaybackSpeed;
     this.gsHeightExpand = Header.GSHeightExpand;
     this.gsOverflowX = Header.GSOverflowX;
-    if (Object.keys(Header).includes('VSHeightExpand'))
+    if (Object.keys(Header).includes("VSHeightExpand"))
       this.vsHeightExpand = Header.VSHeightExpand;
     this.vsOverflowX = Header.VSOverflowX;
 
     //console.log(this.steppers);
 
-    await this.scrollToFrameById('proofHeaderTitle', 20);
+    await this.scrollToFrameById("proofHeaderTitle", 20);
     this.isStartDemo = true;
     this.playProofDemo(0);
   }
@@ -213,7 +232,7 @@ export class ProofBotComponent implements OnInit {
 
     for (let index = 0; index < Actions.length; index++) {
       const action = Actions[index];
-     // console.log("Action : ",Actions[index]);
+      // console.log("Action : ",Actions[index]);
       variables = {
         ...variables,
         ...action.Languages
@@ -230,13 +249,13 @@ export class ProofBotComponent implements OnInit {
     [...data.matchAll(/"\&{[^}]+}"|\&{[^}]+}/g)].forEach(a => {
       try {
         let key = a[0].match(/\&{([^}]+)}/g)[0].slice(2, -1);
-       // console.log('key', key);
-       // console.log('storedData',storedData);
+        // console.log('key', key);
+        // console.log('storedData',storedData);
 
         if (key && storedData) {
           var replaceValue = storedData[key];
           var valueType = typeof replaceValue;
-          
+
           if (valueType == "string" && a[0].match(/"\&{[^}]+}"/g)) {
             try {
               var result = JSON.stringify(replaceValue);
@@ -248,8 +267,8 @@ export class ProofBotComponent implements OnInit {
             replaceValue = JSON.stringify(replaceValue);
 
           data = data.replace(a[0], replaceValue);
-         // console.log('replaceValue:', replaceValue);
-         // console.log('valueType:',valueType);
+          // console.log('replaceValue:', replaceValue);
+          // console.log('valueType:',valueType);
           //console.log('data:',data);
         }
       } catch (error) {}
@@ -297,7 +316,7 @@ export class ProofBotComponent implements OnInit {
 
   parseSubActionData(action: any, storedData: any = this.variableStorage): any {
     let data = JSON.stringify(action).toString();
-   // console.log("JSON.stringify(action).toString()",JSON.stringify(action).toString());
+    // console.log("JSON.stringify(action).toString()",JSON.stringify(action).toString());
     [...data.matchAll(/"\#{[^}]+}"|\#{[^}]+}/g)].forEach(a => {
       //console.log("a--",a);
       try {
@@ -315,9 +334,9 @@ export class ProofBotComponent implements OnInit {
             }
           } else if (valueType == "object")
             replaceValue = JSON.stringify(replaceValue);
-              //console.log("replaceValue------------------",replaceValue);
+          //console.log("replaceValue------------------",replaceValue);
           data = data.replace(a[0], replaceValue);
-         // console.log("data.replace(a[0], replaceValue);---",data.replace(a[0], replaceValue));
+          // console.log("data.replace(a[0], replaceValue);---",data.replace(a[0], replaceValue));
         }
       } catch (error) {}
     });
@@ -332,15 +351,13 @@ export class ProofBotComponent implements OnInit {
         (subActions: Array<any>, job: any) => {
           const {
             StepHeader: { SegmentNo },
-            Action: { _ID, ActionTitle}
+            Action: { _ID, ActionTitle }
           } = job;
           if (SegmentNo == Segment.NO) {
-              subActions.push({
-                ActionID: _ID,
-                ActionName: ActionTitle
-                
-              });
-               
+            subActions.push({
+              ActionID: _ID,
+              ActionName: ActionTitle
+            });
           }
           return subActions;
         },
@@ -374,7 +391,7 @@ export class ProofBotComponent implements OnInit {
     this.lang = lang;
     //console.log("language",this.lang);
   }
-  
+
   togglePlayPauseFn() {
     if (this.isPause) {
       this.isPause = false;
@@ -648,8 +665,7 @@ export class ProofBotComponent implements OnInit {
       // console.log(action.Id, this.demoScreenChildRefs);
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
-      
-      
+
       //console.log("actionDescription2",ActionDescription);
       //console.log("Action1",Action);
       if (StepHeader.SegmentNo) {
@@ -858,7 +874,7 @@ export class ProofBotComponent implements OnInit {
       ActionResultVariable,
       MetaData
     } = Action;
-    
+
     const {
       ExternalURL,
       InnerHTML,

@@ -11,17 +11,14 @@ export const environment = {
   // Blockchain API services and Authorization codes
   blockchain: {
     blockchainAuth: null,
-    getTransactionFromPublicKey:
-      "https://qa.gateway.tracified.com/GetTransactionsForPK/",
+    getTransactionFromPublicKey:"https://qa.gateway.tracified.com/GetTransactionsForPK/",
     getHashData: "https://qa.gateway.tracified.com/proof/poe/",
     getPogData: "https://qa.gateway.tracified.com/proof/pog/",
     getPococData: "https://qa.gateway.tracified.com/proof/pococ/",
     getPocData: "https://qa.gateway.tracified.com/proof/poc/",
     getPocTreeData: "https://qa.gateway.tracified.com/pocv4/",
-    getTransactionData: "https://qa.gateway.tracified.com/GetTransactions/",
-    getRecentTransactions:
-      "https://qa.gateway.tracified.com/RetrievePreviousTranasctions/",
-    getRecentTransactionsCount:
-      "https://qa.gateway.tracified.com/RetrievePreviousTranasctionsCount/"
+    getTransactionData: "https://qa.gateway.tracified.com/GetTransactions",
+    getRecentTransactions:"https://qa.gateway.tracified.com/RetrievePreviousTranasctions/",
+    getRecentTransactionsCount:"https://qa.gateway.tracified.com/RetrievePreviousTranasctionsCount/"
   }
 };
