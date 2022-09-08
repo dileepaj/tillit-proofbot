@@ -16,7 +16,7 @@ export const environment = {
     getPococData: 'https://gateway.tracified.com/proof/pococ/',
     getPocData: 'https://gateway.tracified.com/proof/poc/',
     getPocTreeData: 'https://gateway.tracified.com/pocv4/',
-    getTransactionData: 'https://gateway.tracified.com/GetTransactions/',
+    getTransactionData: 'https://gateway.tracified.com/GetTransactions',
     getRecentTransactions: 'https://gateway.tracified.com/RetrievePreviousTranasctions/',
     getRecentTransactionsCount:'https://gateway.tracified.com/RetrievePreviousTranasctionsCount/',
   }
