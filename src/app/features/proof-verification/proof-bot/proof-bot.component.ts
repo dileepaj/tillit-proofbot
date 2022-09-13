@@ -138,7 +138,7 @@ export class ProofBotComponent implements OnInit {
         async data => {
           try {
             if (!data) {
-              alert("Proof verification is not yet available for the given trasacion hash");
+              alert("Proof verification is not yet available for the given transaction hash");
             }else{
               let proof=JSON.parse(data)
             if (
