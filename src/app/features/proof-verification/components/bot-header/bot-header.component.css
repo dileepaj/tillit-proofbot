@@ -6,6 +6,10 @@
     justify-content: center;
     align-items: center;
   }
+  .proofbot-header-img{
+    width:200px;
+    margin-right: 8px;
+  }
   .playPause div {
     display: flex;
     justify-content: flex-start;
@@ -43,4 +47,58 @@
     background-color: #007bff;
     color: #fdfcfc;
   }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .lang-selector{
+    align-self: center;
+  }
+  .header-container{
+    flex-direction: column;
+  }
+  .proofbot-header-img-container{
+    align-self: center;
+  }
   
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .lang-selector{
+    align-self: center;
+  }
+  .proofbot-header-img-container{
+    margin-right: auto;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .lang-selector{
+    align-self: center;
+  }
+  .proofbot-header-img-container{
+    margin-right: auto;
+  }
+  
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .lang-selector{
+    align-self: center;
+  }
+  .proofbot-header-img-container{
+    margin-right: auto;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .lang-selector{
+    align-self: center;
+    
+  }
+  .proofbot-header-img-container{
+    margin-right: auto;
+  }
+}
