@@ -57,6 +57,7 @@
   }
   .proofbot-header-img-container{
     align-self: center;
+    width:min-content;
   }
   
 }
