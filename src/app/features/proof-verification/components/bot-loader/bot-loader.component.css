@@ -10,14 +10,25 @@
   color: rgb(20, 18, 141);
 }
 
-.proofbot-header-img  { 
-width:250px;
-margin-right: 8px;
-align-self:center;
-margin-top: 20vh;
+.proofbot-home-img { 
+  width:400px;
+  margin-right: 8px;
+  align-self:center;
+  margin-top: 20vh;
 }
 
-.loader-view{
+@media only screen and (max-width: 1280px) {
+  .proofbot-home-img { 
+    width:350px
+    }
+}
+@media only screen and (max-width: 720px) {
+  .proofbot-home-img { 
+    width:250px
+    }
+}
+
+.loader-view-main{
   width: 100vw;
   height: 100vh;
   display: flex;
