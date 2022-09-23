@@ -1,10 +1,27 @@
 .btn .fa-youtube-play {
-  font-size: 4rem;
-  transition: 1000ms;
+  font-size: 5rem;
+  transition: 800ms;
   color: rgb(35, 37, 160);
   transition-timing-function: ease-in-out;
 }
+
 .btn .fa-youtube-play:hover {
-  font-size: 4.4rem;
+  font-size: 5.4rem;
   color: rgb(20, 18, 141);
+}
+
+.proofbot-header-img  { 
+width:250px;
+margin-right: 8px;
+align-self:center;
+margin-top: 20vh;
+}
+
+.loader-view{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
 }
