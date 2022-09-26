@@ -1,16 +1,29 @@
+<!--Proofbot header image-->
+
 <!-- language dropdown start -->
-<div class="mb-2">
+<div class="header-container d-flex justify-content-start">
+  <div class="proofbot-header-img-container p-2">
+    <img class="proofbot-header-img" src="../../../../assets/img/Asset 4.png">
+      <img class="proofbot-header-img2" src="../../../../assets/img/Asset 5.png">
+  </div>  
+  
+    
+ 
+    
+ <div class="lang-selector p-2">
   <select
-    class="custom-select mr-sm-2 w-auto"
-    [(ngModel)]="lang"
-    (ngModelChange)="emitLangFn($event)"
-    style="font-size: 14px;"
-  >
-    <option value="en">English</option>
-    <option value="si">Sinhala</option>
-    <option value="ta">Tamil</option>
-    <option value="ja">Japanese</option>
-  </select>
+  class="custom-select mr-sm-2 w-auto"
+  [(ngModel)]="lang"
+  (ngModelChange)="emitLangFn($event)"
+  style="font-size: 14px;"
+>
+  <option value="en">English</option>
+  <option value="si">Sinhala</option>
+  <option value="ta">Tamil</option>
+  <option value="ja">Japanese</option>
+</select>
+ </div>
+ 
 </div>
 <!-- language dropdown end -->
 
@@ -117,7 +130,7 @@
       *ngIf="!isPlayCompleted"
       class="progress-bar"
       role="progressbar"
-      style="min-width: 48px; font-size: 11px; display: flex; justify-content: center; align-items: center;"
+      style="background-color:#36445c96; min-width: 48px; font-size: 11px; display: flex; justify-content: center; align-items: center;"
       [ngStyle]="{
         width: ((currentStep / totalSteps) * 100).toFixed(2) + '%'
       }"
@@ -153,7 +166,7 @@
     <div
       ngbDropdown
       container="body"
-      class="dropdown mr-2"
+      class="dropdown"
       data-toggle="tooltip"
       title="Playback speed"
     >
@@ -255,7 +268,7 @@
       ngbDropdown
       container="body"
       *ngIf="!isTheater"
-      class="dropdown mr-2"
+      class="dropdown"
       data-toggle="tooltip"
       title="Settings"
     >
@@ -292,7 +305,7 @@
           >Theater Mode</a>      
         </div>
     </div>
-    <div
+    <!-- <div
       (click)="emitResizeVerifyScreenFn()"
       style="cursor: pointer;"
       data-toggle="tooltip"
@@ -323,7 +336,7 @@
           d="M1.986,12.6L6.586,8L8,9.414L3.414,14L5.986,14L5.986,16L1.986,16L-0.014,16L-0.014,10L1.986,10L1.986,12.6ZM12.586,2L10.014,2L10.014,0L16.014,0L16.014,6L14.014,6L14.014,3.4L9.414,8L8,6.586L12.586,2Z"
         />
       </svg>
-    </div>
+    </div> -->
   </div>
   <!-- Playback Speed end -->
 </div>

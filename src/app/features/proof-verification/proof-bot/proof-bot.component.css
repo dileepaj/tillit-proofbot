@@ -1,3 +1,25 @@
+.proofbot-main-view{
+  height: 100%;
+  width: 100%; 
+}
+.proofbot-main-view{
+  height: 100%;
+  width: 100%;
+}
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 1280px) {
+  .proofbot-main-view{
+    height: 104%;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1250px) {
+  .proofbot-main-view{
+    height: 107%;
+    width: 100%;
+  }
+}
+
 #proofDemoLoaderFrame {
   display: flex;
   flex-direction: column;

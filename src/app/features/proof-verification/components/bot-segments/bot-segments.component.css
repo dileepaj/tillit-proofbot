@@ -18,14 +18,36 @@
     justify-items: flex-start;
   }
   
-  #segments .step {
-    background-color: #7AABE0;
-    color: rgb(255, 255, 255);
+  #segments .success.step {
+    background-color: #098260;
+    color: #FFFFFF;
     border-radius: 8px;
   }
   
+  #subSteppers .success.step {
+    background-color:#78A48A;
+    border-radius: 8px;
+  }
+
+  #subSteppers .glow.step {
+    background-color:#78A48A;
+    border-radius: 8px;
+  }
+
+
+  #segments .glow.step {
+    background-color: #098260;
+    color: #FFFFFF;
+    border-radius: 8px;
+  }
+
+  #segments .step {
+    background-color: #A7A7A7;
+    color: #FFFFFF;
+    border-radius: 8px;
+  }
   #subSteppers .step {
-    background-color: #FFD754;
+    background-color: #A7A7A7;
     border-radius: 8px;
   }
   
@@ -35,20 +57,20 @@
   
   .cs-stepper-label {
     font-size: 11px !important;
-    color: white;
+    color:  #FFFFFF;;
     font-weight: 100;
   }
   
   .cs-stepper-circle {
     font-size: 10px !important;
-    border-color: white !important;
+    border-color: #FFFFFF !important;
     border: 1px solid !important;
     width: 22px !important;
     height: 22px !important;
     padding: 0 !important;
     display: flex !important;
     align-items: center;
-    background: #BDBDBD;
+    background: #B8B8B8;
     cursor: default;
     
   }
@@ -90,10 +112,16 @@
     display: none;
   }
   
-  .success .bs-stepper-circle {
-    background-color: #00B54B;
+  #segments .success .bs-stepper-circle {
+    background-color: #0E5E46;
     cursor: pointer;
   }
+
+  #subSteppers .success .bs-stepper-circle {
+    background-color: #6A9F81;
+    cursor: pointer;
+  }
+
   .success .bs-stepper-label{
     cursor: pointer;
   }
@@ -124,7 +152,7 @@
   }
   
   .glow .bs-stepper-circle {
-    background: #333BEC;
+    background: #299B49;
     box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
     -webkit-animation: glow 2s infinite;
     -moz-animation: glow 2s infinite;
@@ -136,19 +164,19 @@
   }
   @-webkit-keyframes glow {
     0% {
-      -webkit-box-shadow: 0 0 0 0 rgba(100, 44, 204, 0.4);
+      -webkit-box-shadow: 0 0 0 0 #299B49;
     }
     70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(44, 55, 204, 0);
+      -webkit-box-shadow: 0 0 0 10px #299B47;
     }
     100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(44, 47, 204, 0);
+      -webkit-box-shadow: 0 0 0 0 #299B49;
     }
   }
   @keyframes glow {
     0% {
-      -moz-box-shadow: 0 0 0 0 rgba(79, 44, 204, 0.4);
-      box-shadow: 0 0 0 0 rgba(47, 44, 204, 0.4);
+      -moz-box-shadow: 0 0 0 0 #299B49;
+      box-shadow: 0 0 0 0 #299B47;
     }
     70% {
       -moz-box-shadow: 0 0 0 10px rgba(100, 44, 204, 0);
@@ -269,3 +297,15 @@
   .overlay.show {
     opacity: 1;
   }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+.stepBtn{
+  height:5vh;
+}
+}
+@media only screen and (max-width: 400px) {
+  .stepBtn{
+    height:4vh;
+  }
+  }
+ 
