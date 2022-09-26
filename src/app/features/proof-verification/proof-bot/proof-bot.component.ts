@@ -56,8 +56,8 @@ export class ProofBotComponent implements OnInit {
   ProofContainerTitle: string = "Proof Container";
   @Input() initialWidth: string = "100%";
   @Input() initialHeight: string = "100%";
-  @Input() minWidth: string = "82%";
-  @Input() minHeight: string = "82%";
+  @Input() minWidth: string = "100%";
+  @Input() minHeight: string = "100%";
   @Input() maxWidth: string = "100%";
   @Input() maxHeight: string = "100%";
   @Input() justifyContent: string = "center";
