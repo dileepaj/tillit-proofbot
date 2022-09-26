@@ -11,20 +11,19 @@
 }
 
 .proofbot-home-img { 
-  width:400px;
-  margin-right: 8px;
+  width:360px;
   align-self:center;
-  margin-top: 20vh;
+  margin-top: 10vh;
 }
 
 @media only screen and (max-width: 1280px) {
   .proofbot-home-img { 
-    width:350px
+    width:325px
     }
 }
 @media only screen and (max-width: 720px) {
   .proofbot-home-img { 
-    width:250px
+    width:225px
     }
 }
 
