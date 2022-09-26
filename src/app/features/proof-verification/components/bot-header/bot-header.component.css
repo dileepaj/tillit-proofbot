@@ -10,6 +10,10 @@
     width:200px;
     margin-right: 8px;
   }
+  .proofbot-header-img2{
+    width:200px;
+    margin-right: 8px;
+  }
   .playPause div {
     display: flex;
     justify-content: flex-start;
@@ -59,9 +63,33 @@
     align-self: center;
     width:min-content;
   }
+  .proofbot-header-img2{
+    width:100px;
+    margin-right: 8px;
+    align-self:center;
+  }
   
 }
 
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (max-width: 420px) {
+    .lang-selector{
+      align-self: center;
+    }
+    .header-container{
+      flex-direction: column;
+    }
+    .proofbot-header-img-container{
+      align-self: center;
+      width:min-content;
+    }
+    .proofbot-header-img2{
+      width:150px;
+      margin-right: 8px;
+      align-self:center;
+    }
+    
+  }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .lang-selector{
@@ -70,6 +98,7 @@
   .proofbot-header-img-container{
     margin-right: auto;
   }
+  
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
