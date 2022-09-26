@@ -13,9 +13,17 @@
     width: 100%;
   }
 }
+
 @media only screen and (max-width: 1250px) {
   .proofbot-main-view{
     height: 107%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .proofbot-main-view{
+    height: 112%;
     width: 100%;
   }
 }
