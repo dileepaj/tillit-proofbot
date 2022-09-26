@@ -303,6 +303,13 @@
   height:5vh;
 }
 }
+
+@media only screen and (max-width: 450px) {
+  .stepBtn{
+    height:4.1vh;
+  }
+  }
+
 @media only screen and (max-width: 400px) {
   .stepBtn{
     height:4vh;
