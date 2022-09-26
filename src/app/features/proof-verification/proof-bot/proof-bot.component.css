@@ -9,13 +9,13 @@
   /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 1280px) {
   .proofbot-main-view{
-    height: 104%;
+    height: 105%;
     width: 100%;
   }
 }
 @media only screen and (max-width: 1250px) {
   .proofbot-main-view{
-    height: 107%;
+    height: 112%;
     width: 100%;
   }
 }
