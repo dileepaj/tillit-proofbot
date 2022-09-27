@@ -209,9 +209,7 @@ export class SiteScreenComponent implements OnInit {
     this.HTMLData = null;
     await this.sleepFor(1400);
     return new Promise(async (resolve, reject) => {
-      var translateUrl = isTranslate
-        ? `${environment.blockchain.getewayDomain}/enable-cors?web=http://translate.google.com/translate?hl=bg%26ie=UTF-8%26u=${pageUrl}%26sl=auto%26tl=${lang}`
-        : pageUrl;
+      var translateUrl = pageUrl
 
       // console.log(isTranslate, lang, translateUrl);
       this.displayPageUrl = pageUrl;
