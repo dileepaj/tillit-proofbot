@@ -11,6 +11,7 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { VerificationServiceService } from "../../../../services/verification-service.service";
 import Url from "url-parse";
+import { environment } from "src/environments/environment";
  
 @Component({
   selector: "app-site-screen",
@@ -208,9 +209,7 @@ export class SiteScreenComponent implements OnInit {
     this.HTMLData = null;
     await this.sleepFor(1400);
     return new Promise(async (resolve, reject) => {
-      var translateUrl = isTranslate
-        ? `https://qa.gateway.tracified.com/enable-cors?web=http://translate.google.com/translate?hl=bg%26ie=UTF-8%26u=${pageUrl}%26sl=auto%26tl=${lang}`
-        : pageUrl;
+      var translateUrl = pageUrl
 
       // console.log(isTranslate, lang, translateUrl);
       this.displayPageUrl = pageUrl;
