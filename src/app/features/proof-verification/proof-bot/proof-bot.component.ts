@@ -19,6 +19,9 @@ import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
+import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
+import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
+import * as ActionConfigurationsProduction from "../ProofJSONs/ActionCofigurationsProduction.json";
 import { Logs } from "selenium-webdriver";
 import { VerificationServiceService } from "src/app/services/verification-service.service";
 import { environment } from 'src/environments/environment';
@@ -279,9 +282,19 @@ export class ProofBotComponent implements OnInit {
   }
 
   getActionConfigurations() {
-    var actionConfigs: any = ActionConfigurations;
+    if(environment.blockchain.currentEnv=="PROD"){
+    var actionConfigs: any = ActionConfigurationsProduction;
     //console.log('ActionConfigs',actionConfigs);
     return actionConfigs.default;
+    }else if(environment.blockchain.currentEnv=="STAGING"){
+      var actionConfigs: any = ActionConfigurationsStaging;
+      //console.log('ActionConfigs',actionConfigs);
+      return actionConfigs.default;
+    }else{
+      var actionConfigs: any = ActionConfigurationsQa;
+      //console.log('ActionConfigs',actionConfigs);
+      return actionConfigs.default;
+    }
   }
 
   handleMultiStepActions() {
