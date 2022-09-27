@@ -19,5 +19,7 @@ export const environment = {
     getTransactionData: 'https://staging.gateway.tracified.com/GetTransactions',
     getRecentTransactions: 'https://staging.gateway.tracified.com/RetrievePreviousTranasctions/',
     getRecentTransactionsCount:'https://staging.gateway.tracified.com/RetrievePreviousTranasctionsCount/',
+    getewayDomain:"https://staging.gateway.tracified.com",
+    currentEnv:"STAGING"
   }
 };
