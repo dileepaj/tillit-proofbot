@@ -760,7 +760,12 @@
                       "Text123": {
                         "ja":"検証の概要についてー存在の証明",
                         "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
+                      },
+                      "Text124": {
+                        "ja":"検証の概要についてー存在の証明",
+                        "en": "Verification Completed Successfully"
                       }
+
                    
                     }
                   }

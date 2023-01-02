@@ -106,3 +106,14 @@
   font-weight: 400;
   z-index: 4000;
 }
+
+.toast-notification1 {
+  background-color: black;
+  color:#79FF9F;
+  border-radius: 10px;
+  position: absolute;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 400;
+  z-index: 4000;
+}

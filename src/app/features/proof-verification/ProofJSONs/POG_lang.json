@@ -635,6 +635,10 @@
                 "Text103": {
                     "ja": "検証の概要",
                     "en": "Verification Summary"
+                },
+                "Text120": {
+                    "ja": "検証の概要",
+                    "en": "Verification Completed Successfully"
                 }
             }
         }

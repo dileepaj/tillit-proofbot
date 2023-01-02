@@ -146,6 +146,18 @@
         (resizeVerifyScreenFn)="resizeVerifyScreen()"
       ></app-bot-header>
 
+   <div
+    *ngIf="isToast1"
+    class="toast-notification1 float-right px-2"
+    [ngStyle]="{ top: toastTop1, left: toastLeft1 }"
+    [@inOutAnimation]
+  >
+    <p class="m-0">{{ toastMSG1 }}
+
+      <img class="checked-small-img" src="../../../../assets/img/Vector.png">
+    </p>
+  </div>
+  
       <app-bot-globaldata
         id="globalInformation"
         *ngIf="globalData.length > 0"
@@ -193,6 +205,7 @@
         >
           <p class="m-0">{{ toastMSG }}</p>
         </div>
+ 
         <div class="spanner" [class.show]="isBackToStep">
           <div class="loader"></div>
         </div>

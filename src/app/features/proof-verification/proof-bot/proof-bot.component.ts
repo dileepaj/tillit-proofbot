@@ -97,10 +97,14 @@ export class ProofBotComponent implements OnInit {
   isDisableGlobalInformationR: boolean = true;
   isBackToStep: boolean = false;
   isToast: boolean = false;
+  isToast1: boolean = false;
   @Input() isTheater: boolean = false;
   toastMSG: string;
+  toastMSG1: string;
   toastTop: string = "40%";
+  toastTop1: string = "0%";
   toastLeft: string = "32%";
+  toastLeft1: string = "32%";
   ActionConfigurations: any;
   SegmentNumber: number;
   availableProofs: any[] = ["poe", "pog"];
@@ -185,14 +189,14 @@ export class ProofBotComponent implements OnInit {
 
     //console.log('langJson', langJson);
     // if verification success
-    //console.log(this.proofJSON);
+    console.log("json------",this.proofJSON);
 
     const { Header } = this.proofJSON;
     this.StorageTitle = Header.StorageTitle;
     this.ProofContainerTitle = Header.ProofContainerTitle;
     this.steppers = this.filterSegmentsAndActions(Header.Segments);
 
-    //console.log('Steppers',this.steppers);
+    console.log('Steppers',this.steppers);
     this.playbackSpeed = Header.PlaybackSpeed;
     this.gsHeightExpand = Header.GSHeightExpand;
     this.gsOverflowX = Header.GSOverflowX;
@@ -230,7 +234,7 @@ export class ProofBotComponent implements OnInit {
 
   handleLangJson(langJson: any) {
     let { Segments, Actions } = langJson;
-    //console.log('Sementics', Segments)
+    console.log('Sementics', Segments)
     var variables = Segments;
 
     for (let index = 0; index < Actions.length; index++) {
@@ -757,6 +761,13 @@ export class ProofBotComponent implements OnInit {
         this.toastTop = Customizations.ToastPosition[0];
         this.toastLeft = Customizations.ToastPosition[1];
         this.isToast = true;
+        console.log('toast', this.toastMSG );
+      } else if (Customizations.ToastMessage1){
+        this.toastMSG1 = Customizations.ToastMessage1[this.lang];
+        this.toastTop1 = Customizations.ToastPosition1[0];
+        this.toastLeft1 = Customizations.ToastPosition1[1];
+        this.isToast1 = true;
+        console.log('toast111', this.toastMSG1 );
       }
       this.cdr.detectChanges();
       await new Promise(resolveTime =>
@@ -770,6 +781,8 @@ export class ProofBotComponent implements OnInit {
         )
       );
       this.isToast = false;
+      this.isToast1 = false;
+
       if (this.lastCompletedStep < this.currentStep)
         this.lastCompletedStep = this.currentStep;
     }
