@@ -10,27 +10,33 @@
     "Segments": [
       {
         "NO": 1,
-        "Name": "&{SegName1}"
+        "Name": "&{SegName1}",
+        "Source":"../../../../assets/img/Group.png"
       },
       {
         "NO": 2,
-        "Name": "&{SegName2}"
+        "Name": "&{SegName2}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 3,
-        "Name": "&{SegName3}"
+        "Name": "&{SegName3}",
+        "Source":""
       },
       {
         "NO": 4,
-        "Name": "&{SegName4}"
+        "Name": "&{SegName4}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 5,
-        "Name": "&{SegName5}"
+        "Name": "&{SegName5}",
+        "Source":""
       },
       {
         "NO": 6,
-        "Name": "&{SegName6}"
+        "Name": "&{SegName6}",
+        "Source":""
       }
     ]
   },
@@ -604,8 +610,10 @@
             "ActionDescription": "&{Text44}",
             "ActionTitle_1": "&{Text45}",
             "ActionDescription_1": "&{Text46}",
+            "SegmentSource_1":"../../../../assets/img/Group 6.png",
             "ActionTitle_2": "&{Text47}",
             "ActionDescription_2": "&{Text48}",
+            "SegmentSource_2":"../../../../assets/img/Group 6.png",
             "TXNHash": "${TXNhash}",
             "ResponseVariable": "MainTXNDataString",
             "OperationName": "current transaction",
@@ -883,8 +891,10 @@
             "ActionDescription": "&{Text74}",
             "ActionTitle_1": "&{Text76}",
             "ActionDescription_1": "&{Text77}",
+            "SegmentSource_1":"../../../../assets/img/Group 6.png",
             "ActionTitle_2": "&{Text125}",
             "ActionDescription_2": "&{Text125}",
+            "SegmentSource_2":"../../../../assets/img/Group 6.png",
             "FrameTitle": "&{Text71}",
             "TXNHash": "${var_currenttxn}",
             "OperationName": "&{Text72}",
