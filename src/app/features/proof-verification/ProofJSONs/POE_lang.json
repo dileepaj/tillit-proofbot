@@ -741,7 +741,11 @@
                     "Text148": {
                       "ja":"結果をスクロールする",
                       "en": "Scroll to the result"
-                    }  
+                    }, 
+                    "Text154": {
+                      "ja":"klll",
+                      "en": "Comparison Result"
+                    }
                     } 
                  
                   },

@@ -1088,7 +1088,7 @@
       "FrameId": 13,
       "ActionSpeed": 10,
       "Type": "site-screen",
-      "PageURL": "https://text-comparison-server.herokuapp.com",
+      "PageURL": "https://text-comparission-server.onrender.com/",
       "ScrollToPointer": false
     },
     {

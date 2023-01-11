@@ -312,7 +312,7 @@
     height: 30px;
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
-    padding: 3px;
+    padding: 5px;
   }
   .success .segment-source{
     background-color: #0E5E46;
@@ -320,7 +320,7 @@
     height: 35px;
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
-    padding: 3px;
+    padding: 5px;
   }
   .glow .segment-source{
     background-color: #0E5E46;
@@ -328,7 +328,7 @@
     height: 35px;
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
-    padding: 3px;
+    padding: 5px;
   }
   .segment-source-sub{
     background-color: #A7A7A7;
@@ -336,7 +336,7 @@
     height: 35px;
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
-    padding: 3px;
+    padding: 5px;
   }
   .success .segment-source-sub{
     background-color: #395971;
@@ -344,7 +344,7 @@
     height: 35px;
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
-    padding: 3px;
+    padding: 5px;
   }
   .glow .segment-source-sub{
     background-color: #395971;
@@ -352,11 +352,11 @@
     height: 35px;
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
-    padding: 3px;
+    padding: 5px;
   }
   .source{
-    width: 25px;
-    height: 27px;
+    width: 21px;
+    height: 25px;
     padding-bottom: 4px;
   }
   /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -377,4 +377,66 @@
     height:4vh;
   }
   }
+@media only screen and (max-width: 400px) {
+    .stepBtn{
+      height:4vh;
+    }
+}
+
+@media only screen and (max-width: 375px)  {
+      
+  .segment-source{
+    background-color: #A7A7A7;
+    width: 47px;
+    height: 24px;
+    border-top-right-radius: 14%;
+    border-bottom-right-radius: 14%;
+    padding: 5px;
+   }
+  .success .segment-source{
+    background-color: #0E5E46;
+    width: 47px;
+    height: 24px;
+    border-top-right-radius: 14%;
+    border-bottom-right-radius: 14%;
+    padding: 5px;
+    }
+  .glow .segment-source{
+    background-color: #0E5E46;
+    width: 47px;
+    height: 24px;
+    border-top-right-radius: 14%;
+    border-bottom-right-radius: 14%;
+    padding: 5px;
+    }
+  .segment-source-sub{
+    background-color: #A7A7A7;
+    width: 47px;
+    height: 24px;
+    border-top-right-radius: 14%;
+    border-bottom-right-radius: 14%;
+    padding: 5px;
+    }
+  .success .segment-source-sub{
+    background-color: #395971;
+    width: 47px;
+    height: 24px;
+    border-top-right-radius: 14%;
+    border-bottom-right-radius: 14%;
+    padding: 5px;
+   }
+  .glow .segment-source-sub{
+    background-color: #395971;
+    width: 47px;
+    height: 24px;
+    border-top-right-radius: 14%;
+    border-bottom-right-radius: 14%;
+    padding: 5px;
+    }
+  .source{
+    width: 17px;
+    height: 20px;
+    padding-bottom: 2px;
+  }
+}
  

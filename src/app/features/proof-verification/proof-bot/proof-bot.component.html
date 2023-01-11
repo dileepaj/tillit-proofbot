@@ -146,13 +146,13 @@
         (resizeVerifyScreenFn)="resizeVerifyScreen()"
       ></app-bot-header>
 
+     
    <div
     *ngIf="isToast1"
     class="toast-notification1 float-right px-2"
-    [ngStyle]="{ top: toastTop1, left: toastLeft1 }"
     [@inOutAnimation]
   >
-    <p class="m-0">{{ toastMSG1 }}
+    <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
 
       <img class="checked-small-img" src="../../../../assets/img/Vector.png">
     </p>

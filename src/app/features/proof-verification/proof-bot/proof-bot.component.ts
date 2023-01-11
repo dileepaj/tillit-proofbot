@@ -1425,6 +1425,7 @@ export class ProofBotComponent implements OnInit {
 
   async addDataToGlobalData(Id: number, Title: string, Data: object[]) {
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
+    console.log('index',index);
     if (index == -1) {
       index = this.globalData.length;
       this.globalData.push({

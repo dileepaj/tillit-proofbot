@@ -21,11 +21,39 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 385px) {
   .proofbot-main-view{
     height: 112%;
     width: 100%;
   }
+  .toast-notification1 {
+    background-color: black;
+    color:#79FF9F;
+    border-radius: 10px;
+    position: absolute;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    z-index: 4000;
+    top:19%;
+    left: 20%;
+    width:249px;
+  }  
+}
+@media only screen and (min-width: 385px){
+  .toast-notification1 {
+    background-color: black;
+    color:#79FF9F;
+    border-radius: 10px;
+    position: absolute;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    z-index: 4000;
+    top:6%;
+    left: 80%;
+  }
+
 }
 
 #proofDemoLoaderFrame {
@@ -107,13 +135,5 @@
   z-index: 4000;
 }
 
-.toast-notification1 {
-  background-color: black;
-  color:#79FF9F;
-  border-radius: 10px;
-  position: absolute;
-  padding: 8px 20px;
-  font-size: 13px;
-  font-weight: 400;
-  z-index: 4000;
-}
+
+

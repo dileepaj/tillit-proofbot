@@ -11,35 +11,43 @@
     "Segments": [
       {
         "NO": 1,
-        "Name": "&{SegName1}"
+        "Name": "&{SegName1}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 2,
-        "Name": "&{SegName2}"
+        "Name": "&{SegName2}",
+        "Source":""
       },
       {
         "NO": 3,
-        "Name": "&{SegName3}"
+        "Name": "&{SegName3}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 4,
-        "Name": "&{SegName4}"
+        "Name": "&{SegName4}",
+        "Source":""
       },
       {
         "NO": 5,
-        "Name": "&{SegName5}"
+        "Name": "&{SegName5}",
+        "Source":""
       },
       {
         "NO": 6,
-        "Name": "&{SegName6}"
+        "Name": "&{SegName6}",
+        "Source":""
       },
       {
         "NO": 7,
-        "Name": "&{SegName7}"
+        "Name": "&{SegName7}",
+        "Source":""
       },
       {
         "NO": 8,
-        "Name": "&{SegName8}"
+        "Name": "&{SegName8}",
+        "Source":""
       }
     ]
   },

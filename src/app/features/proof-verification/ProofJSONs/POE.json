@@ -1402,6 +1402,7 @@
             "FrameTitle_3":"&{Text146}",
             "ActionTitle_3":"&{Text147}",
             "ActionDescription_3":"&{Text148}",
+            "ToastMessage": "&{Text154}",
             "InputKeyName": "the base64 decoded Datahash values from the transactions.",
             "InputValue": "[{\"title\": \"Identifiers from the TDP and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
           }
