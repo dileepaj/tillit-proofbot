@@ -97,10 +97,15 @@ export class ProofBotComponent implements OnInit {
   isDisableGlobalInformationR: boolean = true;
   isBackToStep: boolean = false;
   isToast: boolean = false;
+  isToast1: boolean = false;
   @Input() isTheater: boolean = false;
   toastMSG: string;
+  toastMSG1: string;
   toastTop: string = "40%";
+  toastTop1: string = "0%";
   toastLeft: string = "32%";
+  toastLeft1: string = "32%";
+  icon: string;
   ActionConfigurations: any;
   SegmentNumber: number;
   availableProofs: any[] = ["poe", "pog"];
@@ -129,6 +134,7 @@ export class ProofBotComponent implements OnInit {
       });
     }
     this.proofType = this.proofBotParams.params.type;
+     
   }
 
   async ngAfterViewInit() {
@@ -153,6 +159,7 @@ export class ProofBotComponent implements OnInit {
               this.TXNhash2 = this.proofBotParams.params.txn2;
               this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
               this.isLoading = true;
+              
 
               // backend call
               await new Promise(resolveTime => setTimeout(resolveTime, 4200));
@@ -185,14 +192,18 @@ export class ProofBotComponent implements OnInit {
 
     //console.log('langJson', langJson);
     // if verification success
-    //console.log(this.proofJSON);
+    console.log("json------",this.proofJSON);
 
     const { Header } = this.proofJSON;
     this.StorageTitle = Header.StorageTitle;
     this.ProofContainerTitle = Header.ProofContainerTitle;
+    
     this.steppers = this.filterSegmentsAndActions(Header.Segments);
+    
+    console.log('Steppers----',this.steppers);
+ 
 
-    //console.log('Steppers',this.steppers);
+
     this.playbackSpeed = Header.PlaybackSpeed;
     this.gsHeightExpand = Header.GSHeightExpand;
     this.gsOverflowX = Header.GSOverflowX;
@@ -230,12 +241,14 @@ export class ProofBotComponent implements OnInit {
 
   handleLangJson(langJson: any) {
     let { Segments, Actions } = langJson;
-    //console.log('Sementics', Segments)
+    console.log('Sementics', Segments)
     var variables = Segments;
 
     for (let index = 0; index < Actions.length; index++) {
       const action = Actions[index];
-      // console.log("Action : ",Actions[index]);
+
+     //console.log("Action :",Actions[index]);
+
       variables = {
         ...variables,
         ...action.Languages
@@ -363,25 +376,30 @@ export class ProofBotComponent implements OnInit {
       const SubActions = this.proofJSON.Steps.reduce(
         (subActions: Array<any>, job: any) => {
           const {
-            StepHeader: { SegmentNo },
-            Action: { _ID, ActionTitle }
+            StepHeader: { SegmentNo},
+            Action: { _ID, ActionTitle}
           } = job;
           if (SegmentNo == Segment.NO) {
             subActions.push({
               ActionID: _ID,
-              ActionName: ActionTitle
+              ActionName: ActionTitle,
+              icon : Segment.Source
             });
           }
+          
           return subActions;
         },
         []
       );
+
+      console.log("segments and icons--", Segment.Source);
       return {
         ...Segment,
         SubActions
       };
     });
   }
+ 
 
   async scrollToFrameById(frameID: string, offset = 0) {
     const bodyRect: any = document.body.getBoundingClientRect();
@@ -545,6 +563,7 @@ export class ProofBotComponent implements OnInit {
   // controllers for steppers
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
+    
     document
       .querySelectorAll("#steppersFrame")[0]
       .classList.add("steppersShow");
@@ -591,7 +610,9 @@ export class ProofBotComponent implements OnInit {
     this.subSteppers = this.steppers.find(
       (step: any) => step.NO == segmentNo
     ).SubActions;
-    //console.log("substeppers",this.subSteppers);
+
+    console.log("substeppers",this.subSteppers);
+    
     await new Promise(resolveTime => setTimeout(resolveTime, 1000));
     var index = this.subSteppers.findIndex(
       (step: any) => step.ActionID == actionID
@@ -673,7 +694,7 @@ export class ProofBotComponent implements OnInit {
         ActionTitle,
         ActionDescription,
         ActionType,
-        ActionParameters
+        ActionParameters 
       } = Action;
       // console.log(action.Id, this.demoScreenChildRefs);
       this.currentStep++;
@@ -751,12 +772,22 @@ export class ProofBotComponent implements OnInit {
 
       // this.isDisableGlobalInformationL = this.isDisableGlobalStorageScroll("L");
       // this.isDisableGlobalInformationR = this.isDisableGlobalStorageScroll("R");
+      
+
+  
 
       if (Customizations.ToastMessage) {
         this.toastMSG = Customizations.ToastMessage[this.lang];
         this.toastTop = Customizations.ToastPosition[0];
         this.toastLeft = Customizations.ToastPosition[1];
         this.isToast = true;
+        console.log('toast', this.toastMSG );
+      } else if (Customizations.ToastMessage1){
+        this.toastMSG1 = Customizations.ToastMessage1[this.lang];
+        this.toastTop1 = Customizations.ToastPosition1[0];
+        this.toastLeft1 = Customizations.ToastPosition1[1];
+        this.isToast1 = true;
+        console.log('toast111', this.toastMSG1 );
       }
       this.cdr.detectChanges();
       await new Promise(resolveTime =>
@@ -770,6 +801,8 @@ export class ProofBotComponent implements OnInit {
         )
       );
       this.isToast = false;
+      this.isToast1 = false;
+
       if (this.lastCompletedStep < this.currentStep)
         this.lastCompletedStep = this.currentStep;
     }
@@ -906,7 +939,7 @@ export class ProofBotComponent implements OnInit {
       CaseSensitivity,
       SelectiveTextIndex,
       CSS,
-      StorageData
+      StorageData,
     } = ActionParameters;
 
     const {
@@ -1392,6 +1425,7 @@ export class ProofBotComponent implements OnInit {
 
   async addDataToGlobalData(Id: number, Title: string, Data: object[]) {
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
+    console.log('index',index);
     if (index == -1) {
       index = this.globalData.length;
       this.globalData.push({

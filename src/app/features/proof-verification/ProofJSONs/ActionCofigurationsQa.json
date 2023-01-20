@@ -43,6 +43,7 @@
           "Required": true,
           "Description": ""
         }
+      
       },
       "Actions": [
         {
@@ -639,7 +640,7 @@
             "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
-              "ExternalURL": "https://text-comparison-server.herokuapp.com",
+              "ExternalURL": "https://text-comparission-server.onrender.com/",
               "InnerHTML": "",
               "Query": "",
               "QueryIndex": "",
@@ -802,7 +803,7 @@
             "ScrollToPointer": true,
             "FrameAutoScroll": true,
             "FrameScrollBars": "",
-            "ToastMessage": "Comparison result",
+            "ToastMessage": "#{ToastMessage}",
             "ToastPosition": ["60%", "20%"],
             "ActionDuration": 10
           }
