@@ -7,6 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class BotSegmentsComponent implements OnInit {
   @Input() SegmentNumber: number;
+  @Input() icon: string;
   @Input() steppers: any[];
   @Input() subSteppers: any[];
   @Output() backToStepFn = new EventEmitter();
@@ -16,9 +17,11 @@ export class BotSegmentsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+  
 
   emitBackToStepFn(NO: number) {
     this.backToStepFn.emit(NO);
+  
   }
 
   emitBackToActionFn(NO: number) {
