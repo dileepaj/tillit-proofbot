@@ -18,6 +18,7 @@ import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
+import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json"
 import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
 import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
@@ -65,6 +66,7 @@ export class ProofBotComponent implements OnInit {
   @Input() maxHeight: string = "100%";
   @Input() justifyContent: string = "center";
   @Input() alignItems: string = "center";
+  @Input() frameData: any = {};
   currentStep: number = 0;
   lastCompletedStep: number = 0;
   totalSteps: number = 0;
@@ -86,12 +88,14 @@ export class ProofBotComponent implements OnInit {
   color = "primary";
   mode = "indeterminate";
   value = 10;
+  Svalue: string;
   gsOverflowX: string = "hidden";
   vsOverflowX: string = "hidden";
   ActionDescription: string = "";
   TXNhash: string = "";
   TXNhash2: string = "";
   playbackSpeed: number = 1;
+  i: number;
   @Input() proofBotParams: any;
   isDisableGlobalInformationL: boolean = true;
   isDisableGlobalInformationR: boolean = true;
@@ -108,7 +112,7 @@ export class ProofBotComponent implements OnInit {
   icon: string;
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe", "pog"];
+  availableProofs: any[] = ["poe", "pog","pobl"];
   proofType: string = "";
   lang: string = "en";
   Name: string = "";
@@ -129,9 +133,11 @@ export class ProofBotComponent implements OnInit {
           params: {
             txn: params.get("txn"),
             type: params.get("type")
+            
           }
         };
       });
+      //console.log('tdp--',  this.proofBotParams );
     }
     this.proofType = this.proofBotParams.params.type;
      
@@ -193,6 +199,7 @@ export class ProofBotComponent implements OnInit {
     //console.log('langJson', langJson);
     // if verification success
     console.log("json------",this.proofJSON);
+   
 
     const { Header } = this.proofJSON;
     this.StorageTitle = Header.StorageTitle;
@@ -224,6 +231,7 @@ export class ProofBotComponent implements OnInit {
     switch (this.proofType) {
       case "pobl":
         protocolJson = POBLJSON;
+        langJson = POBLLangJSON;
         break;
       case "pog":
         protocolJson = POGJSON;
@@ -241,7 +249,7 @@ export class ProofBotComponent implements OnInit {
 
   handleLangJson(langJson: any) {
     let { Segments, Actions } = langJson;
-    console.log('Sementics', Segments)
+    //console.log('Sementics', Segments)
     var variables = Segments;
 
     for (let index = 0; index < Actions.length; index++) {
@@ -392,7 +400,7 @@ export class ProofBotComponent implements OnInit {
         []
       );
 
-      console.log("segments and icons--", Segment.Source);
+      //console.log("segments and icons--", Segment.Source);
       return {
         ...Segment,
         SubActions
@@ -611,7 +619,7 @@ export class ProofBotComponent implements OnInit {
       (step: any) => step.NO == segmentNo
     ).SubActions;
 
-    console.log("substeppers",this.subSteppers);
+    //console.log("substeppers",this.subSteppers);
     
     await new Promise(resolveTime => setTimeout(resolveTime, 1000));
     var index = this.subSteppers.findIndex(
@@ -789,6 +797,13 @@ export class ProofBotComponent implements OnInit {
         this.isToast1 = true;
         console.log('toast111', this.toastMSG1 );
       }
+
+     // if(ActionParameters.StorageData){
+         // this.Svalue = this.globalData;
+         // console.log('tkkkkk',  this.Svalue );
+      //  }
+      //console.log('val1', this.Svalue );
+
       this.cdr.detectChanges();
       await new Promise(resolveTime =>
         setTimeout(
@@ -907,6 +922,7 @@ export class ProofBotComponent implements OnInit {
     return ref;
   }
 
+  
   async handleFormatElementAttribute(stepData: any) {
     const { StepHeader, Action, Customizations } = stepData;
 
@@ -920,7 +936,7 @@ export class ProofBotComponent implements OnInit {
       ActionResultVariable,
       MetaData
     } = Action;
-
+ 
     const {
       ExternalURL,
       InnerHTML,
@@ -951,7 +967,7 @@ export class ProofBotComponent implements OnInit {
       ToastPosition,
       ActionDuration
     } = Customizations;
-    //console.log("action",Action);
+    
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
@@ -1160,6 +1176,7 @@ export class ProofBotComponent implements OnInit {
             );
             if (ActionResultVariable)
               this.variableStorage[ActionResultVariable] = result;
+             // console.log('hhhhhh---',this.variableStorage[ActionResultVariable] );
           }
           break;
         default:
@@ -1298,7 +1315,7 @@ export class ProofBotComponent implements OnInit {
         if (MetaData[3])
           this.variableStorage[ActionResultVariable] = result[MetaData[3]];
         else this.variableStorage[ActionResultVariable] = result;
-        // console.log(this.variableStorage[ActionResultVariable]);
+        // console.log('2---',this.variableStorage[ActionResultVariable]);
         break;
       case "jsonValueObjectPicker":
         this.variableStorage[ActionResultVariable] = this.jsonValueObjectPicker(
@@ -1306,7 +1323,7 @@ export class ProofBotComponent implements OnInit {
           MetaData[1],
           MetaData[2]
         )[MetaData[3]];
-        // console.log(this.variableStorage);
+        console.log('3--', this.variableStorage[ActionResultVariable]);
         break;
       default:
         break;
@@ -1423,9 +1440,14 @@ export class ProofBotComponent implements OnInit {
     );
   }
 
+ 
   async addDataToGlobalData(Id: number, Title: string, Data: object[]) {
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
-    console.log('index',index);
+   // console.log('index--',index);
+   // console.log('goll---',this.globalData);
+   // console.log('goll1---',this.globalData[1]);
+   // console.log('goll2---',this.globalData[2]);
+   // console.log('goll3---',this.globalData[3]);
     if (index == -1) {
       index = this.globalData.length;
       this.globalData.push({
