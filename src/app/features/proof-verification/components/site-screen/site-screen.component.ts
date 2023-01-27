@@ -217,8 +217,6 @@ export class SiteScreenComponent implements OnInit {
       this.displayPageUrl = pageUrl;
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
-          console.log(typeof data)
-          console.log('data---------------------------------------------------------', data)
           if(data==null){
             this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
           }
