@@ -1,14 +1,18 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-
+import { timeout } from 'rxjs/operators';
 @Injectable({
   providedIn: "root"
 })
 export class VerificationServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
+  private url: string = ""
+
   loadPage(url: string): Observable<any> {
+    this.url=url;
     const httpOptions = {
       headers: new HttpHeaders({
         Accept: "text/html, application/xhtml+xml, */*",
@@ -16,11 +20,11 @@ export class VerificationServiceService {
       }),
       responseType: "text" as "json"
     };
-    return this.http.get(url, httpOptions).pipe(catchError(this.handleError));
+    let a=this.http.get(url, httpOptions).pipe(catchError(this.handleError))
+    return a
   }
 
   handleError(err: HttpErrorResponse) {
-    //console.log("Error Handler: ", err);
-    return throwError("test");
+    return throwError(err);
   }
 }

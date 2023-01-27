@@ -868,7 +868,7 @@
             "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
-              "ExternalURL": "https://qa.gateway.tracified.com/GetTransactions?txn=#{TXNHash}&page=1&perPage=10",
+              "ExternalURL": "https://text-comparission-server.onrender.com/",
               "InnerHTML": "",
               "Query": "",
               "QueryIndex": "",
