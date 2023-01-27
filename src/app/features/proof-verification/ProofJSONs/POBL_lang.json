@@ -567,6 +567,10 @@
                 "Text93": {
                     "ja": "aa",
                     "en": "Decoded MainTXN Previous hash"
+                },
+                "Text193": {
+                    "ja": "aa",
+                    "en": "PreviousTXN Hash"
                 }
             }
         },
@@ -709,6 +713,10 @@
                 "Text120": {
                     "ja": "aa",
                     "en": "Decoded MainTXN Identifier"
+                },
+                "Text194": {
+                    "ja": "aa",
+                    "en": "CurentTXNHash"
                 }
             }
         },
@@ -963,6 +971,10 @@
                 "Text167": {
                     "ja": "aa",
                     "en": "Decoded PreviousTXN's CurrentTXN's ProductID"
+                },
+                "Text195": {
+                    "ja": "aa",
+                    "en": "ProductID"
                 }
             }
         },

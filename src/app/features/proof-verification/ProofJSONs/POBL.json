@@ -1064,7 +1064,7 @@
             "DecodeKeyName": "MainTXN Previous hash",
             "EncodedInputValue": "${MainTXNPreviousTXN}",
             "DecodedResultVariable": "MainTXNPreviousTXNDecoded",
-            "InformationStorageKey": "PreviousTXN Hash"
+            "InformationStorageKey": "&{Text193}"
           }
         },
         "ActionResultVariable": "",
@@ -1346,7 +1346,7 @@
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNHash}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNHashDecoded",
-            "InformationStorageKey": "CurentTXNHash"
+            "InformationStorageKey": "&{Text194}"
           }
         },
         "ActionResultVariable": "",
@@ -1859,7 +1859,7 @@
             "DecodeKeyName": "PreviousTXN's CurrentTXN's ProductID",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataProductID}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataProductIDDecoded",
-            "InformationStorageKey": "ProductID"
+            "InformationStorageKey": "&{Text195}"
           }
         },
         "ActionResultVariable": "",
