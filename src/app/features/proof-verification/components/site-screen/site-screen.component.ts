@@ -12,6 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { VerificationServiceService } from "../../../../services/verification-service.service";
 import Url from "url-parse";
 import { environment } from "src/environments/environment";
+import { ActivatedRoute, Router } from "@angular/router";
  
 @Component({
   selector: "app-site-screen",
@@ -69,7 +70,8 @@ export class SiteScreenComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private renderer: Renderer2,
     private cdref: ChangeDetectorRef,
-    private elRef: ElementRef
+    private elRef: ElementRef,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -215,6 +217,9 @@ export class SiteScreenComponent implements OnInit {
       this.displayPageUrl = pageUrl;
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
+          if(data==null){
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
+          }
           try {
             // this.iframe.nativeElement.contentWindow.location.pathname = '/multiplecompare/[{"title":"sasasa","t1":"qwqwqw","t2":"212dsdsd"}]';
 
@@ -320,9 +325,14 @@ export class SiteScreenComponent implements OnInit {
             await this.sleepFor(1200);
             this.addPointerToPage();
             resolve({ ref: this.iframe });
-          } catch (error) {}
+          } catch (error) {
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
+          }
         },
-        error => resolve({ error, ref: this.iframe })
+        error =>{
+          console.log('errorooooooooooooooooooooooo', error)
+         this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.statusText,m1:error.message}})
+          resolve({ error, ref: this.iframe })}
       );
     });
   }

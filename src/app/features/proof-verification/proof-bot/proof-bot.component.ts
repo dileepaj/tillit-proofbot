@@ -10,7 +10,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ElementDividerComponent } from "../components/element-divider/element-divider.component";
 import { SiteScreenComponent } from "../components/site-screen/site-screen.component";
 import * as POBLJSON from "../ProofJSONs/POBL.json";
@@ -114,17 +114,21 @@ export class ProofBotComponent implements OnInit {
   Name: string = "";
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
+  errorOccurred:boolean =false
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private verificationHttpService: VerificationServiceService
+    private verificationHttpService: VerificationServiceService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    if (!this.isEmbedded) {
       this.route.queryParamMap.subscribe(params => {
+        if (!params.get("txn") || !params.get("type")){
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{queryParams:{type:"error",t:"Invalid URL",m1:"URL should contain txn and type",m2:this.router.url}})
+        }
         this.proofBotParams = {
           params: {
             txn: params.get("txn"),
@@ -132,9 +136,7 @@ export class ProofBotComponent implements OnInit {
           }
         };
       });
-    }
-    this.proofType = this.proofBotParams.params.type;
-     
+    this.proofType = this.proofBotParams.params.type; 
   }
 
   async ngAfterViewInit() {
@@ -143,7 +145,8 @@ export class ProofBotComponent implements OnInit {
   }
 
   async startDemoFn() {
-    this.verificationHttpService.loadPage(environment.blockchain.getTransactionData+"?txn="+ this.proofBotParams.params.txn +"&page=1&perPage=10").subscribe(
+    if(!!this.proofBotParams.params.txn && !!this.proofBotParams.params.type){
+      this.verificationHttpService.loadPage(environment.blockchain.getTransactionData+"?txn="+ this.proofBotParams.params.txn +"&page=1&perPage=10").subscribe(
         async data => {
           try {
             if (!data) {
@@ -170,13 +173,14 @@ export class ProofBotComponent implements OnInit {
               alert("Proof verification is not yet available for the selected type");
             }
           } catch (error) {
-            alert("Invalid trasaction URLa");
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{queryParams:{type:"error",t:"Invalid URL",m1:"Please check the URL",m2:environment.blockchain.getTransactionData+"?txn="+ this.proofBotParams.params.txn +"&page=1&perPage=10"}})
           }
         },
         error => {
-          alert("Invalid trasaction URLaq");
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:"Invalid URL",m1:"Please check the URL",m2:environment.blockchain.getTransactionData+"?txn="+ this.proofBotParams.params.txn +"&page=1&perPage=10"}})
         }
-      );
+        );
+      }
   }
 
   async initiateProofDemo() {
@@ -563,8 +567,8 @@ export class ProofBotComponent implements OnInit {
   // controllers for steppers
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
-    
-    document
+    try {
+      document
       .querySelectorAll("#steppersFrame")[0]
       .classList.add("steppersShow");
     const steppersFrame = document.querySelectorAll(
@@ -604,6 +608,9 @@ export class ProofBotComponent implements OnInit {
     await new Promise(resolveTime =>
       setTimeout(resolveTime, 1000 / this.playbackSpeed)
     );
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   async toSubStepper(segmentNo: number, actionID: number) {
@@ -684,6 +691,7 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
 
     // console.log(this.currentStep);
+    let currentBrowserScreen="";
     for (; this.currentStep < Steps.length; ) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -716,6 +724,7 @@ export class ProofBotComponent implements OnInit {
       switch (ActionType) {
         case "BrowserScreen":
           // await this.closeSteppers();
+          currentBrowserScreen=ActionParameters.ExternalURL
           var scRef: ComponentRef<SiteScreenComponent>;
           if (this.demoScreenChildRefs[frameID])
             scRef = this.demoScreenChildRefs[frameID].ref;
@@ -764,7 +773,8 @@ export class ProofBotComponent implements OnInit {
           await this.handleSaveDataFn(stepData);
           break;
         case "FormatMetaData":
-          this.handleVariableFormat(stepData);
+          console.log('stepData FormatMetaData', stepData)
+          this.handleVariableFormat(stepData,currentBrowserScreen);
           break;
         default:
           break;
@@ -1234,7 +1244,7 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  handleVariableFormat(stepData: any) {
+  handleVariableFormat(stepData: any,currentUrl: any) {
     const { StepHeader, Action, Customizations } = stepData;
 
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
@@ -1294,11 +1304,14 @@ export class ProofBotComponent implements OnInit {
         this.variableStorage[ActionResultVariable] = JSON.stringify(val);
         break;
       case "jsonKeyPicker":
+        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"External URL issue",m1:`Can not find ${MetaData[1]} key from the URL`,m2:currentUrl}})
+          break;
+        }
         var result = this.jsonKeyPicker(val, MetaData[1], MetaData[2])[1];
         if (MetaData[3])
           this.variableStorage[ActionResultVariable] = result[MetaData[3]];
         else this.variableStorage[ActionResultVariable] = result;
-        // console.log(this.variableStorage[ActionResultVariable]);
         break;
       case "jsonValueObjectPicker":
         this.variableStorage[ActionResultVariable] = this.jsonValueObjectPicker(
@@ -1306,7 +1319,6 @@ export class ProofBotComponent implements OnInit {
           MetaData[1],
           MetaData[2]
         )[MetaData[3]];
-        // console.log(this.variableStorage);
         break;
       default:
         break;
@@ -1328,6 +1340,9 @@ export class ProofBotComponent implements OnInit {
   }
 
   jsonKeyPicker(obj: any, k: string, selfReturn: boolean = false) {
+    if (typeof obj !== 'object' || obj === null) {
+      return null;
+    }
     for (var key in obj) {
       var value = obj[key];
 
@@ -1423,9 +1438,9 @@ export class ProofBotComponent implements OnInit {
     );
   }
 
-  async addDataToGlobalData(Id: number, Title: string, Data: object[]) {
+  async addDataToGlobalData(Id: number, Title: string, Data: DataKeys[]) {
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
-    console.log('index',index);
+    // console.log('index',index);
     if (index == -1) {
       index = this.globalData.length;
       this.globalData.push({
@@ -1614,4 +1629,9 @@ export class ProofBotComponent implements OnInit {
       // 55 Backlink verification status
     };
   }
+}
+
+type DataKeys={
+  Key:Object,
+  Value:any
 }
