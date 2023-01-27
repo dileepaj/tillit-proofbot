@@ -139,6 +139,10 @@
                 "Text15": {
                     "ja": "aa",
                     "en": "Save the base64 encoded CurrentTXN Hash value for future usage."
+                },
+                "Text182": {
+                    "ja": "aa",
+                    "en": "TXN2 CurrentTXN (base64)"
                 }
             }
         },
@@ -193,6 +197,10 @@
                 "Text27": {
                     "ja": "aa",
                     "en": "Decoded CurrentTXN Hash"
+                },
+                "Text192": {
+                    "ja": "aa",
+                    "en": "TXN2 CurrentTXN"
                 }
             }
         },
@@ -277,6 +285,10 @@
                 "Text42": {
                     "ja": "aa",
                     "en": "Save the base64 encoded Identifier value for future usage."
+                },
+                "Text183": {
+                    "ja": "aa",
+                    "en": "Identifier (base64)"
                 }
             }
         },
@@ -331,6 +343,10 @@
                 "Text54": {
                     "ja": "aa",
                     "en": "Decoded MainTXN Identifier"
+                },
+                "Text189": {
+                    "ja": "aa",
+                    "en": "Identifier"
                 }
             }
         },
@@ -381,6 +397,10 @@
                 "Text61": {
                     "ja": "aa",
                     "en": "Save the base64 encoded ProductID value for future usage."
+                },
+                "Text184": {
+                    "ja": "aa",
+                    "en": "Product ID (base64)"
                 }
             }
         },
@@ -435,6 +455,10 @@
                 "Text73": {
                     "ja": "aa",
                     "en": "Decoded MainTXN ProductID"
+                },
+                "Text191": {
+                    "ja": "aa",
+                    "en": "ProductID"
                 }
             }
         },
@@ -485,6 +509,10 @@
                 "Text81": {
                     "ja": "aa",
                     "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+                },
+                "Text185": {
+                    "ja": "aa",
+                    "en": "PreviousTXN Hash (base64)"
                 }
             }
         },
@@ -623,6 +651,10 @@
                 "Text108": {
                     "ja": "aa",
                     "en": "Save the base64 encoded CurrentTXN Hash value of the Previuos TXN for future usage."
+                },
+                "Text186": {
+                    "ja": "aa",
+                    "en": "CurentTXNHash (base64)"
                 }
             }
         },
@@ -761,6 +793,10 @@
                 "Text135": {
                     "ja": "aa",
                     "en": "Save the base64 encoded Identifier value of the PreviousTX for future usage."
+                },
+                "Text187": {
+                    "ja": "aa",
+                    "en": "Identifier (base64)"
                 }
             }
         },
@@ -815,6 +851,10 @@
                 "Text147": {
                     "ja": "aa",
                     "en": "Decoded PreviousTXN's CurrentTXN' Identifier"
+                },
+                "Text190": {
+                    "ja": "aa",
+                    "en": "Decoded PreviousTXN's CurrentTXN' Identifier"
                 }
             }
         },
@@ -865,6 +905,10 @@
                 "Text155": {
                     "ja": "aa",
                     "en": "Save the base64 encoded ProductID value for future usage."
+                },
+                "Text188": {
+                    "ja": "aa",
+                    "en": "Product ID (base64)"
                 }
             }
         },

@@ -9,55 +9,68 @@
     "Segments": [
       {
         "NO": 1,
-        "Name": "&{SegName1}"
+        "Name": "&{SegName1}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 2,
-        "Name": "&{SegName2}"
+        "Name": "&{SegName2}",
+        "Source":""
       },
       {
         "NO": 3,
-        "Name": "&{SegName3}"
+        "Name": "&{SegName3}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 4,
-        "Name": "&{SegName4}"
+        "Name": "&{SegName4}",
+        "Source":""
       },
       {
         "NO": 5,
-        "Name": "&{SegName5}"
+        "Name": "&{SegName5}",
+        "Source":""
       },
       {
         "NO": 6,
-        "Name": "&{SegName6}"
+        "Name": "&{SegName6}",
+        "Source":""
       },
       {
         "NO": 7,
-        "Name": "&{SegName7}"
+        "Name": "&{SegName7}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 8,
-        "Name": "&{SegName8}"
+        "Name": "&{SegName8}",
+        "Source":""
       },
       {
         "NO": 9,
-        "Name": "&{SegName9}"
+        "Name": "&{SegName9}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 10,
-        "Name": "&{SegName10}"
+        "Name": "&{SegName10}",
+        "Source":""
       },
       {
         "NO": 11,
-        "Name": "&{SegName11}"
+        "Name": "&{SegName11}",
+        "Source":""
       },
       {
         "NO": 12,
-        "Name": "&{SegName12}"
+        "Name": "&{SegName12}",
+        "Source":""
       },
       {
         "NO": 13,
-        "Name": "&{SegName13}"
+        "Name": "&{SegName13}",
+        "Source":""
       }
     ]
   },
@@ -260,7 +273,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "TXN2 CurrentTXN (base64)",
+              "Key": "&{Text182}",
               "Value": "${MainTXNCurentTXNHash}"
             }
           ]
@@ -328,7 +341,7 @@
             "DecodeKeyName": "CurrentTXN Hash",
             "EncodedInputValue": "${MainTXNCurentTXNHash}",
             "DecodedResultVariable": "var_currenttxn",
-            "InformationStorageKey": "TXN2 CurrentTXN"
+            "InformationStorageKey": "&{Text192}"
           }
         },
         "ActionResultVariable": "",
@@ -541,7 +554,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Identifier (base64)",
+              "Key": "&{Text183}",
               "Value": "${MainTXNCurentTXNDataIdentifier}"
             }
           ]
@@ -609,7 +622,7 @@
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
-            "InformationStorageKey": "Identifier"
+            "InformationStorageKey": "&{Text189}"
           }
         },
         "ActionResultVariable": "",
@@ -762,7 +775,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Product ID (base64)",
+              "Key": "&{Text184}",
               "Value": "${MainTXNCurentTXNDataProductId}"
             }
           ]
@@ -830,7 +843,7 @@
             "DecodeKeyName": "MainTXN ProductID",
             "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
             "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
-            "InformationStorageKey": "ProductID"
+            "InformationStorageKey": "&{Text191}"
           }
         },
         "ActionResultVariable": "",
@@ -983,7 +996,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "PreviousTXN Hash (base64)",
+              "Key": "&{Text185}",
               "Value": "${MainTXNPreviousTXN}"
             }
           ]
@@ -1265,7 +1278,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "CurentTXNHash (base64)",
+              "Key": "&{Text186}",
               "Value": "${MainTXNPreviousTXNCurrentTXNHash}"
             }
           ]
@@ -1552,7 +1565,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Identifier (base64)",
+              "Key": "&{Text187}",
               "Value": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}"
             }
           ]
@@ -1604,6 +1617,7 @@
           "SubActionArguments": {
             "StepNo": 28,
             "SegmentNo": 10,
+            "FrameID": 11,
             "FrameTitle": "&{Text136}",
             "ActionTitle":"&{Text137}",
             "ActionDescription":"&{Text138}",
@@ -1619,7 +1633,7 @@
             "DecodeKeyName": "PreviousTXN's CurrentTXN' Identifier",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded",
-            "InformationStorageKey": "Identifier"
+            "InformationStorageKey": "&{Text190}"
           }
         },
         "ActionResultVariable": "",
@@ -1777,7 +1791,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Product ID (base64)",
+              "Key": "&{Text188}",
               "Value": "${MainTXNPreviousTXNCurrentTXNDataProductID}"
             }
           ]
