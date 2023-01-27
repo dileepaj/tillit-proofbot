@@ -132,15 +132,14 @@ export class ProofBotComponent implements OnInit {
         this.proofBotParams = {
           params: {
             txn: params.get("txn"),
-            type: params.get("type")
-
+            type: params.get("type"),
+            txn2: params.get("txn2")
           }
         };
       });
       //console.log('tdp--',  this.proofBotParams );
     }
     this.proofType = this.proofBotParams.params.type;
-
   }
 
   async ngAfterViewInit() {
@@ -156,20 +155,20 @@ export class ProofBotComponent implements OnInit {
             alert("Proof verification is not yet available for the given transaction hash");
           } else {
             let proof = JSON.parse(data)
-            if (
-              proof[0].AvailableProof.includes(this.proofBotParams.params.type) &&
-              this.proofBotParams &&
-              this.proofBotParams.params
-            ) {
+            if (!!this.proofBotParams.params.type &&  this.proofBotParams.params.type=="pobl") {
               this.TXNhash = this.proofBotParams.params.txn;
               this.TXNhash2 = this.proofBotParams.params.txn2;
               this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
               this.isLoading = true;
-
-
               // backend call
               await new Promise(resolveTime => setTimeout(resolveTime, 4200));
-
+              this.initiateProofDemo();
+            }else if (!!this.proofBotParams.params.type && this.proofBotParams.params.type!="pobl" && proof[0].AvailableProof.includes(this.proofBotParams.params.type)) {
+              this.TXNhash = this.proofBotParams.params.txn;
+              this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+              this.isLoading = true;
+              // backend call
+              await new Promise(resolveTime => setTimeout(resolveTime, 4200));
               // start demo (not -verifing)
               this.initiateProofDemo();
             } else
