@@ -18,6 +18,7 @@ import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
+import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json"
 import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
 import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
@@ -66,6 +67,7 @@ export class ProofBotComponent implements OnInit {
   @Input() maxHeight: string = "100%";
   @Input() justifyContent: string = "center";
   @Input() alignItems: string = "center";
+  @Input() frameData: any = {};
   currentStep: number = 0;
   lastCompletedStep: number = 0;
   totalSteps: number = 0;
@@ -87,12 +89,14 @@ export class ProofBotComponent implements OnInit {
   color = "primary";
   mode = "indeterminate";
   value = 10;
+  Svalue: string;
   gsOverflowX: string = "hidden";
   vsOverflowX: string = "hidden";
   ActionDescription: string = "";
   TXNhash: string = "";
   TXNhash2: string = "";
   playbackSpeed: number = 1;
+  i: number;
   @Input() proofBotParams: any;
   isDisableGlobalInformationL: boolean = true;
   isDisableGlobalInformationR: boolean = true;
@@ -109,7 +113,7 @@ export class ProofBotComponent implements OnInit {
   icon: string;
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe", "pog"];
+  availableProofs: any[] = ["poe", "pog","pobl"];
   proofType: string = "";
   lang: string = "en";
   Name: string = "";
@@ -126,6 +130,7 @@ export class ProofBotComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
+
   ngOnInit() {
       this.route.queryParamMap.subscribe(params => {
         if (!params.get("txn") || !params.get("type")){
@@ -134,11 +139,12 @@ export class ProofBotComponent implements OnInit {
         this.proofBotParams = {
           params: {
             txn: params.get("txn"),
-            type: params.get("type")
+            type: params.get("type"),
+            txn2: params.get("txn2")
           }
         };
       });
-    this.proofType = this.proofBotParams.params.type; 
+    this.proofType = this.proofBotParams.params.type;
   }
 
   async ngAfterViewInit() {
@@ -147,28 +153,27 @@ export class ProofBotComponent implements OnInit {
   }
 
   async startDemoFn() {
-    if(!!this.proofBotParams.params.txn && !!this.proofBotParams.params.type){
-      this.verificationHttpService.loadPage(environment.blockchain.getTransactionData+"?txn="+ this.proofBotParams.params.txn +"&page=1&perPage=10").subscribe(
-        async data => {
-          try {
-            if (!data) {
-              alert("Proof verification is not yet available for the given transaction hash");
-            }else{
-              let proof=JSON.parse(data)
-            if (
-              proof[0].AvailableProof.includes(this.proofBotParams.params.type) &&
-              this.proofBotParams &&
-              this.proofBotParams.params
-            ) {
+    this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
+      async data => {
+        try {
+          if (!data) {
+            alert("Proof verification is not yet available for the given transaction hash");
+          } else {
+            let proof = JSON.parse(data)
+            if (!!this.proofBotParams.params.type &&  this.proofBotParams.params.type=="pobl") {
               this.TXNhash = this.proofBotParams.params.txn;
               this.TXNhash2 = this.proofBotParams.params.txn2;
               this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
               this.isLoading = true;
-              
-
               // backend call
               await new Promise(resolveTime => setTimeout(resolveTime, 4200));
-
+              this.initiateProofDemo();
+            }else if (!!this.proofBotParams.params.type && this.proofBotParams.params.type!="pobl" && proof[0].AvailableProof.includes(this.proofBotParams.params.type)) {
+              this.TXNhash = this.proofBotParams.params.txn;
+              this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+              this.isLoading = true;
+              // backend call
+              await new Promise(resolveTime => setTimeout(resolveTime, 4200));
               // start demo (not -verifing)
               this.initiateProofDemo();
             } else
@@ -183,7 +188,6 @@ export class ProofBotComponent implements OnInit {
         }
         );
       }
-  }
 
   async initiateProofDemo() {
     const { protocolJson, langJson } = this.getProtocolJSON();
@@ -198,16 +202,17 @@ export class ProofBotComponent implements OnInit {
 
     //console.log('langJson', langJson);
     // if verification success
-    console.log("json------",this.proofJSON);
+    //console.log("json------", this.proofJSON);
+
 
     const { Header } = this.proofJSON;
     this.StorageTitle = Header.StorageTitle;
     this.ProofContainerTitle = Header.ProofContainerTitle;
-    
+
     this.steppers = this.filterSegmentsAndActions(Header.Segments);
-    
-    console.log('Steppers----',this.steppers);
- 
+
+   // console.log('Steppers----', this.steppers);
+
 
 
     this.playbackSpeed = Header.PlaybackSpeed;
@@ -230,6 +235,7 @@ export class ProofBotComponent implements OnInit {
     switch (this.proofType) {
       case "pobl":
         protocolJson = POBLJSON;
+        langJson = POBLLangJSON;
         break;
       case "pog":
         protocolJson = POGJSON;
@@ -247,13 +253,13 @@ export class ProofBotComponent implements OnInit {
 
   handleLangJson(langJson: any) {
     let { Segments, Actions } = langJson;
-    console.log('Sementics', Segments)
+    //console.log('Sementics', Segments)
     var variables = Segments;
 
     for (let index = 0; index < Actions.length; index++) {
       const action = Actions[index];
 
-     //console.log("Action :",Actions[index]);
+      //console.log("Action :",Actions[index]);
 
       variables = {
         ...variables,
@@ -293,7 +299,7 @@ export class ProofBotComponent implements OnInit {
           // console.log('valueType:',valueType);
           //console.log('data:',data);
         }
-      } catch (error) {}
+      } catch (error) { }
     });
     //console.log('parseLangDataJSon: under me');
     //console.log('parseLangDataJSon:', JSON.parse(data));
@@ -301,15 +307,15 @@ export class ProofBotComponent implements OnInit {
   }
 
   getActionConfigurations() {
-    if(environment.blockchain.currentEnv=="PROD"){
-    var actionConfigs: any = ActionConfigurationsProduction;
-    //console.log('ActionConfigs',actionConfigs);
-    return actionConfigs.default;
-    }else if(environment.blockchain.currentEnv=="STAGING"){
+    if (environment.blockchain.currentEnv == "PROD") {
+      var actionConfigs: any = ActionConfigurationsProduction;
+      //console.log('ActionConfigs',actionConfigs);
+      return actionConfigs.default;
+    } else if (environment.blockchain.currentEnv == "STAGING") {
       var actionConfigs: any = ActionConfigurationsStaging;
       //console.log('ActionConfigs',actionConfigs);
       return actionConfigs.default;
-    }else{
+    } else {
       var actionConfigs: any = ActionConfigurationsQa;
       //console.log('ActionConfigs',actionConfigs);
       return actionConfigs.default;
@@ -370,7 +376,7 @@ export class ProofBotComponent implements OnInit {
           data = data.replace(a[0], replaceValue);
           // console.log("data.replace(a[0], replaceValue);---",data.replace(a[0], replaceValue));
         }
-      } catch (error) {}
+      } catch (error) { }
     });
     //console.log('Data----',data);
     //console.log('parseSubActionDataParseSubActionData', JSON.parse(data));
@@ -382,30 +388,30 @@ export class ProofBotComponent implements OnInit {
       const SubActions = this.proofJSON.Steps.reduce(
         (subActions: Array<any>, job: any) => {
           const {
-            StepHeader: { SegmentNo},
-            Action: { _ID, ActionTitle}
+            StepHeader: { SegmentNo },
+            Action: { _ID, ActionTitle }
           } = job;
           if (SegmentNo == Segment.NO) {
             subActions.push({
               ActionID: _ID,
               ActionName: ActionTitle,
-              icon : Segment.Source
+              icon: Segment.Source
             });
           }
-          
+
           return subActions;
         },
         []
       );
 
-      console.log("segments and icons--", Segment.Source);
+      //console.log("segments and icons--", Segment.Source);
       return {
         ...Segment,
         SubActions
       };
     });
   }
- 
+
 
   async scrollToFrameById(frameID: string, offset = 0) {
     const bodyRect: any = document.body.getBoundingClientRect();
@@ -570,7 +576,8 @@ export class ProofBotComponent implements OnInit {
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
     try {
-      document
+
+    document
       .querySelectorAll("#steppersFrame")[0]
       .classList.add("steppersShow");
     const steppersFrame = document.querySelectorAll(
@@ -620,8 +627,8 @@ export class ProofBotComponent implements OnInit {
       (step: any) => step.NO == segmentNo
     ).SubActions;
 
-    console.log("substeppers",this.subSteppers);
-    
+    //console.log("substeppers",this.subSteppers);
+
     await new Promise(resolveTime => setTimeout(resolveTime, 1000));
     var index = this.subSteppers.findIndex(
       (step: any) => step.ActionID == actionID
@@ -694,7 +701,8 @@ export class ProofBotComponent implements OnInit {
 
     // console.log(this.currentStep);
     let currentBrowserScreen="";
-    for (; this.currentStep < Steps.length; ) {
+
+    for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
       if (this.isReplay) return;
@@ -704,7 +712,7 @@ export class ProofBotComponent implements OnInit {
         ActionTitle,
         ActionDescription,
         ActionType,
-        ActionParameters 
+        ActionParameters
       } = Action;
       // console.log(action.Id, this.demoScreenChildRefs);
       this.currentStep++;
@@ -784,23 +792,30 @@ export class ProofBotComponent implements OnInit {
 
       // this.isDisableGlobalInformationL = this.isDisableGlobalStorageScroll("L");
       // this.isDisableGlobalInformationR = this.isDisableGlobalStorageScroll("R");
-      
 
-  
+
+
 
       if (Customizations.ToastMessage) {
         this.toastMSG = Customizations.ToastMessage[this.lang];
         this.toastTop = Customizations.ToastPosition[0];
         this.toastLeft = Customizations.ToastPosition[1];
         this.isToast = true;
-        console.log('toast', this.toastMSG );
-      } else if (Customizations.ToastMessage1){
+        console.log('toast', this.toastMSG);
+      } else if (Customizations.ToastMessage1) {
         this.toastMSG1 = Customizations.ToastMessage1[this.lang];
         this.toastTop1 = Customizations.ToastPosition1[0];
         this.toastLeft1 = Customizations.ToastPosition1[1];
         this.isToast1 = true;
-        console.log('toast111', this.toastMSG1 );
+        console.log('toast111', this.toastMSG1);
       }
+
+      // if(ActionParameters.StorageData){
+      // this.Svalue = this.globalData;
+      // console.log('tkkkkk',  this.Svalue );
+      //  }
+      //console.log('val1', this.Svalue );
+
       this.cdr.detectChanges();
       await new Promise(resolveTime =>
         setTimeout(
@@ -809,7 +824,7 @@ export class ProofBotComponent implements OnInit {
             (Customizations.ActionDuration
               ? Customizations.ActionDuration
               : 1)) /
-            this.playbackSpeed
+          this.playbackSpeed
         )
       );
       this.isToast = false;
@@ -843,7 +858,7 @@ export class ProofBotComponent implements OnInit {
           }
           data = data.replace(a[0], replaceValue);
         }
-      } catch (error) {}
+      } catch (error) { }
     });
     //console.log('JSON.parse(data)', JSON.parse(data))
     return JSON.parse(data);
@@ -919,6 +934,7 @@ export class ProofBotComponent implements OnInit {
     return ref;
   }
 
+
   async handleFormatElementAttribute(stepData: any) {
     const { StepHeader, Action, Customizations } = stepData;
 
@@ -963,7 +979,7 @@ export class ProofBotComponent implements OnInit {
       ToastPosition,
       ActionDuration
     } = Customizations;
-    //console.log("action",Action);
+
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
@@ -1172,6 +1188,7 @@ export class ProofBotComponent implements OnInit {
             );
             if (ActionResultVariable)
               this.variableStorage[ActionResultVariable] = result;
+            // console.log('hhhhhh---',this.variableStorage[ActionResultVariable] );
           }
           break;
         default:
@@ -1440,9 +1457,9 @@ export class ProofBotComponent implements OnInit {
     );
   }
 
-  async addDataToGlobalData(Id: number, Title: string, Data: DataKeys[]) {
+  
+  async addDataToGlobalData(Id: number, Title: string, Data: object[]) {
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
-    // console.log('index',index);
     if (index == -1) {
       index = this.globalData.length;
       this.globalData.push({
@@ -1469,7 +1486,7 @@ export class ProofBotComponent implements OnInit {
     await this.scrollIntoStorageView(Id);
     var indexTable: any = document
       .querySelectorAll("#globalInformation #gsFrames proof-global-storage")
-      [index].querySelectorAll(".data-table")[0];
+    [index].querySelectorAll(".data-table")[0];
     indexTable.scrollTop = indexTable.scrollHeight;
   }
 
@@ -1545,7 +1562,7 @@ export class ProofBotComponent implements OnInit {
           )[0];
           if (
             globalInformationFrame.scrollLeft +
-              globalInformationFrame.offsetWidth >=
+            globalInformationFrame.offsetWidth >=
             globalInformationFrame.scrollWidth
           )
             return true;
