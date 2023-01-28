@@ -24,6 +24,7 @@ import { BotHeaderComponent } from './features/proof-verification/components/bot
 import { BotLoaderComponent } from './features/proof-verification/components/bot-loader/bot-loader.component';
 import { BotGlobaldataComponent } from './features/proof-verification/components/bot-globaldata/bot-globaldata.component';
 import { BotSegmentsComponent } from './features/proof-verification/components/bot-segments/bot-segments.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,12 @@ import { BotSegmentsComponent } from './features/proof-verification/components/b
     NgxSkeletonLoaderModule.forRoot({
       animation: "pulse",
       loadingText: "This item is actually loading..."
-    })
+    }),
+    ToastrModule.forRoot({
+      timeOut: 8000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   entryComponents: [SiteScreenComponent, ElementDividerComponent],
   bootstrap: [AppComponent]

@@ -218,7 +218,7 @@ export class SiteScreenComponent implements OnInit {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if(data==null){
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
           }
           try {
             // this.iframe.nativeElement.contentWindow.location.pathname = '/multiplecompare/[{"title":"sasasa","t1":"qwqwqw","t2":"212dsdsd"}]';

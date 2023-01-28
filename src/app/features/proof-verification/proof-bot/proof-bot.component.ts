@@ -25,6 +25,7 @@ import * as ActionConfigurationsProduction from "../ProofJSONs/ActionCofiguratio
 import { Logs } from "selenium-webdriver";
 import { VerificationServiceService } from "src/app/services/verification-service.service";
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -121,7 +122,8 @@ export class ProofBotComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private verificationHttpService: VerificationServiceService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
