@@ -13,6 +13,7 @@ import { VerificationServiceService } from "../../../../services/verification-se
 import Url from "url-parse";
 import { environment } from "src/environments/environment";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
  
 @Component({
   selector: "app-site-screen",
@@ -71,7 +72,8 @@ export class SiteScreenComponent implements OnInit {
     private renderer: Renderer2,
     private cdref: ChangeDetectorRef,
     private elRef: ElementRef,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {}
@@ -218,7 +220,12 @@ export class SiteScreenComponent implements OnInit {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if(data==null){
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
+            console.log('first11')
+            this.toastr.error("Check the External URL","No Content found 204",{
+              timeOut: 100000,
+              positionClass: 'toast-top-right'})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found 204",m1:"No Content found in given transaction", m2:pageUrl}})
+            return
           }
           try {
             // this.iframe.nativeElement.contentWindow.location.pathname = '/multiplecompare/[{"title":"sasasa","t1":"qwqwqw","t2":"212dsdsd"}]';
@@ -326,13 +333,22 @@ export class SiteScreenComponent implements OnInit {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"No Content found",m1:"No Content found  204", m2:pageUrl}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"No Content found", m2:pageUrl}})
+            return
           }
         },
         error =>{
-          console.log('errorooooooooooooooooooooooo', error)
-         this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.statusText,m1:error.message}})
-          resolve({ error, ref: this.iframe })}
+          if(error.status=="0"){
+            this.toastr.error("Check the internet connection  statue: "+error.status,error.text)
+            this.toastr.info("Check the internet connection","Play again")
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.message}})
+            return
+          }else{
+            resolve({ error, ref: this.iframe })}
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status,m1:error.message}})
+            return
+          }
+
       );
     });
   }
@@ -418,6 +434,7 @@ export class SiteScreenComponent implements OnInit {
     value: string,
     autoScroll: boolean = true
   ) {
+    console.log(' addAttributeToElement addAttributeToElement  addAttributeToElement')
     var document = this.iframe.nativeElement.contentDocument;
     if (!document.querySelectorAll(selectQuery)[index]) return;
     const exsitingValue = document
@@ -553,6 +570,8 @@ export class SiteScreenComponent implements OnInit {
 
   // set values for js dom elements
   async setData(query: string, index: number, selector: string, data: string) {
+    console.log('query setData setData  ', query,index,selector)
+    console.log(' setData setData  setData',data)
     try {
       if (
         !this.iframe.nativeElement.contentDocument.body.querySelectorAll(query)[

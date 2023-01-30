@@ -61,7 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
       loadingText: "This item is actually loading..."
     }),
     ToastrModule.forRoot({
-      timeOut: 8000,
+      timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),

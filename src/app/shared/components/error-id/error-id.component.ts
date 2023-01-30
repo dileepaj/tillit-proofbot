@@ -29,7 +29,7 @@ export class ErrorIdComponent implements OnInit {
       this.errorTitle="Error Not Found"
     }
     if (this.errorType == "error") {
-      this.errorImage = "../../../../assets/img/error-occured.png ";
+      this.errorImage = "../../../../assets/img/no-results.png";
     } else if (this.errorType == "empty" || history.state.errorType=="empty") {
       this.errorImage = "../../../../assets/img/no-results.png";
     }else{
