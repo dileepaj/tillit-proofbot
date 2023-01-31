@@ -27,7 +27,7 @@ import { Logs } from "selenium-webdriver";
 import { VerificationServiceService } from "src/app/services/verification-service.service";
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr'
-import { ThrowStmt } from "@angular/compiler";
+
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -134,11 +134,11 @@ export class ProofBotComponent implements OnInit {
   ngOnInit() {
       this.route.queryParamMap.subscribe(params => {
         if (!params.get("txn") || !params.get("type")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"404",m1:"Invalid URL",m2:this.router.url}})
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
         }else if(!this.availableProofs.includes(params.get("type"))){
           this.toastr.error('Wrong Proof', 'Can not find the proof');
         }else if(params.get("type")=='pobl' && !params.get("txn1")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"404",m1:"Invalid URL",m2:this.router.url}})
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
         }
         this.proofBotParams = {
           params: {
@@ -157,24 +157,16 @@ export class ProofBotComponent implements OnInit {
   }
 
   async startDemoFn() {
-
     if(!!this.proofType && this.availableProofs.includes(this.proofType))
     this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
       async data => {
         try {
           if (!data) {
             this.toastr.error('Wrong Transaction hash', 'Proof verification is not yet available for the given transaction hash');
+            return 
           } else {
             let proof = JSON.parse(data)
-            if (!!this.proofBotParams.params.type &&  this.proofBotParams.params.type=="pobl") {
-              this.TXNhash = this.proofBotParams.params.txn;
-              this.TXNhash2 = this.proofBotParams.params.txn2;
-              this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
-              this.isLoading = true;
-              // backend call
-              await new Promise(resolveTime => setTimeout(resolveTime, 4200));
-              this.initiateProofDemo();
-            }else if (!!this.proofBotParams.params.type && this.proofBotParams.params.type!="pobl" && proof[0].AvailableProof.includes(this.proofBotParams.params.type)) {
+            if (!!this.proofBotParams.params.type) {
               this.TXNhash = this.proofBotParams.params.txn;
               this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
               this.isLoading = true;
@@ -184,13 +176,14 @@ export class ProofBotComponent implements OnInit {
               this.initiateProofDemo();
             } else
               alert("Proof verification is not yet available for the selected type");
+              return
             }
           } catch (error) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"Please check the URL",m2:error.message}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:error.message}})
           }
         },
         error => {
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:"Invalid URL",m1:"Please check the URL",m2:error.message}})
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
         }
         );
       }
@@ -754,6 +747,10 @@ export class ProofBotComponent implements OnInit {
           }
           this.setGlobalValuesOnFrames(Header, stepData);
           if (scRef && ActionParameters.InnerHTML) {
+            console.log('***************steps[50]', Steps[50])
+            console.log('************steps[51]', Steps[51])
+            console.log('************steps[52]', Steps[52])
+            console.log('setGlobalValuesOnFrames(Header, stepData)*****************', Header, stepData)
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPageHTML(
               ActionParameters.ExternalURL,
@@ -876,7 +873,6 @@ export class ProofBotComponent implements OnInit {
     Header: any,
     { StepHeader, Action, Customizations }: any
   ) {
-    console.log('setGlobalValuesOnFramesoooooooooooooooooooooooo[[[[[[[[[[[[       ', Header,{ StepHeader, Action, Customizations })
     const { FrameID } = StepHeader;
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
@@ -1088,7 +1084,7 @@ export class ProofBotComponent implements OnInit {
       MetaData
     } = Action;
     //console.log("action3",Action);
-    const {
+    let {
       ExternalURL,
       InnerHTML,
       Query,
@@ -1124,7 +1120,10 @@ export class ProofBotComponent implements OnInit {
       switch (ds.type) {
         case "BrowserScreen":
           var scRef: ComponentRef<SiteScreenComponent> = ds.ref;
-          if (scRef && Query && ElProperty && ElPropertyValue)
+          if (scRef && Query && ElProperty && ElPropertyValue){
+            if(ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}')){
+              ElPropertyValue="TlVMTA=="
+            }
             await scRef.instance.setData(
               Query,
               QueryIndex,
@@ -1132,6 +1131,7 @@ export class ProofBotComponent implements OnInit {
               ElPropertyValue
             );
           break;
+            }
         default:
           break;
       }
@@ -1333,8 +1333,7 @@ export class ProofBotComponent implements OnInit {
         break;
       case "jsonKeyPicker":
         if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
-          this.toastr.error(`Can not find ${MetaData[1]} key from the URL`, currentUrl);
-          
+          this.toastr.error(`Can not find ${MetaData[1]} key from the URL`, currentUrl);  
           //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"External URL issue",m1:`Can not find ${MetaData[1]} key from the URL`,m2:currentUrl}})
           break;
         }
@@ -1449,7 +1448,8 @@ export class ProofBotComponent implements OnInit {
       SelectiveTextIndex,
       CSS,
       FormatType,
-      StorageData
+      StorageData,
+      Compare,
     } = ActionParameters;
 
     const {
@@ -1469,16 +1469,26 @@ export class ProofBotComponent implements OnInit {
   }
 
   
+  
   async addDataToGlobalData(Id: number, Title: string, Data: DataKeys[]) {
-    console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr  ",Id,Title, Data)
-    if(Data[0].Value.startsWith("${") && Data[0].Value.endsWith("}")){
+    for (let j = 0; j < Data.length; j++) {
+      console.log('loopn data',Data[j])
+      console.log('this.proofBotParams.Type=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue', this.proofBotParams.Type=="pog", Data[j].CompareType=="PreviousHash" , Data[j].Value!=Data[j].CompareValue)
+    if(Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")){
       this.toastr.error('Can not find the Key from the URL', 'Check the internet connection and External URL');
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
-      Data[0].Value="TlVMTA=="
+      Data[j].Value="TlVMTA=="
+    }else if(this.proofType=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue){
+      console.log('tru---e')
+      this.toastr.error(Data[j].Key + "Previous transaction hash not empty","POG Verification failed");
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POG Verification failed",m1:"442",m2:"Previous transaction hash not empty"}})
+    }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
+      this.toastr.error(Data[j].Key + "Comparison error","Proof Verification failed");
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POG Verification failed",m1:"442",m2:"Key Comparison error"}})
+    }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
     if (index == -1) {
-      console.log("uuuuuuuuuuuuuuu")
       index = this.globalData.length;
       this.globalData.push({
         Id,
@@ -1486,13 +1496,9 @@ export class ProofBotComponent implements OnInit {
         Data
       });
     } else {
-      console.log('hjhjeeeeeeeeeee',)
       const curr: any = this.globalData[index];
       for (let j = 0; j < Data.length; j++) {
         const dataItem: any = Data[j];
-        if(dataItem.Value.startsWith("${") && dataItem.Value.endsWith("}")){
-        dataItem.Value="TlVMTA=="
-        }
         var i = curr.Data.findIndex((curr: any) => curr.Key == dataItem.Key);
         if (i != -1) curr.Data[i].Value = dataItem.Value;
         else curr.Data = [...curr.Data, dataItem];
@@ -1674,5 +1680,7 @@ export class ProofBotComponent implements OnInit {
 
 type DataKeys={
   Key:Object,
-  Value:any
+  Value:any,
+  CompareType:string,
+  CompareValue:string
 }

@@ -220,11 +220,10 @@ export class SiteScreenComponent implements OnInit {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if(data==null){
-            console.log('first11')
             this.toastr.error("Check the External URL","No Content found 204",{
               timeOut: 100000,
               positionClass: 'toast-top-right'})
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found 204",m1:"No Content found in given transaction", m2:pageUrl}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"204", m2:pageUrl}})
             return
           }
           try {
@@ -333,7 +332,7 @@ export class SiteScreenComponent implements OnInit {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"No Content found", m2:pageUrl}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"0", m2:pageUrl}})
             return
           }
         },
@@ -341,11 +340,11 @@ export class SiteScreenComponent implements OnInit {
           if(error.status=="0"){
             this.toastr.error("Check the internet connection  statue: "+error.status,error.text)
             this.toastr.info("Check the internet connection","Play again")
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.message}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.status,m2:error.message}})
             return
           }else{
             resolve({ error, ref: this.iframe })}
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status,m1:error.message}})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.message,m1:error.status,m2:error.message}})
             return
           }
 
