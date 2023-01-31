@@ -748,12 +748,21 @@ export class ProofBotComponent implements OnInit {
           }
           this.setGlobalValuesOnFrames(Header, stepData);
           if (scRef && ActionParameters.InnerHTML) {
-            console.log('setGlobalValuesOnFrames(Header, stepData)*****************', this.globalData)
-            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.setPageHTML(
-              ActionParameters.ExternalURL,
-              ActionParameters.InnerHTML
-            );
+            if(!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)){
+              this.toastr.error("Previous Transaction hash are not equal","Backlink verification failed")
+              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              await scRef.instance.setPageHTML(
+                ActionParameters.ExternalURL,
+                ActionParameters.InnerHTMLError
+              );
+            }else{
+              console.log('setGlobalValuesOnFrames(Header, stepData)*****************', this.globalData)
+              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              await scRef.instance.setPageHTML(
+                ActionParameters.ExternalURL,
+                ActionParameters.InnerHTML
+              );
+            }
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPage(
@@ -1702,7 +1711,25 @@ export class ProofBotComponent implements OnInit {
       // 55 Backlink verification status
     };
   }
+
+  public verificationStatus(compare:any):boolean{
+    let status=true
+  switch (this.proofType) {
+    case "pobl":
+      this.variableStorage[compare.t1]!=  this.variableStorage[compare.t2]
+      status=false
+      break;
+    default:
+      status=true
+      break;
+  } 
+  return status
+  }
+
 }
+
+
+
 
 type DataKeys={
   Key:Object,

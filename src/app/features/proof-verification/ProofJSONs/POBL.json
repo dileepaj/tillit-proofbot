@@ -2048,7 +2048,8 @@
           "SelectiveTextIndex": "",
           "CSS": "",
           "FormatType": "",
-          "StorageData": []
+          "StorageData": [],
+          "Compare":{"t1":"MainTXNPreviousTXNDecoded","t2":"ExpectedPreviousTxnHash"}
         },
         "ActionResultVariable": "",
         "MetaData": []
