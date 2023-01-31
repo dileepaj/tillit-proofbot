@@ -732,7 +732,6 @@ export class ProofBotComponent implements OnInit {
 
       // set global values
       this.setGlobalValuesOnFrames(Header, stepData);
-      console.log('ActionParameterssetGlobalValuesOnFrames(Header, stepData)*****************', ActionParameters)
       switch (ActionType) {
         case "BrowserScreen":
           // await this.closeSteppers();
@@ -749,14 +748,12 @@ export class ProofBotComponent implements OnInit {
           this.setGlobalValuesOnFrames(Header, stepData);
           if (scRef && ActionParameters.InnerHTML) {
             if(!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)){
-              this.toastr.error("Previous Transaction hash are not equal","Backlink verification failed")
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(
                 ActionParameters.ExternalURL,
                 ActionParameters.InnerHTMLError
               );
             }else{
-              console.log('setGlobalValuesOnFrames(Header, stepData)*****************', this.globalData)
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(
                 ActionParameters.ExternalURL,
@@ -795,7 +792,6 @@ export class ProofBotComponent implements OnInit {
           await this.handleSaveDataFn(stepData);
           break;
         case "FormatMetaData":
-          console.log('stepData FormatMetaData', stepData)
           this.handleVariableFormat(stepData,currentBrowserScreen);
           break;
         default:
@@ -813,13 +809,11 @@ export class ProofBotComponent implements OnInit {
         this.toastTop = Customizations.ToastPosition[0];
         this.toastLeft = Customizations.ToastPosition[1];
         this.isToast = true;
-        console.log('toast', this.toastMSG);
       } else if (Customizations.ToastMessage1) {
         this.toastMSG1 = Customizations.ToastMessage1[this.lang];
         this.toastTop1 = Customizations.ToastPosition1[0];
         this.toastLeft1 = Customizations.ToastPosition1[1];
         this.isToast1 = true;
-        console.log('toast111', this.toastMSG1);
       }
 
       // if(ActionParameters.StorageData){
@@ -1204,7 +1198,6 @@ export class ProofBotComponent implements OnInit {
             );
             if (ActionResultVariable)
               this.variableStorage[ActionResultVariable] = result;
-            // console.log('hhhhhh---',this.variableStorage[ActionResultVariable] );
           }
           break;
         default:
@@ -1356,7 +1349,6 @@ export class ProofBotComponent implements OnInit {
           MetaData[1],
           MetaData[2]
         )[MetaData[3]];
-        console.log('------first console.logthis.variableStorage[ActionResultVariable])',  this.variableStorage[ActionResultVariable])
         break;
       default:
         break;
@@ -1470,7 +1462,6 @@ export class ProofBotComponent implements OnInit {
       ToastPosition,
       ActionDuration
     } = Customizations;
-    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       ",ActionParameters)
     this.addDataToGlobalData(
       FrameID,
       this.demoScreenChildRefs[FrameID].ShortFrameTitle,
@@ -1482,38 +1473,32 @@ export class ProofBotComponent implements OnInit {
   
   
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[],givenDataToStorageData:DataKeys,actionVariable:string) {
-    console.log('this.this.variableStorage',this.variableStorage)
     let Data=storageData
     for (let j = 0; j < Data.length; j++) {
-      console.log('loopn data',Data[j])
-      console.log('this.proofBotParams.Type=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue', this.proofBotParams.Type=="pog", Data[j].CompareType=="PreviousHash" , Data[j].Value!=Data[j].CompareValue)
     if(Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")){
       this.toastr.error('Can not find the Key from the URL', 'Something went wrong');
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
       Data[j].Value="TlVMTA=="
-    }else if(this.proofType=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue){
-      console.log('tru---e')
-      this.toastr.error("Previous transaction hash not empty","POG Verification failed");
-      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POG Verification failed",m1:"442",m2:"Previous transaction hash not empty"}})
+    }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
+      this.toastr.error(Data[j].Error,"POE Verification failed");
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POE Verification failed",m1:"442",m2:Data[j].Error}})
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
       this.toastr.error("Comparison error","Proof Verification failed");
-      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POG Verification failed",m1:"442",m2:"Key Comparison error"}})
-    }
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Verification failed",m1:"442",m2:"Key Comparison error"}})
+    }else{}
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
-    console.log('poblsec_______________________________________________________________________________________________________', givenDataToStorageData)
     if (!!givenDataToStorageData){
-      console.log('poblfirst', !!givenDataToStorageData)
       switch(givenDataToStorageData.Type) {
         case "pobl":
           givenDataToStorageData.Value=this.proofBotParams.params.txn2
-          console.log('poblsec', givenDataToStorageData)
             Data.push({
               Key: givenDataToStorageData.Key,
               Value: givenDataToStorageData.Value,
               Type: "",
               CompareType: "",
-              CompareValue: ""
+              CompareValue: "",
+              Error: ""
             });
             this.variableStorage[actionVariable]=givenDataToStorageData.Value
           break;
@@ -1550,7 +1535,6 @@ export class ProofBotComponent implements OnInit {
       .querySelectorAll("#globalInformation #gsFrames proof-global-storage")
     [index].querySelectorAll(".data-table")[0];
     indexTable.scrollTop = indexTable.scrollHeight;
-    console.log('fffffthis.globalDatafinallllllllllll', this.globalData)
   }
 
   async scrollIntoStorageView(id: number) {
@@ -1716,13 +1700,28 @@ export class ProofBotComponent implements OnInit {
     let status=true
   switch (this.proofType) {
     case "pobl":
-      this.variableStorage[compare.t1]!=  this.variableStorage[compare.t2]
+      if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
       status=false
+      this.toastr.error("Previous Transaction hash are not equal","Backlink verification failed")
+      }
       break;
+    case "poe":
+      
+      if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
+      status=false
+      this.toastr.error("Blockchain and Tracified data hash are not equal","POE verification failed")
+      }
+      break;
+     case "pog":
+      if(this.variableStorage[compare.t1]!=compare.t2){
+      status=false
+      this.toastr.error("Previous transaction hash not empty","POG Verification failed");
+      }
+      break;  
     default:
       status=true
       break;
-  } 
+  }
   return status
   }
 
@@ -1735,6 +1734,7 @@ type DataKeys={
   Key:Object,
   Value:any,
   Type:string,
+  Error:string,
   CompareType:string,
   CompareValue:string
 }

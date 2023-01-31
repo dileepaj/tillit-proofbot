@@ -433,7 +433,6 @@ export class SiteScreenComponent implements OnInit {
     value: string,
     autoScroll: boolean = true
   ) {
-    console.log(' addAttributeToElement addAttributeToElement  addAttributeToElement')
     var document = this.iframe.nativeElement.contentDocument;
     if (!document.querySelectorAll(selectQuery)[index]) return;
     const exsitingValue = document
@@ -569,8 +568,6 @@ export class SiteScreenComponent implements OnInit {
 
   // set values for js dom elements
   async setData(query: string, index: number, selector: string, data: string) {
-    console.log('query setData setData  ', query,index,selector)
-    console.log(' setData setData  setData',data)
     try {
       if (
         !this.iframe.nativeElement.contentDocument.body.querySelectorAll(query)[
