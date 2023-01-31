@@ -1276,6 +1276,11 @@
           "SelectiveTextIndex": 0,
           "CSS": "",
           "FormatType": "",
+          "GivenDataToStorageData":{
+            "Type":"pobl",
+            "Key": "&{Text196}",
+            "Value": "${ExpectedPreviousTxnHash}"
+          },
           "StorageData": [
             {
               "Key": "&{Text186}",
@@ -1283,7 +1288,7 @@
             }
           ]
         },
-        "ActionResultVariable": "",
+        "ActionResultVariable": "ExpectedPreviousTxnHash",
         "MetaData": []
       },
       "Customizations": {

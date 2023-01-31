@@ -732,7 +732,7 @@ export class ProofBotComponent implements OnInit {
 
       // set global values
       this.setGlobalValuesOnFrames(Header, stepData);
-
+      console.log('ActionParameterssetGlobalValuesOnFrames(Header, stepData)*****************', ActionParameters)
       switch (ActionType) {
         case "BrowserScreen":
           // await this.closeSteppers();
@@ -748,10 +748,7 @@ export class ProofBotComponent implements OnInit {
           }
           this.setGlobalValuesOnFrames(Header, stepData);
           if (scRef && ActionParameters.InnerHTML) {
-            console.log('***************steps[50]', Steps[50])
-            console.log('************steps[51]', Steps[51])
-            console.log('************steps[52]', Steps[52])
-            console.log('setGlobalValuesOnFrames(Header, stepData)*****************', Header, stepData)
+            console.log('setGlobalValuesOnFrames(Header, stepData)*****************', this.globalData)
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPageHTML(
               ActionParameters.ExternalURL,
@@ -1344,11 +1341,13 @@ export class ProofBotComponent implements OnInit {
         else this.variableStorage[ActionResultVariable] = result;
         break;
       case "jsonValueObjectPicker":
+       
         this.variableStorage[ActionResultVariable] = this.jsonValueObjectPicker(
           val,
           MetaData[1],
           MetaData[2]
         )[MetaData[3]];
+        console.log('------first console.logthis.variableStorage[ActionResultVariable])',  this.variableStorage[ActionResultVariable])
         break;
       default:
         break;
@@ -1451,8 +1450,8 @@ export class ProofBotComponent implements OnInit {
       FormatType,
       StorageData,
       Compare,
+      GivenDataToStorageData,
     } = ActionParameters;
-
     const {
       PointerData,
       ScrollToPointer,
@@ -1462,16 +1461,20 @@ export class ProofBotComponent implements OnInit {
       ToastPosition,
       ActionDuration
     } = Customizations;
+    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       ",ActionParameters)
     this.addDataToGlobalData(
       FrameID,
       this.demoScreenChildRefs[FrameID].ShortFrameTitle,
-      StorageData
+      StorageData,
+      GivenDataToStorageData,ActionResultVariable
     );
   }
 
   
   
-  async addDataToGlobalData(Id: number, Title: string, Data: DataKeys[]) {
+  async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[],givenDataToStorageData:DataKeys,actionVariable:string) {
+    console.log('this.this.variableStorage',this.variableStorage)
+    let Data=storageData
     for (let j = 0; j < Data.length; j++) {
       console.log('loopn data',Data[j])
       console.log('this.proofBotParams.Type=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue', this.proofBotParams.Type=="pog", Data[j].CompareType=="PreviousHash" , Data[j].Value!=Data[j].CompareValue)
@@ -1489,6 +1492,27 @@ export class ProofBotComponent implements OnInit {
     }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
+    console.log('poblsec_______________________________________________________________________________________________________', givenDataToStorageData)
+    if (!!givenDataToStorageData){
+      console.log('poblfirst', !!givenDataToStorageData)
+      switch(givenDataToStorageData.Type) {
+        case "pobl":
+          givenDataToStorageData.Value=this.proofBotParams.params.txn2
+          console.log('poblsec', givenDataToStorageData)
+            Data.push({
+              Key: givenDataToStorageData.Key,
+              Value: givenDataToStorageData.Value,
+              Type: "",
+              CompareType: "",
+              CompareValue: ""
+            });
+            this.variableStorage[actionVariable]=givenDataToStorageData.Value
+          break;
+        default:
+          // code block
+      }
+    }
+
     if (index == -1) {
       index = this.globalData.length;
       this.globalData.push({
@@ -1517,6 +1541,7 @@ export class ProofBotComponent implements OnInit {
       .querySelectorAll("#globalInformation #gsFrames proof-global-storage")
     [index].querySelectorAll(".data-table")[0];
     indexTable.scrollTop = indexTable.scrollHeight;
+    console.log('fffffthis.globalDatafinallllllllllll', this.globalData)
   }
 
   async scrollIntoStorageView(id: number) {
@@ -1682,6 +1707,7 @@ export class ProofBotComponent implements OnInit {
 type DataKeys={
   Key:Object,
   Value:any,
+  Type:string,
   CompareType:string,
   CompareValue:string
 }

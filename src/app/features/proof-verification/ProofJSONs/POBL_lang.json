@@ -659,6 +659,10 @@
                 "Text186": {
                     "ja": "CurentTXNHash (base64)",
                     "en": "CurentTXNHash (base64)"
+                },
+                "Text196": {
+                    "ja": "Expected Backlink Hash",
+                    "en": "Expected Backlink Hash"
                 }
             }
         },
