@@ -136,7 +136,7 @@ export class ProofBotComponent implements OnInit {
         if (!params.get("txn") || !params.get("type")){
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
         }else if(!this.availableProofs.includes(params.get("type"))){
-          this.toastr.error('Wrong Proof', 'Can not find the proof');
+          this.toastr.error('Proof verification is not yet available for the selected type', 'Can not find the proof');
         }else if(params.get("type")=='pobl' && !params.get("txn1")){
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
         }
@@ -175,7 +175,7 @@ export class ProofBotComponent implements OnInit {
               // start demo (not -verifing)
               this.initiateProofDemo();
             } else
-              alert("Proof verification is not yet available for the selected type");
+              this.toastr.error('Proof verification is not yet available for the selected type', 'Can not find the proof');
               return
             }
           } catch (error) {
@@ -1333,7 +1333,7 @@ export class ProofBotComponent implements OnInit {
         break;
       case "jsonKeyPicker":
         if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
-          this.toastr.error(`Can not find ${MetaData[1]} key from the URL`, currentUrl);  
+          this.toastr.error(`Can not find given key from the URL`, currentUrl);  
           //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"External URL issue",m1:`Can not find ${MetaData[1]} key from the URL`,m2:currentUrl}})
           break;
         }
@@ -1475,15 +1475,15 @@ export class ProofBotComponent implements OnInit {
       console.log('loopn data',Data[j])
       console.log('this.proofBotParams.Type=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue', this.proofBotParams.Type=="pog", Data[j].CompareType=="PreviousHash" , Data[j].Value!=Data[j].CompareValue)
     if(Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")){
-      this.toastr.error('Can not find the Key from the URL', 'Check the internet connection and External URL');
+      this.toastr.error('Can not find the Key from the URL', 'Something went wrong');
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
       Data[j].Value="TlVMTA=="
     }else if(this.proofType=="pog" && Data[j].CompareType=="PreviousHash" && Data[j].Value!=Data[j].CompareValue){
       console.log('tru---e')
-      this.toastr.error(Data[j].Key + "Previous transaction hash not empty","POG Verification failed");
+      this.toastr.error("Previous transaction hash not empty","POG Verification failed");
       this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POG Verification failed",m1:"442",m2:"Previous transaction hash not empty"}})
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
-      this.toastr.error(Data[j].Key + "Comparison error","Proof Verification failed");
+      this.toastr.error("Comparison error","Proof Verification failed");
       this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POG Verification failed",m1:"442",m2:"Key Comparison error"}})
     }
     }
