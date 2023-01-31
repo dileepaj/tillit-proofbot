@@ -1030,6 +1030,52 @@
         },
         {
             "SegmentNo": 13,
+            "StepNo": 34,
+            "Languages": {
+                "Text168": {
+                    "ja": "ステップ１３－",
+                    "en": "Step 13 - base64でエンコードしたIDを比較"
+                },
+                "Text169": {
+                    "ja": "オンラインテキスト比較Webページ",
+                    "en": "Online TextComparison Webpage"
+                },
+                "Text170": {
+                    "ja": "オンラインテキスト比較のウェブページを読み込む",
+                    "en": "Load the online text comparison webpage"
+                },
+                "Text171": {
+                    "ja": "入力の比較値",
+                    "en": "Input comparison values"
+                },
+                "Text172": {
+                    "ja": "トランザクションからBase64デコードされたIDの値を入力",
+                    "en": "Input the base64 decoded Identifier values from the transactions."
+                },
+                "Text173": {
+                    "ja": "比較ボタンをクリック",
+                    "en": "Click compare button"
+                },
+                "Text174": {
+                    "ja": "比較ボタンをクリック",
+                    "en": "Click the compare button"
+                },
+                "Text175": {
+                    "ja": "結果をスクロールする",
+                    "en": "Scroll to result"
+                },
+                "Text176": {
+                    "ja": "結果をスクロールする",
+                    "en": "Scroll to the result"
+                },
+                "Text177": {
+                    "ja": "比較結果",
+                    "en": "Comparison result."
+                }
+            }
+        },
+        {
+            "SegmentNo": 14,
             "StepNo": 35,
             "Languages": {
                 "Text178": {
