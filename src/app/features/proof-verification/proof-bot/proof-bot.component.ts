@@ -137,9 +137,9 @@ export class ProofBotComponent implements OnInit {
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
         }else if(!this.availableProofs.includes(params.get("type"))){
           this.toastr.error('Wrong Proof', 'Can not find the proof');
-        }else if(params.get("type")=='pobl' && !params.get("txn1")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
-        }
+        }//else if(params.get("type")=='pobl' && !params.get("txn1")){
+          //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
+       // }
         this.proofBotParams = {
           params: {
             txn: params.get("txn"),
