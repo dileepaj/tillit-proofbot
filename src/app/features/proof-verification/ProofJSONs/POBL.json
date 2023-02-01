@@ -69,6 +69,11 @@
       },
       {
         "NO": 13,
+        "Name": "&{SegName12}",
+        "Source":""
+      },
+      {
+        "NO": 14,
         "Name": "&{SegName13}",
         "Source":""
       }
@@ -1276,6 +1281,11 @@
           "SelectiveTextIndex": 0,
           "CSS": "",
           "FormatType": "",
+          "GivenDataToStorageData":{
+            "Type":"pobl",
+            "Key": "&{Text196}",
+            "Value": "${ExpectedPreviousTxnHash}"
+          },
           "StorageData": [
             {
               "Key": "&{Text186}",
@@ -1283,7 +1293,7 @@
             }
           ]
         },
-        "ActionResultVariable": "",
+        "ActionResultVariable": "ExpectedPreviousTxnHash",
         "MetaData": []
       },
       "Customizations": {
@@ -1941,11 +1951,76 @@
         "ActionDuration": 10
       }
     },
+    {
+      "StepHeader": {
+        "StepNo": 34,
+        "SegmentNo": 13,
+        "FrameID": 12,
+        "FrameTitle": ""
+      },
+      "Action": {
+        "ActionDescription": "",
+        "ActionType": "MultiStepAction",
+        "ActionParameters": {
+          "ExternalURL": "",
+          "InnerHTML": "",
+          "Query": "",
+          "QueryIndex": "",
+          "YOffset": "",
+          "XOffset": "",
+          "ElAttributeName": "",
+          "ElAttributeValue": "",
+          "ElAttributeValueReplace": "",
+          "ElProperty": "",
+          "ElPropertyValue": "",
+          "ElFunction": "",
+          "ElFunctionArguments": "",
+          "SelectiveText": "",
+          "CaseSensitivity": "",
+          "SelectiveTextIndex": "",
+          "CSS": "",
+          "FormatType": "",
+          "StorageData": [],
+          "ActionConfigurationID": "TextComparison",
+          "SubActionArguments": {
+            "StepNo": 34,
+            "SegmentNo": 13,
+            "FrameID": 12,
+            "FrameTitle": "&{Text168}",
+            "ActionTitle":"&{Text169}",
+            "ActionDescription":"&{Text170}",
+            "FrameTitle_1":"&{Text168}",
+            "ActionTitle_1":"&{Text171}",
+            "ActionDescription_1":"&{Text172}",
+            "FrameTitle_2":"&{Text168}",
+            "ActionTitle_2":"&{Text173}",
+            "ActionDescription_2":"&{Text174}",
+            "FrameTitle_3":"&{Text168}",
+            "ActionTitle_3":"&{Text175}",
+            "ActionDescription_3":"&{Text176}",
+            "ToastMessage": "&{Text177}",
+            "InputKeyName": "the base64 decoded Identifier values from the transactions.",
+            "InputValue": "[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\": \"${ExpectedPreviousTxnHash}\"}]"
+          }
+        },
+        "ActionResultVariable": "",
+        "MetaData": []
+      },
+      "Customizations": {
+        "PointerData": "",
+        "ScrollToPointer": false,
+        "FrameAutoScroll": true,
+        "FrameScrollBars": "",
+        "ToastMessage": "",
+        "ToastPosition": null,
+        "ActionDuration": 10
+      }
+    },
 
     {
       "StepHeader": {
         "StepNo": 35,
-        "SegmentNo": 13,
+        "SegmentNo": 14,
         "FrameID": 13,
         "FrameTitle": "&{Text178}"
       },
@@ -1955,7 +2030,8 @@
         "ActionType": "BrowserScreen",
         "ActionParameters": {
           "ExternalURL": "",
-          "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.27em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF THE BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current Transaction</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+          "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.27em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF THE BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+          "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.27em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF THE BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
           "PageURL": "&{Text181}",
           "Query": "",
           "QueryIndex": "",
@@ -1973,7 +2049,8 @@
           "SelectiveTextIndex": "",
           "CSS": "",
           "FormatType": "",
-          "StorageData": []
+          "StorageData": [],
+          "Compare":{"t1":"MainTXNPreviousTXNDecoded","t2":"ExpectedPreviousTxnHash"}
         },
         "ActionResultVariable": "",
         "MetaData": []

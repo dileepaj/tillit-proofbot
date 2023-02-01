@@ -1,3 +1,96 @@
 h5 {
-    font-size: 18px;
+  font-size: 18px;
+}
+
+.proofbot-header-img{
+    width:200px;
+    margin-right: 8px;
+  }
+
+.proofbot-header-img2{
+    width:200px;
+    margin-right: 8px;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 420px) {
+  .lang-selector {
+    align-self: center;
+  }
+  .header-container {
+    flex-direction: column;
+  }
+  .proofbot-header-img-container {
+    align-self: center;
+    width: min-content;
+  }
+  .proofbot-header-img2 {
+    width: 150px;
+    margin-left: 34px;
+    margin-right: 0px;
+    padding-top: 7px;
+  }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .lang-selector {
+    align-self: center;
+  }
+  .proofbot-header-img-container {
+    margin-right: auto;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .lang-selector {
+    align-self: center;
+  }
+  .proofbot-header-img-container {
+    margin-right: auto;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .lang-selector {
+    align-self: center;
+  }
+  .proofbot-header-img-container {
+    margin-right: auto;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .lang-selector {
+    align-self: center;
+  }
+  .proofbot-header-img-container {
+    margin-right: auto;
+  }
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../../../../assets/img/errorbot.svg");
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.bt-retry{
+    color: #098260;
+    border-color: #098260;
+}
+
+.errorM2{
+    font-size: 16px;
+    color: #CA180E;
+    
 }
