@@ -1698,33 +1698,31 @@ export class ProofBotComponent implements OnInit {
 
   public verificationStatus(compare:any):boolean{
     let status=true
-  switch (this.proofType) {
-    case "pobl":
-      if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
-      status=false
-      this.toastr.error("Previous Transaction hash are not equal","Backlink verification failed")
-      }
-      break;
-    case "poe":
-      
-      if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
-      status=false
-      this.toastr.error("Blockchain and Tracified data hash are not equal","POE verification failed")
-      }
-      break;
-     case "pog":
-      if(this.variableStorage[compare.t1]!=compare.t2){
-      status=false
-      this.toastr.error("Previous transaction hash not empty","POG Verification failed");
-      }
+    switch (this.proofType) {
+      case "pobl":
+        if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
+          status=false
+          this.toastr.error("Previous Transaction hash are not equal","Backlink verification failed")
+        }
+        break;
+      case "poe":
+        if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
+          status=false
+          this.toastr.error("Blockchain and Tracified data hash are not equal","POE verification failed")
+        }
+        break;
+      case "pog":
+        if(this.variableStorage[compare.t1]!=compare.t2){
+          status=false
+          this.toastr.error("Previous transaction hash not empty","POG Verification failed");
+        }
       break;  
-    default:
-      status=true
+      default:
+        status=true
       break;
+    }
+    return status
   }
-  return status
-  }
-
 }
 
 
