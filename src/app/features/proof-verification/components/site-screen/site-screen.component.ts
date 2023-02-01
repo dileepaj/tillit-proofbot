@@ -12,6 +12,8 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { VerificationServiceService } from "../../../../services/verification-service.service";
 import Url from "url-parse";
 import { environment } from "src/environments/environment";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
  
 @Component({
   selector: "app-site-screen",
@@ -69,7 +71,9 @@ export class SiteScreenComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private renderer: Renderer2,
     private cdref: ChangeDetectorRef,
-    private elRef: ElementRef
+    private elRef: ElementRef,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {}
@@ -215,6 +219,13 @@ export class SiteScreenComponent implements OnInit {
       this.displayPageUrl = pageUrl;
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
+          if(data==null){
+            this.toastr.error("Check the External URL","No Content found 204",{
+              timeOut: 100000,
+              positionClass: 'toast-top-right'})
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"204", m2:pageUrl}})
+            return
+          }
           try {
             // this.iframe.nativeElement.contentWindow.location.pathname = '/multiplecompare/[{"title":"sasasa","t1":"qwqwqw","t2":"212dsdsd"}]';
 
@@ -320,9 +331,23 @@ export class SiteScreenComponent implements OnInit {
             await this.sleepFor(1200);
             this.addPointerToPage();
             resolve({ ref: this.iframe });
-          } catch (error) {}
+          } catch (error) {
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"0", m2:pageUrl}})
+            return
+          }
         },
-        error => resolve({ error, ref: this.iframe })
+        error =>{
+          if(error.status=="0"){
+            this.toastr.error("Check the internet connection  statue: "+error.status,error.text)
+            this.toastr.info("Check the internet connection","Play again")
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.status,m2:error.message}})
+            return
+          }else{
+            resolve({ error, ref: this.iframe })}
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.message,m1:error.status,m2:error.message}})
+            return
+          }
+
       );
     });
   }

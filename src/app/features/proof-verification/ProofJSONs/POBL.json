@@ -9,55 +9,73 @@
     "Segments": [
       {
         "NO": 1,
-        "Name": "GET Stellar Transaction"
+        "Name": "&{SegName1}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 2,
-        "Name": "Decode Current TXNHash"
+        "Name": "&{SegName2}",
+        "Source":""
       },
       {
         "NO": 3,
-        "Name": "GET Current Transaction"
+        "Name": "&{SegName3}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 4,
-        "Name": "Decode Identifier"
+        "Name": "&{SegName4}",
+        "Source":""
       },
       {
         "NO": 5,
-        "Name": "Decode Product ID"
+        "Name": "&{SegName5}",
+        "Source":""
       },
       {
         "NO": 6,
-        "Name": "Decode Backlink TXNHash"
+        "Name": "&{SegName6}",
+        "Source":""
       },
       {
         "NO": 7,
-        "Name": "GET Backlink Transaction"
+        "Name": "&{SegName7}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 8,
-        "Name": "Decode Current Transaction"
+        "Name": "&{SegName8}",
+        "Source":""
       },
       {
         "NO": 9,
-        "Name": "GET Current Transaction"
+        "Name": "&{SegName9}",
+        "Source":"../../../../assets/img/Group 6.png"
       },
       {
         "NO": 10,
-        "Name": "Decode Identifier"
+        "Name": "&{SegName10}",
+        "Source":""
       },
       {
         "NO": 11,
-        "Name": "Decode Product ID"
+        "Name": "&{SegName11}",
+        "Source":""
       },
       {
         "NO": 12,
-        "Name": "Comparison"
+        "Name": "&{SegName12}",
+        "Source":""
       },
       {
         "NO": 13,
-        "Name": "Summary"
+        "Name": "&{SegName12}",
+        "Source":""
+      },
+      {
+        "NO": 14,
+        "Name": "&{SegName13}",
+        "Source":""
       }
     ]
   },
@@ -70,7 +88,7 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Retrieve Current Transaction",
+        "ActionTitle": "&{Text0}",
         "ActionDescription": "",
         "ActionType": "MultiStepAction",
         "ActionParameters": {
@@ -98,7 +116,13 @@
             "StepNo": 1,
             "SegmentNo": 1,
             "FrameID": 1,
-            "FrameTitle": "Step 1 - Retrieve Current Transaction",
+            "FrameTitle": "&{Text1}",
+            "ActionTitle": "&{Text2}",
+            "ActionDescription": "&{Text3}",
+            "ActionTitle_1": "&{Text4}",
+            "ActionDescription_1": "&{Text5}",
+            "ActionTitle_2": "&{Text6}",
+            "ActionDescription_2": "&{Text7}",
             "TXNHash": "${TXNhash}",
             "OperationName": "current transaction",
             "ResponseVariable": "MainTXNDataString",
@@ -126,8 +150,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Extract CurrentTXN Hash",
-        "ActionDescription": "Select the CurrentTXN Hash (base64 encoded) from the transaction details.",
+        "ActionTitle": "&{Text8}",
+        "ActionDescription": "&{Text9}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -199,6 +223,10 @@
             "SegmentNo": 2,
             "FrameID": 1,
             "FrameTitle": "",
+            "ActionTitle": "&{Text10}",
+            "ActionDescription": "&{Text11}",
+            "ActionTitle_1": "&{Text12}",
+            "ActionDescription_1": "&{Text13}",
             "OperationKey": "CurrentTXN",
             "OperationValue": "MainTXNCurentTXNHash",
             "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
@@ -226,8 +254,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded CurrentTXN",
-        "ActionDescription": "Save the base64 encoded CurrentTXN Hash value for future usage.",
+        "ActionTitle": "&{Text14}",
+        "ActionDescription": "&{Text15}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -250,7 +278,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "TXN2 CurrentTXN (base64)",
+              "Key": "&{Text182}",
               "Value": "${MainTXNCurentTXNHash}"
             }
           ]
@@ -303,11 +331,22 @@
             "StepNo": 5,
             "SegmentNo": 2,
             "FrameID": 2,
-            "FrameTitle": "Step 2 - Decode CurrentTXN",
+            "FrameTitle": "&{Text16}",
+            "ActionTitle":"&{Text17}",
+            "ActionDescription":"&{Text18}",
+            "ActionTitle_1":"&{Text19}",
+            "ActionDescription_1":"&{Text20}",
+            "ActionTitle_2":"&{Text21}",
+            "ActionDescription_2":"&{Text22}",
+            "ActionTitle_3":"&{Text23}",
+            "ActionDescription_3":"&{Text24}",
+            "ActionTitle_4":"&{Text25}",
+            "ActionDescription_4":"&{Text26}",
+            "ToastMessage":"&{Text27}",
             "DecodeKeyName": "CurrentTXN Hash",
             "EncodedInputValue": "${MainTXNCurentTXNHash}",
             "DecodedResultVariable": "var_currenttxn",
-            "InformationStorageKey": "TXN2 CurrentTXN"
+            "InformationStorageKey": "&{Text192}"
           }
         },
         "ActionResultVariable": "",
@@ -358,7 +397,13 @@
             "StepNo": 6,
             "SegmentNo": 3,
             "FrameID": 3,
-            "FrameTitle": "Step 3 - Retrieve Current Transaction",
+            "FrameTitle": "&{Text28}",
+            "ActionTitle": "&{Text29}",
+            "ActionDescription": "&{Text30}",
+            "ActionTitle_1": "&{Text31}",
+            "ActionDescription_1": "&{Text32}",
+            "ActionTitle_2": "&{Text33}",
+            "ActionDescription_2": "&{Text34}",
             "TXNHash": "${var_currenttxn}",
             "OperationName": "current transaction of the gateway transaction",
             "ResponseVariable": "MainTXNCurentTXNDataString",
@@ -386,8 +431,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded Identifier",
-        "ActionDescription": "Select the encoded Identifier from the transaction details.",
+        "ActionTitle": "&{Text35}",
+        "ActionDescription": "&{Text36}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -459,6 +504,10 @@
             "SegmentNo": 4,
             "FrameID": 3,
             "FrameTitle": "",
+            "ActionTitle": "&{Text37}",
+            "ActionDescription": "&{Text38}",
+            "ActionTitle_1": "&{Text39}",
+            "ActionDescription_1": "&{Text40}",
             "OperationKey": "identifier",
             "OperationValue": "MainTXNCurentTXNDataIdentifier",
             "OperationKeyName": "encoded Identifier from the transaction details",
@@ -486,8 +535,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded Identifier",
-        "ActionDescription": "Save the base64 encoded Identifier value for future usage.",
+        "ActionTitle": "&{Text41}",
+        "ActionDescription": "&{Text42}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -510,7 +559,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Identifier (base64)",
+              "Key": "&{Text183}",
               "Value": "${MainTXNCurentTXNDataIdentifier}"
             }
           ]
@@ -563,11 +612,22 @@
             "StepNo": 10,
             "SegmentNo": 4,
             "FrameID": 4,
-            "FrameTitle": "Step 4 - Decode MainTXN Identifier",
+            "FrameTitle": "&{Text43}",
+            "ActionTitle":"&{Text44}",
+            "ActionDescription":"&{Text45}",
+            "ActionTitle_1":"&{Text46}",
+            "ActionDescription_1":"&{Text47}",
+            "ActionTitle_2":"&{Text48}",
+            "ActionDescription_2":"&{Text49}",
+            "ActionTitle_3":"&{Text50}",
+            "ActionDescription_3":"&{Text51}",
+            "ActionTitle_4":"&{Text52}",
+            "ActionDescription_4":"&{Text53}",
+            "ToastMessage":"&{Text54}",
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
-            "InformationStorageKey": "Identifier"
+            "InformationStorageKey": "&{Text189}"
           }
         },
         "ActionResultVariable": "",
@@ -592,8 +652,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded ProductID",
-        "ActionDescription": "Select the encoded Product ID from the transaction details.",
+        "ActionTitle": "&{Text55}",
+        "ActionDescription": "&{Text56}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -665,6 +725,10 @@
             "SegmentNo": 5,
             "FrameID": 3,
             "FrameTitle": "",
+            "ActionTitle": "&{Text57}",
+            "ActionDescription": "&{Text58}",
+            "ActionTitle_1": "&{Text59}",
+            "ActionDescription_1": "&{Text60}",
             "OperationKey": "productId",
             "OperationValue": "MainTXNCurentTXNDataProductId",
             "OperationKeyName": "encoded ProductID from the transaction details",
@@ -692,8 +756,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded ProductID",
-        "ActionDescription": "Save the base64 encoded ProductID value for future usage.",
+        "ActionTitle": "&{Text60}",
+        "ActionDescription": "&{Text61}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -716,7 +780,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Product ID (base64)",
+              "Key": "&{Text184}",
               "Value": "${MainTXNCurentTXNDataProductId}"
             }
           ]
@@ -769,11 +833,22 @@
             "StepNo": 14,
             "SegmentNo": 5,
             "FrameID": 3,
-            "FrameTitle": "Step 5 - Decode MainTXN ProductID",
+            "FrameTitle": "&{Text62}",
+            "ActionTitle":"&{Text63}",
+            "ActionDescription":"&{Text64}",
+            "ActionTitle_1":"&{Text65}",
+            "ActionDescription_1":"&{Text66}",
+            "ActionTitle_2":"&{Text67}",
+            "ActionDescription_2":"&{Text68}",
+            "ActionTitle_3":"&{Text69}",
+            "ActionDescription_3":"&{Text70}",
+            "ActionTitle_4":"&{Text71}",
+            "ActionDescription_4":"&{Text72}",
+            "ToastMessage":"&{Text73}",
             "DecodeKeyName": "MainTXN ProductID",
             "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
             "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
-            "InformationStorageKey": "ProductID"
+            "InformationStorageKey": "&{Text191}"
           }
         },
         "ActionResultVariable": "",
@@ -798,8 +873,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded PreviousTXN",
-        "ActionDescription": "Select the encoded PreviousTXN Hash value from the transaction details.",
+        "ActionTitle": "&{Text74}",
+        "ActionDescription": "&{Text75}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -871,6 +946,10 @@
             "SegmentNo": 6,
             "FrameID": 1,
             "FrameTitle": "",
+            "ActionTitle": "&{Text76}",
+            "ActionDescription": "&{Text77}",
+            "ActionTitle_1": "&{Text78}",
+            "ActionDescription_1": "&{Text79}",
             "OperationKey": "PreviousTXN",
             "OperationValue": "MainTXNPreviousTXN",
             "OperationKeyName": "encoded PreviousTXN Hash from the transaction details.",
@@ -898,8 +977,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded PreviousTXN",
-        "ActionDescription": "Save the base64 encoded Previous TXN Hash value for future usage.",
+        "ActionTitle": "&{Text80}",
+        "ActionDescription": "&{Text81}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -922,7 +1001,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "PreviousTXN Hash (base64)",
+              "Key": "&{Text185}",
               "Value": "${MainTXNPreviousTXN}"
             }
           ]
@@ -975,11 +1054,22 @@
             "StepNo": 18,
             "SegmentNo": 6,
             "FrameID": 1,
-            "FrameTitle": "Step 6 - Decode MainTXN Previous hash",
+            "FrameTitle": "&{Text82}",
+            "ActionTitle":"&{Text83}",
+            "ActionDescription":"&{Text84}",
+            "ActionTitle_1":"&{Text85}",
+            "ActionDescription_1":"&{Text86}",
+            "ActionTitle_2":"&{Text87}",
+            "ActionDescription_2":"&{Text88}",
+            "ActionTitle_3":"&{Text89}",
+            "ActionDescription_3":"&{Text90}",
+            "ActionTitle_4":"&{Text91}",
+            "ActionDescription_4":"&{Text92}",
+            "ToastMessage":"&{Text93}",
             "DecodeKeyName": "MainTXN Previous hash",
             "EncodedInputValue": "${MainTXNPreviousTXN}",
             "DecodedResultVariable": "MainTXNPreviousTXNDecoded",
-            "InformationStorageKey": "PreviousTXN Hash"
+            "InformationStorageKey": "&{Text193}"
           }
         },
         "ActionResultVariable": "",
@@ -1031,7 +1121,13 @@
             "StepNo": 19,
             "SegmentNo": 7,
             "FrameID": 8,
-            "FrameTitle": "Step 7 - Retrieve Backlink Transaction",
+            "FrameTitle": "&{Text94}",
+            "ActionTitle": "&{Text95}",
+            "ActionDescription": "&{Text96}",
+            "ActionTitle_1": "&{Text97}",
+            "ActionDescription_1": "&{Text98}",
+            "ActionTitle_2": "&{Text99}",
+            "ActionDescription_2": "&{Text100}",
             "TXNHash": "${MainTXNPreviousTXNDecoded}",
             "OperationName": "Backlink transaction from Stellar Blockchain.",
             "ResponseVariable": "MainTXNPreviousTXNDataString",
@@ -1059,8 +1155,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded CurrentTXN",
-        "ActionDescription": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details.",
+        "ActionTitle": "&{Text101}",
+        "ActionDescription": "&{Text102}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1132,6 +1228,10 @@
             "SegmentNo": 8,
             "FrameID": 8,
             "FrameTitle": "",
+            "ActionTitle": "&{Text103}",
+            "ActionDescription": "&{Text104}",
+            "ActionTitle_1": "&{Text105}",
+            "ActionDescription_1": "&{Text106}",
             "OperationKey": "CurrentTXN",
             "OperationValue": "MainTXNPreviousTXNCurrentTXNHash",
             "OperationKeyName": "encoded CurrentTXN Hash of the Backlink transaction from the transaction details.",
@@ -1159,8 +1259,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded CurrentTXN",
-        "ActionDescription": "Save the base64 encoded CurrentTXN Hash value of the Previuos TXN for future usage.",
+        "ActionTitle": "&{Text107}",
+        "ActionDescription": "&{Text108}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1181,14 +1281,19 @@
           "SelectiveTextIndex": 0,
           "CSS": "",
           "FormatType": "",
+          "GivenDataToStorageData":{
+            "Type":"pobl",
+            "Key": "&{Text196}",
+            "Value": "${ExpectedPreviousTxnHash}"
+          },
           "StorageData": [
             {
-              "Key": "CurentTXNHash (base64)",
+              "Key": "&{Text186}",
               "Value": "${MainTXNPreviousTXNCurrentTXNHash}"
             }
           ]
         },
-        "ActionResultVariable": "",
+        "ActionResultVariable": "ExpectedPreviousTxnHash",
         "MetaData": []
       },
       "Customizations": {
@@ -1236,11 +1341,22 @@
             "StepNo": 23,
             "SegmentNo": 8,
             "FrameID": 9,
-            "FrameTitle": "Step 9 - Decode PreviousTXN CurentTXN Hash",
+            "FrameTitle": "&{Text109}",
+            "ActionTitle":"&{Text110}",
+            "ActionDescription":"&{Text111}",
+            "ActionTitle_1":"&{Text112}",
+            "ActionDescription_1":"&{Text113}",
+            "ActionTitle_2":"&{Text114}",
+            "ActionDescription_2":"&{Text115}",
+            "ActionTitle_3":"&{Text116}",
+            "ActionDescription_3":"&{Text117}",
+            "ActionTitle_4":"&{Text118}",
+            "ActionDescription_4":"&{Text119}",
+            "ToastMessage":"&{Text120}",
             "DecodeKeyName": "MainTXN Identifier",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNHash}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNHashDecoded",
-            "InformationStorageKey": "CurentTXNHash"
+            "InformationStorageKey": "&{Text194}"
           }
         },
         "ActionResultVariable": "",
@@ -1292,7 +1408,13 @@
             "StepNo": 24,
             "SegmentNo": 9,
             "FrameID": 10,
-            "FrameTitle": "Step 10 - Retrieve Backlink Current Transaction",
+            "FrameTitle": "&{Text121}",
+            "ActionTitle": "&{Text122}",
+            "ActionDescription": "&{Text123}",
+            "ActionTitle_1": "&{Text124}",
+            "ActionDescription_1": "&{Text125}",
+            "ActionTitle_2": "&{Text126}",
+            "ActionDescription_2": "&{Text127}",
             "TXNHash": "${MainTXNPreviousTXNCurrentTXNHashDecoded}",
             "OperationName": "current transaction of the backlink transaction",
             "ResponseVariable": "MainTXNPreviousTXNCurrentTXNDataString",
@@ -1320,8 +1442,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded Identifier",
-        "ActionDescription": "Select the encoded Identifier from the transaction details.",
+        "ActionTitle": "&{Text128}",
+        "ActionDescription": "&{Text129}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1398,6 +1520,10 @@
             "SegmentNo": 10,
             "FrameID": 10,
             "FrameTitle": "",
+            "ActionTitle": "&{Text130}",
+            "ActionDescription": "&{Text131}",
+            "ActionTitle_1": "&{Text132}",
+            "ActionDescription_1": "&{Text133}",
             "OperationKey": "identifier",
             "OperationValue": "MainTXNPreviousTXNCurrentTXNDataIdentifier",
             "OperationKeyName": "encoded Identifier from the transaction details",
@@ -1425,8 +1551,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded Identifier",
-        "ActionDescription": "Save the base64 encoded Identifier value of the PreviousTX for future usage.",
+        "ActionTitle": "&{Text134}",
+        "ActionDescription": "&{Text135}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1449,7 +1575,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Identifier (base64)",
+              "Key": "&{Text187}",
               "Value": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}"
             }
           ]
@@ -1502,11 +1628,22 @@
             "StepNo": 28,
             "SegmentNo": 10,
             "FrameID": 11,
-            "FrameTitle": "Step 11 - Decode PreviousTXN's CurrentTXN's Identifier",
+            "FrameTitle": "&{Text136}",
+            "ActionTitle":"&{Text137}",
+            "ActionDescription":"&{Text138}",
+            "ActionTitle_1":"&{Text139}",
+            "ActionDescription_1":"&{Text140}",
+            "ActionTitle_2":"&{Text141}",
+            "ActionDescription_2":"&{Text142}",
+            "ActionTitle_3":"&{Text143}",
+            "ActionDescription_3":"&{Text144}",
+            "ActionTitle_4":"&{Text145}",
+            "ActionDescription_4":"&{Text146}",
+            "ToastMessage":"&{Text147}",
             "DecodeKeyName": "PreviousTXN's CurrentTXN' Identifier",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded",
-            "InformationStorageKey": "Identifier"
+            "InformationStorageKey": "&{Text190}"
           }
         },
         "ActionResultVariable": "",
@@ -1531,8 +1668,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Select Base64Encoded ProductID",
-        "ActionDescription": "Select the encoded Product ID from the transaction details.",
+        "ActionTitle": "&{Text148}",
+        "ActionDescription": "&{Text149}",
         "ActionType": "FormatMetaData",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1609,6 +1746,10 @@
             "SegmentNo": 11,
             "FrameID": 10,
             "FrameTitle": "",
+            "ActionTitle": "&{Text150}",
+            "ActionDescription": "&{Text151}",
+            "ActionTitle_1": "&{Text152}",
+            "ActionDescription_1": "&{Text153}",
             "OperationKey": "productId",
             "OperationValue": "MainTXNPreviousTXNCurrentTXNDataProductID",
             "OperationKeyName": "encoded ProductID from the transaction details",
@@ -1636,8 +1777,8 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Save Base64Encoded ProductID",
-        "ActionDescription": "Save the base64 encoded ProductID value for future usage.",
+        "ActionTitle": "&{Text154}",
+        "ActionDescription": "&{Text155}",
         "ActionType": "InformationStorage",
         "ActionParameters": {
           "ExternalURL": "",
@@ -1660,7 +1801,7 @@
           "FormatType": "",
           "StorageData": [
             {
-              "Key": "Product ID (base64)",
+              "Key": "&{Text188}",
               "Value": "${MainTXNPreviousTXNCurrentTXNDataProductID}"
             }
           ]
@@ -1713,11 +1854,22 @@
             "StepNo": 32,
             "SegmentNo": 11,
             "FrameID": 11,
-            "FrameTitle": "Step 12 - Decode PreviousTXN's CurrentTXN's ProductID",
+            "FrameTitle": "&{Text156}",
+            "ActionTitle":"&{Text157}",
+            "ActionDescription":"&{Text158}",
+            "ActionTitle_1":"&{Text15}",
+            "ActionDescription_1":"&{Text19}",
+            "ActionTitle_2":"&{Text160}",
+            "ActionDescription_2":"&{Text161}",
+            "ActionTitle_3":"&{Text162}",
+            "ActionDescription_3":"&{Text163}",
+            "ActionTitle_4":"&{Text164}",
+            "ActionDescription_4":"&{Text165}",
+            "ToastMessage":"&{Text166}",
             "DecodeKeyName": "PreviousTXN's CurrentTXN's ProductID",
             "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataProductID}",
             "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataProductIDDecoded",
-            "InformationStorageKey": "ProductID"
+            "InformationStorageKey": "&{Text195}"
           }
         },
         "ActionResultVariable": "",
@@ -1769,9 +1921,86 @@
             "StepNo": 34,
             "SegmentNo": 12,
             "FrameID": 12,
-            "FrameTitle": "Step 13 - Compare the base64 decoded Identifier",
+            "FrameTitle": "&{Text168}",
+            "ActionTitle":"&{Text169}",
+            "ActionDescription":"&{Text170}",
+            "FrameTitle_1":"&{Text168}",
+            "ActionTitle_1":"&{Text171}",
+            "ActionDescription_1":"&{Text172}",
+            "FrameTitle_2":"&{Text168}",
+            "ActionTitle_2":"&{Text173}",
+            "ActionDescription_2":"&{Text174}",
+            "FrameTitle_3":"&{Text168}",
+            "ActionTitle_3":"&{Text175}",
+            "ActionDescription_3":"&{Text176}",
+            "ToastMessage": "&{Text177}",
             "InputKeyName": "the base64 decoded Identifier values from the transactions.",
             "InputValue": "[{\"title\": \"Identifiers from the Main transaction and Backlink transaction\", \"t1\": \"${MainTXNCurentTXNDataIdentifierDecoded}\", \"t2\": \"${MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded}\"}]"
+          }
+        },
+        "ActionResultVariable": "",
+        "MetaData": []
+      },
+      "Customizations": {
+        "PointerData": "",
+        "ScrollToPointer": false,
+        "FrameAutoScroll": true,
+        "FrameScrollBars": "",
+        "ToastMessage": "",
+        "ToastPosition": null,
+        "ActionDuration": 10
+      }
+    },
+    {
+      "StepHeader": {
+        "StepNo": 34,
+        "SegmentNo": 13,
+        "FrameID": 12,
+        "FrameTitle": ""
+      },
+      "Action": {
+        "ActionDescription": "",
+        "ActionType": "MultiStepAction",
+        "ActionParameters": {
+          "ExternalURL": "",
+          "InnerHTML": "",
+          "Query": "",
+          "QueryIndex": "",
+          "YOffset": "",
+          "XOffset": "",
+          "ElAttributeName": "",
+          "ElAttributeValue": "",
+          "ElAttributeValueReplace": "",
+          "ElProperty": "",
+          "ElPropertyValue": "",
+          "ElFunction": "",
+          "ElFunctionArguments": "",
+          "SelectiveText": "",
+          "CaseSensitivity": "",
+          "SelectiveTextIndex": "",
+          "CSS": "",
+          "FormatType": "",
+          "StorageData": [],
+          "ActionConfigurationID": "TextComparison",
+          "SubActionArguments": {
+            "StepNo": 34,
+            "SegmentNo": 13,
+            "FrameID": 12,
+            "FrameTitle": "&{Text168}",
+            "ActionTitle":"&{Text169}",
+            "ActionDescription":"&{Text170}",
+            "FrameTitle_1":"&{Text168}",
+            "ActionTitle_1":"&{Text171}",
+            "ActionDescription_1":"&{Text172}",
+            "FrameTitle_2":"&{Text168}",
+            "ActionTitle_2":"&{Text173}",
+            "ActionDescription_2":"&{Text174}",
+            "FrameTitle_3":"&{Text168}",
+            "ActionTitle_3":"&{Text175}",
+            "ActionDescription_3":"&{Text176}",
+            "ToastMessage": "&{Text177}",
+            "InputKeyName": "the base64 decoded Identifier values from the transactions.",
+            "InputValue": "[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\": \"${ExpectedPreviousTxnHash}\"}]"
           }
         },
         "ActionResultVariable": "",
@@ -1791,18 +2020,19 @@
     {
       "StepHeader": {
         "StepNo": 35,
-        "SegmentNo": 13,
+        "SegmentNo": 14,
         "FrameID": 13,
-        "FrameTitle": "Step 14 - Verification Summary"
+        "FrameTitle": "&{Text178}"
       },
       "Action": {
-        "ActionTitle": "Verification Summary",
-        "ActionDescription": "Verification Summary",
+        "ActionTitle": "&{Text179}",
+        "ActionDescription": "&{Text179}",
         "ActionType": "BrowserScreen",
         "ActionParameters": {
           "ExternalURL": "",
-          "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><link href=\"https://www.online-html-editor.org/assets/minimalist-blocks/content.css\" rel=\"stylesheet\" type=\"text/css\"/></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"container\"><div class=\"row clearfix\"><div class=\"column full\"><h2 class=\"size-18\" style=\"font-weight: 800; text-align: center; letter-spacing: 8px; text-transform: uppercase;\">\r\n Verification summary\r\n </h2></div><div class=\"is-tool is-row-tool\"><div class=\"row-handle\" data-title=\"Move\" style=\"width:100%;cursor:move;text-align:center;\" title=\"Move\"><br/></div></div><div class=\"is-rowadd-tool\" style=\"height:0;\"><br/></div></div><div class=\"row clearfix\"><div class=\"column full\"><p class=\"size-12\" style=\"text-align: center; letter-spacing: 3px; color: rgb(94, 94, 94); text-transform: uppercase;\"><b style=\"color: rgb(71, 88, 204); background-color: rgb(240, 249, 254);\">PROOF OF THE BACKLINK</b></p></div><div class=\"is-tool is-row-tool\"><div class=\"row-handle\" data-title=\"Move\" style=\"width:100%;cursor:move;text-align:center;\" title=\"Move\"><br/></div></div><div class=\"is-rowadd-tool\" style=\"height:0;\"><br/></div></div><div class=\"row clearfix\"><div class=\"column half\"><p style=\"text-align: justify;\"><strong><span class=\"size-14\">Current Transaction Hash</span></strong></p><p class=\"size-14\" style=\"text-align: justify; overflow-wrap: break-word;\">\r\n ${var_currenttxn}\r\n </p></div><div class=\"column half\"><p class=\"size-14\" style=\"text-align: justify; \"><strong>Previous Transaction Hash</strong></p><p class=\"size-14\" style=\"text-align: justify; overflow-wrap: break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></div><div class=\"is-tool is-row-tool\"><div class=\"row-handle\" data-title=\"Move\" style=\"width:100%;cursor:move;text-align:center;\" title=\"Move\"><br/></div></div><div class=\"is-rowadd-tool\" style=\"height:0;\"><br/></div></div><div class=\"row clearfix\"><pre class=\"size-14\" style=\"background-color: rgb(46, 125, 50); color: rgb(245, 243, 252); font-weight: bold; text-align: center; border-radius: 8px; margin: 0; padding: 8px;\">\r\nVerification Completed</pre><div class=\"is-rowadd-tool\" style=\"height:0\"><br/></div></div></div></body></html>",
-          "PageURL": "about: Verification Summary - PROOF OF THE BACKLINK",
+          "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.27em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF THE BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+          "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.27em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF THE BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+          "PageURL": "&{Text181}",
           "Query": "",
           "QueryIndex": "",
           "YOffset": "",
@@ -1819,7 +2049,8 @@
           "SelectiveTextIndex": "",
           "CSS": "",
           "FormatType": "",
-          "StorageData": []
+          "StorageData": [],
+          "Compare":{"t1":"MainTXNPreviousTXNDecoded","t2":"ExpectedPreviousTxnHash"}
         },
         "ActionResultVariable": "",
         "MetaData": []
@@ -1829,8 +2060,8 @@
         "ScrollToPointer": false,
         "FrameAutoScroll": true,
         "FrameScrollBars": "",
-        "ToastMessage": "",
-        "ToastPosition": [],
+        "ToastMessage1": "&{Text180}",
+        "ToastPosition1": ["6%", "80%"],
         "ActionDuration": 10
       }
     }
