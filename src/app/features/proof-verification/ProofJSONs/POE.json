@@ -401,7 +401,7 @@
               "Value": "${TDPDatahash}",
               "CompareType":"notEmpty",
               "CompareValue":"",
-              "Error":"Can not find the datahash from Tracifed for the given transaction"
+              "Error":"Cannot find the datahash from Tracifed for the given transaction"
             }
           ]
         },
