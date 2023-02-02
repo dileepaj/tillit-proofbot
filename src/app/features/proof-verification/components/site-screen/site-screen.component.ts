@@ -220,9 +220,7 @@ export class SiteScreenComponent implements OnInit {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if(data==null){
-            this.toastr.error("Check the External URL","No Content found 204",{
-              timeOut: 100000,
-              positionClass: 'toast-top-right'})
+            this.toastr.error("Check the External URL","No Content found 204")
             this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"204", m2:pageUrl}})
             return
           }
@@ -338,8 +336,6 @@ export class SiteScreenComponent implements OnInit {
         },
         error =>{
           if(error.status=="0"){
-            this.toastr.error("Check the internet connection  statue: "+error.status,error.text)
-            this.toastr.info("Check the internet connection","Play again")
             this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.status,m2:error.message}})
             return
           }else{

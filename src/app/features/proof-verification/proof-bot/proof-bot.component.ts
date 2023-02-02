@@ -133,11 +133,14 @@ export class ProofBotComponent implements OnInit {
   ngOnInit() {
       this.route.queryParamMap.subscribe(params => {
         if (!params.get("txn") || !params.get("type")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+          return
         }else if(!this.availableProofs.includes(params.get("type"))){
-          this.toastr.error('Proof verification is not yet available for the selected type', 'Can not find the proof');
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+          return
         }else if(params.get("type")=='pobl' && !params.get("txn2")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:this.router.url}})
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+          return
         }else{
         }
 
@@ -163,7 +166,7 @@ export class ProofBotComponent implements OnInit {
       async data => {
         try {
           if (!data) {
-            this.toastr.error('Wrong Transaction hash', 'Proof verification is not yet available for the given transaction hash');
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"204"}})
             return 
           } else {
             let proof = JSON.parse(data)
@@ -176,7 +179,8 @@ export class ProofBotComponent implements OnInit {
               // start demo (not -verifing)
               this.initiateProofDemo();
             } else
-              this.toastr.error('Proof verification is not yet available for the selected type', 'Can not find the proof');
+            // invalid URL
+              this.toastr.error('Proof verification is not yet available for the selected type', 'Cannot find the proof');
               return
             }
           } catch (error) {
@@ -184,7 +188,7 @@ export class ProofBotComponent implements OnInit {
           }
         },
         error => {
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the Internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
         }
         );
       }
@@ -1333,7 +1337,7 @@ export class ProofBotComponent implements OnInit {
         break;
       case "jsonKeyPicker":
         if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
-          this.toastr.error(`Can not find given key from the URL`, currentUrl);  
+          this.toastr.error(`Cannot find given key from the URL`, currentUrl);  
           //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"External URL issue",m1:`Can not find ${MetaData[1]} key from the URL`,m2:currentUrl}})
           break;
         }
@@ -1481,7 +1485,7 @@ export class ProofBotComponent implements OnInit {
       Data[j].Value="TlVMTA=="
     }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
       this.toastr.error(Data[j].Error,"POE Verification failed");
-      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"POE Verification failed",m1:"442",m2:Data[j].Error}})
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Poof of Existence Verification Failed",m1:"442",m2:Data[j].Error}})
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
       this.toastr.error("Comparison error","Proof Verification failed");
       this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Verification failed",m1:"442",m2:"Key Comparison error"}})
@@ -1702,19 +1706,19 @@ export class ProofBotComponent implements OnInit {
       case "pobl":
         if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
           status=false
-          this.toastr.error("Previous Transaction hash are not equal","Backlink verification failed")
+          this.toastr.error("Blockchain and Tracified data hashes does not match.","Backlink Verification Failed")
         }
         break;
       case "poe":
         if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
           status=false
-          this.toastr.error("Blockchain and Tracified data hash are not equal","POE verification failed")
+          this.toastr.error("Blockchain and Tracified data hash are not equal","POE Verification Failed")
         }
         break;
       case "pog":
         if(this.variableStorage[compare.t1]!=compare.t2){
           status=false
-          this.toastr.error("Previous transaction hash not empty","POG Verification failed");
+          this.toastr.error("Previous transaction hash is not empty.","POG Verification Failed");
         }
       break;  
       default:
