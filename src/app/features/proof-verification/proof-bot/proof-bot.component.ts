@@ -1480,12 +1480,12 @@ export class ProofBotComponent implements OnInit {
     let Data=storageData
     for (let j = 0; j < Data.length; j++) {
     if(Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")){
-      this.toastr.error('Can not find the Key from the URL', 'Something went wrong');
+      this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
       Data[j].Value="TlVMTA=="
     }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
       this.toastr.error(Data[j].Error,"POE Verification failed");
-      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Poof of Existence Verification Failed",m1:"442",m2:Data[j].Error}})
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Proof of Existence Verification Failed",m1:"442",m2:Data[j].Error}})
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
       this.toastr.error("Comparison error","Proof Verification failed");
       this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Verification failed",m1:"442",m2:"Key Comparison error"}})
