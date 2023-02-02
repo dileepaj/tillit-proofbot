@@ -220,7 +220,6 @@ export class SiteScreenComponent implements OnInit {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if(data==null){
-            this.toastr.error("Check the External URL","No Content found 204")
             this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"204", m2:pageUrl}})
             return
           }
