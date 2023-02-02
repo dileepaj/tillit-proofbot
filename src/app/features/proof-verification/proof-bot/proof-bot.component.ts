@@ -180,7 +180,6 @@ export class ProofBotComponent implements OnInit {
               this.initiateProofDemo();
             } else
             // invalid URL
-              this.toastr.error('Proof verification is not yet available for the selected type', 'Cannot find the proof');
               return
             }
           } catch (error) {
@@ -1484,10 +1483,8 @@ export class ProofBotComponent implements OnInit {
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
       Data[j].Value="TlVMTA=="
     }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
-      this.toastr.error(Data[j].Error,"POE Verification failed");
       this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Proof of Existence Verification Failed",m1:"442",m2:Data[j].Error}})
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
-      this.toastr.error("Comparison error","Proof Verification failed");
       this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Verification failed",m1:"442",m2:"Key Comparison error"}})
     }else{}
     }
