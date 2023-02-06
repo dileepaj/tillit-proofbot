@@ -9,14 +9,16 @@
         "PlaybackSpeed": 1,
         "ScrollToPointer": true,
         "Segments": [
-          {
-            "NO": 1,
-            "Name": "Get The POC Tree View."
-          },
-          {
-            "NO": 8,
-            "Name": "Summary"
-          }
+            {
+                "NO": 1,
+                "Name": "&{SegName1}",
+                "Source":"../../../../assets/img/Group.png"
+              },
+              {
+                "NO": 2,
+                "Name": "&{SegName2}",
+                "Source":""
+              }
         ]
       },
       "Steps": [
@@ -59,10 +61,6 @@
                   "FrameTitle": "&{Text2}",
                   "ActionTitle": "&{Text3}",
                   "ActionDescription": "&{Text4}",
-                  "ActionTitle_1": "&{Text5}",
-                  "ActionDescription_1": "&{Text6}",
-                  "ActionTitle_2": "&{Text7}",
-                  "ActionDescription_2": "&{Text8}",
                   "TXNHash": "${TXNhash}",
                   "OperationName": "current transaction",
                   "ResponseVariable": "MainTXNDataString",
@@ -81,7 +79,7 @@
               "ToastPosition": null,
               "ActionDuration": 10
             }
-          }
+        }
 
       ]
 }

@@ -997,6 +997,26 @@
       "Title": "LoadTheTillitPOCView",
       "Description": "",
       "Parameters":{
+        "StepNo": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "SegmentNo": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "FrameID": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "FrameTitle": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        },
         "TXNHash": {
           "Type": "string",
           "Required": true,
@@ -1012,8 +1032,8 @@
             "FrameTitle": "#{FrameTitle}"
           },
           "Action": {
-            "ActionTitle": "Load TilliT Explore",
-            "ActionDescription": "Load the POC tree view in Tillit explore",
+            "ActionTitle": "#{ActionTitle}",
+            "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
               "ExternalURL": "https://qa.explorer.tillit.world/poc/#{TXNHash}",

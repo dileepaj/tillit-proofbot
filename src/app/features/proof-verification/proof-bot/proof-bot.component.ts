@@ -16,9 +16,11 @@ import { SiteScreenComponent } from "../components/site-screen/site-screen.compo
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
+import * as POCJSON from "../ProofJSONs/POC.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
-import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json"
+import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json";
+import * as POCLangJSON from "../ProofJSONs/POC_lang.json"
 import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
 import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
@@ -114,7 +116,7 @@ export class ProofBotComponent implements OnInit {
   icon: string;
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe", "pog","pobl"];
+  availableProofs: any[] = ["poe", "pog","pobl","poc"];
   proofType: string;
   lang: string = "en";
   Name: string = "";
@@ -247,6 +249,10 @@ export class ProofBotComponent implements OnInit {
       case "poe":
         protocolJson = POEJSON;
         langJson = POELangJSON;
+        break;
+      case "poc":
+        protocolJson = POCJSON;
+        langJson = POCLangJSON;
         break;
       default:
         break;

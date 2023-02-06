@@ -1,12 +1,42 @@
 {
     "Segments": {
         "SegName1": {
-          "ja":"TDPデータ取得",
-          "en": "Retrieve TDP Data"
+          "ja":"aa",
+          "en": "Get The POC Tree View."
         },
         "SegName2": {
-          "ja":"ブロックチェーントランザクションを取得",
-          "en": "Retrieve blockchain transaction"
+          "ja":"aa",
+          "en": "Summary"
         }
-      } 
+      },
+      "Actions": [
+        {
+            "SegmentNo": 1,
+            "StepNo": 1,
+            "Languages": {
+              "Text0": {
+                "ja":"aa",
+                "en": "Load TilliT Explore"
+              },
+              "Text1": {
+                "ja":"aa",
+                "en": "Load the POC tree view in Tillit explore"
+              },
+              "Text2": {
+                "ja":"aa",
+                "en": "Retrieve POC Tree View From The TilliT Explore."
+              },
+              "Text3": {
+                "ja":"aa",
+                "en": "Load TilliT Explore"
+              },
+              "Text4": {
+                "ja":"aa",
+                "en": "Load the POC tree view in Tillit explore"
+              }
+              
+              
+            }
+          }
+      ] 
 }
