@@ -1201,7 +1201,9 @@ export class ProofBotComponent implements OnInit {
             );
             if (ActionResultVariable)
               this.variableStorage[ActionResultVariable] = result;
+              console.log("result----",this.variableStorage[ActionResultVariable]);
           }
+         
           break;
         default:
           break;

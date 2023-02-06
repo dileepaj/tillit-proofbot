@@ -992,5 +992,63 @@
           }
         }
       ]
+    },
+    "LoadTheTillitPOCView":{
+      "Title": "LoadTheTillitPOCView",
+      "Description": "",
+      "Parameters":{
+        "TXNHash": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        }
+      },
+      "Actions": [
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "Load TilliT Explore",
+            "ActionDescription": "Load the POC tree view in Tillit explore",
+            "ActionType": "BrowserScreen",
+            "ActionParameters": {
+              "ExternalURL": "https://qa.explorer.tillit.world/poc/#{TXNHash}",
+              "InnerHTML": "",
+              "Query": "",
+              "QueryIndex": "",
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 10
+          }
+        }
+      ]
     }
   }

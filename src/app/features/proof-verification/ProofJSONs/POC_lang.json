@@ -1,0 +1,12 @@
+{
+    "Segments": {
+        "SegName1": {
+          "ja":"TDPデータ取得",
+          "en": "Retrieve TDP Data"
+        },
+        "SegName2": {
+          "ja":"ブロックチェーントランザクションを取得",
+          "en": "Retrieve blockchain transaction"
+        }
+      } 
+}

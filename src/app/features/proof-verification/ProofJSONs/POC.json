@@ -1,0 +1,87 @@
+{
+    "Header": {
+        "StorageTitle": "Information storage",
+        "ProofContainerTitle": "",
+        "GSHeightExpand": false,
+        "VSHeightExpand": false,
+        "GSOverflowX": "hidden",
+        "VSOverflowX": "hidden",
+        "PlaybackSpeed": 1,
+        "ScrollToPointer": true,
+        "Segments": [
+          {
+            "NO": 1,
+            "Name": "Get The POC Tree View."
+          },
+          {
+            "NO": 8,
+            "Name": "Summary"
+          }
+        ]
+      },
+      "Steps": [
+        {
+            "StepHeader": {
+              "StepNo": 1,
+              "SegmentNo": 1,
+              "FrameID": 1,
+              "FrameTitle": ""
+            },
+            "Action": {
+              "ActionTitle": "&{Text0}",
+              "ActionDescription": "&{Text1}",
+              "ActionType": "MultiStepAction",
+              "ActionParameters": {
+                "ExternalURL": "",
+                "InnerHTML": "",
+                "Query": "",
+                "QueryIndex": "",
+                "YOffset": "",
+                "XOffset": "",
+                "ElAttributeName": "",
+                "ElAttributeValue": "",
+                "ElAttributeValueReplace": "",
+                "ElProperty": "",
+                "ElPropertyValue": "",
+                "ElFunction": "",
+                "ElFunctionArguments": "",
+                "SelectiveText": "",
+                "CaseSensitivity": "",
+                "SelectiveTextIndex": "",
+                "CSS": "",
+                "FormatType": "",
+                "StorageData": [],
+                "ActionConfigurationID": "LoadTheTillitPOCView",
+                "SubActionArguments": {
+                  "StepNo": 1,
+                  "SegmentNo": 1,
+                  "FrameID": 1,
+                  "FrameTitle": "&{Text2}",
+                  "ActionTitle": "&{Text3}",
+                  "ActionDescription": "&{Text4}",
+                  "ActionTitle_1": "&{Text5}",
+                  "ActionDescription_1": "&{Text6}",
+                  "ActionTitle_2": "&{Text7}",
+                  "ActionDescription_2": "&{Text8}",
+                  "TXNHash": "${TXNhash}",
+                  "OperationName": "current transaction",
+                  "ResponseVariable": "MainTXNDataString",
+                  "JSONResultVariable": "MainTXNData"
+                }
+              },
+              "ActionResultVariable": "",
+              "MetaData": []
+            },
+            "Customizations": {
+              "PointerData": "",
+              "ScrollToPointer": false,
+              "FrameAutoScroll": true,
+              "FrameScrollBars": "",
+              "ToastMessage": "",
+              "ToastPosition": null,
+              "ActionDuration": 10
+            }
+          }
+
+      ]
+}
