@@ -33,10 +33,42 @@
               "Text4": {
                 "ja":"aa",
                 "en": "Load the POC tree view in Tillit explore"
+              },
+              "Text5": {
+                "ja":"aa",
+                "en": "POC data response view"
+              },
+              "Text6": {
+                "ja":"aa",
+                "en": "Load the POC data response view"
+              },
+              "Text7": {
+                "ja":"aa",
+                "en": "POC data response view"
+              },
+              "Text8": {
+                "ja":"aa",
+                "en": "Load the POC data response view"
               }
-              
-              
             }
-          }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 2,
+            "Languages": {
+                "Text102": {
+                    "ja": "ステップ５－検証の概要",
+                    "en": "Step 05 - Verification Summary"
+                },
+                "Text103": {
+                    "ja": "検証の概要",
+                    "en": "Verification Summary"
+                },
+                "Text120": {
+                    "ja": "検証は正常に終了",
+                    "en": "Verification Completed Successfully"
+                }
+            }
+        }
       ] 
 }

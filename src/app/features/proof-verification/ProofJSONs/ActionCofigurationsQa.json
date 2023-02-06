@@ -993,6 +993,7 @@
         }
       ]
     },
+
     "LoadTheTillitPOCView":{
       "Title": "LoadTheTillitPOCView",
       "Description": "",
@@ -1036,7 +1037,7 @@
             "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
-              "ExternalURL": "https://qa.explorer.tillit.world/poc/#{TXNHash}",
+              "ExternalURL": "https://emn178.github.io/online-tools/base64_decode.html",
               "InnerHTML": "",
               "Query": "",
               "QueryIndex": "",
@@ -1067,6 +1068,96 @@
             "ToastMessage": "",
             "ToastPosition": ["20%", "40%"],
             "ActionDuration": 10
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_1}",
+            "ActionDescription": "#{ActionDescription_1}",
+            "ActionType": "BrowserScreen",
+            "ActionParameters": {
+              "ExternalURL": "https://qa.gateway.tracified.com/pocv4/#{TXNHash}",
+              "InnerHTML": "",
+              "Query": "",
+              "QueryIndex": "",
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 10
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_2}",
+            "ActionDescription": "#{ActionDescription_2}",
+            "ActionType": "GetElementAttributeData",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "InnerHTML": "",
+              "Query": "body",
+              "QueryIndex": 0,
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "innerText",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "#{ResponseVariable}",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": null,
+            "ActionDuration": 2
           }
         }
       ]
