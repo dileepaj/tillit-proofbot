@@ -91,7 +91,7 @@
 #siteScreen #browser .content {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: scroll;
   font-size: 12px;
   padding: 0px 0px;
   margin: 0px 0px 0px 0px;

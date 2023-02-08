@@ -67,9 +67,57 @@
             "FrameScrollBars": "",
             "ToastMessage1": "",
             "ToastPosition1": ["6%", "80%"],
-            "ActionDuration": 10
+            "ActionDuration": 100
           }
-      },
+        },
+        {
+          "StepHeader": {
+            "StepNo": 1,
+            "SegmentNo": 1,
+            "FrameID": 1,
+            "FrameTitle": ""
+          },
+          "Action": {
+            "ActionTitle": "&{Text0}",
+            "ActionDescription": "&{Text1}",
+            "FrameTitle": "&{Text2}",
+            "ActionType": "LoadProof",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "FrameType":"PROOF",
+              "InnerHTML": "",
+              "PageURL": "",
+              "Query": "",
+              "QueryIndex": "",
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "TXNHash": "${TXNhash}",
+              "CSS": "",
+              "FormatType": ""
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage1": "",
+            "ToastPosition1": ["6%", "80%"],
+            "ActionDuration": 1000
+          }
+        },
         {
             "StepHeader": {
               "StepNo": 2,
@@ -119,6 +167,5 @@
               "ActionDuration": 10
             }
         }
-
       ]
 }

@@ -791,35 +791,38 @@ export class ProofbotMockComponent implements OnInit {
         case "FormatMetaData":
           this.handleVariableFormat(stepData,currentBrowserScreen);
           break;
-        case "loadProof":
-          // await this.closeSteppers();
-          currentBrowserScreen=ActionParameters.ExternalURL
-          var scRef: ComponentRef<SiteScreenComponent>;
-          if (this.demoScreenChildRefs[frameID])
-            scRef = this.demoScreenChildRefs[frameID].ref;
-          else {
-            scRef = await this.createFrameInProofDemo(stepData);
-            scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-          }
-          this.setGlobalValuesOnFrames(Header, stepData);
-          scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-          await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOF")
-          break;
-        case "LoadGraphView":
-          // await this.closeSteppers();
-          currentBrowserScreen=ActionParameters.ExternalURL
-          var scRef: ComponentRef<SiteScreenComponent>;
-          if (this.demoScreenChildRefs[frameID])
-            scRef = this.demoScreenChildRefs[frameID].ref;
-          else {
-            scRef = await this.createFrameInProofDemo(stepData);
-            scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-          }
-          this.setGlobalValuesOnFrames(Header, stepData);
-          await scRef.instance.loadGraph("http://localhost:4200/poc/29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b","GRAPH");
-          break;
-        default:
-          break;
+          case "LoadProof":
+            // await this.closeSteppers();
+            currentBrowserScreen=ActionParameters.ExternalURL
+            var scRef: ComponentRef<SiteScreenComponent>;
+            if (this.demoScreenChildRefs[frameID])
+              scRef = this.demoScreenChildRefs[frameID].ref;
+            else {
+              scRef = await this.createFrameInProofDemo(stepData);
+              scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+            }
+            this.setGlobalValuesOnFrames(Header, stepData);
+            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+            await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe",ActionParameters.FrameType)
+            break;
+          case "LoadGraphView":
+            // await this.closeSteppers();
+            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+            currentBrowserScreen=ActionParameters.ExternalURL
+            var scRef: ComponentRef<SiteScreenComponent>;
+            if (this.demoScreenChildRefs[frameID])
+              scRef = this.demoScreenChildRefs[frameID].ref;
+            else {
+              scRef = await this.createFrameInProofDemo(stepData);
+              scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+            }
+            this.setGlobalValuesOnFrames(Header, stepData);
+            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+            await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
+            break;
+          default:
+            break;
       }
 
       // this.isDisableGlobalInformationL = this.isDisableGlobalStorageScroll("L");
@@ -938,6 +941,12 @@ export class ProofbotMockComponent implements OnInit {
       case "BrowserScreen":
         component = SiteScreenComponent;
         break;
+      case "LoadGraphView":
+          component = SiteScreenComponent;
+          break;
+      case "LoadProof":
+          component = SiteScreenComponent;
+            break;
       default:
         break;
     }

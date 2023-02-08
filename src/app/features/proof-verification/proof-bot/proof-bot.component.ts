@@ -171,7 +171,6 @@ export class ProofBotComponent implements OnInit {
             this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"204"}})
             return 
           } else {
-            let proof = JSON.parse(data)
             if (!!this.proofBotParams.params.type) {
               this.TXNhash = this.proofBotParams.params.txn;
               this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
@@ -791,7 +790,7 @@ export class ProofBotComponent implements OnInit {
         case "FormatMetaData":
           this.handleVariableFormat(stepData,currentBrowserScreen);
           break;
-        case "loadProof":
+        case "LoadProof":
           // await this.closeSteppers();
           currentBrowserScreen=ActionParameters.ExternalURL
           var scRef: ComponentRef<SiteScreenComponent>;
@@ -807,6 +806,7 @@ export class ProofBotComponent implements OnInit {
           break;
         case "LoadGraphView":
           // await this.closeSteppers();
+          console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
           currentBrowserScreen=ActionParameters.ExternalURL
           var scRef: ComponentRef<SiteScreenComponent>;
           if (this.demoScreenChildRefs[frameID])
@@ -816,6 +816,8 @@ export class ProofBotComponent implements OnInit {
             scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
           }
           this.setGlobalValuesOnFrames(Header, stepData);
+          console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
           await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
           break;
         default:
@@ -938,6 +940,12 @@ export class ProofBotComponent implements OnInit {
       case "BrowserScreen":
         component = SiteScreenComponent;
         break;
+      case "LoadGraphView":
+          component = SiteScreenComponent;
+          break;
+      case "LoadProof":
+          component = SiteScreenComponent;
+            break;
       default:
         break;
     }
