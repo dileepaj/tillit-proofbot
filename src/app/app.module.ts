@@ -25,6 +25,8 @@ import { BotLoaderComponent } from './features/proof-verification/components/bot
 import { BotGlobaldataComponent } from './features/proof-verification/components/bot-globaldata/bot-globaldata.component';
 import { BotSegmentsComponent } from './features/proof-verification/components/bot-segments/bot-segments.component';
 import { ToastrModule } from 'ngx-toastr';
+import { PocGraphViewComponent } from './features/proof-verification/components/poc-graph-view/poc-graph-view.component';
+import { ProofbotMockComponent } from './features/proof-verification/proofbot-mock/proofbot-mock.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ToastrModule } from 'ngx-toastr';
     BotLoaderComponent,
     BotGlobaldataComponent,
     BotSegmentsComponent,
+    PocGraphViewComponent,
+    ProofbotMockComponent,
   ],
   imports: [
     BrowserModule,

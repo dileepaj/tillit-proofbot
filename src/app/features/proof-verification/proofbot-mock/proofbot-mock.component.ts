@@ -31,9 +31,9 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr'
 
 @Component({
-  selector: "proof-bot",
-  templateUrl: "./proof-bot.component.html",
-  styleUrls: ["./proof-bot.component.css"],
+  selector: 'app-proofbot-mock',
+  templateUrl: './proofbot-mock.component.html',
+  styleUrls: ['./proofbot-mock.component.css'],
   animations: [
     trigger("screenAnimation", [
       transition(":enter", [
@@ -59,7 +59,7 @@ import { ToastrService } from 'ngx-toastr'
     ])
   ]
 })
-export class ProofBotComponent implements OnInit {
+export class ProofbotMockComponent implements OnInit {
   StorageTitle: string = "Storage Container";
   ProofContainerTitle: string = "Proof Container";
   @Input() initialWidth: string = "100%";
@@ -123,6 +123,9 @@ export class ProofBotComponent implements OnInit {
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
   errorOccurred:boolean =false
+  @Input() txn:string=""
+  @Input() txn2:string=""
+  @Input() type:string=""
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -133,27 +136,24 @@ export class ProofBotComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-      this.route.queryParamMap.subscribe(params => {
-        if (!params.get("txn") || !params.get("type")){
+        if (!this.txn || !this.type){
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
           return
-        }else if(!this.availableProofs.includes(params.get("type"))){
+        }else if(!this.availableProofs.includes(this.type)){
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
           return
-        }else if(params.get("type")=='pobl' && !params.get("txn2")){
+        }else if(this.type=='pobl' && !this.txn2){
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
           return
         }else{
         }
-
         this.proofBotParams = {
           params: {
-            txn: params.get("txn"),
-            type: params.get("type"),
-            txn2: params.get("txn2")
+            txn: this.txn,
+            type: this.type,
+            txn2: this.txn2
           }
         };
-      });
     this.proofType = this.proofBotParams.params.type;
   }
 
@@ -1646,78 +1646,7 @@ export class ProofBotComponent implements OnInit {
 
   // to understand the process
   verifyBackLinkVerify() {
-    return {
-      // 1 BrowserScreen TXNHash2 - F1
-      // 2 get-data body TXN text and store to variable MainTXNData - F1
-      // 3 format MainTXNData variable to json and replace
-      // 4 access MainTXNData variable for CurentTXNHash and store as MainTXNCurentTXNHash
-      // 5 currentTXNHash style key - F1
-      // 6 currentTXNHash style MainTXNCurentTXNHash - F1
-      // 7 site-screen decode MainTXNCurentTXNHash - F2
-      // 8 input CurentTXNHash - F2
-      // 9 click fn decode btn - F2
-      // 10 get output and save to local variable - F2
-      // 11 refer that variable and save in Global storage frame - F2 G1
-      // 12 site-screen CurrentTXNHash - F3
-      // 13 get-data body TXN text and store to variable MainTXNCurentTXNData - F3
-      // 14 format MainTXNCurentTXNData variable to json and replace
-      // 15 access MainTXNCurentTXNData variable for identifier and store as MainTXNCurentTXNDataIdentifier
-      // 16 identifier style key - F3
-      // 17 identifier style value - F3
-      // 18 site-screen decode identifier - F4
-      // 19 input identifier - F4
-      // 20 click fn - F4
-      // 21 get output and save to local variable - F4
-      // 22 refer that variable and save in Global storage frame - F4 G2
-      // 23 access MainTXNCurentTXNData variable for productId and store as MainTXNCurentTXNDataProductId
-      // 24 ProductID style key - F3
-      // 25 ProductID style value - F3
-      // 26 site-screen decode ProductID - F6
-      // 27 input ProductID - F6
-      // 28 click fn - F6
-      // 29 get output and save to local variable - F6
-      // 30 refer that variable and save in Global storage frame - F6 G3
-      // 31 access MainTXNData variable for PreviousTXN and store as MainTXNPreviousTXN
-      // 32 PreviousTXNHash style key - F1
-      // 33 PreviousTXNHash style value - F1
-      // 34 site-screen decode PreviousTXNHash - F7
-      // 35 input PreviousTXNHash - F7
-      // 36 click fn decode btn - F7
-      // 37 get output and save to local variable - F7
-      // 38 refer that variable and save in Global storage frame - F7 G4
-      // 39 site-screen PreviousTXNHash - F8
-      // 40 get-data body TXN text and store to variable MainTXNPreviousTXNData - F8
-      // 41 format MainTXNPreviousTXNData variable to json and replace
-      // 42 access MainTXNPreviousTXNData variable for CurentTXNHash and store as MainTXNPreviousTXNCurrentTXNHash
-      // 43 currentTXNHash style key - F8
-      // 44 currentTXNHash style value - F8
-      // 45 site-screen decode CurentTXNHash - F9
-      // 46 input CurentTXNHash - F9
-      // 47 click fn decode btn - F9
-      // 48 get output and save to local variable - F9
-      // 49 refer that variable and save in Global storage frame - F9 G5
-      // 50 site-screen CurrentTXNHash - F10
-      // 51 get-data body TXN text and store to variable MainTXNPreviousTXNCurrentTXNData - F10
-      // 52 format MainTXNPreviousTXNCurrentTXNData variable to json and replace
-      // 53 access MainTXNPreviousTXNCurrentTXNData variable for identifier and store as MainTXNPreviousTXNCurrentTXNDataIdentifier
-      // 54 identifier style key - F10
-      // 55 identifier style value - F10
-      // 56 site-screen decode identifier - F11
-      // 57 input identifier - F11
-      // 58 click fn - F11
-      // 59 get output and save to local variable - F11
-      // 60 refer that variable and save in Global storage frame - F11 G6
-      // 61 access MainTXNPreviousTXNCurrentTXNData variable for productId and store as MainTXNPreviousTXNCurrentTXNDataProductID
-      // 62 ProductID style key - F10
-      // 63 ProductID style value - F10
-      // 64 site-screen decode ProductID - F12
-      // 65 input ProductID - F12
-      // 66 click fn - F12
-      // 67 get output and save to local variable - F12
-      // 68 refer that variable and save in Global storage frame - F12 G7
-      // 54 compare identifiers from TXNHash2 CurrentTXNHash and TXNHash2 PreviousTXN CurrentTXNHash
-      // 55 Backlink verification status
-    };
+    return {};
   }
 
   public verificationStatus(compare:any):boolean{

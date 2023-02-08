@@ -993,7 +993,6 @@
         }
       ]
     },
-
     "LoadTheTillitPOCView":{
       "Title": "LoadTheTillitPOCView",
       "Description": "",
@@ -1037,7 +1036,7 @@
             "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
-              "ExternalURL": "https://emn178.github.io/online-tools/base64_decode.html",
+              "ExternalURL": "http://localhost:4200/poc/29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b",
               "InnerHTML": "",
               "Query": "",
               "QueryIndex": "",
@@ -1067,7 +1066,7 @@
             "FrameScrollBars": "",
             "ToastMessage": "",
             "ToastPosition": ["20%", "40%"],
-            "ActionDuration": 10
+            "ActionDuration": 1000
           }
         },
         {
@@ -1112,7 +1111,7 @@
             "FrameScrollBars": "",
             "ToastMessage": "",
             "ToastPosition": ["20%", "40%"],
-            "ActionDuration": 10
+            "ActionDuration": 100
           }
         },
         {
