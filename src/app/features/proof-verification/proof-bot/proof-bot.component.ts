@@ -816,7 +816,7 @@ export class ProofBotComponent implements OnInit {
             scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
           }
           this.setGlobalValuesOnFrames(Header, stepData);
-          await scRef.instance.loadGraph("http://localhost:4200/poc/29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b","GRAPH");
+          await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
           break;
         default:
           break;
@@ -981,6 +981,7 @@ export class ProofBotComponent implements OnInit {
 
     const {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1047,6 +1048,7 @@ export class ProofBotComponent implements OnInit {
     //console.log("action2",Action);
     const {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1108,9 +1110,10 @@ export class ProofBotComponent implements OnInit {
       ActionResultVariable,
       MetaData
     } = Action;
-    //console.log("action3",Action);
+    
     let {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1179,6 +1182,7 @@ export class ProofBotComponent implements OnInit {
     //console.log("action4",Action);
     const {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1248,6 +1252,7 @@ export class ProofBotComponent implements OnInit {
     //console.log("action5",Action);
     const {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1314,6 +1319,7 @@ export class ProofBotComponent implements OnInit {
     //console.log("action6",Action);
     const {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1458,6 +1464,7 @@ export class ProofBotComponent implements OnInit {
     //console.log("action6",Action);
     const {
       ExternalURL,
+      FrameType,
       InnerHTML,
       Query,
       QueryIndex,

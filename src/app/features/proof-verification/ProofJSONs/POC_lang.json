@@ -16,39 +16,15 @@
             "Languages": {
               "Text0": {
                 "ja":"aa",
-                "en": "Load TilliT Explore"
+                "en": "Load Graph View"
               },
               "Text1": {
                 "ja":"aa",
-                "en": "Load the POC tree view in Tillit explore"
+                "en": "Load the POC tree view "
               },
               "Text2": {
                 "ja":"aa",
-                "en": "Retrieve POC Tree View From The TilliT Explore."
-              },
-              "Text3": {
-                "ja":"aa",
-                "en": "Load TilliT Explore"
-              },
-              "Text4": {
-                "ja":"aa",
-                "en": "Load the POC tree view in Tillit explore"
-              },
-              "Text5": {
-                "ja":"aa",
-                "en": "POC data response view"
-              },
-              "Text6": {
-                "ja":"aa",
-                "en": "Load the POC data response view"
-              },
-              "Text7": {
-                "ja":"aa",
-                "en": "POC data response view"
-              },
-              "Text8": {
-                "ja":"aa",
-                "en": "Load the POC data response view"
+                "en": "Retrieve POC Tree View ."
               }
             }
         },
