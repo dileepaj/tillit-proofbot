@@ -55,9 +55,14 @@
 
       <app-poc-graph-view class="m-2" *ngIf="type=='GRAPH'||type=='PROOFGRAPH'"></app-poc-graph-view>
 
-      <app-proofbot-mock *ngIf="type=='PROOF'||type=='PROOFGRAPH'" [txn]="txnHash" [type]="'poe'" [initialHeight]="'300px'"
+      <iframe  *ngIf="type=='PROOF'||type=='PROOFGRAPH'"
+        src="http://localhost:5006/?type=poe&txn=ffa216ccfd9e23ca7cad9f053bd874c74883127a3d031df7fc7da1024f4237ed"
+        #iframe id="ift1" [hidden]="!loadingComplete" [scrolling]="scrolling"
+        frameborder="0" width="100%" height="100%"
+        sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation"></iframe>
+      <!-- <app-proofbot-mock *ngIf="type=='PROOF'||type=='PROOFGRAPH'" [txn]="txnHash" [type]="'poe'" [initialHeight]="'300px'"
         [initialWidth]="'600px'" [minHeight]="'82vh'" [minWidth]="'82vw'" [maxHeight]="'98vh'" [maxWidth]="'100vw'"
-        [justifyContent]="'start'" [alignItems]="'start'"></app-proofbot-mock>
+        [justifyContent]="'start'" [alignItems]="'start'"></app-proofbot-mock> -->
     </div>
     <!-- browser iframe end -->
   </div>

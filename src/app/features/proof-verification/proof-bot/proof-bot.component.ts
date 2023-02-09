@@ -123,6 +123,7 @@ export class ProofBotComponent implements OnInit {
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
   errorOccurred:boolean =false
+  a:any
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -133,6 +134,7 @@ export class ProofBotComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+      window.addEventListener('message', this.receiveMessage.bind(this), false);
       this.route.queryParamMap.subscribe(params => {
         if (!params.get("txn") || !params.get("type")){
           this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
@@ -722,6 +724,7 @@ export class ProofBotComponent implements OnInit {
         ActionTitle,
         ActionDescription,
         ActionType,
+        Summary,
         ActionParameters
       } = Action;
       // console.log(action.Id, this.demoScreenChildRefs);
@@ -756,9 +759,13 @@ export class ProofBotComponent implements OnInit {
             if(!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)){
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTMLError,"IFRAME");
+              if(Summary)
+              window.parent.postMessage('success', environment.blockchain.domailUrl);
             }else{
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTML,"IFRAME");
+              if(Summary)
+              window.parent.postMessage('failed', environment.blockchain.domailUrl);
             }
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
@@ -865,16 +872,15 @@ export class ProofBotComponent implements OnInit {
       //console.log('val1', this.Svalue );
 
       this.cdr.detectChanges();
-      await new Promise(resolveTime =>
-        setTimeout(
+      await new Promise(resolveTime =>{
+      this.a= setTimeout(
           resolveTime,
           (100 *
             (Customizations.ActionDuration
               ? Customizations.ActionDuration
-              : 1)) /
-          this.playbackSpeed
-        )
-      );
+              : 1)) /this.playbackSpeed)
+        });
+
       this.isToast = false;
       this.isToast1 = false;
 
@@ -1529,8 +1535,6 @@ export class ProofBotComponent implements OnInit {
       GivenDataToStorageData,ActionResultVariable
     );
   }
-
-  
   
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[],givenDataToStorageData:DataKeys,actionVariable:string) {
     let Data=storageData
@@ -1783,9 +1787,22 @@ export class ProofBotComponent implements OnInit {
   }
 
   
-  async runPOC(){
-    var scRef: ComponentRef<SiteScreenComponent>;
-    await scRef.instance.loadGraphAndProof("https://qa.gateway.tracified.com/pocv4/9c17a77447ac74e53eb4be8062bfe7a2217e16229dd7996c057a6cc6ce94f707","6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+  receiveMessage(event) {
+    if (event.origin !== environment.blockchain.domailUrl) {
+      return;
+    }
+
+    switch (event.data){
+      case 'success':
+        alert("success")
+        console.log("dsdddddddddddddddddddddddddddddd------------------------")
+      case 'failed':
+        alert("failed")
+        if(this.proofType=="poc"){
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+        }
+        clearTimeout(this.a);
+    }
   }
 
 }
