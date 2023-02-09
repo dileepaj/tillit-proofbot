@@ -821,6 +821,22 @@ export class ProofbotMockComponent implements OnInit {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
             break;
+          case "LoadProofAndGraphView":
+            // await this.closeSteppers();
+            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+            currentBrowserScreen=ActionParameters.ExternalURL
+            var scRef: ComponentRef<SiteScreenComponent>;
+            if (this.demoScreenChildRefs[frameID])
+              scRef = this.demoScreenChildRefs[frameID].ref;
+            else {
+              scRef = await this.createFrameInProofDemo(stepData);
+              scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+            }
+            this.setGlobalValuesOnFrames(Header, stepData);
+            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+            await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+            break;         
           default:
             break;
       }
@@ -945,6 +961,9 @@ export class ProofbotMockComponent implements OnInit {
           component = SiteScreenComponent;
           break;
       case "LoadProof":
+          component = SiteScreenComponent;
+            break;
+      case "LoadProofAndGraphView":
           component = SiteScreenComponent;
             break;
       default:

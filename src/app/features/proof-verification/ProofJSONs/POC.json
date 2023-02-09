@@ -33,10 +33,10 @@
             "ActionTitle": "&{Text0}",
             "ActionDescription": "&{Text1}",
             "FrameTitle": "&{Text2}",
-            "ActionType": "LoadGraphView",
+            "ActionType": "LoadProofAndGraphView",
             "ActionParameters": {
               "ExternalURL": "https://qa.gateway.tracified.com/pocv4/${TXNhash}",
-              "FrameType":"GRAPH",
+              "FrameType":"PROOFGRAPH",
               "InnerHTML": "",
               "PageURL": "",
               "Query": "",
@@ -67,62 +67,14 @@
             "FrameScrollBars": "",
             "ToastMessage1": "",
             "ToastPosition1": ["6%", "80%"],
-            "ActionDuration": 100
-          }
-        },
-        {
-          "StepHeader": {
-            "StepNo": 1,
-            "SegmentNo": 1,
-            "FrameID": 1,
-            "FrameTitle": ""
-          },
-          "Action": {
-            "ActionTitle": "&{Text0}",
-            "ActionDescription": "&{Text1}",
-            "FrameTitle": "&{Text2}",
-            "ActionType": "LoadProof",
-            "ActionParameters": {
-              "ExternalURL": "",
-              "FrameType":"PROOF",
-              "InnerHTML": "",
-              "PageURL": "",
-              "Query": "",
-              "QueryIndex": "",
-              "YOffset": "",
-              "XOffset": "",
-              "ElAttributeName": "",
-              "ElAttributeValue": "",
-              "ElAttributeValueReplace": "",
-              "ElProperty": "",
-              "ElPropertyValue": "",
-              "ElFunction": "",
-              "ElFunctionArguments": "",
-              "SelectiveText": "",
-              "CaseSensitivity": "",
-              "SelectiveTextIndex": "",
-              "TXNHash": "${TXNhash}",
-              "CSS": "",
-              "FormatType": ""
-            },
-            "ActionResultVariable": "",
-            "MetaData": []
-          },
-          "Customizations": {
-            "PointerData": "",
-            "ScrollToPointer": false,
-            "FrameAutoScroll": true,
-            "FrameScrollBars": "",
-            "ToastMessage1": "",
-            "ToastPosition1": ["6%", "80%"],
-            "ActionDuration": 1000
+            "ActionDuration": 10
           }
         },
         {
             "StepHeader": {
               "StepNo": 2,
               "SegmentNo": 2,
-              "FrameID": 5,
+              "FrameID": 2,
               "FrameTitle": "&{Text102}"
             },
             "Action": {
@@ -164,7 +116,7 @@
               "FrameScrollBars": "",
               "ToastMessage1": "&{Text120}",
               "ToastPosition1": ["6%", "80%"],
-              "ActionDuration": 10
+              "ActionDuration": 100
             }
         }
       ]

@@ -820,6 +820,22 @@ export class ProofBotComponent implements OnInit {
           scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
           await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
           break;
+        case "LoadProofAndGraphView":
+          // await this.closeSteppers();
+          console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          currentBrowserScreen=ActionParameters.ExternalURL
+          var scRef: ComponentRef<SiteScreenComponent>;
+          if (this.demoScreenChildRefs[frameID])
+            scRef = this.demoScreenChildRefs[frameID].ref;
+          else {
+            scRef = await this.createFrameInProofDemo(stepData);
+            scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          }
+          this.setGlobalValuesOnFrames(Header, stepData);
+          console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+          break;          
         default:
           break;
       }
@@ -944,6 +960,9 @@ export class ProofBotComponent implements OnInit {
           component = SiteScreenComponent;
           break;
       case "LoadProof":
+          component = SiteScreenComponent;
+            break;
+      case "LoadProofAndGraphView":
           component = SiteScreenComponent;
             break;
       default:
@@ -1762,6 +1781,13 @@ export class ProofBotComponent implements OnInit {
     }
     return status
   }
+
+  
+  async runPOC(){
+    var scRef: ComponentRef<SiteScreenComponent>;
+    await scRef.instance.loadGraphAndProof("https://qa.gateway.tracified.com/pocv4/9c17a77447ac74e53eb4be8062bfe7a2217e16229dd7996c057a6cc6ce94f707","6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+  }
+
 }
 
 

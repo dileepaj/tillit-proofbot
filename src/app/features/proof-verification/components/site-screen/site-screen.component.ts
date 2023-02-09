@@ -698,4 +698,12 @@ export class SiteScreenComponent implements OnInit {
     this.type=type
     this.graphUrl=url
   }
+
+  async loadGraphAndProof(url:string, txnHash:string, proofType:string,type: string,) {
+    console.log(url,txnHash,proofType,type)
+    this.type=type
+    this.graphUrl=url
+    this.txnHash = txnHash
+    this.proofType =proofType
+  }
 }
