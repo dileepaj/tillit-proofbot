@@ -581,7 +581,7 @@ export class ProofBotComponent implements OnInit {
         this.playProofDemo();
       }
     }
-    if (this.isPlayCompleted) this.playProofDemo();
+   this.playProofDemo();
   }
 
   // controllers for steppers
@@ -768,6 +768,7 @@ export class ProofBotComponent implements OnInit {
               window.parent.postMessage('failed', environment.blockchain.domailUrl);
             }
           } else if (scRef && ActionParameters.ExternalURL) {
+            window.parent.postMessage('failed', environment.blockchain.domailUrl);
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPage(ActionParameters.ExternalURL,ActionParameters.Translatable,this.lang,"IFRAME");
           }
@@ -809,7 +810,7 @@ export class ProofBotComponent implements OnInit {
           }
           this.setGlobalValuesOnFrames(Header, stepData);
           scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-          await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOF")
+          await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd81adcdfswwsa","poe","PROOF")
           break;
         case "LoadGraphView":
           // await this.closeSteppers();
@@ -841,7 +842,7 @@ export class ProofBotComponent implements OnInit {
           this.setGlobalValuesOnFrames(Header, stepData);
           console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
           scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-          await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+          await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8121qe","poe","PROOFGRAPH")
           break;          
         default:
           break;
@@ -1795,13 +1796,14 @@ export class ProofBotComponent implements OnInit {
     switch (event.data){
       case 'success':
         alert("success")
-        console.log("dsdddddddddddddddddddddddddddddd------------------------")
+        //cnsole.log("dsddddddddddddddddddodddddddddddd------------------------")
       case 'failed':
         alert("failed")
-        if(this.proofType=="poc"){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
-        }
-        clearTimeout(this.a);
+        this.backToStep(this.currentStep)
+        // if(this.proofType=="poc"){
+        //   this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+        // }
+        // clearTimeout(this.a);
     }
   }
 
