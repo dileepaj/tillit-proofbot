@@ -20,6 +20,7 @@ export const environment = {
     getRecentTransactions: 'https://staging.gateway.tracified.com/RetrievePreviousTranasctions/',
     getRecentTransactionsCount:'https://staging.gateway.tracified.com/RetrievePreviousTranasctionsCount/',
     getewayDomain:"https://staging.gateway.tracified.com",
+    domailUrl:'https://staging.proofbot.tillit.world',
     currentEnv:"STAGING"
   }
 };

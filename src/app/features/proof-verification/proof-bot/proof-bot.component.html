@@ -146,6 +146,18 @@
         (resizeVerifyScreenFn)="resizeVerifyScreen()"
       ></app-bot-header>
 
+     
+   <div
+    *ngIf="isToast1"
+    class="toast-notification1 float-right px-2"
+    [@inOutAnimation]
+  >
+    <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
+
+      <img class="checked-small-img" src="../../../../assets/img/Vector.png">
+    </p>
+  </div>
+  
       <app-bot-globaldata
         id="globalInformation"
         *ngIf="globalData.length > 0"
@@ -161,6 +173,7 @@
       <app-bot-segments
         id="steppersFrame"
         [SegmentNumber]="SegmentNumber"
+        [icon]="icon"
         [steppers]="steppers"
         [subSteppers]="subSteppers"
         [lang]="lang"
@@ -193,6 +206,7 @@
         >
           <p class="m-0">{{ toastMSG }}</p>
         </div>
+ 
         <div class="spanner" [class.show]="isBackToStep">
           <div class="loader"></div>
         </div>

@@ -19,10 +19,10 @@ export class BotLoaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  emitStartDemoFn() {
     this.startDemoFn.emit("");
   }
+
+
+ 
 
 }

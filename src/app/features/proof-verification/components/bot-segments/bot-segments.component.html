@@ -30,6 +30,9 @@
               <span class="bs-stepper-label cs-stepper-label">{{
                 stepper.Name[lang]
               }}</span>
+              <span class="bs-stepper-label cs-stepper-label segment-source" style="margin:0px;" *ngIf="stepper.Source.length">
+                <img class="source" src={{stepper.Source}}>
+              </span>
              </div>
             </div>
             <div class="line"></div>
@@ -49,6 +52,8 @@
     <div>
       <!-- <h6 style="font-size: 13px; padding-left: 18px; margin-top: 14px;">
           Segment Actions
+
+          *ngIf="stepper.Source!=undefined"
         </h6> -->
       <div
         style="height: auto; overflow-y: visible; overflow-x: hidden; width: 100%;"
@@ -69,7 +74,10 @@
                 >
                 <span class="bs-stepper-label cs-stepper-label">{{
                   subStepper.ActionName[lang]
-                }}</span>
+                }}
+                </span>
+                <span class="bs-stepper-label cs-stepper-label segment-source-sub" style="margin:0px;" *ngIf="subStepper.icon.length">
+                  <img class="source" src={{subStepper.icon}}></span>
               
               </div>
             </div>

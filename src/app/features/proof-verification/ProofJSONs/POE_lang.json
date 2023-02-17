@@ -741,7 +741,11 @@
                     "Text148": {
                       "ja":"結果をスクロールする",
                       "en": "Scroll to the result"
-                    }  
+                    }, 
+                    "Text154": {
+                      "ja":"klll",
+                      "en": "Comparison Result"
+                    }
                     } 
                  
                   },
@@ -760,7 +764,12 @@
                       "Text123": {
                         "ja":"検証の概要についてー存在の証明",
                         "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
+                      },
+                      "Text124": {
+                        "ja":"検証は正常に終了",
+                        "en": "Verification Completed Successfully"
                       }
+
                    
                     }
                   }

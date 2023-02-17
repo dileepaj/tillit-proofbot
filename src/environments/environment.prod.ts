@@ -20,6 +20,7 @@ export const environment = {
     getRecentTransactions: 'https://gateway.tracified.com/RetrievePreviousTranasctions/',
     getRecentTransactionsCount:'https://gateway.tracified.com/RetrievePreviousTranasctionsCount/',
     getewayDomain:"https://gateway.tracified.com",
+    domailUrl:'https://proofbot.tillit.world',
     currentEnv:"PROD"
   }
 };
