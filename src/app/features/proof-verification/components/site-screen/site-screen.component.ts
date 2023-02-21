@@ -329,18 +329,21 @@ export class SiteScreenComponent implements OnInit {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"0", m2:pageUrl}})
-            return
+            //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"0", m2:pageUrl}})
+            this.toastr.error('Something went wrong', 'Check the Internet Connection');
+            return;
           }
         },
         error =>{
           if(error.status=="0"){
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.status,m2:error.message}})
-            return
+            //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.status,m2:error.message}})
+            this.toastr.error('Something went wrong', 'Check the Internet Connection');
+            return;
           }else{
             resolve({ error, ref: this.iframe })}
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.message,m1:error.status,m2:error.message}})
-            return
+            //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.message,m1:error.status,m2:error.message}})
+            this.toastr.error('Something went wrong', 'Check the Internet Connection');
+            return;
           }
 
       );

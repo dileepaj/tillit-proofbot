@@ -716,7 +716,7 @@
                     }, 
                     "Text142": {
                       "ja":"トランザクションからBase64デコードされたデータハッシュ値を入力",
-                      "en": "Input the base64 decoded Data Hash values from the transactions."
+                      "en": "Input the base 64 decoded Data Hash values from the transactions."
                     },
                     "Text143": {
                       "ja":"ステップ１０－データハッシュの比較",
@@ -743,7 +743,7 @@
                       "en": "Scroll to the result"
                     }, 
                     "Text154": {
-                      "ja":"klll",
+                      "ja":"比較結果",
                       "en": "Comparison Result"
                     }
                     } 

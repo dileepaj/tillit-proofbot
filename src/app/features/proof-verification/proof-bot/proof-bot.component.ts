@@ -187,7 +187,8 @@ export class ProofBotComponent implements OnInit {
           }
         },
         error => {
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the Internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
+          //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the Internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
+          this.toastr.error('Something went wrong', 'Check the Internet Connection');
         }
         );
       }
