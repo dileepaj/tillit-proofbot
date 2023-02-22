@@ -27,7 +27,7 @@ import { BotSegmentsComponent } from './features/proof-verification/components/b
 import { ToastrModule } from 'ngx-toastr';
 import { PocGraphViewComponent } from './features/proof-verification/components/poc-graph-view/poc-graph-view.component';
 import { ProofbotMockComponent } from './features/proof-verification/proofbot-mock/proofbot-mock.component';
-
+import {MatGridListModule,} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +69,8 @@ import { ProofbotMockComponent } from './features/proof-verification/proofbot-mo
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    MatGridListModule,
+    
   ],
   entryComponents: [SiteScreenComponent, ElementDividerComponent],
   bootstrap: [AppComponent]

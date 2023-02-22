@@ -5,11 +5,14 @@ import * as dagreD3 from 'dagre-d3';
 import {Location} from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/app/services/api.service';
+import { MatGridListModule } from '@angular/material';
 @Component({
   selector: 'app-poc-graph-view',
   templateUrl: './poc-graph-view.component.html',
-  styleUrls: ['./poc-graph-view.component.css']
+  styleUrls: ['./poc-graph-view.component.css'],
+  
 })
+
 export class PocGraphViewComponent implements OnInit {
 
   private txnId: string;
@@ -17,6 +20,9 @@ export class PocGraphViewComponent implements OnInit {
   errorOccurred: boolean = false;
   pocTreeWidth: Number = 0;
   pocTreeHeight: Number = 0;
+  TXNhash: string = "";
+  ProofType: string = "";
+  src: string ="";
 
   pocTransactions = [];
   selectedItem;
@@ -45,11 +51,14 @@ export class PocGraphViewComponent implements OnInit {
     this.apiService.getData(id).subscribe((data) => {
     console.log("PoC: ", data);
 
-      this.loadingComplete = true;
-      this.pocTransactions = data;
-      this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
+    this.loadingComplete = true;
+    this.pocTransactions = data;
+    console.log('000',this.pocTransactions);
+    this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
+    console.log('111--',this.selectedItem);
 
-      let results = this.createChild(data);
+    let results = this.createChild(data);
+    console.log('222--',results);
       // this.graph(results);
 
     }, (err) => {
@@ -107,7 +116,6 @@ export class PocGraphViewComponent implements OnInit {
     var genesisNodes = Object.entries(Nodes).map(data=>{
         if (!data[1].Parents) return data[1];
     })
-
     genesisNodes = genesisNodes.filter(n=>n);
 
     var doneNodes = [];
@@ -118,7 +126,7 @@ export class PocGraphViewComponent implements OnInit {
       var max = edgeValues.reduce(function(a, b) {
         return Math.max(a, b);
       }, 98);
-      this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, genesisNodes[key], max + 1, 0);
+      this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues,genesisNodes[key], max + 1, 0,0);
     }
 
     // var svg = d3.select('svg');
@@ -150,8 +158,9 @@ export class PocGraphViewComponent implements OnInit {
     });
   }
 
-  addNodesAndEdges(g:any, Nodes:any, doneNodes:Array<string>, edgeValues:Array<number>, node:any, mainIndex:number, depth:number) {
+  addNodesAndEdges(g:any, Nodes:any, doneNodes:Array<string>, edgeValues:Array<number>, node:any, mainIndex:number, depth:number, type) {
     const {sColor, lColor} = this.getColorForTxnType(node.Data.TxnType);
+    console.log("type",this.getColorForTxnType(node.Data.TxnType));
     if(doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier!=""){
         g.setNode(node.Data.TxnHash, {
@@ -186,12 +195,45 @@ export class PocGraphViewComponent implements OnInit {
                 arrowheadStyle: `fill: ${colors.sColor}`,
             });
             edgeValues.push(nodeIndex);
-            this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth);
+            console.log("edge",edgeValues);
+            this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth,type);
         }
     }
     doneNodes.push(node.Data.TxnHash);
+    console.log('4444',doneNodes);
+    for (let index = 0; index < doneNodes.length; index++){
+      this.TXNhash = doneNodes[index];
+      switch (type){
+        case "0":
+          this.ProofType='pog';
+          break
+        case "2":
+          this.ProofType='poe'
+          break
+      
+         
+    }
+    this.src = `http://localhost:4200/?type=${this.ProofType}&txn=${this.TXNhash }`
+    console.log("url--",this.src);
+    }
   }
 
+  getProofbotLink(Nodes:any, doneNodes:Array<string>, SrcValues:Array<number>, node:any, mainIndex:number, depth:number, type){
+    const {sColor, lColor} = this.getColorForTxnType(node.Data.TxnType);
+    for (let index = 0; index < doneNodes.length; index++){
+      this.TXNhash = doneNodes[index];
+      if (sColor == 'brown'){
+        this.ProofType ='pog'
+      }
+      else if(sColor =='green'){
+        this.ProofType ='poe'
+      }
+      this.src = `http://localhost:4200/?type=${this.ProofType}&txn=${this.TXNhash}`
+    }
+    
+    
+  }
+  
   getColorForTxnType(type) {
     var sColor : string, lColor : string;
     switch (type) {
@@ -294,4 +336,6 @@ export class PocGraphViewComponent implements OnInit {
   ngOnDestroy() {
     window.removeEventListener('message', this.handleMessage);
   }
+
+  
 }
