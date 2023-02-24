@@ -756,14 +756,14 @@ export class ProofbotMockComponent implements OnInit {
           if (scRef && ActionParameters.InnerHTML) {
             if(!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)){
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTMLError,"IFRAME");
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTMLError);
             }else{
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTML,"IFRAME");
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTML);
             }
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.setPage(ActionParameters.ExternalURL,ActionParameters.Translatable,this.lang,"IFRAME");
+            await scRef.instance.setPage(ActionParameters.ExternalURL,ActionParameters.Translatable,this.lang);
           }
           break;
         case "UpdateElementAttribute":
@@ -791,52 +791,52 @@ export class ProofbotMockComponent implements OnInit {
         case "FormatMetaData":
           this.handleVariableFormat(stepData,currentBrowserScreen);
           break;
-          case "LoadProof":
-            // await this.closeSteppers();
-            currentBrowserScreen=ActionParameters.ExternalURL
-            var scRef: ComponentRef<SiteScreenComponent>;
-            if (this.demoScreenChildRefs[frameID])
-              scRef = this.demoScreenChildRefs[frameID].ref;
-            else {
-              scRef = await this.createFrameInProofDemo(stepData);
-              scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-            }
-            this.setGlobalValuesOnFrames(Header, stepData);
-            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe",ActionParameters.FrameType)
-            break;
-          case "LoadGraphView":
-            // await this.closeSteppers();
-            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-            currentBrowserScreen=ActionParameters.ExternalURL
-            var scRef: ComponentRef<SiteScreenComponent>;
-            if (this.demoScreenChildRefs[frameID])
-              scRef = this.demoScreenChildRefs[frameID].ref;
-            else {
-              scRef = await this.createFrameInProofDemo(stepData);
-              scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-            }
-            this.setGlobalValuesOnFrames(Header, stepData);
-            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
-            break;
-          case "LoadProofAndGraphView":
-            // await this.closeSteppers();
-            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-            currentBrowserScreen=ActionParameters.ExternalURL
-            var scRef: ComponentRef<SiteScreenComponent>;
-            if (this.demoScreenChildRefs[frameID])
-              scRef = this.demoScreenChildRefs[frameID].ref;
-            else {
-              scRef = await this.createFrameInProofDemo(stepData);
-              scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-            }
-            this.setGlobalValuesOnFrames(Header, stepData);
-            console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
-            break;         
+          // case "LoadProof":
+          //   // await this.closeSteppers();
+          //   currentBrowserScreen=ActionParameters.ExternalURL
+          //   var scRef: ComponentRef<SiteScreenComponent>;
+          //   if (this.demoScreenChildRefs[frameID])
+          //     scRef = this.demoScreenChildRefs[frameID].ref;
+          //   else {
+          //     scRef = await this.createFrameInProofDemo(stepData);
+          //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          //   }
+          //   this.setGlobalValuesOnFrames(Header, stepData);
+          //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          //   await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe",ActionParameters.FrameType)
+          //   break;
+          // case "LoadGraphView":
+          //   // await this.closeSteppers();
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   currentBrowserScreen=ActionParameters.ExternalURL
+          //   var scRef: ComponentRef<SiteScreenComponent>;
+          //   if (this.demoScreenChildRefs[frameID])
+          //     scRef = this.demoScreenChildRefs[frameID].ref;
+          //   else {
+          //     scRef = await this.createFrameInProofDemo(stepData);
+          //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          //   }
+          //   this.setGlobalValuesOnFrames(Header, stepData);
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          //   await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
+          //   break;
+          // case "LoadProofAndGraphView":
+          //   // await this.closeSteppers();
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   currentBrowserScreen=ActionParameters.ExternalURL
+          //   var scRef: ComponentRef<SiteScreenComponent>;
+          //   if (this.demoScreenChildRefs[frameID])
+          //     scRef = this.demoScreenChildRefs[frameID].ref;
+          //   else {
+          //     scRef = await this.createFrameInProofDemo(stepData);
+          //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          //   }
+          //   this.setGlobalValuesOnFrames(Header, stepData);
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          //   await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+          //   break;         
           default:
             break;
       }

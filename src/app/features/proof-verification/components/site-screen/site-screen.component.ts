@@ -63,10 +63,6 @@ export class SiteScreenComponent implements OnInit {
   isScrollToElement: boolean = true;
   isPointToElement: boolean = true;
   @Input() lang: string = "en";
-  type: string="IFRAME";
-  graphUrl: string="";
-  txnHash:string="";
-  proofType:string="";
 
   @ViewChild("iframe", { read: ElementRef, static: false }) iframe: ElementRef;
 
@@ -209,10 +205,8 @@ export class SiteScreenComponent implements OnInit {
   async setPage(
     pageUrl: string,
     isTranslate: boolean = false,
-    lang: string = "en",
-    type: string
+    lang: string = "en"
   ) {
-    this.type=type
     this.resetFramePage();
     await this.scrollIntoView();
     this.loadingComplete = false;
@@ -353,8 +347,7 @@ export class SiteScreenComponent implements OnInit {
     });
   }
 
-  async setPageHTML(pageUrl: string, html: string, type: string) {
-    this.type=type
+  async setPageHTML(pageUrl: string, html: string) {
     await this.scrollIntoView();
     this.displayPageUrl = pageUrl;
     let doc = this.iframe.nativeElement.contentDocument;
@@ -686,24 +679,5 @@ export class SiteScreenComponent implements OnInit {
 
   async sleepFor(time: number) {
     await new Promise(resolveTime => setTimeout(resolveTime, time));
-  }
-
-  async loadProof(txnHash:string, proofType:string, type: string) {
-    this.type = type
-    this.txnHash = txnHash
-    this.proofType =proofType
-  }
-
-  async loadGraph(url:string, type: string) {
-    this.type=type
-    this.graphUrl=url
-  }
-
-  async loadGraphAndProof(url:string, txnHash:string, proofType:string,type: string,) {
-    console.log(url,txnHash,proofType,type)
-    this.type=type
-    this.graphUrl=url
-    this.txnHash = txnHash
-    this.proofType =proofType
   }
 }

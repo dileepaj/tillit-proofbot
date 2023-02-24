@@ -1,8 +1,8 @@
 <div class="container">
-  <mat-grid-list class="POCTree" cols="2" rowHeight="2:1">
-    <mat-grid-tile>
-      <div class="container mt-5">
-        <div class="mt-5 d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" style="height: 300px;">
+  <div class="row" >
+    <div class="col-12">
+      <div class="container">
+        <div class="d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" style="height: 300px;">
           <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
           </mat-spinner>
         </div>
@@ -14,16 +14,16 @@
           </div>
         </div>
       </div>
-    </mat-grid-tile>
+    </div>
 
-    <mat-grid-tile>
-      <div class="container" *ngIf="loadingComplete && errorOccurred">
+    <div class="col-12">
+      <div class="content" *ngIf="loadingComplete && errorOccurred">
         <app-error-id [errorType]="error.errorType" [errorTitle]="error.errorTitle" [errorMessage]="error.errorMessage"
           [errorMessageSecondary]="error.errorMessageSecondary">
         </app-error-id>
       </div>
-      <div class="content">
-        <div class="mt-5 d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" [@spinAnimation]>
+      <div class="content" style="scroll-behavior: auto;">
+        <div class="mt-1 mb-3 d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" [@spinAnimation]>
           <mat-spinner color="primary" mode="indeterminate" [value]="1" [diameter]="40">
           </mat-spinner>
         </div>
@@ -31,16 +31,16 @@
           <p class="m-0">Copied</p>
         </div>
         <iframe 
-          src="http://localhost:4200/?type=pog&txn=aeb653c5e6522090f2267817fa33bcf7863e9001c8e10cfec2f13f603452a9b7"
+          src="http://localhost:5006/?type=pog&txn=aeb653c5e6522090f2267817fa33bcf7863e9001c8e10cfec2f13f603452a9b7"
           #iframe id="ift1" [hidden]="!loadingComplete" [scrolling]="scrolling"
-          frameborder="0" width="160%" height="160%" style="border-right-width:503px; border-top-width: 0px;  "
+          frameborder="0" width="100%" height="500" style="border-top-width: 0px;  "
           sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation"></iframe>
         <!-- <app-proofbot-mock *ngIf="type=='PROOF'||type=='PROOFGRAPH'" [txn]="txnHash" [type]="'poe'" [initialHeight]="'300px'"
           [initialWidth]="'600px'" [minHeight]="'82vh'" [minWidth]="'82vw'" [maxHeight]="'98vh'" [maxWidth]="'100vw'"
           [justifyContent]="'start'" [alignItems]="'start'"></app-proofbot-mock> -->
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
     
     
 
