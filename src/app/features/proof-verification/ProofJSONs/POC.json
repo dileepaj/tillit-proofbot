@@ -251,7 +251,7 @@
             "ActionDescription_1": "&{Text6}",
             "ActionTitle_2": "&{Text7}",
             "ActionDescription_2": "&{Text8}",
-            "TXNHash": "${TXNhash}",
+            "TXNHash": "7b022109ff937f0b9c82721c36df38d4674cb0ad26a33b13cb9ace3c88d88656",
             "OperationName": "current transaction",
             "ResponseVariable": "MainTXNDataString",
             "JSONResultVariable": "MainTXNData"
@@ -1490,7 +1490,7 @@
             "FrameTitle_2": "&{Text6}",
             "ActionTitle_2": "&{Text7}",
             "ActionDescription_2": "&{Text8}",
-            "TXNHash": "${TXNhash}",
+            "TXNHash": "261d89845e49221eb5420b97a6cb5ef409e18c2b7a1bee85d1852a213d421e0e",
             "OperationName": "&{Text1}",
             "ResponseVariable": "MainTDPDataString",
             "JSONResultVariable": "MainTDPData"
