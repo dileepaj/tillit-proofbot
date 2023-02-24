@@ -158,7 +158,9 @@
       <img class="checked-small-img" src="../../../../assets/img/Vector.png">
     </p>
   </div>
-  
+
+      <app-poc-graph-view class="m-2" [txnHash]="proofBotParams.params.txn" *ngIf="proofType=='poc'"></app-poc-graph-view>
+
       <app-bot-globaldata
         id="globalInformation"
         *ngIf="globalData.length > 0"

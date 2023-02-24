@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
@@ -15,7 +15,6 @@ import { MatGridListModule } from '@angular/material';
 
 export class PocGraphViewComponent implements OnInit {
 
-  private txnId: string;
   loadingComplete: boolean = false;
   errorOccurred: boolean = false;
   pocTreeWidth: Number = 0;
@@ -23,76 +22,33 @@ export class PocGraphViewComponent implements OnInit {
   TXNhash: string = "";
   ProofType: string = "";
   src: string ="";
-
   pocTransactions = [];
   selectedItem;
-
-  // Loader Variables
-
   color = "primary";
   mode = "indeterminate";
   value = 10;
-
+  @Input() txnHash: string = "";
+  
   constructor(private route: ActivatedRoute, private apiService: ApiService,  private _location: Location) { }
 
   ngOnInit() {
-    this.txnId = "29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b"
-    // this.getProofData(this.txnId);
-    this.getProofTree(this.txnId);
-    // this.renderGraph(this.getData().Nodes);
+    this.getProofTree(this.txnHash);
   }
 
   goBack():void{
     this._location.back();
     }
 
-  getProofData(id: string) {
-    id="https://qa.gateway.tracified.com/pocv4/29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b"
-    this.apiService.getData(id).subscribe((data) => {
-    console.log("PoC: ", data);
-
-    this.loadingComplete = true;
-    this.pocTransactions = data;
-    console.log('000',this.pocTransactions);
-    this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
-    console.log('111--',this.selectedItem);
-
-    let results = this.createChild(data);
-    console.log('222--',results);
-      // this.graph(results);
-
-    }, (err) => {
+  getProofTree(hash: string) {
+    let url= environment.blockchain.getPocTreeData + "/" + hash
+    this.apiService.getData(url).subscribe((data) => {
       this.loadingComplete = true;
-     // console.log("Get PoC data error: ", err);
-      this.errorOccurred = true;
-
-      if (err.status === 400) {
-        // this.error = {
-        //   errorTitle: "No matching results found",
-        //   errorMessage: "There is no data associated with the given ID. Check if the entered ID is correct and try again.",
-        //   errorMessageSecondary: "If you still don't see the results you were expecting, please let us know.",
-        //   errorType: "empty"
-        // }
-      } else {
-        // this.error = {
-        //   errorTitle: "Something went wrong",
-        //   errorMessage: "An error occurred while retrieving data. Check if the entered ID is correct and try again in a while.",
-        //   errorMessageSecondary: "If you still don't see the results you were expecting, please let us know.",
-        //   errorType: "empty"
-        // }
-      }
-    }), (err) => {
-      console.log("Error: ", err);
-    };
-  }
-
-  getProofTree(id: string) {
-    id="https://qa.gateway.tracified.com/pocv4/29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b"
-    this.apiService.getData(id).subscribe((data) => {
-      this.loadingComplete = true;
+      this.pocTransactions = data;
+      this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
       this.renderGraph(data.Nodes);
      }, (err)=> {
-      console.log(err)
+      this.loadingComplete = true;
+       this.errorOccurred = true;
     })
   }
 
@@ -144,7 +100,6 @@ export class PocGraphViewComponent implements OnInit {
     d3.selectAll("g.edgePath").on('click', function (d: any) {
         const from = Nodes[d.v].TrustLinks[0];
         const to = Nodes[d.w].TrustLinks[0];
-        console.log({from, to})
     });
     d3.selectAll("g.edgeLabel").on('click', function (d: any) {
         const from = Nodes[d.v].TrustLinks[0];
@@ -160,7 +115,6 @@ export class PocGraphViewComponent implements OnInit {
 
   addNodesAndEdges(g:any, Nodes:any, doneNodes:Array<string>, edgeValues:Array<number>, node:any, mainIndex:number, depth:number, type) {
     const {sColor, lColor} = this.getColorForTxnType(node.Data.TxnType);
-    console.log("type",this.getColorForTxnType(node.Data.TxnType));
     if(doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier!=""){
         g.setNode(node.Data.TxnHash, {
@@ -195,12 +149,10 @@ export class PocGraphViewComponent implements OnInit {
                 arrowheadStyle: `fill: ${colors.sColor}`,
             });
             edgeValues.push(nodeIndex);
-            console.log("edge",edgeValues);
             this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth,type);
         }
     }
     doneNodes.push(node.Data.TxnHash);
-    console.log('4444',doneNodes);
     for (let index = 0; index < doneNodes.length; index++){
       this.TXNhash = doneNodes[index];
       switch (type){
@@ -210,11 +162,8 @@ export class PocGraphViewComponent implements OnInit {
         case "2":
           this.ProofType='poe'
           break
-      
-         
     }
-    this.src = `http://localhost:4200/?type=${this.ProofType}&txn=${this.TXNhash }`
-    console.log("url--",this.src);
+    this.src = `${environment.blockchain.domailUrl}/?type=${this.ProofType}&txn=${this.TXNhash }`
     }
   }
 
@@ -228,10 +177,8 @@ export class PocGraphViewComponent implements OnInit {
       else if(sColor =='green'){
         this.ProofType ='poe'
       }
-      this.src = `http://localhost:4200/?type=${this.ProofType}&txn=${this.TXNhash}`
+      this.src = `${environment.blockchain.domailUrl}/?type=${this.ProofType}&txn=${this.TXNhash}`
     }
-    
-    
   }
   
   getColorForTxnType(type) {
@@ -278,16 +225,6 @@ export class PocGraphViewComponent implements OnInit {
     const suffix =  1 / Math.pow(10, depth);
     const final = mainIndex + suffix;
     return parseFloat(final.toFixed(depth));
-    // switch (type) {
-    //   case "0":
-    //     return mainIndex + (1 / suffix);
-    //   case "2":
-    //     return mainIndex + (1 / suffix);
-    //   case "6":
-    //     return mainIndex + (1 / suffix);
-    //   case "7":
-    //     return mainIndex + (1 / suffix);
-    // }
   }
 
   public getTransaction(passingHash: string) {
@@ -296,7 +233,6 @@ export class PocGraphViewComponent implements OnInit {
         this.selectedItem = element;
       }
      });
-    console.log(this.selectedItem);
   }
 
   createChild(data: any) {
@@ -336,6 +272,5 @@ export class PocGraphViewComponent implements OnInit {
   ngOnDestroy() {
     window.removeEventListener('message', this.handleMessage);
   }
-
   
 }
