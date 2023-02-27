@@ -200,6 +200,10 @@ export class PocGraphViewComponent implements OnInit {
           sColor = "red";
           lColor = "white";
           break
+      case "5":
+          sColor = "black";
+          lColor = "white";
+          break
       default:
           sColor = "white";
           lColor = "black";
@@ -218,6 +222,8 @@ export class PocGraphViewComponent implements OnInit {
           return "SPLIT";
       case "7":
           return "MERGE";
+      case "5":
+          return "SPLIT PARENT";
       default:
     }
   }
