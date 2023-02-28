@@ -2067,7 +2067,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_2": "&{Text47}",
                     "ActionDescription_2": "&{Text48}",
                     "SegmentSource_2": "../../../../assets/img/Group 6.png",
-                    "TXNHash": "${TXNhash}",
+                    "TXNHash": node.TrustLinks[0],
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
                     "JSONResultVariable": "MainTXNData"
