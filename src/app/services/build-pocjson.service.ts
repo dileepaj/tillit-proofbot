@@ -236,7 +236,7 @@ export class BuildPOCJsonService {
           console.log("hgt    ",)
           let numPog = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
           console.log('numPog', numPog)
-          let pocSteps = [
+          let pogSteps = [
             {
               "StepHeader": {
                 "StepNo": numPog++,
@@ -270,7 +270,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 2,
                     "FrameID": 1,
                     "FrameTitle": "&{Text2}",
@@ -381,7 +381,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 3,
                     "FrameID": 1,
                     "FrameTitle": "",
@@ -776,7 +776,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 5,
                     "FrameID": 4,
                     "FrameTitle": "&{Text45}",
@@ -892,7 +892,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 6,
                     "FrameID": 3,
                     "FrameTitle": "",
@@ -1001,7 +1001,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 6,
                     "FrameID": 3,
                     "FrameTitle": "&{Text64}",
@@ -1117,8 +1117,8 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPog,
-                    "SegmentNo": 6,
+                    "StepNo": 17,
+                    "SegmentNo": 7,
                     "FrameID": 1,
                     "FrameTitle": "",
                     "ActionTitle": "&{Text77}",
@@ -1276,7 +1276,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 8,
                     "FrameID": 1,
                     "FrameTitle": "",
@@ -1385,7 +1385,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPog,
+                    "StepNo": numPog++,
                     "SegmentNo": 8,
                     "FrameID": 4,
                     "FrameTitle": "&{Text91}",
@@ -1473,9 +1473,9 @@ export class BuildPOCJsonService {
                 ],
                 "ActionDuration": 10
               }
-            }
+            },
           ]
-          this.pocProofJson.Steps.push(...pocSteps)
+          this.pocProofJson.Steps.push(...pogSteps)
           break;
         case "2":
           let numPoe = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
@@ -2785,7 +2785,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPoe,
+                    "StepNo": numPoe++,
                     "SegmentNo": 14,
                     "FrameID": 6,
                     "FrameTitle": "&{Text110}",
@@ -2851,7 +2851,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPoe,
+                    "StepNo": numPoe++,
                     "SegmentNo": 14,
                     "FrameID": 7,
                     "FrameTitle": "&{Text115}",
@@ -2938,7 +2938,7 @@ export class BuildPOCJsonService {
                 "ActionDuration": 10
               }
             },
-          ];
+          ]
           this.pocProofJson.Steps.push(...poeSteps)
           break;
         case "pobl":
@@ -4866,7 +4866,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPobl,
+                    "StepNo": numPobl++,
                     "SegmentNo": 28,
                     "FrameID": 12,
                     "FrameTitle": "&{Text168}",
@@ -4901,7 +4901,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl++,
+                "StepNo": 84,
                 "SegmentNo": 29,
                 "FrameID": 13,
                 "FrameTitle": "&{Text178}"
