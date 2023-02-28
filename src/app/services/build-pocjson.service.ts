@@ -162,7 +162,11 @@ export class BuildPOCJsonService {
           "NO": 29,
           "Name": "&{SegName29}",
           "Source": ""
-        }
+        },{
+          "NO": 10,
+          "Name": "&{SegName10}",
+          "Source": "../../../../assets/img/Group.png"
+        },
       ]
     },
     "Steps": [
@@ -229,8 +233,9 @@ export class BuildPOCJsonService {
   loopTheNodes(data: any): Observable<any> {
     console.log('data--------------- ', data)
     var genesisNodes = Object.entries(data.Nodes).map(data => {
-      console.log('data1ss   ', data[1])
+      
       let node: any = data[1]
+      console.log('data1ss   ', node.TrustLinks[0])
       switch (node.Data.TxnType) {
         case "0":
           let numPog = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
@@ -278,7 +283,7 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{Text6}",
                     "ActionTitle_2": "&{Text7}",
                     "ActionDescription_2": "&{Text8}",
-                    "TXNHash": "7b022109ff937f0b9c82721c36df38d4674cb0ad26a33b13cb9ace3c88d88656",
+                    "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData"
@@ -1523,7 +1528,7 @@ export class BuildPOCJsonService {
                     "FrameTitle_2": "&{Text6}",
                     "ActionTitle_2": "&{Text7}",
                     "ActionDescription_2": "&{Text8}",
-                    "TXNHash": "261d89845e49221eb5420b97a6cb5ef409e18c2b7a1bee85d1852a213d421e0e",
+                    "TXNHash": node.TrustLinks[0],
                     "OperationName": "&{Text1}",
                     "ResponseVariable": "MainTDPDataString",
                     "JSONResultVariable": "MainTDPData"
