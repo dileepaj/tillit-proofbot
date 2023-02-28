@@ -29,6 +29,8 @@ import { Logs } from "selenium-webdriver";
 import { VerificationServiceService } from "src/app/services/verification-service.service";
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr'
+import { ApiService } from "src/app/services/api.service";
+import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
 
 @Component({
   selector: "proof-bot",
@@ -123,14 +125,18 @@ export class ProofBotComponent implements OnInit {
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
   errorOccurred:boolean =false
-  a:any
+  a:any;
+  nodes:any;
+  POCJSON:any
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private verificationHttpService: VerificationServiceService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private apiService: ApiService,
+    private pocJsonService: BuildPOCJsonService,
   ) {}
 
   ngOnInit() {
@@ -157,7 +163,22 @@ export class ProofBotComponent implements OnInit {
         };
       });
     this.proofType = this.proofBotParams.params.type;
+    if (this.proofBotParams.params.type=="poc"){
+      let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
+      this.apiService.getData(url).subscribe((data) => {
+        this.getPOCProofJson(data)
+        this.nodes=data
+       }, (err)=> {
+        this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:err.status,m2:err.message}})
+      })
+    }
   }
+
+ async getPOCProofJson(data:any){
+   let pocJson =await this.pocJsonService.buildPOCJson(data)
+   console.log('pocKson', pocJson)
+   this.POCJSON=pocJson
+ }
 
   async ngAfterViewInit() {
     // this.scrollToFrameById('proofContainer');
@@ -196,7 +217,7 @@ export class ProofBotComponent implements OnInit {
       }
 
   async initiateProofDemo() {
-    const { protocolJson, langJson } = this.getProtocolJSON();
+    const { protocolJson, langJson } = await this.getProtocolJSON();
     this.proofJSON = protocolJson;
     // handle lang
     if (langJson) this.handleLangJson(langJson);
@@ -235,7 +256,7 @@ export class ProofBotComponent implements OnInit {
     this.playProofDemo(0);
   }
 
-  getProtocolJSON() {
+  async getProtocolJSON() {
     var protocolJson: any;
     var langJson: any;
     switch (this.proofType) {
@@ -252,13 +273,16 @@ export class ProofBotComponent implements OnInit {
         langJson = POELangJSON;
         break;
       case "poc":
-        protocolJson = POCJSON;
+        protocolJson = await this.pocJsonService.buildPOCJson(this.nodes);
         langJson = POCLangJSON;
         break;
       default:
         break;
     }
-    return { protocolJson: protocolJson.default, langJson: langJson.default };
+    if (this.proofType == "poc")
+      return { protocolJson: protocolJson, langJson: langJson.default }
+    else
+      return { protocolJson: protocolJson.default, langJson: langJson.default };
   }
 
   handleLangJson(langJson: any) {

@@ -159,7 +159,7 @@
     </p>
   </div>
 
-      <app-poc-graph-view class="m-2" [txnHash]="proofBotParams.params.txn" *ngIf="proofType=='poc'"></app-poc-graph-view>
+      <app-poc-graph-view class="m-2" [data]="nodes" *ngIf="proofType=='poc'"></app-poc-graph-view>
 
       <app-bot-globaldata
         id="globalInformation"

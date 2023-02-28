@@ -27,30 +27,20 @@ export class PocGraphViewComponent implements OnInit {
   color = "primary";
   mode = "indeterminate";
   value = 10;
-  @Input() txnHash: string = "";
+  @Input() data: any;
   
   constructor(private route: ActivatedRoute, private apiService: ApiService,  private _location: Location) { }
 
   ngOnInit() {
-    this.getProofTree(this.txnHash);
+    this.loadingComplete = true;
+    this.pocTransactions = this.data;
+    this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
+    this.renderGraph(this.data.Nodes);
   }
 
   goBack():void{
     this._location.back();
     }
-
-  getProofTree(hash: string) {
-    let url= environment.blockchain.getPocTreeData + "/" + hash
-    this.apiService.getData(url).subscribe((data) => {
-      this.loadingComplete = true;
-      this.pocTransactions = data;
-      this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
-      this.renderGraph(data.Nodes);
-     }, (err)=> {
-      this.loadingComplete = true;
-       this.errorOccurred = true;
-    })
-  }
 
   renderGraph(Nodes: Object) {
 
