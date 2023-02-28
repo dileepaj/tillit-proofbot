@@ -166,19 +166,12 @@ export class ProofBotComponent implements OnInit {
     if (this.proofBotParams.params.type=="poc"){
       let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
       this.apiService.getData(url).subscribe((data) => {
-        this.getPOCProofJson(data)
         this.nodes=data
        }, (err)=> {
         this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:err.status,m2:err.message}})
       })
     }
   }
-
- async getPOCProofJson(data:any){
-   let pocJson =await this.pocJsonService.buildPOCJson(data)
-   console.log('pocKson', pocJson)
-   this.POCJSON=pocJson
- }
 
   async ngAfterViewInit() {
     // this.scrollToFrameById('proofContainer');
@@ -274,6 +267,7 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         protocolJson = await this.pocJsonService.buildPOCJson(this.nodes);
+        console.log('protocolJson  ', protocolJson)
         langJson = POCLangJSON;
         break;
       default:
