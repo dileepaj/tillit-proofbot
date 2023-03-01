@@ -268,15 +268,16 @@ export class ProofBotComponent implements OnInit {
         langJson = POELangJSON;
         break;
       case "poc":
-        protocolJson = await this.pocJsonService.buildPOCJson(this.nodes);
+        let poc = await this.pocJsonService.buildPOCJson(this.nodes)
+        protocolJson = poc.pocProofJson;
+        langJson = poc.pocLangJson;
         console.log('protocolJson  ', protocolJson)
-        langJson = POCLangJSON;
         break;
       default:
         break;
     }
     if (this.proofType == "poc")
-      return { protocolJson: protocolJson, langJson: langJson.default }
+      return { protocolJson: protocolJson, langJson: langJson }
     else
       return { protocolJson: protocolJson.default, langJson: langJson.default };
   }
