@@ -1470,7 +1470,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text120}",
+                "ToastMessage1": "&{Text233}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -2934,7 +2934,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text124}",
+                "ToastMessage1": "&{Text234}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -4949,7 +4949,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text180}",
+                "ToastMessage1": "&{Text235}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -5012,7 +5012,7 @@ export class BuildPOCJsonService {
           "ScrollToPointer": false,
           "FrameAutoScroll": true,
           "FrameScrollBars": "",
-          "ToastMessage1": "&{Text180}",
+          "ToastMessage1": "&{Text235}",
           "ToastPosition1": [
             "6%",
             "80%"
