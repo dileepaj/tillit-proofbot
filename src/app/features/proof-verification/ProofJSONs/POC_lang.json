@@ -742,7 +742,7 @@
                   "ja": "検証の概要",
                   "en": "Verification Summary"
               },
-              "Text120": {
+              "Text233": {
                   "ja": "検証は正常に終了",
                   "en": "Verification Completed Successfully"
               }
@@ -1466,7 +1466,7 @@
                   "ja": "検証の概要についてー存在の証明",
                   "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
               },
-              "Text124": {
+              "Text234": {
                   "ja": "検証は正常に終了",
                   "en": "Verification Completed Successfully"
               }
@@ -2504,7 +2504,7 @@
                   "ja": "検証概要",
                   "en": "Verification Summary"
               },
-              "Text180": {
+              "Text235": {
                   "ja": "検証は正常に終了",
                   "en": "Verification Completed Successfully"
               },
