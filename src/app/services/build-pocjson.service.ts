@@ -224,17 +224,40 @@ export class BuildPOCJsonService {
       },
     ]
   }
+  a: any = {
+    "TxnHash": "7fcb9eaa4fe7e971f370f082f672a68e9eda2ca4eb2d986d654fb5758b315b0a",
+    "LastTxnHash": "b523daa27429121ddaa434757c7855e446c6bce6fd29557cecda2b1ddeb22ec9",
+    "Level": 3,
+    "Nodes": {
+      "4b976b3cb0711708bae7483d4d873c0f60dca9fc97bf1f73fd921e013385843b": {
+        "Id": "4b976b3cb0711708bae7483d4d873c0f60dca9fc97bf1f73fd921e013385843b",
+        "Parents": ["afdf172700e25e269b6be07c10068f586ffdfb4a7b937798257920acd5df3f86"],
+        "TrustLinks": ["488be8859f12c93a0e7ac366fb977ec01b6e9306e2e6bb879acfd1277f8c6a56"]
+      },
+      "ada531017ad84ebd9a96fe91c7f445ba6dcd2544ed214f6653696649b9e52053": {
+        "Id": "ada531017ad84ebd9a96fe91c7f445ba6dcd2544ed214f6653696649b9e52053",
+        "Parents": ["4b976b3cb0711708bae7483d4d873c0f60dca9fc97bf1f73fd921e013385843b"],
+        "TrustLinks": ["7fcb9eaa4fe7e971f370f082f672a68e9eda2ca4eb2d986d654fb5758b315b0a"]
+      },
+      "afdf172700e25e269b6be07c10068f586ffdfb4a7b937798257920acd5df3f86": {
+        "Id": "afdf172700e25e269b6be07c10068f586ffdfb4a7b937798257920acd5df3f86",
+        "Parents": null,
+        "TrustLinks": ["b523daa27429121ddaa434757c7855e446c6bce6fd29557cecda2b1ddeb22ec9"]
+      }
+    }
+  }
+  matchingLastTxnHashes = []; // Initialize an empty array to hold the matching LastTxnHash values
   constructor(private apiService: ApiService) { }
 
   buildPOCJson(data: any): Observable<any> {
-    // console.log('data   s  ', data)
+    console.log('dataaaaa   s  ', data)
+    this.createPOCOrder()
     return this.loopTheNodes(data)
   }
 
   loopTheNodes(data: any): Observable<any> {
-    console.log('data--------------- ', data)
     var genesisNodes = Object.entries(data.Nodes).map(data => {
-      
+
       let node: any = data[1]
       console.log('data1ss   ', node.TrustLinks[0])
       switch (node.Data.TxnType) {
@@ -243,7 +266,7 @@ export class BuildPOCJsonService {
           let pogSteps = [
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -305,7 +328,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 3,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -355,7 +378,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 3,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -414,7 +437,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 3,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -464,7 +487,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 3,
                 "FrameID": 2,
                 "FrameTitle": ""
@@ -530,7 +553,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 4,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -591,7 +614,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -641,7 +664,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -700,7 +723,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -750,7 +773,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 5,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -816,7 +839,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 6,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -866,7 +889,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 6,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -925,7 +948,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 6,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -975,7 +998,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 6,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -1041,7 +1064,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 7,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1091,7 +1114,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 7,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1150,7 +1173,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 7,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1200,7 +1223,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 8,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1250,7 +1273,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 8,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1309,7 +1332,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 8,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1359,7 +1382,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 8,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -1425,7 +1448,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPog=numPog+1,
+                "StepNo": numPog = numPog + 1,
                 "SegmentNo": 9,
                 "FrameID": 5,
                 "FrameTitle": "&{Text102}"
@@ -1486,7 +1509,7 @@ export class BuildPOCJsonService {
           let poeSteps = [
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1550,7 +1573,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1598,7 +1621,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1658,7 +1681,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1708,7 +1731,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1756,7 +1779,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1816,7 +1839,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 10,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1869,7 +1892,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 11,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1917,7 +1940,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 11,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -1975,7 +1998,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 11,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -2025,7 +2048,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 11,
                 "FrameID": 2,
                 "FrameTitle": ""
@@ -2089,7 +2112,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 11,
                 "FrameID": 2,
                 "FrameTitle": ""
@@ -2139,7 +2162,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 11,
                 "FrameID": 2,
                 "FrameTitle": ""
@@ -2197,7 +2220,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 12,
                 "FrameID": 2,
                 "FrameTitle": ""
@@ -2247,7 +2270,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 12,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -2312,7 +2335,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 13,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2375,7 +2398,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2425,7 +2448,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2485,7 +2508,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2535,7 +2558,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2601,7 +2624,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2651,7 +2674,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2709,7 +2732,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -2759,7 +2782,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 6,
                 "FrameTitle": ""
@@ -2789,7 +2812,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPoe=numPoe+1,
+                    "StepNo": numPoe = numPoe + 1,
                     "SegmentNo": 14,
                     "FrameID": 6,
                     "FrameTitle": "&{Text110}",
@@ -2825,7 +2848,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 14,
                 "FrameID": 7,
                 "FrameTitle": ""
@@ -2855,7 +2878,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPoe=numPoe+1,
+                    "StepNo": numPoe = numPoe + 1,
                     "SegmentNo": 14,
                     "FrameID": 7,
                     "FrameTitle": "&{Text115}",
@@ -2890,7 +2913,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe=numPoe+1,
+                "StepNo": numPoe = numPoe + 1,
                 "SegmentNo": 15,
                 "FrameID": 8,
                 "FrameTitle": "&{Text120}"
@@ -2950,7 +2973,7 @@ export class BuildPOCJsonService {
           let poblSteps = [
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 16,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3012,7 +3035,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 17,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3062,7 +3085,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 17,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3121,7 +3144,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 17,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3171,7 +3194,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 17,
                 "FrameID": 2,
                 "FrameTitle": ""
@@ -3237,7 +3260,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 18,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3298,7 +3321,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 19,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3348,7 +3371,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 19,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3407,7 +3430,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 19,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3457,7 +3480,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 19,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -3523,7 +3546,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 20,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3573,7 +3596,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 20,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3632,7 +3655,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 20,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3682,7 +3705,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 20,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -3748,7 +3771,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 21,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3798,7 +3821,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 21,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3857,7 +3880,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 21,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3907,7 +3930,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 21,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -3973,7 +3996,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 22,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -4034,7 +4057,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 23,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -4084,7 +4107,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 23,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -4143,7 +4166,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 23,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -4198,7 +4221,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 23,
                 "FrameID": 9,
                 "FrameTitle": ""
@@ -4264,7 +4287,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 24,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4325,7 +4348,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 25,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4375,7 +4398,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 25,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4434,7 +4457,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 25,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4484,7 +4507,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 25,
                 "FrameID": 11,
                 "FrameTitle": ""
@@ -4550,7 +4573,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 26,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4600,7 +4623,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 26,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4659,7 +4682,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 26,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -4709,7 +4732,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 26,
                 "FrameID": 11,
                 "FrameTitle": ""
@@ -4775,7 +4798,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 27,
                 "FrameID": 12,
                 "FrameTitle": ""
@@ -4840,7 +4863,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl=numPobl+1,
+                "StepNo": numPobl = numPobl + 1,
                 "SegmentNo": 28,
                 "FrameID": 12,
                 "FrameTitle": ""
@@ -4870,7 +4893,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPobl=numPobl+1,
+                    "StepNo": numPobl = numPobl + 1,
                     "SegmentNo": 28,
                     "FrameID": 12,
                     "FrameTitle": "&{Text168}",
@@ -4965,10 +4988,10 @@ export class BuildPOCJsonService {
       }
     })
     let POCSummaryNo = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
-    let POCSummaryStep =[
+    let POCSummaryStep = [
       {
         "StepHeader": {
-          "StepNo": POCSummaryNo = POCSummaryNo+1,
+          "StepNo": POCSummaryNo = POCSummaryNo + 1,
           "SegmentNo": 30,
           "FrameID": 13,
           "FrameTitle": "&{Text178}"
@@ -5019,11 +5042,64 @@ export class BuildPOCJsonService {
           ],
           "ActionDuration": 10
         }
-    }
+      }
     ]
     this.pocProofJson.Steps.push(...POCSummaryStep)
     console.log('firs1twwwwwwww  ', this.pocProofJson)
     return this.pocProofJson
+  }
+
+  createPOCOrder() {
+    let b = []
+
+
+    const txnHash = this.a.TxnHash; // Get the TxnHash value to search for
+    let orderedTxn = [];
+
+    // Iterate over the keys (node IDs) in the Nodes object
+    for (const nodeId in this.a.Nodes) {
+      const node = this.a.Nodes[nodeId]; // Get the node object for this ID
+      const trustLinks = node.TrustLinks || []; // Get the TrustLinks array, or an empty array if it's null
+      const parents = node.Parents || [];
+      // Check if the TrustLinks array contains the desired TxnHash value
+      if (trustLinks.includes(txnHash)) {
+        this.matchingLastTxnHashes.push(this.a.Nodes[nodeId]); // If so, add the LastTxnHash value to the matchingLastTxnHashes array
+        this.checkParentsAndPush(parents)
+      }
+    }
+
+
+    console.log('________________________________________________________')
+    console.log(this.matchingLastTxnHashes); // Output the matching LastTxnHash values
+
+    // if (this.matchingLastTxnHashes.length != 0) {
+    //   orderedTxn.push(this.matchingLastTxnHashes[0])
+
+    //   // if(matchingLastTxnHashes[0])
+
+    // }
+
+    // console.log('___________________++++++++++++++++++++++++++++++++_____________________________________')
+    // console.log(orderedTxn); // Output the matching LastTxnHash values
+  }
+
+  checkParentsAndPush(parents) {
+    console.log('parents', parents)
+    console.log('parents11111 != null', parents != null)
+    if (parents != null) {
+      console.log('parents != null', parents != null)
+      for (const parent in parents) {
+        for (const nodeId in this.a.Nodes) {
+          if (nodeId == parent) {
+            console.log('fffffffffffffffffffffffffffffff')
+            const node = this.a.Nodes[nodeId]; // Get the node object for this ID
+            const parents = node.Parents || [];
+            this.matchingLastTxnHashes.push(this.a.Nodes[nodeId])
+            this.checkParentsAndPush(parents)
+          }
+        }
+      }
+    }
   }
 
 }
