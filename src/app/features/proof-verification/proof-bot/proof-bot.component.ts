@@ -163,14 +163,7 @@ export class ProofBotComponent implements OnInit {
         };
       });
     this.proofType = this.proofBotParams.params.type;
-    if (this.proofBotParams.params.type=="poc"){
-      let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
-      this.apiService.getData(url).subscribe((data) => {
-        this.nodes=data
-       }, (err)=> {
-        this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:err.status,m2:err.message}})
-      })
-    }
+
   }
 
   async ngAfterViewInit() {
@@ -194,6 +187,15 @@ export class ProofBotComponent implements OnInit {
               // backend call
               await new Promise(resolveTime => setTimeout(resolveTime, 4200));
               // start demo (not -verifing)
+              if (this.proofType="poc"){
+                  let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
+                  this.apiService.getData(url).subscribe((data) => {
+                    this.nodes=data
+                    this.initiateProofDemo();
+                   }, (err)=> {
+                    this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:err.status,m2:err.message}})
+                  })
+              }else
               this.initiateProofDemo();
             } else
             // invalid URL
