@@ -121,7 +121,7 @@
     align-self: center;
   }
   .proofbot-header-img-container{
-    margin-right: auto;
+    margin-right: 0;
   }
 }
 
@@ -132,7 +132,7 @@
     
   }
   .proofbot-header-img-container{
-    margin-right: auto;
+    margin-right: 0;
   }
 }
 

@@ -31,6 +31,9 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr'
 import { ApiService } from "src/app/services/api.service";
 import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
+import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
+import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
+
 
 @Component({
   selector: "proof-bot",
@@ -125,7 +128,6 @@ export class ProofBotComponent implements OnInit {
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
   errorOccurred:boolean =false
-  a:any;
   nodes:any;
   POCJSON:any
   constructor(
@@ -137,19 +139,19 @@ export class ProofBotComponent implements OnInit {
     private toastr: ToastrService,
     private apiService: ApiService,
     private pocJsonService: BuildPOCJsonService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
-      window.addEventListener('message', this.receiveMessage.bind(this), false);
       this.route.queryParamMap.subscribe(params => {
         if (!params.get("txn") || !params.get("type")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
           return
         }else if(!this.availableProofs.includes(params.get("type"))){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
           return
         }else if(params.get("type")=='pobl' && !params.get("txn2")){
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
+          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
           return
         }else{
         }
@@ -163,7 +165,6 @@ export class ProofBotComponent implements OnInit {
         };
       });
     this.proofType = this.proofBotParams.params.type;
-
   }
 
   async ngAfterViewInit() {
@@ -177,7 +178,7 @@ export class ProofBotComponent implements OnInit {
       async data => {
         try {
           if (!data) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"204"}})
+            this.openModal("Invalid URL","204")
             return 
           } else {
             if (!!this.proofBotParams.params.type) {
@@ -187,13 +188,13 @@ export class ProofBotComponent implements OnInit {
               // backend call
               await new Promise(resolveTime => setTimeout(resolveTime, 4200));
               // start demo (not -verifing)
-              if (this.proofType="poc"){
+              if (this.proofType=="poc"){
                   let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
                   this.apiService.getData(url).subscribe((data) => {
                     this.nodes=data
                     this.initiateProofDemo();
                    }, (err)=> {
-                    this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:err.status,m2:err.message}})
+                    this.openModal("Invalid URL",err.status,err.message)
                   })
               }else
               this.initiateProofDemo();
@@ -202,11 +203,11 @@ export class ProofBotComponent implements OnInit {
               return
             }
           } catch (error) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:error.message}})
+            this.openModal("Invalid URL","404",error.message)
           }
         },
         error => {
-          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the Internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
+          this.openModal(error.status==0?"Check the Internet Connection": "Invalid URL",error.status,error.message)
         }
         );
       }
@@ -269,9 +270,10 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
+        console.log('protocolJsonssssssssssssssssssssssssssssssssssssssssssssssssssssss  ', poc)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
-        console.log('protocolJson  ', protocolJson)
+        console.log('protocolJson  ', poc)
         break;
       default:
         break;
@@ -780,13 +782,9 @@ export class ProofBotComponent implements OnInit {
             if(!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)){
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTMLError);
-              if(Summary)
-              window.parent.postMessage('success', environment.blockchain.domailUrl);
             }else{
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTML);
-              if(Summary)
-              window.parent.postMessage('failed', environment.blockchain.domailUrl);
             }
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
@@ -817,53 +815,7 @@ export class ProofBotComponent implements OnInit {
           break;
         case "FormatMetaData":
           this.handleVariableFormat(stepData,currentBrowserScreen);
-          break;
-        // case "LoadProof":
-        //   // await this.closeSteppers();
-        //   currentBrowserScreen=ActionParameters.ExternalURL
-        //   var scRef: ComponentRef<SiteScreenComponent>;
-        //   if (this.demoScreenChildRefs[frameID])
-        //     scRef = this.demoScreenChildRefs[frameID].ref;
-        //   else {
-        //     scRef = await this.createFrameInProofDemo(stepData);
-        //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-        //   }
-        //   this.setGlobalValuesOnFrames(Header, stepData);
-        //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-        //   //await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd81adcdfswwsa","poe","PROOF")
-        //   break;
-        // case "LoadGraphView":
-        //   // await this.closeSteppers();
-        //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-        //   currentBrowserScreen=ActionParameters.ExternalURL
-        //   var scRef: ComponentRef<SiteScreenComponent>;
-        //   if (this.demoScreenChildRefs[frameID])
-        //     scRef = this.demoScreenChildRefs[frameID].ref;
-        //   else {
-        //     scRef = await this.createFrameInProofDemo(stepData);
-        //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-        //   }
-        //   this.setGlobalValuesOnFrames(Header, stepData);
-        //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-        //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-        //   //await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
-        //   break;
-        // case "LoadProofAndGraphView":
-        //   // await this.closeSteppers();
-        //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-        //   currentBrowserScreen=ActionParameters.ExternalURL
-        //   var scRef: ComponentRef<SiteScreenComponent>;
-        //   if (this.demoScreenChildRefs[frameID])
-        //     scRef = this.demoScreenChildRefs[frameID].ref;
-        //   else {
-        //     scRef = await this.createFrameInProofDemo(stepData);
-        //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-        //   }
-        //   this.setGlobalValuesOnFrames(Header, stepData);
-        //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
-        //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-        //   // scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8121qe","poe","PROOFGRAPH")
-        //   break;          
+          break;         
         default:
           break;
       }
@@ -893,14 +845,16 @@ export class ProofBotComponent implements OnInit {
       //console.log('val1', this.Svalue );
 
       this.cdr.detectChanges();
-      await new Promise(resolveTime =>{
-      this.a= setTimeout(
+      await new Promise(resolveTime =>
+        setTimeout(
           resolveTime,
           (100 *
             (Customizations.ActionDuration
               ? Customizations.ActionDuration
-              : 1)) /this.playbackSpeed)
-        });
+              : 1)) /
+            this.playbackSpeed
+        )
+      );
 
       this.isToast = false;
       this.isToast1 = false;
@@ -1419,8 +1373,7 @@ export class ProofBotComponent implements OnInit {
         break;
       case "jsonKeyPicker":
         if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
-          this.toastr.error(`Cannot find given key from the URL`, currentUrl);  
-          //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"External URL issue",m1:`Can not find ${MetaData[1]} key from the URL`,m2:currentUrl}})
+          this.toastr.error(`Cannot find given key from the URL`, currentUrl);
           break;
         }
         var result = this.jsonKeyPicker(val, MetaData[1], MetaData[2])[1];
@@ -1565,9 +1518,9 @@ export class ProofBotComponent implements OnInit {
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
       Data[j].Value="TlVMTA=="
     }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
-      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Proof of Existence Verification Failed",m1:"442",m2:Data[j].Error}})
+      this.openModal("Proof of Existence Verification Failed","442",Data[j].Error)
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
-      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Verification failed",m1:"442",m2:"Key Comparison error"}})
+      this.openModal("Proof Verification Failed","442","Key Comparison error")
     }else{}
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
@@ -1703,82 +1656,6 @@ export class ProofBotComponent implements OnInit {
     return false;
   }
 
-  // to understand the process
-  verifyBackLinkVerify() {
-    return {
-      // 1 BrowserScreen TXNHash2 - F1
-      // 2 get-data body TXN text and store to variable MainTXNData - F1
-      // 3 format MainTXNData variable to json and replace
-      // 4 access MainTXNData variable for CurentTXNHash and store as MainTXNCurentTXNHash
-      // 5 currentTXNHash style key - F1
-      // 6 currentTXNHash style MainTXNCurentTXNHash - F1
-      // 7 site-screen decode MainTXNCurentTXNHash - F2
-      // 8 input CurentTXNHash - F2
-      // 9 click fn decode btn - F2
-      // 10 get output and save to local variable - F2
-      // 11 refer that variable and save in Global storage frame - F2 G1
-      // 12 site-screen CurrentTXNHash - F3
-      // 13 get-data body TXN text and store to variable MainTXNCurentTXNData - F3
-      // 14 format MainTXNCurentTXNData variable to json and replace
-      // 15 access MainTXNCurentTXNData variable for identifier and store as MainTXNCurentTXNDataIdentifier
-      // 16 identifier style key - F3
-      // 17 identifier style value - F3
-      // 18 site-screen decode identifier - F4
-      // 19 input identifier - F4
-      // 20 click fn - F4
-      // 21 get output and save to local variable - F4
-      // 22 refer that variable and save in Global storage frame - F4 G2
-      // 23 access MainTXNCurentTXNData variable for productId and store as MainTXNCurentTXNDataProductId
-      // 24 ProductID style key - F3
-      // 25 ProductID style value - F3
-      // 26 site-screen decode ProductID - F6
-      // 27 input ProductID - F6
-      // 28 click fn - F6
-      // 29 get output and save to local variable - F6
-      // 30 refer that variable and save in Global storage frame - F6 G3
-      // 31 access MainTXNData variable for PreviousTXN and store as MainTXNPreviousTXN
-      // 32 PreviousTXNHash style key - F1
-      // 33 PreviousTXNHash style value - F1
-      // 34 site-screen decode PreviousTXNHash - F7
-      // 35 input PreviousTXNHash - F7
-      // 36 click fn decode btn - F7
-      // 37 get output and save to local variable - F7
-      // 38 refer that variable and save in Global storage frame - F7 G4
-      // 39 site-screen PreviousTXNHash - F8
-      // 40 get-data body TXN text and store to variable MainTXNPreviousTXNData - F8
-      // 41 format MainTXNPreviousTXNData variable to json and replace
-      // 42 access MainTXNPreviousTXNData variable for CurentTXNHash and store as MainTXNPreviousTXNCurrentTXNHash
-      // 43 currentTXNHash style key - F8
-      // 44 currentTXNHash style value - F8
-      // 45 site-screen decode CurentTXNHash - F9
-      // 46 input CurentTXNHash - F9
-      // 47 click fn decode btn - F9
-      // 48 get output and save to local variable - F9
-      // 49 refer that variable and save in Global storage frame - F9 G5
-      // 50 site-screen CurrentTXNHash - F10
-      // 51 get-data body TXN text and store to variable MainTXNPreviousTXNCurrentTXNData - F10
-      // 52 format MainTXNPreviousTXNCurrentTXNData variable to json and replace
-      // 53 access MainTXNPreviousTXNCurrentTXNData variable for identifier and store as MainTXNPreviousTXNCurrentTXNDataIdentifier
-      // 54 identifier style key - F10
-      // 55 identifier style value - F10
-      // 56 site-screen decode identifier - F11
-      // 57 input identifier - F11
-      // 58 click fn - F11
-      // 59 get output and save to local variable - F11
-      // 60 refer that variable and save in Global storage frame - F11 G6
-      // 61 access MainTXNPreviousTXNCurrentTXNData variable for productId and store as MainTXNPreviousTXNCurrentTXNDataProductID
-      // 62 ProductID style key - F10
-      // 63 ProductID style value - F10
-      // 64 site-screen decode ProductID - F12
-      // 65 input ProductID - F12
-      // 66 click fn - F12
-      // 67 get output and save to local variable - F12
-      // 68 refer that variable and save in Global storage frame - F12 G7
-      // 54 compare identifiers from TXNHash2 CurrentTXNHash and TXNHash2 PreviousTXN CurrentTXNHash
-      // 55 Backlink verification status
-    };
-  }
-
   public verificationStatus(compare:any):boolean{
     let status=true
     switch (this.proofType) {
@@ -1807,30 +1684,26 @@ export class ProofBotComponent implements OnInit {
     return status
   }
 
-  
-  receiveMessage(event) {
-    if (event.origin !== environment.blockchain.domailUrl) {
-      return;
-    }
+  openModal(errorTitle?,m1?,m2?){
+    this.togglePlayPauseFn()
+    const initialState: ModalOptions = {
+      initialState: {
+        retry:this.onRetry,
+        errorTitle:errorTitle || "",
+        m1: m1 || "",
+        m2: m2 || "",
+        title: 'Error Message'
+      }
+    };
+    this.modalService.show(ErrorModalComponent,initialState);
+  }
 
-    switch (event.data){
-      case 'success':
-        alert("success")
-        //cnsole.log("dsddddddddddddddddddodddddddddddd------------------------")
-      case 'failed':
-        alert("failed")
-        this.backToStep(this.currentStep)
-        // if(this.proofType=="poc"){
-        //   this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
-        // }
-        // clearTimeout(this.a);
-    }
+  onRetry(){
+  console.log('retry')
+  window.location.reload();
   }
 
 }
-
-
-
 
 type DataKeys={
   Key:Object,

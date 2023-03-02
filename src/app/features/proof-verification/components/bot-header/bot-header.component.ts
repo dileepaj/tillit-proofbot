@@ -22,6 +22,8 @@ export class BotHeaderComponent implements OnInit {
   @Output() setSpeedFn = new EventEmitter();
   @Output() theaterModeFn = new EventEmitter();
   @Output() resizeVerifyScreenFn = new EventEmitter();
+  @Input() proof1: string;
+  @Input() proof2: string;
 
   constructor() {}
 
@@ -53,5 +55,26 @@ export class BotHeaderComponent implements OnInit {
 
   emitResizeVerifyScreenFn() {
     this.resizeVerifyScreenFn.emit("");
+  }
+
+  getProofName(proof) : string{
+    let proofName = ""
+    switch (proof) {
+      case "poe":
+        proofName = "Proof of Existence"
+        break;
+      case "pog":
+        proofName = "Proof of Genesis"
+        break;
+      case "poc":
+        proofName = "Proof of Continuity"
+        break;
+      case "pobl":
+        proofName = "Proof of Back-links"
+        break;
+      default:
+        break;
+    }
+  return proofName
   }
 }

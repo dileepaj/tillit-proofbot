@@ -17,7 +17,6 @@ import { SiteScreenComponent } from "./features/proof-verification/components/si
 import { ProofBotComponent } from "./features/proof-verification/proof-bot/proof-bot.component";
 import { VerificationScreenComponent } from "./features/proof-verification/verification-screen/verification-screen.component";
 import { GlobalStorageComponent } from "./features/proof-verification/components/global-storage/global-storage.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 import { ElementDividerComponent } from "./features/proof-verification/components/element-divider/element-divider.component";
 import { BotHeaderComponent } from './features/proof-verification/components/bot-header/bot-header.component';
@@ -28,6 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { PocGraphViewComponent } from './features/proof-verification/components/poc-graph-view/poc-graph-view.component';
 import { ProofbotMockComponent } from './features/proof-verification/proofbot-mock/proofbot-mock.component';
 import {MatGridListModule,} from '@angular/material';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ErrorModalComponent } from "./shared/components/error-modal/error-modal.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import {MatGridListModule,} from '@angular/material';
     BotSegmentsComponent,
     PocGraphViewComponent,
     ProofbotMockComponent,
+    ErrorModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,6 @@ import {MatGridListModule,} from '@angular/material';
     ClipboardModule,
     CarouselModule,
     NgxPaginationModule,
-    NgbModule,
     NgxSkeletonLoaderModule.forRoot({
       animation: "pulse",
       loadingText: "This item is actually loading..."
@@ -70,9 +71,9 @@ import {MatGridListModule,} from '@angular/material';
       preventDuplicates: true,
     }),
     MatGridListModule,
-    
+    ModalModule.forRoot()
   ],
-  entryComponents: [SiteScreenComponent, ElementDividerComponent],
+  entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
