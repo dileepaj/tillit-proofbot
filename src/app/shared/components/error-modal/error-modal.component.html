@@ -1,17 +1,18 @@
 <div class="modal-lg">
-<div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-        <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
-</div>
-<div class="modal-body">
-    <h4>{{errorTitle}}</h4>
-    <h6>Error Code : {{m1}} </h6>
-    <p style="color:#CA180E; font-size: 12px;">{{m2}}</p>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-danger" (click)="bsModalRef.hide()">{{'Close'}}</button>
-    <button type="button" class="btn btn-outline-success" (click)="bsModalRef.hide();retryClick()">{{'Retry'}}</button>
-</div>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h4>{{errorTitle}}</h4>
+        <h6>Error Code : {{m1}} </h6>
+        <p style="color:#CA180E; font-size: 12px;">{{m2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="bsModalRef.hide()">{{'Close'}}</button>
+        <button type="button" class="btn btn-outline-success"
+            (click)="bsModalRef.hide();retryClick()">{{'Retry'}}</button>
+    </div>
 </div>

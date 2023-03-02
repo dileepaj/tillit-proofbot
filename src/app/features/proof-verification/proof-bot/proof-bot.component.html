@@ -1,96 +1,43 @@
 <div class="proofbot-main-view">
-  <div
-    id="proofContainer"
-    style="height: 100%; width: 100%; display: flex;
-    flex-direction: column;"
-    [ngStyle]="{
+  <div id="proofContainer" style="height: 100%; width: 100%; display: flex;
+    flex-direction: column;" [ngStyle]="{
       justifyContent: justifyContent,
       alignItems: alignItems
-    }"
-    [class]="isTheater ? 'p-3' : 'p-0'"
-  >
-    <app-bot-loader
-      [initialHeight]="initialHeight"
-      [initialWidth]="initialWidth"
-      [isLoading]="isLoading"
-      [color]="color"
-      [mode]="mode"
-      [value]="value"
-      (startDemoFn)="startDemoFn()"
-      id="proofDemoLoaderFrame"
-      *ngIf="!isStartDemo"
-      style="width: 100%;"
-      [ngStyle]="{
+    }" [class]="isTheater ? 'p-3' : 'p-0'">
+    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
+      [color]="color" [mode]="mode" [value]="value" (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame"
+      *ngIf="!isStartDemo" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
         maxWidth: initialWidth
-      }"
-    ></app-bot-loader>
+      }"></app-bot-loader>
 
-    <div
-    style="overflow-y: scroll;"
-      id="verificationScreen"
-      *ngIf="isStartDemo"
-      [@screenAnimationDemo]
-      [ngStyle]="{
+    <div style="overflow-y: scroll;" id="verificationScreen" *ngIf="isStartDemo" [@screenAnimationDemo] [ngStyle]="{
         height: vsHeightExpand ? maxHeight : minHeight,
         maxWidth: vsHeightExpand ? maxWidth : minWidth
-      }"
-    >
-      <app-bot-header
-        [lang]="lang"
-        [isPause]="isPause"
-        [ProofContainerTitle]="ProofContainerTitle"
-        [isPlayCompleted]="isPlayCompleted"
-        [currentStep]="currentStep"
-        [totalSteps]="totalSteps"
-        [playbackSpeed]="playbackSpeed"
-        [isTheater]="isTheater"
-        [vsHeightExpand]="vsHeightExpand"
-        (setLangFn)="setLangFn($event)"
-        (togglePlayPauseFn)="togglePlayPauseFn()"
-        (stopFn)="stopFn()"
-        (replayFn)="replayFn()"
-        (setSpeedFn)="setSpeed($event)"
-        (theaterModeFn)="theaterMode()"
-        (resizeVerifyScreenFn)="resizeVerifyScreen()"
-        [proof1]="proofType"
-      ></app-bot-header>
+      }">
+      <app-bot-header [lang]="lang" [isPause]="isPause" [ProofContainerTitle]="ProofContainerTitle"
+        [isPlayCompleted]="isPlayCompleted" [currentStep]="currentStep" [totalSteps]="totalSteps"
+        [playbackSpeed]="playbackSpeed" [isTheater]="isTheater" [vsHeightExpand]="vsHeightExpand"
+        (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()" (stopFn)="stopFn()"
+        (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
+        (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType"></app-bot-header>
 
-     
-   <div
-    *ngIf="isToast1"
-    class="toast-notification1 float-right px-2"
-    [@inOutAnimation]
-  >
-    <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
-      <img class="checked-small-img" src="../../../../assets/img/Vector.png">
-    </p>
-  </div>
+
+      <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
+        <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
+          <img class="checked-small-img" src="../../../../assets/img/Vector.png">
+        </p>
+      </div>
 
       <app-poc-graph-view class="m-2" [data]="nodes" *ngIf="proofType=='poc'"></app-poc-graph-view>
 
-      <app-bot-globaldata
-        id="globalInformation"
-        *ngIf="globalData.length > 0"
-        [@screenAnimation]
-        [ngStyle]="{
+      <app-bot-globaldata id="globalInformation" *ngIf="globalData.length > 0" [@screenAnimation] [ngStyle]="{
           height: gsHeightExpand ? '98vh' : '24vh'
-        }"
-        [globalData]="globalData"
-        [gsOverflowX]="gsOverflowX"
-        [lang]="lang"
-      ></app-bot-globaldata>
+        }" [globalData]="globalData" [gsOverflowX]="gsOverflowX" [lang]="lang"></app-bot-globaldata>
 
-      <app-bot-segments
-        id="steppersFrame"
-        [SegmentNumber]="SegmentNumber"
-        [icon]="icon"
-        [steppers]="steppers"
-        [subSteppers]="subSteppers"
-        [lang]="lang"
-        (backToStepFn)="backToStep($event)"
-        (backToActionFn)="backToAction($event)"
-      ></app-bot-segments>
+      <app-bot-segments id="steppersFrame" [SegmentNumber]="SegmentNumber" [icon]="icon" [steppers]="steppers"
+        [subSteppers]="subSteppers" [lang]="lang" (backToStepFn)="backToStep($event)"
+        (backToActionFn)="backToAction($event)"></app-bot-segments>
 
       <!-- description -->
       <div>
@@ -98,26 +45,20 @@
           <li class="m-0 p-0">
             <span style="font-size: 13px; font-weight: 500;">{{
               ActionDescription
-            }}</span>
+              }}</span>
           </li>
         </ul>
       </div>
       <!-- end description -->
 
       <!-- bot screen -->
-      <div
-        style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px;  
-        "
-      >
-        <div
-          *ngIf="isToast"
-          class="toast-notification float-right px-2"
-          [ngStyle]="{ top: toastTop, left: toastLeft }"
-          [@inOutAnimation]
-        >
+      <div style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px;  
+        ">
+        <div *ngIf="isToast" class="toast-notification float-right px-2" [ngStyle]="{ top: toastTop, left: toastLeft }"
+          [@inOutAnimation]>
           <p class="m-0">{{ toastMSG }}</p>
         </div>
- 
+
         <div class="spanner" [class.show]="isBackToStep">
           <div class="loader"></div>
         </div>
@@ -128,7 +69,6 @@
         </div>
       </div>
       <!-- end bot screen -->
-      
     </div>
   </div>
 

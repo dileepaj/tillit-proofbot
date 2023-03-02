@@ -5,18 +5,17 @@ import {
   ElementRef,
   OnInit,
   Renderer2,
-  ViewChild, 
+  ViewChild,
   Input
 } from "@angular/core";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { DomSanitizer } from "@angular/platform-browser";
 import { VerificationServiceService } from "../../../../services/verification-service.service";
 import Url from "url-parse";
-import { environment } from "src/environments/environment";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
 import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
- 
+
 @Component({
   selector: "app-site-screen",
   templateUrl: "./site-screen.component.html",
@@ -50,7 +49,7 @@ import { ErrorModalComponent } from "src/app/shared/components/error-modal/error
     ])
   ]
 })
-export class SiteScreenComponent implements OnInit {
+export class SiteScreenComponent {
   text: string = "";
   HTMLData: string = "";
   displayPageUrl: any = "Search or type a URL...";
@@ -65,9 +64,7 @@ export class SiteScreenComponent implements OnInit {
   isScrollToElement: boolean = true;
   isPointToElement: boolean = true;
   @Input() lang: string = "en";
-
   @ViewChild("iframe", { read: ElementRef, static: false }) iframe: ElementRef;
-
   constructor(
     private verificationHttpService: VerificationServiceService,
     private sanitizer: DomSanitizer,
@@ -77,17 +74,7 @@ export class SiteScreenComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private modalService: BsModalService
-  ) {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    // let scripts = this.iframe.nativeElement.getElementsByTagName("script");
-    // for (let script of scripts) {
-    //   eval(script.text);
-    // }
-    // // eval(scripts[0].text);
-  }
+  ) { }
 
   ngAfterContentChecked() {
     this.cdref.detectChanges();
@@ -104,9 +91,6 @@ export class SiteScreenComponent implements OnInit {
     left =
       this.elRef.nativeElement.offsetLeft - sFrame.getBoundingClientRect().left;
     left = el.offsetLeft;
-    // console.log(sFrame.scrollLeft, left, sFrame.clientLeft);
-    // if (sFrame.scrollLeft == 0 || sFrame.scrollLeft > left)
-    //   left -= sFrame.getBoundingClientRect().left;
     sFrame.scroll({
       top: 0,
       left: left,
@@ -128,8 +112,7 @@ export class SiteScreenComponent implements OnInit {
       var currentFrame = iframe.contentWindow;
       var selectorFrame = iframe.contentWindow.document
         .querySelectorAll(query)
-        [index].getBoundingClientRect();
-
+      [index].getBoundingClientRect();
       // scroll to the element in the query
       if (this.isScrollToElement) {
         await this.scrollIntoView();
@@ -141,41 +124,24 @@ export class SiteScreenComponent implements OnInit {
         });
         await this.sleepFor(400);
       }
-
       // scroll to the pointer
       if (this.isPointToElement) {
-        selectorFrame = iframe.contentWindow.document
-          .querySelectorAll(query)
-          [index].getBoundingClientRect();
-
-        const selectorHeightInFrame =
-          this.iframe.nativeElement.getBoundingClientRect().height -
-          selectorFrame.top;
-
-        const selectorWidthInFrame =
-          this.iframe.nativeElement.getBoundingClientRect().width -
-          selectorFrame.left;
-
+        selectorFrame = iframe.contentWindow.document.querySelectorAll(query)[index].getBoundingClientRect();
+        const selectorHeightInFrame = this.iframe.nativeElement.getBoundingClientRect().height - selectorFrame.top;
+        const selectorWidthInFrame = this.iframe.nativeElement.getBoundingClientRect().width - selectorFrame.left;
         var elWidth = selectorFrame.width;
         var elHeight = selectorFrame.height;
-
         // check if entire selected frame is visible on screen -> scroll to its center; else
         // check the height & width of the frame to the screen end -> scroll to their center
         if (selectorHeightInFrame < elHeight) elHeight = selectorHeightInFrame;
         if (selectorWidthInFrame < elWidth) elWidth = selectorWidthInFrame;
-
         const bodyFrameRect = iframe.contentWindow.document.body.getBoundingClientRect();
-        // const maxWidth = iframe.contentWindow.innerWidth;
-        // const maxHeight = iframe.contentWindow.innerHeight;
-        // elWidth = elWidth > maxWidth ? maxWidth : elWidth;
-        // elHeight = elHeight > maxHeight ? maxHeight : elHeight;
-
         this.scrollPointerIntoView(
           selectorFrame.x - bodyFrameRect.x + elWidth / 2 + "px",
           selectorFrame.y - bodyFrameRect.y + elHeight / 2 + "px"
         );
       } else this.scrollPointerIntoView("0", "-1000");
-    } catch (error) {}
+    } catch (error) { }
   }
 
   // scroll to a specific frameby id in global scope
@@ -222,8 +188,8 @@ export class SiteScreenComponent implements OnInit {
       this.displayPageUrl = pageUrl;
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
-          if(data==null){
-            this.openModal("No Content found","204",pageUrl)
+          if (data == null) {
+            this.openModal("No Content found", "204", pageUrl)
             return
           }
           try {
@@ -332,20 +298,20 @@ export class SiteScreenComponent implements OnInit {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            this.openModal("Check the internet connection","0",pageUrl)
+            this.openModal("Check the internet connection", "0", pageUrl)
             return
           }
         },
-        error =>{
-          if(error.status=="0"){
-            this.openModal("Check the internet connection",error.status,error.message)
+        error => {
+          if (error.status == "0") {
+            this.openModal("Check the internet connection", error.status, error.message)
             reject({ error, ref: this.iframe })
-          }else{
-            this.openModal("Check the internet connection",error.status==0?"Cannot load the external URL":error.message,error.message)
+          } else {
+            this.openModal("Check the internet connection", error.status == 0 ? "Cannot load the external URL" : error.message, error.message)
             reject({ error, ref: this.iframe })
           }
           return
-          }
+        }
       );
     });
   }
@@ -356,7 +322,6 @@ export class SiteScreenComponent implements OnInit {
     let doc = this.iframe.nativeElement.contentDocument;
     doc.open();
     this.HTMLData = html;
-
     var el = document.createElement("html");
     el.innerHTML = this.HTMLData;
     var existingValue = el
@@ -368,7 +333,6 @@ export class SiteScreenComponent implements OnInit {
       "style",
       existingValue ? existingValue + ";" + css : css
     );
-
     this.loadingComplete = true;
     doc.write(el.innerHTML);
     doc.close();
@@ -390,7 +354,7 @@ export class SiteScreenComponent implements OnInit {
   addPointerToPage() {
     try {
       document.querySelectorAll("#mousePointer")[0].remove();
-    } catch (error) {}
+    } catch (error) { }
     if (!this.pointerIcon)
       this.pointerIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" viewBox="0 0 48 48" fill="none">
       <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
@@ -419,7 +383,6 @@ export class SiteScreenComponent implements OnInit {
 
   setFrameTitle(title: string) {
     this.FrameTitle = title;
-    //console.log("title", this.FrameTitle);
   }
 
   // style an element
@@ -435,7 +398,7 @@ export class SiteScreenComponent implements OnInit {
     if (!document.querySelectorAll(selectQuery)[index]) return;
     const exsitingValue = document
       .querySelectorAll(selectQuery)
-      [index].getAttribute(attribute);
+    [index].getAttribute(attribute);
     if (autoScroll)
       await this.scrollToSelector(
         selectQuery,
@@ -448,36 +411,29 @@ export class SiteScreenComponent implements OnInit {
       case 0:
         document
           .querySelectorAll(selectQuery)
-          [index].setAttribute(attribute, value);
+        [index].setAttribute(attribute, value);
         break;
       // add to last
       case 1:
         document
           .querySelectorAll(selectQuery)
-          [index].setAttribute(
-            attribute,
-            exsitingValue ? exsitingValue + ";" + value : value
-          );
+        [index].setAttribute(
+          attribute,
+          exsitingValue ? exsitingValue + ";" + value : value
+        );
         break;
       // add to front
       case 2:
         document
           .querySelectorAll(selectQuery)
-          [index].setAttribute(
-            attribute,
-            value ? value + ";" + exsitingValue : exsitingValue
-          );
+        [index].setAttribute(
+          attribute,
+          value ? value + ";" + exsitingValue : exsitingValue
+        );
         break;
-
       default:
         break;
     }
-
-    // var doc = this.iframe.nativeElement.contentDocument;
-    // doc.open();
-    // doc.write(document.documentElement.innerHTML);
-    // doc.close();
-    // this.iframe.nativeElement.srcdoc = document.documentElement.innerHTML;
   }
 
   async styleText(
@@ -569,7 +525,7 @@ export class SiteScreenComponent implements OnInit {
     try {
       if (
         !this.iframe.nativeElement.contentDocument.body.querySelectorAll(query)[
-          index
+        index
         ]
       )
         return;
@@ -580,7 +536,6 @@ export class SiteScreenComponent implements OnInit {
       ][selector] = data;
       await this.sleepFor(600);
     } catch (error) {
-      //console.log(error);
     }
   }
 
@@ -684,22 +639,22 @@ export class SiteScreenComponent implements OnInit {
     await new Promise(resolveTime => setTimeout(resolveTime, time));
   }
 
-  openModal(errorTitle?,m1?,m2?){   
+  openModal(errorTitle?, m1?, m2?) {
     const initialState: ModalOptions = {
       initialState: {
-        retry:this.onRetry,
-        errorTitle:errorTitle || "",
+        retry: this.onRetry,
+        errorTitle: errorTitle || "",
         m1: m1 || "",
         m2: m2 || "",
         title: 'Error Message'
       }
     };
-    this.modalService.show(ErrorModalComponent,initialState);
+    this.modalService.show(ErrorModalComponent, initialState);
   }
 
-  onRetry(){
-  console.log('retry')
-  window.location.reload();
+  onRetry() {
+    console.log('retry')
+    window.location.reload();
   }
 
 }

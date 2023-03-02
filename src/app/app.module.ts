@@ -25,8 +25,7 @@ import { BotGlobaldataComponent } from './features/proof-verification/components
 import { BotSegmentsComponent } from './features/proof-verification/components/bot-segments/bot-segments.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PocGraphViewComponent } from './features/proof-verification/components/poc-graph-view/poc-graph-view.component';
-import { ProofbotMockComponent } from './features/proof-verification/proofbot-mock/proofbot-mock.component';
-import {MatGridListModule,} from '@angular/material';
+import { MatGridListModule, } from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorModalComponent } from "./shared/components/error-modal/error-modal.component";
 @NgModule({
@@ -46,7 +45,6 @@ import { ErrorModalComponent } from "./shared/components/error-modal/error-modal
     BotGlobaldataComponent,
     BotSegmentsComponent,
     PocGraphViewComponent,
-    ProofbotMockComponent,
     ErrorModalComponent,
   ],
   imports: [
@@ -76,4 +74,4 @@ import { ErrorModalComponent } from "./shared/components/error-modal/error-modal
   entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
