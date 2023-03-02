@@ -1,9 +1,9 @@
-<div id="globalStorageFrame">
+<div id="globalStorageFrame" style="font-family: Inter;">
   <div class="header" *ngIf="frameData.Title">
     <h6 class="text-nowrap">{{ frameData.Title ? frameData.Title : "Frame " + frameData.Id }}</h6>
   </div>
   <div class="data-table">
-    <table class="table table-borderless">
+    <table class="table table-borderless" style="font-family: Inter;">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -14,8 +14,8 @@
       <tbody>
         <tr *ngFor="let data of frameData.Data; let index = index">
           <th scope="row">{{ index + 1 }}</th>
-          <td class="text-nowrap">{{ data.Key[lang]}}</td>
-          <td class="text-nowrap">{{ data.Value}}</td>
+          <td class="text-nowrap" style="font-family: Inter;">{{ data.Key[lang]}}</td>
+          <td class="text-nowrap" style="font-family: Inter;">{{ data.Value}}</td>
         </tr>
       </tbody>
     </table>
