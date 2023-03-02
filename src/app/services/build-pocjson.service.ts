@@ -2145,12 +2145,12 @@ export class BuildPOCJsonService {
               }
             }
           ]
-          console.log('numpog star-->', numPog)
-          console.log('segpog start', segPog + 1)
+          console.log('num pog star-->', numPog)
+          console.log('seg pog start', segPog + 1)
           segPog = segPog + 8
-          numPog = numPog + 1
-          console.log('segpog end', segPog)
-          console.log('numpog end->', numPog)
+          numPog = numPog + 22
+          console.log('seg pog end', segPog)
+          console.log('num pog end->', numPog)
           this.pocProofJson.Steps.push(...pogSteps)
           this.pocProofJson.Header.Segments.push(...pogSegments)
           this.pocLangJson.Actions.push(...pogLang)
@@ -4389,17 +4389,17 @@ export class BuildPOCJsonService {
           this.pocProofJson.Steps.push(...poeSteps)
           this.pocLangJson.Actions.push(...poeLang)
 
-          console.log('segpoe stat->', segPoe + 1)
-          console.log('numpoe star-->', numPoe + 1)
+          console.log('seg poe stat->', segPoe + 1)
+          console.log('num poe star-->', numPoe + 1)
 
           segPoe = segPoe + 6
           numPoe = numPoe + 26
 
-          console.log('segpoe end->', segPoe)
-          console.log('numpoe end-->', numPoe)
+          console.log('seg poe end->', segPoe)
+          console.log('num poe end-->', numPoe)
           break;
 
-        case "pobl":
+        case "pobl12":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
           let numPobl = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
           let poblSegments = [
@@ -5356,7 +5356,7 @@ export class BuildPOCJsonService {
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
                     "StepNo": numPobl + 16,
-                    "SegmentNo": segPobl + 6,
+                    "SegmentNo": segPobl + 5,
                     "FrameID": 1,
                     "FrameTitle": "",
                     "ActionTitle": "&{Text76}",
@@ -7562,14 +7562,14 @@ export class BuildPOCJsonService {
           this.pocProofJson.Steps.push(...poblSteps)
           this.pocLangJson.Actions.push(...poblLang)
 
-          console.log('segpoe stat->', segPobl + 1)
+          console.log('segpobl stat->', segPobl + 1)
           console.log('numPobl star-->', numPobl + 1)
 
           segPobl = segPobl + 14
           numPobl = numPobl + 35
 
-          console.log('segpoe end->', segPobl)
-          console.log('numpoe end-->', numPobl)
+          console.log('segpobl end->', segPobl)
+          console.log('numpobl end-->', numPobl)
 
           break;
         default:
