@@ -29,16 +29,11 @@ import { Logs } from "selenium-webdriver";
 import { VerificationServiceService } from "src/app/services/verification-service.service";
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr'
-import { ApiService } from "src/app/services/api.service";
-import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
-import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
-import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
-
 
 @Component({
-  selector: "proof-bot",
-  templateUrl: "./proof-bot.component.html",
-  styleUrls: ["./proof-bot.component.css"],
+  selector: 'app-proofbot-mock',
+  templateUrl: './proofbot-mock.component.html',
+  styleUrls: ['./proofbot-mock.component.css'],
   animations: [
     trigger("screenAnimation", [
       transition(":enter", [
@@ -64,7 +59,7 @@ import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
     ])
   ]
 })
-export class ProofBotComponent implements OnInit {
+export class ProofbotMockComponent implements OnInit {
   StorageTitle: string = "Storage Container";
   ProofContainerTitle: string = "Proof Container";
   @Input() initialWidth: string = "100%";
@@ -128,42 +123,37 @@ export class ProofBotComponent implements OnInit {
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
   errorOccurred:boolean =false
-  nodes:any;
-  POCJSON:any
+  @Input() txn:string=""
+  @Input() txn2:string=""
+  @Input() type:string=""
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private verificationHttpService: VerificationServiceService,
     private router: Router,
-    private toastr: ToastrService,
-    private apiService: ApiService,
-    private pocJsonService: BuildPOCJsonService,
-    private modalService: BsModalService
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
-      this.route.queryParamMap.subscribe(params => {
-        if (!params.get("txn") || !params.get("type")){
-          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
+        if (!this.txn || !this.type){
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
           return
-        }else if(!this.availableProofs.includes(params.get("type"))){
-          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
+        }else if(!this.availableProofs.includes(this.type)){
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
           return
-        }else if(params.get("type")=='pobl' && !params.get("txn2")){
-          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
+        }else if(this.type=='pobl' && !this.txn2){
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:environment.blockchain.domailUrl+this.router.url}})
           return
         }else{
         }
-
         this.proofBotParams = {
           params: {
-            txn: params.get("txn"),
-            type: params.get("type"),
-            txn2: params.get("txn2")
+            txn: this.txn,
+            type: this.type,
+            txn2: this.txn2
           }
         };
-      });
     this.proofType = this.proofBotParams.params.type;
   }
 
@@ -178,9 +168,10 @@ export class ProofBotComponent implements OnInit {
       async data => {
         try {
           if (!data) {
-            this.openModal("Invalid URL","204")
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"204"}})
             return 
           } else {
+            let proof = JSON.parse(data)
             if (!!this.proofBotParams.params.type) {
               this.TXNhash = this.proofBotParams.params.txn;
               this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
@@ -188,32 +179,23 @@ export class ProofBotComponent implements OnInit {
               // backend call
               await new Promise(resolveTime => setTimeout(resolveTime, 4200));
               // start demo (not -verifing)
-              if (this.proofType=="poc"){
-                  let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
-                  this.apiService.getData(url).subscribe((data) => {
-                    this.nodes=data
-                    this.initiateProofDemo();
-                   }, (err)=> {
-                    this.openModal("Invalid URL",err.status,err.message)
-                  })
-              }else
               this.initiateProofDemo();
             } else
             // invalid URL
               return
             }
           } catch (error) {
-            this.openModal("Invalid URL","404",error.message)
+            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Invalid URL",m1:"404",m2:error.message}})
           }
         },
         error => {
-          this.openModal(error.status==0?"Check the Internet Connection": "Invalid URL",error.status,error.message)
+          this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true,  queryParams:{type:"error",t:error.status==0?"Check the Internet Connection": "Invalid URL",m1:error.status,m2:error.message}})
         }
         );
       }
 
   async initiateProofDemo() {
-    const { protocolJson, langJson } = await this.getProtocolJSON();
+    const { protocolJson, langJson } = this.getProtocolJSON();
     this.proofJSON = protocolJson;
     // handle lang
     if (langJson) this.handleLangJson(langJson);
@@ -252,7 +234,7 @@ export class ProofBotComponent implements OnInit {
     this.playProofDemo(0);
   }
 
-  async getProtocolJSON() {
+  getProtocolJSON() {
     var protocolJson: any;
     var langJson: any;
     switch (this.proofType) {
@@ -269,19 +251,13 @@ export class ProofBotComponent implements OnInit {
         langJson = POELangJSON;
         break;
       case "poc":
-        let poc = await this.pocJsonService.buildPOCJson(this.nodes)
-        console.log('protocolJsonssssssssssssssssssssssssssssssssssssssssssssssssssssss  ', poc)
-        protocolJson = poc.pocProofJson;
-        langJson = poc.pocLangJson;
-        console.log('protocolJson  ', poc)
+        protocolJson = POCJSON;
+        langJson = POCLangJSON;
         break;
       default:
         break;
     }
-    if (this.proofType == "poc")
-      return { protocolJson: protocolJson, langJson: langJson }
-    else
-      return { protocolJson: protocolJson.default, langJson: langJson.default };
+    return { protocolJson: protocolJson.default, langJson: langJson.default };
   }
 
   handleLangJson(langJson: any) {
@@ -604,7 +580,7 @@ export class ProofBotComponent implements OnInit {
         this.playProofDemo();
       }
     }
-   this.playProofDemo();
+    if (this.isPlayCompleted) this.playProofDemo();
   }
 
   // controllers for steppers
@@ -747,7 +723,6 @@ export class ProofBotComponent implements OnInit {
         ActionTitle,
         ActionDescription,
         ActionType,
-        Summary,
         ActionParameters
       } = Action;
       // console.log(action.Id, this.demoScreenChildRefs);
@@ -815,9 +790,55 @@ export class ProofBotComponent implements OnInit {
           break;
         case "FormatMetaData":
           this.handleVariableFormat(stepData,currentBrowserScreen);
-          break;         
-        default:
           break;
+          // case "LoadProof":
+          //   // await this.closeSteppers();
+          //   currentBrowserScreen=ActionParameters.ExternalURL
+          //   var scRef: ComponentRef<SiteScreenComponent>;
+          //   if (this.demoScreenChildRefs[frameID])
+          //     scRef = this.demoScreenChildRefs[frameID].ref;
+          //   else {
+          //     scRef = await this.createFrameInProofDemo(stepData);
+          //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          //   }
+          //   this.setGlobalValuesOnFrames(Header, stepData);
+          //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          //   await scRef.instance.loadProof("6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe",ActionParameters.FrameType)
+          //   break;
+          // case "LoadGraphView":
+          //   // await this.closeSteppers();
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   currentBrowserScreen=ActionParameters.ExternalURL
+          //   var scRef: ComponentRef<SiteScreenComponent>;
+          //   if (this.demoScreenChildRefs[frameID])
+          //     scRef = this.demoScreenChildRefs[frameID].ref;
+          //   else {
+          //     scRef = await this.createFrameInProofDemo(stepData);
+          //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          //   }
+          //   this.setGlobalValuesOnFrames(Header, stepData);
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          //   await scRef.instance.loadGraph(ActionParameters.ExternalURL,ActionParameters.FrameType);
+          //   break;
+          // case "LoadProofAndGraphView":
+          //   // await this.closeSteppers();
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   currentBrowserScreen=ActionParameters.ExternalURL
+          //   var scRef: ComponentRef<SiteScreenComponent>;
+          //   if (this.demoScreenChildRefs[frameID])
+          //     scRef = this.demoScreenChildRefs[frameID].ref;
+          //   else {
+          //     scRef = await this.createFrameInProofDemo(stepData);
+          //     scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          //   }
+          //   this.setGlobalValuesOnFrames(Header, stepData);
+          //   console.log('first', ActionParameters.ExternalURL,ActionParameters.FrameType)
+          //   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+          //   await scRef.instance.loadGraphAndProof(ActionParameters.ExternalURL,"6f59ff6ce04363b36f36bfc8265df00073987584497645d24778b91c278a5fd8","poe","PROOFGRAPH")
+          //   break;         
+          default:
+            break;
       }
 
       // this.isDisableGlobalInformationL = this.isDisableGlobalStorageScroll("L");
@@ -852,10 +873,9 @@ export class ProofBotComponent implements OnInit {
             (Customizations.ActionDuration
               ? Customizations.ActionDuration
               : 1)) /
-            this.playbackSpeed
+          this.playbackSpeed
         )
       );
-
       this.isToast = false;
       this.isToast1 = false;
 
@@ -989,7 +1009,6 @@ export class ProofBotComponent implements OnInit {
 
     const {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1056,7 +1075,6 @@ export class ProofBotComponent implements OnInit {
     //console.log("action2",Action);
     const {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1118,10 +1136,9 @@ export class ProofBotComponent implements OnInit {
       ActionResultVariable,
       MetaData
     } = Action;
-    
+    //console.log("action3",Action);
     let {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1190,7 +1207,6 @@ export class ProofBotComponent implements OnInit {
     //console.log("action4",Action);
     const {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1260,7 +1276,6 @@ export class ProofBotComponent implements OnInit {
     //console.log("action5",Action);
     const {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1327,7 +1342,6 @@ export class ProofBotComponent implements OnInit {
     //console.log("action6",Action);
     const {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1373,7 +1387,8 @@ export class ProofBotComponent implements OnInit {
         break;
       case "jsonKeyPicker":
         if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
-          this.toastr.error(`Cannot find given key from the URL`, currentUrl);
+          this.toastr.error(`Cannot find given key from the URL`, currentUrl);  
+          //this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"External URL issue",m1:`Can not find ${MetaData[1]} key from the URL`,m2:currentUrl}})
           break;
         }
         var result = this.jsonKeyPicker(val, MetaData[1], MetaData[2])[1];
@@ -1471,7 +1486,6 @@ export class ProofBotComponent implements OnInit {
     //console.log("action6",Action);
     const {
       ExternalURL,
-      FrameType,
       InnerHTML,
       Query,
       QueryIndex,
@@ -1509,6 +1523,8 @@ export class ProofBotComponent implements OnInit {
       GivenDataToStorageData,ActionResultVariable
     );
   }
+
+  
   
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[],givenDataToStorageData:DataKeys,actionVariable:string) {
     let Data=storageData
@@ -1518,9 +1534,9 @@ export class ProofBotComponent implements OnInit {
       // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
       Data[j].Value="TlVMTA=="
     }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
-      this.openModal("Proof of Existence Verification Failed","442",Data[j].Error)
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Proof of Existence Verification Failed",m1:"442",m2:Data[j].Error}})
     }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
-      this.openModal("Proof Verification Failed","442","Key Comparison error")
+      this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"Verification failed",m1:"442",m2:"Key Comparison error"}})
     }else{}
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
@@ -1656,6 +1672,11 @@ export class ProofBotComponent implements OnInit {
     return false;
   }
 
+  // to understand the process
+  verifyBackLinkVerify() {
+    return {};
+  }
+
   public verificationStatus(compare:any):boolean{
     let status=true
     switch (this.proofType) {
@@ -1683,27 +1704,10 @@ export class ProofBotComponent implements OnInit {
     }
     return status
   }
-
-  openModal(errorTitle?,m1?,m2?){
-    this.togglePlayPauseFn()
-    const initialState: ModalOptions = {
-      initialState: {
-        retry:this.onRetry,
-        errorTitle:errorTitle || "",
-        m1: m1 || "",
-        m2: m2 || "",
-        title: 'Error Message'
-      }
-    };
-    this.modalService.show(ErrorModalComponent,initialState);
-  }
-
-  onRetry(){
-  console.log('retry')
-  window.location.reload();
-  }
-
 }
+
+
+
 
 type DataKeys={
   Key:Object,

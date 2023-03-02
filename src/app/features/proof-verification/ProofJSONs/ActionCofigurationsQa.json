@@ -992,5 +992,173 @@
           }
         }
       ]
+    },
+    "LoadTheTillitPOCView":{
+      "Title": "LoadTheTillitPOCView",
+      "Description": "",
+      "Parameters":{
+        "StepNo": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "SegmentNo": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "FrameID": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "FrameTitle": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        },
+        "TXNHash": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        }
+      },
+      "Actions": [
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle}",
+            "ActionDescription": "#{ActionDescription}",
+            "ActionType": "BrowserScreen",
+            "ActionParameters": {
+              "ExternalURL": "http://localhost:4200/poc/29acb9764b38fdf1ebe32bb29852864ccf9219b1a1b271eb9e435d91efa7ca6b",
+              "InnerHTML": "",
+              "Query": "",
+              "QueryIndex": "",
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 1000
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_1}",
+            "ActionDescription": "#{ActionDescription_1}",
+            "ActionType": "BrowserScreen",
+            "ActionParameters": {
+              "ExternalURL": "https://qa.gateway.tracified.com/pocv4/#{TXNHash}",
+              "InnerHTML": "",
+              "Query": "",
+              "QueryIndex": "",
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 100
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_2}",
+            "ActionDescription": "#{ActionDescription_2}",
+            "ActionType": "GetElementAttributeData",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "InnerHTML": "",
+              "Query": "body",
+              "QueryIndex": 0,
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "innerText",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "#{ResponseVariable}",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": null,
+            "ActionDuration": 2
+          }
+        }
+      ]
     }
   }

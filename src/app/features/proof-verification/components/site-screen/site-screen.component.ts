@@ -14,6 +14,8 @@ import Url from "url-parse";
 import { environment } from "src/environments/environment";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
+import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
  
 @Component({
   selector: "app-site-screen",
@@ -73,7 +75,8 @@ export class SiteScreenComponent implements OnInit {
     private cdref: ChangeDetectorRef,
     private elRef: ElementRef,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {}
@@ -220,7 +223,7 @@ export class SiteScreenComponent implements OnInit {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if(data==null){
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"empty",t:"No Content found",m1:"204", m2:pageUrl}})
+            this.openModal("No Content found","204",pageUrl)
             return
           }
           try {
@@ -329,20 +332,20 @@ export class SiteScreenComponent implements OnInit {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"Check the internet connection",t:"Check the internet connection",m1:"0", m2:pageUrl}})
+            this.openModal("Check the internet connection","0",pageUrl)
             return
           }
         },
         error =>{
           if(error.status=="0"){
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:"Check the internet connection",m1:error.status,m2:error.message}})
-            return
+            this.openModal("Check the internet connection",error.status,error.message)
+            reject({ error, ref: this.iframe })
           }else{
-            resolve({ error, ref: this.iframe })}
-            this.router.navigate(['error/:type/:t/:m1/:m2'],{skipLocationChange:true, queryParams:{type:"error",t:error.status==0?"Check the internet connection":error.message,m1:error.status,m2:error.message}})
-            return
+            this.openModal("Check the internet connection",error.status==0?"Cannot load the external URL":error.message,error.message)
+            reject({ error, ref: this.iframe })
           }
-
+          return
+          }
       );
     });
   }
@@ -680,4 +683,23 @@ export class SiteScreenComponent implements OnInit {
   async sleepFor(time: number) {
     await new Promise(resolveTime => setTimeout(resolveTime, time));
   }
+
+  openModal(errorTitle?,m1?,m2?){   
+    const initialState: ModalOptions = {
+      initialState: {
+        retry:this.onRetry,
+        errorTitle:errorTitle || "",
+        m1: m1 || "",
+        m2: m2 || "",
+        title: 'Error Message'
+      }
+    };
+    this.modalService.show(ErrorModalComponent,initialState);
+  }
+
+  onRetry(){
+  console.log('retry')
+  window.location.reload();
+  }
+
 }

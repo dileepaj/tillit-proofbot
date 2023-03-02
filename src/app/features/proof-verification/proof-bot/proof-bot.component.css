@@ -2,10 +2,7 @@
   height: 100%;
   width: 100%; 
 }
-.proofbot-main-view{
-  height: 100%;
-  width: 100%;
-}
+
   /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 1280px) {
   .proofbot-main-view{
