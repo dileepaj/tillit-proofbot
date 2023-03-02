@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row" >
+    <div class="col-12">
+      <div class="container">
+        <div class="d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" style="height: 280px;">
+          <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
+          </mat-spinner>
+        </div>
+        <div [style.opacity]="loadingComplete ? '1' : '0'" [style.height.px]="loadingComplete ? '150' : '0'" id="body" style="width: 100% !important;  border:2px solid #000;  overflow: scroll !important;" class="px-5 py-4 bg-white d-flex align-items-center" >
+          <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
+            <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
+              <g id="pocTree"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
