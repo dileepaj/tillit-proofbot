@@ -33,6 +33,7 @@ import { ApiService } from "src/app/services/api.service";
 import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
 import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
 import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
+import { PocGraphViewComponent } from "../components/poc-graph-view/poc-graph-view.component";
 
 
 @Component({
@@ -737,6 +738,9 @@ export class ProofBotComponent implements OnInit {
     // console.log(this.currentStep);
     let currentBrowserScreen="";
 
+    //change the all nodes opacity
+    this.changeNodesOpacity("0.35")
+
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -750,6 +754,7 @@ export class ProofBotComponent implements OnInit {
         Summary,
         ActionParameters
       } = Action;
+
       // console.log(action.Id, this.demoScreenChildRefs);
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
@@ -1701,6 +1706,23 @@ export class ProofBotComponent implements OnInit {
   onRetry(){
   console.log('retry')
   window.location.reload();
+  }
+
+  changeNodesOpacity(opacity:string){
+    if (this.proofType=='poc'){
+    let nodes =document.getElementsByClassName('node') 
+    Array.from(nodes).forEach((node:any) => {
+      node.style=`opacity:${opacity};`
+   })}
+  }
+
+  changeSpecificNodeOpacity(hash:string){
+    if (this.proofType=='poc'){
+      let id= `node-${hash}`
+      let node:any =document.getElementById(id)
+      console.log(id,'           nodetestqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq   ', node)
+      node.style="opacity:1;"
+    }
   }
 
 }

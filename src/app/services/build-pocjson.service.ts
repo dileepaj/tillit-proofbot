@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { ApiService } from './api.service';
+import { ComponentRef, Injectable } from '@angular/core';
+import { PocGraphViewComponent } from '../features/proof-verification/components/poc-graph-view/poc-graph-view.component';
 
 @Injectable({
   providedIn: 'root'
@@ -228,7 +226,7 @@ export class BuildPOCJsonService {
   }
 
   orderedNodes = []; // Initialize an empty array to hold the matching LastTxnHash values
-  constructor(private apiService: ApiService) { }
+  constructor() { }
 
   async buildPOCJson(data: any): Promise<any> {
     let pocArray = await this.createPOCOrder(data)
@@ -241,6 +239,7 @@ export class BuildPOCJsonService {
 
   async loopTheNodes(pocArray): Promise<any> {
     pocArray.forEach(node => {
+
       switch (node.Data.TxnType) {
         case "0":
           let segPog = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -335,7 +334,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
-                    "JSONResultVariable": "MainTXNData"
+                    "JSONResultVariable": "MainTXNData",
+                    "StartedProofType":"POG",
+                    "TrustLinks": [node.TrustLinks[0]],
                   }
                 },
                 "ActionResultVariable": "",
@@ -2240,7 +2241,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "&{Text1}",
                     "ResponseVariable": "MainTDPDataString",
-                    "JSONResultVariable": "MainTDPData"
+                    "JSONResultVariable": "MainTDPData",
+                    "StartedProofType":"POE",
+                    "TrustLinks": [node.TrustLinks[0]],
                   }
                 },
                 "ActionResultVariable": "",
@@ -4521,7 +4524,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
-                    "JSONResultVariable": "MainTXNData"
+                    "JSONResultVariable": "MainTXNData",
+                    "StartedProofType":"POBL",
+                    "TrustLinks":[node.TrustLinks[0], node.TrustLinks[1]],
                   }
                 },
                 "ActionResultVariable": "",
