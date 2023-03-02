@@ -4399,7 +4399,7 @@ export class BuildPOCJsonService {
           console.log('num poe end-->', numPoe)
           break;
 
-        case "pobl12":
+        case "pobl":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
           let numPobl = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
           let poblSegments = [
@@ -6486,7 +6486,6 @@ export class BuildPOCJsonService {
             }
           ]
           let poblLang = [
-            ,
             {
               "SegmentNo": segPobl + 1,
               "StepNo": numPobl + 1,
