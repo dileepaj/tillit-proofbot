@@ -7,19 +7,9 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./verification-screen.component.css"]
 })
 export class VerificationScreenComponent implements OnInit {
-  // isTheater: boolean = false;
-  // routerParams: any = {};
-  // proofType: string = "";
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.route.queryParamMap.subscribe(params => {
-    //   this.routerParams = { ...params.keys, ...params };
-    // });
-    // if (this.routerParams && this.routerParams.params) {
-    // this.isTheater = this.routerParams.params.theater;
-    //   this.proofType = this.routerParams.params.type;
-    // }
   }
 }

@@ -1,6 +1,3 @@
 <div id="gsFrames" [style.overflow-x]="gsOverflowX" style="height: 100%;">
-  <proof-global-storage
-    *ngFor="let data of globalData"
-    [frameData]="data"
-  ></proof-global-storage>
+  <proof-global-storage *ngFor="let data of globalData" [frameData]="data"></proof-global-storage>
 </div>

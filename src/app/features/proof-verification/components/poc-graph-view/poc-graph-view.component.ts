@@ -110,8 +110,8 @@ export class PocGraphViewComponent implements OnInit {
         g.setNode(node.Data.TxnHash, {
             label: node.Data.Identifier,
             shape: 'rect',
-            id:`node-${node.Data.TxnHash}-${sColor}`,
-            style: `stroke: black; stroke-width: 1px; fill: ${sColor}`,
+            id:`node-${node.Data.TxnHash}`,
+            style: `stroke: black; stroke-width: 1px; fill: ${sColor};`,
             labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer;`,
         });
     }
@@ -251,22 +251,6 @@ export class PocGraphViewComponent implements OnInit {
 
     let val = '"id":"' + data[index].Txnhash + '",' + '"children":[{' + str + '}]';
     return val;
-  }
-
-  ngAfterViewInit() {
-    window.addEventListener('message', this.handleMessage);
-  }
-
-  handleMessage = (event) => {
-    if (event.data === 'clickButton') {
-      alert("hi message")
-      let button = document.getElementById('bps-poe');
-      button.click();
-    }
-  };
-
-  ngOnDestroy() {
-    window.removeEventListener('message', this.handleMessage);
   }
   
 }

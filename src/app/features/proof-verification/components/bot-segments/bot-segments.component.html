@@ -3,7 +3,7 @@
   <div
     id="segments"
     class="bs-stepper my-2"
-    style="height: auto; width: 100%; display: flex; flex-direction: column; overflow: hidden; "
+    style="height: auto; width: 100%; display: flex; flex-direction: column; overflow: hidden; font-family: Inter;"
   >
     <div>
       <!-- <h6 style="font-size: 13px; padding-left: 18px; margin-top: 14px;">
@@ -27,10 +27,10 @@
               <span class="bs-stepper-circle cs-stepper-circle">{{
                 stepper.NO
               }}</span>
-              <span class="bs-stepper-label cs-stepper-label">{{
+              <span class="bs-stepper-label cs-stepper-label" style="font-family: Inter;">{{
                 stepper.Name[lang]
               }}</span>
-              <span class="bs-stepper-label cs-stepper-label segment-source" style="margin:0px;" *ngIf="stepper.Source.length">
+              <span class="bs-stepper-label cs-stepper-label segment-source" style="margin:0px; font-family: Inter;" *ngIf="stepper.Source.length">
                 <img class="source" src={{stepper.Source}}>
               </span>
              </div>
@@ -47,7 +47,7 @@
   <div
     id="subSteppers"
     class="bs-stepper"
-    style="height: auto; width: 100%; display: flex; flex-direction: column; overflow: hidden;"
+    style="height: auto; width: 100%; display: flex; flex-direction: column; overflow: hidden; font-family: Inter;"
   >
     <div>
       <!-- <h6 style="font-size: 13px; padding-left: 18px; margin-top: 14px;">
@@ -69,14 +69,14 @@
                 role="tab"
                 (click)="emitBackToActionFn(subStepper.ActionID)"
               >
-                <span class="bs-stepper-circle cs-stepper-circle"
+                <span class="bs-stepper-circle cs-stepper-circle" style="font-family: Inter;"
                   >{{ SegmentNumber }}.{{ index + 1 }}</span
                 >
                 <span class="bs-stepper-label cs-stepper-label">{{
                   subStepper.ActionName[lang]
                 }}
                 </span>
-                <span class="bs-stepper-label cs-stepper-label segment-source-sub" style="margin:0px;" *ngIf="subStepper.icon.length">
+                <span class="bs-stepper-label cs-stepper-label segment-source-sub" style="margin:0px; font-family: Inter;" *ngIf="subStepper.icon.length">
                   <img class="source" src={{subStepper.icon}}></span>
               
               </div>

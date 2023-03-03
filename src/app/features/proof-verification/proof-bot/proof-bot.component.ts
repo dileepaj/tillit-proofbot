@@ -16,16 +16,12 @@ import { SiteScreenComponent } from "../components/site-screen/site-screen.compo
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
-import * as POCJSON from "../ProofJSONs/POC.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json";
-import * as POCLangJSON from "../ProofJSONs/POC_lang.json"
-import * as ActionConfigurations from "../ProofJSONs/ActionConfigurations.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
 import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
 import * as ActionConfigurationsProduction from "../ProofJSONs/ActionCofigurationsProduction.json";
-import { Logs } from "selenium-webdriver";
 import { VerificationServiceService } from "src/app/services/verification-service.service";
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr'
@@ -33,8 +29,7 @@ import { ApiService } from "src/app/services/api.service";
 import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
 import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
 import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
-
-
+import { DataKeys } from "src/app/shared/models/commonTypes";
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -121,15 +116,16 @@ export class ProofBotComponent implements OnInit {
   icon: string;
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe", "pog","pobl","poc"];
+  availableProofs: any[] = ["poe", "pog", "pobl", "poc"];
   proofType: string;
   lang: string = "en";
   Name: string = "";
   @ViewChild("ProofDemoDirective", { read: ViewContainerRef, static: false })
   proofDemoRef: ViewContainerRef;
-  errorOccurred:boolean =false
-  nodes:any;
-  POCJSON:any
+  errorOccurred: boolean = false
+  nodes: any;
+  POCJSON: any
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -140,113 +136,94 @@ export class ProofBotComponent implements OnInit {
     private apiService: ApiService,
     private pocJsonService: BuildPOCJsonService,
     private modalService: BsModalService
-  ) {}
+  ) { }
 
   ngOnInit() {
-      this.route.queryParamMap.subscribe(params => {
-        if (!params.get("txn") || !params.get("type")){
-          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
-          return
-        }else if(!this.availableProofs.includes(params.get("type"))){
-          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
-          return
-        }else if(params.get("type")=='pobl' && !params.get("txn2")){
-          this.openModal("Invalid URL","404",environment.blockchain.domailUrl+this.router.url)
-          return
-        }else{
+    this.route.queryParamMap.subscribe(params => {
+      if (!params.get("txn") || !params.get("type")) {
+        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        return
+      } else if (!this.availableProofs.includes(params.get("type"))) {
+        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        return
+      } else if (params.get("type") == 'pobl' && !params.get("txn2")) {
+        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        return
+      } else {
+      }
+      this.proofBotParams = {
+        params: {
+          txn: params.get("txn"),
+          type: params.get("type"),
+          txn2: params.get("txn2")
         }
-
-        this.proofBotParams = {
-          params: {
-            txn: params.get("txn"),
-            type: params.get("type"),
-            txn2: params.get("txn2")
-          }
-        };
-      });
+      };
+    });
     this.proofType = this.proofBotParams.params.type;
   }
 
   async ngAfterViewInit() {
-    // this.scrollToFrameById('proofContainer');
     this.cdr.detectChanges();
   }
 
   async startDemoFn() {
-    if(!!this.proofType && this.availableProofs.includes(this.proofType))
-    this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
-      async data => {
-        try {
-          if (!data) {
-            this.openModal("Invalid URL","204")
-            return 
-          } else {
-            if (!!this.proofBotParams.params.type) {
-              this.TXNhash = this.proofBotParams.params.txn;
-              this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
-              this.isLoading = true;
-              // backend call
-              await new Promise(resolveTime => setTimeout(resolveTime, 4200));
-              // start demo (not -verifing)
-              if (this.proofType=="poc"){
-                  let url= environment.blockchain.getPocTreeData + "/" +  this.proofBotParams.params.txn
-                  this.apiService.getData(url).subscribe((data) => {
-                    this.nodes=data
-                    this.initiateProofDemo();
-                   }, (err)=> {
-                    this.openModal("Invalid URL",err.status,err.message)
-                  })
-              }else
-              this.initiateProofDemo();
-            } else
-            // invalid URL
+    if (!!this.proofType && this.availableProofs.includes(this.proofType))
+      this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
+        async data => {
+          try {
+            if (!data) {
+              this.openModal("Invalid URL", "204")
               return
+            } else {
+              if (!!this.proofBotParams.params.type) {
+                this.TXNhash = this.proofBotParams.params.txn;
+                this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+                this.isLoading = true;
+                // backend call
+                await new Promise(resolveTime => setTimeout(resolveTime, 4200));
+                // start demo (not -verifing)
+                if (this.proofType == "poc") {
+                  let url = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
+                  this.apiService.getData(url).subscribe((data) => {
+                    this.nodes = data
+                    this.initiateProofDemo();
+                  }, (err) => {
+                    this.openModal("Invalid URL", err.status, err.message)
+                  })
+                } else
+                  this.initiateProofDemo();
+              } else
+                // invalid URL
+                return
             }
           } catch (error) {
-            this.openModal("Invalid URL","404",error.message)
+            this.openModal("Invalid URL", "404", error.message)
           }
         },
         error => {
-          this.openModal(error.status==0?"Check the Internet Connection": "Invalid URL",error.status,error.message)
+          this.openModal("Check the Internet Connection", error.status, error.message)
         }
-        );
-      }
+      );
+  }
 
   async initiateProofDemo() {
     const { protocolJson, langJson } = await this.getProtocolJSON();
     this.proofJSON = protocolJson;
     // handle lang
     if (langJson) this.handleLangJson(langJson);
-
     this.ActionConfigurations = this.getActionConfigurations();
-
     // handleMultiStepAction
     this.handleMultiStepActions();
-
-    //console.log('langJson', langJson);
-    // if verification success
-    //console.log("json------", this.proofJSON);
-
-
     const { Header } = this.proofJSON;
     this.StorageTitle = Header.StorageTitle;
     this.ProofContainerTitle = Header.ProofContainerTitle;
-
     this.steppers = this.filterSegmentsAndActions(Header.Segments);
-
-   // console.log('Steppers----', this.steppers);
-
-
-
     this.playbackSpeed = Header.PlaybackSpeed;
     this.gsHeightExpand = Header.GSHeightExpand;
     this.gsOverflowX = Header.GSOverflowX;
     if (Object.keys(Header).includes("VSHeightExpand"))
       this.vsHeightExpand = Header.VSHeightExpand;
     this.vsOverflowX = Header.VSOverflowX;
-
-    //console.log(this.steppers);
-
     await this.scrollToFrameById("proofHeaderTitle", 20);
     this.isStartDemo = true;
     this.playProofDemo(0);
@@ -270,10 +247,9 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
-        console.log('protocolJsonssssssssssssssssssssssssssssssssssssssssssssssssssssss  ', poc)
+        console.log('firstpocpocpoc ', poc)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
-        console.log('protocolJson  ', poc)
         break;
       default:
         break;
@@ -286,23 +262,15 @@ export class ProofBotComponent implements OnInit {
 
   handleLangJson(langJson: any) {
     let { Segments, Actions } = langJson;
-    //console.log('Sementics', Segments)
     var variables = Segments;
-
     for (let index = 0; index < Actions.length; index++) {
       const action = Actions[index];
-
-      //console.log("Action :",Actions[index]);
-
       variables = {
         ...variables,
         ...action.Languages
       };
     }
-
     this.proofJSON = this.parseLangData(this.proofJSON, variables);
-    //console.log(' this.proofJSONss', this.parseLangData(this.proofJSON, variables));
-    //console.log( this.proofJSON )
   }
 
   parseLangData(action: any, storedData: any = this.variableStorage): any {
@@ -310,9 +278,6 @@ export class ProofBotComponent implements OnInit {
     [...data.matchAll(/"\&{[^}]+}"|\&{[^}]+}/g)].forEach(a => {
       try {
         let key = a[0].match(/\&{([^}]+)}/g)[0].slice(2, -1);
-        // console.log('key', key);
-        // console.log('storedData',storedData);
-
         if (key && storedData) {
           var replaceValue = storedData[key];
           var valueType = typeof replaceValue;
@@ -326,31 +291,22 @@ export class ProofBotComponent implements OnInit {
             }
           } else if (valueType == "object")
             replaceValue = JSON.stringify(replaceValue);
-
           data = data.replace(a[0], replaceValue);
-          // console.log('replaceValue:', replaceValue);
-          // console.log('valueType:',valueType);
-          //console.log('data:',data);
         }
       } catch (error) { }
     });
-    //console.log('parseLangDataJSon: under me');
-    //console.log('parseLangDataJSon:', JSON.parse(data));
     return JSON.parse(data);
   }
 
   getActionConfigurations() {
     if (environment.blockchain.currentEnv == "PROD") {
       var actionConfigs: any = ActionConfigurationsProduction;
-      //console.log('ActionConfigs',actionConfigs);
       return actionConfigs.default;
     } else if (environment.blockchain.currentEnv == "STAGING") {
       var actionConfigs: any = ActionConfigurationsStaging;
-      //console.log('ActionConfigs',actionConfigs);
       return actionConfigs.default;
     } else {
       var actionConfigs: any = ActionConfigurationsQa;
-      //console.log('ActionConfigs',actionConfigs);
       return actionConfigs.default;
     }
   }
@@ -360,10 +316,6 @@ export class ProofBotComponent implements OnInit {
     var { Steps } = this.proofJSON;
     for (let index = 0; index < Steps.length; index++) {
       const step = Steps[index];
-      //console.log("step",step["Action"]);
-
-      //console.log(typeof step);
-
       if (step["Action"].ActionType == "MultiStepAction") {
         var subActions = this.ActionConfigurations[
           step["Action"].ActionParameters.ActionConfigurationID
@@ -387,9 +339,7 @@ export class ProofBotComponent implements OnInit {
 
   parseSubActionData(action: any, storedData: any = this.variableStorage): any {
     let data = JSON.stringify(action).toString();
-    // console.log("JSON.stringify(action).toString()",JSON.stringify(action).toString());
     [...data.matchAll(/"\#{[^}]+}"|\#{[^}]+}/g)].forEach(a => {
-      //console.log("a--",a);
       try {
         let key = a[0].match(/\#{([^}]+)}/g)[0].slice(2, -1);
         if (key && storedData) {
@@ -398,21 +348,16 @@ export class ProofBotComponent implements OnInit {
           if (valueType == "string" && a[0].match(/"\#{[^}]+}"/g)) {
             try {
               var result = JSON.stringify(replaceValue);
-              //console.log("result-------",result);
               replaceValue = result;
             } catch (error) {
               replaceValue = `"${replaceValue}"`;
             }
           } else if (valueType == "object")
             replaceValue = JSON.stringify(replaceValue);
-          //console.log("replaceValue------------------",replaceValue);
           data = data.replace(a[0], replaceValue);
-          // console.log("data.replace(a[0], replaceValue);---",data.replace(a[0], replaceValue));
         }
       } catch (error) { }
     });
-    //console.log('Data----',data);
-    //console.log('parseSubActionDataParseSubActionData', JSON.parse(data));
     return JSON.parse(data);
   }
 
@@ -431,20 +376,16 @@ export class ProofBotComponent implements OnInit {
               icon: Segment.Source
             });
           }
-
           return subActions;
         },
         []
       );
-
-      //console.log("segments and icons--", Segment.Source);
       return {
         ...Segment,
         SubActions
       };
     });
   }
-
 
   async scrollToFrameById(frameID: string, offset = 0) {
     const bodyRect: any = document.body.getBoundingClientRect();
@@ -462,10 +403,8 @@ export class ProofBotComponent implements OnInit {
   }
 
   // player controlls
-
   setLangFn(lang: string) {
     this.lang = lang;
-    //console.log("language",this.lang);
   }
 
   togglePlayPauseFn() {
@@ -483,34 +422,22 @@ export class ProofBotComponent implements OnInit {
     this.StorageTitle = "Storage";
     this.ProofContainerTitle = "Proof Container";
     this.currentStep = 0;
-    // this.lastCompletedStep= 0;
     this.totalSteps = 0;
     this.gsHeightExpand = false;
     this.vsHeightExpand = false;
-    // this.isStartDemo = false;
     this.isPause = false;
     this.isReplay = true;
     this.isLoading = false;
     this.isPlayCompleted = false;
-    // this.variableStorage= {};
-    // this.proofJSON = {};
     this.globalData = [];
     this.steppers = [];
     this.demoScreenChildRefs = {};
     this.ActionConfigurations = {};
-    // this.color = "primary";
-    // this.mode = "indeterminate";
-    // this.value = 10;
-    // this.gsOverflowX= "hidden";
-    // this.vsOverflowX= "hidden";
     this.ActionDescription = "";
-    // this.TXNhash= "";
     this.playbackSpeed = 1;
-    // this.proofBotParams = {};
     this.isDisableGlobalInformationL = true;
     this.isDisableGlobalInformationR = true;
     this.isBackToStep = false;
-
     this.proofDemoRef.clear();
     this.cdr.detectChanges();
     this.initiateProofDemo();
@@ -535,15 +462,8 @@ export class ProofBotComponent implements OnInit {
     this.globalData = [];
     this.steppers = [];
     this.demoScreenChildRefs = {};
-    // this.color = "primary";
-    // this.mode = "indeterminate";
-    // this.value = 10;
-    // this.gsOverflowX= "hidden";
-    // this.vsOverflowX= "hidden";
     this.ActionDescription = "";
-    // this.TXNhash= "";
     this.playbackSpeed = 1;
-    // this.proofBotParams = {};
     this.isDisableGlobalInformationL = true;
     this.isDisableGlobalInformationR = true;
     this.isBackToStep = false;
@@ -557,8 +477,7 @@ export class ProofBotComponent implements OnInit {
 
   theaterMode() {
     window.open(
-      `/proof-verification?type=${this.proofType}&txn=${this.TXNhash}${
-        this.TXNhash2 ? `&txn2=${this.TXNhash2}` : ""
+      `/proof-verification?type=${this.proofType}&txn=${this.TXNhash}${this.TXNhash2 ? `&txn2=${this.TXNhash2}` : ""
       }`
     );
   }
@@ -579,7 +498,6 @@ export class ProofBotComponent implements OnInit {
     var i: number = this.proofJSON.Steps.findIndex(
       (cur: any) => cur.Action._ID == actionID
     );
-    // console.log(this.isPlayCompleted, this.lastCompletedStep, i, this.lastCompletedStep >= i);
     if (this.lastCompletedStep >= i) {
       this.isBackToStep = true;
       this.currentStep = i;
@@ -595,7 +513,6 @@ export class ProofBotComponent implements OnInit {
     var i: number = this.proofJSON.Steps.findIndex(
       (cur: any) => cur.StepHeader.SegmentNo == stepNo
     );
-    // console.log(this.isPlayCompleted, this.lastCompletedStep, i, this.lastCompletedStep >= i);
     if (this.lastCompletedStep >= i) {
       this.isBackToStep = true;
       this.currentStep = i;
@@ -604,54 +521,51 @@ export class ProofBotComponent implements OnInit {
         this.playProofDemo();
       }
     }
-   this.playProofDemo();
+    this.playProofDemo();
   }
 
-  // controllers for steppers
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
     try {
-
-    document
-      .querySelectorAll("#steppersFrame")[0]
-      .classList.add("steppersShow");
-    const steppersFrame = document.querySelectorAll(
-      "#steppersFrame #segments #stepWrapper"
-    )[0];
-    const allSteps = document.querySelectorAll(
-      "#segments .bs-stepper-header.cs-stepper-header .step"
-    );
-    var allSegmentLines = document.querySelectorAll(
-      "#segments .bs-stepper-header.cs-stepper-header .line"
-    );
-    const el: any = allSteps[no - 1];
-    // allSteps[no - 1].scrollIntoView();
-    steppersFrame.scroll({
-      top:
-        el.offsetTop -
-        steppersFrame.getBoundingClientRect().height +
-        el.getBoundingClientRect().height,
-      left:
-        el.offsetLeft -
-        steppersFrame.getBoundingClientRect().width +
-        el.getBoundingClientRect().width,
-      behavior: "smooth"
-    });
-    el.classList.add("glow");
-    for (let i = 0; i < no - 1; i++) {
-      allSteps[i].classList.remove("glow");
-      allSteps[i].classList.add("success");
-      allSegmentLines[i].classList.add("bg-success");
-    }
-    for (let j = no; j < allSteps.length; j++) {
-      allSteps[j].classList.remove("glow");
-      allSteps[j].classList.remove("success");
-      allSegmentLines[j].classList.remove("bg-success");
-    }
-    await this.toSubStepper(no, _ID);
-    await new Promise(resolveTime =>
-      setTimeout(resolveTime, 1000 / this.playbackSpeed)
-    );
+      document
+        .querySelectorAll("#steppersFrame")[0]
+        .classList.add("steppersShow");
+      const steppersFrame = document.querySelectorAll(
+        "#steppersFrame #segments #stepWrapper"
+      )[0];
+      const allSteps = document.querySelectorAll(
+        "#segments .bs-stepper-header.cs-stepper-header .step"
+      );
+      var allSegmentLines = document.querySelectorAll(
+        "#segments .bs-stepper-header.cs-stepper-header .line"
+      );
+      const el: any = allSteps[no - 1];
+      steppersFrame.scroll({
+        top:
+          el.offsetTop -
+          steppersFrame.getBoundingClientRect().height +
+          el.getBoundingClientRect().height,
+        left:
+          el.offsetLeft -
+          steppersFrame.getBoundingClientRect().width +
+          el.getBoundingClientRect().width,
+        behavior: "smooth"
+      });
+      el.classList.add("glow");
+      for (let i = 0; i < no - 1; i++) {
+        allSteps[i].classList.remove("glow");
+        allSteps[i].classList.add("success");
+        allSegmentLines[i].classList.add("bg-success");
+      }
+      for (let j = no; j < allSteps.length; j++) {
+        allSteps[j].classList.remove("glow");
+        allSteps[j].classList.remove("success");
+        allSegmentLines[j].classList.remove("bg-success");
+      }
+      await this.toSubStepper(no, _ID);
+      await new Promise(resolveTime =>
+        setTimeout(resolveTime, 1000 / this.playbackSpeed)
+      );
     } catch (error) {
       console.log('error', error)
     }
@@ -661,24 +575,16 @@ export class ProofBotComponent implements OnInit {
     this.subSteppers = this.steppers.find(
       (step: any) => step.NO == segmentNo
     ).SubActions;
-
-    //console.log("substeppers",this.subSteppers);
-
     await new Promise(resolveTime => setTimeout(resolveTime, 1000));
     var index = this.subSteppers.findIndex(
       (step: any) => step.ActionID == actionID
     );
-    /*this.ActionDescription =
-      this.ActionDescription +
-      ` (Segment NO: ${segmentNo}, Action ID: ${segmentNo}.${actionID + 1})`;
-      console.log("actionDescription",this.ActionDescription);*/
     var allSubSteps = document.querySelectorAll(
       "#subSteppers .bs-stepper-header.cs-stepper-header .step"
     );
     var allSubLines = document.querySelectorAll(
       "#subSteppers .bs-stepper-header.cs-stepper-header .line"
     );
-    // console.log(actionID, index);
     const el: any = allSubSteps[index];
     const subSteppers = document.querySelectorAll(
       "#steppersFrame #subSteppers #stepWrapper"
@@ -727,16 +633,13 @@ export class ProofBotComponent implements OnInit {
   async playProofDemo(step: number = this.currentStep) {
     this.isReplay = false;
     this.isPlayCompleted = false;
-
     const { Header, Steps } = this.proofJSON;
-
     this.totalSteps = Steps.length;
     this.currentStep = step;
     this.cdr.detectChanges();
-
-    // console.log(this.currentStep);
-    let currentBrowserScreen="";
-
+    let currentBrowserScreen = "";
+    //change the all nodes opacity
+    this.changeNodesOpacity("0.35")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -744,32 +647,31 @@ export class ProofBotComponent implements OnInit {
       const stepData = this.parseActionData(Steps[this.currentStep]);
       const { StepHeader, Action, Customizations } = stepData;
       const {
-        ActionTitle,
         ActionDescription,
         ActionType,
-        Summary,
         ActionParameters
       } = Action;
-      // console.log(action.Id, this.demoScreenChildRefs);
+
+      // highlight the running nodes and back-links
+      if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
+        !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
+        console.log('first111111')
+        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+      }
+
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
-
-      //console.log("actionDescription2",ActionDescription);
-      //console.log("Action1",Action);
       if (StepHeader.SegmentNo) {
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
       }
       const frameID = StepHeader.FrameID;
       this.cdr.detectChanges();
-
-      // console.log(stepData);
-
       // set global values
       this.setGlobalValuesOnFrames(Header, stepData);
       switch (ActionType) {
         case "BrowserScreen":
           // await this.closeSteppers();
-          currentBrowserScreen=ActionParameters.ExternalURL
+          currentBrowserScreen = ActionParameters.ExternalURL
           var scRef: ComponentRef<SiteScreenComponent>;
           if (this.demoScreenChildRefs[frameID])
             scRef = this.demoScreenChildRefs[frameID].ref;
@@ -779,16 +681,16 @@ export class ProofBotComponent implements OnInit {
           }
           this.setGlobalValuesOnFrames(Header, stepData);
           if (scRef && ActionParameters.InnerHTML) {
-            if(!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)){
+            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTMLError);
-            }else{
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
+            } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL,ActionParameters.InnerHTML);
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
             }
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.setPage(ActionParameters.ExternalURL,ActionParameters.Translatable,this.lang);
+            await scRef.instance.setPage(ActionParameters.ExternalURL, ActionParameters.Translatable, this.lang);
           }
           break;
         case "UpdateElementAttribute":
@@ -814,17 +716,11 @@ export class ProofBotComponent implements OnInit {
           await this.handleSaveDataFn(stepData);
           break;
         case "FormatMetaData":
-          this.handleVariableFormat(stepData,currentBrowserScreen);
-          break;         
+          this.handleVariableFormat(stepData, currentBrowserScreen);
+          break;
         default:
           break;
       }
-
-      // this.isDisableGlobalInformationL = this.isDisableGlobalStorageScroll("L");
-      // this.isDisableGlobalInformationR = this.isDisableGlobalStorageScroll("R");
-
-
-
 
       if (Customizations.ToastMessage) {
         this.toastMSG = Customizations.ToastMessage[this.lang];
@@ -838,12 +734,6 @@ export class ProofBotComponent implements OnInit {
         this.isToast1 = true;
       }
 
-      // if(ActionParameters.StorageData){
-      // this.Svalue = this.globalData;
-      // console.log('tkkkkk',  this.Svalue );
-      //  }
-      //console.log('val1', this.Svalue );
-
       this.cdr.detectChanges();
       await new Promise(resolveTime =>
         setTimeout(
@@ -852,17 +742,14 @@ export class ProofBotComponent implements OnInit {
             (Customizations.ActionDuration
               ? Customizations.ActionDuration
               : 1)) /
-            this.playbackSpeed
+          this.playbackSpeed
         )
       );
-
       this.isToast = false;
       this.isToast1 = false;
-
       if (this.lastCompletedStep < this.currentStep)
         this.lastCompletedStep = this.currentStep;
     }
-
     if (this.currentStep == Steps.length) {
       this.isPlayCompleted = true;
       this.isPause = true;
@@ -889,13 +776,12 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
-    //console.log('JSON.parse(data)', JSON.parse(data))
     return JSON.parse(data);
   }
 
   setGlobalValuesOnFrames(
     Header: any,
-    { StepHeader, Action, Customizations }: any
+    { StepHeader, Customizations }: any
   ) {
     const { FrameID } = StepHeader;
     var ds = this.demoScreenChildRefs[FrameID];
@@ -923,13 +809,11 @@ export class ProofBotComponent implements OnInit {
   }
 
   async createFrameInProofDemo(stepData: any): Promise<ComponentRef<any>> {
-    const { StepHeader, Action, Customizations } = stepData;
+    const { StepHeader, Action } = stepData;
     const { FrameID } = StepHeader;
     const {
       ActionTitle,
-      ActionDescription,
       ActionType,
-      ActionParameters
     } = Action;
 
     var component: Type<any>;
@@ -938,14 +822,14 @@ export class ProofBotComponent implements OnInit {
         component = SiteScreenComponent;
         break;
       case "LoadGraphView":
-          component = SiteScreenComponent;
-          break;
+        component = SiteScreenComponent;
+        break;
       case "LoadProof":
-          component = SiteScreenComponent;
-            break;
+        component = SiteScreenComponent;
+        break;
       case "LoadProofAndGraphView":
-          component = SiteScreenComponent;
-            break;
+        component = SiteScreenComponent;
+        break;
       default:
         break;
     }
@@ -963,62 +847,22 @@ export class ProofBotComponent implements OnInit {
       ref,
       ActionTitle
     };
-    // ref.location.nativeElement.scrollIntoView({
-    //   behavior: "smooth",
-    //   block: "start",
-    //   inline: "start"
-    // });
     this.cdr.detectChanges();
     return ref;
   }
 
-
   async handleFormatElementAttribute(stepData: any) {
     const { StepHeader, Action, Customizations } = stepData;
-
-    const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
+    const { FrameID } = StepHeader;
+    const { ActionParameters } = Action;
     const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-
-    const {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
       Query,
       QueryIndex,
-      YOffset,
-      XOffset,
       ElAttributeName,
       ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
-      SelectiveText,
-      CaseSensitivity,
-      SelectiveTextIndex,
-      CSS,
-      StorageData,
+      ElAttributeValueReplace
     } = ActionParameters;
-
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
-
+    const { FrameAutoScroll } = Customizations;
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
@@ -1041,51 +885,15 @@ export class ProofBotComponent implements OnInit {
   }
 
   async handleTextStyle(stepData: any) {
-    const { StepHeader, Action, Customizations } = stepData;
-
-    const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
+    const { StepHeader, Action } = stepData;
+    const { FrameID } = StepHeader;
+    const { ActionParameters } = Action;
     const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-    //console.log("action2",Action);
-    const {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
-      Query,
-      QueryIndex,
-      YOffset,
-      XOffset,
-      ElAttributeName,
-      ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
       SelectiveText,
       CaseSensitivity,
       SelectiveTextIndex,
-      CSS,
-      StorageData
+      CSS
     } = ActionParameters;
-
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
-
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
@@ -1106,59 +914,18 @@ export class ProofBotComponent implements OnInit {
   }
 
   async handleSetData(stepData: any) {
-    const { StepHeader, Action, Customizations } = stepData;
-
-    const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
-    const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-    
-    let {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
-      Query,
-      QueryIndex,
-      YOffset,
-      XOffset,
-      ElAttributeName,
-      ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
-      SelectiveText,
-      CaseSensitivity,
-      SelectiveTextIndex,
-      CSS,
-      StorageData
-    } = ActionParameters;
-
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
-
+    const { StepHeader, Action } = stepData;
+    const { FrameID } = StepHeader;
+    const { ActionParameters } = Action;
+    let { Query, QueryIndex, ElProperty, ElPropertyValue } = ActionParameters;
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
         case "BrowserScreen":
           var scRef: ComponentRef<SiteScreenComponent> = ds.ref;
-          if (scRef && Query && ElProperty && ElPropertyValue){
-            if(ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}')){
-              ElPropertyValue="TlVMTA=="
+          if (scRef && Query && ElProperty && ElPropertyValue) {
+            if (ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}')) {
+              ElPropertyValue = "TlVMTA=="
             }
             await scRef.instance.setData(
               Query,
@@ -1166,8 +933,8 @@ export class ProofBotComponent implements OnInit {
               ElProperty,
               ElPropertyValue
             );
-          break;
-            }
+            break;
+          }
         default:
           break;
       }
@@ -1176,50 +943,9 @@ export class ProofBotComponent implements OnInit {
 
   async handleTriggerFn(stepData: any) {
     const { StepHeader, Action, Customizations } = stepData;
-
-    const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
-    const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-    //console.log("action4",Action);
-    const {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
-      Query,
-      QueryIndex,
-      YOffset,
-      XOffset,
-      ElAttributeName,
-      ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
-      SelectiveText,
-      CaseSensitivity,
-      SelectiveTextIndex,
-      CSS,
-      StorageData
-    } = ActionParameters;
-
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
-
+    const { FrameID } = StepHeader;
+    const { ActionParameters, ActionResultVariable } = Action;
+    const { Query, QueryIndex, ElFunction, ElFunctionArguments } = ActionParameters;
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
@@ -1234,9 +960,7 @@ export class ProofBotComponent implements OnInit {
             );
             if (ActionResultVariable)
               this.variableStorage[ActionResultVariable] = result;
-              console.log("result----",this.variableStorage[ActionResultVariable]);
           }
-         
           break;
         default:
           break;
@@ -1246,50 +970,9 @@ export class ProofBotComponent implements OnInit {
 
   async handleGetDataFn(stepData: any) {
     const { StepHeader, Action, Customizations } = stepData;
-
-    const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
-    const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-    //console.log("action5",Action);
-    const {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
-      Query,
-      QueryIndex,
-      YOffset,
-      XOffset,
-      ElAttributeName,
-      ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
-      SelectiveText,
-      CaseSensitivity,
-      SelectiveTextIndex,
-      CSS,
-      StorageData
-    } = ActionParameters;
-
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
-
+    const { FrameID } = StepHeader;
+    const { ActionParameters, ActionResultVariable } = Action;
+    const { Query, QueryIndex, ElAttributeName } = ActionParameters;
     var ds = this.demoScreenChildRefs[FrameID];
     if (ds) {
       switch (ds.type) {
@@ -1311,57 +994,15 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  handleVariableFormat(stepData: any,currentUrl: any) {
+  handleVariableFormat(stepData: any, currentUrl: any) {
     const { StepHeader, Action, Customizations } = stepData;
-
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
-    const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-    //console.log("action6",Action);
-    const {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
-      Query,
-      QueryIndex,
-      YOffset,
-      XOffset,
-      ElAttributeName,
-      ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
-      SelectiveText,
-      CaseSensitivity,
-      SelectiveTextIndex,
-      CSS,
-      FormatType,
-      StorageData
-    } = ActionParameters;
-
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
+    const { ActionParameters, ActionResultVariable, MetaData } = Action;
+    const { FormatType } = ActionParameters;
     var val = this.variableStorage[MetaData[0]];
     switch (FormatType) {
       case "parseJson":
         try {
-          //console.log('JSON.parse(val)', JSON.parse(val))
           var res = JSON.parse(val);
           this.variableStorage[ActionResultVariable] = res;
         } catch (error) {
@@ -1372,7 +1013,7 @@ export class ProofBotComponent implements OnInit {
         this.variableStorage[ActionResultVariable] = JSON.stringify(val);
         break;
       case "jsonKeyPicker":
-        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])){
+        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])) {
           this.toastr.error(`Cannot find given key from the URL`, currentUrl);
           break;
         }
@@ -1382,7 +1023,7 @@ export class ProofBotComponent implements OnInit {
         else this.variableStorage[ActionResultVariable] = result;
         break;
       case "jsonValueObjectPicker":
-       
+
         this.variableStorage[ActionResultVariable] = this.jsonValueObjectPicker(
           val,
           MetaData[1],
@@ -1414,11 +1055,9 @@ export class ProofBotComponent implements OnInit {
     }
     for (var key in obj) {
       var value = obj[key];
-
       if (k == key) {
         return [k, value];
       }
-
       if (typeof value === "object" && !Array.isArray(value)) {
         var y = this.jsonKeyPicker(value, k, selfReturn);
         if (y && y[0] == k) return y;
@@ -1434,7 +1073,6 @@ export class ProofBotComponent implements OnInit {
   }
 
   jsonValueObjectPicker(obj: any, v: string, caseSensitive: boolean = false) {
-    // console.log(obj, v);
     for (var key in obj) {
       v = !caseSensitive ? v.toLowerCase() : v;
       var value = obj[key];
@@ -1457,89 +1095,47 @@ export class ProofBotComponent implements OnInit {
 
   async handleSaveDataFn(stepData: any) {
     const { StepHeader, Action, Customizations } = stepData;
-
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
-
-    const {
-      ActionTitle,
-      ActionDescription,
-      ActionType,
-      ActionParameters,
-      ActionResultVariable,
-      MetaData
-    } = Action;
-    //console.log("action6",Action);
-    const {
-      ExternalURL,
-      FrameType,
-      InnerHTML,
-      Query,
-      QueryIndex,
-      YOffset,
-      XOffset,
-      ElAttributeName,
-      ElAttributeValue,
-      ElAttributeValueReplace,
-      ElProperty,
-      ElPropertyValue,
-      ElFunction,
-      ElFunctionArguments,
-      SelectiveText,
-      CaseSensitivity,
-      SelectiveTextIndex,
-      CSS,
-      FormatType,
-      StorageData,
-      Compare,
-      GivenDataToStorageData,
-    } = ActionParameters;
-    const {
-      PointerData,
-      ScrollToPointer,
-      FrameAutoScroll,
-      FrameScrollBars,
-      ToastMessage,
-      ToastPosition,
-      ActionDuration
-    } = Customizations;
+    const { ActionParameters, ActionResultVariable } = Action;
+    const { StorageData, Compare, GivenDataToStorageData } = ActionParameters;
     this.addDataToGlobalData(
       FrameID,
       this.demoScreenChildRefs[FrameID].ShortFrameTitle,
       StorageData,
-      GivenDataToStorageData,ActionResultVariable
+      GivenDataToStorageData, ActionResultVariable
     );
   }
-  
-  async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[],givenDataToStorageData:DataKeys,actionVariable:string) {
-    let Data=storageData
+
+  async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[], givenDataToStorageData: DataKeys, actionVariable: string) {
+    let Data = storageData
     for (let j = 0; j < Data.length; j++) {
-    if(Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")){
-      this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
-      // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
-      Data[j].Value="TlVMTA=="
-    }else if(this.proofType=="poe" && Data[j].CompareType=="notEmpty" && Data[j].Value==Data[j].CompareValue){
-      this.openModal("Proof of Existence Verification Failed","442",Data[j].Error)
-    }else if(Data[j].CompareType=="string" && Data[j].Value!=Data[j].CompareValue){
-      this.openModal("Proof Verification Failed","442","Key Comparison error")
-    }else{}
+      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")) {
+        this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
+        // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
+        Data[j].Value = "TlVMTA=="
+      } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
+        this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
+      } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
+        this.openModal("Proof Verification Failed", "442", "Key Comparison error")
+      } else { }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
-    if (!!givenDataToStorageData){
-      switch(givenDataToStorageData.Type) {
+    if (!!givenDataToStorageData) {
+      switch (givenDataToStorageData.Type) {
         case "pobl":
-          givenDataToStorageData.Value=this.proofBotParams.params.txn2
-            Data.push({
-              Key: givenDataToStorageData.Key,
-              Value: givenDataToStorageData.Value,
-              Type: "",
-              CompareType: "",
-              CompareValue: "",
-              Error: ""
-            });
-            this.variableStorage[actionVariable]=givenDataToStorageData.Value
+          givenDataToStorageData.Value = this.proofBotParams.params.txn2
+          Data.push({
+            Key: givenDataToStorageData.Key,
+            Value: givenDataToStorageData.Value,
+            Type: "",
+            CompareType: "",
+            CompareValue: "",
+            Error: ""
+          });
+          this.variableStorage[actionVariable] = givenDataToStorageData.Value
           break;
         default:
-          // code block
+        // code block
       }
     }
 
@@ -1656,60 +1252,70 @@ export class ProofBotComponent implements OnInit {
     return false;
   }
 
-  public verificationStatus(compare:any):boolean{
-    let status=true
+  public verificationStatus(compare: any): boolean {
+    let status = true
     switch (this.proofType) {
       case "pobl":
-        if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
-          status=false
-          this.toastr.error("Blockchain and Tracified data hashes does not match.","Backlink Verification Failed")
+        if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
+          status = false
+          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlink Verification Failed")
         }
         break;
       case "poe":
-        if(this.variableStorage[compare.t1]!=this.variableStorage[compare.t2]){
-          status=false
-          this.toastr.error("Blockchain and Tracified data hash are not equal","POE Verification Failed")
+        if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
+          status = false
+          this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
         }
         break;
       case "pog":
-        if(this.variableStorage[compare.t1]!=compare.t2){
-          status=false
-          this.toastr.error("Previous transaction hash is not empty.","POG Verification Failed");
+        if (this.variableStorage[compare.t1] != compare.t2) {
+          status = false
+          this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
         }
-      break;  
+        break;
       default:
-        status=true
-      break;
+        status = true
+        break;
     }
     return status
   }
 
-  openModal(errorTitle?,m1?,m2?){
+  openModal(errorTitle?, m1?, m2?) {
     this.togglePlayPauseFn()
     const initialState: ModalOptions = {
       initialState: {
-        retry:this.onRetry,
-        errorTitle:errorTitle || "",
+        retry: this.onRetry,
+        errorTitle: errorTitle || "",
         m1: m1 || "",
         m2: m2 || "",
         title: 'Error Message'
       }
     };
-    this.modalService.show(ErrorModalComponent,initialState);
+    this.modalService.show(ErrorModalComponent, initialState);
   }
 
-  onRetry(){
-  console.log('retry')
-  window.location.reload();
+  onRetry() {
+    window.location.reload();
   }
 
-}
+  changeNodesOpacity(opacity: string) {
+    if (this.proofType == 'poc') {
+      let nodes = document.getElementsByClassName('node')
+      Array.from(nodes).forEach((node: any) => {
+        node.style = `opacity:${opacity};`
+      })
+    }
+  }
 
-type DataKeys={
-  Key:Object,
-  Value:any,
-  Type:string,
-  Error:string,
-  CompareType:string,
-  CompareValue:string
+  changeSpecificNodeOpacity(trustLinks: any, runingProof: string) {
+    if (this.proofType == 'poc') {
+      if (runingProof == 'POE' || runingProof == "POG") {
+        let id = `node-${trustLinks[0]}`
+        let node: any = document.getElementById(id)
+        node.style = "opacity:1;"
+      } else if (runingProof == 'pobl') {
+
+      }
+    }
+  }
 }
