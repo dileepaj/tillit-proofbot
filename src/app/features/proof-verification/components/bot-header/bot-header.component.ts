@@ -25,9 +25,9 @@ export class BotHeaderComponent implements OnInit {
   @Input() proof1: string;
   @Input() proof2: string;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   emitLangFn(lang: string) {
     this.setLangFn.emit(lang);
@@ -57,7 +57,7 @@ export class BotHeaderComponent implements OnInit {
     this.resizeVerifyScreenFn.emit("");
   }
 
-  getProofName(proof) : string{
+  getProofName(proof): string {
     let proofName = ""
     switch (proof) {
       case "poe":
@@ -75,6 +75,6 @@ export class BotHeaderComponent implements OnInit {
       default:
         break;
     }
-  return proofName
+    return proofName
   }
 }

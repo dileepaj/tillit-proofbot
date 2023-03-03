@@ -886,7 +886,9 @@
               "SelectiveTextIndex": "",
               "CSS": "",
               "FormatType": "",
-              "StorageData": []
+              "StorageData": [],
+              "StartedProofType":"#{StartedProofType}",
+              "TrustLinks" : ["#{TrustLinks}"]
             },
             "ActionResultVariable": "",
             "MetaData": []

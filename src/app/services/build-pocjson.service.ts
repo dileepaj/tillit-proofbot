@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { ApiService } from './api.service';
+import { ComponentRef, Injectable } from '@angular/core';
+import { PocGraphViewComponent } from '../features/proof-verification/components/poc-graph-view/poc-graph-view.component';
 
 @Injectable({
   providedIn: 'root'
@@ -228,11 +226,10 @@ export class BuildPOCJsonService {
   }
 
   orderedNodes = []; // Initialize an empty array to hold the matching LastTxnHash values
-  constructor(private apiService: ApiService) { }
+  constructor() { }
 
   async buildPOCJson(data: any): Promise<any> {
     let pocArray = await this.createPOCOrder(data)
-    console.log('pocArray', pocArray)
     if (!!pocArray) {
       let b = await this.loopTheNodes(pocArray)
       return b
@@ -245,7 +242,6 @@ export class BuildPOCJsonService {
         case "0":
           let segPog = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
           let numPog = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
-
           let pogSegments = [
             {
               "NO": segPog + 1,
@@ -335,7 +331,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
-                    "JSONResultVariable": "MainTXNData"
+                    "JSONResultVariable": "MainTXNData",
+                    "StartedProofType":"POG",
+                    "TrustLinks": [node.TrustLinks[0]],
                   }
                 },
                 "ActionResultVariable": "",
@@ -2145,16 +2143,11 @@ export class BuildPOCJsonService {
               }
             }
           ]
-          console.log('num pog star-->', numPog)
-          console.log('seg pog start', segPog + 1)
           segPog = segPog + 8
           numPog = numPog + 22
-          console.log('seg pog end', segPog)
-          console.log('num pog end->', numPog)
           this.pocProofJson.Steps.push(...pogSteps)
           this.pocProofJson.Header.Segments.push(...pogSegments)
           this.pocLangJson.Actions.push(...pogLang)
-
           break;
         case "2":
           let segPoe = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -2240,7 +2233,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "&{Text1}",
                     "ResponseVariable": "MainTDPDataString",
-                    "JSONResultVariable": "MainTDPData"
+                    "JSONResultVariable": "MainTDPData",
+                    "StartedProofType":"POE",
+                    "TrustLinks": [node.Id],
                   }
                 },
                 "ActionResultVariable": "",
@@ -4388,17 +4383,9 @@ export class BuildPOCJsonService {
           this.pocProofJson.Header.Segments.push(...poeSegments)
           this.pocProofJson.Steps.push(...poeSteps)
           this.pocLangJson.Actions.push(...poeLang)
-
-          console.log('seg poe stat->', segPoe + 1)
-          console.log('num poe star-->', numPoe + 1)
-
           segPoe = segPoe + 6
           numPoe = numPoe + 26
-
-          console.log('seg poe end->', segPoe)
-          console.log('num poe end-->', numPoe)
           break;
-
         case "pobl":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
           let numPobl = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
@@ -4521,7 +4508,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
-                    "JSONResultVariable": "MainTXNData"
+                    "JSONResultVariable": "MainTXNData",
+                    "StartedProofType":"POBL",
+                    "TrustLinks":[node.TrustLinks[0], node.TrustLinks[1]],
                   }
                 },
                 "ActionResultVariable": "",
@@ -7560,16 +7549,8 @@ export class BuildPOCJsonService {
           this.pocProofJson.Header.Segments.push(...poblSegments)
           this.pocProofJson.Steps.push(...poblSteps)
           this.pocLangJson.Actions.push(...poblLang)
-
-          console.log('segpobl stat->', segPobl + 1)
-          console.log('numPobl star-->', numPobl + 1)
-
           segPobl = segPobl + 14
           numPobl = numPobl + 35
-
-          console.log('segpobl end->', segPobl)
-          console.log('numpobl end-->', numPobl)
-
           break;
         default:
           break;
@@ -7667,19 +7648,8 @@ export class BuildPOCJsonService {
     this.pocProofJson.Header.Segments.push(...pocSummarySegment)
     this.pocProofJson.Steps.push(...POCSummaryStep)
     this.pocLangJson.Actions.push(...PocSummaryLang)
-
-    console.log('segpoe stat->', segPocSummary + 1)
-    console.log('numPobl star-->', POCSummaryNo + 1)
-
     segPocSummary = segPocSummary + 1
     POCSummaryNo = POCSummaryNo + 1
-
-    console.log('segpoe end->', segPocSummary)
-    console.log('numpoe end-->', POCSummaryNo)
-
-    console.log('firs1twwwwwwww  ', this.pocProofJson)
-    console.log('langpoc->  ', this.pocLangJson)
-
     let pocResponse = {
       pocLangJson: this.pocLangJson,
       pocProofJson: this.pocProofJson
