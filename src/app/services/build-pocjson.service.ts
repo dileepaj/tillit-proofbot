@@ -2235,7 +2235,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTDPDataString",
                     "JSONResultVariable": "MainTDPData",
                     "StartedProofType":"POE",
-                    "TrustLinks": [node.TrustLinks[0]],
+                    "TrustLinks": [node.Id],
                   }
                 },
                 "ActionResultVariable": "",

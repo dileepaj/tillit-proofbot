@@ -247,6 +247,7 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
+        console.log('firstpocpocpoc ', poc)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
         break;
@@ -639,7 +640,6 @@ export class ProofBotComponent implements OnInit {
     let currentBrowserScreen = "";
     //change the all nodes opacity
     this.changeNodesOpacity("0.35")
-
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -651,6 +651,14 @@ export class ProofBotComponent implements OnInit {
         ActionType,
         ActionParameters
       } = Action;
+
+      // highlight the running nodes and back-links
+      if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
+        !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
+        console.log('first111111')
+        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+      }
+
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
       if (StepHeader.SegmentNo) {
@@ -1299,12 +1307,15 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  changeSpecificNodeOpacity(hash: string) {
+  changeSpecificNodeOpacity(trustLinks: any, runingProof: string) {
     if (this.proofType == 'poc') {
-      let id = `node-${hash}`
-      let node: any = document.getElementById(id)
-      console.log(id, '           nodetestqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq   ', node)
-      node.style = "opacity:1;"
+      if (runingProof == 'POE' || runingProof == "POG") {
+        let id = `node-${trustLinks[0]}`
+        let node: any = document.getElementById(id)
+        node.style = "opacity:1;"
+      } else if (runingProof == 'pobl') {
+
+      }
     }
   }
 }

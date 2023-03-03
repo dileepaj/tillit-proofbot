@@ -887,8 +887,8 @@
               "CSS": "",
               "FormatType": "",
               "StorageData": [],
-              "StartedProofType":"#{TXNHash}",
-              "TrustLinks" : ["#{TXNHash}"]
+              "StartedProofType":"#{StartedProofType}",
+              "TrustLinks" : ["#{TrustLinks}"]
             },
             "ActionResultVariable": "",
             "MetaData": []
