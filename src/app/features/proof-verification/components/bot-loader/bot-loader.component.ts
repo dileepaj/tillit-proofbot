@@ -15,11 +15,13 @@ export class BotLoaderComponent implements OnInit {
   @Input() mode: string;
   @Input() value: string;
   @Output() startDemoFn = new EventEmitter();
+  @Input() LoadingProofType: string;
+  @Input() TXNhash: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.startDemoFn.emit("");
+    this.startDemoFn.emit('');
   }
 
 

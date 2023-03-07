@@ -114,6 +114,7 @@ export class ProofBotComponent implements OnInit {
   toastLeft: string = "32%";
   toastLeft1: string = "32%";
   icon: string;
+  LoadingProofType: string;
   ActionConfigurations: any;
   SegmentNumber: number;
   availableProofs: any[] = ["poe", "pog", "pobl", "poc"];
@@ -160,6 +161,8 @@ export class ProofBotComponent implements OnInit {
       };
     });
     this.proofType = this.proofBotParams.params.type;
+    this.LoadingProofType = this.proofBotParams.params.type;
+    this.TXNhash = this.proofBotParams.params.txn;
   }
 
   async ngAfterViewInit() {
