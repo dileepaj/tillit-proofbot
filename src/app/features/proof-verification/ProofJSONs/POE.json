@@ -89,7 +89,9 @@
             "TXNHash": "${TXNhash}",
             "OperationName": "&{Text1}",
             "ResponseVariable": "MainTDPDataString",
-            "JSONResultVariable": "MainTDPData"
+            "JSONResultVariable": "MainTDPData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
