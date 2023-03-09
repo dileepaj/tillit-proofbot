@@ -333,7 +333,8 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType":"POG",
-                    "TrustLinks": [node.TrustLinks[0]],
+                    "TrustLinks": [node.Id]
+                    
                   }
                 },
                 "ActionResultVariable": "",
@@ -619,7 +620,9 @@ export class BuildPOCJsonService {
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "current transaction of the gateway transaction",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
-                    "JSONResultVariable": "MainTXNCurentTXNData"
+                    "JSONResultVariable": "MainTXNCurentTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",
@@ -2774,7 +2777,9 @@ export class BuildPOCJsonService {
                     "TXNHash": node.TrustLinks[0],
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
-                    "JSONResultVariable": "MainTXNData"
+                    "JSONResultVariable": "MainTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",
@@ -3060,7 +3065,9 @@ export class BuildPOCJsonService {
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "&{Text72}",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
-                    "JSONResultVariable": "MainTXNCurentTXNData"
+                    "JSONResultVariable": "MainTXNCurentTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",
@@ -4796,7 +4803,9 @@ export class BuildPOCJsonService {
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "current transaction of the gateway transaction",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
-                    "JSONResultVariable": "MainTXNCurentTXNData"
+                    "JSONResultVariable": "MainTXNCurentTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",
@@ -5532,7 +5541,9 @@ export class BuildPOCJsonService {
                     "TXNHash": "${MainTXNPreviousTXNDecoded}",
                     "OperationName": "Backlink transaction from Stellar Blockchain.",
                     "ResponseVariable": "MainTXNPreviousTXNDataString",
-                    "JSONResultVariable": "MainTXNPreviousTXNData"
+                    "JSONResultVariable": "MainTXNPreviousTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",
@@ -5823,7 +5834,9 @@ export class BuildPOCJsonService {
                     "TXNHash": "${MainTXNPreviousTXNCurrentTXNHashDecoded}",
                     "OperationName": "current transaction of the backlink transaction",
                     "ResponseVariable": "MainTXNPreviousTXNCurrentTXNDataString",
-                    "JSONResultVariable": "MainTXNPreviousTXNCurrentTXNData"
+                    "JSONResultVariable": "MainTXNPreviousTXNCurrentTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",

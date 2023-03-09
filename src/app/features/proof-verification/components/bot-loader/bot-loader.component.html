@@ -1,5 +1,8 @@
 <div class="loader-view-main">
 <img class="proofbot-home-img" src="../../../../../assets/img/start-logo.png">
+<div style="padding-top: 25px;">
+  <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p>
+  </div>
 <div style="margin-top: 10vh;">
 
 <div
@@ -7,6 +10,7 @@
   *ngIf="isLoading"
   style="height: 4rem;"
 >
+
   <mat-spinner
     class="progress-loader"
     [color]="color"
@@ -14,6 +18,7 @@
     [value]="value"
   >
   </mat-spinner>
+ 
 </div>
 </div>
 </div>

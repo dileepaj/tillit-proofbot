@@ -89,7 +89,9 @@
             "TXNHash": "${TXNhash}",
             "OperationName": "&{Text1}",
             "ResponseVariable": "MainTDPDataString",
-            "JSONResultVariable": "MainTDPData"
+            "JSONResultVariable": "MainTDPData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
@@ -620,7 +622,9 @@
             "TXNHash": "${TXNhash}",
             "ResponseVariable": "MainTXNDataString",
             "OperationName": "current transaction",
-            "JSONResultVariable": "MainTXNData"
+            "JSONResultVariable": "MainTXNData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
@@ -902,7 +906,9 @@
             "TXNHash": "${var_currenttxn}",
             "OperationName": "&{Text72}",
             "ResponseVariable": "MainTXNCurentTXNDataString",
-            "JSONResultVariable": "MainTXNCurentTXNData"
+            "JSONResultVariable": "MainTXNCurentTXNData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",

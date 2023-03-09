@@ -5,7 +5,7 @@
       alignItems: alignItems
     }" [class]="isTheater ? 'p-3' : 'p-0'">
     <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
-      [color]="color" [mode]="mode" [value]="value" (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame"
+      [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"  (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame"
       *ngIf="!isStartDemo" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
         maxWidth: initialWidth

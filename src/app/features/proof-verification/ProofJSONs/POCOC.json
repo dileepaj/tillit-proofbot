@@ -136,7 +136,9 @@
                     "TXNHash": "${TXNhash}",
                     "OperationName": "transaction",
                     "ResponseVariable": "MainTXNDataString",
-                    "JSONResultVariable": "MainTXNData"
+                    "JSONResultVariable": "MainTXNData",
+                    "StartedProofType":"",
+                    "TrustLinks": []
                   }
                 },
                 "ActionResultVariable": "",
@@ -396,7 +398,9 @@
                       "TXNHash": "${var_currenttxn}",
                       "OperationName": "current transaction of the gateway transaction",
                       "ResponseVariable": "MainTXNCurentTXNDataString",
-                      "JSONResultVariable": "MainTXNCurentTXNData"
+                      "JSONResultVariable": "MainTXNCurentTXNData",
+                      "StartedProofType":"",
+                      "TrustLinks": []
                     }
                   },
                   "ActionResultVariable": "",
@@ -1461,7 +1465,9 @@
                       "TXNHash": "${var_proofHash}",
                       "OperationName": "proofHash transaction of the gateway transaction",
                       "ResponseVariable": "MainTXNProofHashDataString",
-                      "JSONResultVariable": "MainTXNPoofHashData"
+                      "JSONResultVariable": "MainTXNPoofHashData",
+                      "StartedProofType":"",
+                      "TrustLinks": []
                     }
                   },
                   "ActionResultVariable": "",
