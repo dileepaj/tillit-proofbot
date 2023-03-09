@@ -126,7 +126,9 @@
             "TXNHash": "${TXNhash}",
             "OperationName": "current transaction",
             "ResponseVariable": "MainTXNDataString",
-            "JSONResultVariable": "MainTXNData"
+            "JSONResultVariable": "MainTXNData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
@@ -407,7 +409,9 @@
             "TXNHash": "${var_currenttxn}",
             "OperationName": "current transaction of the gateway transaction",
             "ResponseVariable": "MainTXNCurentTXNDataString",
-            "JSONResultVariable": "MainTXNCurentTXNData"
+            "JSONResultVariable": "MainTXNCurentTXNData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
@@ -1131,7 +1135,9 @@
             "TXNHash": "${MainTXNPreviousTXNDecoded}",
             "OperationName": "Backlink transaction from Stellar Blockchain.",
             "ResponseVariable": "MainTXNPreviousTXNDataString",
-            "JSONResultVariable": "MainTXNPreviousTXNData"
+            "JSONResultVariable": "MainTXNPreviousTXNData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
@@ -1418,7 +1424,9 @@
             "TXNHash": "${MainTXNPreviousTXNCurrentTXNHashDecoded}",
             "OperationName": "current transaction of the backlink transaction",
             "ResponseVariable": "MainTXNPreviousTXNCurrentTXNDataString",
-            "JSONResultVariable": "MainTXNPreviousTXNCurrentTXNData"
+            "JSONResultVariable": "MainTXNPreviousTXNCurrentTXNData",
+            "StartedProofType":"",
+            "TrustLinks": []
           }
         },
         "ActionResultVariable": "",
