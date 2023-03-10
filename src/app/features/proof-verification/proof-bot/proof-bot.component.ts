@@ -142,13 +142,13 @@ export class ProofBotComponent implements OnInit {
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       if (!params.get("txn") || !params.get("type")) {
-        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
         return
       } else if (!this.availableProofs.includes(params.get("type"))) {
-        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
         return
       } else if (params.get("type") == 'pobl' && !params.get("txn2")) {
-        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
         return
       } else {
       }
@@ -175,7 +175,7 @@ export class ProofBotComponent implements OnInit {
         async data => {
           try {
             if (!data) {
-              this.openModal("Invalid URL", "204")
+              this.openModal("Invalid URL", 204)
               return
             } else {
               if (!!this.proofBotParams.params.type) {
@@ -200,7 +200,7 @@ export class ProofBotComponent implements OnInit {
                 return
             }
           } catch (error) {
-            this.openModal("Invalid URL", "404", error.message)
+            this.openModal("Invalid URL", 404, error.message)
           }
         },
         error => {
@@ -1119,7 +1119,7 @@ export class ProofBotComponent implements OnInit {
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
-        this.openModal("Proof Verification Failed", "442", "Key Comparison error")
+        this.openModal("Proof Verification Failed", 442, "Key Comparison error")
       } else { }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
@@ -1289,7 +1289,7 @@ export class ProofBotComponent implements OnInit {
       initialState: {
         retry: this.onRetry,
         errorTitle: errorTitle || "",
-        m1: m1 || "",
+        m1: m1 || 0,
         m2: m2 || "",
         title: 'Error Message'
       }

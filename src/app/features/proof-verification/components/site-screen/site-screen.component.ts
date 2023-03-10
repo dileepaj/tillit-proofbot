@@ -189,7 +189,7 @@ export class SiteScreenComponent {
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
           if (data == null) {
-            this.openModal("No Content found", "204", pageUrl)
+            this.openModal("No Content found", 204, pageUrl)
             return
           }
           try {
@@ -298,7 +298,7 @@ export class SiteScreenComponent {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            this.openModal("Check the internet connection", "0", pageUrl)
+            this.openModal("Check the internet connection", 0, pageUrl)
             return
           }
         },
@@ -310,8 +310,10 @@ export class SiteScreenComponent {
             this.openModal("Check the internet connection", error.status == 0 ? "Cannot load the external URL" : error.message, error.message)
             reject({ error, ref: this.iframe })
           }
+          
           return
         }
+        
       );
     });
   }
@@ -644,12 +646,13 @@ export class SiteScreenComponent {
       initialState: {
         retry: this.onRetry,
         errorTitle: errorTitle || "",
-        m1: m1 || "",
+        m1: m1 || 0,
         m2: m2 || "",
         title: 'Error Message'
       }
     };
     this.modalService.show(ErrorModalComponent, initialState);
+    
   }
 
   onRetry() {

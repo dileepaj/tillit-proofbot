@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input,EventEmitter,Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -11,6 +11,7 @@ export class ErrorIdComponent implements OnInit {
   @Input() errorTitle: string;
   @Input() errorMessage: string;
   @Input() errorMessageSecondary: string;
+  @Output() replayFn = new EventEmitter();
   errorImage: string;
 
   constructor(private route: ActivatedRoute) {}
@@ -40,5 +41,8 @@ export class ErrorIdComponent implements OnInit {
 
   retry(): void {
     window.location.reload();
+  }
+  emitReplayFn() {
+    this.replayFn.emit("");
   }
 }

@@ -8,10 +8,10 @@
     <div class="modal-body" style="font-family: Inter;">
         <h4 class="text-wrap">{{errorTitle}}</h4>
         <h6 class="text-wrap">Error Code : {{m1}} </h6>
-        <p class="text-wrap" style="color:#CA180E; font-size: 12px; font-family: Inter;">{{m2}}</p>
+        <p class="text-wrap" style="color:#CA180E; font-size: 12px; font-family: Inter; word-break: break-word;">{{m2}}</p>
     </div>
     <div class="modal-footer" style="font-family: Inter;">
-        <button type="button" class="btn btn-outline-danger" (click)="bsModalRef.hide()">{{'Close'}}</button>
+        <button type="button" class="btn btn-outline-danger" (click)="bsModalRef.hide();">{{'Close'}}</button>
         <button type="button" class="btn btn-outline-success"
             (click)="bsModalRef.hide();retryClick()">{{'Retry'}}</button>
     </div>
