@@ -161,7 +161,17 @@ export class ProofBotComponent implements OnInit {
       };
     });
     this.proofType = this.proofBotParams.params.type;
-    this.LoadingProofType = this.proofBotParams.params.type;
+    if(this.proofType ==='poe'){
+      this.LoadingProofType = 'Proof Of Existence';
+    } else if (this.proofType ==='pog'){
+      this.LoadingProofType = 'Proof Of Genesis';
+    } else if (this.proofType ==='pobl'){
+      this.LoadingProofType = 'Proof Of Back-links';
+    } else if (this.proofType ==='poc'){
+      this.LoadingProofType = 'Proof of Continuity';
+    } else{}
+    
+
     this.TXNhash = this.proofBotParams.params.txn;
   }
 

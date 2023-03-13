@@ -1,17 +1,50 @@
 <div class="loader-view-main">
 <img class="proofbot-home-img" src="../../../../../assets/img/start-logo.png">
 <div style="padding-top: 25px;">
-  <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p>
-  </div>
-<div style="margin-top: 10vh;">
+  <table class="proofLoadingTable">
+    <tr>
+      <th colspan="2" class="proofLodingHeader" >
+       {{LoadingProofType}} 
+      </th>
+    </tr>
+    <tr class="proofLoadingColumn">
+      <td class="proofLoadingColumn">
+        Product
+      </td>
+      <td class="proofLoadingColumn">
+        Product
+      </td>
+    </tr>
+    <tr class="proofLoadingColumn">
+      <td class="proofLoadingColumn">
+        Batch
+      </td>
+      <td>
+        Batch
+      </td>
+    </tr >
+    <tr class="proofLoadingColumn">
+      <td class="proofLoadingColumn">
+        Proof
+      </td>
+      <td class="proofLoadingColumn">
+        Proof
+      </td>
+    </tr>
 
+  </table>
+  <!-- <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p> -->
+  </div>
+  <img *ngIf="countdown!=0" class="proofbot-loding-img" src="../../../../../assets/img/loader.png">
+  <p  *ngIf="countdown!=0" class="LoadingWaitLine">Proof verification starting in  {{ countdown }} seconds...</p>
+
+<div id="demo" style="margin-top: 5vh;">
 <div
   class="d-flex justify-content-center align-items-center"
-  *ngIf="isLoading"
+  *ngIf="isLoading&&countdown==0"
   style="height: 4rem;"
 >
-
-  <mat-spinner
+<mat-spinner
     class="progress-loader"
     [color]="color"
     [mode]="mode"

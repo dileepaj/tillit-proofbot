@@ -17,12 +17,20 @@ export class BotLoaderComponent implements OnInit {
   @Output() startDemoFn = new EventEmitter();
   @Input() LoadingProofType: string;
   @Input() TXNhash: string;
+  countdown: number = 5;
 
   constructor() { }
 
   ngOnInit() {
     this.startDemoFn.emit('');
+   // start the countdown
+    setInterval(() => {
+      if (this.countdown > 0) {
+        this.countdown--;
+      }
+    }, 1000);
   }
+  
 
 
  
