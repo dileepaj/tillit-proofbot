@@ -19,7 +19,7 @@ export class BuildPOCJsonService {
         {
           "NO": 1,
           "Name": "&{SegName1}",
-          "Source": "../../../../assets/img/Group.png"
+          "Source": "../../../../assets/img/database.png"
         }
       ]
     },
@@ -256,7 +256,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPog + 3,
               "Name": "&{SegName4}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPog + 4,
@@ -2159,12 +2159,12 @@ export class BuildPOCJsonService {
             {
               "NO": segPoe + 1,
               "Name": "&{SegName10}",
-              "Source": "../../../../assets/img/Group.png"
+              "Source": "../../../../assets/img/database.png"
             },
             {
               "NO": segPoe + 2,
               "Name": "&{SegName11}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPoe + 3,
@@ -2174,7 +2174,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPoe + 4,
               "Name": "&{SegName13}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPoe + 5,
@@ -2770,10 +2770,10 @@ export class BuildPOCJsonService {
                     "ActionDescription": "&{Text44}",
                     "ActionTitle_1": "&{Text45}",
                     "ActionDescription_1": "&{Text46}",
-                    "SegmentSource_1": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_1": "../../../../assets/img/blockchain2.png",
                     "ActionTitle_2": "&{Text47}",
                     "ActionDescription_2": "&{Text48}",
-                    "SegmentSource_2": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_2": "../../../../assets/img/blockchain2.png",
                     "TXNHash": node.TrustLinks[0],
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
@@ -3057,10 +3057,10 @@ export class BuildPOCJsonService {
                     "ActionDescription": "&{Text74}",
                     "ActionTitle_1": "&{Text76}",
                     "ActionDescription_1": "&{Text77}",
-                    "SegmentSource_1": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_1": "../../../../assets/img/blockchain2.png",
                     "ActionTitle_2": "&{Text125}",
                     "ActionDescription_2": "&{Text125}",
-                    "SegmentSource_2": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_2": "../../../../assets/img/blockchain2.png",
                     "FrameTitle": "&{Text71}",
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "&{Text72}",
@@ -4400,7 +4400,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 1,
               "Name": "&{SegName16}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 2,
@@ -4410,7 +4410,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 3,
               "Name": "&{SegName18}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 4,
@@ -4430,7 +4430,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 7,
               "Name": "&{SegName22}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 8,
@@ -4440,7 +4440,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 9,
               "Name": "&{SegName24}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 10,
