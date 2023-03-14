@@ -333,8 +333,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType":"POG",
-                    "TrustLinks": [node.Id]
-                    
+                    "TrustLinks": [node.Id]               
                   }
                 },
                 "ActionResultVariable": "",
@@ -4517,7 +4516,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType":"POBL",
-                    "TrustLinks":[node.TrustLinks[0], node.TrustLinks[1]],
+                    "TrustLinks":[node.PoblTDP.current, node.PoblTDP.previous],
                   }
                 },
                 "ActionResultVariable": "",

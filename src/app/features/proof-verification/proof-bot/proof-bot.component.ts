@@ -653,6 +653,7 @@ export class ProofBotComponent implements OnInit {
     let currentBrowserScreen = "";
     //change the all nodes opacity
     this.changeNodesOpacity("0.35")
+    this.changeArrowsOpacity("0.35")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -668,10 +669,9 @@ export class ProofBotComponent implements OnInit {
       // highlight the running nodes and back-links
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
-        console.log('first111111')
-        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
-      }
-
+          this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+  
+        }
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
       if (StepHeader.SegmentNo) {
@@ -1323,12 +1323,27 @@ export class ProofBotComponent implements OnInit {
   changeSpecificNodeOpacity(trustLinks: any, runingProof: string) {
     if (this.proofType == 'poc') {
       if (runingProof == 'POE' || runingProof == "POG") {
+        this.changeNodesOpacity('0.35')
+        this.changeArrowsOpacity('0.35')
         let id = `node-${trustLinks[0]}`
         let node: any = document.getElementById(id)
         node.style = "opacity:1;"
-      } else if (runingProof == 'pobl') {
-
+      } else if (runingProof == 'POBL') {
+        this.changeArrowsOpacity('0.35')
+        const tL = trustLinks[0]
+        let id = `arrow-`+tL[0]+`-`+tL[1]
+        let node: any = document.getElementById(id)
+        node.style = "opacity:1;"
       }
+    }
+  }
+
+  changeArrowsOpacity(opacity: string) {
+    if (this.proofType == 'poc') {
+      let nodes = document.getElementsByClassName('edgePath')
+      Array.from(nodes).forEach((node: any) => {
+        node.style = `opacity:${opacity};`
+      })
     }
   }
 }
