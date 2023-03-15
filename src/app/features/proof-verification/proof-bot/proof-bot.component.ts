@@ -1026,7 +1026,7 @@ export class ProofBotComponent implements OnInit {
         this.variableStorage[ActionResultVariable] = JSON.stringify(val);
         break;
       case "jsonKeyPicker":
-        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])) {
+        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])&&this.proofType!='poc') {
           this.toastr.error(`Cannot find given key from the URL`, currentUrl);
           break;
         }
@@ -1122,7 +1122,7 @@ export class ProofBotComponent implements OnInit {
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[], givenDataToStorageData: DataKeys, actionVariable: string) {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
-      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")) {
+      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") &&this.proofType!='poc') {
         this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
