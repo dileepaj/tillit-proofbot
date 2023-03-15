@@ -30,6 +30,8 @@ import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
 import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
 import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
 import { DataKeys } from "src/app/shared/models/commonTypes";
+import * as d3 from 'd3';
+import * as dagreD3 from 'dagre-d3';
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -1329,11 +1331,14 @@ export class ProofBotComponent implements OnInit {
         let node: any = document.getElementById(id)
         node.style = "opacity:1;"
       } else if (runingProof == 'POBL') {
+        this.changeNodesOpacity('0.35')
         this.changeArrowsOpacity('0.35')
         const tL = trustLinks[0]
         let id = `arrow-`+tL[0]+`-`+tL[1]
         let node: any = document.getElementById(id)
         node.style = "opacity:1;"
+        const node1 = d3.select(`#${id}`);
+        node1.attr("stroke", "yellow");
       }
     }
   }

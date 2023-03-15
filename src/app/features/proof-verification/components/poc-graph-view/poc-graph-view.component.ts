@@ -108,11 +108,13 @@ export class PocGraphViewComponent implements OnInit {
     if(doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier!=""){
         g.setNode(node.Data.TxnHash, {
-            label: `Batch ID:  ${node.Data.Identifier}`,
+            label: !!node.Data.ProductName?`Batch ID:\n${node.Data.Identifier}\n(${node.Data.ProductName})`:`Batch ID\n${node.Data.Identifier})`,
             shape: 'rect',
             id:`node-${node.Data.TxnHash}`,
-            style: `stroke: ${bColor}; stroke-width: 2.5px; fill: ${sColor}`,
+            style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
             labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer; font-weight: bold`,
+            rx: 15, // set the x-axis radius of the rectangle
+            ry: 15, // set the y-axis radius of the rectangle
         });
     }
     var lastSplitNodeIndex = null;
