@@ -1283,7 +1283,7 @@ export class ProofBotComponent implements OnInit {
       case "pobl":
         if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
           status = false
-          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlink Verification Failed")
+          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
         }
         break;
       case "poe":
@@ -1300,9 +1300,9 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         if (this.currentProof == "Proof of Existence") {
-          if (this.variableStorage[compare.t1] != compare.t2) {
+          if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
             status = false
-            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+            this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
           }
         } else if (this.currentProof == "Proof of Genesis") {
           if (this.variableStorage[compare.t1] != compare.t2) {
