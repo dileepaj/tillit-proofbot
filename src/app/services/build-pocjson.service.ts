@@ -332,8 +332,8 @@ export class BuildPOCJsonService {
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
-                    "StartedProofType":"POG",
-                    "TrustLinks": [node.Id]               
+                    "StartedProofType": "POG",
+                    "TrustLinks": [node.Id]
                   }
                 },
                 "ActionResultVariable": "",
@@ -620,7 +620,7 @@ export class BuildPOCJsonService {
                     "OperationName": "current transaction of the gateway transaction",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
                     "JSONResultVariable": "MainTXNCurentTXNData",
-                    "StartedProofType":"",
+                    "StartedProofType": "",
                     "TrustLinks": []
                   }
                 },
@@ -2150,7 +2150,6 @@ export class BuildPOCJsonService {
           this.pocProofJson.Steps.push(...pogSteps)
           this.pocProofJson.Header.Segments.push(...pogSegments)
           this.pocLangJson.Actions.push(...pogLang)
-          console.log("ggggg--",pogSteps );
           break;
         case "2":
           let segPoe = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -2237,7 +2236,7 @@ export class BuildPOCJsonService {
                     "OperationName": "&{Text1}",
                     "ResponseVariable": "MainTDPDataString",
                     "JSONResultVariable": "MainTDPData",
-                    "StartedProofType":"POE",
+                    "StartedProofType": "POE",
                     "TrustLinks": [node.Id],
                   }
                 },
@@ -2778,7 +2777,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
                     "JSONResultVariable": "MainTXNData",
-                    "StartedProofType":"",
+                    "StartedProofType": "",
                     "TrustLinks": []
                   }
                 },
@@ -3066,7 +3065,7 @@ export class BuildPOCJsonService {
                     "OperationName": "&{Text72}",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
                     "JSONResultVariable": "MainTXNCurentTXNData",
-                    "StartedProofType":"",
+                    "StartedProofType": "",
                     "TrustLinks": []
                   }
                 },
@@ -4392,8 +4391,6 @@ export class BuildPOCJsonService {
           this.pocLangJson.Actions.push(...poeLang)
           segPoe = segPoe + 6
           numPoe = numPoe + 26
-          console.log("ggggg-mmmmmm-",poeSteps );
-          console.log("ggggg-mmmhhhhhmmm-",poeLang );
           break;
         case "pobl":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -4518,8 +4515,8 @@ export class BuildPOCJsonService {
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
-                    "StartedProofType":"POBL",
-                    "TrustLinks":[node.PoblTDP.current, node.PoblTDP.previous],
+                    "StartedProofType": "POBL",
+                    "TrustLinks": [node.PoblTDP.current, node.PoblTDP.previous],
                   }
                 },
                 "ActionResultVariable": "",
@@ -4806,7 +4803,7 @@ export class BuildPOCJsonService {
                     "OperationName": "current transaction of the gateway transaction",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
                     "JSONResultVariable": "MainTXNCurentTXNData",
-                    "StartedProofType":"",
+                    "StartedProofType": "",
                     "TrustLinks": []
                   }
                 },
@@ -5544,7 +5541,7 @@ export class BuildPOCJsonService {
                     "OperationName": "Backlink transaction from Stellar Blockchain.",
                     "ResponseVariable": "MainTXNPreviousTXNDataString",
                     "JSONResultVariable": "MainTXNPreviousTXNData",
-                    "StartedProofType":"",
+                    "StartedProofType": "",
                     "TrustLinks": []
                   }
                 },
@@ -5837,7 +5834,7 @@ export class BuildPOCJsonService {
                     "OperationName": "current transaction of the backlink transaction",
                     "ResponseVariable": "MainTXNPreviousTXNCurrentTXNDataString",
                     "JSONResultVariable": "MainTXNPreviousTXNCurrentTXNData",
-                    "StartedProofType":"",
+                    "StartedProofType": "",
                     "TrustLinks": []
                   }
                 },
@@ -7614,10 +7611,6 @@ export class BuildPOCJsonService {
             "CSS": "",
             "FormatType": "",
             "StorageData": [],
-            "Compare": {
-              "t1": "",
-              "t2": ""
-            }
           },
           "ActionResultVariable": "",
           "MetaData": []

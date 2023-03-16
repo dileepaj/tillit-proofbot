@@ -588,7 +588,6 @@ export class ProofBotComponent implements OnInit {
         setTimeout(resolveTime, 1000 / this.playbackSpeed)
       );
     } catch (error) {
-      console.log('error', error)
     }
   }
 
@@ -1137,8 +1136,6 @@ export class ProofBotComponent implements OnInit {
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
-      } else if (this.proofType == "poc" && this.currentProof == "Proof of Continuity" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
-        this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
         this.openModal("Proof Verification Failed", 442, "Key Comparison error")
       } else { }
@@ -1200,7 +1197,6 @@ export class ProofBotComponent implements OnInit {
       "#globalInformation #gsFrames proof-global-storage"
     )[index];
     // await this.scrollToFrameById("proofContainer", 0);
-    // console.log(el);
     var gsFrame = document.querySelectorAll("#globalInformation #gsFrames")[0];
     var gsFrameRect: any = gsFrame.getBoundingClientRect();
     var initialWidth = gsFrameRect.x;
@@ -1277,7 +1273,6 @@ export class ProofBotComponent implements OnInit {
   }
 
   public verificationStatus(compare: any): boolean {
-    console.log('compare', compare)
     let status = true
     switch (this.proofType) {
       case "pobl":
@@ -1315,7 +1310,6 @@ export class ProofBotComponent implements OnInit {
         status = true
         break;
     }
-    console.log('status', status)
     return status
   }
 

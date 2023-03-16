@@ -32,6 +32,10 @@
     width: 15px;
     border-radius: 50%;
   }
+
+  .lable-text{
+    font-size: 14px;
+  }
   
   .genesis {
     background-color: #16A085;

@@ -138,3 +138,7 @@ margin-top: 5vh;
     -webkit-transform: scaleY(1.0);
   }
 }
+
+.lable-text{
+  font-size: 14px;
+}
