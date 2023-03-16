@@ -2150,6 +2150,7 @@ export class BuildPOCJsonService {
           this.pocProofJson.Steps.push(...pogSteps)
           this.pocProofJson.Header.Segments.push(...pogSegments)
           this.pocLangJson.Actions.push(...pogLang)
+          console.log("ggggg--",pogSteps );
           break;
         case "2":
           let segPoe = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -4364,7 +4365,7 @@ export class BuildPOCJsonService {
               }
             },
             {
-              "SegmentNo": 15,
+              "SegmentNo": segPoe + 6,
               "StepNo": numPoe + 26,
               "Languages": {
                 "Text120": {
@@ -4391,6 +4392,8 @@ export class BuildPOCJsonService {
           this.pocLangJson.Actions.push(...poeLang)
           segPoe = segPoe + 6
           numPoe = numPoe + 26
+          console.log("ggggg-mmmmmm-",poeSteps );
+          console.log("ggggg-mmmhhhhhmmm-",poeLang );
           break;
         case "pobl":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
