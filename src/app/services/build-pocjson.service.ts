@@ -6469,7 +6469,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "Compare": {
                     "t1": "MainTXNPreviousTXNDecoded",
-                    "t2": "ExpectedPreviousTxnHash"
+                    "t2": node.TrustLinks[1]
                   }
                 },
                 "ActionResultVariable": "",
@@ -7615,8 +7615,8 @@ export class BuildPOCJsonService {
             "FormatType": "",
             "StorageData": [],
             "Compare": {
-              "t1": "MainTXNPreviousTXNDecoded",
-              "t2": "ExpectedPreviousTxnHash"
+              "t1": "",
+              "t2": ""
             }
           },
           "ActionResultVariable": "",

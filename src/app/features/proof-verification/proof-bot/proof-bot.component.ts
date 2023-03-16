@@ -466,7 +466,6 @@ export class ProofBotComponent implements OnInit {
   }
 
   stopFn() {
-    window.location.reload();
     this.StorageTitle = "Storage";
     this.ProofContainerTitle = "Proof Container";
     this.currentStep = 0;
@@ -706,6 +705,7 @@ export class ProofBotComponent implements OnInit {
             if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
+              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
             } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
@@ -1137,6 +1137,8 @@ export class ProofBotComponent implements OnInit {
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
+      } else if (this.proofType == "poc" && this.currentProof == "Proof of Continuity" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
+        this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
         this.openModal("Proof Verification Failed", 442, "Key Comparison error")
       } else { }
@@ -1275,6 +1277,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   public verificationStatus(compare: any): boolean {
+    console.log('compare', compare)
     let status = true
     switch (this.proofType) {
       case "pobl":
@@ -1295,10 +1298,24 @@ export class ProofBotComponent implements OnInit {
           this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
         }
         break;
+      case "poc":
+        if (this.currentProof == "Proof of Existence") {
+          if (this.variableStorage[compare.t1] != compare.t2) {
+            status = false
+            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+          }
+        } else if (this.currentProof == "Proof of Genesis") {
+          if (this.variableStorage[compare.t1] != compare.t2) {
+            status = false
+            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+          }
+        }
+        break;
       default:
         status = true
         break;
     }
+    console.log('status', status)
     return status
   }
 

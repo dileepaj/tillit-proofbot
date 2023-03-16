@@ -34,14 +34,15 @@
     </table>
     <!-- <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p> -->
   </div>
-  <img *ngIf="countdown!=0" class="proofbot-loding-img" src="../../../../../assets/img/loader.png">
-  <p *ngIf="countdown!=0" class="LoadingWaitLine">Proof verification starting in {{ countdown }} seconds...</p>
-
   <div id="demo" style="margin-top: 5vh;">
-    <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading&&countdown==0" style="height: 4rem;">
-      <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
-      </mat-spinner>
-
+    <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading" style="height: 4rem;">
+      <div *ngIf="isLoading" class="spinner" >
+        <div class="rect1"></div>
+       <div class="rect2"></div>
+       <div class="rect3"></div>
+       <div class="rect4"></div>
+       <div class="rect5"></div>
+     </div>
     </div>
   </div>
 </div>
