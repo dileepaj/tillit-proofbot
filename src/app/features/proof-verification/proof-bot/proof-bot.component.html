@@ -34,9 +34,13 @@
       <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
         <div class="row ">
           <div class="col-12">
-            <div class="d-flex justify-content-between section-header">
+            <div class="d-flex justify-content-between section-header" style="font-size: 16px;">
               <div></div>
-              <div> Batch History</div>
+              <div> Batch History 
+                <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/" target="_blank">
+                  <i class="bi bi-question-circle-fill helpIcon"></i>
+                </a>
+                </div>
               <div class="mr-1 "> <span (click)="isCollapsedPocTree = !isCollapsedPocTree"
                   [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic"><i
                     class="bi bi-chevron-down"></i>
@@ -54,7 +58,11 @@
           <div class="col-12">
             <div class="d-flex justify-content-between section-header">
               <div></div>
-              <div> Current Proof: {{currentProof}} for Batch ID: {{currentBatch}}</div>
+              <div> Current Proof: {{currentProof}} for Batch ID: {{currentBatch}} 
+                <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/" target="_blank">
+                  <i class="bi bi-question-circle-fill helpIcon"></i>
+                </a>
+              </div>
               <div class="mr-1 "> <span (click)="isCollapsedSegment = !isCollapsedSegment"
                   [attr.aria-expanded]="!isCollapsedSegment" aria-controls="steppersFrame"><i
                     class="bi bi-chevron-down"></i>
@@ -67,7 +75,7 @@
       <!-- description -->
       <div class="mb-2" [collapse]="isCollapsedSegment">
         <div class="row justify-content-center align-item-center text-center">
-          <span style="font-size: 14px; font-weight: 400; font-family: Inter;">Current Process :</span>
+          <span style="font-size: 14px; font-weight: 500; font-family: Inter;">Current Process :</span>
         </div>
         <div class="row justify-content-center align-item-center text-center">
           <span style="font-size: 14px; font-weight: 700; font-family: Inter;">{{
@@ -105,9 +113,13 @@
       <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
         <div class="row ">
           <div class="col-12">
-            <div class="d-flex justify-content-between section-header">
+            <div class="d-flex justify-content-between section-header" style="font-size: 16px;">
               <div></div>
-              <div> Main Values</div>
+              <div> Main Values
+                <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/" target="_blank">
+                  <i class="bi bi-question-circle-fill helpIcon"></i>
+                </a>
+              </div>
               <div class="mr-1 "> <span (click)="isCollapsedMainValues= !isCollapsedMainValues"
                   [attr.aria-expanded]="!isCollapsedMainValues" aria-controls="globalInformation"><i
                     class="bi bi-chevron-down"></i>

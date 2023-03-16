@@ -315,7 +315,7 @@
     padding: 5px;
   }
   .success .segment-source{
-    background-color: #0E5E46;
+    background-color: #098260;
     width: 51px;
     height: 35px;
     border-top-right-radius: 14%;
@@ -323,7 +323,7 @@
     padding: 5px;
   }
   .glow .segment-source{
-    background-color: #0E5E46;
+    background-color: #098260;
     width: 51px;
     height: 35px;
     border-top-right-radius: 14%;
@@ -339,7 +339,7 @@
     padding: 5px;
   }
   .success .segment-source-sub{
-    background-color: #395971;
+    background-color:  #477596;
     width: 51px;
     height: 35px;
     border-top-right-radius: 14%;
@@ -347,7 +347,7 @@
     padding: 5px;
   }
   .glow .segment-source-sub{
-    background-color: #395971;
+    background-color:  #477596;
     width: 51px;
     height: 35px;
     border-top-right-radius: 14%;
