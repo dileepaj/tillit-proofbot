@@ -32,6 +32,8 @@ import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
 import { DataKeys } from "src/app/shared/models/commonTypes";
 import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
+import { BotHeaderComponent } from "../components/bot-header/bot-header.component";
+import { CommonService } from "src/app/services/common.service";
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -127,8 +129,15 @@ export class ProofBotComponent implements OnInit {
   proofDemoRef: ViewContainerRef;
   errorOccurred: boolean = false
   nodes: any;
-  POCJSON: any
-
+  POCJSON: any;
+  tdpId:string;
+  batch:string;
+  product:string;
+  isCollapsedPocTree = false;
+  isCollapsedSegment = false;
+  isCollapsedMainValues = false;
+  currentProof:string="";
+  currentBatch:string="";
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -138,7 +147,8 @@ export class ProofBotComponent implements OnInit {
     private toastr: ToastrService,
     private apiService: ApiService,
     private pocJsonService: BuildPOCJsonService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private commonServices : CommonService
   ) { }
 
   ngOnInit() {
@@ -161,28 +171,7 @@ export class ProofBotComponent implements OnInit {
           txn2: params.get("txn2")
         }
       };
-    });
-    this.proofType = this.proofBotParams.params.type;
-    if(this.proofType ==='poe'){
-      this.LoadingProofType = 'Proof Of Existence';
-    } else if (this.proofType ==='pog'){
-      this.LoadingProofType = 'Proof Of Genesis';
-    } else if (this.proofType ==='pobl'){
-      this.LoadingProofType = 'Proof Of Back-links';
-    } else if (this.proofType ==='poc'){
-      this.LoadingProofType = 'Proof of Continuity';
-    } else{}
-    
 
-    this.TXNhash = this.proofBotParams.params.txn;
-  }
-
-  async ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
-
-  async startDemoFn() {
-    if (!!this.proofType && this.availableProofs.includes(this.proofType))
       this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
         async data => {
           try {
@@ -190,26 +179,10 @@ export class ProofBotComponent implements OnInit {
               this.openModal("Invalid URL", 204)
               return
             } else {
-              if (!!this.proofBotParams.params.type) {
-                this.TXNhash = this.proofBotParams.params.txn;
-                this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
-                this.isLoading = true;
-                // backend call
-                await new Promise(resolveTime => setTimeout(resolveTime, 4200));
-                // start demo (not -verifing)
-                if (this.proofType == "poc") {
-                  let url = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
-                  this.apiService.getData(url).subscribe((data) => {
-                    this.nodes = data
-                    this.initiateProofDemo();
-                  }, (err) => {
-                    this.openModal("Invalid URL", err.status, err.message)
-                  })
-                } else
-                  this.initiateProofDemo();
-              } else
-                // invalid URL
-                return
+            let dataJson= JSON.parse(data)
+              this.product=dataJson[0].ProductName
+              this.batch = dataJson[0].Identifier
+              this.tdpId = dataJson[0].TdpId        
             }
           } catch (error) {
             this.openModal("Invalid URL", 404, error.message)
@@ -219,6 +192,38 @@ export class ProofBotComponent implements OnInit {
           this.openModal("Check the Internet Connection", error.status, error.message)
         }
       );
+
+    });
+    this.proofType = this.proofBotParams.params.type;
+    this.LoadingProofType = this.commonServices.getProofName(this.proofType)
+    this.TXNhash = this.proofBotParams.params.txn;
+  }
+
+  async ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
+  async startDemoFn() {
+    if (!!this.proofType && this.availableProofs.includes(this.proofType))
+      if (!!this.proofBotParams.params.type) {
+        this.TXNhash = this.proofBotParams.params.txn;
+        this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+        this.isLoading = true;
+        // backend call
+        await new Promise(resolveTime => setTimeout(resolveTime, 4200));
+        // start demo (not -verifing)
+        if (this.proofType == "poc") {
+          let url = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
+          this.apiService.getData(url).subscribe((data) => {
+            this.nodes = data
+            this.initiateProofDemo();
+          }, (err) => {
+            this.openModal("Invalid URL", err.status, err.message)
+          })
+        } else
+          this.initiateProofDemo();
+      } else
+        return
   }
 
   async initiateProofDemo() {
@@ -262,7 +267,6 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
-        console.log('firstpocpocpoc ', poc)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
         break;
@@ -654,8 +658,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    this.changeNodesOpacity("0.35")
-    this.changeArrowsOpacity("0.35")
+    this.changeNodesOpacity("0.25")
+    this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -671,9 +675,9 @@ export class ProofBotComponent implements OnInit {
       // highlight the running nodes and back-links
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
-          this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
-  
-        }
+        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+
+      }
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
       if (StepHeader.SegmentNo) {
@@ -1028,7 +1032,7 @@ export class ProofBotComponent implements OnInit {
         this.variableStorage[ActionResultVariable] = JSON.stringify(val);
         break;
       case "jsonKeyPicker":
-        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])&&this.proofType!='poc') {
+        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2]) && this.proofType != 'poc') {
           this.toastr.error(`Cannot find given key from the URL`, currentUrl);
           break;
         }
@@ -1124,7 +1128,7 @@ export class ProofBotComponent implements OnInit {
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[], givenDataToStorageData: DataKeys, actionVariable: string) {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
-      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") &&this.proofType!='poc') {
+      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") && this.proofType != 'poc') {
         this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
@@ -1322,21 +1326,25 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  changeSpecificNodeOpacity(trustLinks: any, runingProof: string) {
+  changeSpecificNodeOpacity(trustLinks: any, runningProof: string) {
     if (this.proofType == 'poc') {
-      if (runingProof == 'POE' || runingProof == "POG") {
-        this.changeNodesOpacity('0.35')
-        this.changeArrowsOpacity('0.35')
-        let id = `node-${trustLinks[0]}`
-        let node: any = document.getElementById(id)
-        node.style = "opacity:1;"
-      } else if (runingProof == 'POBL') {
-        this.changeNodesOpacity('0.35')
-        this.changeArrowsOpacity('0.35')
-        const tL = trustLinks[0]
-        let id = `arrow-`+tL[0]+`-`+tL[1]
-        let node: any = document.getElementById(id)
-        node.style = "opacity:1;"
+      if (runningProof == 'POE' || runningProof == "POG") {
+        this.changeNodesOpacity('0.25');
+        this.changeArrowsOpacity('0.25');
+        let id = `node-${trustLinks[0]}`;
+        let node: any = document.getElementById(id);
+        node.style = "opacity:1;";
+        let nodeText = d3.select(`#${id}`);
+        let textContent = nodeText.text();
+        this.currentBatch = textContent.substring(9);
+        this.currentProof = this.commonServices.getProofName(runningProof);
+      } else if (runningProof == 'POBL') {
+        this.changeNodesOpacity('0.25');
+        this.changeArrowsOpacity('0.25');
+        const tL = trustLinks[0];
+        let id = `arrow-` + tL[0] + `-` + tL[1];
+        let node: any = document.getElementById(id);
+        node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
         node1.attr("stroke", "yellow");
       }

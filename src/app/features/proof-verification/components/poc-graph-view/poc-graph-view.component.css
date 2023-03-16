@@ -14,13 +14,10 @@
   }
 
   .rectNode{
-    padding: 3px 30px;
+    padding: 4px 30px;
+    border-radius: 5px;
     border: 2px solid #929292;
     background-color:#D9D9D9;
-  }
-  
-  .label-bar{
-    background-color: #F1F1F1;
   }
   
   .label-bar{

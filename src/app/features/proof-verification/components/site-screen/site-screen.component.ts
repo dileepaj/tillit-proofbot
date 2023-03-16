@@ -65,6 +65,7 @@ export class SiteScreenComponent {
   isPointToElement: boolean = true;
   @Input() lang: string = "en";
   @ViewChild("iframe", { read: ElementRef, static: false }) iframe: ElementRef;
+  @Input() isCollapsedSegment = false;
   constructor(
     private verificationHttpService: VerificationServiceService,
     private sanitizer: DomSanitizer,

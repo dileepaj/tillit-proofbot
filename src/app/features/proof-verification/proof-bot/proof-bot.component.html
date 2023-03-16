@@ -5,11 +5,11 @@
       alignItems: alignItems
     }" [class]="isTheater ? 'p-3' : 'p-0'">
     <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
-      [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"  (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame"
-      *ngIf="!isStartDemo" style="width: 100%;" [ngStyle]="{
+      [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"
+      (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isStartDemo" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
         maxWidth: initialWidth
-      }"></app-bot-loader>
+      }" [product]="product" [batch]="batch" [tdpId]="tdpId"></app-bot-loader>
 
     <div style="overflow-y: scroll;" id="verificationScreen" *ngIf="isStartDemo" [@screenAnimationDemo] [ngStyle]="{
         height: vsHeightExpand ? maxHeight : minHeight,
@@ -20,7 +20,8 @@
         [playbackSpeed]="playbackSpeed" [isTheater]="isTheater" [vsHeightExpand]="vsHeightExpand"
         (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()" (stopFn)="stopFn()"
         (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
-        (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType"></app-bot-header>
+        (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
+        [tdpId]="tdpId"></app-bot-header>
 
 
       <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
@@ -29,27 +30,58 @@
         </p>
       </div>
 
-      <app-poc-graph-view class="m-2" [data]="nodes" *ngIf="proofType=='poc'"></app-poc-graph-view>
-
-      <app-bot-globaldata id="globalInformation" *ngIf="globalData.length > 0" [@screenAnimation] [ngStyle]="{
-          height: gsHeightExpand ? '98vh' : '24vh'
-        }" [globalData]="globalData" [gsOverflowX]="gsOverflowX" [lang]="lang"></app-bot-globaldata>
-
-      <app-bot-segments id="steppersFrame" [SegmentNumber]="SegmentNumber" [icon]="icon" [steppers]="steppers"
-        [subSteppers]="subSteppers" [lang]="lang" (backToStepFn)="backToStep($event)"
-        (backToActionFn)="backToAction($event)"></app-bot-segments>
-
+      <!-- poc view -->
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
+        <div class="row ">
+          <div class="col-12">
+            <div class="d-flex justify-content-between section-header">
+              <div></div>
+              <div> Batch History</div>
+              <div class="mr-1 "> <span (click)="isCollapsedPocTree = !isCollapsedPocTree"
+                  [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic"><i
+                    class="bi bi-chevron-down"></i>
+                </span></div>
+            </div>
+          </div>
+        </div>
+        <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
+          [data]="nodes"></app-poc-graph-view>
+      </div>
+      <!-- end poc view -->
+      <!-- bot-segments header-->
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
+        <div class="row ">
+          <div class="col-12">
+            <div class="d-flex justify-content-between section-header">
+              <div></div>
+              <div> Current Proof: {{currentProof}} for Batch ID: {{currentBatch}}</div>
+              <div class="mr-1 "> <span (click)="isCollapsedSegment = !isCollapsedSegment"
+                  [attr.aria-expanded]="!isCollapsedSegment" aria-controls="steppersFrame"><i
+                    class="bi bi-chevron-down"></i>
+                </span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end bot-segments header-->
       <!-- description -->
-      <div>
-        <ul style="list-style-position: inside" class="ml-0 pl-0 my-2">
-          <li class="m-0 p-0">
-            <span style="font-size: 13px; font-weight: 500; font-family: Inter;">{{
-              ActionDescription
-              }}</span>
-          </li>
-        </ul>
+      <div class="mb-2" [collapse]="isCollapsedSegment">
+        <div class="row justify-content-center align-item-center text-center">
+          <span style="font-size: 14px; font-weight: 400; font-family: Inter;">Current Process :</span>
+        </div>
+        <div class="row justify-content-center align-item-center text-center">
+          <span style="font-size: 14px; font-weight: 700; font-family: Inter;">{{
+            ActionDescription
+            }}</span>
+        </div>
       </div>
       <!-- end description -->
+
+      <!-- bot-segments header-->
+      <app-bot-segments id="steppersFrame" [collapse]="isCollapsedSegment" [SegmentNumber]="SegmentNumber" [icon]="icon"
+        [steppers]="steppers" [subSteppers]="subSteppers" [lang]="lang" (backToStepFn)="backToStep($event)"
+        (backToActionFn)="backToAction($event)"></app-bot-segments>
+      <!--end bot-segments header-->
 
       <!-- bot screen -->
       <div style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px; font-family: Inter;  
@@ -69,6 +101,25 @@
         </div>
       </div>
       <!-- end bot screen -->
+      <!-- Main Values -->
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
+        <div class="row ">
+          <div class="col-12">
+            <div class="d-flex justify-content-between section-header">
+              <div></div>
+              <div> Main Values</div>
+              <div class="mr-1 "> <span (click)="isCollapsedMainValues= !isCollapsedMainValues"
+                  [attr.aria-expanded]="!isCollapsedMainValues" aria-controls="globalInformation"><i
+                    class="bi bi-chevron-down"></i>
+                </span></div>
+            </div>
+          </div>
+        </div>
+        <app-bot-globaldata id="globalInformation" [collapse]="isCollapsedMainValues" [@screenAnimation]
+          [ngStyle]="{height: gsHeightExpand ? '98vh' : '24vh'}" [globalData]="globalData" [gsOverflowX]="gsOverflowX"
+          [lang]="lang"> </app-bot-globaldata>
+      </div>
+      <!--end Main Values -->
     </div>
   </div>
 
