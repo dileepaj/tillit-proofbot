@@ -28,6 +28,8 @@ import { PocGraphViewComponent } from './features/proof-verification/components/
 import { MatGridListModule, } from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorModalComponent } from "./shared/components/error-modal/error-modal.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,9 @@ import { ErrorModalComponent } from "./shared/components/error-modal/error-modal
       preventDuplicates: true,
     }),
     MatGridListModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgbModule,
+    CollapseModule.forRoot(),
   ],
   entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent],
   bootstrap: [AppComponent]

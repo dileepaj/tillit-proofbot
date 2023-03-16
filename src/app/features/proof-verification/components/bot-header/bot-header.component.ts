@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
+import { CommonService } from "src/app/services/common.service";
 
 @Component({
   selector: "app-bot-header",
@@ -24,8 +25,11 @@ export class BotHeaderComponent implements OnInit {
   @Output() resizeVerifyScreenFn = new EventEmitter();
   @Input() proof1: string;
   @Input() proof2: string;
+  @Input() product
+  @Input() batch
+  @Input() tdpId
 
-  constructor() { }
+  constructor(public commonServices: CommonService) { }
 
   ngOnInit() { }
 
@@ -55,26 +59,5 @@ export class BotHeaderComponent implements OnInit {
 
   emitResizeVerifyScreenFn() {
     this.resizeVerifyScreenFn.emit("");
-  }
-
-  getProofName(proof): string {
-    let proofName = ""
-    switch (proof) {
-      case "poe":
-        proofName = "Proof of Existence"
-        break;
-      case "pog":
-        proofName = "Proof of Genesis"
-        break;
-      case "poc":
-        proofName = "Proof of Continuity"
-        break;
-      case "pobl":
-        proofName = "Proof of Back-links"
-        break;
-      default:
-        break;
-    }
-    return proofName
   }
 }

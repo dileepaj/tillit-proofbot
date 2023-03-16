@@ -40,7 +40,7 @@
     <!-- browser controlls end -->
 
     <!-- browser iframe start -->
-    <div class="content">
+    <div class="content" [collapse]="isCollapsedSegment">
       <div class="mt-5 d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" [@spinAnimation]>
         <mat-spinner color="primary" mode="indeterminate" [value]="1" [diameter]="40">
         </mat-spinner>

@@ -1,17 +1,54 @@
-<div class="container" style="font-family: Inter;">
-  <div class="row" >
+<div style="font-family: Inter;">
+  <div class="row">
     <div class="col-12">
-      <div class="container">
-        <div class="d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" style="height: 280px;">
-          <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
-          </mat-spinner>
-        </div>
-        <div [style.opacity]="loadingComplete ? '1' : '0'" [style.height.px]="loadingComplete ? '150' : '0'" id="body" style="width: 100% !important;  border:2px solid #000;  overflow: scroll !important;" class="px-5 py-4 bg-white d-flex align-items-center" >
-          <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-            <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-              <g id="pocTree"/>
-            </svg>
+      <div class="label-bar row justify-content-center align-items-center  mt-2 mb-2">
+        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3">
+          <div class="row justify-content-center align-item-center text-center">
+            <div class="dot genesis mr-2"></div> Genesis Batch
           </div>
+        </div>
+        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3">
+          <div class="row">
+            <div class="dot tdp mr-2 s" ></div> Batch
+          </div>
+        </div>
+        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3">
+          <div class="row">
+            <div class="dot split mr-2"></div> Splitted Batch
+          </div>
+        </div>
+        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3">
+          <div class="row">
+            <div class="dot parent mr-2"></div> Split Parent
+          </div>
+        </div>
+        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3">
+          <div class="row">
+            <div class="dot merge mr-2"></div> Merged Batch
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3 justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-auto text-center mb-2">
+          <div class="text-muted" style="font-size: 14px;"><p style="font-size: 14px; color: #000000;"><span class="mr-1" >
+            <img src="../../../../../assets/img/Arrow 2.svg" alt=""></span> Associated back link </p> </div>
+        </div>
+        <div class="col-sm-12 col-md-auto text-center mb-1">
+          <div class="text-muted" style="font-size: 14px;"><p style="font-size: 14px; color: #000000;"><span class="rectNode mr-1" style="font-size: 14px; color: #000000;"></span>
+            Transaction Node</p></div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" style="height: 280px;">
+        <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
+        </mat-spinner>
+      </div>
+      <div [style.opacity]="loadingComplete ? '1' : '0'" [style.height.px]="loadingComplete ? '100%' : '0'" id="body"
+        style="width: 100% !important;  border: 1px solid #E7E7E7;  overflow: auto; border-bottom: none; border-left: none; border-right: none;"
+        class="px-5 py-4 bg-white d-flex align-items-center">
+        <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
+          <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
+            <g id="pocTree" />
+          </svg>
         </div>
       </div>
     </div>

@@ -8,21 +8,28 @@ import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 export class ErrorModalComponent implements OnInit {
 
   @Input() retry: any;
+  @Output() backToStepFn = new EventEmitter();
+  @Input() steppers: any[];
   title: string;
   errorTitle: string;
-  m1: string;
+  m1: Number = 0;
   m2: string;
 
   constructor(private modalService: BsModalService, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
-    let initialState: any = this.modalService.config.initialState
-    console.log('initialState', initialState)
-    this.title = initialState.title
-    this.errorTitle = initialState.title
-    this.m1 = initialState.title
-    this.m2 = initialState.m2
+    let initialState: any = this.modalService.config.initialState;
+    
+    this.title = initialState.title;
+    this.errorTitle = initialState.errorTitle;
+    this.m1 = initialState.m1;
+    this.m2 = initialState.m2;
+    console.log('initialState', initialState);
 
+  }
+  emitBackToStepFn(NO: number) {
+    this.backToStepFn.emit(NO);
+  
   }
 
   retryClick() {

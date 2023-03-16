@@ -1,3 +1,5 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 .proofbot-main-view{
   height: 100%;
   width: 100%; 
@@ -117,10 +119,6 @@
   align-items: stretch;
 }
 
-/* #verificationScreen #frames > * {
-   margin-left: 4%;
-} */
-
 .toast-notification {
   background-color: #3fc933;
   color: white;
@@ -132,5 +130,21 @@
   z-index: 4000;
 }
 
+.poc-graph-view{
+  border: 1px solid #E7E7E7;
+  border-radius: 0.25rem;
+}
 
+.section-header{
+  padding: 7px;
+  background: #E9ECEF;
+  font-size: 16px;
+  font-family: 'Inter';
+}
 
+.bold-f{
+  font-weight: 700;
+}
+.helpIcon{
+  color: #B0B0B0;
+}

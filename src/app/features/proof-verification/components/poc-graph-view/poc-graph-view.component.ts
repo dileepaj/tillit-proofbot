@@ -104,15 +104,17 @@ export class PocGraphViewComponent implements OnInit {
   }
 
   addNodesAndEdges(g:any, Nodes:any, doneNodes:Array<string>, edgeValues:Array<number>, node:any, mainIndex:number, depth:number, type) {
-    const {sColor, lColor} = this.getColorForTxnType(node.Data.TxnType);
+    const {sColor, lColor, bColor} = this.getColorForTxnType(node.Data.TxnType);
     if(doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier!=""){
         g.setNode(node.Data.TxnHash, {
-            label: node.Data.Identifier,
+            label: !!node.Data.ProductName?`Batch ID:\n${node.Data.Identifier}\nProduct: \n${node.Data.ProductName}`:`Batch ID\n${node.Data.Identifier}`,
             shape: 'rect',
             id:`node-${node.Data.TxnHash}`,
-            style: `stroke: black; stroke-width: 1px; fill: ${sColor};`,
-            labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer;`,
+            style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
+            labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer; font-weight: bold`,
+            rx: 15, // set the x-axis radius of the rectangle
+            ry: 15, // set the y-axis radius of the rectangle
         });
     }
     var lastSplitNodeIndex = null;
@@ -132,11 +134,12 @@ export class PocGraphViewComponent implements OnInit {
             } else nodeIndex = this.getEdgeIndexForTxnType(childNode.Data.TxnType, mainIndex, nodeDepth);
             mainIndex = nodeIndex;
             g.setEdge(node.Data.TxnHash, childNode.Data.TxnHash, {
-                label: `${nodeIndex} ${this.getTxnNameForTxnType(childNode.Data.TxnType)}`,
-                labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer;`,
-                curve: d3.curveBasis,
-                style: `stroke: ${colors.sColor}; fill:none; stroke-width: 1.4px; stroke-dasharray: 5, 5;`,
-                arrowheadStyle: `fill: ${colors.sColor}`,
+              label: `${this.getTxnNameForTxnType(childNode.Data.TxnType)}`,
+              labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer; font-weight: bold`,
+              id:`arrow-${childNode.Data.TxnHash}-${node.Data.TxnHash}`,
+              curve: d3.curveBasis,
+              style: `stroke: ${colors.sColor}; fill:none; stroke-width: 2px;`,
+              arrowheadStyle: `fill: ${colors.sColor}`,
             });
             edgeValues.push(nodeIndex);
             this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth,type);
@@ -172,34 +175,40 @@ export class PocGraphViewComponent implements OnInit {
   }
   
   getColorForTxnType(type) {
-    var sColor : string, lColor : string;
+    var sColor : string, lColor : string, bColor : string;
     switch (type) {
       case "0":
-          sColor = "brown";
+          sColor = "#16A085";
+          bColor = "#086553";
           lColor = "white";
           break
       case "2":
-          sColor = "green";
+          sColor = "#27AE60";
+          bColor = "#127D40";
           lColor = "white";
           break
       case "6":
-          sColor = "purple";
+          sColor = "#2980B9";
+          bColor = "#105481";
           lColor = "white";
           break
       case "7":
-          sColor = "red";
+          sColor = "#C0392B";
+          bColor = "#802C24";
           lColor = "white";
           break
       case "5":
-          sColor = "black";
+          sColor = "#8E44AD";
+          bColor = "#70318A";
           lColor = "white";
           break
       default:
-          sColor = "white";
-          lColor = "black";
+          sColor = "black";
+          bColor = "black";
+          lColor = "white";
           break
     }
-    return {sColor, lColor};
+    return {sColor, lColor, bColor};
   }
 
   getTxnNameForTxnType(type) {
