@@ -29,7 +29,7 @@ export class BotHeaderComponent implements OnInit {
   @Input() batch
   @Input() tdpId
 
-  constructor( private commonServices : CommonService ) {}
+  constructor(public commonServices: CommonService) { }
 
   ngOnInit() { }
 
@@ -60,25 +60,4 @@ export class BotHeaderComponent implements OnInit {
   emitResizeVerifyScreenFn() {
     this.resizeVerifyScreenFn.emit("");
   }
-
-  // public getProofName(proof): string {
-  //   let proofName = ""
-  //   switch (proof) {
-  //     case "poe":
-  //       proofName = "Proof of Existence"
-  //       break;
-  //     case "pog":
-  //       proofName = "Proof of Genesis"
-  //       break;
-  //     case "poc":
-  //       proofName = "Proof of Continuity"
-  //       break;
-  //     case "pobl":
-  //       proofName = "Proof of Back-links"
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   return proofName
-  // }
 }

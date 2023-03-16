@@ -33,18 +33,4 @@ export class BotLoaderComponent implements OnInit {
       }
     }, 1000);
   }
-  
-  // ngOnChanges(changes: SimpleChanges) {
-  //   console.log('changes', changes)
-  //   if (changes.product){
-  //     this.product = changes.product.currentValue
-  //   }
-  //   if (changes.batch){
-  //     this.batch = changes.batch.currentValue
-  //   }
-  //   if (changes.tdpId){
-  //     this.tdpId = changes.tdpId.currentValue
-  //   }
-  // }
-
 }

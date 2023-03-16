@@ -130,14 +130,14 @@ export class ProofBotComponent implements OnInit {
   errorOccurred: boolean = false
   nodes: any;
   POCJSON: any;
-  tdpId:string;
-  batch:string;
-  product:string;
+  tdpId: string;
+  batch: string;
+  product: string;
   isCollapsedPocTree = false;
   isCollapsedSegment = false;
   isCollapsedMainValues = false;
-  currentProof:string="";
-  currentBatch:string="";
+  currentProof: string = "";
+  currentBatch: string = "";
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -148,7 +148,7 @@ export class ProofBotComponent implements OnInit {
     private apiService: ApiService,
     private pocJsonService: BuildPOCJsonService,
     private modalService: BsModalService,
-    private commonServices : CommonService
+    public commonServices: CommonService
   ) { }
 
   ngOnInit() {
@@ -179,10 +179,10 @@ export class ProofBotComponent implements OnInit {
               this.openModal("Invalid URL", 204)
               return
             } else {
-            let dataJson= JSON.parse(data)
-              this.product=dataJson[0].ProductName
+              let dataJson = JSON.parse(data)
+              this.product = dataJson[0].ProductName
               this.batch = dataJson[0].Identifier
-              this.tdpId = dataJson[0].TdpId        
+              this.tdpId = dataJson[0].TdpId
             }
           } catch (error) {
             this.openModal("Invalid URL", 404, error.message)
@@ -1334,10 +1334,10 @@ export class ProofBotComponent implements OnInit {
         let id = `node-${trustLinks[0]}`;
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
+        this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
         this.currentBatch = textContent.substring(9);
-        this.currentProof = this.commonServices.getProofName(runningProof);
       } else if (runningProof == 'POBL') {
         this.changeNodesOpacity('0.25');
         this.changeArrowsOpacity('0.25');
@@ -1347,13 +1347,16 @@ export class ProofBotComponent implements OnInit {
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
         node1.attr("stroke", "yellow");
-        let nodeText1 = d3.select(`#node-${tL[0]}`);
-        let textContent1 = nodeText1.text();
-        this.currentBatch = textContent1.substring(9);
-        let nodeText2 = d3.select(`#node-${tL[1]}`);
-        let textContent2 = nodeText2.text();
-        this.currentBatch = `between ${textContent1.substring(9)}  and ${textContent2.substring(9)}`;
         this.currentProof = this.commonServices.getProofName(runningProof);
+        let textContent1="";
+        let textContent2="";
+        let nodeText1 = d3.select(`#node-${tL[0]}`);
+        if (!nodeText1.empty())
+          textContent1 = nodeText1.text();
+        let nodeText2 = d3.select(`#node-${tL[1]}`);
+        if (!nodeText2.empty())
+          textContent2 = nodeText2.text();
+        this.currentBatch = `between ${textContent1.substring(9)}  and ${textContent2.substring(9)}`;
       }
     }
   }
