@@ -1347,6 +1347,13 @@ export class ProofBotComponent implements OnInit {
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
         node1.attr("stroke", "yellow");
+        let nodeText1 = d3.select(`#node-${tL[0]}`);
+        let textContent1 = nodeText1.text();
+        this.currentBatch = textContent1.substring(9);
+        let nodeText2 = d3.select(`#node-${tL[1]}`);
+        let textContent2 = nodeText2.text();
+        this.currentBatch = `between ${textContent1.substring(9)}  and ${textContent2.substring(9)}`;
+        this.currentProof = this.commonServices.getProofName(runningProof);
       }
     }
   }
