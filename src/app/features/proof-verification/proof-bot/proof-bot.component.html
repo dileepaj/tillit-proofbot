@@ -54,7 +54,18 @@
           <div class="col-12">
             <div class="d-flex justify-content-between section-header">
               <div></div>
-              <div> Current Proof: {{currentProof}} for Batch ID: {{currentBatch}}</div>
+              <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
+                  class="bold-f">{{currentProof}}</span> for Batch ID:
+                between <span class="bold-f">{{currentBatch}}</span> | Product: <span
+                  class="bold-f">{{currentProduct}}</span>
+                and <span class="bold-f">{{currentBatch2}}</span> | Product: <span
+                  class="bold-f">{{currentProduct2}}</span>
+              </div>
+              <ng-template #otherProof>
+                <div>Current Proof: <span class="bold-f">{{currentProof}}</span> for Batch ID:
+                  <span class="bold-f">{{currentBatch}}</span> | Product: <span class="bold-f">{{currentProduct}}</span>
+                </div>
+              </ng-template>
               <div class="mr-1 "> <span (click)="isCollapsedSegment = !isCollapsedSegment"
                   [attr.aria-expanded]="!isCollapsedSegment" aria-controls="steppersFrame"><i
                     class="bi bi-chevron-down"></i>

@@ -108,7 +108,7 @@ export class PocGraphViewComponent implements OnInit {
     if(doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier!=""){
         g.setNode(node.Data.TxnHash, {
-            label: !!node.Data.ProductName?`Batch ID:\n${node.Data.Identifier}\n(${node.Data.ProductName})`:`Batch ID\n${node.Data.Identifier})`,
+            label: !!node.Data.ProductName?`Batch ID:\n${node.Data.Identifier}\nProduct: \n${node.Data.ProductName}`:`Batch ID\n${node.Data.Identifier}`,
             shape: 'rect',
             id:`node-${node.Data.TxnHash}`,
             style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,

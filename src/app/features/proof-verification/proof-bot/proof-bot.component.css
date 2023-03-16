@@ -138,8 +138,11 @@
 .section-header{
   padding: 7px;
   background: #E9ECEF;
-  font-size: 15px;
+  font-size: 16px;
   font-family: 'Inter';
-  font-weight: 650;
+}
+
+.bold-f{
+  font-weight: 700;
 }
 

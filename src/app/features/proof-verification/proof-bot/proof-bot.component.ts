@@ -138,6 +138,9 @@ export class ProofBotComponent implements OnInit {
   isCollapsedMainValues = false;
   currentProof: string = "";
   currentBatch: string = "";
+  currentBatch2: string = "";
+  currentProduct: string = "";
+  currentProduct2: string = "";
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -1337,7 +1340,9 @@ export class ProofBotComponent implements OnInit {
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
-        this.currentBatch = textContent.substring(9);
+        let productIndex = textContent.indexOf('Product:')
+        this.currentBatch = textContent.substring(9, productIndex)
+        this.currentProduct = textContent.substring(productIndex + 8)
       } else if (runningProof == 'POBL') {
         this.changeNodesOpacity('0.25');
         this.changeArrowsOpacity('0.25');
@@ -1348,15 +1353,20 @@ export class ProofBotComponent implements OnInit {
         const node1 = d3.select(`#${id}`);
         node1.attr("stroke", "yellow");
         this.currentProof = this.commonServices.getProofName(runningProof);
-        let textContent1="";
-        let textContent2="";
+        let textContent1 = "";
+        let textContent2 = "";
         let nodeText1 = d3.select(`#node-${tL[0]}`);
         if (!nodeText1.empty())
           textContent1 = nodeText1.text();
         let nodeText2 = d3.select(`#node-${tL[1]}`);
         if (!nodeText2.empty())
           textContent2 = nodeText2.text();
-        this.currentBatch = `between ${textContent1.substring(9)}  and ${textContent2.substring(9)}`;
+        let productIndex1 = textContent1.indexOf('Product:');
+        let productIndex2 = textContent2.indexOf('Product:');
+        this.currentBatch = textContent1.substring(9, productIndex1);
+        this.currentBatch2 = textContent2.substring(9);
+        this.currentProduct = textContent1.substring(productIndex1 + 8);
+        this.currentProduct2 = textContent2.substring(productIndex2 + 8);
       }
     }
   }
