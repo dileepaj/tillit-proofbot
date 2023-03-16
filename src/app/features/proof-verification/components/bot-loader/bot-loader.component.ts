@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-bot-loader',
@@ -17,14 +17,20 @@ export class BotLoaderComponent implements OnInit {
   @Output() startDemoFn = new EventEmitter();
   @Input() LoadingProofType: string;
   @Input() TXNhash: string;
+  @Input() product
+  @Input() batch
+  @Input() tdpId
+  countdown: number = 3;
 
   constructor() { }
 
   ngOnInit() {
     this.startDemoFn.emit('');
+   // start the countdown
+    setInterval(() => {
+      if (this.countdown > 0) {
+        this.countdown--;
+      }
+    }, 1000);
   }
-
-
- 
-
 }

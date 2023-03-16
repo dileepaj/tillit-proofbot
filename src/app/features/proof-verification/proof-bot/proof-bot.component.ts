@@ -30,6 +30,10 @@ import { BuildPOCJsonService } from "src/app/services/build-pocjson.service";
 import { ErrorModalComponent } from "src/app/shared/components/error-modal/error-modal.component";
 import { BsModalService, ModalOptions } from "ngx-bootstrap/modal";
 import { DataKeys } from "src/app/shared/models/commonTypes";
+import * as d3 from 'd3';
+import * as dagreD3 from 'dagre-d3';
+import { BotHeaderComponent } from "../components/bot-header/bot-header.component";
+import { CommonService } from "src/app/services/common.service";
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -125,8 +129,18 @@ export class ProofBotComponent implements OnInit {
   proofDemoRef: ViewContainerRef;
   errorOccurred: boolean = false
   nodes: any;
-  POCJSON: any
-
+  POCJSON: any;
+  tdpId: string;
+  batch: string;
+  product: string;
+  isCollapsedPocTree = false;
+  isCollapsedSegment = false;
+  isCollapsedMainValues = false;
+  currentProof: string = "";
+  currentBatch: string = "";
+  currentBatch2: string = "";
+  currentProduct: string = "";
+  currentProduct2: string = "";
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -136,19 +150,20 @@ export class ProofBotComponent implements OnInit {
     private toastr: ToastrService,
     private apiService: ApiService,
     private pocJsonService: BuildPOCJsonService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    public commonServices: CommonService
   ) { }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       if (!params.get("txn") || !params.get("type")) {
-        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
         return
       } else if (!this.availableProofs.includes(params.get("type"))) {
-        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
         return
       } else if (params.get("type") == 'pobl' && !params.get("txn2")) {
-        this.openModal("Invalid URL", "404", environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
         return
       } else {
       }
@@ -159,9 +174,31 @@ export class ProofBotComponent implements OnInit {
           txn2: params.get("txn2")
         }
       };
+
+      this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
+        async data => {
+          try {
+            if (!data) {
+              this.openModal("Invalid URL", 204)
+              return
+            } else {
+              let dataJson = JSON.parse(data)
+              this.product = dataJson[0].ProductName
+              this.batch = dataJson[0].Identifier
+              this.tdpId = dataJson[0].TdpId
+            }
+          } catch (error) {
+            this.openModal("Invalid URL", 404, error.message)
+          }
+        },
+        error => {
+          this.openModal("Check the Internet Connection", error.status, error.message)
+        }
+      );
+
     });
     this.proofType = this.proofBotParams.params.type;
-    this.LoadingProofType = this.proofBotParams.params.type;
+    this.LoadingProofType = this.commonServices.getProofName(this.proofType)
     this.TXNhash = this.proofBotParams.params.txn;
   }
 
@@ -171,42 +208,25 @@ export class ProofBotComponent implements OnInit {
 
   async startDemoFn() {
     if (!!this.proofType && this.availableProofs.includes(this.proofType))
-      this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
-        async data => {
-          try {
-            if (!data) {
-              this.openModal("Invalid URL", "204")
-              return
-            } else {
-              if (!!this.proofBotParams.params.type) {
-                this.TXNhash = this.proofBotParams.params.txn;
-                this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
-                this.isLoading = true;
-                // backend call
-                await new Promise(resolveTime => setTimeout(resolveTime, 4200));
-                // start demo (not -verifing)
-                if (this.proofType == "poc") {
-                  let url = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
-                  this.apiService.getData(url).subscribe((data) => {
-                    this.nodes = data
-                    this.initiateProofDemo();
-                  }, (err) => {
-                    this.openModal("Invalid URL", err.status, err.message)
-                  })
-                } else
-                  this.initiateProofDemo();
-              } else
-                // invalid URL
-                return
-            }
-          } catch (error) {
-            this.openModal("Invalid URL", "404", error.message)
-          }
-        },
-        error => {
-          this.openModal("Check the Internet Connection", error.status, error.message)
-        }
-      );
+      if (!!this.proofBotParams.params.type) {
+        this.TXNhash = this.proofBotParams.params.txn;
+        this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+        this.isLoading = true;
+        // backend call
+        await new Promise(resolveTime => setTimeout(resolveTime, 4200));
+        // start demo (not -verifing)
+        if (this.proofType == "poc") {
+          let url = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
+          this.apiService.getData(url).subscribe((data) => {
+            this.nodes = data
+            this.initiateProofDemo();
+          }, (err) => {
+            this.openModal("Invalid URL", err.status, err.message)
+          })
+        } else
+          this.initiateProofDemo();
+      } else
+        return
   }
 
   async initiateProofDemo() {
@@ -250,7 +270,6 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
-        console.log('firstpocpocpoc ', poc)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
         break;
@@ -447,7 +466,6 @@ export class ProofBotComponent implements OnInit {
   }
 
   stopFn() {
-    window.location.reload();
     this.StorageTitle = "Storage";
     this.ProofContainerTitle = "Proof Container";
     this.currentStep = 0;
@@ -642,7 +660,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    this.changeNodesOpacity("0.35")
+    this.changeNodesOpacity("0.25")
+    this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -658,10 +677,9 @@ export class ProofBotComponent implements OnInit {
       // highlight the running nodes and back-links
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
-        console.log('first111111')
         this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
-      }
 
+      }
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
       if (StepHeader.SegmentNo) {
@@ -687,6 +705,7 @@ export class ProofBotComponent implements OnInit {
             if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
+              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
             } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
@@ -1016,7 +1035,7 @@ export class ProofBotComponent implements OnInit {
         this.variableStorage[ActionResultVariable] = JSON.stringify(val);
         break;
       case "jsonKeyPicker":
-        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2])) {
+        if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2]) && this.proofType != 'poc') {
           this.toastr.error(`Cannot find given key from the URL`, currentUrl);
           break;
         }
@@ -1112,14 +1131,16 @@ export class ProofBotComponent implements OnInit {
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[], givenDataToStorageData: DataKeys, actionVariable: string) {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
-      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")) {
+      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") && this.proofType != 'poc') {
         this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
+      } else if (this.proofType == "poc" && this.currentProof == "Proof of Continuity" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
+        this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
-        this.openModal("Proof Verification Failed", "442", "Key Comparison error")
+        this.openModal("Proof Verification Failed", 442, "Key Comparison error")
       } else { }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
@@ -1256,6 +1277,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   public verificationStatus(compare: any): boolean {
+    console.log('compare', compare)
     let status = true
     switch (this.proofType) {
       case "pobl":
@@ -1276,10 +1298,24 @@ export class ProofBotComponent implements OnInit {
           this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
         }
         break;
+      case "poc":
+        if (this.currentProof == "Proof of Existence") {
+          if (this.variableStorage[compare.t1] != compare.t2) {
+            status = false
+            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+          }
+        } else if (this.currentProof == "Proof of Genesis") {
+          if (this.variableStorage[compare.t1] != compare.t2) {
+            status = false
+            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+          }
+        }
+        break;
       default:
         status = true
         break;
     }
+    console.log('status', status)
     return status
   }
 
@@ -1289,7 +1325,7 @@ export class ProofBotComponent implements OnInit {
       initialState: {
         retry: this.onRetry,
         errorTitle: errorTitle || "",
-        m1: m1 || "",
+        m1: m1 || 0,
         m2: m2 || "",
         title: 'Error Message'
       }
@@ -1310,15 +1346,54 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  changeSpecificNodeOpacity(trustLinks: any, runingProof: string) {
+  changeSpecificNodeOpacity(trustLinks: any, runningProof: string) {
     if (this.proofType == 'poc') {
-      if (runingProof == 'POE' || runingProof == "POG") {
-        let id = `node-${trustLinks[0]}`
-        let node: any = document.getElementById(id)
-        node.style = "opacity:1;"
-      } else if (runingProof == 'pobl') {
-
+      if (runningProof == 'POE' || runningProof == "POG") {
+        this.changeNodesOpacity('0.25');
+        this.changeArrowsOpacity('0.25');
+        let id = `node-${trustLinks[0]}`;
+        let node: any = document.getElementById(id);
+        node.style = "opacity:1;";
+        this.currentProof = this.commonServices.getProofName(runningProof);
+        let nodeText = d3.select(`#${id}`);
+        let textContent = nodeText.text();
+        let productIndex = textContent.indexOf('Product:')
+        this.currentBatch = textContent.substring(9, productIndex)
+        this.currentProduct = textContent.substring(productIndex + 8)
+      } else if (runningProof == 'POBL') {
+        this.changeNodesOpacity('0.25');
+        this.changeArrowsOpacity('0.25');
+        const tL = trustLinks[0];
+        let id = `arrow-` + tL[0] + `-` + tL[1];
+        let node: any = document.getElementById(id);
+        node.style = "opacity:1;";
+        const node1 = d3.select(`#${id}`);
+        node1.attr("stroke", "yellow");
+        this.currentProof = this.commonServices.getProofName(runningProof);
+        let textContent1 = "";
+        let textContent2 = "";
+        let nodeText1 = d3.select(`#node-${tL[0]}`);
+        if (!nodeText1.empty())
+          textContent1 = nodeText1.text();
+        let nodeText2 = d3.select(`#node-${tL[1]}`);
+        if (!nodeText2.empty())
+          textContent2 = nodeText2.text();
+        let productIndex1 = textContent1.indexOf('Product:');
+        let productIndex2 = textContent2.indexOf('Product:');
+        this.currentBatch = textContent1.substring(9, productIndex1);
+        this.currentBatch2 = textContent2.substring(9);
+        this.currentProduct = textContent1.substring(productIndex1 + 8);
+        this.currentProduct2 = textContent2.substring(productIndex2 + 8);
       }
+    }
+  }
+
+  changeArrowsOpacity(opacity: string) {
+    if (this.proofType == 'poc') {
+      let nodes = document.getElementsByClassName('edgePath')
+      Array.from(nodes).forEach((node: any) => {
+        node.style = `opacity:${opacity};`
+      })
     }
   }
 }

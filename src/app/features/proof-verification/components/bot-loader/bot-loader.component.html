@@ -1,24 +1,48 @@
 <div class="loader-view-main">
-<img class="proofbot-home-img" src="../../../../../assets/img/start-logo.png">
-<div style="padding-top: 25px;">
-  <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p>
+  <img class="proofbot-home-img" src="../../../../../assets/img/start-logo.png">
+  <div style="padding-top: 25px;">
+    <table class="proofLoadingTable">
+      <tr>
+        <th colspan="2" class="proofLodingHeader">
+          {{LoadingProofType}}
+        </th>
+      </tr>
+      <tr class="proofLoadingColumn" *ngIf="!!product">
+        <td class="proofLoadingColumn">
+          Product
+        </td>
+        <td class="proofLoadingColumn">
+          {{product}}
+        </td>
+      </tr>
+      <tr class="proofLoadingColumn" *ngIf="!!batch">
+        <td class="proofLoadingColumn">
+          Batch
+        </td>
+        <td>
+          {{batch}}
+        </td>
+      </tr>
+      <tr class="proofLoadingColumn" *ngIf="!!tdpId">
+        <td class="proofLoadingColumn">
+          TDP ID
+        </td>
+        <td class="proofLoadingColumn">
+          {{tdpId}}
+        </td>
+      </tr>
+    </table>
+    <!-- <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p> -->
   </div>
-<div style="margin-top: 10vh;">
-
-<div
-  class="d-flex justify-content-center align-items-center"
-  *ngIf="isLoading"
-  style="height: 4rem;"
->
-
-  <mat-spinner
-    class="progress-loader"
-    [color]="color"
-    [mode]="mode"
-    [value]="value"
-  >
-  </mat-spinner>
- 
-</div>
-</div>
+  <div id="demo" style="margin-top: 5vh;">
+    <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading" style="height: 4rem;">
+      <div *ngIf="isLoading" class="spinner" >
+        <div class="rect1"></div>
+       <div class="rect2"></div>
+       <div class="rect3"></div>
+       <div class="rect4"></div>
+       <div class="rect5"></div>
+     </div>
+    </div>
+  </div>
 </div>

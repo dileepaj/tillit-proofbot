@@ -11,12 +11,12 @@
       {
         "NO": 1,
         "Name": "&{SegName1}",
-        "Source":"../../../../assets/img/Group.png"
+        "Source":"../../../../assets/img/database.png"
       },
       {
         "NO": 2,
         "Name": "&{SegName2}",
-        "Source":"../../../../assets/img/Group 6.png"
+        "Source":"../../../../assets/img/blockchain2.png"
       },
       {
         "NO": 3,
@@ -26,7 +26,7 @@
       {
         "NO": 4,
         "Name": "&{SegName4}",
-        "Source":"../../../../assets/img/Group 6.png"
+        "Source":"../../../../assets/img/blockchain2.png"
       },
       {
         "NO": 5,
@@ -615,10 +615,10 @@
             "ActionDescription": "&{Text44}",
             "ActionTitle_1": "&{Text45}",
             "ActionDescription_1": "&{Text46}",
-            "SegmentSource_1":"../../../../assets/img/Group 6.png",
+            "SegmentSource_1":"../../../../assets/img/blockchain2.png",
             "ActionTitle_2": "&{Text47}",
             "ActionDescription_2": "&{Text48}",
-            "SegmentSource_2":"../../../../assets/img/Group 6.png",
+            "SegmentSource_2":"../../../../assets/img/blockchain2.png",
             "TXNHash": "${TXNhash}",
             "ResponseVariable": "MainTXNDataString",
             "OperationName": "current transaction",
@@ -898,10 +898,10 @@
             "ActionDescription": "&{Text74}",
             "ActionTitle_1": "&{Text76}",
             "ActionDescription_1": "&{Text77}",
-            "SegmentSource_1":"../../../../assets/img/Group 6.png",
+            "SegmentSource_1":"../../../../assets/img/blockchain2.png",
             "ActionTitle_2": "&{Text125}",
             "ActionDescription_2": "&{Text125}",
-            "SegmentSource_2":"../../../../assets/img/Group 6.png",
+            "SegmentSource_2":"../../../../assets/img/blockchain2.png",
             "FrameTitle": "&{Text71}",
             "TXNHash": "${var_currenttxn}",
             "OperationName": "&{Text72}",

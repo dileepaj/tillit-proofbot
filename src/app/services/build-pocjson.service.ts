@@ -19,7 +19,7 @@ export class BuildPOCJsonService {
         {
           "NO": 1,
           "Name": "&{SegName1}",
-          "Source": "../../../../assets/img/Group.png"
+          "Source": "../../../../assets/img/database.png"
         }
       ]
     },
@@ -256,7 +256,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPog + 3,
               "Name": "&{SegName4}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPog + 4,
@@ -333,8 +333,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType":"POG",
-                    "TrustLinks": [node.Id]
-                    
+                    "TrustLinks": [node.Id]               
                   }
                 },
                 "ActionResultVariable": "",
@@ -2151,6 +2150,7 @@ export class BuildPOCJsonService {
           this.pocProofJson.Steps.push(...pogSteps)
           this.pocProofJson.Header.Segments.push(...pogSegments)
           this.pocLangJson.Actions.push(...pogLang)
+          console.log("ggggg--",pogSteps );
           break;
         case "2":
           let segPoe = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -2159,12 +2159,12 @@ export class BuildPOCJsonService {
             {
               "NO": segPoe + 1,
               "Name": "&{SegName10}",
-              "Source": "../../../../assets/img/Group.png"
+              "Source": "../../../../assets/img/database.png"
             },
             {
               "NO": segPoe + 2,
               "Name": "&{SegName11}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPoe + 3,
@@ -2174,7 +2174,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPoe + 4,
               "Name": "&{SegName13}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPoe + 5,
@@ -2770,10 +2770,10 @@ export class BuildPOCJsonService {
                     "ActionDescription": "&{Text44}",
                     "ActionTitle_1": "&{Text45}",
                     "ActionDescription_1": "&{Text46}",
-                    "SegmentSource_1": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_1": "../../../../assets/img/blockchain2.png",
                     "ActionTitle_2": "&{Text47}",
                     "ActionDescription_2": "&{Text48}",
-                    "SegmentSource_2": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_2": "../../../../assets/img/blockchain2.png",
                     "TXNHash": node.TrustLinks[0],
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
@@ -3057,10 +3057,10 @@ export class BuildPOCJsonService {
                     "ActionDescription": "&{Text74}",
                     "ActionTitle_1": "&{Text76}",
                     "ActionDescription_1": "&{Text77}",
-                    "SegmentSource_1": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_1": "../../../../assets/img/blockchain2.png",
                     "ActionTitle_2": "&{Text125}",
                     "ActionDescription_2": "&{Text125}",
-                    "SegmentSource_2": "../../../../assets/img/Group 6.png",
+                    "SegmentSource_2": "../../../../assets/img/blockchain2.png",
                     "FrameTitle": "&{Text71}",
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "&{Text72}",
@@ -4365,7 +4365,7 @@ export class BuildPOCJsonService {
               }
             },
             {
-              "SegmentNo": 15,
+              "SegmentNo": segPoe + 6,
               "StepNo": numPoe + 26,
               "Languages": {
                 "Text120": {
@@ -4392,6 +4392,8 @@ export class BuildPOCJsonService {
           this.pocLangJson.Actions.push(...poeLang)
           segPoe = segPoe + 6
           numPoe = numPoe + 26
+          console.log("ggggg-mmmmmm-",poeSteps );
+          console.log("ggggg-mmmhhhhhmmm-",poeLang );
           break;
         case "pobl":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -4400,7 +4402,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 1,
               "Name": "&{SegName16}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 2,
@@ -4410,7 +4412,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 3,
               "Name": "&{SegName18}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 4,
@@ -4430,7 +4432,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 7,
               "Name": "&{SegName22}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 8,
@@ -4440,7 +4442,7 @@ export class BuildPOCJsonService {
             {
               "NO": segPobl + 9,
               "Name": "&{SegName24}",
-              "Source": "../../../../assets/img/Group 6.png"
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPobl + 10,
@@ -4517,7 +4519,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType":"POBL",
-                    "TrustLinks":[node.TrustLinks[0], node.TrustLinks[1]],
+                    "TrustLinks":[node.PoblTDP.current, node.PoblTDP.previous],
                   }
                 },
                 "ActionResultVariable": "",
@@ -6467,7 +6469,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "Compare": {
                     "t1": "MainTXNPreviousTXNDecoded",
-                    "t2": "ExpectedPreviousTxnHash"
+                    "t2": node.TrustLinks[1]
                   }
                 },
                 "ActionResultVariable": "",
@@ -7592,8 +7594,8 @@ export class BuildPOCJsonService {
           "ActionType": "BrowserScreen",
           "ActionParameters": {
             "ExternalURL": "",
-            "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong> </strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n \r\n </p></td></tr></tbody></table></div></div></body></html>",
-            "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong></strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n \r\n </p></td></tr></tbody></table></div></div></body></html>",
+            "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
+            "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
             "PageURL": "&{Text181}",
             "Query": "",
             "QueryIndex": "",
@@ -7613,8 +7615,8 @@ export class BuildPOCJsonService {
             "FormatType": "",
             "StorageData": [],
             "Compare": {
-              "t1": "MainTXNPreviousTXNDecoded",
-              "t2": "ExpectedPreviousTxnHash"
+              "t1": "",
+              "t2": ""
             }
           },
           "ActionResultVariable": "",
