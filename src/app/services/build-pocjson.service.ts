@@ -32,9 +32,9 @@ export class BuildPOCJsonService {
           "FrameTitle": ""
         },
         "Action": {
-          "ActionTitle": "&{Text0}",
-          "ActionDescription": "&{Text1}",
-          "FrameTitle": "&{Text2}",
+          "ActionTitle": "&{TextPoc0}",
+          "ActionDescription": "&{TextPoc1}",
+          "FrameTitle": "&{TextPoc2}",
           "ActionType": "LoadProofAndGraphView",
           "ActionParameters": {
             "ExternalURL": "https://qa.gateway.tracified.com/pocv4/${TXNhash}",
@@ -206,15 +206,15 @@ export class BuildPOCJsonService {
         "SegmentNo": 1,
         "StepNo": 1,
         "Languages": {
-          "Text0": {
+          "TextPoc0": {
             "ja": "aa",
             "en": "Load Graph View"
           },
-          "Text1": {
+          "TextPoc1": {
             "ja": "aa",
             "en": "Load the POC tree view "
           },
-          "Text2": {
+          "TextPoc2": {
             "ja": "aa",
             "en": "Retrieve POC Tree View ."
           }
@@ -293,8 +293,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text0}",
-                "ActionDescription": "&{Text1}",
+                "ActionTitle": "&{TextPog0}",
+                "ActionDescription": "&{TextPog1}",
                 "ActionType": "MultiStepAction",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -321,13 +321,13 @@ export class BuildPOCJsonService {
                     "StepNo": numPog + 1,
                     "SegmentNo": segPog + 1,
                     "FrameID": 1,
-                    "FrameTitle": "&{Text2}",
-                    "ActionTitle": "&{Text3}",
-                    "ActionDescription": "&{Text4}",
-                    "ActionTitle_1": "&{Text5}",
-                    "ActionDescription_1": "&{Text6}",
-                    "ActionTitle_2": "&{Text7}",
-                    "ActionDescription_2": "&{Text8}",
+                    "FrameTitle": "&{TextPog2}",
+                    "ActionTitle": "&{TextPog3}",
+                    "ActionDescription": "&{TextPog4}",
+                    "ActionTitle_1": "&{TextPog5}",
+                    "ActionDescription_1": "&{TextPog6}",
+                    "ActionTitle_2": "&{TextPog7}",
+                    "ActionDescription_2": "&{TextPog8}",
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
@@ -357,8 +357,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text9}",
-                "ActionDescription": "&{Text10}",
+                "ActionTitle": "&{TextPog9}",
+                "ActionDescription": "&{TextPog10}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -435,10 +435,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPog + 2,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text11}",
-                    "ActionDescription": "&{Text12}",
-                    "ActionTitle_1": "&{Text13}",
-                    "ActionDescription_1": "&{Text14}",
+                    "ActionTitle": "&{TextPog11}",
+                    "ActionDescription": "&{TextPog12}",
+                    "ActionTitle_1": "&{TextPog13}",
+                    "ActionDescription_1": "&{TextPog14}",
                     "OperationKey": "CurrentTXN",
                     "OperationValue": "MainTXNCurentTXNHash",
                     "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
@@ -466,8 +466,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text15}",
-                "ActionDescription": "&{Text16}",
+                "ActionTitle": "&{TextPog15}",
+                "ActionDescription": "&{TextPog16}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -490,7 +490,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text200}",
+                      "Key": "&{TextPog200}",
                       "Value": "${MainTXNCurentTXNHash}"
                     }
                   ]
@@ -543,22 +543,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPog + 5,
                     "SegmentNo": segPog + 2,
                     "FrameID": 2,
-                    "FrameTitle": "&{Text17}",
-                    "ActionTitle": "&{Text18}",
-                    "ActionDescription": "&{Text19}",
-                    "ActionTitle_1": "&{Text20}",
-                    "ActionDescription_1": "&{Text21}",
-                    "ActionTitle_2": "&{Text22}",
-                    "ActionDescription_2": "&{Text23}",
-                    "ActionTitle_3": "&{Text24}",
-                    "ActionDescription_3": "&{Text25}",
-                    "ActionTitle_4": "&{Text26}",
-                    "ActionDescription_4": "&{Text27}",
-                    "ToastMessage": "&{Text104}",
-                    "DecodeKeyName": "&{Text236}",
+                    "FrameTitle": "&{TextPog17}",
+                    "ActionTitle": "&{TextPog18}",
+                    "ActionDescription": "&{TextPog19}",
+                    "ActionTitle_1": "&{TextPog20}",
+                    "ActionDescription_1": "&{TextPog21}",
+                    "ActionTitle_2": "&{TextPog22}",
+                    "ActionDescription_2": "&{TextPog23}",
+                    "ActionTitle_3": "&{TextPog24}",
+                    "ActionDescription_3": "&{TextPog25}",
+                    "ActionTitle_4": "&{TextPog26}",
+                    "ActionDescription_4": "&{TextPog27}",
+                    "ToastMessage": "&{TextPog104}",
+                    "DecodeKeyName": "&{TextPog236}",
                     "EncodedInputValue": "${MainTXNCurentTXNHash}",
                     "DecodedResultVariable": "var_currenttxn",
-                    "InformationStorageKey": "&{Text219}"
+                    "InformationStorageKey": "&{TextPog219}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -609,13 +609,13 @@ export class BuildPOCJsonService {
                     "StepNo": numPog + 6,
                     "SegmentNo": segPog + 3,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text28}",
-                    "ActionTitle": "&{Text29}",
-                    "ActionDescription": "&{Text30}",
-                    "ActionTitle_1": "&{Text31}",
-                    "ActionDescription_1": "&{Text32}",
-                    "ActionTitle_2": "&{Text33}",
-                    "ActionDescription_2": "&{Text34}",
+                    "FrameTitle": "&{TextPog28}",
+                    "ActionTitle": "&{TextPog29}",
+                    "ActionDescription": "&{TextPog30}",
+                    "ActionTitle_1": "&{TextPog31}",
+                    "ActionDescription_1": "&{TextPog32}",
+                    "ActionTitle_2": "&{TextPog33}",
+                    "ActionDescription_2": "&{TextPog34}",
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "current transaction of the gateway transaction",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
@@ -645,8 +645,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text35}",
-                "ActionDescription": "&{Text36}",
+                "ActionTitle": "&{TextPog35}",
+                "ActionDescription": "&{TextPog36}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -723,10 +723,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPog + 4,
                     "FrameID": 3,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text37}",
-                    "ActionDescription": "&{Text38}",
-                    "ActionTitle_1": "&{Text39}",
-                    "ActionDescription_1": "&{Text40}",
+                    "ActionTitle": "&{TextPog37}",
+                    "ActionDescription": "&{TextPog38}",
+                    "ActionTitle_1": "&{TextPog39}",
+                    "ActionDescription_1": "&{TextPog40}",
                     "OperationKey": "identifier",
                     "OperationValue": "MainTXNCurentTXNDataIdentifier",
                     "OperationKeyName": "encoded Identifier from the transaction details",
@@ -754,8 +754,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text41}",
-                "ActionDescription": "&{Text42}",
+                "ActionTitle": "&{TextPog41}",
+                "ActionDescription": "&{TextPog42}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -778,7 +778,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text201}",
+                      "Key": "&{TextPog201}",
                       "Value": "${MainTXNCurentTXNDataIdentifier}"
                     }
                   ]
@@ -831,22 +831,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPog + 10,
                     "SegmentNo": segPog + 4,
                     "FrameID": 4,
-                    "FrameTitle": "&{Text45}",
-                    "ActionTitle": "&{Text46}",
-                    "ActionDescription": "&{Text47}",
-                    "ActionTitle_1": "&{Text48}",
-                    "ActionDescription_1": "&{Text49}",
-                    "ActionTitle_2": "&{Text50}",
-                    "ActionDescription_2": "&{Text51}",
-                    "ActionTitle_3": "&{Text52}",
-                    "ActionDescription_3": "&{Text53}",
-                    "ActionTitle_4": "&{Text54}",
-                    "ActionDescription_4": "&{Text55}",
-                    "ToastMessage": "&{Text105}",
-                    "DecodeKeyName": "&{Text237}",
+                    "FrameTitle": "&{TextPog45}",
+                    "ActionTitle": "&{TextPog46}",
+                    "ActionDescription": "&{TextPog47}",
+                    "ActionTitle_1": "&{TextPog48}",
+                    "ActionDescription_1": "&{TextPog49}",
+                    "ActionTitle_2": "&{TextPog50}",
+                    "ActionDescription_2": "&{TextPog51}",
+                    "ActionTitle_3": "&{TextPog52}",
+                    "ActionDescription_3": "&{TextPog53}",
+                    "ActionTitle_4": "&{TextPog54}",
+                    "ActionDescription_4": "&{TextPog55}",
+                    "ToastMessage": "&{TextPog105}",
+                    "DecodeKeyName": "&{TextPog237}",
                     "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
-                    "InformationStorageKey": "&{Text220}"
+                    "InformationStorageKey": "&{TextPog220}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -870,8 +870,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text56}",
-                "ActionDescription": "&{Text57}",
+                "ActionTitle": "&{TextPog56}",
+                "ActionDescription": "&{TextPog57}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -948,10 +948,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPog + 5,
                     "FrameID": 3,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text58}",
-                    "ActionDescription": "&{Text59}",
-                    "ActionTitle_1": "&{Text60}",
-                    "ActionDescription_1": "&{Text61}",
+                    "ActionTitle": "&{TextPog58}",
+                    "ActionDescription": "&{TextPog59}",
+                    "ActionTitle_1": "&{TextPog60}",
+                    "ActionDescription_1": "&{TextPog61}",
                     "OperationKey": "productId",
                     "OperationValue": "MainTXNCurentTXNDataProductId",
                     "OperationKeyName": "encoded ProductID from the transaction details",
@@ -979,8 +979,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text62}",
-                "ActionDescription": "&{Text63}",
+                "ActionTitle": "&{TextPog62}",
+                "ActionDescription": "&{TextPog63}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -1003,7 +1003,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text202}",
+                      "Key": "&{TextPog202}",
                       "Value": "${MainTXNCurentTXNDataProductId}"
                     }
                   ]
@@ -1056,22 +1056,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPog + 14,
                     "SegmentNo": segPog + 5,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text64}",
-                    "ActionTitle": "&{Text65}",
-                    "ActionDescription": "&{Text66}",
-                    "ActionTitle_1": "&{Text67}",
-                    "ActionDescription_1": "&{Text68}",
-                    "ActionTitle_2": "&{Text69}",
-                    "ActionDescription_2": "&{Text70}",
-                    "ActionTitle_3": "&{Text71}",
-                    "ActionDescription_3": "&{Text72}",
-                    "ActionTitle_4": "&{Text73}",
-                    "ActionDescription_4": "&{Text74}",
-                    "ToastMessage": "&{Text106}",
-                    "DecodeKeyName": "&{Text238}",
+                    "FrameTitle": "&{TextPog64}",
+                    "ActionTitle": "&{TextPog65}",
+                    "ActionDescription": "&{TextPog66}",
+                    "ActionTitle_1": "&{TextPog67}",
+                    "ActionDescription_1": "&{TextPog68}",
+                    "ActionTitle_2": "&{TextPog69}",
+                    "ActionDescription_2": "&{TextPog70}",
+                    "ActionTitle_3": "&{TextPog71}",
+                    "ActionDescription_3": "&{TextPog72}",
+                    "ActionTitle_4": "&{TextPog73}",
+                    "ActionDescription_4": "&{TextPog74}",
+                    "ToastMessage": "&{TextPog106}",
+                    "DecodeKeyName": "&{TextPog238}",
                     "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
-                    "InformationStorageKey": "&{Text221}"
+                    "InformationStorageKey": "&{TextPog221}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -1095,8 +1095,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text75}",
-                "ActionDescription": "&{Text76}",
+                "ActionTitle": "&{TextPog75}",
+                "ActionDescription": "&{TextPog76}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -1173,10 +1173,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPog + 6,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text77}",
-                    "ActionDescription": "&{Text78}",
-                    "ActionTitle_1": "&{Text79}",
-                    "ActionDescription_1": "&{Text80}",
+                    "ActionTitle": "&{TextPog77}",
+                    "ActionDescription": "&{TextPog78}",
+                    "ActionTitle_1": "&{TextPog79}",
+                    "ActionDescription_1": "&{TextPog80}",
                     "OperationKey": "PreviousTXN",
                     "OperationValue": "MainTXNPreviousTXN",
                     "OperationKeyName": "encoded PreviousTXN Hash from the transaction details.",
@@ -1204,8 +1204,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text81}",
-                "ActionDescription": "&{Text82}",
+                "ActionTitle": "&{TextPog81}",
+                "ActionDescription": "&{TextPog82}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -1228,7 +1228,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text203}",
+                      "Key": "&{TextPog203}",
                       "Value": "${MainTXNPreviousTXN}"
                     }
                   ]
@@ -1254,8 +1254,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text83}",
-                "ActionDescription": "&{Text84}",
+                "ActionTitle": "&{TextPog83}",
+                "ActionDescription": "&{TextPog84}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -1332,10 +1332,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPog + 7,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text85}",
-                    "ActionDescription": "&{Text86}",
-                    "ActionTitle_1": "&{Text87}",
-                    "ActionDescription_1": "&{Text88}",
+                    "ActionTitle": "&{TextPog85}",
+                    "ActionDescription": "&{TextPog86}",
+                    "ActionTitle_1": "&{TextPog87}",
+                    "ActionDescription_1": "&{TextPog88}",
                     "OperationKey": "Type",
                     "OperationValue": "MainTXNTXType",
                     "OperationKeyName": "encoded Transaction Type from the transaction details.",
@@ -1363,8 +1363,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text89}",
-                "ActionDescription": "&{Text90}",
+                "ActionTitle": "&{TextPog89}",
+                "ActionDescription": "&{TextPog90}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -1387,7 +1387,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text204}",
+                      "Key": "&{TextPog204}",
                       "Value": "${MainTXNTXType}"
                     }
                   ]
@@ -1440,22 +1440,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPog + 21,
                     "SegmentNo": segPog + 7,
                     "FrameID": 4,
-                    "FrameTitle": "&{Text91}",
-                    "ActionTitle": "&{Text92}",
-                    "ActionDescription": "&{Text93}",
-                    "ActionTitle_1": "&{Text94}",
-                    "ActionDescription_1": "&{Text95}",
-                    "ActionTitle_2": "&{Text96}",
-                    "ActionDescription_2": "&{Text97}",
-                    "ActionTitle_3": "&{Text98}",
-                    "ActionDescription_3": "&{Text99}",
-                    "ActionTitle_4": "&{Text100}",
-                    "ActionDescription_4": "&{Text101}",
-                    "ToastMessage": "&{Text107}",
-                    "DecodeKeyName": "&{Text222}",
+                    "FrameTitle": "&{TextPog91}",
+                    "ActionTitle": "&{TextPog92}",
+                    "ActionDescription": "&{TextPog93}",
+                    "ActionTitle_1": "&{TextPog94}",
+                    "ActionDescription_1": "&{TextPog95}",
+                    "ActionTitle_2": "&{TextPog96}",
+                    "ActionDescription_2": "&{TextPog97}",
+                    "ActionTitle_3": "&{TextPog98}",
+                    "ActionDescription_3": "&{TextPog99}",
+                    "ActionTitle_4": "&{TextPog100}",
+                    "ActionDescription_4": "&{TextPog101}",
+                    "ToastMessage": "&{TextPog107}",
+                    "DecodeKeyName": "&{TextPog222}",
                     "EncodedInputValue": "${MainTXNTXType}",
                     "DecodedResultVariable": "MainTXNTXTypeDecoded",
-                    "InformationStorageKey": "&{Text222}"
+                    "InformationStorageKey": "&{TextPog222}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -1476,12 +1476,12 @@ export class BuildPOCJsonService {
                 "StepNo": numPog + 22,
                 "SegmentNo": segPog + 8,
                 "FrameID": 5,
-                "FrameTitle": "&{Text102}"
+                "FrameTitle": "&{TextPog102}"
               },
               "Action": {
-                "ActionTitle": "&{Text103}",
-                "ActionDescription": "&{Text103}",
-                "FrameTitle": "&{Text102}",
+                "ActionTitle": "&{TextPog103}",
+                "ActionDescription": "&{TextPog103}",
+                "FrameTitle": "&{TextPog102}",
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -1518,7 +1518,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text233}",
+                "ToastMessage1": "&{TextPog233}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -1532,39 +1532,39 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 1,
               "StepNo": numPog + 1,
               "Languages": {
-                "Text0": {
+                "TextPog0": {
                   "ja": "現在のトランザクションの取得",
                   "en": "Retrieve Current Transaction"
                 },
-                "Text1": {
+                "TextPog1": {
                   "ja": "現在のトランザクションの取得",
                   "en": "Retrieve Current Transaction"
                 },
-                "Text2": {
+                "TextPog2": {
                   "ja": "ステップ１ー現在のトランザクションの取得",
                   "en": "Step 1 - Retrieve Current Transaction"
                 },
-                "Text3": {
+                "TextPog3": {
                   "ja": "ステラホライズンAPIのリクエスト",
                   "en": "Request Stellar Horizon API"
                 },
-                "Text4": {
+                "TextPog4": {
                   "ja": "ステラブロックチェーンから現在の取引を取得する",
                   "en": "Retrieve the current transaction from Stellar Blockchain."
                 },
-                "Text5": {
+                "TextPog5": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "Text6": {
+                "TextPog6": {
                   "ja": "トランザクションのレスポンスデータの保存",
                   "en": "Save the response data of the transaction"
                 },
-                "Text7": {
+                "TextPog7": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "Text8": {
+                "TextPog8": {
                   "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
@@ -1574,11 +1574,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 2,
               "StepNo": numPog + 2,
               "Languages": {
-                "Text9": {
+                "TextPog9": {
                   "ja": "Current TXNハッシュを抽出",
                   "en": "Extract Current TXN Hash"
                 },
-                "Text10": {
+                "TextPog10": {
                   "ja": "トランザクションの詳細からCurrent TXNハッシュ（base64エンコード）を選択",
                   "en": "Select the Current TXN Hash (base64 encoded) from the transaction details."
                 }
@@ -1588,27 +1588,27 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 2,
               "StepNo": numPog + 3,
               "Languages": {
-                "Text11": {
+                "TextPog11": {
                   "ja": "現在のTXNをハイライト表示",
                   "en": "Highlight the Current TXN"
                 },
-                "Text12": {
+                "TextPog12": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
                   "en": "Select the encoded Current TXN Hash from the transaction details"
                 },
-                "Text13": {
+                "TextPog13": {
                   "ja": "Main TXN Current TXN Hashをハイライト表示",
                   "en": "Highlight the Main TXN Current TXN Hash"
                 },
-                "Text14": {
+                "TextPog14": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
                   "en": "Select the encoded Current TXN Hash from the transaction details"
                 },
-                "Text219": {
+                "TextPog219": {
                   "ja": "TXN2 CurrentTXN",
                   "en": "TXN2 CurrentTXN"
                 },
-                "Text115": {
+                "TextPog115": {
                   "ja": "CurrentTXN ハッシュ",
                   "en": "CurrentTXN Hash"
                 }
@@ -1618,15 +1618,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 2,
               "StepNo": numPog + 4,
               "Languages": {
-                "Text15": {
+                "TextPog15": {
                   "ja": "Base64エンコードされたCurrent TXNの保存",
                   "en": "Save Base64 Encoded Current TXN"
                 },
-                "Text16": {
+                "TextPog16": {
                   "ja": "将来の使用にBase64でエンコードされたCurrent TXNハッシュ値を保存",
                   "en": "Save the base64 encoded Current TXN Hash value for future usage."
                 },
-                "Text200": {
+                "TextPog200": {
                   "ja": "TXN2 CurrentTXN (base64)",
                   "en": "TXN2 CurrentTXN (base64)"
                 }
@@ -1636,55 +1636,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 2,
               "StepNo": numPog + 5,
               "Languages": {
-                "Text17": {
+                "TextPog17": {
                   "ja": "ステップ２ーデコード Current TXN",
                   "en": "Step 2 - Decode Current TXN"
                 },
-                "Text18": {
+                "TextPog18": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "Text19": {
+                "TextPog19": {
                   "ja": "Base64でエンコードされたCurrent TXNのハッシュをデコード",
                   "en": "Decode the base64 encoded Current TXN Hash"
                 },
-                "Text20": {
+                "TextPog20": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "Text21": {
+                "TextPog21": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュを入力",
                   "en": "Input the base64 encoded Current TXN Hash"
                 },
-                "Text22": {
+                "TextPog22": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click Decode Button"
                 },
-                "Text23": {
+                "TextPog23": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text24": {
+                "TextPog24": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text25": {
+                "TextPog25": {
                   "ja": "デコードされたCurrent TXNハッシュの出力を取得",
                   "en": "Get the output of the decoded Current TXN Hash"
                 },
-                "Text26": {
+                "TextPog26": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "Text27": {
+                "TextPog27": {
                   "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
                   "en": "Save the decoded Current TXN Hash for future usage."
                 },
-                "Text104": {
+                "TextPog104": {
                   "ja": "デコードされたCurrent TXNハッシュ",
                   "en": "Decoded Current TXN Hash"
                 },
-                "Text236": {
+                "TextPog236": {
                   "ja": "CurrentTXN Hash",
                   "en": "CurrentTXN Hash"
                 }
@@ -1694,31 +1694,31 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 3,
               "StepNo": numPog + 6,
               "Languages": {
-                "Text28": {
+                "TextPog28": {
                   "ja": "ステップ３－現在のトランザクションの取得",
                   "en": "Step 3 - Retrieve Current Transaction"
                 },
-                "Text29": {
+                "TextPog29": {
                   "ja": "ステラホライズンAPIのリクエスト",
                   "en": "Request Stellar Horizon API"
                 },
-                "Text30": {
+                "TextPog30": {
                   "ja": "ゲートウェイトランザクションの現在のトランザクションをステラブロックチェーンから取得",
                   "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
                 },
-                "Text31": {
+                "TextPog31": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "Text32": {
+                "TextPog32": {
                   "ja": "トランザクションのレスポンスデータの保存",
                   "en": "Save the response data of the transaction"
                 },
-                "Text33": {
+                "TextPog33": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "Text34": {
+                "TextPog34": {
                   "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
@@ -1728,11 +1728,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 4,
               "StepNo": numPog + 7,
               "Languages": {
-                "Text35": {
+                "TextPog35": {
                   "ja": "Base64 Encodedの識別子を選択",
                   "en": "Select Base64 Encoded Identifier"
                 },
-                "Text36": {
+                "TextPog36": {
                   "ja": "トランザクションの詳細からエンコードされたIdentifierを選択",
                   "en": "Select the encoded Identifier from the transaction details."
                 }
@@ -1742,19 +1742,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 4,
               "StepNo": numPog + 8,
               "Languages": {
-                "Text37": {
+                "TextPog37": {
                   "ja": "識別子をハイライト表示",
                   "en": "Highlight the identifier."
                 },
-                "Text38": {
+                "TextPog38": {
                   "ja": "トランザクションの詳細からエンコードされたIdentifierを選択",
                   "en": "Select the encoded Identifier from the transaction details."
                 },
-                "Text39": {
+                "TextPog39": {
                   "ja": "Main TXN Current TXNDataIdentifierをハイライト表示",
                   "en": "Highlight the Main TXN Current TXNDataIdentifier."
                 },
-                "Text40": {
+                "TextPog40": {
                   "ja": "トランザクションの詳細から、エンコードされた識別子の値を選択",
                   "en": "Select the encoded Identifier value from the transaction details."
                 }
@@ -1764,15 +1764,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 4,
               "StepNo": numPog + 9,
               "Languages": {
-                "Text41": {
+                "TextPog41": {
                   "ja": "Base64Encodeされた識別子の保存",
                   "en": "Save Base64 Encoded Identifier"
                 },
-                "Text42": {
+                "TextPog42": {
                   "ja": "将来の使用のために、base64 エンコードされた 識別子の 値を保存",
                   "en": "Save the base64 encoded Identifier value for future usage."
                 },
-                "Text201": {
+                "TextPog201": {
                   "ja": "識別子 (base64)",
                   "en": "Identifier (base64)"
                 }
@@ -1782,63 +1782,63 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 4,
               "StepNo": numPog + 10,
               "Languages": {
-                "Text45": {
+                "TextPog45": {
                   "ja": "ステップ４ーMain TXN 識別子のデコード",
                   "en": "Step 4 - Decode Main TXN Identifier"
                 },
-                "Text46": {
+                "TextPog46": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "Text47": {
+                "TextPog47": {
                   "ja": "base64でエンコードされたMain TXN識別子をデコード",
                   "en": "Decode the base64 encoded Main TXN Identifier"
                 },
-                "Text48": {
+                "TextPog48": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "Text49": {
+                "TextPog49": {
                   "ja": "Main TXN 識別子を base64 でエンコードしたものを入力",
                   "en": "Input the base64 encoded Main TXN Identifier"
                 },
-                "Text50": {
+                "TextPog50": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click Decode Button"
                 },
-                "Text51": {
+                "TextPog51": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text52": {
+                "TextPog52": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text53": {
+                "TextPog53": {
                   "ja": "デコードされたMain TXN識別子の出力を取得",
                   "en": "Get the output of the decoded Main TXN Identifier"
                 },
-                "Text54": {
+                "TextPog54": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "Text55": {
+                "TextPog55": {
                   "ja": "将来の使用のためにデコードされたMain TXN識別子を保存",
                   "en": "Save the decoded Main TXN Identifier for future usage."
                 },
-                "Text105": {
+                "TextPog105": {
                   "ja": "デコードされたMainTXN識別子",
                   "en": "Decoded Main TXN Identifier"
                 },
-                "Text220": {
+                "TextPog220": {
                   "ja": "識別子",
                   "en": "Identifier"
                 },
-                "Text117": {
+                "TextPog117": {
                   "ja": "MainTXN識別子",
                   "en": "MainTXN Identifier"
                 },
-                "Text237": {
+                "TextPog237": {
                   "ja": "MainTXN識別子",
                   "en": "Main TXN Identifier"
                 }
@@ -1848,11 +1848,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 5,
               "StepNo": numPog + 11,
               "Languages": {
-                "Text56": {
+                "TextPog56": {
                   "ja": "Base64 EncodedのProduct IDを選択",
                   "en": "Select Base64 Encoded Product ID"
                 },
-                "Text57": {
+                "TextPog57": {
                   "ja": "取引内容からエンコードされたプロダクトIDを選択",
                   "en": "Select the encoded Product ID from the transaction details."
                 }
@@ -1862,19 +1862,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 5,
               "StepNo": numPog + 12,
               "Languages": {
-                "Text58": {
+                "TextPog58": {
                   "ja": "product Id をハイライト表示",
                   "en": "Highlight the product Id"
                 },
-                "Text59": {
+                "TextPog59": {
                   "ja": "取引内容からエンコードされたProduct IDを選択",
                   "en": "Select the encoded Product ID from the transaction details"
                 },
-                "Text60": {
+                "TextPog60": {
                   "ja": "Main TXN Current TXN Data Product Idをハイライト表示",
                   "en": "Highlight the Main TXN Current TXN Data Product Id"
                 },
-                "Text61": {
+                "TextPog61": {
                   "ja": "トランザクションの詳細から、エンコードされたProduct IDの値を選択",
                   "en": "Select the encoded Product ID value from the transaction details"
                 }
@@ -1884,15 +1884,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 5,
               "StepNo": numPog + 13,
               "Languages": {
-                "Text62": {
+                "TextPog62": {
                   "ja": "Base64EncodeされたProduct IDの保存",
                   "en": "Save Base64 Encoded Product ID"
                 },
-                "Text63": {
+                "TextPog63": {
                   "ja": "将来の使用のために、Base64エンコードされたProduct IDの値を保存",
                   "en": "Save the base64 encoded Product ID value for future usage."
                 },
-                "Text202": {
+                "TextPog202": {
                   "ja": "製品 ID (base64)",
                   "en": "Product ID (base64)"
                 }
@@ -1902,59 +1902,59 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 6,
               "StepNo": numPog + 14,
               "Languages": {
-                "Text64": {
+                "TextPog64": {
                   "ja": "ステップー５Main TXN Product IDのデコード",
                   "en": "Step 5 - Decode Main TXN Product ID"
                 },
-                "Text65": {
+                "TextPog65": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "Text66": {
+                "TextPog66": {
                   "ja": "Main TXN Product ID を base64 でデコード",
                   "en": "Decode the base64 encoded Main TXN Product ID"
                 },
-                "Text67": {
+                "TextPog67": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "Text68": {
+                "TextPog68": {
                   "ja": "Main TXN Product ID を base64 でエンコードして入力",
                   "en": "Input the base64 encoded Main TXN Product ID"
                 },
-                "Text69": {
+                "TextPog69": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click Decode Button"
                 },
-                "Text70": {
+                "TextPog70": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text71": {
+                "TextPog71": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text72": {
+                "TextPog72": {
                   "ja": "デコードしたMain TXN Product IDの出力を取得",
                   "en": "Get the output of the decoded Main TXN Product ID"
                 },
-                "Text73": {
+                "TextPog73": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "Text74": {
+                "TextPog74": {
                   "ja": "将来の使用のためにデコードされたMain TXN Product IDを保存",
                   "en": "Save the decoded Main TXN Product ID for future usage."
                 },
-                "Text106": {
+                "TextPog106": {
                   "ja": "デコードされたMain TXN Product ID",
                   "en": "Decoded Main TXN Product ID"
                 },
-                "Text221": {
+                "TextPog221": {
                   "ja": "製品番号",
                   "en": "ProductID"
                 },
-                "Text238": {
+                "TextPog238": {
                   "ja": "MainTXN製品番号",
                   "en": "MainTXN ProductID"
                 }
@@ -1964,11 +1964,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 6,
               "StepNo": numPog + 15,
               "Languages": {
-                "Text75": {
+                "TextPog75": {
                   "ja": "Base64Encodeされた前のTXNを選択",
                   "en": "Select Base64 Encoded Previous TXN"
                 },
-                "Text76": {
+                "TextPog76": {
                   "ja": "トランザクションの詳細から、エンコードされた前のTXNハッシュ値を選択",
                   "en": "Select the encoded Previous TXN Hash value from the transaction details."
                 }
@@ -1978,19 +1978,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 6,
               "StepNo": numPog + 16,
               "Languages": {
-                "Text77": {
+                "TextPog77": {
                   "ja": "前のTXNをハイライト表示",
                   "en": "Highlight the Previous TXN"
                 },
-                "Text78": {
+                "TextPog78": {
                   "ja": "トランザクションの詳細からエンコードされた前のTXNハッシュを選択",
                   "en": "Select the encoded Previous TXN Hash from the transaction details."
                 },
-                "Text79": {
+                "TextPog79": {
                   "ja": "Main TXN Previous TXNをハイライト表示",
                   "en": "Highlight the Main TXN Previous TXN"
                 },
-                "Text80": {
+                "TextPog80": {
                   "ja": "トランザクションの詳細から、エンコードされたMain TXN Previous TXNハッシュ値を選択",
                   "en": "Select the encoded Main TXN Previous TXN Hash value from the transaction details."
                 }
@@ -2000,15 +2000,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 6,
               "StepNo": numPog + 17,
               "Languages": {
-                "Text81": {
+                "TextPog81": {
                   "ja": "Base64エンコードされた前のTXNの保存",
                   "en": "Save Base64 Encoded Previous TXN"
                 },
-                "Text82": {
+                "TextPog82": {
                   "ja": "将来の使用のためにBase64エンコードされた前のTXNハッシュ値を保存",
                   "en": "Save the base64 encoded Previous TXN Hash value for future usage."
                 },
-                "Text203": {
+                "TextPog203": {
                   "ja": "PreviousTXN ハッシュ (base64)",
                   "en": "PreviousTXN Hash (base64)"
                 }
@@ -2018,11 +2018,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 7,
               "StepNo": numPog + 18,
               "Languages": {
-                "Text83": {
+                "TextPog83": {
                   "ja": "Base64 Encodedトランザクションタイプの選択",
                   "en": "Select Base64 Encoded Transaction Type"
                 },
-                "Text84": {
+                "TextPog84": {
                   "ja": "トランザクションの詳細から、エンコードされたトランザクションタイプの値を選択",
                   "en": "Select the encoded Transaction Type value from the transaction details."
                 }
@@ -2032,19 +2032,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 7,
               "StepNo": numPog + 19,
               "Languages": {
-                "Text85": {
+                "TextPog85": {
                   "ja": "タイプをハイライト表示",
                   "en": "Highlight the Type"
                 },
-                "Text86": {
+                "TextPog86": {
                   "ja": "トランザクションの詳細から、エンコードされたトランザクションタイプを選択",
                   "en": "Select the encoded Transaction Type from the transaction details."
                 },
-                "Text87": {
+                "TextPog87": {
                   "ja": "Main TXN Typeをハイライト表示",
                   "en": "Highlight the Main TXN Type"
                 },
-                "Text88": {
+                "TextPog88": {
                   "ja": "トランザクションの詳細から、エンコードされたトランザクションタイプの値を選択",
                   "en": "Select the encoded Transaction Type value from the transaction details."
                 }
@@ -2054,15 +2054,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 7,
               "StepNo": numPog + 20,
               "Languages": {
-                "Text89": {
+                "TextPog89": {
                   "ja": "Base64エンコードされた前のTXNの保存",
                   "en": "Save Base64 Encoded Previous TXN"
                 },
-                "Text90": {
+                "TextPog90": {
                   "ja": "将来の使用のためにBase64エンコードされた前のTXNハッシュ値を保存",
                   "en": "Save the base64 encoded Previous TXN Hash value for future usage."
                 },
-                "Text204": {
+                "TextPog204": {
                   "ja": "トランザクション タイプ (base64)",
                   "en": "Transaction Type (base64)"
                 }
@@ -2072,55 +2072,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 7,
               "StepNo": numPog + 21,
               "Languages": {
-                "Text91": {
+                "TextPog91": {
                   "ja": "ステップ４－トランザクションタイプをデコード",
                   "en": "Step 04 - Decode Transaction Type"
                 },
-                "Text92": {
+                "TextPog92": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "Text93": {
+                "TextPog93": {
                   "ja": "base64でエンコードされたトランザクションタイプをデコード",
                   "en": "Decode the base64 encoded Transaction Type"
                 },
-                "Text94": {
+                "TextPog94": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "Text95": {
+                "TextPog95": {
                   "ja": "Base64でエンコードされたトランザクションタイプを入力",
                   "en": "Input the base64 encoded Transaction Type"
                 },
-                "Text96": {
+                "TextPog96": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click Decode Button"
                 },
-                "Text97": {
+                "TextPog97": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text98": {
+                "TextPog98": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text99": {
+                "TextPog99": {
                   "ja": "デコードしたトランザクションタイプの出力を取得",
                   "en": "Get the output of the decoded Transaction Type"
                 },
-                "Text100": {
+                "TextPog100": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "Text101": {
+                "TextPog101": {
                   "ja": "将来の使用のためにデコードしたトランザクションタイプを保存",
                   "en": "Save the decoded Transaction Type for future usage."
                 },
-                "Text107": {
+                "TextPog107": {
                   "ja": "デコードされたトランザクションのタイプ",
                   "en": "Decoded Transaction Type"
                 },
-                "Text222": {
+                "TextPog222": {
                   "ja": "取引タイプ",
                   "en": "Transaction Type"
                 }
@@ -2130,15 +2130,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPog + 8,
               "StepNo": numPog + 22,
               "Languages": {
-                "Text102": {
+                "TextPog102": {
                   "ja": "ステップ５－検証の概要",
                   "en": "Step 05 - Verification Summary"
                 },
-                "Text103": {
+                "TextPog103": {
                   "ja": "検証の概要",
                   "en": "Verification Summary"
                 },
-                "Text233": {
+                "TextPog233": {
                   "ja": "検証は正常に終了",
                   "en": "Verification Completed Successfully"
                 }
@@ -2224,17 +2224,17 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 1,
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
-                    "FrameTitle": "&{Text0}",
-                    "ActionTitle": "&{Text149}",
-                    "ActionDescription": "&{Text2}",
-                    "FrameTitle_1": "&{Text3}",
-                    "ActionTitle_1": "&{Text4}",
-                    "ActionDescription_1": "&{Text5}",
-                    "FrameTitle_2": "&{Text6}",
-                    "ActionTitle_2": "&{Text7}",
-                    "ActionDescription_2": "&{Text8}",
+                    "FrameTitle": "&{TextPoe0}",
+                    "ActionTitle": "&{TextPoe149}",
+                    "ActionDescription": "&{TextPoe2}",
+                    "FrameTitle_1": "&{TextPoe3}",
+                    "ActionTitle_1": "&{TextPoe4}",
+                    "ActionDescription_1": "&{TextPoe5}",
+                    "FrameTitle_2": "&{TextPoe6}",
+                    "ActionTitle_2": "&{TextPoe7}",
+                    "ActionDescription_2": "&{TextPoe8}",
                     "TXNHash": node.TrustLinks[0],
-                    "OperationName": "&{Text1}",
+                    "OperationName": "&{TextPoe1}",
                     "ResponseVariable": "MainTDPDataString",
                     "JSONResultVariable": "MainTDPData",
                     "StartedProofType":"POE",
@@ -2262,8 +2262,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text9}",
-                "ActionDescription": "&{Text10}",
+                "ActionTitle": "&{TextPoe9}",
+                "ActionDescription": "&{TextPoe10}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2338,11 +2338,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text12}",
-                    "ActionDescription": "&{Text13}",
-                    "FrameTitle_1": "&{Text14}",
-                    "ActionTitle_1": "&{Text15}",
-                    "ActionDescription_1": "&{Text16}",
+                    "ActionTitle": "&{TextPoe12}",
+                    "ActionDescription": "&{TextPoe13}",
+                    "FrameTitle_1": "&{TextPoe14}",
+                    "ActionTitle_1": "&{TextPoe15}",
+                    "ActionDescription_1": "&{TextPoe16}",
                     "OperationKey": "Identifier",
                     "OperationValue": "TDPIdentifier",
                     "OperationKeyName": "identifier from the TDP details",
@@ -2370,8 +2370,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text17}",
-                "ActionDescription": "&{Text18}",
+                "ActionTitle": "&{TextPoe17}",
+                "ActionDescription": "&{TextPoe18}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2394,7 +2394,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text205}",
+                      "Key": "&{TextPoe205}",
                       "Value": "${TDPIdentifier}"
                     }
                   ]
@@ -2420,8 +2420,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text20}",
-                "ActionDescription": "&{Text21}",
+                "ActionTitle": "&{TextPoe20}",
+                "ActionDescription": "&{TextPoe21}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2496,11 +2496,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text23}",
-                    "ActionDescription": "&{Text24}",
-                    "FrameTitle_1": "&{Text25}",
-                    "ActionTitle_1": "&{Text26}",
-                    "ActionDescription_1": "&{Text27}",
+                    "ActionTitle": "&{TextPoe23}",
+                    "ActionDescription": "&{TextPoe24}",
+                    "FrameTitle_1": "&{TextPoe25}",
+                    "ActionTitle_1": "&{TextPoe26}",
+                    "ActionDescription_1": "&{TextPoe27}",
                     "OperationKey": "DataHash",
                     "OperationValue": "TDPDatahash",
                     "OperationKeyName": "Datahash from the TDP details",
@@ -2528,8 +2528,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text28}",
-                "ActionDescription": "&{Text29}",
+                "ActionTitle": "&{TextPoe28}",
+                "ActionDescription": "&{TextPoe29}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2552,7 +2552,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text206}",
+                      "Key": "&{TextPoe206}",
                       "Value": "${TDPDatahash}",
                       "CompareType": "notEmpty",
                       "CompareValue": "",
@@ -2581,8 +2581,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text31}",
-                "ActionDescription": "&{Text32}",
+                "ActionTitle": "&{TextPoe31}",
+                "ActionDescription": "&{TextPoe32}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2656,10 +2656,10 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 9,
                     "SegmentNo": segPoe + 2,
                     "FrameID": 1,
-                    "ActionTitle": "&{Text34}",
-                    "ActionDescription": "&{Text35}",
-                    "ActionTitle_1": "&{Text37}",
-                    "ActionDescription_1": "&{Text38}",
+                    "ActionTitle": "&{TextPoe34}",
+                    "ActionDescription": "&{TextPoe35}",
+                    "ActionTitle_1": "&{TextPoe37}",
+                    "ActionDescription_1": "&{TextPoe38}",
                     "OperationKey": "Txnhash",
                     "OperationValue": "TDPTxnhash",
                     "OperationKeyName": "txnhash from the TDP details",
@@ -2687,8 +2687,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text39}",
-                "ActionDescription": "&{Text40}",
+                "ActionTitle": "&{TextPoe39}",
+                "ActionDescription": "&{TextPoe40}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2711,7 +2711,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text207}",
+                      "Key": "&{TextPoe207}",
                       "Value": "${TDPTxnhash}"
                     }
                   ]
@@ -2765,14 +2765,14 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 11,
                     "SegmentNo": segPoe + 2,
                     "FrameID": 2,
-                    "FrameTitle": "&{Text42}",
-                    "ActionTitle": "&{Text43}",
-                    "ActionDescription": "&{Text44}",
-                    "ActionTitle_1": "&{Text45}",
-                    "ActionDescription_1": "&{Text46}",
+                    "FrameTitle": "&{TextPoe42}",
+                    "ActionTitle": "&{TextPoe43}",
+                    "ActionDescription": "&{TextPoe44}",
+                    "ActionTitle_1": "&{TextPoe45}",
+                    "ActionDescription_1": "&{TextPoe46}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
-                    "ActionTitle_2": "&{Text47}",
-                    "ActionDescription_2": "&{Text48}",
+                    "ActionTitle_2": "&{TextPoe47}",
+                    "ActionDescription_2": "&{TextPoe48}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
                     "TXNHash": node.TrustLinks[0],
                     "ResponseVariable": "MainTXNDataString",
@@ -2803,8 +2803,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text49}",
-                "ActionDescription": "&{Text50}",
+                "ActionTitle": "&{TextPoe49}",
+                "ActionDescription": "&{TextPoe50}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2880,10 +2880,10 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 13,
                     "SegmentNo": segPoe + 2,
                     "FrameID": 2,
-                    "ActionTitle": "&{Text51}",
-                    "ActionDescription": "&{Text52}",
-                    "ActionTitle_1": "&{Text53}",
-                    "ActionDescription_1": "&{Text54}",
+                    "ActionTitle": "&{TextPoe51}",
+                    "ActionDescription": "&{TextPoe52}",
+                    "ActionTitle_1": "&{TextPoe53}",
+                    "ActionDescription_1": "&{TextPoe54}",
                     "OperationKey": "CurrentTXN",
                     "OperationValue": "MainTXNCurentTXNHash",
                     "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
@@ -2911,8 +2911,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text55}",
-                "ActionDescription": "&{Text56}",
+                "ActionTitle": "&{TextPoe55}",
+                "ActionDescription": "&{TextPoe56}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2935,7 +2935,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text208}",
+                      "Key": "&{TextPoe208}",
                       "Value": "${MainTXNCurentTXNHash}"
                     }
                   ]
@@ -2988,19 +2988,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 15,
                     "SegmentNo": segPoe + 3,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text58}",
-                    "ActionTitle": "&{Text59}",
-                    "ActionDescription": "&{Text60}",
-                    "ActionTitle_1": "&{Text61}",
-                    "ActionDescription_1": "&{Text62}",
-                    "ActionTitle_2": "&{Text63}",
-                    "ActionDescription_2": "&{Text64}",
-                    "ActionTitle_3": "&{Text65}",
-                    "ActionDescription_3": "&{Text66}",
-                    "ActionTitle_4": "&{Text67}",
-                    "ActionDescription_4": "&{Text68}",
-                    "InformationStorageKey": "&{Text223}",
-                    "ToastMessage": "&{Text70}",
+                    "FrameTitle": "&{TextPoe58}",
+                    "ActionTitle": "&{TextPoe59}",
+                    "ActionDescription": "&{TextPoe60}",
+                    "ActionTitle_1": "&{TextPoe61}",
+                    "ActionDescription_1": "&{TextPoe62}",
+                    "ActionTitle_2": "&{TextPoe63}",
+                    "ActionDescription_2": "&{TextPoe64}",
+                    "ActionTitle_3": "&{TextPoe65}",
+                    "ActionDescription_3": "&{TextPoe66}",
+                    "ActionTitle_4": "&{TextPoe67}",
+                    "ActionDescription_4": "&{TextPoe68}",
+                    "InformationStorageKey": "&{TextPoe223}",
+                    "ToastMessage": "&{TextPoe70}",
                     "EncodedInputValue": "${MainTXNCurentTXNHash}",
                     "DecodedResultVariable": "var_currenttxn"
                   }
@@ -3053,17 +3053,17 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 16,
                     "SegmentNo": segPoe + 4,
                     "FrameID": 4,
-                    "ActionTitle": "&{Text73}",
-                    "ActionDescription": "&{Text74}",
-                    "ActionTitle_1": "&{Text76}",
-                    "ActionDescription_1": "&{Text77}",
+                    "ActionTitle": "&{TextPoe73}",
+                    "ActionDescription": "&{TextPoe74}",
+                    "ActionTitle_1": "&{TextPoe76}",
+                    "ActionDescription_1": "&{TextPoe77}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
-                    "ActionTitle_2": "&{Text125}",
-                    "ActionDescription_2": "&{Text125}",
+                    "ActionTitle_2": "&{TextPoe125}",
+                    "ActionDescription_2": "&{TextPoe125}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
-                    "FrameTitle": "&{Text71}",
+                    "FrameTitle": "&{TextPoe71}",
                     "TXNHash": "${var_currenttxn}",
-                    "OperationName": "&{Text72}",
+                    "OperationName": "&{TextPoe72}",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
                     "JSONResultVariable": "MainTXNCurentTXNData",
                     "StartedProofType":"",
@@ -3091,8 +3091,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text78}",
-                "ActionDescription": "&{Text79}",
+                "ActionTitle": "&{TextPoe78}",
+                "ActionDescription": "&{TextPoe79}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3169,11 +3169,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 5,
                     "FrameID": 4,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text81}",
-                    "ActionDescription": "&{Text82}",
-                    "FrameTitle_1": "&{Text83}",
-                    "ActionTitle_1": "&{Text84}",
-                    "ActionDescription_1": "&{Text85}",
+                    "ActionTitle": "&{TextPoe81}",
+                    "ActionDescription": "&{TextPoe82}",
+                    "FrameTitle_1": "&{TextPoe83}",
+                    "ActionTitle_1": "&{TextPoe84}",
+                    "ActionDescription_1": "&{TextPoe85}",
                     "OperationKey": "identifier",
                     "OperationValue": "MainTXNCurentTXNDataIdentifier",
                     "OperationKeyName": "encoded Identifier from the transaction details",
@@ -3201,8 +3201,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text87}",
-                "ActionDescription": "&{Text88}",
+                "ActionTitle": "&{TextPoe87}",
+                "ActionDescription": "&{TextPoe88}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3225,7 +3225,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text209}",
+                      "Key": "&{TextPoe209}",
                       "Value": "${MainTXNCurentTXNDataIdentifier}"
                     }
                   ]
@@ -3278,20 +3278,20 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 20,
                     "SegmentNo": segPoe + 5,
                     "FrameID": 5,
-                    "FrameTitle": "&{Text90}",
-                    "ActionTitle": "&{Text91}",
-                    "ActionDescription": "&{Text92}",
-                    "ActionTitle_1": "&{Text93}",
-                    "ActionDescription_1": "&{Text94}",
-                    "ActionTitle_2": "&{Text95}",
-                    "ActionDescription_2": "&{Text127}",
-                    "ActionTitle_3": "&{Text128}",
-                    "ActionDescription_3": "&{Text129}",
-                    "ActionTitle_4": "&{Text130}",
-                    "ActionDescription_4": "&{Text131}",
-                    "InformationStorageKey": "&{Text224}",
-                    "ToastMessage": "&{Text133}",
-                    "DecodeKeyName": "&{Text246}",
+                    "FrameTitle": "&{TextPoe90}",
+                    "ActionTitle": "&{TextPoe91}",
+                    "ActionDescription": "&{TextPoe92}",
+                    "ActionTitle_1": "&{TextPoe93}",
+                    "ActionDescription_1": "&{TextPoe94}",
+                    "ActionTitle_2": "&{TextPoe95}",
+                    "ActionDescription_2": "&{TextPoe127}",
+                    "ActionTitle_3": "&{TextPoe128}",
+                    "ActionDescription_3": "&{TextPoe129}",
+                    "ActionTitle_4": "&{TextPoe130}",
+                    "ActionDescription_4": "&{TextPoe131}",
+                    "InformationStorageKey": "&{TextPoe224}",
+                    "ToastMessage": "&{TextPoe133}",
+                    "DecodeKeyName": "&{TextPoe246}",
                     "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded"
                   }
@@ -3317,8 +3317,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text96}",
-                "ActionDescription": "&{Text97}",
+                "ActionTitle": "&{TextPoe96}",
+                "ActionDescription": "&{TextPoe97}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3394,10 +3394,10 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 22,
                     "SegmentNo": segPoe + 5,
                     "FrameID": 4,
-                    "ActionTitle": "&{Text100}",
-                    "ActionDescription": "&{Text101}",
-                    "ActionTitle_1": "&{Text102}",
-                    "ActionDescription_1": "&{Text103}",
+                    "ActionTitle": "&{TextPoe100}",
+                    "ActionDescription": "&{TextPoe101}",
+                    "ActionTitle_1": "&{TextPoe300}",
+                    "ActionDescription_1": "&{TextPoe103}",
                     "OperationKey": "dataHash",
                     "OperationValue": "MainTXNCurentTXNDatadatahash",
                     "OperationKeyName": "encoded datahash from the transaction details.",
@@ -3425,8 +3425,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text106}",
-                "ActionDescription": "&{Text107}",
+                "ActionTitle": "&{TextPoe106}",
+                "ActionDescription": "&{TextPoe107}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3449,7 +3449,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text210}",
+                      "Key": "&{TextPoe210}",
                       "Value": "${MainTXNCurentTXNDatadatahash}"
                     }
                   ]
@@ -3502,22 +3502,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 24,
                     "SegmentNo": segPoe + 5,
                     "FrameID": 6,
-                    "FrameTitle": "&{Text110}",
-                    "ActionTitle": "&{Text111}",
-                    "ActionDescription": "&{Text112}",
-                    "ActionTitle_1": "&{Text113}",
-                    "ActionDescription_1": "&{Text134}",
-                    "ActionTitle_2": "&{Text135}",
-                    "ActionDescription_2": "&{Text136}",
-                    "ActionTitle_3": "&{Text137}",
-                    "ActionDescription_3": "&{Text138}",
-                    "ActionTitle_4": "&{Text139}",
-                    "ActionDescription_4": "&{Text140}",
-                    "ToastMessage": "&{Text141}",
+                    "FrameTitle": "&{TextPoe110}",
+                    "ActionTitle": "&{TextPoe111}",
+                    "ActionDescription": "&{TextPoe112}",
+                    "ActionTitle_1": "&{TextPoe113}",
+                    "ActionDescription_1": "&{TextPoe134}",
+                    "ActionTitle_2": "&{TextPoe135}",
+                    "ActionDescription_2": "&{TextPoe136}",
+                    "ActionTitle_3": "&{TextPoe137}",
+                    "ActionDescription_3": "&{TextPoe138}",
+                    "ActionTitle_4": "&{TextPoe139}",
+                    "ActionDescription_4": "&{TextPoe140}",
+                    "ToastMessage": "&{TextPoe141}",
                     "EncodedInputValue": "${MainTXNCurentTXNDatadatahash}",
                     "DecodedResultVariable": "MainTXNCurentTXNDatadatahashDecoded",
-                    "InformationStorageKey": "&{Text225}",
-                    "DecodeKeyName": "&{Text247}"
+                    "InformationStorageKey": "&{TextPoe225}",
+                    "DecodeKeyName": "&{TextPoe247}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -3568,19 +3568,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 25,
                     "SegmentNo": segPoe + 5,
                     "FrameID": 7,
-                    "FrameTitle": "&{Text115}",
-                    "ActionTitle": "&{Text116}",
-                    "ActionDescription": "&{Text117}",
-                    "FrameTitle_1": "&{Text118}",
-                    "ActionTitle_1": "&{Text119}",
-                    "ActionDescription_1": "&{Text142}",
-                    "FrameTitle_2": "&{Text143}",
-                    "ActionTitle_2": "&{Text144}",
-                    "ActionDescription_2": "&{Text145}",
-                    "FrameTitle_3": "&{Text146}",
-                    "ActionTitle_3": "&{Text147}",
-                    "ActionDescription_3": "&{Text148}",
-                    "ToastMessage": "&{Text154}",
+                    "FrameTitle": "&{TextPoe115}",
+                    "ActionTitle": "&{TextPoe116}",
+                    "ActionDescription": "&{TextPoe117}",
+                    "FrameTitle_1": "&{TextPoe118}",
+                    "ActionTitle_1": "&{TextPoe119}",
+                    "ActionDescription_1": "&{TextPoe142}",
+                    "FrameTitle_2": "&{TextPoe143}",
+                    "ActionTitle_2": "&{TextPoe144}",
+                    "ActionDescription_2": "&{TextPoe145}",
+                    "FrameTitle_3": "&{TextPoe146}",
+                    "ActionTitle_3": "&{TextPoe147}",
+                    "ActionDescription_3": "&{TextPoe148}",
+                    "ToastMessage": "&{TextPoe154}",
                     "InputKeyName": "the base64 decoded Datahash values from the transactions.",
                     "InputValue": "[{\"title\": \"Identifiers from the TDP and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
                   }
@@ -3603,17 +3603,17 @@ export class BuildPOCJsonService {
                 "StepNo": numPoe + 26,
                 "SegmentNo": segPoe + 6,
                 "FrameID": 8,
-                "FrameTitle": "&{Text120}"
+                "FrameTitle": "&{TextPoe120}"
               },
               "Action": {
-                "ActionTitle": "&{Text121}",
-                "ActionDescription": "&{Text121}",
+                "ActionTitle": "&{TextPoe121}",
+                "ActionDescription": "&{TextPoe121}",
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
                   "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Identifier</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${TDPIdentifier}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr></tbody></table></div></div></body></html>",
                   "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px; margin-top:5px;\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Identifier</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${TDPIdentifier}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "PageURL": "&{Text123}",
+                  "PageURL": "&{TextPoe123}",
                   "Query": "",
                   "QueryIndex": "",
                   "YOffset": "",
@@ -3644,7 +3644,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text234}",
+                "ToastMessage1": "&{TextPoe234}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -3654,739 +3654,739 @@ export class BuildPOCJsonService {
             },
           ]
           let poeLang = [
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 1,
-              "Languages": {
-                "Text0": {
-                  "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
-                },
-                "Text149": {
-                  "ja": "TDPデータ要求",
-                  "en": "Request TDP Data"
-                },
-                "Text1": {
-                  "ja": "現在のTDP",
-                  "en": "Current TDP"
-                },
-                "Text2": {
-                  "ja": "Tracified GatewayからTDPデータを取得",
-                  "en": "Retrieve TDP data from Tracified Gateway."
-                },
-                "Text3": {
-                  "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
-                },
-                "Text4": {
-                  "ja": "API レスポンスの保存",
-                  "en": "Save API Response"
-                },
-                "Text5": {
-                  "ja": "トランザクションのレスポンスデータの保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text6": {
-                  "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
-                },
-                "Text7": {
-                  "ja": "フォーマットレスポンス（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text8": {
-                  "ja": "トランザクションデータをJSONにフォーマット(Javascriptオブジェクト記法)",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 2,
-              "Languages": {
-                "Text9": {
-                  "ja": "TDP識別子の選択",
-                  "en": "Select TDP identifier"
-                },
-                "Text10": {
-                  "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from TDP details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 3,
-              "Languages": {
-                "Text11": {
-                  "ja": "TDPの詳細からの識別子",
-                  "en": "identifier from the TDP details"
-                },
-                "Text12": {
-                  "ja": "識別子をハイライト表示",
-                  "en": "Highlight the Identifier"
-                },
-                "Text13": {
-                  "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
-                },
-                "Text14": {
-                  "ja": "テスト",
-                  "en": "test"
-                },
-                "Text15": {
-                  "ja": "識別子をハイライト表示",
-                  "en": "Highlight the TDPIdentifier"
-                },
-                "Text16": {
-                  "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 4,
-              "Languages": {
-                "Text17": {
-                  "ja": "TDP 識別子の保存",
-                  "en": "Save TDP Identifier"
-                },
-                "Text18": {
-                  "ja": "将来の使用のために識別子の値を保存する",
-                  "en": "Save the Identifier value for future usage."
-                },
-                "Text205": {
-                  "ja": "TDP識別子",
-                  "en": "TDP Identifier"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 5,
-              "Languages": {
-                "Text20": {
-                  "ja": "TDP Data Hashの選択",
-                  "en": "Select TDP Data Hash"
-                },
-                "Text21": {
-                  "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from TDP details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 6,
-              "Languages": {
-                "Text22": {
-                  "ja": "TDPの詳細からダータハッシュ",
-                  "en": "Data Hash from the TDP details"
-                },
-                "Text23": {
-                  "ja": "ダータハッシュをハイライト表示",
-                  "en": "Highlight the Data Hash"
-                },
-                "Text24": {
-                  "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
-                },
-                "Text25": {
-                  "ja": "テスト",
-                  "en": "test"
-                },
-                "Text26": {
-                  "ja": "TDPデータハッシュのハイライト",
-                  "en": "Highlight the TDP Data Hash"
-                },
-                "Text27": {
-                  "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 1,
-              "StepNo": numPoe + 7,
-              "Languages": {
-                "Text28": {
-                  "ja": "TDPデータハッシュの保存",
-                  "en": "Save TDP Data Hash"
-                },
-                "Text29": {
-                  "ja": "将来の使用のためにデータハッシュ値の保存",
-                  "en": "Save Data Hash value for future usage."
-                },
-                "Text206": {
-                  "ja": "TDP データハッシュ",
-                  "en": "TDP Data Hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 8,
-              "Languages": {
-                "Text31": {
-                  "ja": "TDP Txn Hashを選択",
-                  "en": "Select TDP Txn Hash"
-                },
-                "Text32": {
-                  "ja": "TDPの詳細からTxn Hashを選択",
-                  "en": "Select the Txn Hash from TDP details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 9,
-              "Languages": {
-                "Text34": {
-                  "ja": "Txn Hashのハイライト",
-                  "en": "Highlight the Txn Hash"
-                },
-                "Text35": {
-                  "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
-                },
-                "Text37": {
-                  "ja": "TDP Txn Hashをハイライト",
-                  "en": "Highlight the TDP Txn Hash"
-                },
-                "Text38": {
-                  "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 10,
-              "Languages": {
-                "Text39": {
-                  "ja": "TDP Txn Hashを保存",
-                  "en": "Save TDP Txn Hash"
-                },
-                "Text40": {
-                  "ja": "将来の使用のためにTxn Hashの値を保存",
-                  "en": "Save Txn Hash value for future usage."
-                },
-                "Text207": {
-                  "ja": "TDP Txn Hash",
-                  "en": "TDP Txn Hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 11,
-              "Languages": {
-                "Text42": {
-                  "ja": "ステップ５ーTDPトランザクションの取得",
-                  "en": "Step 5 - Retrieve TDP Transaction"
-                },
-                "Text43": {
-                  "ja": "ステラホライズンAPIをリクエスト",
-                  "en": "Request Stellar Horizon API"
-                },
-                "Text44": {
-                  "ja": "ステラブロックチェーンから現在の取引を取得",
-                  "en": "Retrieve the current transaction from Stellar Blockchain."
-                },
-                "Text45": {
-                  "ja": "API レスポンスの保存",
-                  "en": "Save API Response"
-                },
-                "Text46": {
-                  "ja": "トランザクションのレスポンスデータを保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text47": {
-                  "ja": "フォーマットレスポンス（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text48": {
-                  "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 12,
-              "Languages": {
-                "Text49": {
-                  "ja": "Current TXNハッシュの選択",
-                  "en": "Select Current TXN Hash"
-                },
-                "Text50": {
-                  "ja": "トランザクションの詳細からCurrent TXNハッシュ（base64エンコード）を選択",
-                  "en": "Select the Current TXN Hash (base64 encoded) from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 13,
-              "Languages": {
-                "Text51": {
-                  "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュをハイライト",
-                  "en": "Highlight the encoded Current TXN Hash from the transaction details"
-                },
-                "Text52": {
-                  "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
-                  "en": "Select the encoded Current TXN Hash from the transaction details"
-                },
-                "Text53": {
-                  "ja": "トランザクションの詳細から、エンコードされたCurrent TXNハッシュ値をハイライト",
-                  "en": "Highlight the encoded Current TXN Hash value from the transaction details"
-                },
-                "Text54": {
-                  "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュ値を選択",
-                  "en": "Select the encoded Current TXN Hash value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 3,
-              "StepNo": numPoe + 14,
-              "Languages": {
-                "Text55": {
-                  "ja": "Base64エンコードされたCurrent TXNの保存",
-                  "en": "Save Base64 Encoded Current TXN"
-                },
-                "Text56": {
-                  "ja": "将来の使用のためにBase64でエンコードされたCurrent TXNハッシュ値を保存",
-                  "en": "Save the base64 encoded Current TXN Hash value for future usage."
-                },
-                "Text208": {
-                  "ja": "Current TXN (ベース64)",
-                  "en": "Current TXN (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 3,
-              "StepNo": numPoe + 15,
-              "Languages": {
-                "Text58": {
-                  "ja": "ステップ１５ - 現在のTXNをデコード",
-                  "en": "Step 15 - Decode Current TXN"
-                },
-                "Text59": {
-                  "ja": "base64デコードのサイトを読み込む",
-                  "en": "Load the base64 decode website"
-                },
-                "Text60": {
-                  "ja": "Base64でエンコードされたCurrent TXNハッシュをデコードする",
-                  "en": "Decode the base64 encoded Current TXN Hash"
-                },
-                "Text61": {
-                  "ja": "Base64でエンコードされた現在のTXNハッシュを入力",
-                  "en": "Input base64 encoded current txn hash"
-                },
-                "Text62": {
-                  "ja": "Base64でエンコードされたCurrent TXNハッシュを入力する",
-                  "en": "Input the base64 encoded Current TXN Hash"
-                },
-                "Text63": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click decode button"
-                },
-                "Text64": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text65": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64 Decoded Data"
-                },
-                "Text66": {
-                  "ja": "デコードされた現在のTXNハッシュの出力を取得",
-                  "en": "Get the output of the decoded current txn hash"
-                },
-                "Text67": {
-                  "ja": "デコードした値を情報ストレージに保存",
-                  "en": "Save the decoded value in information storage"
-                },
-                "Text68": {
-                  "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
-                  "en": "Save the decoded Current TXN Hash for future usage."
-                },
-                "Text223": {
-                  "ja": "現TXNハッシュ（デコード済み）",
-                  "en": "Current txn Hash (decoded)"
-                },
-                "Text70": {
-                  "ja": "デコードされた現在のTXNハッシュ",
-                  "en": "Decoded current txn hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 4,
-              "StepNo": numPoe + 16,
-              "Languages": {
-                "Text71": {
-                  "ja": "ステップ１６ー現在の取引の取得",
-                  "en": "Step 16 - Retrieve Current Transaction"
-                },
-                "Text72": {
-                  "ja": "ゲートウェイトランザクションの現在のトランザクション",
-                  "en": "current transaction of the gateway transaction"
-                },
-                "Text73": {
-                  "ja": "ステラホライズンAPIをリクエスト",
-                  "en": "Request Stellar Horizon API"
-                },
-                "Text74": {
-                  "ja": "ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
-                  "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
-                },
-                "Text76": {
-                  "ja": "API レスポンスの保存",
-                  "en": "Save API Response"
-                },
-                "Text77": {
-                  "ja": "トランザクションのレスポンスデータの保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text125": {
-                  "ja": "フォーマットレスポンス（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text126": {
-                  "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 17,
-              "Languages": {
-                "Text78": {
-                  "ja": "Base64 Encoded Current Txn 識別子 を選択",
-                  "en": "Select Base64 Encoded Current Txn Identifier"
-                },
-                "Text79": {
-                  "ja": "トランザクションの詳細から、エンコードされたcurrent Txn Identifierを選択",
-                  "en": "Select the encoded current Txn Identifier from the transaction details."
-                },
-                "Text80": {
-                  "ja": "フォーマットメタデータ",
-                  "en": "Format Meta Data"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 18,
-              "Languages": {
-                "Text81": {
-                  "ja": "トランザクションの詳細からエンコードされたIdentifierをハイライト",
-                  "en": "Highlight the encoded Identifier from the transaction details"
-                },
-                "Text82": {
-                  "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
-                  "en": "Select the encoded Identifier value from the transaction details"
-                },
-                "Text83": {
-                  "ja": "テスト",
-                  "en": "test"
-                },
-                "Text84": {
-                  "ja": "トランザクションの詳細からMainTXNCurrent TXNDataIdentifierをハイライト",
-                  "en": "Highlight the MainTXNCurrent TXNDataIdentifier from the transaction details"
-                },
-                "Text85": {
-                  "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
-                  "en": "Select the encoded Identifier value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 19,
-              "Languages": {
-                "Text87": {
-                  "ja": "Base64エンコードされたCurrent TXNの保存",
-                  "en": "Save Base64 Encoded Current Txn Identifier"
-                },
-                "Text88": {
-                  "ja": "将来の使用のためにbase64 エンコードされた Identifier 値を保存",
-                  "en": "Save the base64 encoded Identifier value for future usage."
-                },
-                "Text89": {
-                  "ja": "情報ストレージ",
-                  "en": "InformationStorage"
-                },
-                "Text209": {
-                  "ja": "識別子 (base64)",
-                  "en": "Identifier (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 20,
-              "Languages": {
-                "Text90": {
-                  "ja": "ステップ５ー現在のTXN識別子のデコード",
-                  "en": "Step 5 - Decode Current TXN Identifier"
-                },
-                "Text91": {
-                  "ja": "Base64 Decoderのウェブページを読み込む",
-                  "en": "Load Base64 Decoder Webpage"
-                },
-                "Text92": {
-                  "ja": "base64 でエンコードされた Current TXN 識別子をデコード",
-                  "en": "Decode the base64 encoded Current TXN Identifier"
-                },
-                "Text93": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64 Encoded Data"
-                },
-                "Text94": {
-                  "ja": "Base64 でエンコードされた Current TXN 識別子を入力",
-                  "en": "Input the base64 encoded Current TXN Identifier"
-                },
-                "Text95": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the Decode Button"
-                },
-                "Text127": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text128": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64 Decoded Data"
-                },
-                "Text129": {
-                  "ja": "デコードしたCurrent TXN識別子の出力を取得",
-                  "en": "Get the output of the decoded Current TXN Identifier"
-                },
-                "Text130": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64 Decoded Data"
-                },
-                "Text131": {
-                  "ja": "将来の使用のためにデコードされたCurrent TXN識別子を保存",
-                  "en": "Save the decoded Current TXN Identifier for future usage."
-                },
-                "Text224": {
-                  "ja": "Current TXN識別子",
-                  "en": "Current TXN Identifier"
-                },
-                "Text133": {
-                  "ja": "デコードされた Current TXN 識別子",
-                  "en": "Decoded Current TXN Identifier"
-                },
-                "Text246": {
-                  "ja": "Current TXN識別子",
-                  "en": "Current TXN Identifier"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 21,
-              "Languages": {
-                "Text96": {
-                  "ja": "Base64EncodeされたData Hashを選択",
-                  "en": "Select Base64 Encoded Data Hash"
-                },
-                "Text97": {
-                  "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
-                  "en": "Select the encoded Data Hash from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 22,
-              "Languages": {
-                "Text100": {
-                  "ja": "データハッシュをハイライト",
-                  "en": "Highlight the Data Hash"
-                },
-                "Text101": {
-                  "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
-                  "en": "Select the encoded Data Hash from the transaction details."
-                },
-                "Text102": {
-                  "ja": "Main TXN Current TXNデータハッシュをハイライト",
-                  "en": "Highlight the Main TXN Current TXN Data Data Hash"
-                },
-                "Text103": {
-                  "ja": "トランザクションの詳細からエンコードされたデータハッシュの値を選択",
-                  "en": "Select the encoded Data Hash value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 23,
-              "Languages": {
-                "Text106": {
-                  "ja": "Base64Encodeされたデータハッシュの保存",
-                  "en": "Save Base64 Encoded Data Hash"
-                },
-                "Text107": {
-                  "ja": "将来の使用のためにbase64でエンコードされたデータハッシュの値を保存",
-                  "en": "Save the base64 encoded Data Hash value for future usage."
-                },
-                "Text210": {
-                  "ja": "Current TXN データハッシュ（base64）。",
-                  "en": "Current TXN Data Hash (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 24,
-              "Languages": {
-                "Text110": {
-                  "ja": "ステップ９－現在のTXNデータハッシュのデコード",
-                  "en": "Step 9 - Decode Current TXN Data Hash"
-                },
-                "Text111": {
-                  "ja": "Base64 Decoderのウェブページを読み込む",
-                  "en": "Load Base64 Decoder Webpage"
-                },
-                "Text112": {
-                  "ja": "Base64でエンコードされたCurrent TXNのData Hashをデコード",
-                  "en": "Decode the base64 encoded Current TXN Data Hash"
-                },
-                "Text113": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64 Encoded Data"
-                },
-                "Text134": {
-                  "ja": "Base64でエンコードされたCurrent TXN データハッシュを入力",
-                  "en": "Input the base64 encoded Current TXN Data Hash"
-                },
-                "Text135": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text136": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text137": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64 Decoded Data"
-                },
-                "Text138": {
-                  "ja": "デコードされたCurrent TXNの出力を取得する データハッシュ",
-                  "en": "Get the output of the decoded Current TXN Data Hash"
-                },
-                "Text139": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64 Decoded Data"
-                },
-                "Text140": {
-                  "ja": "将来の使用のためにデコードされたCurrent TXNデータハッシュ",
-                  "en": "Save the decoded Current TXN Data Hash for future usage."
-                },
-                "Text141": {
-                  "ja": "デコードされたCurrent TXN データハッシュ",
-                  "en": "Decoded Current TXN Data Hash"
-                },
-                "Text225": {
-                  "ja": "Current TXN データハッシュ",
-                  "en": "CurrentTXN data hash"
-                },
-                "Text247": {
-                  "ja": "Current TXN データハッシュ",
-                  "en": "CurrentTXN data hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 25,
-              "Languages": {
-                "Text115": {
-                  "ja": "ステップ１０－データハッシュの比較",
-                  "en": "Step 10 - Compare Data Hash"
-                },
-                "Text116": {
-                  "ja": "オンラインテキスト比較のWebページ",
-                  "en": "Online Text Comparison Webpage"
-                },
-                "Text117": {
-                  "ja": "オンラインテキスト比較のウェブページを読み込む",
-                  "en": "Load the online text comparison webpage"
-                },
-                "Text118": {
-                  "ja": "ステップ１０－データハッシュの比較",
-                  "en": "Step 10 - Compare Data Hash"
-                },
-                "Text119": {
-                  "ja": "入力の比較値",
-                  "en": "Input comparison values"
-                },
-                "Text142": {
-                  "ja": "トランザクションからBase64デコードされたデータハッシュ値を入力",
-                  "en": "Input the base64 decoded Data Hash values from the transactions."
-                },
-                "Text143": {
-                  "ja": "ステップ１０－データハッシュの比較",
-                  "en": "Step 10 - Compare Data Hash"
-                },
-                "Text144": {
-                  "ja": "比較ボタンをクリック",
-                  "en": "Click the compare button"
-                },
-                "Text145": {
-                  "ja": "比較ボタンをクリック",
-                  "en": "Click the compare button"
-                },
-                "Text146": {
-                  "ja": "ステップ１０－データハッシュの比較",
-                  "en": "Step 10 - Compare Data Hash"
-                },
-                "Text147": {
-                  "ja": "結果をスクロールする",
-                  "en": "Scroll to the result"
-                },
-                "Text148": {
-                  "ja": "結果をスクロールする",
-                  "en": "Scroll to the result"
-                },
-                "Text154": {
-                  "ja": "klll",
-                  "en": "Comparison Result"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPoe + 6,
-              "StepNo": numPoe + 26,
-              "Languages": {
-                "Text120": {
-                  "ja": "ステップ１１－検証の概要",
-                  "en": "Step 11 - Verification Summary"
-                },
-                "Text121": {
-                  "ja": "検証の概要",
-                  "en": "Verification Summary"
-                },
-                "Text123": {
-                  "ja": "検証の概要についてー存在の証明",
-                  "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
-                },
-                "Text234": {
-                  "ja": "検証は正常に終了",
-                  "en": "Verification Completed Successfully"
-                }
-              }
-            }
-          ]
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 1,
+      "Languages": {
+        "TextPoe0": {
+          "ja": "ステップ1-TDPデータの取得",
+          "en": "Step 1 - Retrieve TDP Data"
+        },
+        "TextPoe149": {
+          "ja": "TDPデータ要求",
+          "en": "Request TDP Data"
+        },
+        "TextPoe1": {
+          "ja": "現在のTDP",
+          "en": "Current TDP"
+        },
+        "TextPoe2": {
+          "ja": "Tracified GatewayからTDPデータを取得",
+          "en": "Retrieve TDP data from Tracified Gateway."
+        },
+        "TextPoe3": {
+          "ja": "ステップ1-TDPデータの取得",
+          "en": "Step 1 - Retrieve TDP Data"
+        },
+        "TextPoe4": {
+          "ja": "API レスポンスの保存",
+          "en": "Save API Response"
+        },
+        "TextPoe5": {
+          "ja": "トランザクションのレスポンスデータの保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPoe6": {
+          "ja": "ステップ1-TDPデータの取得",
+          "en": "Step 1 - Retrieve TDP Data"
+        },
+        "TextPoe7": {
+          "ja": "フォーマットレスポンス（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPoe8": {
+          "ja": "トランザクションデータをJSONにフォーマット(Javascriptオブジェクト記法)",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 2,
+      "Languages": {
+        "TextPoe9": {
+          "ja": "TDP識別子の選択",
+          "en": "Select TDP identifier"
+        },
+        "TextPoe10": {
+          "ja": "TDP詳細から識別子を選択",
+          "en": "Select the identifier from TDP details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 3,
+      "Languages": {
+        "TextPoe11": {
+          "ja": "TDPの詳細からの識別子",
+          "en": "identifier from the TDP details"
+        },
+        "TextPoe12": {
+          "ja": "識別子をハイライト表示",
+          "en": "Highlight the Identifier"
+        },
+        "TextPoe13": {
+          "ja": "TDP詳細から識別子を選択",
+          "en": "Select the identifier from the TDP details"
+        },
+        "TextPoe14": {
+          "ja": "テスト",
+          "en": "test"
+        },
+        "TextPoe15": {
+          "ja": "識別子をハイライト表示",
+          "en": "Highlight the TDPIdentifier"
+        },
+        "TextPoe16": {
+          "ja": "TDP詳細から識別子を選択",
+          "en": "Select the identifier from the TDP details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 4,
+      "Languages": {
+        "TextPoe17": {
+          "ja": "TDP 識別子の保存",
+          "en": "Save TDP Identifier"
+        },
+        "TextPoe18": {
+          "ja": "将来の使用のために識別子の値を保存する",
+          "en": "Save the Identifier value for future usage."
+        },
+        "TextPoe205": {
+          "ja": "TDP識別子",
+          "en": "TDP Identifier"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 5,
+      "Languages": {
+        "TextPoe20": {
+          "ja": "TDP Data Hashの選択",
+          "en": "Select TDP Data Hash"
+        },
+        "TextPoe21": {
+          "ja": "TDPの詳細からデータハッシュを選択",
+          "en": "Select the Data Hash from TDP details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 6,
+      "Languages": {
+        "TextPoe22": {
+          "ja": "TDPの詳細からダータハッシュ",
+          "en": "Data Hash from the TDP details"
+        },
+        "TextPoe23": {
+          "ja": "ダータハッシュをハイライト表示",
+          "en": "Highlight the Data Hash"
+        },
+        "TextPoe24": {
+          "ja": "TDPの詳細からデータハッシュを選択",
+          "en": "Select the Data Hash from the TDP details"
+        },
+        "TextPoe25": {
+          "ja": "テスト",
+          "en": "test"
+        },
+        "TextPoe26": {
+          "ja": "TDPデータハッシュのハイライト",
+          "en": "Highlight the TDP Data Hash"
+        },
+        "TextPoe27": {
+          "ja": "TDPの詳細からデータハッシュを選択",
+          "en": "Select the Data Hash from the TDP details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 1,
+      "StepNo": numPoe + 7,
+      "Languages": {
+        "TextPoe28": {
+          "ja": "TDPデータハッシュの保存",
+          "en": "Save TDP Data Hash"
+        },
+        "TextPoe29": {
+          "ja": "将来の使用のためにデータハッシュ値の保存",
+          "en": "Save Data Hash value for future usage."
+        },
+        "TextPoe206": {
+          "ja": "TDP データハッシュ",
+          "en": "TDP Data Hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 2,
+      "StepNo": numPoe + 8,
+      "Languages": {
+        "TextPoe31": {
+          "ja": "TDP Txn Hashを選択",
+          "en": "Select TDP Txn Hash"
+        },
+        "TextPoe32": {
+          "ja": "TDPの詳細からTxn Hashを選択",
+          "en": "Select the Txn Hash from TDP details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 2,
+      "StepNo": numPoe + 9,
+      "Languages": {
+        "TextPoe34": {
+          "ja": "Txn Hashのハイライト",
+          "en": "Highlight the Txn Hash"
+        },
+        "TextPoe35": {
+          "ja": "TDPの詳細からtxn Hashを選択",
+          "en": "Select the txn Hash from the TDP details"
+        },
+        "TextPoe37": {
+          "ja": "TDP Txn Hashをハイライト",
+          "en": "Highlight the TDP Txn Hash"
+        },
+        "TextPoe38": {
+          "ja": "TDPの詳細からtxn Hashを選択",
+          "en": "Select the txn Hash from the TDP details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 2,
+      "StepNo": numPoe + 10,
+      "Languages": {
+        "TextPoe39": {
+          "ja": "TDP Txn Hashを保存",
+          "en": "Save TDP Txn Hash"
+        },
+        "TextPoe40": {
+          "ja": "将来の使用のためにTxn Hashの値を保存",
+          "en": "Save Txn Hash value for future usage."
+        },
+        "TextPoe207": {
+          "ja": "TDP Txn Hash",
+          "en": "TDP Txn Hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 2,
+      "StepNo": numPoe + 11,
+      "Languages": {
+        "TextPoe42": {
+          "ja": "ステップ５ーTDPトランザクションの取得",
+          "en": "Step 5 - Retrieve TDP Transaction"
+        },
+        "TextPoe43": {
+          "ja": "ステラホライズンAPIをリクエスト",
+          "en": "Request Stellar Horizon API"
+        },
+        "TextPoe44": {
+          "ja": "ステラブロックチェーンから現在の取引を取得",
+          "en": "Retrieve the current transaction from Stellar Blockchain."
+        },
+        "TextPoe45": {
+          "ja": "API レスポンスの保存",
+          "en": "Save API Response"
+        },
+        "TextPoe46": {
+          "ja": "トランザクションのレスポンスデータを保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPoe47": {
+          "ja": "フォーマットレスポンス（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPoe48": {
+          "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 2,
+      "StepNo": numPoe + 12,
+      "Languages": {
+        "TextPoe49": {
+          "ja": "Current TXNハッシュの選択",
+          "en": "Select Current TXN Hash"
+        },
+        "TextPoe50": {
+          "ja": "トランザクションの詳細からCurrent TXNハッシュ（base64エンコード）を選択",
+          "en": "Select the Current TXN Hash (base64 encoded) from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 2,
+      "StepNo": numPoe + 13,
+      "Languages": {
+        "TextPoe51": {
+          "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュをハイライト",
+          "en": "Highlight the encoded Current TXN Hash from the transaction details"
+        },
+        "TextPoe52": {
+          "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
+          "en": "Select the encoded Current TXN Hash from the transaction details"
+        },
+        "TextPoe53": {
+          "ja": "トランザクションの詳細から、エンコードされたCurrent TXNハッシュ値をハイライト",
+          "en": "Highlight the encoded Current TXN Hash value from the transaction details"
+        },
+        "TextPoe54": {
+          "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュ値を選択",
+          "en": "Select the encoded Current TXN Hash value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 3,
+      "StepNo": numPoe + 14,
+      "Languages": {
+        "TextPoe55": {
+          "ja": "Base64エンコードされたCurrent TXNの保存",
+          "en": "Save Base64 Encoded Current TXN"
+        },
+        "TextPoe56": {
+          "ja": "将来の使用のためにBase64でエンコードされたCurrent TXNハッシュ値を保存",
+          "en": "Save the base64 encoded Current TXN Hash value for future usage."
+        },
+        "TextPoe208": {
+          "ja": "Current TXN (ベース64)",
+          "en": "Current TXN (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 3,
+      "StepNo": numPoe + 15,
+      "Languages": {
+        "TextPoe58": {
+          "ja": "ステップ１５ - 現在のTXNをデコード",
+          "en": "Step 15 - Decode Current TXN"
+        },
+        "TextPoe59": {
+          "ja": "base64デコードのサイトを読み込む",
+          "en": "Load the base64 decode website"
+        },
+        "TextPoe60": {
+          "ja": "Base64でエンコードされたCurrent TXNハッシュをデコードする",
+          "en": "Decode the base64 encoded Current TXN Hash"
+        },
+        "TextPoe61": {
+          "ja": "Base64でエンコードされた現在のTXNハッシュを入力",
+          "en": "Input base64 encoded current txn hash"
+        },
+        "TextPoe62": {
+          "ja": "Base64でエンコードされたCurrent TXNハッシュを入力する",
+          "en": "Input the base64 encoded Current TXN Hash"
+        },
+        "TextPoe63": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click decode button"
+        },
+        "TextPoe64": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPoe65": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64 Decoded Data"
+        },
+        "TextPoe66": {
+          "ja": "デコードされた現在のTXNハッシュの出力を取得",
+          "en": "Get the output of the decoded current txn hash"
+        },
+        "TextPoe67": {
+          "ja": "デコードした値を情報ストレージに保存",
+          "en": "Save the decoded value in information storage"
+        },
+        "TextPoe68": {
+          "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
+          "en": "Save the decoded Current TXN Hash for future usage."
+        },
+        "TextPoe223": {
+          "ja": "現TXNハッシュ（デコード済み）",
+          "en": "Current txn Hash (decoded)"
+        },
+        "TextPoe70": {
+          "ja": "デコードされた現在のTXNハッシュ",
+          "en": "Decoded current txn hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 4,
+      "StepNo": numPoe + 16,
+      "Languages": {
+        "TextPoe71": {
+          "ja": "ステップ１６ー現在の取引の取得",
+          "en": "Step 16 - Retrieve Current Transaction"
+        },
+        "TextPoe72": {
+          "ja": "ゲートウェイトランザクションの現在のトランザクション",
+          "en": "current transaction of the gateway transaction"
+        },
+        "TextPoe73": {
+          "ja": "ステラホライズンAPIをリクエスト",
+          "en": "Request Stellar Horizon API"
+        },
+        "TextPoe74": {
+          "ja": "ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
+          "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
+        },
+        "TextPoe76": {
+          "ja": "API レスポンスの保存",
+          "en": "Save API Response"
+        },
+        "TextPoe77": {
+          "ja": "トランザクションのレスポンスデータの保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPoe125": {
+          "ja": "フォーマットレスポンス（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPoe126": {
+          "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 17,
+      "Languages": {
+        "TextPoe78": {
+          "ja": "Base64 Encoded Current Txn 識別子 を選択",
+          "en": "Select Base64 Encoded Current Txn Identifier"
+        },
+        "TextPoe79": {
+          "ja": "トランザクションの詳細から、エンコードされたcurrent Txn Identifierを選択",
+          "en": "Select the encoded current Txn Identifier from the transaction details."
+        },
+        "TextPoe80": {
+          "ja": "フォーマットメタデータ",
+          "en": "Format Meta Data"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 18,
+      "Languages": {
+        "TextPoe81": {
+          "ja": "トランザクションの詳細からエンコードされたIdentifierをハイライト",
+          "en": "Highlight the encoded Identifier from the transaction details"
+        },
+        "TextPoe82": {
+          "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
+          "en": "Select the encoded Identifier value from the transaction details"
+        },
+        "TextPoe83": {
+          "ja": "テスト",
+          "en": "test"
+        },
+        "TextPoe84": {
+          "ja": "トランザクションの詳細からMainTXNCurrent TXNDataIdentifierをハイライト",
+          "en": "Highlight the MainTXNCurrent TXNDataIdentifier from the transaction details"
+        },
+        "TextPoe85": {
+          "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
+          "en": "Select the encoded Identifier value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 19,
+      "Languages": {
+        "TextPoe87": {
+          "ja": "Base64エンコードされたCurrent TXNの保存",
+          "en": "Save Base64 Encoded Current Txn Identifier"
+        },
+        "TextPoe88": {
+          "ja": "将来の使用のためにbase64 エンコードされた Identifier 値を保存",
+          "en": "Save the base64 encoded Identifier value for future usage."
+        },
+        "TextPoe89": {
+          "ja": "情報ストレージ",
+          "en": "InformationStorage"
+        },
+        "TextPoe209": {
+          "ja": "識別子 (base64)",
+          "en": "Identifier (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 20,
+      "Languages": {
+        "TextPoe90": {
+          "ja": "ステップ５ー現在のTXN識別子のデコード",
+          "en": "Step 5 - Decode Current TXN Identifier"
+        },
+        "TextPoe91": {
+          "ja": "Base64 Decoderのウェブページを読み込む",
+          "en": "Load Base64 Decoder Webpage"
+        },
+        "TextPoe92": {
+          "ja": "base64 でエンコードされた Current TXN 識別子をデコード",
+          "en": "Decode the base64 encoded Current TXN Identifier"
+        },
+        "TextPoe93": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64 Encoded Data"
+        },
+        "TextPoe94": {
+          "ja": "Base64 でエンコードされた Current TXN 識別子を入力",
+          "en": "Input the base64 encoded Current TXN Identifier"
+        },
+        "TextPoe95": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the Decode Button"
+        },
+        "TextPoe127": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPoe128": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64 Decoded Data"
+        },
+        "TextPoe129": {
+          "ja": "デコードしたCurrent TXN識別子の出力を取得",
+          "en": "Get the output of the decoded Current TXN Identifier"
+        },
+        "TextPoe130": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64 Decoded Data"
+        },
+        "TextPoe131": {
+          "ja": "将来の使用のためにデコードされたCurrent TXN識別子を保存",
+          "en": "Save the decoded Current TXN Identifier for future usage."
+        },
+        "TextPoe224": {
+          "ja": "Current TXN識別子",
+          "en": "Current TXN Identifier"
+        },
+        "TextPoe133": {
+          "ja": "デコードされた Current TXN 識別子",
+          "en": "Decoded Current TXN Identifier"
+        },
+        "TextPoe246": {
+          "ja": "Current TXN識別子",
+          "en": "Current TXN Identifier"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 21,
+      "Languages": {
+        "TextPoe96": {
+          "ja": "Base64EncodeされたData Hashを選択",
+          "en": "Select Base64 Encoded Data Hash"
+        },
+        "TextPoe97": {
+          "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
+          "en": "Select the encoded Data Hash from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 22,
+      "Languages": {
+        "TextPoe100": {
+          "ja": "データハッシュをハイライト",
+          "en": "Highlight the Data Hash"
+        },
+        "TextPoe101": {
+          "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
+          "en": "Select the encoded Data Hash from the transaction details."
+        },
+        "TextPoe300": {
+          "ja": "Main TXN Current TXNデータハッシュをハイライト",
+          "en": "Highlight the Main TXN Current TXN Data Data Hash"
+        },
+        "TextPoe103": {
+          "ja": "トランザクションの詳細からエンコードされたデータハッシュの値を選択",
+          "en": "Select the encoded Data Hash value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 23,
+      "Languages": {
+        "TextPoe106": {
+          "ja": "Base64Encodeされたデータハッシュの保存",
+          "en": "Save Base64 Encoded Data Hash"
+        },
+        "TextPoe107": {
+          "ja": "将来の使用のためにbase64でエンコードされたデータハッシュの値を保存",
+          "en": "Save the base64 encoded Data Hash value for future usage."
+        },
+        "TextPoe210": {
+          "ja": "Current TXN データハッシュ（base64）。",
+          "en": "Current TXN Data Hash (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 24,
+      "Languages": {
+        "TextPoe110": {
+          "ja": "ステップ９－現在のTXNデータハッシュのデコード",
+          "en": "Step 9 - Decode Current TXN Data Hash"
+        },
+        "TextPoe111": {
+          "ja": "Base64 Decoderのウェブページを読み込む",
+          "en": "Load Base64 Decoder Webpage"
+        },
+        "TextPoe112": {
+          "ja": "Base64でエンコードされたCurrent TXNのData Hashをデコード",
+          "en": "Decode the base64 encoded Current TXN Data Hash"
+        },
+        "TextPoe113": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64 Encoded Data"
+        },
+        "TextPoe134": {
+          "ja": "Base64でエンコードされたCurrent TXN データハッシュを入力",
+          "en": "Input the base64 encoded Current TXN Data Hash"
+        },
+        "TextPoe135": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPoe136": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPoe137": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64 Decoded Data"
+        },
+        "TextPoe138": {
+          "ja": "デコードされたCurrent TXNの出力を取得する データハッシュ",
+          "en": "Get the output of the decoded Current TXN Data Hash"
+        },
+        "TextPoe139": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64 Decoded Data"
+        },
+        "TextPoe140": {
+          "ja": "将来の使用のためにデコードされたCurrent TXNデータハッシュ",
+          "en": "Save the decoded Current TXN Data Hash for future usage."
+        },
+        "TextPoe141": {
+          "ja": "デコードされたCurrent TXN データハッシュ",
+          "en": "Decoded Current TXN Data Hash"
+        },
+        "TextPoe225": {
+          "ja": "Current TXN データハッシュ",
+          "en": "CurrentTXN data hash"
+        },
+        "TextPoe247": {
+          "ja": "Current TXN データハッシュ",
+          "en": "CurrentTXN data hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 5,
+      "StepNo": numPoe + 25,
+      "Languages": {
+        "TextPoe115": {
+          "ja": "ステップ１０－データハッシュの比較",
+          "en": "Step 10 - Compare Data Hash"
+        },
+        "TextPoe116": {
+          "ja": "オンラインテキスト比較のWebページ",
+          "en": "Online Text Comparison Webpage"
+        },
+        "TextPoe117": {
+          "ja": "オンラインテキスト比較のウェブページを読み込む",
+          "en": "Load the online text comparison webpage"
+        },
+        "TextPoe118": {
+          "ja": "ステップ１０－データハッシュの比較",
+          "en": "Step 10 - Compare Data Hash"
+        },
+        "TextPoe119": {
+          "ja": "入力の比較値",
+          "en": "Input comparison values"
+        },
+        "TextPoe142": {
+          "ja": "トランザクションからBase64デコードされたデータハッシュ値を入力",
+          "en": "Input the base64 decoded Data Hash values from the transactions."
+        },
+        "TextPoe143": {
+          "ja": "ステップ１０－データハッシュの比較",
+          "en": "Step 10 - Compare Data Hash"
+        },
+        "TextPoe144": {
+          "ja": "比較ボタンをクリック",
+          "en": "Click the compare button"
+        },
+        "TextPoe145": {
+          "ja": "比較ボタンをクリック",
+          "en": "Click the compare button"
+        },
+        "TextPoe146": {
+          "ja": "ステップ１０－データハッシュの比較",
+          "en": "Step 10 - Compare Data Hash"
+        },
+        "TextPoe147": {
+          "ja": "結果をスクロールする",
+          "en": "Scroll to the result"
+        },
+        "TextPoe148": {
+          "ja": "結果をスクロールする",
+          "en": "Scroll to the result"
+        },
+        "TextPoe154": {
+          "ja": "klll",
+          "en": "Comparison Result"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPoe + 6,
+      "StepNo": numPoe + 26,
+      "Languages": {
+        "TextPoe120": {
+          "ja": "ステップ１１－検証の概要",
+          "en": "Step 11 - Verification Summary"
+        },
+        "TextPoe121": {
+          "ja": "検証の概要",
+          "en": "Verification Summary"
+        },
+        "TextPoe123": {
+          "ja": "検証の概要についてー存在の証明",
+          "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
+        },
+        "TextPoe234": {
+          "ja": "検証は正常に終了",
+          "en": "Verification Completed Successfully"
+        }
+      }
+    }
+  ]
           this.pocProofJson.Header.Segments.push(...poeSegments)
           this.pocProofJson.Steps.push(...poeSteps)
           this.pocLangJson.Actions.push(...poeLang)
@@ -4479,7 +4479,7 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text0}",
+                "ActionTitle": "&{TextPobl0}",
                 "ActionDescription": "",
                 "ActionType": "MultiStepAction",
                 "ActionParameters": {
@@ -4507,13 +4507,13 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 1,
                     "SegmentNo": segPobl + 1,
                     "FrameID": 1,
-                    "FrameTitle": "&{Text1}",
-                    "ActionTitle": "&{Text2}",
-                    "ActionDescription": "&{Text3}",
-                    "ActionTitle_1": "&{Text4}",
-                    "ActionDescription_1": "&{Text5}",
-                    "ActionTitle_2": "&{Text6}",
-                    "ActionDescription_2": "&{Text7}",
+                    "FrameTitle": "&{TextPobl1}",
+                    "ActionTitle": "&{TextPobl2}",
+                    "ActionDescription": "&{TextPobl3}",
+                    "ActionTitle_1": "&{TextPobl4}",
+                    "ActionDescription_1": "&{TextPobl5}",
+                    "ActionTitle_2": "&{TextPobl6}",
+                    "ActionDescription_2": "&{TextPobl7}",
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
                     "ResponseVariable": "MainTXNDataString",
@@ -4543,8 +4543,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text8}",
-                "ActionDescription": "&{Text9}",
+                "ActionTitle": "&{TextPobl8}",
+                "ActionDescription": "&{TextPobl9}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4621,10 +4621,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 2,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text10}",
-                    "ActionDescription": "&{Text11}",
-                    "ActionTitle_1": "&{Text12}",
-                    "ActionDescription_1": "&{Text13}",
+                    "ActionTitle": "&{TextPobl10}",
+                    "ActionDescription": "&{TextPobl11}",
+                    "ActionTitle_1": "&{TextPobl12}",
+                    "ActionDescription_1": "&{TextPobl13}",
                     "OperationKey": "CurrentTXN",
                     "OperationValue": "MainTXNCurentTXNHash",
                     "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
@@ -4652,8 +4652,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text14}",
-                "ActionDescription": "&{Text15}",
+                "ActionTitle": "&{TextPobl14}",
+                "ActionDescription": "&{TextPobl15}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4676,7 +4676,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text211}",
+                      "Key": "&{TextPobl211}",
                       "Value": "${MainTXNCurentTXNHash}"
                     }
                   ]
@@ -4729,22 +4729,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 5,
                     "SegmentNo": segPobl + 2,
                     "FrameID": 2,
-                    "FrameTitle": "&{Text16}",
-                    "ActionTitle": "&{Text17}",
-                    "ActionDescription": "&{Text18}",
-                    "ActionTitle_1": "&{Text19}",
-                    "ActionDescription_1": "&{Text20}",
-                    "ActionTitle_2": "&{Text21}",
-                    "ActionDescription_2": "&{Text22}",
-                    "ActionTitle_3": "&{Text23}",
-                    "ActionDescription_3": "&{Text24}",
-                    "ActionTitle_4": "&{Text25}",
-                    "ActionDescription_4": "&{Text26}",
-                    "ToastMessage": "&{Text27}",
-                    "DecodeKeyName": "&{Text237}",
+                    "FrameTitle": "&{TextPobl16}",
+                    "ActionTitle": "&{TextPobl17}",
+                    "ActionDescription": "&{TextPobl18}",
+                    "ActionTitle_1": "&{TextPobl19}",
+                    "ActionDescription_1": "&{TextPobl20}",
+                    "ActionTitle_2": "&{TextPobl21}",
+                    "ActionDescription_2": "&{TextPobl22}",
+                    "ActionTitle_3": "&{TextPobl23}",
+                    "ActionDescription_3": "&{TextPobl24}",
+                    "ActionTitle_4": "&{TextPobl25}",
+                    "ActionDescription_4": "&{TextPobl26}",
+                    "ToastMessage": "&{TextPobl27}",
+                    "DecodeKeyName": "&{TextPobl237}",
                     "EncodedInputValue": "${MainTXNCurentTXNHash}",
                     "DecodedResultVariable": "var_currenttxn",
-                    "InformationStorageKey": "&{Text226}"
+                    "InformationStorageKey": "&{TextPobl226}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -4795,13 +4795,13 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 6,
                     "SegmentNo": segPobl + 2,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text28}",
-                    "ActionTitle": "&{Text29}",
-                    "ActionDescription": "&{Text30}",
-                    "ActionTitle_1": "&{Text31}",
-                    "ActionDescription_1": "&{Text32}",
-                    "ActionTitle_2": "&{Text33}",
-                    "ActionDescription_2": "&{Text34}",
+                    "FrameTitle": "&{TextPobl28}",
+                    "ActionTitle": "&{TextPobl29}",
+                    "ActionDescription": "&{TextPobl30}",
+                    "ActionTitle_1": "&{TextPobl31}",
+                    "ActionDescription_1": "&{TextPobl32}",
+                    "ActionTitle_2": "&{TextPobl33}",
+                    "ActionDescription_2": "&{TextPobl34}",
                     "TXNHash": "${var_currenttxn}",
                     "OperationName": "current transaction of the gateway transaction",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
@@ -4831,8 +4831,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text35}",
-                "ActionDescription": "&{Text36}",
+                "ActionTitle": "&{TextPobl35}",
+                "ActionDescription": "&{TextPobl36}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4909,10 +4909,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 4,
                     "FrameID": 3,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text37}",
-                    "ActionDescription": "&{Text38}",
-                    "ActionTitle_1": "&{Text39}",
-                    "ActionDescription_1": "&{Text40}",
+                    "ActionTitle": "&{TextPobl37}",
+                    "ActionDescription": "&{TextPobl38}",
+                    "ActionTitle_1": "&{TextPobl39}",
+                    "ActionDescription_1": "&{TextPobl40}",
                     "OperationKey": "identifier",
                     "OperationValue": "MainTXNCurentTXNDataIdentifier",
                     "OperationKeyName": "encoded Identifier from the transaction details",
@@ -4940,8 +4940,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text41}",
-                "ActionDescription": "&{Text42}",
+                "ActionTitle": "&{TextPobl41}",
+                "ActionDescription": "&{TextPobl42}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4964,7 +4964,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text212}",
+                      "Key": "&{TextPobl212}",
                       "Value": "${MainTXNCurentTXNDataIdentifier}"
                     }
                   ]
@@ -5017,22 +5017,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 10,
                     "SegmentNo": segPobl + 4,
                     "FrameID": 4,
-                    "FrameTitle": "&{Text43}",
-                    "ActionTitle": "&{Text44}",
-                    "ActionDescription": "&{Text45}",
-                    "ActionTitle_1": "&{Text46}",
-                    "ActionDescription_1": "&{Text47}",
-                    "ActionTitle_2": "&{Text48}",
-                    "ActionDescription_2": "&{Text49}",
-                    "ActionTitle_3": "&{Text50}",
-                    "ActionDescription_3": "&{Text51}",
-                    "ActionTitle_4": "&{Text52}",
-                    "ActionDescription_4": "&{Text53}",
-                    "ToastMessage": "&{Text54}",
-                    "DecodeKeyName": "&{Text238}",
+                    "FrameTitle": "&{TextPobl43}",
+                    "ActionTitle": "&{TextPobl44}",
+                    "ActionDescription": "&{TextPobl45}",
+                    "ActionTitle_1": "&{TextPobl46}",
+                    "ActionDescription_1": "&{TextPobl47}",
+                    "ActionTitle_2": "&{TextPobl48}",
+                    "ActionDescription_2": "&{TextPobl49}",
+                    "ActionTitle_3": "&{TextPobl50}",
+                    "ActionDescription_3": "&{TextPobl51}",
+                    "ActionTitle_4": "&{TextPobl52}",
+                    "ActionDescription_4": "&{TextPobl53}",
+                    "ToastMessage": "&{TextPobl54}",
+                    "DecodeKeyName": "&{TextPobl238}",
                     "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
-                    "InformationStorageKey": "&{Text227}"
+                    "InformationStorageKey": "&{TextPobl227}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -5056,8 +5056,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text55}",
-                "ActionDescription": "&{Text56}",
+                "ActionTitle": "&{TextPobl55}",
+                "ActionDescription": "&{TextPobl56}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5134,10 +5134,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 5,
                     "FrameID": 3,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text57}",
-                    "ActionDescription": "&{Text58}",
-                    "ActionTitle_1": "&{Text59}",
-                    "ActionDescription_1": "&{Text60}",
+                    "ActionTitle": "&{TextPobl57}",
+                    "ActionDescription": "&{TextPobl58}",
+                    "ActionTitle_1": "&{TextPobl59}",
+                    "ActionDescription_1": "&{TextPobl60}",
                     "OperationKey": "productId",
                     "OperationValue": "MainTXNCurentTXNDataProductId",
                     "OperationKeyName": "encoded ProductID from the transaction details",
@@ -5165,8 +5165,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text60}",
-                "ActionDescription": "&{Text61}",
+                "ActionTitle": "&{TextPobl60}",
+                "ActionDescription": "&{TextPobl61}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5189,7 +5189,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text213}",
+                      "Key": "&{TextPobl213}",
                       "Value": "${MainTXNCurentTXNDataProductId}"
                     }
                   ]
@@ -5242,22 +5242,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 14,
                     "SegmentNo": segPobl + 5,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text62}",
-                    "ActionTitle": "&{Text63}",
-                    "ActionDescription": "&{Text64}",
-                    "ActionTitle_1": "&{Text65}",
-                    "ActionDescription_1": "&{Text66}",
-                    "ActionTitle_2": "&{Text67}",
-                    "ActionDescription_2": "&{Text68}",
-                    "ActionTitle_3": "&{Text69}",
-                    "ActionDescription_3": "&{Text70}",
-                    "ActionTitle_4": "&{Text71}",
-                    "ActionDescription_4": "&{Text72}",
-                    "ToastMessage": "&{Text73}",
-                    "DecodeKeyName": "&{Text239}",
+                    "FrameTitle": "&{TextPobl62}",
+                    "ActionTitle": "&{TextPobl63}",
+                    "ActionDescription": "&{TextPobl64}",
+                    "ActionTitle_1": "&{TextPobl65}",
+                    "ActionDescription_1": "&{TextPobl66}",
+                    "ActionTitle_2": "&{TextPobl67}",
+                    "ActionDescription_2": "&{TextPobl68}",
+                    "ActionTitle_3": "&{TextPobl69}",
+                    "ActionDescription_3": "&{TextPobl70}",
+                    "ActionTitle_4": "&{TextPobl71}",
+                    "ActionDescription_4": "&{TextPobl72}",
+                    "ToastMessage": "&{TextPobl73}",
+                    "DecodeKeyName": "&{TextPobl239}",
                     "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
-                    "InformationStorageKey": "&{Text228}"
+                    "InformationStorageKey": "&{TextPobl228}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -5281,8 +5281,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text74}",
-                "ActionDescription": "&{Text75}",
+                "ActionTitle": "&{TextPobl74}",
+                "ActionDescription": "&{TextPobl75}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5359,10 +5359,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 5,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text76}",
-                    "ActionDescription": "&{Text77}",
-                    "ActionTitle_1": "&{Text78}",
-                    "ActionDescription_1": "&{Text79}",
+                    "ActionTitle": "&{TextPobl76}",
+                    "ActionDescription": "&{TextPobl77}",
+                    "ActionTitle_1": "&{TextPobl78}",
+                    "ActionDescription_1": "&{TextPobl79}",
                     "OperationKey": "PreviousTXN",
                     "OperationValue": "MainTXNPreviousTXN",
                     "OperationKeyName": "encoded PreviousTXN Hash from the transaction details.",
@@ -5390,8 +5390,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text80}",
-                "ActionDescription": "&{Text81}",
+                "ActionTitle": "&{TextPobl80}",
+                "ActionDescription": "&{TextPobl81}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5414,7 +5414,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text214}",
+                      "Key": "&{TextPobl214}",
                       "Value": "${MainTXNPreviousTXN}"
                     }
                   ]
@@ -5467,22 +5467,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 18,
                     "SegmentNo": segPobl + 6,
                     "FrameID": 1,
-                    "FrameTitle": "&{Text82}",
-                    "ActionTitle": "&{Text83}",
-                    "ActionDescription": "&{Text84}",
-                    "ActionTitle_1": "&{Text85}",
-                    "ActionDescription_1": "&{Text86}",
-                    "ActionTitle_2": "&{Text87}",
-                    "ActionDescription_2": "&{Text88}",
-                    "ActionTitle_3": "&{Text89}",
-                    "ActionDescription_3": "&{Text90}",
-                    "ActionTitle_4": "&{Text91}",
-                    "ActionDescription_4": "&{Text92}",
-                    "ToastMessage": "&{Text93}",
-                    "DecodeKeyName": "&{Text240}",
+                    "FrameTitle": "&{TextPobl82}",
+                    "ActionTitle": "&{TextPobl83}",
+                    "ActionDescription": "&{TextPobl84}",
+                    "ActionTitle_1": "&{TextPobl85}",
+                    "ActionDescription_1": "&{TextPobl86}",
+                    "ActionTitle_2": "&{TextPobl87}",
+                    "ActionDescription_2": "&{TextPobl88}",
+                    "ActionTitle_3": "&{TextPobl89}",
+                    "ActionDescription_3": "&{TextPobl90}",
+                    "ActionTitle_4": "&{TextPobl91}",
+                    "ActionDescription_4": "&{TextPobl92}",
+                    "ToastMessage": "&{TextPobl93}",
+                    "DecodeKeyName": "&{TextPobl240}",
                     "EncodedInputValue": "${MainTXNPreviousTXN}",
                     "DecodedResultVariable": "MainTXNPreviousTXNDecoded",
-                    "InformationStorageKey": "&{Text229}"
+                    "InformationStorageKey": "&{TextPobl229}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -5533,13 +5533,13 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 19,
                     "SegmentNo": segPobl + 7,
                     "FrameID": 8,
-                    "FrameTitle": "&{Text94}",
-                    "ActionTitle": "&{Text95}",
-                    "ActionDescription": "&{Text96}",
-                    "ActionTitle_1": "&{Text97}",
-                    "ActionDescription_1": "&{Text98}",
-                    "ActionTitle_2": "&{Text99}",
-                    "ActionDescription_2": "&{Text100}",
+                    "FrameTitle": "&{TextPobl94}",
+                    "ActionTitle": "&{TextPobl95}",
+                    "ActionDescription": "&{TextPobl96}",
+                    "ActionTitle_1": "&{TextPobl97}",
+                    "ActionDescription_1": "&{TextPobl98}",
+                    "ActionTitle_2": "&{TextPobl99}",
+                    "ActionDescription_2": "&{TextPobl100}",
                     "TXNHash": "${MainTXNPreviousTXNDecoded}",
                     "OperationName": "Backlink transaction from Stellar Blockchain.",
                     "ResponseVariable": "MainTXNPreviousTXNDataString",
@@ -5569,8 +5569,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text101}",
-                "ActionDescription": "&{Text102}",
+                "ActionTitle": "&{TextPobl101}",
+                "ActionDescription": "&{TextPobl102}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5647,10 +5647,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 8,
                     "FrameID": 8,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text103}",
-                    "ActionDescription": "&{Text104}",
-                    "ActionTitle_1": "&{Text105}",
-                    "ActionDescription_1": "&{Text106}",
+                    "ActionTitle": "&{TextPobl103}",
+                    "ActionDescription": "&{TextPobl104}",
+                    "ActionTitle_1": "&{TextPobl105}",
+                    "ActionDescription_1": "&{TextPobl106}",
                     "OperationKey": "CurrentTXN",
                     "OperationValue": "MainTXNPreviousTXNCurrentTXNHash",
                     "OperationKeyName": "encoded CurrentTXN Hash of the Backlink transaction from the transaction details.",
@@ -5678,8 +5678,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text107}",
-                "ActionDescription": "&{Text108}",
+                "ActionTitle": "&{TextPobl107}",
+                "ActionDescription": "&{TextPobl108}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5702,12 +5702,12 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "GivenDataToStorageData": {
                     "Type": "pobl",
-                    "Key": "&{Text215}",
+                    "Key": "&{TextPobl215}",
                     "Value": node.TrustLinks[1]
                   },
                   "StorageData": [
                     {
-                      "Key": "&{Text216}",
+                      "Key": "&{TextPobl216}",
                       "Value": "${MainTXNPreviousTXNCurrentTXNHash}"
                     }
                   ]
@@ -5760,22 +5760,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 23,
                     "SegmentNo": segPobl + 8,
                     "FrameID": 9,
-                    "FrameTitle": "&{Text109}",
-                    "ActionTitle": "&{Text110}",
-                    "ActionDescription": "&{Text111}",
-                    "ActionTitle_1": "&{Text112}",
-                    "ActionDescription_1": "&{Text113}",
-                    "ActionTitle_2": "&{Text114}",
-                    "ActionDescription_2": "&{Text115}",
-                    "ActionTitle_3": "&{Text116}",
-                    "ActionDescription_3": "&{Text117}",
-                    "ActionTitle_4": "&{Text118}",
-                    "ActionDescription_4": "&{Text119}",
-                    "ToastMessage": "&{Text120}",
-                    "DecodeKeyName": "&{Text241}",
+                    "FrameTitle": "&{TextPobl109}",
+                    "ActionTitle": "&{TextPobl110}",
+                    "ActionDescription": "&{TextPobl111}",
+                    "ActionTitle_1": "&{TextPobl112}",
+                    "ActionDescription_1": "&{TextPobl113}",
+                    "ActionTitle_2": "&{TextPobl114}",
+                    "ActionDescription_2": "&{TextPobl115}",
+                    "ActionTitle_3": "&{TextPobl116}",
+                    "ActionDescription_3": "&{TextPobl117}",
+                    "ActionTitle_4": "&{TextPobl118}",
+                    "ActionDescription_4": "&{TextPobl119}",
+                    "ToastMessage": "&{TextPobl120}",
+                    "DecodeKeyName": "&{TextPobl241}",
                     "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNHash}",
                     "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNHashDecoded",
-                    "InformationStorageKey": "&{Text230}"
+                    "InformationStorageKey": "&{TextPobl230}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -5826,13 +5826,13 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 24,
                     "SegmentNo": segPobl + 9,
                     "FrameID": 10,
-                    "FrameTitle": "&{Text121}",
-                    "ActionTitle": "&{Text122}",
-                    "ActionDescription": "&{Text123}",
-                    "ActionTitle_1": "&{Text124}",
-                    "ActionDescription_1": "&{Text125}",
-                    "ActionTitle_2": "&{Text126}",
-                    "ActionDescription_2": "&{Text127}",
+                    "FrameTitle": "&{TextPobl121}",
+                    "ActionTitle": "&{TextPobl122}",
+                    "ActionDescription": "&{TextPobl123}",
+                    "ActionTitle_1": "&{TextPobl124}",
+                    "ActionDescription_1": "&{TextPobl125}",
+                    "ActionTitle_2": "&{TextPobl126}",
+                    "ActionDescription_2": "&{TextPobl127}",
                     "TXNHash": "${MainTXNPreviousTXNCurrentTXNHashDecoded}",
                     "OperationName": "current transaction of the backlink transaction",
                     "ResponseVariable": "MainTXNPreviousTXNCurrentTXNDataString",
@@ -5862,8 +5862,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text128}",
-                "ActionDescription": "&{Text129}",
+                "ActionTitle": "&{TextPobl128}",
+                "ActionDescription": "&{TextPobl129}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5940,10 +5940,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 10,
                     "FrameID": 10,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text130}",
-                    "ActionDescription": "&{Text131}",
-                    "ActionTitle_1": "&{Text132}",
-                    "ActionDescription_1": "&{Text133}",
+                    "ActionTitle": "&{TextPobl130}",
+                    "ActionDescription": "&{TextPobl131}",
+                    "ActionTitle_1": "&{TextPobl132}",
+                    "ActionDescription_1": "&{TextPobl133}",
                     "OperationKey": "identifier",
                     "OperationValue": "MainTXNPreviousTXNCurrentTXNDataIdentifier",
                     "OperationKeyName": "encoded Identifier from the transaction details",
@@ -5971,8 +5971,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text134}",
-                "ActionDescription": "&{Text135}",
+                "ActionTitle": "&{TextPobl134}",
+                "ActionDescription": "&{TextPobl135}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -5995,7 +5995,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text217}",
+                      "Key": "&{TextPobl217}",
                       "Value": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}"
                     }
                   ]
@@ -6048,22 +6048,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 28,
                     "SegmentNo": segPobl + 10,
                     "FrameID": 11,
-                    "FrameTitle": "&{Text136}",
-                    "ActionTitle": "&{Text137}",
-                    "ActionDescription": "&{Text138}",
-                    "ActionTitle_1": "&{Text139}",
-                    "ActionDescription_1": "&{Text140}",
-                    "ActionTitle_2": "&{Text141}",
-                    "ActionDescription_2": "&{Text142}",
-                    "ActionTitle_3": "&{Text143}",
-                    "ActionDescription_3": "&{Text144}",
-                    "ActionTitle_4": "&{Text145}",
-                    "ActionDescription_4": "&{Text146}",
-                    "ToastMessage": "&{Text147}",
-                    "DecodeKeyName": "&{Text242}",
+                    "FrameTitle": "&{TextPobl136}",
+                    "ActionTitle": "&{TextPobl137}",
+                    "ActionDescription": "&{TextPobl138}",
+                    "ActionTitle_1": "&{TextPobl139}",
+                    "ActionDescription_1": "&{TextPobl140}",
+                    "ActionTitle_2": "&{TextPobl141}",
+                    "ActionDescription_2": "&{TextPobl142}",
+                    "ActionTitle_3": "&{TextPobl143}",
+                    "ActionDescription_3": "&{TextPobl144}",
+                    "ActionTitle_4": "&{TextPobl145}",
+                    "ActionDescription_4": "&{TextPobl146}",
+                    "ToastMessage": "&{TextPobl147}",
+                    "DecodeKeyName": "&{TextPobl242}",
                     "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataIdentifier}",
                     "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded",
-                    "InformationStorageKey": "&{Text231}"
+                    "InformationStorageKey": "&{TextPobl231}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -6087,8 +6087,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text148}",
-                "ActionDescription": "&{Text149}",
+                "ActionTitle": "&{TextPobl148}",
+                "ActionDescription": "&{TextPobl149}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -6165,10 +6165,10 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPobl + 11,
                     "FrameID": 10,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text150}",
-                    "ActionDescription": "&{Text151}",
-                    "ActionTitle_1": "&{Text152}",
-                    "ActionDescription_1": "&{Text153}",
+                    "ActionTitle": "&{TextPobl150}",
+                    "ActionDescription": "&{TextPobl151}",
+                    "ActionTitle_1": "&{TextPobl152}",
+                    "ActionDescription_1": "&{TextPobl153}",
                     "OperationKey": "productId",
                     "OperationValue": "MainTXNPreviousTXNCurrentTXNDataProductID",
                     "OperationKeyName": "encoded ProductID from the transaction details",
@@ -6196,8 +6196,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text154}",
-                "ActionDescription": "&{Text155}",
+                "ActionTitle": "&{TextPobl154}",
+                "ActionDescription": "&{TextPobl155}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -6220,7 +6220,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text218}",
+                      "Key": "&{TextPobl218}",
                       "Value": "${MainTXNPreviousTXNCurrentTXNDataProductID}"
                     }
                   ]
@@ -6273,22 +6273,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 32,
                     "SegmentNo": segPobl + 11,
                     "FrameID": 11,
-                    "FrameTitle": "&{Text156}",
-                    "ActionTitle": "&{Text157}",
-                    "ActionDescription": "&{Text158}",
-                    "ActionTitle_1": "&{Text15}",
-                    "ActionDescription_1": "&{Text19}",
-                    "ActionTitle_2": "&{Text160}",
-                    "ActionDescription_2": "&{Text161}",
-                    "ActionTitle_3": "&{Text162}",
-                    "ActionDescription_3": "&{Text163}",
-                    "ActionTitle_4": "&{Text164}",
-                    "ActionDescription_4": "&{Text165}",
-                    "ToastMessage": "&{Text166}",
-                    "DecodeKeyName": "&{Text245}",
+                    "FrameTitle": "&{TextPobl156}",
+                    "ActionTitle": "&{TextPobl157}",
+                    "ActionDescription": "&{TextPobl158}",
+                    "ActionTitle_1": "&{TextPobl15}",
+                    "ActionDescription_1": "&{TextPobl19}",
+                    "ActionTitle_2": "&{TextPobl160}",
+                    "ActionDescription_2": "&{TextPobl161}",
+                    "ActionTitle_3": "&{TextPobl162}",
+                    "ActionDescription_3": "&{TextPobl163}",
+                    "ActionTitle_4": "&{TextPobl164}",
+                    "ActionDescription_4": "&{TextPobl165}",
+                    "ToastMessage": "&{TextPobl166}",
+                    "DecodeKeyName": "&{TextPobl245}",
                     "EncodedInputValue": "${MainTXNPreviousTXNCurrentTXNDataProductID}",
                     "DecodedResultVariable": "MainTXNPreviousTXNCurrentTXNDataProductIDDecoded",
-                    "InformationStorageKey": "&{Text232}"
+                    "InformationStorageKey": "&{TextPobl232}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -6339,19 +6339,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 33,
                     "SegmentNo": segPobl + 12,
                     "FrameID": 12,
-                    "FrameTitle": "&{Text168}",
-                    "ActionTitle": "&{Text169}",
-                    "ActionDescription": "&{Text170}",
-                    "FrameTitle_1": "&{Text168}",
-                    "ActionTitle_1": "&{Text171}",
-                    "ActionDescription_1": "&{Text172}",
-                    "FrameTitle_2": "&{Text168}",
-                    "ActionTitle_2": "&{Text173}",
-                    "ActionDescription_2": "&{Text174}",
-                    "FrameTitle_3": "&{Text168}",
-                    "ActionTitle_3": "&{Text175}",
-                    "ActionDescription_3": "&{Text176}",
-                    "ToastMessage": "&{Text177}",
+                    "FrameTitle": "&{TextPobl168}",
+                    "ActionTitle": "&{TextPobl169}",
+                    "ActionDescription": "&{TextPobl170}",
+                    "FrameTitle_1": "&{TextPobl168}",
+                    "ActionTitle_1": "&{TextPobl171}",
+                    "ActionDescription_1": "&{TextPobl172}",
+                    "FrameTitle_2": "&{TextPobl168}",
+                    "ActionTitle_2": "&{TextPobl173}",
+                    "ActionDescription_2": "&{TextPobl174}",
+                    "FrameTitle_3": "&{TextPobl168}",
+                    "ActionTitle_3": "&{TextPobl175}",
+                    "ActionDescription_3": "&{TextPobl176}",
+                    "ToastMessage": "&{TextPobl177}",
                     "InputKeyName": "the base64 decoded Identifier values from the transactions.",
                     "InputValue": "[{\"title\": \"Identifiers from the Main transaction and Backlink transaction\", \"t1\": \"${MainTXNCurentTXNDataIdentifierDecoded}\", \"t2\": \"${MainTXNPreviousTXNCurrentTXNDataIdentifierDecoded}\"}]"
                   }
@@ -6404,19 +6404,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPobl + 34,
                     "SegmentNo": segPobl + 13,
                     "FrameID": 12,
-                    "FrameTitle": "&{Text168}",
-                    "ActionTitle": "&{Text169}",
-                    "ActionDescription": "&{Text170}",
-                    "FrameTitle_1": "&{Text168}",
-                    "ActionTitle_1": "&{Text171}",
-                    "ActionDescription_1": "&{Text172}",
-                    "FrameTitle_2": "&{Text168}",
-                    "ActionTitle_2": "&{Text173}",
-                    "ActionDescription_2": "&{Text174}",
-                    "FrameTitle_3": "&{Text168}",
-                    "ActionTitle_3": "&{Text175}",
-                    "ActionDescription_3": "&{Text176}",
-                    "ToastMessage": "&{Text177}",
+                    "FrameTitle": "&{TextPobl168}",
+                    "ActionTitle": "&{TextPobl169}",
+                    "ActionDescription": "&{TextPobl170}",
+                    "FrameTitle_1": "&{TextPobl168}",
+                    "ActionTitle_1": "&{TextPobl171}",
+                    "ActionDescription_1": "&{TextPobl172}",
+                    "FrameTitle_2": "&{TextPobl168}",
+                    "ActionTitle_2": "&{TextPobl173}",
+                    "ActionDescription_2": "&{TextPobl174}",
+                    "FrameTitle_3": "&{TextPobl168}",
+                    "ActionTitle_3": "&{TextPobl175}",
+                    "ActionDescription_3": "&{TextPobl176}",
+                    "ToastMessage": "&{TextPobl177}",
                     "InputKeyName": "the base64 decoded Identifier values from the transactions.",
                     "InputValue": '[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\":' + node.TrustLinks[1] + '"}]"'
                   }
@@ -6439,17 +6439,17 @@ export class BuildPOCJsonService {
                 "StepNo": numPobl + 35,
                 "SegmentNo": segPobl + 14,
                 "FrameID": 13,
-                "FrameTitle": "&{Text178}"
+                "FrameTitle": "&{TextPobl178}"
               },
               "Action": {
-                "ActionTitle": "&{Text179}",
-                "ActionDescription": "&{Text179}",
+                "ActionTitle": "&{TextPobl179}",
+                "ActionDescription": "&{TextPobl179}",
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
                   "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
                   "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "PageURL": "&{Text181}",
+                  "PageURL": "&{TextPobl181}",
                   "Query": "",
                   "QueryIndex": "",
                   "YOffset": "",
@@ -6480,7 +6480,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text235}",
+                "ToastMessage1": "&{TextPobl235}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -6490,1077 +6490,1077 @@ export class BuildPOCJsonService {
             }
           ]
           let poblLang = [
-            {
-              "SegmentNo": segPobl + 1,
-              "StepNo": numPobl + 1,
-              "Languages": {
-                "Text0": {
-                  "ja": "現在のトランザクションの取得",
-                  "en": "Retrieve Current Transaction"
-                },
-                "Text1": {
-                  "ja": "ステップ１ー現在のトランザクションの取得",
-                  "en": "Step 1 - Retrieve Current Transaction"
-                },
-                "Text2": {
-                  "ja": "ステラホライズンAPIのリクエスト",
-                  "en": "Request Stellar HorizonAPI"
-                },
-                "Text3": {
-                  "ja": "ステラブロックチェーンから現在のトランザクションを取得",
-                  "en": "Retrieve the current transaction from Stellar Blockchain."
-                },
-                "Text4": {
-                  "ja": "APIレスポンスの保存",
-                  "en": "Save API Response"
-                },
-                "Text5": {
-                  "ja": "トランザクションのレスポンスデータの保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text6": {
-                  "ja": "応答形式（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text7": {
-                  "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 2,
-              "StepNo": numPobl + 2,
-              "Languages": {
-                "Text8": {
-                  "ja": "CurrentTXNハッシュの抽出",
-                  "en": "Extract CurrentTXN Hash"
-                },
-                "Text9": {
-                  "ja": "トランザクションの詳細から、CurrentTXN Hash (base64 encoded)を選択",
-                  "en": "Select the CurrentTXN Hash (base64 encoded) from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 2,
-              "StepNo": numPobl + 3,
-              "Languages": {
-                "Text10": {
-                  "ja": "現在のTXNをハイライト表示",
-                  "en": "Highlight the CurrentTXN"
-                },
-                "Text11": {
-                  "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
-                  "en": "Select the encoded CurrentTXN Hash from the transaction details"
-                },
-                "Text12": {
-                  "ja": "MainTXNCurrentTXNHashをハイライト表示",
-                  "en": "Highlight the MainTXNCurrentTXNHash"
-                },
-                "Text13": {
-                  "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
-                  "en": "Select the encoded CurrentTXN Hash from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 2,
-              "StepNo": numPobl + 4,
-              "Languages": {
-                "Text14": {
-                  "ja": "Base64エンコードされたCurrentTXNを保存",
-                  "en": "Save Base64Encoded CurrentTXN"
-                },
-                "Text15": {
-                  "ja": "Base64でエンコードされたCurrentTXNハッシュ値を将来の使用のために保存",
-                  "en": "Save the base64 encoded CurrentTXN Hash value for future usage."
-                },
-                "Text211": {
-                  "ja": "TXN2 CurrentTXN (base64)",
-                  "en": "TXN2 CurrentTXN (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 2,
-              "StepNo": numPobl + 5,
-              "Languages": {
-                "Text16": {
-                  "ja": "ステップ２－現在のTXNをデコードする",
-                  "en": "Step 2 - Decode CurrentTXN"
-                },
-                "Text17": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text18": {
-                  "ja": "Base64でエンコードされたCurrentTXNハッシュをデコード",
-                  "en": "Decode the base64 encoded CurrentTXN Hash"
-                },
-                "Text19": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text20": {
-                  "ja": "Base64でエンコードされたCurrentTXNハッシュの入力",
-                  "en": "Input the base64 encoded CurrentTXN Hash"
-                },
-                "Text21": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text22": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text23": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text24": {
-                  "ja": "デコードされたCurrentTXNハッシュの出力を得る",
-                  "en": "Get the output of the decoded CurrentTXN Hash"
-                },
-                "Text25": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text26": {
-                  "ja": "将来の使用のためにデコードされたCurrentTXNハッシュを保存",
-                  "en": "Save the decoded CurrentTXN Hash for future usage"
-                },
-                "Text27": {
-                  "ja": "デコードされたCurrentTXNハッシュ",
-                  "en": "Decoded CurrentTXN Hash"
-                },
-                "Text226": {
-                  "ja": "TXN2 CurrentTXN",
-                  "en": "TXN2 CurrentTXN"
-                },
-                "Text237": {
-                  "ja": "CurrentTXN Hash",
-                  "en": "CurrentTXN Hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 3,
-              "StepNo": numPobl + 6,
-              "Languages": {
-                "Text28": {
-                  "ja": "ステップ３－現在のトランザクションの取得",
-                  "en": "Step 3 - Retrieve Current Transaction"
-                },
-                "Text29": {
-                  "ja": "ステラホライズンAPIのリクエスト",
-                  "en": "Request Stellar HorizonAPI"
-                },
-                "Text30": {
-                  "ja": "ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
-                  "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
-                },
-                "Text31": {
-                  "ja": "APIレスポンス保存",
-                  "en": "Save API Response"
-                },
-                "Text32": {
-                  "ja": "トランザクションのレスポンスデータの保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text33": {
-                  "ja": "応答形式（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text34": {
-                  "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 7,
-              "Languages": {
-                "Text35": {
-                  "ja": "Base64EncodedのIDを選択",
-                  "en": "Select Base64Encoded Identifier"
-                },
-                "Text36": {
-                  "ja": "トランザクションの詳細から、エンコードされたIDを選択",
-                  "en": "Select the encoded Identifier from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 8,
-              "Languages": {
-                "Text37": {
-                  "ja": "IDをハイライト表示",
-                  "en": "Highlight the identifier"
-                },
-                "Text38": {
-                  "ja": "トランザクションの詳細からエンコードされたIDを選択",
-                  "en": "Select the encoded identifier from the transaction details"
-                },
-                "Text39": {
-                  "ja": "MainTXNCurrentTXNDataIdentifierをハイライト表示",
-                  "en": "Highlight the MainTXNCurrentTXNDataIdentifier"
-                },
-                "Text40": {
-                  "ja": "トランザクションの詳細から、エンコードされたIDの値を選択",
-                  "en": "Select the encoded Identifier value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 9,
-              "Languages": {
-                "Text41": {
-                  "ja": "Base64EncodeされたIDの保存",
-                  "en": "Save Base64Encoded Identifier"
-                },
-                "Text42": {
-                  "ja": "将来の使用のために、base64 エンコードされた ID 値を保存",
-                  "en": "Save the base64 encoded Identifier value for future usage."
-                },
-                "Text212": {
-                  "ja": "ID(base64)",
-                  "en": "Identifier (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 10,
-              "Languages": {
-                "Text43": {
-                  "ja": "ステップ４－MainTXN IDのデコード",
-                  "en": "Step 4 - Decode MainTXN Identifier"
-                },
-                "Text44": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text45": {
-                  "ja": "base64 でエンコードされた MainTXN IDをデコード",
-                  "en": "Decode the base64 encoded MainTXN Identifier"
-                },
-                "Text46": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text47": {
-                  "ja": "MainTXN IDを base64 でエンコードしたものを入力",
-                  "en": "Input the base64 encoded MainTXN Identifier"
-                },
-                "Text48": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text49": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text50": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text51": {
-                  "ja": "デコードされたMainTXNIDの出力を得る",
-                  "en": "Get the output of the decoded MainTXN Identifier"
-                },
-                "Text52": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text53": {
-                  "ja": "将来の使用のためにデコードされたMainTXNIDを保存",
-                  "en": "Save the decoded MainTXN Identifier for future usage"
-                },
-                "Text54": {
-                  "ja": "デコードされたMainTXN　ID",
-                  "en": "Decoded MainTXN Identifier"
-                },
-                "Text227": {
-                  "ja": "ID",
-                  "en": "Identifier"
-                },
-                "Text238": {
-                  "ja": "MainTXN Identifier",
-                  "en": "MainTXN Identifier"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 11,
-              "Languages": {
-                "Text55": {
-                  "ja": "Base64EncodedのProductIDを選択",
-                  "en": "Select Base64Encoded ProductID"
-                },
-                "Text56": {
-                  "ja": "トランザクションの詳細から、エンコードされたプロダクトIDを選択",
-                  "en": "Select the encoded Product ID from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 12,
-              "Languages": {
-                "Text57": {
-                  "ja": "productIdをハイライト表示",
-                  "en": "Highlight the productId"
-                },
-                "Text58": {
-                  "ja": "トランザクションの詳細から、エンコードされたProductIDを選択",
-                  "en": "Select the encoded ProductID from the transaction details"
-                },
-                "Text59": {
-                  "ja": "MainTXNCurentTXNDataProductIdをハイライト表示",
-                  "en": "Highlight the MainTXNCurentTXNDataProductId"
-                },
-                "Text40": {
-                  "ja": "トランザクションの詳細から、エンコードされたProductIDの値を選択",
-                  "en": "Select the encoded ProductID value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 13,
-              "Languages": {
-                "Text60": {
-                  "ja": "「Base64EncodedのProductIDを保存",
-                  "en": "Save Base64Encoded ProductID"
-                },
-                "Text61": {
-                  "ja": "将来の使用のために、Base64 エンコードされた ProductID 値を保存",
-                  "en": "Save the base64 encoded ProductID value for future usage."
-                },
-                "Text213": {
-                  "ja": "プロダクトID (base64)",
-                  "en": "Product ID (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 14,
-              "Languages": {
-                "Text62": {
-                  "ja": "ステップー５ーMainTXN ProductIDのデコード",
-                  "en": "Step 5 - Decode MainTXN ProductID"
-                },
-                "Text63": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text64": {
-                  "ja": "MainTXN ProductIDをbase64エンコードしたものをデコード",
-                  "en": "Decode the base64 encoded MainTXN ProductID"
-                },
-                "Text65": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text66": {
-                  "ja": "Base64 でエンコードされた MainTXN ProductID を入力",
-                  "en": "Input the base64 encoded MainTXN ProductID"
-                },
-                "Text67": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text68": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text69": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text70": {
-                  "ja": "デコードされたMainTXNの出力を取得する ProductID",
-                  "en": "Get the output of the decoded MainTXN ProductID"
-                },
-                "Text71": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text72": {
-                  "ja": "デコードされたMainTXN ProductIDを将来の使用のために保存",
-                  "en": "Save the decoded MainTXN ProductID for future usage"
-                },
-                "Text73": {
-                  "ja": "デコードされたMainTXN ProductID",
-                  "en": "Decoded MainTXN ProductID"
-                },
-                "Text228": {
-                  "ja": "プロダクトID",
-                  "en": "ProductID"
-                },
-                "Text239": {
-                  "ja": "Main TXN Product ID",
-                  "en": "Main TXN Product ID"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 15,
-              "Languages": {
-                "Text74": {
-                  "ja": "Base64EncodedのPreviousTXNを選択",
-                  "en": "Select Base64Encoded PreviousTXN"
-                },
-                "Text75": {
-                  "ja": "トランザクションの詳細から、エンコードされたPreviousTXN Hash値を選択",
-                  "en": "Select the encoded PreviousTXN Hash value from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 16,
-              "Languages": {
-                "Text76": {
-                  "ja": "前のTXNをハイライト表示",
-                  "en": "Highlight the PreviousTXN"
-                },
-                "Text77": {
-                  "ja": "トランザクションの詳細から、エンコードされたPreviousTXNハッシュを選択",
-                  "en": "Select the encoded PreviousTXN Hash from the transaction details."
-                },
-                "Text78": {
-                  "ja": "MainTXNPreviousTXNをハイライト表示",
-                  "en": "Highlight the MainTXNPreviousTXN"
-                },
-                "Text79": {
-                  "ja": "トランザクションの詳細から、エンコードされたPreviousTXN Hash値を選択",
-                  "en": "Select the encoded PreviousTXN Hash value from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 17,
-              "Languages": {
-                "Text80": {
-                  "ja": "Base64Encoded で保存 PreviousTXN",
-                  "en": "Save Base64Encoded PreviousTXN"
-                },
-                "Text81": {
-                  "ja": "将来の使用のためにBase64エンコードされたPrevious TXNハッシュ値を保存",
-                  "en": "Save the base64 encoded Previous TXN Hash value for future usage."
-                },
-                "Text214": {
-                  "ja": "PreviousTXNハッシュ（base64）",
-                  "en": "PreviousTXN Hash (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 18,
-              "Languages": {
-                "Text82": {
-                  "ja": "ステップ５ーMainTXN のデコード 前のハッシュ",
-                  "en": "Step 5 - Decode MainTXN Previous hash"
-                },
-                "Text83": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text84": {
-                  "ja": "base64 でエンコードされた MainTXN の前ハッシュをデコード",
-                  "en": "Decode the base64 encoded MainTXN Previous hash"
-                },
-                "Text85": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text86": {
-                  "ja": "MainTXN の前ハッシュを base64 でエンコードしたものを入力",
-                  "en": "Input the base64 encoded MainTXN Previous hash"
-                },
-                "Text87": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text88": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text89": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text90": {
-                  "ja": "デコードされたMainTXNの出力を取得する 前のハッシュ",
-                  "en": "Get the output of the decoded MainTXN Previous hash"
-                },
-                "Text91": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text92": {
-                  "ja": "将来の使用のためにデコードされたMainTXN前のハッシュを保存",
-                  "en": "Save the decoded MainTXN Previous hash for future usage"
-                },
-                "Text93": {
-                  "ja": "デコードされたMainTXN 前のハッシュ",
-                  "en": "Decoded MainTXN Previous hash"
-                },
-                "Text229": {
-                  "ja": "前のTXNハッシュ",
-                  "en": "PreviousTXN Hash"
-                },
-                "Text240": {
-                  "ja": "Main TXN Previous hash",
-                  "en": "Main TXN Previous hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 7,
-              "StepNo": numPobl + 19,
-              "Languages": {
-                "Text94": {
-                  "ja": "ステップ７－バックリンクのトランザクションを取得",
-                  "en": "Step 7 - Retrieve Backlink Transaction"
-                },
-                "Text95": {
-                  "ja": "ステラホライズンAPIのリクエスト",
-                  "en": "Request Stellar HorizonAPI"
-                },
-                "Text96": {
-                  "ja": "ステラブロックチェーンからBackLinkトランザクションを取得",
-                  "en": "Retrieve the BackLink transaction from Stellar Blockchain."
-                },
-                "Text97": {
-                  "ja": "APIレスポンス保存",
-                  "en": "Save API Response"
-                },
-                "Text98": {
-                  "ja": "トランザクションのレスポンスデータの保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text99": {
-                  "ja": "応答形式（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text100": {
-                  "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 20,
-              "Languages": {
-                "Text101": {
-                  "ja": "Base64EncodedのCurrentTXNを選択",
-                  "en": "Select Base64Encoded CurrentTXN"
-                },
-                "Text102": {
-                  "ja": "トランザクションの詳細から、BacklinkトランザクションのエンコードされたCurrentTXNハッシュを選択",
-                  "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 21,
-              "Languages": {
-                "Text103": {
-                  "ja": "現在のTXNをハイライト表示",
-                  "en": "Highlight the CurrentTXN"
-                },
-                "Text104": {
-                  "ja": "トランザクションの詳細から、BacklinkトランザクションのエンコードされたCurrentTXNハッシュを選択",
-                  "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
-                },
-                "Text105": {
-                  "ja": "MainTXNPreviousTXNCurrentTXNHashをハイライト表示",
-                  "en": "Highlight the MainTXNPreviousTXNCurrentTXNHash"
-                },
-                "Text106": {
-                  "ja": "トランザクションの詳細から、BacklinkトランザクションのエンコードされたCurrentTXNハッシュを選択",
-                  "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 22,
-              "Languages": {
-                "Text107": {
-                  "ja": "Base64エンコードされたCurrentTXNを保存",
-                  "en": "Save Base64Encoded CurrentTXN"
-                },
-                "Text108": {
-                  "ja": "将来使用のためにPreviuos TXN を base64 でエンコードした CurrentTXN Hash 値を保存",
-                  "en": "Save the base64 encoded CurrentTXN Hash value of the Previuos TXN for future usage."
-                },
-                "Text216": {
-                  "ja": "CurentTXNHash (base64)",
-                  "en": "CurentTXNHash (base64)"
-                },
-                "Text215": {
-                  "ja": "Expected Backlink Hash",
-                  "en": "Expected Backlink Hash"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 23,
-              "Languages": {
-                "Text109": {
-                  "ja": "ステップ９ーデコード PreviousTXN CurentTXN ハッシュ",
-                  "en": "Step 9 - Decode PreviousTXN CurentTXN Hash"
-                },
-                "Text110": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text111": {
-                  "ja": "base64 でエンコードされた MainTXN IDをデコード",
-                  "en": "Decode the base64 encoded MainTXN Identifier"
-                },
-                "Text112": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text113": {
-                  "ja": "MainTXN IDを base64 でエンコードしたものを入力",
-                  "en": "Input the base64 encoded MainTXN Identifier"
-                },
-                "Text114": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text115": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text116": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text117": {
-                  "ja": "デコードされたMainTXNIDの出力を得る",
-                  "en": "Get the output of the decoded MainTXN Identifier"
-                },
-                "Text118": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text119": {
-                  "ja": "将来の使用のためにデコードされたMainTXNIDを保存",
-                  "en": "Save the decoded MainTXN Identifier for future usage"
-                },
-                "Text120": {
-                  "ja": "デコードされたMainTXN　ID",
-                  "en": "Decoded MainTXN Identifier"
-                },
-                "Text230": {
-                  "ja": "現在のTXNHash",
-                  "en": "CurrentTXNHash"
-                },
-                "Text241": {
-                  "ja": "Main TXN Identifier",
-                  "en": "Main TXN Identifier"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 9,
-              "StepNo": numPobl + 24,
-              "Languages": {
-                "Text121": {
-                  "ja": "ステップ１０－バックリンクの現在のトランザクションを取得",
-                  "en": "Step 10 - Retrieve Backlink Current Transaction"
-                },
-                "Text122": {
-                  "ja": "ステラホライズンAPIのリクエスト",
-                  "en": "Request Stellar HorizonAPI"
-                },
-                "Text123": {
-                  "ja": "バックリンクトランザクションの現在のトランザクシ内容をStellar Blockchainから取得",
-                  "en": "Retrieve the current transaction of the backlink transaction from Stellar Blockchain"
-                },
-                "Text124": {
-                  "ja": "APIレスポンス保存",
-                  "en": "Save API Response"
-                },
-                "Text125": {
-                  "ja": "トランザクションのレスポンスデータの保存",
-                  "en": "Save the response data of the transaction"
-                },
-                "Text126": {
-                  "ja": "応答形式（JSON）",
-                  "en": "Format Response (JSON)"
-                },
-                "Text127": {
-                  "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
-                  "en": "Format transaction data to JSON (Javascript Object Notation)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 25,
-              "Languages": {
-                "Text128": {
-                  "ja": "Base64EncodedのIDを選択",
-                  "en": "Select Base64Encoded Identifier"
-                },
-                "Text129": {
-                  "ja": "トランザクションの詳細から、エンコードされたIDを選択",
-                  "en": "Select the encoded Identifier from the transaction details."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 26,
-              "Languages": {
-                "Text130": {
-                  "ja": "IDをハイライト表示",
-                  "en": "Highlight the identifier"
-                },
-                "Text131": {
-                  "ja": "トランザクションの詳細からエンコードされた識別子を選択",
-                  "en": "Select the encoded Identifier from the transaction details"
-                },
-                "Text132": {
-                  "ja": "MainTXNPreviousTXNCurrentTXNDataIdentifier をハイライト表示",
-                  "en": "Highlight the MainTXNPreviousTXNCurrentTXNDataIdentifier"
-                },
-                "Text133": {
-                  "ja": "トランザクションの詳細から、エンコードされたIDの値を選択",
-                  "en": "Select the encoded Identifier value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 27,
-              "Languages": {
-                "Text134": {
-                  "ja": "Base64EncodeされたIDの保存",
-                  "en": "Save Base64Encoded Identifier"
-                },
-                "Text135": {
-                  "ja": "将来の使用のために、Base64 でエンコードされた PreviousTX の Identifier 値を保存",
-                  "en": "Save the base64 encoded Identifier value of the PreviousTX for future usage."
-                },
-                "Text217": {
-                  "ja": "ID(base64)",
-                  "en": "Identifier (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 28,
-              "Languages": {
-                "Text136": {
-                  "ja": "ステップ１１－PreviousTXN の CurrentTXN のIDをデコード",
-                  "en": "Step 11 - Decode PreviousTXN's CurrentTXN's Identifier"
-                },
-                "Text137": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text138": {
-                  "ja": "Base64 でエンコードされた PreviousTXN と CurrentTXNの ID をデコード",
-                  "en": "Decode the base64 encoded PreviousTXN's CurrentTXN' Identifier"
-                },
-                "Text139": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text140": {
-                  "ja": "PreviousTXNとCurrentTXNのID を base64 でエンコードしたものを入力",
-                  "en": "Input the base64 encoded PreviousTXN's CurrentTXN' Identifier"
-                },
-                "Text141": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text142": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text143": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text144": {
-                  "ja": "PreviousTXNとCurrentTXNのIDをエンコードした出力を取得",
-                  "en": "Get the output of the decoded PreviousTXN's CurrentTXN' Identifier"
-                },
-                "Text145": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text146": {
-                  "ja": "将来使用のデコードされたPreviousTXNとCurrentTXNのID保存する",
-                  "en": "Save the decoded PreviousTXN's CurrentTXN' Identifier for future usage"
-                },
-                "Text147": {
-                  "ja": "デコードされたPreTXNとCurrentTXNのID",
-                  "en": "Decoded PreviousTXN's CurrentTXN' Identifier"
-                },
-                "Text231": {
-                  "ja": "デコードされたPreviousTXNとCurrentTXNのID",
-                  "en": "Decoded PreviousTXN's CurrentTXN' Identifier"
-                },
-                "Text242": {
-                  "ja": "PreviousTXN の CurrentTXN' 識別子",
-                  "en": "Previous TXN's CurrentTXN' Identifier"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 29,
-              "Languages": {
-                "Text148": {
-                  "ja": "Base64EncodedのProductIDを選択",
-                  "en": "Select Base64Encoded ProductID"
-                },
-                "Text149": {
-                  "ja": "トランザクションの詳細から、エンコードされたプロダクトIDを選択",
-                  "en": "Select the encoded Product ID from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 30,
-              "Languages": {
-                "Text150": {
-                  "ja": "productIdをハイライト表示",
-                  "en": "Highlight the productId"
-                },
-                "Text151": {
-                  "ja": "トランザクションの詳細から、エンコードされたProductIDを選択",
-                  "en": "Select the encoded ProductID from the transaction details"
-                },
-                "Text152": {
-                  "ja": "MainTXNPreviousTXNCurrentTXNDataProductIDをハイライト表示",
-                  "en": "Highlight the MainTXNPreviousTXNCurrentTXNDataProductID"
-                },
-                "Text153": {
-                  "ja": "トランザクションの詳細から、エンコードされたProductIDの値を選択",
-                  "en": "Select the encoded ProductID value from the transaction details"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 31,
-              "Languages": {
-                "Text154": {
-                  "ja": "「Base64EncodedのProductIDを保存",
-                  "en": "Save Base64Encoded ProductID"
-                },
-                "Text155": {
-                  "ja": "将来の使用のために、Base64 エンコードされた ProductID 値を保存",
-                  "en": "Save the base64 encoded ProductID value for future usage."
-                },
-                "Text218": {
-                  "ja": "プロダクトID (base64)",
-                  "en": "Product ID (base64)"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 32,
-              "Languages": {
-                "Text156": {
-                  "ja": "ステップ１２－PreviousTXNとCurrentTXN の ProductID をデコード",
-                  "en": "Step 12 - Decode PreviousTXN's CurrentTXN's ProductID"
-                },
-                "Text157": {
-                  "ja": "Base64DecoderのWebページを読み込む",
-                  "en": "Load Base64Decoder Webpage"
-                },
-                "Text158": {
-                  "ja": "Base64 でエンコードされた PreviousTXNとCurrentTXN の ProductID をデコード",
-                  "en": "Decode the base64 encoded PreviousTXN's CurrentTXN's ProductID"
-                },
-                "Text159": {
-                  "ja": "Base64エンコードされたデータの入力",
-                  "en": "Input Base64Encoded Data"
-                },
-                "Text160": {
-                  "ja": "PreviousTXNとCurrentTXNのProductID を base64 でエンコードしたものを入力",
-                  "en": "Input the base64 encoded PreviousTXN's CurrentTXN's ProductID"
-                },
-                "Text161": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click Decode Button"
-                },
-                "Text162": {
-                  "ja": "デコードボタンをクリック",
-                  "en": "Click the decode button"
-                },
-                "Text163": {
-                  "ja": "Base64デコードデータの表示",
-                  "en": "View Base64Decoded Data"
-                },
-                "Text164": {
-                  "ja": "PreviousTXNとCurrentTXNのProductID をデコードした出力を取得",
-                  "en": "Get the output of the decoded PreviousTXN's CurrentTXN's ProductID"
-                },
-                "Text165": {
-                  "ja": "Base64デコードデータの保存",
-                  "en": "Save Base64Decoded Data"
-                },
-                "Text166": {
-                  "ja": "将来使用のためにデコードされたPreviousTXNとCurrentTXNのProductIDを保存",
-                  "en": "Save the decoded PreviousTXN's CurrentTXN's ProductID for future usage"
-                },
-                "Text167": {
-                  "ja": "デコードされたPreviousTXNのCurrentTXNのProductID",
-                  "en": "Decoded PreviousTXN's CurrentTXN's ProductID"
-                },
-                "Text232": {
-                  "ja": "プロダクトID",
-                  "en": "ProductID"
-                },
-                "Text245": {
-                  "ja": "PreviousTXN の CurrentTXN の ProductID",
-                  "en": "Previous TXN's CurrentTXN's ProductID"
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 12,
-              "StepNo": numPobl + 33,
-              "Languages": {
-                "Text168": {
-                  "ja": "ステップ１３－",
-                  "en": "Step 13 - base64でエンコードしたIDを比較"
-                },
-                "Text169": {
-                  "ja": "オンラインテキスト比較Webページ",
-                  "en": "Online TextComparison Webpage"
-                },
-                "Text170": {
-                  "ja": "オンラインテキスト比較のウェブページを読み込む",
-                  "en": "Load the online text comparison webpage"
-                },
-                "Text171": {
-                  "ja": "入力の比較値",
-                  "en": "Input comparison values"
-                },
-                "Text172": {
-                  "ja": "トランザクションからBase64デコードされたIDの値を入力",
-                  "en": "Input the base64 decoded Identifier values from the transactions."
-                },
-                "Text173": {
-                  "ja": "比較ボタンをクリック",
-                  "en": "Click compare button"
-                },
-                "Text174": {
-                  "ja": "比較ボタンをクリック",
-                  "en": "Click the compare button"
-                },
-                "Text175": {
-                  "ja": "結果をスクロールする",
-                  "en": "Scroll to result"
-                },
-                "Text176": {
-                  "ja": "結果をスクロールする",
-                  "en": "Scroll to the result"
-                },
-                "Text177": {
-                  "ja": "比較結果",
-                  "en": "Comparison result."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 13,
-              "StepNo": numPobl + 34,
-              "Languages": {
-                "Text168": {
-                  "ja": "ステップ１３－",
-                  "en": "Step 13 - base64でエンコードしたIDを比較"
-                },
-                "Text169": {
-                  "ja": "オンラインテキスト比較Webページ",
-                  "en": "Online TextComparison Webpage"
-                },
-                "Text170": {
-                  "ja": "オンラインテキスト比較のウェブページを読み込む",
-                  "en": "Load the online text comparison webpage"
-                },
-                "Text171": {
-                  "ja": "入力の比較値",
-                  "en": "Input comparison values"
-                },
-                "Text172": {
-                  "ja": "トランザクションからBase64デコードされたIDの値を入力",
-                  "en": "Input the base64 decoded Identifier values from the transactions."
-                },
-                "Text173": {
-                  "ja": "比較ボタンをクリック",
-                  "en": "Click compare button"
-                },
-                "Text174": {
-                  "ja": "比較ボタンをクリック",
-                  "en": "Click the compare button"
-                },
-                "Text175": {
-                  "ja": "結果をスクロールする",
-                  "en": "Scroll to result"
-                },
-                "Text176": {
-                  "ja": "結果をスクロールする",
-                  "en": "Scroll to the result"
-                },
-                "Text177": {
-                  "ja": "比較結果",
-                  "en": "Comparison result."
-                }
-              }
-            },
-            {
-              "SegmentNo": segPobl + 14,
-              "StepNo": numPobl + 35,
-              "Languages": {
-                "Text178": {
-                  "ja": "ステップ１４－検証概要",
-                  "en": "Step 14 - Verification Summary"
-                },
-                "Text179": {
-                  "ja": "検証概要",
-                  "en": "Verification Summary"
-                },
-                "Text235": {
-                  "ja": "検証は正常に終了",
-                  "en": "Verification Completed Successfully"
-                },
-                "Text181": {
-                  "ja": "検証の概要 - PROOF OF THE BACKLINK",
-                  "en": "about: Verification Summary - PROOF OF THE BACKLINK"
-                }
-              }
-            }
-          ]
+    {
+      "SegmentNo": segPobl + 1,
+      "StepNo": numPobl + 1,
+      "Languages": {
+        "TextPobl0": {
+          "ja": "現在のトランザクションの取得",
+          "en": "Retrieve Current Transaction"
+        },
+        "TextPobl1": {
+          "ja": "ステップ１ー現在のトランザクションの取得",
+          "en": "Step 1 - Retrieve Current Transaction"
+        },
+        "TextPobl2": {
+          "ja": "ステラホライズンAPIのリクエスト",
+          "en": "Request Stellar HorizonAPI"
+        },
+        "TextPobl3": {
+          "ja": "ステラブロックチェーンから現在のトランザクションを取得",
+          "en": "Retrieve the current transaction from Stellar Blockchain."
+        },
+        "TextPobl4": {
+          "ja": "APIレスポンスの保存",
+          "en": "Save API Response"
+        },
+        "TextPobl5": {
+          "ja": "トランザクションのレスポンスデータの保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPobl6": {
+          "ja": "応答形式（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPobl7": {
+          "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 2,
+      "StepNo": numPobl + 2,
+      "Languages": {
+        "TextPobl8": {
+          "ja": "CurrentTXNハッシュの抽出",
+          "en": "Extract CurrentTXN Hash"
+        },
+        "TextPobl9": {
+          "ja": "トランザクションの詳細から、CurrentTXN Hash (base64 encoded)を選択",
+          "en": "Select the CurrentTXN Hash (base64 encoded) from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 2,
+      "StepNo": numPobl + 3,
+      "Languages": {
+        "TextPobl10": {
+          "ja": "現在のTXNをハイライト表示",
+          "en": "Highlight the CurrentTXN"
+        },
+        "TextPobl11": {
+          "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+          "en": "Select the encoded CurrentTXN Hash from the transaction details"
+        },
+        "TextPobl12": {
+          "ja": "MainTXNCurrentTXNHashをハイライト表示",
+          "en": "Highlight the MainTXNCurrentTXNHash"
+        },
+        "TextPobl13": {
+          "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+          "en": "Select the encoded CurrentTXN Hash from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 2,
+      "StepNo": numPobl + 4,
+      "Languages": {
+        "TextPobl14": {
+          "ja": "Base64エンコードされたCurrentTXNを保存",
+          "en": "Save Base64Encoded CurrentTXN"
+        },
+        "TextPobl15": {
+          "ja": "Base64でエンコードされたCurrentTXNハッシュ値を将来の使用のために保存",
+          "en": "Save the base64 encoded CurrentTXN Hash value for future usage."
+        },
+        "TextPobl211": {
+          "ja": "TXN2 CurrentTXN (base64)",
+          "en": "TXN2 CurrentTXN (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 2,
+      "StepNo": numPobl + 5,
+      "Languages": {
+        "TextPobl16": {
+          "ja": "ステップ２－現在のTXNをデコードする",
+          "en": "Step 2 - Decode CurrentTXN"
+        },
+        "TextPobl17": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl18": {
+          "ja": "Base64でエンコードされたCurrentTXNハッシュをデコード",
+          "en": "Decode the base64 encoded CurrentTXN Hash"
+        },
+        "TextPobl19": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl20": {
+          "ja": "Base64でエンコードされたCurrentTXNハッシュの入力",
+          "en": "Input the base64 encoded CurrentTXN Hash"
+        },
+        "TextPobl21": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl22": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl23": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl24": {
+          "ja": "デコードされたCurrentTXNハッシュの出力を得る",
+          "en": "Get the output of the decoded CurrentTXN Hash"
+        },
+        "TextPobl25": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl26": {
+          "ja": "将来の使用のためにデコードされたCurrentTXNハッシュを保存",
+          "en": "Save the decoded CurrentTXN Hash for future usage"
+        },
+        "TextPobl27": {
+          "ja": "デコードされたCurrentTXNハッシュ",
+          "en": "Decoded CurrentTXN Hash"
+        },
+        "TextPobl226": {
+          "ja": "TXN2 CurrentTXN",
+          "en": "TXN2 CurrentTXN"
+        },
+        "TextPobl237": {
+          "ja": "CurrentTXN Hash",
+          "en": "CurrentTXN Hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 3,
+      "StepNo": numPobl + 6,
+      "Languages": {
+        "TextPobl28": {
+          "ja": "ステップ３－現在のトランザクションの取得",
+          "en": "Step 3 - Retrieve Current Transaction"
+        },
+        "TextPobl29": {
+          "ja": "ステラホライズンAPIのリクエスト",
+          "en": "Request Stellar HorizonAPI"
+        },
+        "TextPobl30": {
+          "ja": "ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
+          "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
+        },
+        "TextPobl31": {
+          "ja": "APIレスポンス保存",
+          "en": "Save API Response"
+        },
+        "TextPobl32": {
+          "ja": "トランザクションのレスポンスデータの保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPobl33": {
+          "ja": "応答形式（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPobl34": {
+          "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 4,
+      "StepNo": numPobl + 7,
+      "Languages": {
+        "TextPobl35": {
+          "ja": "Base64EncodedのIDを選択",
+          "en": "Select Base64Encoded Identifier"
+        },
+        "TextPobl36": {
+          "ja": "トランザクションの詳細から、エンコードされたIDを選択",
+          "en": "Select the encoded Identifier from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 4,
+      "StepNo": numPobl + 8,
+      "Languages": {
+        "TextPobl37": {
+          "ja": "IDをハイライト表示",
+          "en": "Highlight the identifier"
+        },
+        "TextPobl38": {
+          "ja": "トランザクションの詳細からエンコードされたIDを選択",
+          "en": "Select the encoded identifier from the transaction details"
+        },
+        "TextPobl39": {
+          "ja": "MainTXNCurrentTXNDataIdentifierをハイライト表示",
+          "en": "Highlight the MainTXNCurrentTXNDataIdentifier"
+        },
+        "TextPobl40": {
+          "ja": "トランザクションの詳細から、エンコードされたIDの値を選択",
+          "en": "Select the encoded Identifier value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 4,
+      "StepNo": numPobl + 9,
+      "Languages": {
+        "TextPobl41": {
+          "ja": "Base64EncodeされたIDの保存",
+          "en": "Save Base64Encoded Identifier"
+        },
+        "TextPobl42": {
+          "ja": "将来の使用のために、base64 エンコードされた ID 値を保存",
+          "en": "Save the base64 encoded Identifier value for future usage."
+        },
+        "TextPobl212": {
+          "ja": "ID(base64)",
+          "en": "Identifier (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 4,
+      "StepNo": numPobl + 10,
+      "Languages": {
+        "TextPobl43": {
+          "ja": "ステップ４－MainTXN IDのデコード",
+          "en": "Step 4 - Decode MainTXN Identifier"
+        },
+        "TextPobl44": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl45": {
+          "ja": "base64 でエンコードされた MainTXN IDをデコード",
+          "en": "Decode the base64 encoded MainTXN Identifier"
+        },
+        "TextPobl46": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl47": {
+          "ja": "MainTXN IDを base64 でエンコードしたものを入力",
+          "en": "Input the base64 encoded MainTXN Identifier"
+        },
+        "TextPobl48": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl49": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl50": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl51": {
+          "ja": "デコードされたMainTXNIDの出力を得る",
+          "en": "Get the output of the decoded MainTXN Identifier"
+        },
+        "TextPobl52": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl53": {
+          "ja": "将来の使用のためにデコードされたMainTXNIDを保存",
+          "en": "Save the decoded MainTXN Identifier for future usage"
+        },
+        "TextPobl54": {
+          "ja": "デコードされたMainTXN　ID",
+          "en": "Decoded MainTXN Identifier"
+        },
+        "TextPobl227": {
+          "ja": "ID",
+          "en": "Identifier"
+        },
+        "TextPobl238": {
+          "ja": "MainTXN Identifier",
+          "en": "MainTXN Identifier"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 5,
+      "StepNo": numPobl + 11,
+      "Languages": {
+        "TextPobl55": {
+          "ja": "Base64EncodedのProductIDを選択",
+          "en": "Select Base64Encoded ProductID"
+        },
+        "TextPobl56": {
+          "ja": "トランザクションの詳細から、エンコードされたプロダクトIDを選択",
+          "en": "Select the encoded Product ID from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 5,
+      "StepNo": numPobl + 12,
+      "Languages": {
+        "TextPobl57": {
+          "ja": "productIdをハイライト表示",
+          "en": "Highlight the productId"
+        },
+        "TextPobl58": {
+          "ja": "トランザクションの詳細から、エンコードされたProductIDを選択",
+          "en": "Select the encoded ProductID from the transaction details"
+        },
+        "TextPobl59": {
+          "ja": "MainTXNCurentTXNDataProductIdをハイライト表示",
+          "en": "Highlight the MainTXNCurentTXNDataProductId"
+        },
+        "TextPobl40": {
+          "ja": "トランザクションの詳細から、エンコードされたProductIDの値を選択",
+          "en": "Select the encoded ProductID value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 5,
+      "StepNo": numPobl + 13,
+      "Languages": {
+        "TextPobl60": {
+          "ja": "「Base64EncodedのProductIDを保存",
+          "en": "Save Base64Encoded ProductID"
+        },
+        "TextPobl61": {
+          "ja": "将来の使用のために、Base64 エンコードされた ProductID 値を保存",
+          "en": "Save the base64 encoded ProductID value for future usage."
+        },
+        "TextPobl213": {
+          "ja": "プロダクトID (base64)",
+          "en": "Product ID (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 5,
+      "StepNo": numPobl + 14,
+      "Languages": {
+        "TextPobl62": {
+          "ja": "ステップー５ーMainTXN ProductIDのデコード",
+          "en": "Step 5 - Decode MainTXN ProductID"
+        },
+        "TextPobl63": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl64": {
+          "ja": "MainTXN ProductIDをbase64エンコードしたものをデコード",
+          "en": "Decode the base64 encoded MainTXN ProductID"
+        },
+        "TextPobl65": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl66": {
+          "ja": "Base64 でエンコードされた MainTXN ProductID を入力",
+          "en": "Input the base64 encoded MainTXN ProductID"
+        },
+        "TextPobl67": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl68": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl69": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl70": {
+          "ja": "デコードされたMainTXNの出力を取得する ProductID",
+          "en": "Get the output of the decoded MainTXN ProductID"
+        },
+        "TextPobl71": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl72": {
+          "ja": "デコードされたMainTXN ProductIDを将来の使用のために保存",
+          "en": "Save the decoded MainTXN ProductID for future usage"
+        },
+        "TextPobl73": {
+          "ja": "デコードされたMainTXN ProductID",
+          "en": "Decoded MainTXN ProductID"
+        },
+        "TextPobl228": {
+          "ja": "プロダクトID",
+          "en": "ProductID"
+        },
+        "TextPobl239": {
+          "ja": "Main TXN Product ID",
+          "en": "Main TXN Product ID"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 6,
+      "StepNo": numPobl + 15,
+      "Languages": {
+        "TextPobl74": {
+          "ja": "Base64EncodedのPreviousTXNを選択",
+          "en": "Select Base64Encoded PreviousTXN"
+        },
+        "TextPobl75": {
+          "ja": "トランザクションの詳細から、エンコードされたPreviousTXN Hash値を選択",
+          "en": "Select the encoded PreviousTXN Hash value from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 6,
+      "StepNo": numPobl + 16,
+      "Languages": {
+        "TextPobl76": {
+          "ja": "前のTXNをハイライト表示",
+          "en": "Highlight the PreviousTXN"
+        },
+        "TextPobl77": {
+          "ja": "トランザクションの詳細から、エンコードされたPreviousTXNハッシュを選択",
+          "en": "Select the encoded PreviousTXN Hash from the transaction details."
+        },
+        "TextPobl78": {
+          "ja": "MainTXNPreviousTXNをハイライト表示",
+          "en": "Highlight the MainTXNPreviousTXN"
+        },
+        "TextPobl79": {
+          "ja": "トランザクションの詳細から、エンコードされたPreviousTXN Hash値を選択",
+          "en": "Select the encoded PreviousTXN Hash value from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 6,
+      "StepNo": numPobl + 17,
+      "Languages": {
+        "TextPobl80": {
+          "ja": "Base64Encoded で保存 PreviousTXN",
+          "en": "Save Base64Encoded PreviousTXN"
+        },
+        "TextPobl81": {
+          "ja": "将来の使用のためにBase64エンコードされたPrevious TXNハッシュ値を保存",
+          "en": "Save the base64 encoded Previous TXN Hash value for future usage."
+        },
+        "TextPobl214": {
+          "ja": "PreviousTXNハッシュ（base64）",
+          "en": "PreviousTXN Hash (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 6,
+      "StepNo": numPobl + 18,
+      "Languages": {
+        "TextPobl82": {
+          "ja": "ステップ５ーMainTXN のデコード 前のハッシュ",
+          "en": "Step 5 - Decode MainTXN Previous hash"
+        },
+        "TextPobl83": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl84": {
+          "ja": "base64 でエンコードされた MainTXN の前ハッシュをデコード",
+          "en": "Decode the base64 encoded MainTXN Previous hash"
+        },
+        "TextPobl85": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl86": {
+          "ja": "MainTXN の前ハッシュを base64 でエンコードしたものを入力",
+          "en": "Input the base64 encoded MainTXN Previous hash"
+        },
+        "TextPobl87": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl88": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl89": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl90": {
+          "ja": "デコードされたMainTXNの出力を取得する 前のハッシュ",
+          "en": "Get the output of the decoded MainTXN Previous hash"
+        },
+        "TextPobl91": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl92": {
+          "ja": "将来の使用のためにデコードされたMainTXN前のハッシュを保存",
+          "en": "Save the decoded MainTXN Previous hash for future usage"
+        },
+        "TextPobl93": {
+          "ja": "デコードされたMainTXN 前のハッシュ",
+          "en": "Decoded MainTXN Previous hash"
+        },
+        "TextPobl229": {
+          "ja": "前のTXNハッシュ",
+          "en": "PreviousTXN Hash"
+        },
+        "TextPobl240": {
+          "ja": "Main TXN Previous hash",
+          "en": "Main TXN Previous hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 7,
+      "StepNo": numPobl + 19,
+      "Languages": {
+        "TextPobl94": {
+          "ja": "ステップ７－バックリンクのトランザクションを取得",
+          "en": "Step 7 - Retrieve Backlink Transaction"
+        },
+        "TextPobl95": {
+          "ja": "ステラホライズンAPIのリクエスト",
+          "en": "Request Stellar HorizonAPI"
+        },
+        "TextPobl96": {
+          "ja": "ステラブロックチェーンからBackLinkトランザクションを取得",
+          "en": "Retrieve the BackLink transaction from Stellar Blockchain."
+        },
+        "TextPobl97": {
+          "ja": "APIレスポンス保存",
+          "en": "Save API Response"
+        },
+        "TextPobl98": {
+          "ja": "トランザクションのレスポンスデータの保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPobl99": {
+          "ja": "応答形式（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPobl100": {
+          "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 8,
+      "StepNo": numPobl + 20,
+      "Languages": {
+        "TextPobl101": {
+          "ja": "Base64EncodedのCurrentTXNを選択",
+          "en": "Select Base64Encoded CurrentTXN"
+        },
+        "TextPobl102": {
+          "ja": "トランザクションの詳細から、BacklinkトランザクションのエンコードされたCurrentTXNハッシュを選択",
+          "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 8,
+      "StepNo": numPobl + 21,
+      "Languages": {
+        "TextPobl103": {
+          "ja": "現在のTXNをハイライト表示",
+          "en": "Highlight the CurrentTXN"
+        },
+        "TextPobl104": {
+          "ja": "トランザクションの詳細から、BacklinkトランザクションのエンコードされたCurrentTXNハッシュを選択",
+          "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
+        },
+        "TextPobl105": {
+          "ja": "MainTXNPreviousTXNCurrentTXNHashをハイライト表示",
+          "en": "Highlight the MainTXNPreviousTXNCurrentTXNHash"
+        },
+        "TextPobl106": {
+          "ja": "トランザクションの詳細から、BacklinkトランザクションのエンコードされたCurrentTXNハッシュを選択",
+          "en": "Select the encoded CurrentTXN Hash of the Backlink transaction from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 8,
+      "StepNo": numPobl + 22,
+      "Languages": {
+        "TextPobl107": {
+          "ja": "Base64エンコードされたCurrentTXNを保存",
+          "en": "Save Base64Encoded CurrentTXN"
+        },
+        "TextPobl108": {
+          "ja": "将来使用のためにPreviuos TXN を base64 でエンコードした CurrentTXN Hash 値を保存",
+          "en": "Save the base64 encoded CurrentTXN Hash value of the Previuos TXN for future usage."
+        },
+        "TextPobl216": {
+          "ja": "CurentTXNHash (base64)",
+          "en": "CurentTXNHash (base64)"
+        },
+        "TextPobl215": {
+          "ja": "Expected Backlink Hash",
+          "en": "Expected Backlink Hash"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 8,
+      "StepNo": numPobl + 23,
+      "Languages": {
+        "TextPobl109": {
+          "ja": "ステップ９ーデコード PreviousTXN CurentTXN ハッシュ",
+          "en": "Step 9 - Decode PreviousTXN CurentTXN Hash"
+        },
+        "TextPobl110": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl111": {
+          "ja": "base64 でエンコードされた MainTXN IDをデコード",
+          "en": "Decode the base64 encoded MainTXN Identifier"
+        },
+        "TextPobl112": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl113": {
+          "ja": "MainTXN IDを base64 でエンコードしたものを入力",
+          "en": "Input the base64 encoded MainTXN Identifier"
+        },
+        "TextPobl114": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl115": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl116": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl117": {
+          "ja": "デコードされたMainTXNIDの出力を得る",
+          "en": "Get the output of the decoded MainTXN Identifier"
+        },
+        "TextPobl118": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl119": {
+          "ja": "将来の使用のためにデコードされたMainTXNIDを保存",
+          "en": "Save the decoded MainTXN Identifier for future usage"
+        },
+        "TextPobl120": {
+          "ja": "デコードされたMainTXN　ID",
+          "en": "Decoded MainTXN Identifier"
+        },
+        "TextPobl230": {
+          "ja": "現在のTXNHash",
+          "en": "CurrentTXNHash"
+        },
+        "TextPobl241": {
+          "ja": "Main TXN Identifier",
+          "en": "Main TXN Identifier"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 9,
+      "StepNo": numPobl + 24,
+      "Languages": {
+        "TextPobl121": {
+          "ja": "ステップ１０－バックリンクの現在のトランザクションを取得",
+          "en": "Step 10 - Retrieve Backlink Current Transaction"
+        },
+        "TextPobl122": {
+          "ja": "ステラホライズンAPIのリクエスト",
+          "en": "Request Stellar HorizonAPI"
+        },
+        "TextPobl123": {
+          "ja": "バックリンクトランザクションの現在のトランザクシ内容をStellar Blockchainから取得",
+          "en": "Retrieve the current transaction of the backlink transaction from Stellar Blockchain"
+        },
+        "TextPobl124": {
+          "ja": "APIレスポンス保存",
+          "en": "Save API Response"
+        },
+        "TextPobl125": {
+          "ja": "トランザクションのレスポンスデータの保存",
+          "en": "Save the response data of the transaction"
+        },
+        "TextPobl126": {
+          "ja": "応答形式（JSON）",
+          "en": "Format Response (JSON)"
+        },
+        "TextPobl127": {
+          "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 10,
+      "StepNo": numPobl + 25,
+      "Languages": {
+        "TextPobl128": {
+          "ja": "Base64EncodedのIDを選択",
+          "en": "Select Base64Encoded Identifier"
+        },
+        "TextPobl129": {
+          "ja": "トランザクションの詳細から、エンコードされたIDを選択",
+          "en": "Select the encoded Identifier from the transaction details."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 10,
+      "StepNo": numPobl + 26,
+      "Languages": {
+        "TextPobl130": {
+          "ja": "IDをハイライト表示",
+          "en": "Highlight the identifier"
+        },
+        "TextPobl131": {
+          "ja": "トランザクションの詳細からエンコードされた識別子を選択",
+          "en": "Select the encoded Identifier from the transaction details"
+        },
+        "TextPobl132": {
+          "ja": "MainTXNPreviousTXNCurrentTXNDataIdentifier をハイライト表示",
+          "en": "Highlight the MainTXNPreviousTXNCurrentTXNDataIdentifier"
+        },
+        "TextPobl133": {
+          "ja": "トランザクションの詳細から、エンコードされたIDの値を選択",
+          "en": "Select the encoded Identifier value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 10,
+      "StepNo": numPobl + 27,
+      "Languages": {
+        "TextPobl134": {
+          "ja": "Base64EncodeされたIDの保存",
+          "en": "Save Base64Encoded Identifier"
+        },
+        "TextPobl135": {
+          "ja": "将来の使用のために、Base64 でエンコードされた PreviousTX の Identifier 値を保存",
+          "en": "Save the base64 encoded Identifier value of the PreviousTX for future usage."
+        },
+        "TextPobl217": {
+          "ja": "ID(base64)",
+          "en": "Identifier (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 10,
+      "StepNo": numPobl + 28,
+      "Languages": {
+        "TextPobl136": {
+          "ja": "ステップ１１－PreviousTXN の CurrentTXN のIDをデコード",
+          "en": "Step 11 - Decode PreviousTXN's CurrentTXN's Identifier"
+        },
+        "TextPobl137": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl138": {
+          "ja": "Base64 でエンコードされた PreviousTXN と CurrentTXNの ID をデコード",
+          "en": "Decode the base64 encoded PreviousTXN's CurrentTXN' Identifier"
+        },
+        "TextPobl139": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl140": {
+          "ja": "PreviousTXNとCurrentTXNのID を base64 でエンコードしたものを入力",
+          "en": "Input the base64 encoded PreviousTXN's CurrentTXN' Identifier"
+        },
+        "TextPobl141": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl142": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl143": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl144": {
+          "ja": "PreviousTXNとCurrentTXNのIDをエンコードした出力を取得",
+          "en": "Get the output of the decoded PreviousTXN's CurrentTXN' Identifier"
+        },
+        "TextPobl145": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl146": {
+          "ja": "将来使用のデコードされたPreviousTXNとCurrentTXNのID保存する",
+          "en": "Save the decoded PreviousTXN's CurrentTXN' Identifier for future usage"
+        },
+        "TextPobl147": {
+          "ja": "デコードされたPreTXNとCurrentTXNのID",
+          "en": "Decoded PreviousTXN's CurrentTXN' Identifier"
+        },
+        "TextPobl231": {
+          "ja": "デコードされたPreviousTXNとCurrentTXNのID",
+          "en": "Decoded PreviousTXN's CurrentTXN' Identifier"
+        },
+        "TextPobl242": {
+          "ja": "PreviousTXN の CurrentTXN' 識別子",
+          "en": "Previous TXN's CurrentTXN' Identifier"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 11,
+      "StepNo": numPobl + 29,
+      "Languages": {
+        "TextPobl148": {
+          "ja": "Base64EncodedのProductIDを選択",
+          "en": "Select Base64Encoded ProductID"
+        },
+        "TextPobl149": {
+          "ja": "トランザクションの詳細から、エンコードされたプロダクトIDを選択",
+          "en": "Select the encoded Product ID from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 11,
+      "StepNo": numPobl + 30,
+      "Languages": {
+        "TextPobl150": {
+          "ja": "productIdをハイライト表示",
+          "en": "Highlight the productId"
+        },
+        "TextPobl151": {
+          "ja": "トランザクションの詳細から、エンコードされたProductIDを選択",
+          "en": "Select the encoded ProductID from the transaction details"
+        },
+        "TextPobl152": {
+          "ja": "MainTXNPreviousTXNCurrentTXNDataProductIDをハイライト表示",
+          "en": "Highlight the MainTXNPreviousTXNCurrentTXNDataProductID"
+        },
+        "TextPobl153": {
+          "ja": "トランザクションの詳細から、エンコードされたProductIDの値を選択",
+          "en": "Select the encoded ProductID value from the transaction details"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 11,
+      "StepNo": numPobl + 31,
+      "Languages": {
+        "TextPobl154": {
+          "ja": "「Base64EncodedのProductIDを保存",
+          "en": "Save Base64Encoded ProductID"
+        },
+        "TextPobl155": {
+          "ja": "将来の使用のために、Base64 エンコードされた ProductID 値を保存",
+          "en": "Save the base64 encoded ProductID value for future usage."
+        },
+        "TextPobl218": {
+          "ja": "プロダクトID (base64)",
+          "en": "Product ID (base64)"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 11,
+      "StepNo": numPobl + 32,
+      "Languages": {
+        "TextPobl156": {
+          "ja": "ステップ１２－PreviousTXNとCurrentTXN の ProductID をデコード",
+          "en": "Step 12 - Decode PreviousTXN's CurrentTXN's ProductID"
+        },
+        "TextPobl157": {
+          "ja": "Base64DecoderのWebページを読み込む",
+          "en": "Load Base64Decoder Webpage"
+        },
+        "TextPobl158": {
+          "ja": "Base64 でエンコードされた PreviousTXNとCurrentTXN の ProductID をデコード",
+          "en": "Decode the base64 encoded PreviousTXN's CurrentTXN's ProductID"
+        },
+        "TextPobl159": {
+          "ja": "Base64エンコードされたデータの入力",
+          "en": "Input Base64Encoded Data"
+        },
+        "TextPobl160": {
+          "ja": "PreviousTXNとCurrentTXNのProductID を base64 でエンコードしたものを入力",
+          "en": "Input the base64 encoded PreviousTXN's CurrentTXN's ProductID"
+        },
+        "TextPobl161": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click Decode Button"
+        },
+        "TextPobl162": {
+          "ja": "デコードボタンをクリック",
+          "en": "Click the decode button"
+        },
+        "TextPobl163": {
+          "ja": "Base64デコードデータの表示",
+          "en": "View Base64Decoded Data"
+        },
+        "TextPobl164": {
+          "ja": "PreviousTXNとCurrentTXNのProductID をデコードした出力を取得",
+          "en": "Get the output of the decoded PreviousTXN's CurrentTXN's ProductID"
+        },
+        "TextPobl165": {
+          "ja": "Base64デコードデータの保存",
+          "en": "Save Base64Decoded Data"
+        },
+        "TextPobl166": {
+          "ja": "将来使用のためにデコードされたPreviousTXNとCurrentTXNのProductIDを保存",
+          "en": "Save the decoded PreviousTXN's CurrentTXN's ProductID for future usage"
+        },
+        "TextPobl167": {
+          "ja": "デコードされたPreviousTXNのCurrentTXNのProductID",
+          "en": "Decoded PreviousTXN's CurrentTXN's ProductID"
+        },
+        "TextPobl232": {
+          "ja": "プロダクトID",
+          "en": "ProductID"
+        },
+        "TextPobl245": {
+          "ja": "PreviousTXN の CurrentTXN の ProductID",
+          "en": "Previous TXN's CurrentTXN's ProductID"
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 12,
+      "StepNo": numPobl + 33,
+      "Languages": {
+        "TextPobl168": {
+          "ja": "ステップ１３－",
+          "en": "Step 13 - base64でエンコードしたIDを比較"
+        },
+        "TextPobl169": {
+          "ja": "オンラインテキスト比較Webページ",
+          "en": "Online TextComparison Webpage"
+        },
+        "TextPobl170": {
+          "ja": "オンラインテキスト比較のウェブページを読み込む",
+          "en": "Load the online text comparison webpage"
+        },
+        "TextPobl171": {
+          "ja": "入力の比較値",
+          "en": "Input comparison values"
+        },
+        "TextPobl172": {
+          "ja": "トランザクションからBase64デコードされたIDの値を入力",
+          "en": "Input the base64 decoded Identifier values from the transactions."
+        },
+        "TextPobl173": {
+          "ja": "比較ボタンをクリック",
+          "en": "Click compare button"
+        },
+        "TextPobl174": {
+          "ja": "比較ボタンをクリック",
+          "en": "Click the compare button"
+        },
+        "TextPobl175": {
+          "ja": "結果をスクロールする",
+          "en": "Scroll to result"
+        },
+        "TextPobl176": {
+          "ja": "結果をスクロールする",
+          "en": "Scroll to the result"
+        },
+        "TextPobl177": {
+          "ja": "比較結果",
+          "en": "Comparison result."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 13,
+      "StepNo": numPobl + 34,
+      "Languages": {
+        "TextPobl168": {
+          "ja": "ステップ１３－",
+          "en": "Step 13 - base64でエンコードしたIDを比較"
+        },
+        "TextPobl169": {
+          "ja": "オンラインテキスト比較Webページ",
+          "en": "Online TextComparison Webpage"
+        },
+        "TextPobl170": {
+          "ja": "オンラインテキスト比較のウェブページを読み込む",
+          "en": "Load the online text comparison webpage"
+        },
+        "TextPobl171": {
+          "ja": "入力の比較値",
+          "en": "Input comparison values"
+        },
+        "TextPobl172": {
+          "ja": "トランザクションからBase64デコードされたIDの値を入力",
+          "en": "Input the base64 decoded Identifier values from the transactions."
+        },
+        "TextPobl173": {
+          "ja": "比較ボタンをクリック",
+          "en": "Click compare button"
+        },
+        "TextPobl174": {
+          "ja": "比較ボタンをクリック",
+          "en": "Click the compare button"
+        },
+        "TextPobl175": {
+          "ja": "結果をスクロールする",
+          "en": "Scroll to result"
+        },
+        "TextPobl176": {
+          "ja": "結果をスクロールする",
+          "en": "Scroll to the result"
+        },
+        "TextPobl177": {
+          "ja": "比較結果",
+          "en": "Comparison result."
+        }
+      }
+    },
+    {
+      "SegmentNo": segPobl + 14,
+      "StepNo": numPobl + 35,
+      "Languages": {
+        "TextPobl178": {
+          "ja": "ステップ１４－検証概要",
+          "en": "Step 14 - Verification Summary"
+        },
+        "TextPobl179": {
+          "ja": "検証概要",
+          "en": "Verification Summary"
+        },
+        "TextPobl235": {
+          "ja": "検証は正常に終了",
+          "en": "Verification Completed Successfully"
+        },
+        "TextPobl181": {
+          "ja": "検証の概要 - PROOF OF THE BACKLINK",
+          "en": "about: Verification Summary - PROOF OF THE BACKLINK"
+        }
+      }
+    }
+  ]
           this.pocProofJson.Header.Segments.push(...poblSegments)
           this.pocProofJson.Steps.push(...poblSteps)
           this.pocLangJson.Actions.push(...poblLang)
@@ -7586,17 +7586,17 @@ export class BuildPOCJsonService {
           "StepNo": POCSummaryNo + 1,
           "SegmentNo": segPocSummary + 1,
           "FrameID": 13,
-          "FrameTitle": "&{Text178}"
+          "FrameTitle": "&{TextPoc178}"
         },
         "Action": {
-          "ActionTitle": "&{Text179}",
-          "ActionDescription": "&{Text179}",
+          "ActionTitle": "&{TextPoc179}",
+          "ActionDescription": "&{TextPoc179}",
           "ActionType": "BrowserScreen",
           "ActionParameters": {
             "ExternalURL": "",
             "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
             "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
-            "PageURL": "&{Text181}",
+            "PageURL": "&{TextPoc181}",
             "Query": "",
             "QueryIndex": "",
             "YOffset": "",
@@ -7627,7 +7627,7 @@ export class BuildPOCJsonService {
           "ScrollToPointer": false,
           "FrameAutoScroll": true,
           "FrameScrollBars": "",
-          "ToastMessage1": "&{Text235}",
+          "ToastMessage1": "&{TextPoc235}",
           "ToastPosition1": [
             "6%",
             "80%"
@@ -7641,19 +7641,19 @@ export class BuildPOCJsonService {
         "SegmentNo": segPocSummary + 1,
         "StepNo": POCSummaryNo + 1,
         "Languages": {
-          "Text178": {
+          "TextPoc178": {
             "ja": "ステップ１４－検証概要",
             "en": "Step 14 - Verification Summary"
           },
-          "Text179": {
+          "TextPoc179": {
             "ja": "検証概要",
             "en": "Verification Summary"
           },
-          "Text235": {
+          "TextPoc235": {
             "ja": "検証は正常に終了",
             "en": "Verification Completed Successfully"
           },
-          "Text181": {
+          "TextPoc181": {
             "ja": "検証の概要 - PROOF OF THE BACKLINK",
             "en": "about: Verification Summary - PROOF OF THE BACKLINK"
           }
