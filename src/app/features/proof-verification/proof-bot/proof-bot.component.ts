@@ -1131,7 +1131,7 @@ export class ProofBotComponent implements OnInit {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
       if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") && this.proofType != 'poc') {
-        this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
+        // this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
