@@ -1304,6 +1304,11 @@ export class ProofBotComponent implements OnInit {
             status = false
             this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
           }
+        } else if (this.currentProof == "Proof of Backlinks") {
+          if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
+            status = false
+            this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+          }
         }
         break;
       default:
