@@ -178,7 +178,7 @@ export class PocGraphViewComponent implements OnInit {
     var sColor : string, lColor : string, bColor : string;
     switch (type) {
       case "0":
-          sColor = "#16A085";
+          sColor = "#D6AD1C";
           bColor = "#086553";
           lColor = "white";
           break

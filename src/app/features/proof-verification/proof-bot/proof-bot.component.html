@@ -57,7 +57,7 @@
       <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
         <div class="row ">
           <div class="col-12">
-            <div class="d-flex justify-content-between section-header bold-f">
+            <div class="d-flex justify-content-between section-header">
               <div></div>
               <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
                   class="bold-f">{{currentProof}}</span> for Batch ID:
@@ -128,7 +128,7 @@
       </div>
       <!-- end bot screen -->
       <!-- Main Values -->
-      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
+      <div class="poc-graph-view mt-3 mb-1">
         <div class="row ">
           <div class="col-12">
             <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
