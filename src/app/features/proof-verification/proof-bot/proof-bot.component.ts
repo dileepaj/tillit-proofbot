@@ -588,7 +588,6 @@ export class ProofBotComponent implements OnInit {
         setTimeout(resolveTime, 1000 / this.playbackSpeed)
       );
     } catch (error) {
-      console.log('error', error)
     }
   }
 
@@ -1132,12 +1131,10 @@ export class ProofBotComponent implements OnInit {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
       if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") && this.proofType != 'poc') {
-        this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
+        // this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
-        this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
-      } else if (this.proofType == "poc" && this.currentProof == "Proof of Continuity" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
         this.openModal("Proof Verification Failed", 442, "Key Comparison error")
@@ -1200,7 +1197,6 @@ export class ProofBotComponent implements OnInit {
       "#globalInformation #gsFrames proof-global-storage"
     )[index];
     // await this.scrollToFrameById("proofContainer", 0);
-    // console.log(el);
     var gsFrame = document.querySelectorAll("#globalInformation #gsFrames")[0];
     var gsFrameRect: any = gsFrame.getBoundingClientRect();
     var initialWidth = gsFrameRect.x;
@@ -1283,7 +1279,7 @@ export class ProofBotComponent implements OnInit {
       case "pobl":
         if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
           status = false
-          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlink Verification Failed")
+          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
         }
         break;
       case "poe":
@@ -1300,9 +1296,9 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         if (this.currentProof == "Proof of Existence") {
-          if (this.variableStorage[compare.t1] != compare.t2) {
+          if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
             status = false
-            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+            this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
           }
         } else if (this.currentProof == "Proof of Genesis") {
           if (this.variableStorage[compare.t1] != compare.t2) {
@@ -1315,7 +1311,6 @@ export class ProofBotComponent implements OnInit {
         status = true
         break;
     }
-    console.log('status', status)
     return status
   }
 
