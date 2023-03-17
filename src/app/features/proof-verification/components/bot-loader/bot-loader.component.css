@@ -21,10 +21,10 @@
     width:325px
     }
   .proofLoadingTable{
-      font-family: Inter;
-      font-size: 14px;
-      width:325px;
-      align-self:center;
+    font-family: Inter;
+    font-size: 14px;
+    width:325px;
+    align-self:center;
     }
 }
 @media only screen and (max-width: 720px) {
@@ -32,10 +32,10 @@
     width:225px
     }
   .proofLoadingTable{
-      font-family: Inter;
-      font-size: 14px;
-      width:225px;
-      align-self:center;
+    font-family: Inter;
+    font-size: 14px;
+    width:225px;
+    align-self:center;
     }
 }
 
@@ -65,23 +65,21 @@
 }
 .LoadingWaitLine{
   font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-color: #000000;
-margin-top: 2vh;
-
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000000;
+  margin-top: 2vh;
 }
 .proofbot-loding-img{
-width: 40px;
-height: 24.43px;
-left: 572px;
-top: 438px;
-align-self:center;
-margin-top: 5vh;
-
+  width: 40px;
+  height: 24.43px;
+  left: 572px;
+  top: 438px;
+  align-self:center;
+  margin-top: 5vh;
 }
 .proofLoadingColumn{
   border: 1px solid #D2D2D2;
