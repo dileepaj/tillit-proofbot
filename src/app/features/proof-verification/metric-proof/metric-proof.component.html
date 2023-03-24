@@ -1,0 +1,99 @@
+<div *ngIf="showBatchHistory; else elseBlock">
+    <div id="verificationScreen" *ngIf="true" [@screenAnimationDemo] [ngStyle]="{
+            height: vsHeightExpand ? maxHeight : minHeight,
+            maxWidth: vsHeightExpand ? maxWidth : minWidth
+          }">
+        <!-- header start -->
+        <div class="row justify-content-between align-items-center mb-2 mt-1">
+            <div class="col-sm-12 col-md-3 col-lg-3 d-flex align-items-center justify-content-center ">
+                <div class="proofbot-header-img-containerqq">
+                    <img class="proofbot-header-img" src="../../../../assets/img/Asset 4.png">
+                    <img class="proofbot-header-img2" src="../../../../assets/img/Asset 5.png">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-4 text-center mt-3 mb-3">
+                <div class="row mb-1" style="font-size:18px; font-weight: 700; font-family: Inter;">
+                    <div class="col">{{"Proof of " + metric}}</div>
+                </div>
+                <div class="row mt-1 justify-content-center align-item-center" style="font-size:14px">
+                    <div class="col-auto" *ngIf="!!product">Product: <span style="font-weight:700;">{{product}}</span>
+                    </div>
+                    <div class="col-auto" *ngIf="!!batch">Batch: <span style="font-weight:700;">{{batch}}</span>
+                    </div>
+                    <div class="col-auto" *ngIf="!!tdpId">TDP ID: <span style="font-weight:700;">{{tdpId}}</span>
+                    </div>
+                    <div class="col-auto" *ngIf="!!metric">Metric: <span style="font-weight:700;">{{metric}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-sm-12 col-md-3 col-lg-3">
+                <div class="lang-selector responsive-content float-right text-center mx-auto">
+                    <select class="custom-select w-auto" [(ngModel)]="lang"
+                        style="font-size: 14px; font-family : Inter;">
+                        <option value="en">English</option>
+                        <option value="ja">Japanese</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- header end -->
+
+        <!-- batch-image start -->
+        <div class="row">
+            <div class="col-12 justify-content-center align-items-center text-center">
+                <div class="card  mx-auto" style="width: 18rem;">
+                    <img class="card-img-top"
+                        src="https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="black-highlight pl-2 pr-2 pt-1 pb-1">{{"Some quick example text: " +
+                                cfResult}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <p>
+                    <span class="card-destription">
+                        {{"This is calculated based on a series of measurements/activities and application"}}
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row"></div>
+        <!-- batch-image end -->
+
+        <!-- poc view -->
+        <div class="poc-graph-view mt-3 mb-1">
+            <div class="row justify-content-center">
+                <div class="bold-f" style="font-size: 16px;">Steps of the Production</div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="" style="font-size: 12px;">
+                    Select a stage to view the activities related to them.
+                </div>
+            </div>
+            <app-metric-batch-history id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
+                [data]="nodes"></app-metric-batch-history>
+        </div>
+        <!-- end poc view -->
+        <div class="text-center">
+            <button type="button" class="btn proceed" (click)="onBack()">Back</button>
+        </div>
+    </div>
+</div>
+<ng-template #elseBlock>
+    <div class="martic-backgraound">
+        <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [color]="color" [mode]="mode"
+            [value]="value" [LoadingProofType]="'Proof of '+metric" id="proofDemoLoaderFrame" *ngIf="!isStartDemo"
+            style="width: 100%;" [product]="product" [batch]="batch" [tdpId]="tdpId" [metric]="metric"></app-bot-loader>
+        <div class="container">
+            <div class="text-center">
+                <button type="button" class="btn proceed" (click)="onProceed()">Proceed</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

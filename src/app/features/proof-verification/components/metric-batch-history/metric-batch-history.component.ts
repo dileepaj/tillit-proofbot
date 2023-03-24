@@ -5,14 +5,13 @@ import * as dagreD3 from 'dagre-d3';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/app/services/api.service';
+
 @Component({
-  selector: 'app-poc-graph-view',
-  templateUrl: './poc-graph-view.component.html',
-  styleUrls: ['./poc-graph-view.component.css'],
-
+  selector: 'app-metric-batch-history',
+  templateUrl: './metric-batch-history.component.html',
+  styleUrls: ['./metric-batch-history.component.css']
 })
-
-export class PocGraphViewComponent implements OnInit {
+export class MetricBatchHistoryComponent implements OnInit {
 
   loadingComplete: boolean = false;
   errorOccurred: boolean = false;
@@ -110,8 +109,8 @@ export class PocGraphViewComponent implements OnInit {
         label: !!node.Data.ProductName ? `Batch ID:\n${node.Data.Identifier}\nProduct: \n${node.Data.ProductName}` : `Batch ID\n${node.Data.Identifier}`,
         shape: 'rect',
         id: `node-${node.Data.TxnHash}`,
-        style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
-        labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer; font-weight: bold`,
+        style: `stroke: #969696; stroke-width: 3px; fill: #FFFFFF`,
+        labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: black; cursor: pointer; font-weight: bold`,
         rx: 15, // set the x-axis radius of the rectangle
         ry: 15, // set the y-axis radius of the rectangle
       });
@@ -134,11 +133,11 @@ export class PocGraphViewComponent implements OnInit {
         mainIndex = nodeIndex;
         g.setEdge(node.Data.TxnHash, childNode.Data.TxnHash, {
           label: `${this.getTxnNameForTxnType(childNode.Data.TxnType)}`,
-          labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer; font-weight: bold`,
+          labelStyle: `font-size: 10px; fill: black; cursor: pointer;`,
           id: `arrow-${childNode.Data.TxnHash}-${node.Data.TxnHash}`,
           curve: d3.curveBasis,
-          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 2px;`,
-          arrowheadStyle: `fill: ${colors.sColor}`,
+          style: `stroke: black; fill:none; stroke-width: 1px;`,
+          arrowheadStyle: `fill: black`,
         });
         edgeValues.push(nodeIndex);
         this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth, type);

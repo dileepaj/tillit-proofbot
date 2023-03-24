@@ -31,6 +31,14 @@
           {{tdpId}}
         </td>
       </tr>
+      <tr class="proofLoadingColumn" *ngIf="!!metric">
+        <td class="proofLoadingColumn">
+          Metric
+        </td>
+        <td class="proofLoadingColumn">
+          {{metric}}
+        </td>
+      </tr>
     </table>
     <!-- <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p> -->
   </div>

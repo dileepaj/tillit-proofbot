@@ -30,6 +30,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorModalComponent } from "./shared/components/error-modal/error-modal.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { MetricProofComponent } from './features/proof-verification/metric-proof/metric-proof.component';
+import { MetricBatchHistoryComponent } from './features/proof-verification/components/metric-batch-history/metric-batch-history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +50,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     BotSegmentsComponent,
     PocGraphViewComponent,
     ErrorModalComponent,
+    MetricProofComponent,
+    MetricBatchHistoryComponent,
   ],
   imports: [
     BrowserModule,

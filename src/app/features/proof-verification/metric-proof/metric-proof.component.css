@@ -1,0 +1,177 @@
+.card-img-top {
+    height: 250px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding-bottom: 0 !important;
+}
+
+.proceed {
+    background: #088260;
+    color: white;
+}
+
+.card-destription {
+    font-size: 12px;
+}
+
+.black-highlight {
+    color: white;
+    font-size: 14px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.bold-f {
+    font-weight: 700;
+}
+
+#verificationScreen {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.martic-backgraound {
+    height: 100vh;
+    background-color: #fff;
+}
+
+.btnPausePlay {
+    width: 24px !important;
+    height: 24px !important;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proofbot-header-img {
+    width: 200px;
+    margin-right: 8px;
+}
+
+.proofbot-header-img2 {
+    width: 200px;
+    margin-right: 8px;
+}
+
+.playPause div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dropdown-menu {
+    min-width: auto !important;
+    font-size: 12px !important;
+    padding: 0 !important;
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-menu a:focus {
+    background-color: #007bff !important;
+    color: #fdfcfc !important;
+}
+
+.dropdown-menu .active {
+    background-color: #007bff;
+    color: #fdfcfc;
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 420px) {
+    .responsive-content {
+        float: none !important;
+    }
+
+    .header-container {
+        flex-direction: column;
+    }
+
+    .proofbot-header-img-container {
+        align-self: center;
+        width: min-content;
+    }
+
+    .proofbot-header-img2 {
+        width: 150px;
+        margin-left: 34px;
+        margin-right: 0px;
+        padding-top: 7px;
+    }
+
+}
+
+@media (max-width: 540px) {
+    .responsive-content {
+        float: none !important;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .proofbot-header-img-container {
+        align-self: center;
+        width: min-content;
+    }
+
+    .proofbot-header-img2 {
+        width: 150px;
+        margin-left: 34px;
+        margin-right: 0px;
+        padding-top: 7px;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .proofbot-header-img-container {
+        margin-right: auto;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .proofbot-header-img-container {
+        margin-right: auto;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .proofbot-header-img-container {
+        margin-right: 0;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .proofbot-header-img-container {
+        margin-right: 0;
+    }
+}
