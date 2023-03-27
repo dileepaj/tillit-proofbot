@@ -175,3 +175,15 @@
         margin-right: 0;
     }
 }
+
+tr>th,
+td {
+    text-align: center;
+    margin: 2px;
+}
+
+.view-proof{
+    background-color: #088260;
+    border-radius: 5px;
+    padding: 5px;
+}

@@ -63,7 +63,6 @@
                 </p>
             </div>
         </div>
-        <div class="row"></div>
         <!-- batch-image end -->
 
         <!-- poc view -->
@@ -80,6 +79,46 @@
                 [data]="nodes"></app-metric-batch-history>
         </div>
         <!-- end poc view -->
+        <!-- Activity View header -->
+        <div class="row justify-content-center">
+            <div class="bold-f" style="font-size: 16px;">Activities</div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="" style="font-size: 12px;">
+                An activity is a specific action or event that needs to be measured in order to calculate a metric.
+            </div>
+        </div>
+        <!-- Activity View header -->
+        <!-- Stage Name -->
+        <div class="row justify-content-center text-center mt-2 mb-2">
+            <div class="text-center" style="font-size: 14px;">
+                Showing activities for - <span class="bold-f">Germination</span>
+            </div>
+        </div>
+        <!-- Stage Name -->
+        <!-- Activity Table -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-lg-10 col-xl-12 mx-auto">
+                    <div class="table-responsive">
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">Column 1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2"><span class="bold-f">0.5 C02e</span> Emission from national water supply</td>
+                                    <td><span class="view-proof">View Proof</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Activity Table -->
         <div class="text-center">
             <button type="button" class="btn proceed" (click)="onBack()">Back</button>
         </div>
