@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input,Output, OnInit,EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
@@ -27,7 +27,9 @@ export class PocGraphViewComponent implements OnInit {
   color = "primary";
   mode = "indeterminate";
   value = 10;
+  segmentID: string = "";
   @Input() data: any;
+  @Output() setSegmentIDFn = new EventEmitter();
   
   constructor(private route: ActivatedRoute, private apiService: ApiService,  private _location: Location) { }
 
@@ -260,6 +262,10 @@ export class PocGraphViewComponent implements OnInit {
 
     let val = '"id":"' + data[index].Txnhash + '",' + '"children":[{' + str + '}]';
     return val;
+  }
+
+  emitSetSegmentID(NO: number){
+    this.setSegmentIDFn.emit(NO);
   }
   
 }

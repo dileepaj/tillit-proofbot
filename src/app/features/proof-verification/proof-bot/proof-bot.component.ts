@@ -16,6 +16,8 @@ import { SiteScreenComponent } from "../components/site-screen/site-screen.compo
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
+import * as POCTESTJSON from "../ProofJSONs/POC.json";
+import * as POCTESTLANG from "../ProofJSONs/POC_lang.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json";
@@ -141,6 +143,7 @@ export class ProofBotComponent implements OnInit {
   currentBatch2: string = "";
   currentProduct: string = "";
   currentProduct2: string = "";
+  SegmentID: string ="";
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -270,14 +273,21 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
-        protocolJson = poc.pocProofJson;
-        langJson = poc.pocLangJson;
+        //protocolJson = poc.pocProofJson;
+        //langJson = poc.pocLangJson;
+       //console.log("poo--",JSON.stringify(poc.pocProofJson));
+        //console.log("poo222--",JSON.stringify(poc.pocLangJson));
+
+        protocolJson = POCTESTJSON;
+       langJson = POCTESTLANG;
+
         break;
       default:
         break;
     }
     if (this.proofType == "poc")
-      return { protocolJson: protocolJson, langJson: langJson }
+      //return { protocolJson: protocolJson, langJson: langJson }
+      return { protocolJson: protocolJson.default, langJson: langJson.default };
     else
       return { protocolJson: protocolJson.default, langJson: langJson.default };
   }
@@ -317,6 +327,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
+   // console.log("data--",data);
     return JSON.parse(data);
   }
 
@@ -545,6 +556,30 @@ export class ProofBotComponent implements OnInit {
     this.playProofDemo();
   }
 
+  setSegmentID(stepNo: number){
+    //this.SegmentID = id;
+    if (this.proofType == 'poc') {
+      let nodes = document.getElementsByClassName('edgePath')
+      Array.from(nodes).forEach((node: any) => {
+        node.style = `opacity:2;`
+      })
+
+
+      var i: number = this.proofJSON.Steps.findIndex(
+        (cur: any) => cur.StepHeader.SegmentNo == stepNo
+      );
+      if (this.lastCompletedStep >= i) {
+        this.isBackToStep = true;
+        this.currentStep = 100;
+        if (this.isPause) {
+          this.isPause = false;
+          this.playProofDemo();
+        }
+      }
+      this.playProofDemo();
+    }
+    console.log("11111",this.SegmentID);
+  }
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
     try {
@@ -1273,7 +1308,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   public verificationStatus(compare: any): boolean {
-    console.log('compare', compare)
+  //  console.log('compare', compare)
     let status = true
     switch (this.proofType) {
       case "pobl":

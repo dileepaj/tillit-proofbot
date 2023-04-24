@@ -3,8 +3,10 @@ import { PocGraphViewComponent } from '../features/proof-verification/components
 
 @Injectable({
   providedIn: 'root'
+  
 })
 export class BuildPOCJsonService {
+  
   pocProofJson: any = {
     "Header": {
       "StorageTitle": "Information storage",
@@ -226,7 +228,12 @@ export class BuildPOCJsonService {
   }
 
   orderedNodes = []; // Initialize an empty array to hold the matching LastTxnHash values
-  constructor() { }
+  constructor() {
+    interface IndexTable {
+      [path: string]: number;
+    }
+
+   }
 
   async buildPOCJson(data: any): Promise<any> {
     let pocArray = await this.createPOCOrder(data)
@@ -7563,6 +7570,7 @@ export class BuildPOCJsonService {
           this.pocLangJson.Actions.push(...poblLang)
           segPobl = segPobl + 14
           numPobl = numPobl + 35
+          console.log("pocResponse---",poblSteps );
           break;
         default:
           break;
