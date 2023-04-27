@@ -38,7 +38,7 @@
       },
       "SegName10": {
           "ja": "TDPデータ取得",
-          "en": "Retrieve TDP Data"
+          "en": "Retrieve Traceability Data Data"
       },
       "SegName11": {
           "ja": "ブロックチェーントランザクションを取得",
@@ -754,23 +754,23 @@
           "Languages": {
               "Text0": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
               },
               "Text149": {
                   "ja": "TDPデータ要求",
-                  "en": "Request TDP Data"
+                  "en": "Request Traceability Data Data"
               },
               "Text1": {
                   "ja": "現在のTDP",
-                  "en": "Current TDP"
+                  "en": "Current Traceability Data"
               },
               "Text2": {
                   "ja": "Tracified GatewayからTDPデータを取得",
-                  "en": "Retrieve TDP data from Tracified Gateway."
+                  "en": "Retrieve Traceability Data data from Tracified Gateway."
               },
               "Text3": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
               },
               "Text4": {
                   "ja": "API レスポンスの保存",
@@ -782,7 +782,7 @@
               },
               "Text6": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
               },
               "Text7": {
                   "ja": "フォーマットレスポンス（JSON）",
@@ -800,11 +800,11 @@
           "Languages": {
               "Text9": {
                   "ja": "TDP識別子の選択",
-                  "en": "Select TDP identifier"
+                  "en": "Select Traceability Data identifier"
               },
               "Text10": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from TDP details."
+                  "en": "Select the identifier from Traceability Data details."
               }
           }
       },
@@ -814,7 +814,7 @@
           "Languages": {
               "Text11": {
                   "ja": "TDPの詳細からの識別子",
-                  "en": "identifier from the TDP details"
+                  "en": "identifier from the Traceability Data details"
               },
               "Text12": {
                   "ja": "識別子をハイライト表示",
@@ -822,7 +822,7 @@
               },
               "Text13": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
+                  "en": "Select the identifier from the Traceability Data details"
               },
               "Text14": {
                   "ja": "テスト",
@@ -834,7 +834,7 @@
               },
               "Text16": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
+                  "en": "Select the identifier from the Traceability Data details"
               }
           }
       },
@@ -843,8 +843,8 @@
           "StepNo": 27,
           "Languages": {
               "Text17": {
-                  "ja": "TDP 識別子の保存",
-                  "en": "Save TDP Identifier"
+                  "ja": "Traceability Data 識別子の保存",
+                  "en": "Save Traceability Data Identifier"
               },
               "Text18": {
                   "ja": "将来の使用のために識別子の値を保存する",
@@ -852,7 +852,7 @@
               },
               "Text205": {
                   "ja": "TDP識別子",
-                  "en": "TDP Identifier"
+                  "en": "Traceability Data Identifier"
               }
           }
       },
@@ -861,12 +861,12 @@
           "StepNo": 28,
           "Languages": {
               "Text20": {
-                  "ja": "TDP Data Hashの選択",
-                  "en": "Select TDP Data Hash"
+                  "ja": "Traceability Data Data Hashの選択",
+                  "en": "Select Traceability Data Data Hash"
               },
               "Text21": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from TDP details."
+                  "en": "Select the Data Hash from Traceability Data details."
               }
           }
       },
@@ -876,7 +876,7 @@
           "Languages": {
               "Text22": {
                   "ja": "TDPの詳細からダータハッシュ",
-                  "en": "Data Hash from the TDP details"
+                  "en": "Data Hash from the Traceability Data details"
               },
               "Text23": {
                   "ja": "ダータハッシュをハイライト表示",
@@ -884,7 +884,7 @@
               },
               "Text24": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
+                  "en": "Select the Data Hash from the Traceability Data details"
               },
               "Text25": {
                   "ja": "テスト",
@@ -892,11 +892,11 @@
               },
               "Text26": {
                   "ja": "TDPデータハッシュのハイライト",
-                  "en": "Highlight the TDP Data Hash"
+                  "en": "Highlight the Traceability Data Data Hash"
               },
               "Text27": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
+                  "en": "Select the Data Hash from the Traceability Data details"
               }
           }
       },
@@ -906,15 +906,15 @@
           "Languages": {
               "Text28": {
                   "ja": "TDPデータハッシュの保存",
-                  "en": "Save TDP Data Hash"
+                  "en": "Save Traceability Data Data Hash"
               },
               "Text29": {
                   "ja": "将来の使用のためにデータハッシュ値の保存",
                   "en": "Save Data Hash value for future usage."
               },
               "Text206": {
-                  "ja": "TDP データハッシュ",
-                  "en": "TDP Data Hash"
+                  "ja": "Traceability Data データハッシュ",
+                  "en": "Traceability Data Data Hash"
               }
           }
       },
@@ -923,12 +923,12 @@
           "StepNo": 31,
           "Languages": {
               "Text31": {
-                  "ja": "TDP Txn Hashを選択",
-                  "en": "Select TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select Traceability Data Txn Hash"
               },
               "Text32": {
                   "ja": "TDPの詳細からTxn Hashを選択",
-                  "en": "Select the Txn Hash from TDP details."
+                  "en": "Select the Txn Hash from Traceability Data details."
               }
           }
       },
@@ -942,15 +942,15 @@
               },
               "Text35": {
                   "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
+                  "en": "Select the txn Hash from the Traceability Data details"
               },
               "Text37": {
-                  "ja": "TDP Txn Hashをハイライト",
-                  "en": "Highlight the TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Traceability Data Txn Hash"
               },
               "Text38": {
                   "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
+                  "en": "Select the txn Hash from the Traceability Data details"
               }
           }
       },
@@ -959,16 +959,16 @@
           "StepNo": 33,
           "Languages": {
               "Text39": {
-                  "ja": "TDP Txn Hashを保存",
-                  "en": "Save TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save Traceability Data Txn Hash"
               },
               "Text40": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Txn Hash value for future usage."
               },
               "Text207": {
-                  "ja": "TDP Txn Hash",
-                  "en": "TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hash",
+                  "en": "Traceability Data Txn Hash"
               }
           }
       },
@@ -978,7 +978,7 @@
           "Languages": {
               "Text42": {
                   "ja": "ステップ５ーTDPトランザクションの取得",
-                  "en": "Step 5 - Retrieve TDP Transaction"
+                  "en": "Step 5 - Retrieve Traceability Data Transaction"
               },
               "Text43": {
                   "ja": "ステラホライズンAPIをリクエスト",

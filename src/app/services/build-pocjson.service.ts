@@ -118,7 +118,7 @@ export class BuildPOCJsonService {
       },
       "SegName10": {
         "ja": "TDPデータ取得",
-        "en": "Retrieve TDP Data"
+        "en": "Retrieve Traceability Data Data"
       },
       "SegName11": {
         "ja": "ブロックチェーントランザクションを取得",
@@ -2196,7 +2196,7 @@ export class BuildPOCJsonService {
               },
               "Action": {
                 "ActionTitle": "Tracified API Request",
-                "ActionDescription": "Retrieve TDP data from Tracified Gateway.",
+                "ActionDescription": "Retrieve Traceability Data data from Tracified Gateway.",
                 "ActionType": "MultiStepAction",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2344,8 +2344,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPoe16}",
                     "OperationKey": "Identifier",
                     "OperationValue": "TDPIdentifier",
-                    "OperationKeyName": "identifier from the TDP details",
-                    "OperationValueName": "identifier from the TDP details"
+                    "OperationKeyName": "identifier from the Traceability Data details",
+                    "OperationValueName": "identifier from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2502,8 +2502,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPoe27}",
                     "OperationKey": "DataHash",
                     "OperationValue": "TDPDatahash",
-                    "OperationKeyName": "Datahash from the TDP details",
-                    "OperationValueName": "Datahash from the TDP details"
+                    "OperationKeyName": "Datahash from the Traceability Data details",
+                    "OperationValueName": "Datahash from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2661,8 +2661,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPoe38}",
                     "OperationKey": "Txnhash",
                     "OperationValue": "TDPTxnhash",
-                    "OperationKeyName": "txnhash from the TDP details",
-                    "OperationValueName": "txnhash from the TDP details"
+                    "OperationKeyName": "txnhash from the Traceability Data details",
+                    "OperationValueName": "txnhash from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2736,7 +2736,7 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "Retrieve TDP Transaction",
+                "ActionTitle": "Retrieve Traceability Data Transaction",
                 "ActionDescription": "",
                 "ActionType": "MultiStepAction",
                 "ActionParameters": {
@@ -3581,7 +3581,7 @@ export class BuildPOCJsonService {
                     "ActionDescription_3": "&{TextPoe148}",
                     "ToastMessage": "&{TextPoe154}",
                     "InputKeyName": "the base64 decoded Datahash values from the transactions.",
-                    "InputValue": "[{\"title\": \"Identifiers from the TDP and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
+                    "InputValue": "[{\"title\": \"Identifiers from the Traceability Data and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
                   }
                 },
                 "ActionResultVariable": "",
@@ -3659,23 +3659,23 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe0": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
                 },
                 "TextPoe149": {
                   "ja": "TDPデータ要求",
-                  "en": "Request TDP Data"
+                  "en": "Request Traceability Data Data"
                 },
                 "TextPoe1": {
                   "ja": "現在のTDP",
-                  "en": "Current TDP"
+                  "en": "Current Traceability Data"
                 },
                 "TextPoe2": {
                   "ja": "Tracified GatewayからTDPデータを取得",
-                  "en": "Retrieve TDP data from Tracified Gateway."
+                  "en": "Retrieve Traceability Data data from Tracified Gateway."
                 },
                 "TextPoe3": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
                 },
                 "TextPoe4": {
                   "ja": "API レスポンスの保存",
@@ -3687,7 +3687,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe6": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
                 },
                 "TextPoe7": {
                   "ja": "フォーマットレスポンス（JSON）",
@@ -3705,11 +3705,11 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe9": {
                   "ja": "TDP識別子の選択",
-                  "en": "Select TDP identifier"
+                  "en": "Select Traceability Data identifier"
                 },
                 "TextPoe10": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from TDP details."
+                  "en": "Select the identifier from Traceability Data details."
                 }
               }
             },
@@ -3719,7 +3719,7 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe11": {
                   "ja": "TDPの詳細からの識別子",
-                  "en": "identifier from the TDP details"
+                  "en": "identifier from the Traceability Data details"
                 },
                 "TextPoe12": {
                   "ja": "識別子をハイライト表示",
@@ -3727,7 +3727,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe13": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
+                  "en": "Select the identifier from the Traceability Data details"
                 },
                 "TextPoe14": {
                   "ja": "テスト",
@@ -3739,7 +3739,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe16": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
+                  "en": "Select the identifier from the Traceability Data details"
                 }
               }
             },
@@ -3748,8 +3748,8 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 4,
               "Languages": {
                 "TextPoe17": {
-                  "ja": "TDP 識別子の保存",
-                  "en": "Save TDP Identifier"
+                  "ja": "Traceability Data 識別子の保存",
+                  "en": "Save Traceability Data Identifier"
                 },
                 "TextPoe18": {
                   "ja": "将来の使用のために識別子の値を保存する",
@@ -3757,7 +3757,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe205": {
                   "ja": "TDP識別子",
-                  "en": "TDP Identifier"
+                  "en": "Traceability Data Identifier"
                 }
               }
             },
@@ -3766,12 +3766,12 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 5,
               "Languages": {
                 "TextPoe20": {
-                  "ja": "TDP Data Hashの選択",
-                  "en": "Select TDP Data Hash"
+                  "ja": "Traceability Data Data Hashの選択",
+                  "en": "Select Traceability Data Data Hash"
                 },
                 "TextPoe21": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from TDP details."
+                  "en": "Select the Data Hash from Traceability Data details."
                 }
               }
             },
@@ -3781,7 +3781,7 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe22": {
                   "ja": "TDPの詳細からダータハッシュ",
-                  "en": "Data Hash from the TDP details"
+                  "en": "Data Hash from the Traceability Data details"
                 },
                 "TextPoe23": {
                   "ja": "ダータハッシュをハイライト表示",
@@ -3789,7 +3789,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe24": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
+                  "en": "Select the Data Hash from the Traceability Data details"
                 },
                 "TextPoe25": {
                   "ja": "テスト",
@@ -3797,11 +3797,11 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe26": {
                   "ja": "TDPデータハッシュのハイライト",
-                  "en": "Highlight the TDP Data Hash"
+                  "en": "Highlight the Traceability Data Data Hash"
                 },
                 "TextPoe27": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
+                  "en": "Select the Data Hash from the Traceability Data details"
                 }
               }
             },
@@ -3811,15 +3811,15 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe28": {
                   "ja": "TDPデータハッシュの保存",
-                  "en": "Save TDP Data Hash"
+                  "en": "Save Traceability Data Data Hash"
                 },
                 "TextPoe29": {
                   "ja": "将来の使用のためにデータハッシュ値の保存",
                   "en": "Save Data Hash value for future usage."
                 },
                 "TextPoe206": {
-                  "ja": "TDP データハッシュ",
-                  "en": "TDP Data Hash"
+                  "ja": "Traceability Data データハッシュ",
+                  "en": "Traceability Data Data Hash"
                 }
               }
             },
@@ -3828,12 +3828,12 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 8,
               "Languages": {
                 "TextPoe31": {
-                  "ja": "TDP Txn Hashを選択",
-                  "en": "Select TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select Traceability Data Txn Hash"
                 },
                 "TextPoe32": {
                   "ja": "TDPの詳細からTxn Hashを選択",
-                  "en": "Select the Txn Hash from TDP details."
+                  "en": "Select the Txn Hash from Traceability Data details."
                 }
               }
             },
@@ -3847,15 +3847,15 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe35": {
                   "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
+                  "en": "Select the txn Hash from the Traceability Data details"
                 },
                 "TextPoe37": {
-                  "ja": "TDP Txn Hashをハイライト",
-                  "en": "Highlight the TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Traceability Data Txn Hash"
                 },
                 "TextPoe38": {
                   "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
+                  "en": "Select the txn Hash from the Traceability Data details"
                 }
               }
             },
@@ -3864,16 +3864,16 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 10,
               "Languages": {
                 "TextPoe39": {
-                  "ja": "TDP Txn Hashを保存",
-                  "en": "Save TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save Traceability Data Txn Hash"
                 },
                 "TextPoe40": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Txn Hash value for future usage."
                 },
                 "TextPoe207": {
-                  "ja": "TDP Txn Hash",
-                  "en": "TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hash",
+                  "en": "Traceability Data Txn Hash"
                 }
               }
             },
@@ -3883,7 +3883,7 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe42": {
                   "ja": "ステップ５ーTDPトランザクションの取得",
-                  "en": "Step 5 - Retrieve TDP Transaction"
+                  "en": "Step 5 - Retrieve Traceability Data Transaction"
                 },
                 "TextPoe43": {
                   "ja": "ステラホライズンAPIをリクエスト",
@@ -6444,8 +6444,8 @@ export class BuildPOCJsonService {
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
-                  "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current Traceability Data Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Traceability Data Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current Traceability Data Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Traceability Data Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
                   "PageURL": "&{TextPobl181}",
                   "Query": "",
                   "QueryIndex": "",

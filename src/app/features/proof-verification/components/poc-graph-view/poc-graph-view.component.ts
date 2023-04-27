@@ -200,7 +200,7 @@ export class PocGraphViewComponent implements OnInit {
           labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer; font-weight: bold`,
           id: `${arrowIdName}-${childNode.Data.TxnHash}-${node.Data.TxnHash}`,
           curve: d3.curveBasis,
-          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 2px;`,
+          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 2.5px;`,
           arrowheadStyle: `fill: ${colors.sColor}`,
         });
         edgeValues.push(nodeIndex);
@@ -278,7 +278,7 @@ export class PocGraphViewComponent implements OnInit {
       case "0":
         return "GENESIS";
       case "2":
-        return "TDP";
+        return "Traceability Data";
       case "6":
         return "SPLIT";
       case "7":

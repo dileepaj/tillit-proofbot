@@ -58,7 +58,20 @@
       <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
       </mat-spinner>
     </div>
-    <div class="bold-f" style="font-size: 16px;">Batch history with Merkle tree</div>
+   <!--<div class="bold-f" style="font-size: 16px;">Batch history with Merkle tree</div>-->
+    <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
+      <div></div>
+      <div> Batch history with Merkle tree
+        <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+          target="_blank">
+          <i class="bi bi-question-circle-fill helpIcon"></i>
+        </a>
+      </div>
+      <div class="mr-1 "> <span (click)="isCollapsedPocTree = !isCollapsedPocTree"
+          [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic"><i
+            class="bi bi-chevron-down"></i>
+        </span></div>
+    </div>
     <div [style.opacity]="loadingComplete ? '1' : '0'" [style.min-height.px]="loadingComplete ? '260' : '0'" id="body"
       style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
       class="px-5 py-4 bg-white d-flex align-items-center" (click)="emitSetSegmentID(id)">

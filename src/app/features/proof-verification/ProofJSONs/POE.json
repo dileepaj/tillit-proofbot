@@ -50,7 +50,7 @@
       },
       "Action": {
         "ActionTitle": "Tracified API Request",
-        "ActionDescription": "Retrieve TDP data from Tracified Gateway.",
+        "ActionDescription": "Retrieve Traceability Data data from Tracified Gateway.",
         "ActionType": "MultiStepAction",
         "ActionParameters": {
           "ExternalURL": "",
@@ -195,8 +195,8 @@
             "ActionDescription_1": "&{Text16}",
             "OperationKey": "Identifier",
             "OperationValue": "TDPIdentifier",
-            "OperationKeyName": "identifier from the TDP details",
-            "OperationValueName": "identifier from the TDP details"
+            "OperationKeyName": "identifier from the Traceability Data details",
+            "OperationValueName": "identifier from the Traceability Data details"
           }
         },
         "ActionResultVariable": "",
@@ -350,8 +350,8 @@
             "ActionDescription_1": "&{Text27}",
             "OperationKey": "DataHash",
             "OperationValue": "TDPDatahash",
-            "OperationKeyName": "Datahash from the TDP details",
-            "OperationValueName": "Datahash from the TDP details"
+            "OperationKeyName": "Datahash from the Traceability Data details",
+            "OperationValueName": "Datahash from the Traceability Data details"
           }
         },
         "ActionResultVariable": "",
@@ -506,8 +506,8 @@
             "ActionDescription_1": "&{Text38}",
             "OperationKey": "Txnhash",
             "OperationValue": "TDPTxnhash",
-            "OperationKeyName": "txnhash from the TDP details",
-            "OperationValueName": "txnhash from the TDP details"
+            "OperationKeyName": "txnhash from the Traceability Data details",
+            "OperationValueName": "txnhash from the Traceability Data details"
 
           }
         },
@@ -582,7 +582,7 @@
         "FrameTitle": ""
       },
       "Action": {
-        "ActionTitle": "Retrieve TDP Transaction",
+        "ActionTitle": "Retrieve Traceability Data Transaction",
         "ActionDescription": "",
         "ActionType": "MultiStepAction",
         "ActionParameters": {
@@ -1413,7 +1413,7 @@
             "ActionDescription_3":"&{Text148}",
             "ToastMessage": "&{Text154}",
             "InputKeyName": "the base64 decoded Datahash values from the transactions.",
-            "InputValue": "[{\"title\": \"Identifiers from the TDP and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
+            "InputValue": "[{\"title\": \"Identifiers from the Traceability Data and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
           }
         },
         "ActionResultVariable": "",
