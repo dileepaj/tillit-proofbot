@@ -43,7 +43,7 @@
     </div>
     <div [style.opacity]="loadingComplete ? '1' : '0'" [style.min-height.px]="loadingComplete ? '260' : '0'" id="body"
       style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
-      class="px-5 py-4 bg-white d-flex align-items-center" (click)="emitSetSegmentID(NO)">
+      class="px-5 py-4 bg-white d-flex align-items-center" (click)="emitSetSegmentID(id)">
       <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
         <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
           <g id="pocTree" />

@@ -273,13 +273,13 @@ export class ProofBotComponent implements OnInit {
         break;
       case "poc":
         let poc = await this.pocJsonService.buildPOCJson(this.nodes)
-        //protocolJson = poc.pocProofJson;
-        //langJson = poc.pocLangJson;
-       //console.log("poo--",JSON.stringify(poc.pocProofJson));
+        protocolJson = poc.pocProofJson;
+        langJson = poc.pocLangJson;
+       console.log("poo--",JSON.stringify(poc.pocProofJson));
         //console.log("poo222--",JSON.stringify(poc.pocLangJson));
 
-        protocolJson = POCTESTJSON;
-       langJson = POCTESTLANG;
+        //protocolJson = POCTESTJSON;
+       //langJson = POCTESTLANG;
 
         break;
       default:
@@ -556,21 +556,19 @@ export class ProofBotComponent implements OnInit {
     this.playProofDemo();
   }
 
-  setSegmentID(stepNo: number){
+  setSegmentID(pathId: string){
     //this.SegmentID = id;
     if (this.proofType == 'poc') {
       let nodes = document.getElementsByClassName('edgePath')
       Array.from(nodes).forEach((node: any) => {
         node.style = `opacity:2;`
       })
-
-
       var i: number = this.proofJSON.Steps.findIndex(
-        (cur: any) => cur.StepHeader.SegmentNo == stepNo
+        (cur: any) => cur.StepHeader.PathId == pathId
       );
       if (this.lastCompletedStep >= i) {
         this.isBackToStep = true;
-        this.currentStep = 100;
+        this.currentStep = i;
         if (this.isPause) {
           this.isPause = false;
           this.playProofDemo();
@@ -578,7 +576,7 @@ export class ProofBotComponent implements OnInit {
       }
       this.playProofDemo();
     }
-    console.log("11111",this.SegmentID);
+    console.log("11111",pathId);
   }
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;

@@ -275,7 +275,7 @@
               "FrameTitle": "&{TextPoc2}",
               "ActionType": "LoadProofAndGraphView",
               "ActionParameters": {
-                  "ExternalURL": "https://qa.gateway.tracified.com/pocv4/${TXNhash}",
+                  "ExternalURL": "https://qa.gateway.tracified.com/pocv4/merkletree/18603feb9f136673dff61a1524c6e47e0e2a716b55ee4c3d272579e70fff22c4",
                   "FrameType": "",
                   "InnerHTML": "",
                   "PageURL": "",

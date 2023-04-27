@@ -27,7 +27,7 @@ export class PocGraphViewComponent implements OnInit {
   color = "primary";
   mode = "indeterminate";
   value = 10;
-  segmentID: string = "";
+  pathId: string = "";
   @Input() data: any;
   @Output() setSegmentIDFn = new EventEmitter();
   
@@ -264,8 +264,8 @@ export class PocGraphViewComponent implements OnInit {
     return val;
   }
 
-  emitSetSegmentID(NO: number){
-    this.setSegmentIDFn.emit(NO);
+  emitSetSegmentID(Id: string){
+    this.setSegmentIDFn.emit(Id);
   }
   
 }
