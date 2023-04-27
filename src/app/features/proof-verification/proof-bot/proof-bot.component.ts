@@ -129,6 +129,7 @@ export class ProofBotComponent implements OnInit {
   proofDemoRef: ViewContainerRef;
   errorOccurred: boolean = false
   nodes: any;
+  nodesWithMerkleTree: any;
   POCJSON: any;
   tdpId: string;
   batch: string;
@@ -219,10 +220,17 @@ export class ProofBotComponent implements OnInit {
           let url = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
           this.apiService.getData(url).subscribe((data) => {
             this.nodes = data
-            this.initiateProofDemo();
+            let url2 = environment.blockchain.getPocTreeDataWithMerkletree + "/" + this.proofBotParams.params.txn
+            this.apiService.getData(url2).subscribe((dataWithMerkleTree) => {
+              this.nodesWithMerkleTree = dataWithMerkleTree
+              this.initiateProofDemo();
+            }, (err) => {
+              this.openModal("Invalid URL", err.status, err.message)
+            })
           }, (err) => {
             this.openModal("Invalid URL", err.status, err.message)
           })
+
         } else
           this.initiateProofDemo();
       } else
