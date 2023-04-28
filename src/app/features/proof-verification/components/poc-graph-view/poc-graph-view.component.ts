@@ -287,7 +287,7 @@ export class PocGraphViewComponent implements AfterViewInit {
       case "0":
         return "GENESIS";
       case "2":
-        return "TDP";
+        return "Traceability Data";
       case "6":
         return "SPLIT";
       case "7":
