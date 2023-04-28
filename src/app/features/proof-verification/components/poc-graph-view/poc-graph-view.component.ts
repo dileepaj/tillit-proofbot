@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
@@ -13,12 +13,14 @@ import { MatGridListModule } from '@angular/material';
 
 })
 
-export class PocGraphViewComponent implements OnInit {
+export class PocGraphViewComponent implements AfterViewInit {
 
   loadingComplete: boolean = false;
   errorOccurred: boolean = false;
   pocTreeWidth: Number = 0;
   pocTreeHeight: Number = 0;
+  pocTreeWidth1: Number = 0;
+  pocTreeHeight1: Number = 0;
   TXNhash: string = "";
   ProofType: string = "";
   src: string = "";
@@ -29,16 +31,19 @@ export class PocGraphViewComponent implements OnInit {
   value = 10;
   @Input() data: any;
   @Input() dataWithMerkleTree: any;
+  @Output() clickedNodeEvent: EventEmitter<string> = new EventEmitter<string>();
+  constructor(private _location: Location) { }
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private _location: Location) { }
-
-  ngOnInit() {
+  ngAfterViewInit() {
     this.loadingComplete = true;
     this.pocTransactions = this.dataWithMerkleTree;
     this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
-    this.renderGraph(this.data.Nodes);
+    if (!!this.data) {
+      this.renderGraph(this.data.Nodes);
+    }
     this.renderGraphWithMerkleTree(this.dataWithMerkleTree.Nodes);
   }
+
 
   goBack(): void {
     this._location.back();
@@ -85,8 +90,8 @@ export class PocGraphViewComponent implements OnInit {
     let box = document.querySelector('#pocTree');
     let width = box.getBoundingClientRect().width;
     let height = box.getBoundingClientRect().height;
-    this.pocTreeWidth = width;
-    this.pocTreeHeight = height;
+    this.pocTreeWidth1 = width;
+    this.pocTreeHeight1 = height;
 
     //listeners
     d3.selectAll("g.edgePath").on('click', function (d: any) {
@@ -97,7 +102,7 @@ export class PocGraphViewComponent implements OnInit {
       const from = Nodes[d.v].TrustLinks[0];
       const to = Nodes[d.w].TrustLinks[0];
       if (Nodes[d.w].Data.TxnType == 2) {
-        //window.open(environment.blockchain.domailUrl+`/?type=pobl&txn=${to}&txn2=${from}`);
+        window.open(environment.blockchain.domailUrl + `/?type=pobl&txn=${to}&txn2=${from}`);
       } else alert("At the moment, proof verification is only available for TDPs.")
     });
     d3.selectAll("g.node").on('click', function (d: any) {
@@ -149,19 +154,23 @@ export class PocGraphViewComponent implements OnInit {
     this.pocTreeHeight = height;
 
     //listeners
-    d3.selectAll("g.edgePath").on('click', function (d: any) {
-      const from = Nodes[d.v].TrustLinks[0];
-      const to = Nodes[d.w].TrustLinks[0];
+    d3.selectAll("g.edgePath").on('click', (d: any) => {
+      console.log('firstvvvvvvvvvvvvvvvvvvvvvvvvvv', Nodes[d.v])
+      console.log('wwwww', Nodes[d.w])
+      const from = Nodes[d.v].Data.TxnHash;
+      const to = Nodes[d.w].Data.TxnHash;
+      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
     });
-    d3.selectAll("g.edgeLabel").on('click', function (d: any) {
-      const from = Nodes[d.v].TrustLinks[0];
-      const to = Nodes[d.w].TrustLinks[0];
-      if (Nodes[d.w].Data.TxnType == 2) {
-        //window.open(environment.blockchain.domailUrl+`/?type=pobl&txn=${to}&txn2=${from}`);
-      } else alert("At the moment, proof verification is only available for TDPs.")
+    d3.selectAll("g.edgeLabel").on('click', (d: any) => {
+      const from = Nodes[d.v].Data.TxnHash;
+      const to = Nodes[d.w].Data.TxnHash;
+      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
     });
-    d3.selectAll("g.node").on('click', function (d: any) {
-      //window.open(environment.blockchain.domailUrl+"/?type=poe"+"&txn=" + Nodes[d].TrustLinks[0])
+    d3.selectAll("g.node").on('click', (d: any) => {
+      if (Nodes[d].Data.TxnType == "0")
+        this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
+      else if (Nodes[d].Data.TxnType == "2")
+        this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
     });
   }
 
@@ -170,7 +179,7 @@ export class PocGraphViewComponent implements OnInit {
     if (doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier != "") {
       g.setNode(node.Data.TxnHash, {
-        label: !!node.Data.ProductName ? `Batch ID:\n${node.Data.Identifier}\nProduct: \n${node.Data.ProductName}` : `Batch ID\n${node.Data.Identifier}`,
+        label: !!node.Data.ProductName ? `\n${node.Data.Identifier}\n(${node.Data.ProductName})` : `\n${node.Data.Identifier}`,
         shape: 'rect',
         id: `${nodeIdName}-${node.Data.TxnHash}`,
         style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
@@ -200,7 +209,7 @@ export class PocGraphViewComponent implements OnInit {
           labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer; font-weight: bold`,
           id: `${arrowIdName}-${childNode.Data.TxnHash}-${node.Data.TxnHash}`,
           curve: d3.curveBasis,
-          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 2px;`,
+          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 3.5px;`,
           arrowheadStyle: `fill: ${colors.sColor}`,
         });
         edgeValues.push(nodeIndex);
@@ -322,6 +331,10 @@ export class PocGraphViewComponent implements OnInit {
 
     let val = '"id":"' + data[index].Txnhash + '",' + '"children":[{' + str + '}]';
     return val;
+  }
+
+  clickedNode(value: string) {
+    this.clickedNodeEvent.emit(value);
   }
 
 }

@@ -290,7 +290,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPog + 1,
                 "SegmentNo": segPog + 1,
                 "FrameID": 1,
-                "FrameTitle": ""
+                "FrameTitle": "",
+                "PathID":`pog-${node.Id}`,
               },
               "Action": {
                 "ActionTitle": "&{TextPog0}",
@@ -333,7 +334,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType": "POG",
-                    "TrustLinks": [node.Id]
+                    "TrustLinks": [node.Id],
                   }
                 },
                 "ActionResultVariable": "",
@@ -2192,7 +2193,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPoe + 1,
                 "SegmentNo": segPoe + 1,
                 "FrameID": 1,
-                "FrameTitle": ""
+                "FrameTitle": "",
+                "PathID":`poe-${node.Id}`,
               },
               "Action": {
                 "ActionTitle": "Tracified API Request",
@@ -2238,10 +2240,10 @@ export class BuildPOCJsonService {
                     "JSONResultVariable": "MainTDPData",
                     "StartedProofType": "POE",
                     "TrustLinks": [node.Id],
-                  }
+                  },
                 },
                 "ActionResultVariable": "",
-                "MetaData": []
+                "MetaData": [],
               },
               "Customizations": {
                 "PointerData": "",
@@ -4473,7 +4475,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPobl + 1,
                 "SegmentNo": segPobl + 1,
                 "FrameID": 1,
-                "FrameTitle": ""
+                "FrameTitle": "",
+                "PathID": `pobl-${node.PoblTDP.current}-${node.PoblTDP.previous}`
               },
               "Action": {
                 "ActionTitle": "&{TextPobl0}",
