@@ -670,7 +670,6 @@ export class ProofBotComponent implements OnInit {
     this.isReplay = false;
     this.isPlayCompleted = false;
     const { Header, Steps } = this.proofJSON;
-    console.log('JSON.stringify(this.proofJSON)', JSON.stringify(this.proofJSON))
     this.totalSteps = Steps.length;
     this.currentStep = step;
     this.cdr.detectChanges();
@@ -1150,7 +1149,6 @@ export class ProofBotComponent implements OnInit {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
       if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") && this.proofType != 'poc') {
-        // this.toastr.error('Cannot find the Key from the URL', 'Something went wrong');
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
@@ -1215,7 +1213,6 @@ export class ProofBotComponent implements OnInit {
     const el: any = document.querySelectorAll(
       "#globalInformation #gsFrames proof-global-storage"
     )[index];
-    // await this.scrollToFrameById("proofContainer", 0);
     var gsFrame = document.querySelectorAll("#globalInformation #gsFrames")[0];
     var gsFrameRect: any = gsFrame.getBoundingClientRect();
     var initialWidth = gsFrameRect.x;
@@ -1360,7 +1357,6 @@ export class ProofBotComponent implements OnInit {
   }
 
   changeSpecificNodeOpacity(trustLinks: any[], runningProof: string) {
-    console.log('trustLinks', trustLinks, runningProof)
     if (this.proofType == 'poc') {
       if (runningProof == 'POE' || runningProof == "POG") {
         this.changeNodesOpacity('0.25');
@@ -1378,9 +1374,7 @@ export class ProofBotComponent implements OnInit {
         this.changeNodesOpacity('0.25');
         this.changeArrowsOpacity('0.25');
         const tL = trustLinks[0];
-        console.log('tL', tL)
         let id = `arrow-` + tL[0] + `-` + tL[1];
-        console.log('id---', id)
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
@@ -1418,9 +1412,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   jumpToStep(id: string) {
-    console.log('id', id)
     let stepIndex = this.findStepByPathId(id, this.proofJSON.Steps)
-    console.log('stepIndex', stepIndex)
     if (!!stepIndex) {
       let proofArr = id.split('-')
       if (!!proofArr[0] && proofArr[0] != "pobl") {

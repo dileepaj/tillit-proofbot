@@ -17,7 +17,6 @@ export class ApiService {
     );
   }
   handleError(err: HttpErrorResponse) {
-    console.log("Error Handler: ", err);
     return throwError('test');
   }
 }

@@ -155,8 +155,6 @@ export class PocGraphViewComponent implements AfterViewInit {
 
     //listeners
     d3.selectAll("g.edgePath").on('click', (d: any) => {
-      console.log('firstvvvvvvvvvvvvvvvvvvvvvvvvvv', Nodes[d.v])
-      console.log('wwwww', Nodes[d.w])
       const from = Nodes[d.v].Data.TxnHash;
       const to = Nodes[d.w].Data.TxnHash;
       this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
