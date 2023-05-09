@@ -2,51 +2,37 @@ pipeline {
   agent any
   tools { nodejs "nodejs-13" }
   stages {
-    stage('Build') {
+    stage('Install') {
       steps {
         sh 'node --version'
         sh 'npm --version'
-        sh 'npm install'
-        script {
-          if (env.BRANCH_NAME == "release") {
-            sh 'npm run build-prod'
-            env.BUCKET_NAME = 'proofbot.tillit.world'
-          } else if(env.BRANCH_NAME == "qa") {
-            sh 'npm run build-qa'
-            env.BUCKET_NAME = 'qa.proofbot.tillit.world'
-          } else if (env.BRANCH_NAME == "staging") {
-            sh 'npm run build-staging'
-            env.BUCKET_NAME = 'staging.proofbot.tillit.world'
-          } else {
-            sh 'npm run build'
-          }
-        }
+        sh 'npm ci'
       }
     }
+
     stage('Test') {
       steps {
         sh 'echo test-step'
       }
     }
+
     stage('Analysis') {
       steps {
         sh 'echo analysis-step'
       }
     }
-    stage('Deploy') {
+
+    stage('Build and Deploy to QA') {
       when {
-        anyOf {
-          branch 'qa'
-          branch 'staging'
-          branch 'release'
-        }
+        branch 'master'
       }
       steps {
+        sh 'npm run build-qa'
         s3Upload(
           consoleLogLevel: 'INFO',
           dontWaitForConcurrentBuildCompletion: false,
           entries: [[
-            bucket: env.BUCKET_NAME,
+            bucket: 'qa.proofbot.tillit.world',
             excludedFile: '',
             flatten: false,
             gzipFiles: false,
@@ -67,6 +53,39 @@ pipeline {
         )
       }
     }
+
+    stage('Build and Deploy to Staging') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'npm run build-staging'
+        s3Upload(
+          consoleLogLevel: 'INFO',
+          dontWaitForConcurrentBuildCompletion: false,
+          entries: [[
+            bucket: 'staging.proofbot.tillit.world',
+            excludedFile: '',
+            flatten: false,
+            gzipFiles: false,
+            keepForever: false,
+            managedArtifacts: false,
+            noUploadOnFailure: true,
+            selectedRegion: 'ap-south-1',
+            showDirectlyInBrowser: false,
+            sourceFile: 'dist/Tiilit-Proofbot/**',
+            storageClass: 'STANDARD',
+            uploadFromSlave: false,
+            useServerSideEncryption: false
+          ]],
+          pluginFailureResultConstraint: 'FAILURE',
+          profileName: 'tracified-admin-frontend-jenkins-deployer',
+          userMetadata: [],
+          dontSetBuildResultOnFailure: false
+        )
+      }
+    }
+
   }
   post {
     always {
