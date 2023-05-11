@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  tools { nodejs "nodejs-13" }
+  tools { nodejs "nodejs-15" }
   stages {
     stage('Install') {
       steps {
