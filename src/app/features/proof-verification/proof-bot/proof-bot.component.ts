@@ -8,11 +8,13 @@ import {
   OnInit,
   Type,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  ElementRef
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ElementDividerComponent } from "../components/element-divider/element-divider.component";
 import { SiteScreenComponent } from "../components/site-screen/site-screen.component";
+import { BotGlobaldataComponent } from "../components/bot-globaldata/bot-globaldata.component";
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
@@ -152,7 +154,8 @@ export class ProofBotComponent implements OnInit {
     private apiService: ApiService,
     private pocJsonService: BuildPOCJsonService,
     private modalService: BsModalService,
-    public commonServices: CommonService
+    public commonServices: CommonService,
+    private elRef: ElementRef,
   ) { }
 
   ngOnInit() {
@@ -193,6 +196,7 @@ export class ProofBotComponent implements OnInit {
           }
         },
         error => {
+          console.log("4");
           this.openModal("Check the Internet Connection", error.status, error.message)
         }
       );
@@ -1346,7 +1350,7 @@ export class ProofBotComponent implements OnInit {
   onRetry() {
     window.location.reload();
   }
-
+  
   changeNodesOpacity(opacity: string) {
     if (this.proofType == 'poc') {
       let nodes = document.getElementsByClassName('node')
@@ -1411,16 +1415,154 @@ export class ProofBotComponent implements OnInit {
     this.jumpToStep(event)
   }
 
+  async playProofDemo2(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "") {
+    var iframe = this.elRef.nativeElement.querySelector('iframe');
+    var botGlobalData = this.elRef.nativeElement.querySelector('gsFrames');
+    var currentFrame = iframe.contentWindow;
+    iframe.contentWindow.location.reload(true);
+    this.isReplay = false;
+    this.isPlayCompleted = false;
+    const { Header, Steps } = this.proofJSON;
+    this.totalSteps = Steps.length;
+    this.currentStep = step;
+    this.cdr.detectChanges();
+    let currentBrowserScreen = "";
+    //change the all nodes opacity
+    this.changeNodesOpacity("0.25")
+    this.changeArrowsOpacity("0.25")
+    for (; this.currentStep < Steps.length;) {
+      this.isBackToStep = false;
+      if (this.isPause) return;
+      if (this.isReplay) return;
+      const stepData = this.parseActionData(Steps[this.currentStep]);
+      const { StepHeader, Action, Customizations } = stepData;
+      const {
+        ActionDescription,
+        ActionType,
+        ActionParameters
+      } = Action;
+
+      // highlight the running nodes and back-links
+      if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
+        !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
+        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+      }
+      if (highlightClickedNode) {
+        this.changeSpecificNodeOpacity(trustLinks, runningProof)
+      }
+      this.currentStep++;
+      this.ActionDescription = ActionDescription[this.lang];
+      if (StepHeader.SegmentNo) {
+        await this.toStepper(StepHeader.SegmentNo, Action._ID);
+      }
+      const frameID = StepHeader.FrameID;
+      this.cdr.detectChanges();
+      // set global values
+      this.setGlobalValuesOnFrames(Header, stepData);
+      switch (ActionType) {
+        case "BrowserScreen":
+          // await this.closeSteppers();
+          currentBrowserScreen = ActionParameters.ExternalURL
+          var scRef: ComponentRef<SiteScreenComponent>;
+          if (this.demoScreenChildRefs[frameID])
+            scRef = this.demoScreenChildRefs[frameID].ref;
+          else {
+            scRef = await this.createFrameInProofDemo(stepData);
+            scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+          }
+          this.setGlobalValuesOnFrames(Header, stepData);
+          if (scRef && ActionParameters.InnerHTML) {
+            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
+              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
+              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
+            } else {
+              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
+            }
+          } else if (scRef && ActionParameters.ExternalURL) {
+            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+            await scRef.instance.setPage(ActionParameters.ExternalURL, ActionParameters.Translatable, this.lang);
+          }
+          break;
+        case "UpdateElementAttribute":
+          // await this.closeSteppers();
+          await this.handleFormatElementAttribute(stepData);
+          break;
+        case "FormatDOMText":
+          // await this.closeSteppers();
+          await this.handleTextStyle(stepData);
+          break;
+        case "UpdateElementProperty":
+          // await this.closeSteppers();
+          await this.handleSetData(stepData);
+          break;
+        case "TriggerElementFunction":
+          // await this.closeSteppers();
+          await this.handleTriggerFn(stepData);
+        case "GetElementAttributeData":
+          // await this.closeSteppers();
+          await this.handleGetDataFn(stepData);
+          break;
+        case "InformationStorage":
+          await this.handleSaveDataFn(stepData);
+          break;
+        case "FormatMetaData":
+          this.handleVariableFormat(stepData, currentBrowserScreen);
+          break;
+        default:
+          break;
+      }
+
+      if (Customizations.ToastMessage) {
+        this.toastMSG = Customizations.ToastMessage[this.lang];
+        this.toastTop = Customizations.ToastPosition[0];
+        this.toastLeft = Customizations.ToastPosition[1];
+        this.isToast = true;
+      } else if (Customizations.ToastMessage1) {
+        this.toastMSG1 = Customizations.ToastMessage1[this.lang];
+        this.toastTop1 = Customizations.ToastPosition1[0];
+        this.toastLeft1 = Customizations.ToastPosition1[1];
+        this.isToast1 = true;
+      }
+
+      this.cdr.detectChanges();
+      await new Promise(resolveTime =>
+        setTimeout(
+          resolveTime,
+          (100 *
+            (Customizations.ActionDuration
+              ? Customizations.ActionDuration
+              : 1)) /
+          this.playbackSpeed
+        )
+      );
+      this.isToast = false;
+      this.isToast1 = false;
+      if (this.lastCompletedStep < this.currentStep)
+        this.lastCompletedStep = this.currentStep;
+    }
+    if (this.currentStep == Steps.length) {
+      this.isPlayCompleted = true;
+      this.isPause = true;
+    }
+  }
+  
   jumpToStep(id: string) {
     let stepIndex = this.findStepByPathId(id, this.proofJSON.Steps)
+    var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.FrameID);
     if (!!stepIndex) {
       let proofArr = id.split('-')
       if (!!proofArr[0] && proofArr[0] != "pobl") {
         let a1 = proofArr.slice(-1)
-        this.playProofDemo(stepIndex - 1, true, [a1], proofArr[0].toUpperCase())
+        console.log("before",this.globalData);
+        this.playProofDemo2(stepIndex - 2, true, [a1], proofArr[0].toUpperCase())
+        console.log("after",this.globalData);
       } else {
         let a2 = proofArr.slice(-2)
-        this.playProofDemo(stepIndex - 1, true, [a2], proofArr[0].toUpperCase())
+        console.log("before",this.globalData);
+        this.playProofDemo2(stepIndex - 2, true, [a2], proofArr[0].toUpperCase())
+        console.log("after",this.globalData);
       }
     }
   }
