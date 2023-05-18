@@ -16,6 +16,7 @@ import { MatGridListModule } from '@angular/material';
 export class PocGraphViewComponent implements AfterViewInit {
 
   loadingComplete: boolean = false;
+  isMerkleTreeAvaible: boolean = false;
   errorOccurred: boolean = false;
   pocTreeWidth: Number = 0;
   pocTreeHeight: Number = 0;
@@ -31,6 +32,7 @@ export class PocGraphViewComponent implements AfterViewInit {
   value = 10;
   @Input() data: any;
   @Input() dataWithMerkleTree: any;
+  @Input() GraphTitle: string;
   @Output() clickedNodeEvent: EventEmitter<string> = new EventEmitter<string>();
   constructor(private _location: Location) { }
 
@@ -41,7 +43,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     if (!!this.data) {
       this.renderGraph(this.data.Nodes);
     }
-    this.renderGraphWithMerkleTree(this.dataWithMerkleTree.Nodes);
+      this.renderGraphWithMerkleTree(this.dataWithMerkleTree.Nodes);
   }
 
 
@@ -50,6 +52,8 @@ export class PocGraphViewComponent implements AfterViewInit {
   }
 
   renderGraph(Nodes: Object) {
+    this.isMerkleTreeAvaible=true;
+    console.log("3",this.isMerkleTreeAvaible);
 
     // Create a new directed graph
     var g: any = new dagreD3.graphlib.Graph({ directed: true });
@@ -110,7 +114,6 @@ export class PocGraphViewComponent implements AfterViewInit {
     });
   }
   renderGraphWithMerkleTree(Nodes: Object) {
-
     // Create a new directed graph
     var g: any = new dagreD3.graphlib.Graph({ directed: true });
 
@@ -170,6 +173,10 @@ export class PocGraphViewComponent implements AfterViewInit {
       else if (Nodes[d].Data.TxnType == "2")
         this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
     });
+  }
+
+  setGraphTitle(title: string){
+    this.GraphTitle = title;
   }
 
   addNodesAndEdges(g: any, Nodes: any, doneNodes: Array<string>, edgeValues: Array<number>, node: any, mainIndex: number, depth: number, type, nodeIdName: string, arrowIdName: string) {
