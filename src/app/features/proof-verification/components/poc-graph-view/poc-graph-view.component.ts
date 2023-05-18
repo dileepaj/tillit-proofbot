@@ -177,7 +177,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     if (doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier != "") {
       g.setNode(node.Data.TxnHash, {
-        label: !!node.Data.ProductName ? `\n${node.Data.Identifier}\n(${node.Data.ProductName})` : `\n${node.Data.Identifier}`,
+        label: !!node.Data.ProductName ? `\n\n Batch ID : ${node.Data.Identifier}\n Product : ${node.Data.ProductName}\n Stage : \n ` : `\n${node.Data.Identifier}\n` ,
         shape: 'rect',
         id: `${nodeIdName}-${node.Data.TxnHash}`,
         style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
@@ -224,6 +224,10 @@ export class PocGraphViewComponent implements AfterViewInit {
         case "2":
           this.ProofType = 'poe'
           break
+        case "pobl":
+          this.ProofType = 'pobl'
+          break
+
       }
       this.src = `${environment.blockchain.domailUrl}/?type=${this.ProofType}&txn=${this.TXNhash}`
     }
@@ -233,10 +237,10 @@ export class PocGraphViewComponent implements AfterViewInit {
     const { sColor, lColor } = this.getColorForTxnType(node.Data.TxnType);
     for (let index = 0; index < doneNodes.length; index++) {
       this.TXNhash = doneNodes[index];
-      if (sColor == 'brown') {
+      if (sColor == '#45B39D') {
         this.ProofType = 'pog'
       }
-      else if (sColor == 'green') {
+      else if (sColor == '#52BE80') {
         this.ProofType = 'poe'
       }
       this.src = `${environment.blockchain.domailUrl}/?type=${this.ProofType}&txn=${this.TXNhash}`
@@ -246,29 +250,30 @@ export class PocGraphViewComponent implements AfterViewInit {
   getColorForTxnType(type) {
     var sColor: string, lColor: string, bColor: string;
     switch (type) {
+      //
       case "0":
-        sColor = "#D6AD1C";
-        bColor = "#086553";
+        sColor = "#45B39D";
+        bColor = "#45B39D";
         lColor = "white";
         break
       case "2":
-        sColor = "#27AE60";
-        bColor = "#127D40";
+        sColor = "#52BE80";
+        bColor = "#52BE80";
         lColor = "white";
         break
       case "6":
-        sColor = "#2980B9";
-        bColor = "#105481";
+        sColor = "#5499C7";
+        bColor = "#5499C7";
         lColor = "white";
         break
       case "7":
-        sColor = "#C0392B";
-        bColor = "#802C24";
+        sColor = "#CD6155";
+        bColor = "#CD6155";
         lColor = "white";
         break
       case "5":
-        sColor = "#8E44AD";
-        bColor = "#70318A";
+        sColor = "#A569BD";
+        bColor = "#A569BD";
         lColor = "white";
         break
       default:

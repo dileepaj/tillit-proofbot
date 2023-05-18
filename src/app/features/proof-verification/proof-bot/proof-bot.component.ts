@@ -196,7 +196,6 @@ export class ProofBotComponent implements OnInit {
           }
         },
         error => {
-          console.log("4");
           this.openModal("Check the Internet Connection", error.status, error.message)
         }
       );
@@ -536,6 +535,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   backToAction(actionID: number) {
+    this.refreshIframe();
     var i: number = this.proofJSON.Steps.findIndex(
       (cur: any) => cur.Action._ID == actionID
     );
@@ -679,8 +679,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    this.changeNodesOpacity("0.25")
-    this.changeArrowsOpacity("0.25")
+    // this.changeNodesOpacity("0.25")
+    //this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -1351,22 +1351,33 @@ export class ProofBotComponent implements OnInit {
     window.location.reload();
   }
   
-  changeNodesOpacity(opacity: string) {
+  changeNodesOpacity(bColor: string) {
     if (this.proofType == 'poc') {
       let nodes = document.getElementsByClassName('node')
       Array.from(nodes).forEach((node: any) => {
-        node.style = `opacity:${opacity};`
+        node.style = `stroke:${bColor};`
       })
     }
-  }
+  } 
 
   changeSpecificNodeOpacity(trustLinks: any[], runningProof: string) {
     if (this.proofType == 'poc') {
       if (runningProof == 'POE' || runningProof == "POG") {
-        this.changeNodesOpacity('0.25');
-        this.changeArrowsOpacity('0.25');
+        if (runningProof=='POE'){
+          this.changeNodesOpacity('#45B39D');
+        }else if(runningProof=='POG'){
+          this.changeNodesOpacity('#52BE80');
+        }
+        
+        //this.changeArrowsOpacity('0.25');
         let id = `node-${trustLinks[0]}`;
         let node: any = document.getElementById(id);
+        // Find the <rect> element within the <g> element
+        var rectElement = node.querySelector("rect");
+
+        // Access the properties of the <rect> element
+        rectElement.setAttribute('stroke', 'black');
+        rectElement.setAttribute('stroke-width', '2px');
         node.style = "opacity:1;";
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
@@ -1382,7 +1393,7 @@ export class ProofBotComponent implements OnInit {
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
-        node1.attr("stroke", "yellow");
+        node1.attr("stroke", "black");
         this.currentProof = this.commonServices.getProofName(runningProof);
         let textContent1 = "";
         let textContent2 = "";
@@ -1415,11 +1426,18 @@ export class ProofBotComponent implements OnInit {
     this.jumpToStep(event)
   }
 
-  async playProofDemo2(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "") {
+  refreshIframe(){
     var iframe = this.elRef.nativeElement.querySelector('iframe');
     var botGlobalData = this.elRef.nativeElement.querySelector('gsFrames');
     var currentFrame = iframe.contentWindow;
     iframe.contentWindow.location.reload(true);
+    this.playbackSpeed = 0.5;
+    
+  }
+
+  async playProofDemoOfSelectedNode(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "") {
+    this.globalData.splice(0,this. globalData.length);
+    this.refreshIframe();
     this.isReplay = false;
     this.isPlayCompleted = false;
     const { Header, Steps } = this.proofJSON;
@@ -1428,8 +1446,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    this.changeNodesOpacity("0.25")
-    this.changeArrowsOpacity("0.25")
+    //this.changeNodesOpacity("0.25")
+    //this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -1445,10 +1463,10 @@ export class ProofBotComponent implements OnInit {
       // highlight the running nodes and back-links
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
-        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+       this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
       }
       if (highlightClickedNode) {
-        this.changeSpecificNodeOpacity(trustLinks, runningProof)
+       this.changeSpecificNodeOpacity(trustLinks, runningProof)
       }
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
@@ -1555,14 +1573,13 @@ export class ProofBotComponent implements OnInit {
       let proofArr = id.split('-')
       if (!!proofArr[0] && proofArr[0] != "pobl") {
         let a1 = proofArr.slice(-1)
-        console.log("before",this.globalData);
-        this.playProofDemo2(stepIndex - 2, true, [a1], proofArr[0].toUpperCase())
-        console.log("after",this.globalData);
+        this.playProofDemoOfSelectedNode(stepIndex - 2, true, [a1], proofArr[0].toUpperCase())
+       // this.changeStrokeColor();
+        
       } else {
         let a2 = proofArr.slice(-2)
-        console.log("before",this.globalData);
-        this.playProofDemo2(stepIndex - 2, true, [a2], proofArr[0].toUpperCase())
-        console.log("after",this.globalData);
+        this.playProofDemoOfSelectedNode(stepIndex - 2, true, [a2], proofArr[0].toUpperCase())
+       // this.changeStrokeColor();
       }
     }
   }

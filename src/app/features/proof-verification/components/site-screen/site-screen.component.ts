@@ -271,18 +271,15 @@ export class SiteScreenComponent {
             this.addPointerToPage();
             resolve({ ref: this.iframe });
           } catch (error) {
-            console.log("1");
             this.openModal("Check the internet connection", 0, pageUrl)
             return
           }
         },
         error => {
           if (error.status == "0") {
-            console.log("2");
             this.openModal("Check the internet connection", error.status, error.message)
             reject({ error, ref: this.iframe })
           } else {
-            console.log("3");
             this.openModal("Check the internet connection", error.status == 0 ? "Cannot load the external URL" : error.message, error.message)
             reject({ error, ref: this.iframe })
           }
@@ -639,7 +636,6 @@ export class SiteScreenComponent {
     var iframe = this.elRef.nativeElement.querySelector('iframe');
     var currentFrame = iframe.contentWindow;
     iframe.contentWindow.location.reload(true);
-    console.log("OnRetry2");
   }
 
 }

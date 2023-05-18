@@ -1606,8 +1606,8 @@ export class BuildPOCJsonService {
                   "en": "Select the encoded Current TXN Hash from the transaction details"
                 },
                 "TextPog219": {
-                  "ja": "TXN2 CurrentTXN",
-                  "en": "TXN2 CurrentTXN"
+                  "ja": "CurrentTXN",
+                  "en": "CurrentTXN"
                 },
                 "TextPog115": {
                   "ja": "CurrentTXN ハッシュ",
@@ -1628,8 +1628,8 @@ export class BuildPOCJsonService {
                   "en": "Save the base64 encoded Current TXN Hash value for future usage."
                 },
                 "TextPog200": {
-                  "ja": "TXN2 CurrentTXN (base64)",
-                  "en": "TXN2 CurrentTXN (base64)"
+                  "ja": "CurrentTXN (base64)",
+                  "en": "CurrentTXN (base64)"
                 }
               }
             },
