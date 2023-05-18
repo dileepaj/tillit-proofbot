@@ -20,17 +20,15 @@ export class BotLoaderComponent implements OnInit {
   @Input() product
   @Input() batch
   @Input() tdpId
-  countdown: number = 3;
+  countdown: number = 1;
 
   constructor() { }
 
   ngOnInit() {
-    this.startDemoFn.emit('');
-   // start the countdown
-    setInterval(() => {
-      if (this.countdown > 0) {
-        this.countdown--;
-      }
-    }, 1000);
+    //this.startDemoFn.emit('');
+   
+  }
+  emitStartDemoFn() {
+    this.startDemoFn.emit("");
   }
 }
