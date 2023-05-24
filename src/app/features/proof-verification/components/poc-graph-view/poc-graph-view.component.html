@@ -50,13 +50,6 @@
             </div>
           </div>
         </div>
-        <!--instuctions end-->
-
-        <div class="mt-5 d-flex justify-content-center align-items-center" *ngIf="!loadingComplete"
-          style="height: 300px;">
-          <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
-          </mat-spinner>
-        </div>
 
     <div *ngIf="data"  [style.opacity]="loadingComplete ? '1' : '0'" [style.min-height.px]="loadingComplete ? '260' : '0'" id="body"
           style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
@@ -80,9 +73,6 @@
             </a>
           </div>
           <div class="mr-1">
-            <span (click)="isCollapsedPocTree = !isCollapsedPocTree" [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic">
-              <i class="bi bi-chevron-down"></i>
-            </span>
           </div>
         </div>
       </div>
@@ -91,11 +81,6 @@
 
     <div class="col-12">
       <div class="label-bar row justify-content-center align-items-center lable-text mt-2 mb-2">
-    <div class="mt-5 d-flex justify-content-center align-items-center" *ngIf="!loadingComplete" style="height: 300px;">
-          <mat-spinner class="progress-loader" [color]="color" [mode]="mode" [value]="value">
-          </mat-spinner>
-        </div>
-
          <!--instuctions start2-->
          <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3" *ngIf="isMerkleTreeAvaible">
           <div class="col-12 mt-2">
