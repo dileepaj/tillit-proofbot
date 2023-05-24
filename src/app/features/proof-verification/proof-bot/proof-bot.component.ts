@@ -68,6 +68,7 @@ import { CommonService } from "src/app/services/common.service";
 export class ProofBotComponent implements OnInit {
   StorageTitle: string = "Storage Container";
   ProofContainerTitle: string = "Proof Container";
+  @Input() isMerkleTreeAvaible: Boolean;
   @Input() initialWidth: string = "100%";
   @Input() initialHeight: string = "100%";
   @Input() minWidth: string = "100%";
@@ -679,8 +680,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    // this.changeNodesOpacity("0.25")
-    //this.changeArrowsOpacity("0.25")
+    this.changeNodesOpacity("0.25")
+    this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -1351,33 +1352,23 @@ export class ProofBotComponent implements OnInit {
     window.location.reload();
   }
   
-  changeNodesOpacity(bColor: string) {
+  changeNodesOpacity(opacity: string) {
     if (this.proofType == 'poc') {
       let nodes = document.getElementsByClassName('node')
       Array.from(nodes).forEach((node: any) => {
-        node.style = `stroke:${bColor};`
+        node.style = `opacity:${opacity};`
       })
     }
   } 
 
   changeSpecificNodeOpacity(trustLinks: any[], runningProof: string) {
+    console.log('trustLinks', trustLinks, runningProof)
     if (this.proofType == 'poc') {
       if (runningProof == 'POE' || runningProof == "POG") {
-        if (runningProof=='POE'){
-          this.changeNodesOpacity('#45B39D');
-        }else if(runningProof=='POG'){
-          this.changeNodesOpacity('#52BE80');
-        }
-        
-        //this.changeArrowsOpacity('0.25');
+        this.changeNodesOpacity('0.25');
+        this.changeArrowsOpacity('0.25');
         let id = `node-${trustLinks[0]}`;
         let node: any = document.getElementById(id);
-        // Find the <rect> element within the <g> element
-        var rectElement = node.querySelector("rect");
-
-        // Access the properties of the <rect> element
-        rectElement.setAttribute('stroke', 'black');
-        rectElement.setAttribute('stroke-width', '2px');
         node.style = "opacity:1;";
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
@@ -1389,11 +1380,13 @@ export class ProofBotComponent implements OnInit {
         this.changeNodesOpacity('0.25');
         this.changeArrowsOpacity('0.25');
         const tL = trustLinks[0];
+        console.log('tL', tL)
         let id = `arrow-` + tL[0] + `-` + tL[1];
+        console.log('id---', id)
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
-        node1.attr("stroke", "black");
+        node1.attr("stroke", "yellow");
         this.currentProof = this.commonServices.getProofName(runningProof);
         let textContent1 = "";
         let textContent2 = "";
@@ -1446,8 +1439,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    //this.changeNodesOpacity("0.25")
-    //this.changeArrowsOpacity("0.25")
+    this.changeNodesOpacity("0.25")
+    this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
