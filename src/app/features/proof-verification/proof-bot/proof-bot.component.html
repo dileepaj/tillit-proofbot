@@ -22,8 +22,6 @@
         (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
         (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
         [tdpId]="tdpId"></app-bot-header>
-
-
       <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
         <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
           <img class="checked-small-img" src="../../../../assets/img/Vector.png">
@@ -50,7 +48,7 @@
           </div>
         </div>
         <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
-          [data]="nodes"></app-poc-graph-view>
+          [data]="nodes" [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)"></app-poc-graph-view>
       </div>
       <!-- end poc view -->
       <!-- bot-segments header-->
@@ -61,10 +59,8 @@
               <div></div>
               <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
                   class="bold-f">{{currentProof}}</span> for Batch ID:
-                between <span class="bold-f">{{currentBatch}}</span> | Product: <span
-                  class="bold-f">{{currentProduct}}</span>
-                and <span class="bold-f">{{currentBatch2}}</span> | Product: <span
-                  class="bold-f">{{currentProduct2}}</span>
+                between <span class="bold-f">{{currentBatch}}</span>
+                and <span class="bold-f">{{currentBatch2}}</span>
                 <a class="ml-1"
                   href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                   target="_blank">
@@ -73,7 +69,7 @@
               </div>
               <ng-template #otherProof>
                 <div>Current Proof: <span class="bold-f">{{currentProof}}</span> for Batch ID:
-                  <span class="bold-f">{{currentBatch}}</span> | Product: <span class="bold-f">{{currentProduct}}</span>
+                  <span class="bold-f">{{currentBatch}}</span>
                   <a class="ml-1"
                     href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                     target="_blank">

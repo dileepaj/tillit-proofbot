@@ -156,8 +156,6 @@ export class SiteScreenComponent {
     var visibleDoc = bodyRect.top + bodyRect.height;
     var visiblPC = pcRect.height * 0.5 + pcRect.top;
     var top = pcHeight - (bodyRect.height - pcRect.height);
-    // console.log(pcRect.top, bodyRect.top);
-    // console.log(visibleDoc, visiblPC, visibleDoc - visiblPC);
     if (visibleDoc - visiblPC < 0) {
       window.scroll({
         top,
@@ -184,8 +182,6 @@ export class SiteScreenComponent {
     await this.sleepFor(1400);
     return new Promise(async (resolve, reject) => {
       var translateUrl = pageUrl
-
-      // console.log(isTranslate, lang, translateUrl);
       this.displayPageUrl = pageUrl;
       this.verificationHttpService.loadPage(translateUrl).subscribe(
         async data => {
@@ -194,8 +190,6 @@ export class SiteScreenComponent {
             return
           }
           try {
-            // this.iframe.nativeElement.contentWindow.location.pathname = '/multiplecompare/[{"title":"sasasa","t1":"qwqwqw","t2":"212dsdsd"}]';
-
             await this.sleepFor(2200);
 
             // extract the domain url (for exterrnaol js files and css)
@@ -205,8 +199,6 @@ export class SiteScreenComponent {
               .join("/");
 
             var parsedUrl = new Url(domainUrl);
-            // console.log(parsedUrl);
-
             if (
               pageUrl
                 .split("/")
@@ -228,12 +220,8 @@ export class SiteScreenComponent {
 
             // format json data
             if (this.isJSON(data)) {
-              // data = JSON.stringify(data, undefined, 2)
               data = `<pre><code>${data}</code></pre>`;
             }
-
-            // console.log(data);
-
             // replace sripts
             this.HTMLData = data.replace(
               /src="(?!http)[\/]?/g,
@@ -257,21 +245,6 @@ export class SiteScreenComponent {
               "style",
               bodyELStyle ? bodyELStyle + ";" + newBodyStyle : newBodyStyle
             );
-
-            // translator
-            // var translatorScript = document.createElement("script");
-            // translatorScript.text = `(() => {
-            //   var isHidden = false;
-            //   while(!isHidden) {
-            //    var gtNvframe = document.querySelectorAll("#gt-nvframe");
-            //    if (gtNvframe && gtNvframe.length > 0) {
-            //       gtNvframe[0].style.display = 'none';
-            //       isHidden = true;
-            //    }
-            //   }
-            // })()`;
-            // bodyEL.appendChild(translatorScript);
-
             const translatorStyle = document.createElement("style");
             translatorStyle.textContent =
               "#gt-nvframe { display: none !important; } body {margin-top: 0px !important}";
@@ -285,7 +258,6 @@ export class SiteScreenComponent {
             doc.close();
 
             this.loadingComplete = true;
-            // console.log(el.innerHTML);
             this.iframe.nativeElement.animate(
               [
                 { transform: "translateY(400px)", opacity: 0 },
@@ -657,8 +629,13 @@ export class SiteScreenComponent {
   }
 
   onRetry() {
-    console.log('retry')
     window.location.reload();
+  }
+
+  OnRetry2() {
+    var iframe = this.elRef.nativeElement.querySelector('iframe');
+    var currentFrame = iframe.contentWindow;
+    iframe.contentWindow.location.reload(true);
   }
 
 }
