@@ -4,8 +4,7 @@ import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { ApiService } from 'src/app/services/api.service';
-import { MatGridListModule } from '@angular/material';
+
 @Component({
   selector: 'app-poc-graph-view',
   templateUrl: './poc-graph-view.component.html',
@@ -221,7 +220,7 @@ export class PocGraphViewComponent implements AfterViewInit {
           labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer; font-weight: bold`,
           id: `${arrowIdName}-${childNode.Data.TxnHash}-${node.Data.TxnHash}`,
           curve: d3.curveBasis,
-          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 3.5px;`,
+          style: `stroke: ${colors.sColor}; fill:${colors.sColor}; stroke-width: 3.5px;`,
           arrowheadStyle: `fill: ${colors.sColor}`,
         });
         edgeValues.push(nodeIndex);

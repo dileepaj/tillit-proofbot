@@ -679,9 +679,9 @@ export class ProofBotComponent implements OnInit {
     this.currentStep = step;
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
-    //change the all nodes opacity
-    this.changeNodesOpacity("0.25")
-    this.changeArrowsOpacity("0.25")
+    // //change the all nodes opacity
+    // this.changeNodesOpacity("0.25")
+    // this.changeArrowsOpacity("0.25")
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
@@ -1352,24 +1352,26 @@ export class ProofBotComponent implements OnInit {
     window.location.reload();
   }
   
-  changeNodesOpacity(opacity: string) {
+  changeNodesOpacity() {
     if (this.proofType == 'poc') {
       let nodes = document.getElementsByClassName('node')
       Array.from(nodes).forEach((node: any) => {
-        node.style = `opacity:${opacity};`
+        let rec:any= document.querySelector(`#${node.id} > rect`)
+        rec.style['stroke']='white'
       })
     }
   } 
 
   changeSpecificNodeOpacity(trustLinks: any[], runningProof: string) {
     console.log('trustLinks', trustLinks, runningProof)
+    this.changeNodesOpacity()
+    this.changeArrowsOpacity()
     if (this.proofType == 'poc') {
       if (runningProof == 'POE' || runningProof == "POG") {
-        this.changeNodesOpacity('0.25');
-        this.changeArrowsOpacity('0.25');
         let id = `node-${trustLinks[0]}`;
-        let node: any = document.getElementById(id);
-        node.style = "opacity:1;";
+        let rec:any= document.querySelector(`#${id} > rect`)
+        rec.style['stroke']='black'
+        rec.style['stroke-width']='4'
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
@@ -1377,8 +1379,6 @@ export class ProofBotComponent implements OnInit {
         this.currentBatch = textContent
         this.currentProduct = textContent.substring(productIndex + 8)
       } else if (runningProof == 'POBL') {
-        this.changeNodesOpacity('0.25');
-        this.changeArrowsOpacity('0.25');
         const tL = trustLinks[0];
         console.log('tL', tL)
         let id = `arrow-` + tL[0] + `-` + tL[1];
@@ -1386,7 +1386,7 @@ export class ProofBotComponent implements OnInit {
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
-        node1.attr("stroke", "yellow");
+        node1.attr("stroke", "black");
         this.currentProof = this.commonServices.getProofName(runningProof);
         let textContent1 = "";
         let textContent2 = "";
@@ -1406,11 +1406,12 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  changeArrowsOpacity(opacity: string) {
+  changeArrowsOpacity() {
     if (this.proofType == 'poc') {
       let nodes = document.getElementsByClassName('edgePath')
       Array.from(nodes).forEach((node: any) => {
-        node.style = `opacity:${opacity};`
+        let rec:any= document.querySelector(`#${node.id} > path`)
+        node.style['stroke']='white'
       })
     }
   }
@@ -1439,8 +1440,8 @@ export class ProofBotComponent implements OnInit {
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     //change the all nodes opacity
-    this.changeNodesOpacity("0.25")
-    this.changeArrowsOpacity("0.25")
+    this.changeNodesOpacity()
+    this.changeArrowsOpacity()
     for (; this.currentStep < Steps.length;) {
       this.isBackToStep = false;
       if (this.isPause) return;
