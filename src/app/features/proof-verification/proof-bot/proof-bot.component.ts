@@ -1363,7 +1363,6 @@ export class ProofBotComponent implements OnInit {
   } 
 
   changeSpecificNodeOpacity(trustLinks: any[], runningProof: string) {
-    console.log('trustLinks', trustLinks, runningProof)
     this.changeNodesOpacity()
     this.changeArrowsOpacity()
     if (this.proofType == 'poc') {
@@ -1380,9 +1379,7 @@ export class ProofBotComponent implements OnInit {
         this.currentProduct = textContent.substring(productIndex + 8)
       } else if (runningProof == 'POBL') {
         const tL = trustLinks[0];
-        console.log('tL', tL)
         let id = `arrow-` + tL[0] + `-` + tL[1];
-        console.log('id---', id)
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
@@ -1458,9 +1455,6 @@ export class ProofBotComponent implements OnInit {
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
-      }
-      if (highlightClickedNode) {
-       this.changeSpecificNodeOpacity(trustLinks, runningProof)
       }
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];

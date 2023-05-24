@@ -52,7 +52,6 @@ export class PocGraphViewComponent implements AfterViewInit {
 
   renderGraph(Nodes: Object) {
     this.isMerkleTreeAvaible=true;
-    console.log("3",this.isMerkleTreeAvaible);
 
     // Create a new directed graph
     var g: any = new dagreD3.graphlib.Graph({ directed: true });
