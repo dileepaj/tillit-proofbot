@@ -155,22 +155,22 @@ export class PocGraphViewComponent implements AfterViewInit {
     this.pocTreeHeight = height;
 
     //listeners
-    d3.selectAll("g.edgePath").on('click', (d: any) => {
-      const from = Nodes[d.v].Data.TxnHash;
-      const to = Nodes[d.w].Data.TxnHash;
-      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
-    });
-    d3.selectAll("g.edgeLabel").on('click', (d: any) => {
-      const from = Nodes[d.v].Data.TxnHash;
-      const to = Nodes[d.w].Data.TxnHash;
-      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
-    });
-    d3.selectAll("g.node").on('click', (d: any) => {
-      if (Nodes[d].Data.TxnType == "0")
-        this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
-      else if (Nodes[d].Data.TxnType == "2")
-        this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
-    });
+    // d3.selectAll("g.edgePath").on('click', (d: any) => {
+    //   const from = Nodes[d.v].Data.TxnHash;
+    //   const to = Nodes[d.w].Data.TxnHash;
+    //   this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
+    // });
+    // d3.selectAll("g.edgeLabel").on('click', (d: any) => {
+    //   const from = Nodes[d.v].Data.TxnHash;
+    //   const to = Nodes[d.w].Data.TxnHash;
+    //   this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
+    // });
+    // d3.selectAll("g.node").on('click', (d: any) => {
+    //   if (Nodes[d].Data.TxnType == "0")
+    //     this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
+    //   else if (Nodes[d].Data.TxnType == "2")
+    //     this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
+    // });
   }
 
   setGraphTitle(title: string){
@@ -219,7 +219,7 @@ export class PocGraphViewComponent implements AfterViewInit {
           labelStyle: `font-size: 10px; fill: ${colors.sColor}; cursor: pointer; font-weight: bold`,
           id: `${arrowIdName}-${childNode.Data.TxnHash}-${node.Data.TxnHash}`,
           curve: d3.curveBasis,
-          style: `stroke: ${colors.sColor}; fill:${colors.sColor}; stroke-width: 3.5px;`,
+          style: `stroke: ${colors.sColor}; fill:none; stroke-width: 3.5px;`,
           arrowheadStyle: `fill: ${colors.sColor}`,
         });
         edgeValues.push(nodeIndex);
