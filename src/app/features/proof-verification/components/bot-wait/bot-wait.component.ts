@@ -1,0 +1,36 @@
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@angular/core';
+
+@Component({
+  selector: 'app-bot-wait',
+  templateUrl: './bot-wait.component.html',
+  styleUrls: ['./bot-wait.component.css']
+})
+export class BotWaitComponent implements OnInit {
+
+  @Input() isStartDemo: Boolean;
+  @Input() initialHeight: string;
+  @Input() initialWidth: string;
+  @Input() isLoading: string;
+  @Input() color: string;
+  @Input() mode: string;
+  @Input() value: string;
+  @Output() startDemoFn = new EventEmitter();
+  @Input() LoadingProofType: string;
+  @Input() TXNhash: string;
+  @Input() product
+  @Input() batch
+  @Input() tdpId
+  countdown: number = 1;
+
+  constructor() { }
+
+  ngOnInit() {
+    //this.startDemoFn.emit('');
+    setInterval(() => {
+        if (this.countdown > 0) {
+          this.countdown--;
+        }
+      }, 1000);
+   
+  }
+}

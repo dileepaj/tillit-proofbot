@@ -32,7 +32,7 @@
 </div>
 <!-- language dropdown end -->
 
-<div class="d-flex justify-content-between align-items-center mt-1">
+<div class="d-flex justify-content-between align-items-center mt-1" *ngIf="!isStartDemo">
   <!-- Controllers Start -->
   <div class="d-flex justify-content-center align-items-center">
     <button *ngIf="isPause" class="btn btn-sm btn-success btnPausePlay" (click)="emitTogglePlayPauseFn()"
