@@ -28,6 +28,7 @@ export class BotHeaderComponent implements OnInit {
   @Input() product
   @Input() batch
   @Input() tdpId
+  @Input() isStartDemo: Boolean;
 
   constructor(public commonServices: CommonService) { }
 

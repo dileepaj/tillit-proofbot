@@ -67,7 +67,7 @@ import { CommonService } from "src/app/services/common.service";
 })
 export class ProofBotComponent implements OnInit {
   StorageTitle: string = "Storage Container";
-  ProofContainerTitle: string = "Proof Container";
+  ProofContainerTitle: string = "";
   @Input() isMerkleTreeAvaible: Boolean;
   @Input() initialWidth: string = "100%";
   @Input() initialHeight: string = "100%";
@@ -145,6 +145,7 @@ export class ProofBotComponent implements OnInit {
   currentBatch2: string = "";
   currentProduct: string = "";
   currentProduct2: string = "";
+  @Input() isProofStart:Boolean;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -212,6 +213,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   async startDemoFn() {
+    this.isProofStart=true;
     if (!!this.proofType && this.availableProofs.includes(this.proofType))
       if (!!this.proofBotParams.params.type) {
         this.TXNhash = this.proofBotParams.params.txn;
