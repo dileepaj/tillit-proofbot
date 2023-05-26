@@ -1,0 +1,142 @@
+.btn .fa-youtube-play {
+    font-size: 5rem;
+    transition: 800ms;
+    color: rgb(35, 37, 160);
+    transition-timing-function: ease-in-out;
+  }
+  
+  .btn .fa-youtube-play:hover {
+    font-size: 5.4rem;
+    color: rgb(20, 18, 141);
+  }
+  
+  .proofbot-home-img { 
+    width:360px;
+    align-self:center;
+    margin-top: 10vh;
+  }
+  
+  @media only screen and (max-width: 1280px) {
+    .proofbot-home-img { 
+      width:325px
+      }
+    .proofLoadingTable{
+      font-family: Inter;
+      font-size: 14px;
+      width:325px;
+      align-self:center;
+      }
+  }
+  @media only screen and (max-width: 720px) {
+    .proofbot-home-img { 
+      width:225px
+      }
+    .proofLoadingTable{
+      font-family: Inter;
+      font-size: 14px;
+      width:225px;
+      align-self:center;
+      }
+  }
+  
+  .loader-view-main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+  }
+  .proofLodingHeader{
+    background: #5B5B5B;
+    border: 1px solid #D2D2D2;
+    font-family: Inter;
+    font-size: 14px;
+    align-items: center;
+    color: #FFFFFF;
+  }
+  .proofLoadingTable{
+    font-family: Inter;
+    font-size: 14px;
+    width:360px;
+    align-self:center;
+    text-align: center;
+    border: 1px solid #D2D2D2;
+  }
+  .LoadingWaitLine{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+    margin-top: 2vh;
+  }
+  .proofbot-loding-img{
+    width: 40px;
+    height: 24.43px;
+    left: 572px;
+    top: 438px;
+    align-self:center;
+    margin-top: 5vh;
+  }
+  .proofLoadingColumn{
+    border: 1px solid #D2D2D2;
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    font-size: 10px;
+  }
+  
+  .spinner > div {
+    background-color: #B4B4B4;
+    height: 20px;
+    width: 6px;
+    display: inline-block;
+  
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+  
+  .spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  
+  .spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  
+  .spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  
+  .spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+  
+  @-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+  }
+  
+  @keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+      transform: scaleY(0.4);
+      -webkit-transform: scaleY(0.4);
+    }  20% {
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+  }
+  
+  .lable-text{
+    font-size: 14px;
+  }

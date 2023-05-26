@@ -18,12 +18,11 @@ export class BotSegmentsComponent implements OnInit {
 
   ngOnInit() {}
   
-
   emitBackToStepFn(NO: number) {
     this.backToStepFn.emit(NO);
   
   }
-
+  
   emitBackToActionFn(NO: number) {
     this.backToActionFn.emit(NO);
   }

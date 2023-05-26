@@ -6,24 +6,22 @@
     }" [class]="isTheater ? 'p-3' : 'p-0'">
     <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
       [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"
-      (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isStartDemo" style="width: 100%;" [ngStyle]="{
+      (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isProofStart" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
         maxWidth: initialWidth
       }" [product]="product" [batch]="batch" [tdpId]="tdpId"></app-bot-loader>
 
-    <div style="overflow-y: scroll;" id="verificationScreen" *ngIf="isStartDemo" [@screenAnimationDemo] [ngStyle]="{
+    <div style="overflow-y: scroll;" id="verificationScreen" *ngIf="isProofStart" [@screenAnimationDemo] [ngStyle]="{
         height: vsHeightExpand ? maxHeight : minHeight,
         maxWidth: vsHeightExpand ? maxWidth : minWidth
       }">
-      <app-bot-header [lang]="lang" [isPause]="isPause" [ProofContainerTitle]="ProofContainerTitle"
+      <app-bot-header *ngIf="isProofStart" [lang]="lang" [isPause]="isPause" [ProofContainerTitle]="ProofContainerTitle"
         [isPlayCompleted]="isPlayCompleted" [currentStep]="currentStep" [totalSteps]="totalSteps"
         [playbackSpeed]="playbackSpeed" [isTheater]="isTheater" [vsHeightExpand]="vsHeightExpand"
         (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()" (stopFn)="stopFn()"
         (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
         (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
         [tdpId]="tdpId"></app-bot-header>
-
-
       <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
         <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
           <img class="checked-small-img" src="../../../../assets/img/Vector.png">
@@ -31,7 +29,7 @@
       </div>
 
       <!-- poc view -->
-      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc' && isStartDemo">
         <div class="row ">
           <div class="col-12">
             <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
@@ -50,21 +48,19 @@
           </div>
         </div>
         <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
-          [data]="nodes"></app-poc-graph-view>
+          [data]="nodes" [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)"></app-poc-graph-view>
       </div>
       <!-- end poc view -->
       <!-- bot-segments header-->
-      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc'">
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc' && isStartDemo">
         <div class="row ">
           <div class="col-12">
             <div class="d-flex justify-content-between section-header">
               <div></div>
               <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
-                  class="bold-f">{{currentProof}}</span> for Batch ID:
-                between <span class="bold-f">{{currentBatch}}</span> | Product: <span
-                  class="bold-f">{{currentProduct}}</span>
-                and <span class="bold-f">{{currentBatch2}}</span> | Product: <span
-                  class="bold-f">{{currentProduct2}}</span>
+                  class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> for
+                between <span class="bold-f">&nbsp;{{currentBatch}}&nbsp;</span> 
+                and <span class="bold-f">&nbsp;{{currentBatch2}}&nbsp;</span>
                 <a class="ml-1"
                   href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                   target="_blank">
@@ -72,8 +68,8 @@
                 </a>
               </div>
               <ng-template #otherProof>
-                <div>Current Proof: <span class="bold-f">{{currentProof}}</span> for Batch ID:
-                  <span class="bold-f">{{currentBatch}}</span> | Product: <span class="bold-f">{{currentProduct}}</span>
+                <div>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> 
+                  <span class="bold-f">&nbsp;{{currentBatch}}&nbsp;</span>
                   <a class="ml-1"
                     href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                     target="_blank">
@@ -91,7 +87,7 @@
       </div>
       <!--end bot-segments header-->
       <!-- description -->
-      <div class="mb-2" [collapse]="isCollapsedSegment">
+      <div class="mb-2" [collapse]="isCollapsedSegment" *ngIf="isStartDemo">
         <div class="row justify-content-center align-item-center text-center">
           <span style="font-size: 14px; font-weight: 500; font-family: Inter;">Current Process :</span>
         </div>
@@ -102,16 +98,16 @@
         </div>
       </div>
       <!-- end description -->
-
+      <app-bot-wait *ngIf="!isStartDemo"></app-bot-wait>
       <!-- bot-segments header-->
-      <app-bot-segments id="steppersFrame" [collapse]="isCollapsedSegment" [SegmentNumber]="SegmentNumber" [icon]="icon"
+      <app-bot-segments *ngIf="isStartDemo" id="steppersFrame" [collapse]="isCollapsedSegment" [SegmentNumber]="SegmentNumber" [icon]="icon"
         [steppers]="steppers" [subSteppers]="subSteppers" [lang]="lang" (backToStepFn)="backToStep($event)"
-        (backToActionFn)="backToAction($event)"></app-bot-segments>
+        (backToActionFn)="backToAction($event)">
+      </app-bot-segments>
       <!--end bot-segments header-->
 
       <!-- bot screen -->
-      <div style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px; font-family: Inter;  
-        ">
+      <div  style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px; font-family: Inter;">
         <div *ngIf="isToast" class="toast-notification float-right px-2" [ngStyle]="{ top: toastTop, left: toastLeft }"
           [@inOutAnimation]>
           <p class="m-0">{{ toastMSG }}</p>
@@ -146,6 +142,7 @@
             </div>
           </div>
         </div>
+        <app-bot-wait *ngIf="!isStartDemo"></app-bot-wait>
         <app-bot-globaldata id="globalInformation" [collapse]="isCollapsedMainValues" [@screenAnimation]
           [ngStyle]="{height: gsHeightExpand ? '98vh' : '24vh'}" [globalData]="globalData" [gsOverflowX]="gsOverflowX"
           [lang]="lang"> </app-bot-globaldata>

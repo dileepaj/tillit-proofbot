@@ -25,16 +25,20 @@
       </tr>
       <tr class="proofLoadingColumn" *ngIf="!!tdpId">
         <td class="proofLoadingColumn">
-          TDP ID
+          Traceability Data ID
         </td>
         <td class="proofLoadingColumn">
           {{tdpId}}
         </td>
       </tr>
     </table>
-    <!-- <p style="word-break: break-all; text-transform: uppercase;">Loading {{LoadingProofType}} Proof</p> -->
+  
   </div>
-  <div id="demo" style="margin-top: 5vh;">
+  <button class="btn" (click)="emitStartDemoFn()" *ngIf="!isLoading">
+    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+  </button>
+  
+  <!-- <div id="demo" style="margin-top: 5vh;">
     <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading" style="height: 4rem;">
       <div *ngIf="isLoading" class="spinner">
         <div class="rect1 mr-1"></div>
@@ -44,5 +48,5 @@
         <div class="rect5 mr-1"></div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
