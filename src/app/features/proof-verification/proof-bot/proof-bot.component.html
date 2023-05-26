@@ -58,9 +58,9 @@
             <div class="d-flex justify-content-between section-header">
               <div></div>
               <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
-                  class="bold-f">{{currentProof}}</span> for
-                between <span class="bold-f">{{currentBatch}}</span> 
-                and <span class="bold-f">{{currentBatch2}}</span>
+                  class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> for
+                between <span class="bold-f">&nbsp;{{currentBatch}}&nbsp;</span> 
+                and <span class="bold-f">&nbsp;{{currentBatch2}}&nbsp;</span>
                 <a class="ml-1"
                   href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                   target="_blank">
@@ -68,8 +68,8 @@
                 </a>
               </div>
               <ng-template #otherProof>
-                <div>Current Proof: <span class="bold-f">{{currentProof}}</span> for Batch ID:
-                  <span class="bold-f">{{currentBatch}}</span>
+                <div>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> 
+                  <span class="bold-f">&nbsp;{{currentBatch}}&nbsp;</span>
                   <a class="ml-1"
                     href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                     target="_blank">
