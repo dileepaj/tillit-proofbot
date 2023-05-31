@@ -5921,7 +5921,7 @@ export class BuildPOCJsonService {
                   "CSS": "",
                   "FormatType": "",
                   "GivenDataToStorageData": {
-                    "Type": "pobl",
+                    "Type": "Pocpobl",
                     "Key": "&{TextPobl215}",
                     "Value": node.TrustLinks[1]
                   },
@@ -6656,6 +6656,71 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
+                "StepNo": numPobl + 38,
+                "SegmentNo": segPobl + 13,
+                "FrameID": 12,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "TextComparison",
+                  "SubActionArguments": {
+                    "StepNo": numPobl + 38,
+                    "SegmentNo": segPobl + 13,
+                    "FrameID": 12,
+                    "FrameTitle": "&{TextPobl168}",
+                    "ActionTitle": "&{TextPobl169}",
+                    "ActionDescription": "&{TextPobl170}",
+                    "FrameTitle_1": "&{TextPobl168}",
+                    "ActionTitle_1": "&{TextPobl171}",
+                    "ActionDescription_1": "&{TextPobl172}",
+                    "FrameTitle_2": "&{TextPobl168}",
+                    "ActionTitle_2": "&{TextPobl173}",
+                    "ActionDescription_2": "&{TextPobl174}",
+                    "FrameTitle_3": "&{TextPobl168}",
+                    "ActionTitle_3": "&{TextPobl175}",
+                    "ActionDescription_3": "&{TextPobl176}",
+                    "ToastMessage": "&{TextPobl177}",
+                    "InputKeyName": "the base64 decoded Identifier values from the transactions.",
+                    "InputValue": '[{\"title\": \"Previous Transaction hash from main transaction & Merge Id\", \"t1\": \"${MergeIDhasheDecoded}\", \"t2\":' + node.TrustLinks[1] + '"}]"'
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
                 "StepNo": numPobl + 39,
                 "SegmentNo": segPobl + 14,
                 "FrameID": 13,
@@ -6688,8 +6753,9 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [],
                   "Compare": {
-                    "t1": "MainTXNPreviousTXNDecoded",
-                    "t2": node.TrustLinks[1]
+                    "blockchainValue1": "MainTXNPreviousTXNDecoded",
+                    "blockchainValue2":"MergeIDhasheDecoded",
+                    "expectedValue1": node.TrustLinks[1]
                   }
                 },
                 "ActionResultVariable": "",
