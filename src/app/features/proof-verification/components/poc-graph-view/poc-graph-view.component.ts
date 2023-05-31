@@ -262,7 +262,6 @@ export class PocGraphViewComponent implements AfterViewInit {
   getColorForTxnType(type) {
     var sColor : string, lColor : string, bColor : string;
     switch (type) {
-      //
       case "0":
         sColor = "#45B39D";
         bColor = "#45B39D";
@@ -286,11 +285,6 @@ export class PocGraphViewComponent implements AfterViewInit {
       case "5":
         sColor = "#A569BD";
         bColor = "#A569BD";
-        lColor = "white";
-        break
-      case "9":
-        sColor = "#d1b92e";
-        bColor = "#e6cb37";
         lColor = "white";
         break
       case "9":

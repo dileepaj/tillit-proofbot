@@ -6,49 +6,53 @@
         },
         "SegName2": {
             "ja": "現在のTXNHashをデコード",
-            "en": "Decode Current TXNHash"
+            "en": "Decode Current TXNHash and Merge ID"
         },
         "SegName3": {
+            "ja": "現在のTXNHashをデコード",
+            "en": "Decode Merge ID"
+        },
+        "SegName4": {
             "ja": "現在のトランザクションを取得",
             "en": "GET Current Transaction"
         },
-        "SegName4": {
+        "SegName5": {
             "ja": "IDを解読",
             "en": "Decode Identifier"
         },
-        "SegName5": {
+        "SegName6": {
             "ja": "プロダクトIDを解読",
             "en": "Decode Product ID"
         },
-        "SegName6": {
+        "SegName7": {
             "ja": "バックリンクTXNHashの解読",
             "en": "Decode Backlink TXNHash"
         },
-        "SegName7": {
+        "SegName8": {
             "ja": "バックリンクトランザクションの取得",
             "en": "GET Backlink Transaction"
         },
-        "SegName8": {
+        "SegName9": {
             "ja": "現在のトランザクションのデコード",
             "en": "Decode Current Transaction"
         },
-        "SegName9": {
+        "SegName10": {
             "ja": "現在のトランザクションを取得",
             "en": "GET Current Transaction"
         },
-        "SegName10": {
+        "SegName11": {
             "ja": "IDをデコード",
             "en": "Decode Identifier"
         },
-        "SegName11": {
+        "SegName12": {
             "ja": "プロダクトIDを解読",
             "en": "Decode Product ID"
         },
-        "SegName12": {
+        "SegName13": {
             "ja": "比較",
             "en": "Comparison"
         },
-        "SegName13": {
+        "SegName14": {
             "ja": "概要",
             "en": "Summary"
         }
@@ -205,8 +209,120 @@
             }
         },
         {
-            "SegmentNo": 3,
+            "SegmentNo": 2,
             "StepNo": 6,
+            "Languages": {
+                "Text197": {
+                    "ja": "CurrentTXNハッシュの抽出",
+                    "en": "Extract Merge Id Hash"
+                },
+                "Text198": {
+                    "ja": "トランザクションの詳細から、CurrentTXN Hash (base64 encoded)を選択",
+                    "en": "Select the Merge ID Hash (base64 encoded) from the transaction details."
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 7,
+            "Languages": {
+                "Text199": {
+                    "ja": "現在のTXNをハイライト表示",
+                    "en": "Highlight the Merge ID"
+                },
+                "Text200": {
+                    "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+                    "en": "Select the  Merge Id  from the transaction details"
+                },
+                "Text201": {
+                    "ja": "MainTXNCurrentTXNHashをハイライト表示",
+                    "en": "Highlight the Merge Id Hash"
+                },
+                "Text202": {
+                    "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+                    "en": "Select the encoded Merge Id Hash from the transaction details"
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 8,
+            "Languages": {
+                "Text203": {
+                    "ja": "Base64エンコードされたCurrentTXNを保存",
+                    "en": "Save Base64Encoded Merge Id"
+                },
+                "Text204": {
+                    "ja": "Base64でエンコードされたCurrentTXNハッシュ値を将来の使用のために保存",
+                    "en": "Save the base64 encoded Merge Id Hash value for future usage."
+                },
+                "Text205": {
+                    "ja": "Merge Id (base64)",
+                    "en": "Merge Id (base64)"
+                }
+            }
+        },
+        {
+            "SegmentNo": 2,
+            "StepNo": 9,
+            "Languages": {
+                "Text206": {
+                    "ja": "ステップ２－現在のTXNをデコードする",
+                    "en": "Step 2 - Decode Merge Id"
+                },
+                "Text207": {
+                    "ja": "Base64DecoderのWebページを読み込む",
+                    "en": "Load Base64Decoder Webpage"
+                },
+                "Text208": {
+                    "ja": "Base64でエンコードされたCurrentTXNハッシュをデコード",
+                    "en": "Decode the base64 encoded Merge Id Hash"
+                },
+                "Text209": {
+                    "ja": "Base64エンコードされたデータの入力",
+                    "en": "Input Base64Encoded Data"
+                },
+                "Text210": {
+                    "ja": "Base64でエンコードされたCurrentTXNハッシュの入力",
+                    "en": "Input the base64 encoded Merge Id Hash"
+                },
+                "Text211": {
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click Decode Button"
+                },
+                "Text212": {
+                    "ja": "デコードボタンをクリック",
+                    "en": "Click the decode button"
+                },
+                "Text213": {
+                    "ja": "Base64デコードデータの表示",
+                    "en": "View Base64Decoded Data"
+                },
+                "Text214": {
+                    "ja": "デコードされたCurrentTXNハッシュの出力を得る",
+                    "en": "Get the output of the decoded Merge Id Hash"
+                },
+                "Text215": {
+                    "ja": "Base64デコードデータの保存",
+                    "en": "Save Base64Decoded Data"
+                },
+                "Text216": {
+                    "ja": "将来の使用のためにデコードされたCurrentTXNハッシュを保存",
+                    "en": "Save the decoded Merge Id Hash for future usage"
+                },
+                "Text217": {
+                    "ja": "デコードされたCurrentTXNハッシュ",
+                    "en": "Decoded Merge Id Hash"
+                },
+                "Text218": {
+                    "ja": "Merge Id",
+                    "en": "Merge Id"
+                }
+            }
+        },
+        {
+            "SegmentNo": 3,
+            "StepNo": 10,
             "Languages": {
                 "Text28": {
                     "ja": "ステップ３－現在のトランザクションの取得",
@@ -240,7 +356,7 @@
         },
         {
             "SegmentNo": 4,
-            "StepNo": 7,
+            "StepNo": 11,
             "Languages": {
                 "Text35": {
                     "ja": "Base64EncodedのIDを選択",
@@ -254,7 +370,7 @@
         },
         {
             "SegmentNo": 4,
-            "StepNo": 8,
+            "StepNo": 12,
             "Languages": {
                 "Text37": {
                     "ja": "IDをハイライト表示",
@@ -276,7 +392,7 @@
         },
         {
             "SegmentNo": 4,
-            "StepNo": 9,
+            "StepNo": 13,
             "Languages": {
                 "Text41": {
                     "ja": "Base64EncodeされたIDの保存",
@@ -294,7 +410,7 @@
         },
         {
             "SegmentNo": 4,
-            "StepNo": 10,
+            "StepNo": 14,
             "Languages": {
                 "Text43": {
                     "ja": "ステップ４－MainTXN IDのデコード",
@@ -352,7 +468,7 @@
         },
         {
             "SegmentNo": 5,
-            "StepNo": 11,
+            "StepNo": 15,
             "Languages": {
                 "Text55": {
                     "ja": "Base64EncodedのProductIDを選択",
@@ -366,7 +482,7 @@
         },
         {
             "SegmentNo": 5,
-            "StepNo": 12,
+            "StepNo": 16,
             "Languages": {
                 "Text57": {
                     "ja": "productIdをハイライト表示",
@@ -388,7 +504,7 @@
         },
         {
             "SegmentNo": 5,
-            "StepNo": 13,
+            "StepNo": 17,
             "Languages": {
                 "Text60": {
                     "ja": "「Base64EncodedのProductIDを保存",
@@ -406,7 +522,7 @@
         },
         {
             "SegmentNo": 5,
-            "StepNo": 14,
+            "StepNo": 18,
             "Languages": {
                 "Text62": {
                     "ja": "ステップー５ーMainTXN ProductIDのデコード",
@@ -464,7 +580,7 @@
         },
         {
             "SegmentNo": 6,
-            "StepNo": 15,
+            "StepNo": 19,
             "Languages": {
                 "Text74": {
                     "ja": "Base64EncodedのPreviousTXNを選択",
@@ -478,7 +594,7 @@
         },
         {
             "SegmentNo": 6,
-            "StepNo": 16,
+            "StepNo": 20,
             "Languages": {
                 "Text76": {
                     "ja": "前のTXNをハイライト表示",
@@ -500,7 +616,7 @@
         },
         {
             "SegmentNo": 6,
-            "StepNo": 17,
+            "StepNo": 21,
             "Languages": {
                 "Text80": {
                     "ja": "Base64Encoded で保存 PreviousTXN",
@@ -518,7 +634,7 @@
         },
         {
             "SegmentNo": 6,
-            "StepNo": 18,
+            "StepNo": 22,
             "Languages": {
                 "Text82": {
                     "ja": "ステップ５ーMainTXN のデコード 前のハッシュ",
@@ -576,7 +692,7 @@
         },
         {
             "SegmentNo": 7,
-            "StepNo": 19,
+            "StepNo": 23,
             "Languages": {
                 "Text94": {
                     "ja": "ステップ７－バックリンクのトランザクションを取得",
@@ -610,7 +726,7 @@
         },
         {
             "SegmentNo": 8,
-            "StepNo": 20,
+            "StepNo": 24,
             "Languages": {
                 "Text101": {
                     "ja": "Base64EncodedのCurrentTXNを選択",
@@ -624,7 +740,7 @@
         },
         {
             "SegmentNo": 8,
-            "StepNo": 21,
+            "StepNo": 25,
             "Languages": {
                 "Text103": {
                     "ja": "現在のTXNをハイライト表示",
@@ -646,7 +762,7 @@
         },
         {
             "SegmentNo": 8,
-            "StepNo": 22,
+            "StepNo": 26,
             "Languages": {
                 "Text107": {
                     "ja": "Base64エンコードされたCurrentTXNを保存",
@@ -668,7 +784,7 @@
         },
         {
             "SegmentNo": 8,
-            "StepNo": 23,
+            "StepNo": 27,
             "Languages": {
                 "Text109": {
                     "ja": "ステップ９ーデコード PreviousTXN CurentTXN ハッシュ",
@@ -726,7 +842,7 @@
         },
         {
             "SegmentNo": 9,
-            "StepNo": 24,
+            "StepNo": 28,
             "Languages": {
                 "Text121": {
                     "ja": "ステップ１０－バックリンクの現在のトランザクションを取得",
@@ -760,7 +876,7 @@
         },
         {
             "SegmentNo": 9,
-            "StepNo": 25,
+            "StepNo": 29,
             "Languages": {
                 "Text128": {
                     "ja": "Base64EncodedのIDを選択",
@@ -774,7 +890,7 @@
         },
         {
             "SegmentNo": 10,
-            "StepNo": 26,
+            "StepNo": 30,
             "Languages": {
                 "Text130": {
                     "ja": "IDをハイライト表示",
@@ -796,7 +912,7 @@
         },
         {
             "SegmentNo": 10,
-            "StepNo": 27,
+            "StepNo": 31,
             "Languages": {
                 "Text134": {
                     "ja": "Base64EncodeされたIDの保存",
@@ -814,7 +930,7 @@
         },
         {
             "SegmentNo": 10,
-            "StepNo": 28,
+            "StepNo": 32,
             "Languages": {
                 "Text136": {
                     "ja": "ステップ１１－PreviousTXN の CurrentTXN のIDをデコード",
@@ -872,7 +988,7 @@
         },
         {
             "SegmentNo": 11,
-            "StepNo": 29,
+            "StepNo": 33,
             "Languages": {
                 "Text148": {
                     "ja": "Base64EncodedのProductIDを選択",
@@ -886,7 +1002,7 @@
         },
         {
             "SegmentNo": 11,
-            "StepNo": 30,
+            "StepNo": 34,
             "Languages": {
                 "Text150": {
                     "ja": "productIdをハイライト表示",
@@ -908,7 +1024,7 @@
         },
         {
             "SegmentNo": 11,
-            "StepNo": 31,
+            "StepNo": 35,
             "Languages": {
                 "Text154": {
                     "ja": "「Base64EncodedのProductIDを保存",
@@ -926,7 +1042,7 @@
         },
         {
             "SegmentNo": 11,
-            "StepNo": 32,
+            "StepNo": 36,
             "Languages": {
                 "Text156": {
                     "ja": "ステップ１２－PreviousTXNとCurrentTXN の ProductID をデコード",
@@ -984,7 +1100,7 @@
         },
         {
             "SegmentNo": 12,
-            "StepNo": 34,
+            "StepNo": 37,
             "Languages": {
                 "Text168": {
                     "ja": "ステップ１３－",
@@ -1030,7 +1146,7 @@
         },
         {
             "SegmentNo": 13,
-            "StepNo": 34,
+            "StepNo": 38,
             "Languages": {
                 "Text168": {
                     "ja": "ステップ１３－",
@@ -1076,7 +1192,7 @@
         },
         {
             "SegmentNo": 14,
-            "StepNo": 35,
+            "StepNo": 39,
             "Languages": {
                 "Text178": {
                     "ja": "ステップ１４－検証概要",

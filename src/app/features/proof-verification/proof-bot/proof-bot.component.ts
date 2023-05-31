@@ -16,6 +16,7 @@ import { ElementDividerComponent } from "../components/element-divider/element-d
 import { SiteScreenComponent } from "../components/site-screen/site-screen.component";
 import { BotGlobaldataComponent } from "../components/bot-globaldata/bot-globaldata.component";
 import * as POBLJSON from "../ProofJSONs/POBL.json";
+import * as POBLMJSON from "../ProofJSONs/POBL-Merge.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
@@ -146,6 +147,11 @@ export class ProofBotComponent implements OnInit {
   currentProduct: string = "";
   currentProduct2: string = "";
   @Input() isProofStart:Boolean;
+  completedProofs: any[]=[];
+  startedProofs: any[]=[];
+  currentId: string="";
+  currentProofType: string="";
+  isTreeview: boolean = false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -275,7 +281,7 @@ export class ProofBotComponent implements OnInit {
     var langJson: any;
     switch (this.proofType) {
       case "pobl":
-        protocolJson = POBLJSON;
+        protocolJson = POBLMJSON;
         langJson = POBLLangJSON;
         break;
       case "pog":
@@ -290,6 +296,8 @@ export class ProofBotComponent implements OnInit {
         let poc = await this.pocJsonService.buildPOCJson(this.nodesWithMerkleTree)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
+        console.log("----",JSON.stringify(langJson));
+        console.log("----8888",JSON.stringify(protocolJson));
         break;
       default:
         break;
@@ -335,6 +343,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
+    console.log("json-----------",JSON.parse(data))
     return JSON.parse(data);
   }
 
@@ -695,7 +704,12 @@ export class ProofBotComponent implements OnInit {
         ActionType,
         ActionParameters
       } = Action;
-
+      if(this.proofType=='poc'){
+        this.startedProofs.push({
+          trustLink:ActionParameters.TrustLinks,
+          type:ActionParameters.StartedProofType
+        });
+      }
       // highlight the running nodes and back-links
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
@@ -727,10 +741,24 @@ export class ProofBotComponent implements OnInit {
           this.setGlobalValuesOnFrames(Header, stepData);
           if (scRef && ActionParameters.InnerHTML) {
             if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
+              if(this.proofType=='poc'){
+                this.completedProofs.push({
+                  CompletedProofType:this.currentProof,
+                  TxnHash:this.currentId
+                });
+              }
+              console.log("comp",this.completedProofs);
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
               this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
             } else {
+              if(this.proofType=='poc'){
+                this.completedProofs.push({
+                  CompletedProofType:this.currentProofType,
+                  TxnHash:this.currentId
+                });
+              }
+              console.log("comp",this.completedProofs);
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
             }
@@ -1299,9 +1327,17 @@ export class ProofBotComponent implements OnInit {
     let status = true
     switch (this.proofType) {
       case "pobl":
-        if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
+        if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
+          if(this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]){
           status = false
           this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+          }
+        }
+        if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
+          if(this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]){
+            status = false
+            this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+          }
         }
         break;
       case "poe":
@@ -1323,6 +1359,12 @@ export class ProofBotComponent implements OnInit {
             this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
           }
         } else if (this.currentProof == "Proof of Genesis") {
+          if (this.variableStorage[compare.t1] != compare.t2) {
+            status = false
+            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+          }
+        }
+        else if (this.currentProof == "Proof of Genesis") {
           if (this.variableStorage[compare.t1] != compare.t2) {
             status = false
             this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
@@ -1368,7 +1410,7 @@ export class ProofBotComponent implements OnInit {
     this.changeNodesOpacity()
     this.changeArrowsOpacity()
     if (this.proofType == 'poc') {
-      if (runningProof == 'POE' || runningProof == "POG") {
+      if (runningProof == 'POE'|| runningProof == 'poe' || runningProof == "POG"||runningProof == 'pog') {
         let id = `node-${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
         rec.style['stroke']='black'
@@ -1379,14 +1421,19 @@ export class ProofBotComponent implements OnInit {
         let productIndex = textContent.indexOf('Product:')
         this.currentBatch = textContent
         this.currentProduct = textContent.substring(productIndex + 8)
-      } else if (runningProof == 'POBL') {
+        this.currentId = id;
+        this.currentProofType= runningProof.toLowerCase();
+        console.log("oo", this.currentProofType);
+      } else if (runningProof == 'POBL'||runningProof == 'pobl') {
         const tL = trustLinks[0];
         let id = `arrow-` + tL[0] + `-` + tL[1];
+        this.currentId = id;
+        this.currentProof = this.commonServices.getProofName(runningProof);
+        this.currentProofType= runningProof.toLowerCase();
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
         node1.attr("stroke", "black");
-        this.currentProof = this.commonServices.getProofName(runningProof);
         let textContent1 = "";
         let textContent2 = "";
         let nodeText1 = d3.select(`#node-${tL[0]}`);
@@ -1402,6 +1449,7 @@ export class ProofBotComponent implements OnInit {
         this.currentProduct = textContent1.substring(productIndex1 + 8);
         this.currentProduct2 = textContent2.substring(productIndex2 + 8);
       }
+      console.log("oo-", this.currentProofType);
     }
   }
 
