@@ -226,6 +226,7 @@ export class BuildPOCJsonService {
   }
 
   orderedNodes = []; // Initialize an empty array to hold the matching LastTxnHash values
+  TotalProofCount: number = 0;
   constructor() { }
 
   async buildPOCJson(data: any): Promise<any> {
@@ -5921,7 +5922,7 @@ export class BuildPOCJsonService {
                   "CSS": "",
                   "FormatType": "",
                   "GivenDataToStorageData": {
-                    "Type": "Pocpobl",
+                    "Type": "poblOfPoc",
                     "Key": "&{TextPobl215}",
                     "Value": node.TrustLinks[1]
                   },
@@ -6558,7 +6559,7 @@ export class BuildPOCJsonService {
                   "SubActionArguments": {
                     "StepNo": numPobl + 37,
                     "SegmentNo": segPobl + 12,
-                    "FrameID": 12,
+                    "FrameID": 7,
                     "FrameTitle": "&{TextPobl168}",
                     "ActionTitle": "&{TextPobl169}",
                     "ActionDescription": "&{TextPobl170}",
@@ -6623,7 +6624,7 @@ export class BuildPOCJsonService {
                   "SubActionArguments": {
                     "StepNo": numPobl + 38,
                     "SegmentNo": segPobl + 13,
-                    "FrameID": 12,
+                    "FrameID": 7,
                     "FrameTitle": "&{TextPobl168}",
                     "ActionTitle": "&{TextPobl169}",
                     "ActionDescription": "&{TextPobl170}",
@@ -6638,7 +6639,7 @@ export class BuildPOCJsonService {
                     "ActionDescription_3": "&{TextPobl176}",
                     "ToastMessage": "&{TextPobl177}",
                     "InputKeyName": "the base64 decoded Identifier values from the transactions.",
-                    "InputValue": '[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\":' + node.TrustLinks[1] + '"}]"'
+                    "InputValue": "[{\"title\": \" Merge ID   hash from main transaction & backlink transaction\", \"t1\": \"${MergeIDhasheDecoded}\", \"t2\": \"${ExpectedPreviousTxnHash}\"}]"
                   }
                 },
                 "ActionResultVariable": "",
@@ -6703,7 +6704,7 @@ export class BuildPOCJsonService {
                     "ActionDescription_3": "&{TextPobl176}",
                     "ToastMessage": "&{TextPobl177}",
                     "InputKeyName": "the base64 decoded Identifier values from the transactions.",
-                    "InputValue": '[{\"title\": \"Previous Transaction hash from main transaction & Merge Id\", \"t1\": \"${MergeIDhasheDecoded}\", \"t2\":' + node.TrustLinks[1] + '"}]"'
+                    "InputValue": "[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\": \"${ExpectedPreviousTxnHash}\"}]"
                   }
                 },
                 "ActionResultVariable": "",
@@ -6755,7 +6756,7 @@ export class BuildPOCJsonService {
                   "Compare": {
                     "blockchainValue1": "MainTXNPreviousTXNDecoded",
                     "blockchainValue2":"MergeIDhasheDecoded",
-                    "expectedValue1": node.TrustLinks[1]
+                    "expectedValue1": "ExpectedPreviousTxnHash"
                   }
                 },
                 "ActionResultVariable": "",
@@ -7992,8 +7993,8 @@ export class BuildPOCJsonService {
           "ActionType": "BrowserScreen",
           "ActionParameters": {
             "ExternalURL": "",
-            "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
-            "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
+            "InnerHTMLPOC": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
+            "InnerHTMLPOCError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
             "PageURL": "&{TextPoc181}",
             "Query": "",
             "QueryIndex": "",
@@ -8075,41 +8076,78 @@ export class BuildPOCJsonService {
       const parents = node.Parents || [];
       // Check if the TrustLinks array contains the desired TxnHash value
       if (trustLinks.includes(txnHash)) {
-        this.orderedNodes.push(pocNode.Nodes[nodeId]); // If so, add the LastTxnHash value to the orderedNodes array
-        // loop through the parents 
+        if (this.orderedNodes.includes(pocNode.Nodes[nodeId])) {
+          console.log("duplicate")
+        } else {
+          if (node.Data.TxnType == '0' || node.Data.TxnType == '2') {
+            this.orderedNodes.push(pocNode.Nodes[nodeId]); // If so, add the LastTxnHash value to the orderedNodes array
+            // loop through the parents 
+          }
+
+        }
+
         await this.checkParentsAndPush(pocNode, parents, trustLinks[0], node.Id)
       }
     }
+    console.log("order",(this.orderedNodes));
+    
+    this.TotalProofCount= this.orderedNodes.length;
     return new Promise((resolve, reject) => { resolve(this.orderedNodes) })
   }
 
-  async checkParentsAndPush(pocNode, parents, trustLink, id) {
+  async checkParentsAndPush(pocNode: any, parents: string[], trustLink: any, id: string) {
     if (!!parents && parents.length !== 0) {
-      parents.forEach(parent => {
+      for (const parent of parents) {
         for (const nodeId in pocNode.Nodes) {
-          if (nodeId == parent) {
+          if (nodeId === parent) {
             const node = pocNode.Nodes[nodeId]; // Get the node object for this ID
             const trustLinks = node.TrustLinks || []; // Get the TrustLinks array, or an empty array if it's null
-            const parents = node.Parents || [];
-            let backLinkNode = {
-              "Id": "backlink",
-              "Data": {
-                "TxnType": "pobl",
-              },
-              "Parents": null,
-              "Children": null,
-              "Siblings": null,
-              "TrustLinks": [trustLink, trustLinks[0]],
-              "PoblTDP": { current: id, previous: parent }
+            const existingBacklink = this.findExistingBacklink(id, parent);
+            
+            if (!existingBacklink) {
+              const backLinkNode = {
+                "Id": "backlink",
+                "Data": {
+                  "TxnType": "pobl",
+                },
+                "Parents": null,
+                "Children": null,
+                "Siblings": null,
+                "TrustLinks": [trustLink, trustLinks[0]],
+                "PoblTDP": { current: id, previous: parent }
+              };
+              
+              if (!this.orderedNodes.includes(backLinkNode)) {
+                this.orderedNodes.push(backLinkNode);
+              }
             }
-            this.orderedNodes.push(backLinkNode)
-            this.orderedNodes.push(pocNode.Nodes[nodeId])
-            if (!!parents && parents.length !== 0) {
-              this.checkParentsAndPush(pocNode, parents, trustLinks[0], nodeId)
+            
+            if (!this.orderedNodes.includes(node)) {
+              if(node.Data.TxnType=='0'||node.Data.TxnType=='2'){
+                this.orderedNodes.push(node);
+              }}
+            
+            if (!!node.Parents && node.Parents.length !== 0) {
+              await this.checkParentsAndPush(pocNode, node.Parents, trustLinks[0], nodeId);
             }
           }
         }
-      })
+      }
     }
   }
+  
+  findExistingBacklink(currentId: string, previousId: string): any {
+    for (const node of this.orderedNodes) {
+      if (node.Id === "backlink" && node.PoblTDP.current === currentId && node.PoblTDP.previous === previousId) {
+        return node;
+      }
+    }
+    return null;
+  }
+
+  getTotalOrderedNodesCount(): number {
+    return this.orderedNodes.length;
+  }
+  
+  
 }
