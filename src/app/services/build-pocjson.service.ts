@@ -243,6 +243,7 @@ export class BuildPOCJsonService {
         case "0":
           let segPog = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
           let numPog = this.pocProofJson.Steps[this.pocProofJson.Steps.length - 1].StepHeader.StepNo
+          let varibelOfPog = 1;
           let pogSegments = [
             {
               "NO": segPog + 1,
@@ -332,8 +333,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_2": "&{TextPog8}",
                     "TXNHash": node.TrustLinks[0],
                     "OperationName": "current transaction",
-                    "ResponseVariable": "MainTXNDataString",
-                    "JSONResultVariable": "MainTXNData",
+                    "ResponseVariable": `MainTXNDataStringPOG${varibelOfPog}`,
+                    "JSONResultVariable": `MainTXNDataPOG${varibelOfPog}`,
                     "StartedProofType": "POG",
                     "TrustLinks": [node.Id],
                   }
@@ -383,9 +384,9 @@ export class BuildPOCJsonService {
                   "FormatType": "jsonValueObjectPicker",
                   "StorageData": []
                 },
-                "ActionResultVariable": "MainTXNCurentTXNHash",
+                "ActionResultVariable": `MainTXNCurentTXNHashPOG${varibelOfPog}`,
                 "MetaData": [
-                  "MainTXNData",
+                  `MainTXNDataPOG${varibelOfPog}`,
                   "CurrentTXN",
                   false,
                   "value"
@@ -442,7 +443,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_1": "&{TextPog13}",
                     "ActionDescription_1": "&{TextPog14}",
                     "OperationKey": "CurrentTXN",
-                    "OperationValue": "MainTXNCurentTXNHash",
+                    "OperationValue": `MainTXNCurentTXNHashPOG${varibelOfPog}`,
                     "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
                     "OperationValueName": "encoded CurrentTXN Hash from the transaction details"
                   }
@@ -493,7 +494,7 @@ export class BuildPOCJsonService {
                   "StorageData": [
                     {
                       "Key": "&{TextPog200}",
-                      "Value": "${MainTXNCurentTXNHash}"
+                      "Value": `\${MainTXNCurentTXNHashPOG${varibelOfPog}}`
                     }
                   ]
                 },
@@ -558,8 +559,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_4": "&{TextPog27}",
                     "ToastMessage": "&{TextPog104}",
                     "DecodeKeyName": "&{TextPog236}",
-                    "EncodedInputValue": "${MainTXNCurentTXNHash}",
-                    "DecodedResultVariable": "var_currenttxn",
+                    "EncodedInputValue": `\${MainTXNCurentTXNHashPOG${varibelOfPog}}`,
+                    "DecodedResultVariable": `var_currenttxnPOG${varibelOfPog}`,
                     "InformationStorageKey": "&{TextPog219}"
                   }
                 },
@@ -618,10 +619,10 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPog32}",
                     "ActionTitle_2": "&{TextPog33}",
                     "ActionDescription_2": "&{TextPog34}",
-                    "TXNHash": "${var_currenttxn}",
+                    "TXNHash": `\${var_currenttxnPOG${varibelOfPog}}`,
                     "OperationName": "current transaction of the gateway transaction",
-                    "ResponseVariable": "MainTXNCurentTXNDataString",
-                    "JSONResultVariable": "MainTXNCurentTXNData",
+                    "ResponseVariable": `MainTXNCurentTXNDataStringPOG${varibelOfPog}`,
+                    "JSONResultVariable": `MainTXNCurentTXNDataPOG${varibelOfPog}`,
                     "StartedProofType": "",
                     "TrustLinks": []
                   }
@@ -671,9 +672,9 @@ export class BuildPOCJsonService {
                   "FormatType": "jsonValueObjectPicker",
                   "StorageData": []
                 },
-                "ActionResultVariable": "MainTXNCurentTXNDataIdentifier",
+                "ActionResultVariable": `MainTXNCurentTXNDataIdentifierPOG${varibelOfPog}`,
                 "MetaData": [
-                  "MainTXNCurentTXNData",
+                  `MainTXNCurentTXNDataPOG${varibelOfPog}`,
                   "identifier",
                   false,
                   "value"
@@ -730,7 +731,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_1": "&{TextPog39}",
                     "ActionDescription_1": "&{TextPog40}",
                     "OperationKey": "identifier",
-                    "OperationValue": "MainTXNCurentTXNDataIdentifier",
+                    "OperationValue": `MainTXNCurentTXNDataIdentifierPOG${varibelOfPog}`,
                     "OperationKeyName": "encoded Identifier from the transaction details",
                     "OperationValueName": "encoded Identifier value from the transaction details"
                   }
@@ -781,7 +782,7 @@ export class BuildPOCJsonService {
                   "StorageData": [
                     {
                       "Key": "&{TextPog201}",
-                      "Value": "${MainTXNCurentTXNDataIdentifier}"
+                      "Value": `\${MainTXNCurentTXNDataIdentifierPOG${varibelOfPog}}`
                     }
                   ]
                 },
@@ -846,8 +847,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_4": "&{TextPog55}",
                     "ToastMessage": "&{TextPog105}",
                     "DecodeKeyName": "&{TextPog237}",
-                    "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
-                    "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded",
+                    "EncodedInputValue": `\${MainTXNCurentTXNDataIdentifierPOG${varibelOfPog}}`,
+                    "DecodedResultVariable": `MainTXNCurentTXNDataIdentifierDecodedPOG${varibelOfPog}`,
                     "InformationStorageKey": "&{TextPog220}"
                   }
                 },
@@ -896,9 +897,9 @@ export class BuildPOCJsonService {
                   "FormatType": "jsonValueObjectPicker",
                   "StorageData": []
                 },
-                "ActionResultVariable": "MainTXNCurentTXNDataProductId",
+                "ActionResultVariable": `MainTXNCurentTXNDataProductIdPOG${varibelOfPog}`,
                 "MetaData": [
-                  "MainTXNCurentTXNData",
+                  `MainTXNCurentTXNDataPOG${varibelOfPog}`,
                   "productId",
                   false,
                   "value"
@@ -955,7 +956,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_1": "&{TextPog60}",
                     "ActionDescription_1": "&{TextPog61}",
                     "OperationKey": "productId",
-                    "OperationValue": "MainTXNCurentTXNDataProductId",
+                    "OperationValue": `MainTXNCurentTXNDataProductIdPOG${varibelOfPog}`,
                     "OperationKeyName": "encoded ProductID from the transaction details",
                     "OperationValueName": "encoded ProductID value from the transaction details"
                   }
@@ -1006,7 +1007,7 @@ export class BuildPOCJsonService {
                   "StorageData": [
                     {
                       "Key": "&{TextPog202}",
-                      "Value": "${MainTXNCurentTXNDataProductId}"
+                      "Value": `\${MainTXNCurentTXNDataProductIdPOG${varibelOfPog}}`
                     }
                   ]
                 },
@@ -1071,8 +1072,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_4": "&{TextPog74}",
                     "ToastMessage": "&{TextPog106}",
                     "DecodeKeyName": "&{TextPog238}",
-                    "EncodedInputValue": "${MainTXNCurentTXNDataProductId}",
-                    "DecodedResultVariable": "MainTXNCurentTXNDataProductIdDecoded",
+                    "EncodedInputValue": `\${MainTXNCurentTXNDataProductIdPOG${varibelOfPog}}`,
+                    "DecodedResultVariable": `MainTXNCurentTXNDataProductIdDecodedPOG${varibelOfPog}`,
                     "InformationStorageKey": "&{TextPog221}"
                   }
                 },
@@ -1121,9 +1122,9 @@ export class BuildPOCJsonService {
                   "FormatType": "jsonValueObjectPicker",
                   "StorageData": []
                 },
-                "ActionResultVariable": "MainTXNPreviousTXN",
+                "ActionResultVariable": `MainTXNPreviousTXNPOG${varibelOfPog}`,
                 "MetaData": [
-                  "MainTXNData",
+                  `MainTXNDataPOG${varibelOfPog}`,
                   "PreviousTXN",
                   false,
                   "value"
@@ -1180,7 +1181,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_1": "&{TextPog79}",
                     "ActionDescription_1": "&{TextPog80}",
                     "OperationKey": "PreviousTXN",
-                    "OperationValue": "MainTXNPreviousTXN",
+                    "OperationValue": `MainTXNPreviousTXNPOG${varibelOfPog}`,
                     "OperationKeyName": "encoded PreviousTXN Hash from the transaction details.",
                     "OperationValueName": "encoded PreviousTXN Hash value from the transaction details."
                   }
@@ -1231,7 +1232,7 @@ export class BuildPOCJsonService {
                   "StorageData": [
                     {
                       "Key": "&{TextPog203}",
-                      "Value": "${MainTXNPreviousTXN}"
+                      "Value": `\${MainTXNPreviousTXNPOG${varibelOfPog}}`
                     }
                   ]
                 },
@@ -1280,9 +1281,9 @@ export class BuildPOCJsonService {
                   "FormatType": "jsonValueObjectPicker",
                   "StorageData": []
                 },
-                "ActionResultVariable": "MainTXNTXType",
+                "ActionResultVariable": `MainTXNTXTypePOG${varibelOfPog}`,
                 "MetaData": [
-                  "MainTXNData",
+                  `MainTXNDataPOG${varibelOfPog}`,
                   "Type",
                   false,
                   "value"
@@ -1339,7 +1340,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_1": "&{TextPog87}",
                     "ActionDescription_1": "&{TextPog88}",
                     "OperationKey": "Type",
-                    "OperationValue": "MainTXNTXType",
+                    "OperationValue": `MainTXNTXTypePOG${varibelOfPog}`,
                     "OperationKeyName": "encoded Transaction Type from the transaction details.",
                     "OperationValueName": "encoded Transaction Type value from the transaction details."
                   }
@@ -1390,7 +1391,7 @@ export class BuildPOCJsonService {
                   "StorageData": [
                     {
                       "Key": "&{TextPog204}",
-                      "Value": "${MainTXNTXType}"
+                      "Value": `\${MainTXNTXTypePOG${varibelOfPog}}`
                     }
                   ]
                 },
@@ -1455,8 +1456,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_4": "&{TextPog101}",
                     "ToastMessage": "&{TextPog107}",
                     "DecodeKeyName": "&{TextPog222}",
-                    "EncodedInputValue": "${MainTXNTXType}",
-                    "DecodedResultVariable": "MainTXNTXTypeDecoded",
+                    "EncodedInputValue": `\${MainTXNTXTypePOG${varibelOfPog}}`,
+                    "DecodedResultVariable": `MainTXNTXTypeDecoded`,
                     "InformationStorageKey": "&{TextPog222}"
                   }
                 },
@@ -1488,7 +1489,7 @@ export class BuildPOCJsonService {
                 "ActionParameters": {
                   "ExternalURL": "",
                   "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNTXTypeDecoded}\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNTXTypeDecoded}\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Non Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n `\${MainTXNTXTypeDecoded${varibleOfPog}}`\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Non Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
                   "PageURL": "about: Verification Summary - PROOF OF GENESIS",
                   "Query": "",
                   "QueryIndex": "",
@@ -1508,7 +1509,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [],
                   "Compare": {
-                    "t1": "MainTXNPreviousTXN",
+                    "t1": `MainTXNPreviousTXNPOG${varibelOfPog}`,
                     "t2": ""
                   }
                 },
@@ -2149,6 +2150,7 @@ export class BuildPOCJsonService {
           ]
           segPog = segPog + 8
           numPog = numPog + 22
+          varibelOfPog = varibelOfPog + 1
           this.pocProofJson.Steps.push(...pogSteps)
           this.pocProofJson.Header.Segments.push(...pogSegments)
           this.pocLangJson.Actions.push(...pogLang)
