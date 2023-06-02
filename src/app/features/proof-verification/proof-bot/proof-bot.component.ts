@@ -16,6 +16,7 @@ import { ElementDividerComponent } from "../components/element-divider/element-d
 import { SiteScreenComponent } from "../components/site-screen/site-screen.component";
 import { BotGlobaldataComponent } from "../components/bot-globaldata/bot-globaldata.component";
 import * as POBLJSON from "../ProofJSONs/POBL.json";
+import * as POBLMJSON from "../ProofJSONs/POBL-Merge.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
 import * as POEJSON from "../ProofJSONs/POE.json";
 import * as POELangJSON from "../ProofJSONs/POE_lang.json";
@@ -146,6 +147,13 @@ export class ProofBotComponent implements OnInit {
   currentProduct: string = "";
   currentProduct2: string = "";
   @Input() isProofStart:Boolean;
+  completedProofs: any[]=[];
+  startedProofs: any[]=[];
+  currentId: string="";
+  currentProofType: string="";
+  TotalProofCountOfPOC: any;
+  SuccessProofs: any[]=[];
+  FailedProofs: any[]=[];
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -266,6 +274,10 @@ export class ProofBotComponent implements OnInit {
       this.vsHeightExpand = Header.VSHeightExpand;
     this.vsOverflowX = Header.VSOverflowX;
     await this.scrollToFrameById("proofHeaderTitle", 20);
+    if(this.proofType=='poc'){
+      this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
+      console.log("proofcount----",this.TotalProofCountOfPOC);
+    }
     this.isStartDemo = true;
     this.playProofDemo(0);
   }
@@ -275,7 +287,7 @@ export class ProofBotComponent implements OnInit {
     var langJson: any;
     switch (this.proofType) {
       case "pobl":
-        protocolJson = POBLJSON;
+        protocolJson = POBLMJSON;
         langJson = POBLLangJSON;
         break;
       case "pog":
@@ -538,7 +550,6 @@ export class ProofBotComponent implements OnInit {
   }
 
   backToAction(actionID: number) {
-    this.refreshIframe();
     var i: number = this.proofJSON.Steps.findIndex(
       (cur: any) => cur.Action._ID == actionID
     );
@@ -550,7 +561,9 @@ export class ProofBotComponent implements OnInit {
         this.playProofDemo();
       }
     }
-    if (this.isPlayCompleted) this.playProofDemo();
+    if (this.isPlayCompleted) {
+      this.playProofDemo();
+    }
   }
 
   backToStep(stepNo: number) {
@@ -695,7 +708,12 @@ export class ProofBotComponent implements OnInit {
         ActionType,
         ActionParameters
       } = Action;
-
+      if(this.proofType=='poc'){
+        this.startedProofs.push({
+          trustLink:ActionParameters.TrustLinks,
+          type:ActionParameters.StartedProofType
+        });
+      }
       // highlight the running nodes and back-links
       if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
         !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
@@ -725,12 +743,37 @@ export class ProofBotComponent implements OnInit {
             scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
           }
           this.setGlobalValuesOnFrames(Header, stepData);
-          if (scRef && ActionParameters.InnerHTML) {
+          
+          if (scRef && ActionParameters.InnerHTMLPOC) {
+            //verification for poc
             if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
+              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLPOCError);
+              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
+            } else {
+              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
+            }
+          }
+          
+          if (scRef && ActionParameters.InnerHTML) {
+            //verification for poe,pog,pobl
+            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
+              if(this.proofType=='poc'){
+                this.setCompletedProofCountOfPOC();
+                this.setFailedProofCountOfPOC();
+              }
+              console.log("comp",this.completedProofs);
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
               this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
             } else {
+              if(this.proofType=='poc'){
+                this.setCompletedProofCountOfPOC();
+                this.setSuccessedProofCountOfPoc();
+               }
+              console.log("comp",this.completedProofs);
+              console.log("comp and success",this.SuccessProofs);
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
             }
@@ -1155,7 +1198,7 @@ export class ProofBotComponent implements OnInit {
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[], givenDataToStorageData: DataKeys, actionVariable: string) {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
-      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}") && this.proofType != 'poc') {
+      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")) {
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
       } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
@@ -1178,6 +1221,17 @@ export class ProofBotComponent implements OnInit {
             Error: ""
           });
           this.variableStorage[actionVariable] = givenDataToStorageData.Value
+          break;
+          case "poblOfPoc":
+            Data.push({
+              Key: givenDataToStorageData.Key,
+              Value: givenDataToStorageData.Value,
+              Type: "",
+              CompareType: "",
+              CompareValue: "",
+              Error: ""
+            });
+            this.variableStorage[actionVariable] = givenDataToStorageData.Value
           break;
         default:
         // code block
@@ -1299,9 +1353,17 @@ export class ProofBotComponent implements OnInit {
     let status = true
     switch (this.proofType) {
       case "pobl":
-        if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
-          status = false
-          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+        if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
+          if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
+            status = false
+            this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+          }
+        }
+        if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
+          if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
+            status = false
+            this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+          }
         }
         break;
       case "poe":
@@ -1317,17 +1379,42 @@ export class ProofBotComponent implements OnInit {
         }
         break;
       case "poc":
-        if (this.currentProof == "Proof of Existence") {
-          if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
-            status = false
-            this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
+        if (this.TotalProofCountOfPOC != this.completedProofs.length) {
+          if (this.currentProof == "Proof of Existence") {
+            if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
+              status = false
+              this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
+            }
+          } else if (this.currentProof == "Proof of Genesis") {
+            if (this.variableStorage[compare.t1] != compare.t2) {
+              status = false
+              this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+            }
           }
-        } else if (this.currentProof == "Proof of Genesis") {
-          if (this.variableStorage[compare.t1] != compare.t2) {
-            status = false
-            this.toastr.error("Previous transaction hash is not empty.", "POG Verification Failed");
+          else if (this.currentProof == "Proof of Backlinks") {
+            if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
+              if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
+                status = false
+                this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+              }
+            }
+            if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
+              if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
+                status = false
+                this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
+              }
+            }
           }
         }
+        else if ((this.TotalProofCountOfPOC == this.completedProofs.length)) {
+          if (this.SuccessProofs.length == this.TotalProofCountOfPOC) {
+            status = true;
+          } else {
+            status = false;
+            this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
+          }
+        }
+
         break;
       default:
         status = true
@@ -1368,7 +1455,7 @@ export class ProofBotComponent implements OnInit {
     this.changeNodesOpacity()
     this.changeArrowsOpacity()
     if (this.proofType == 'poc') {
-      if (runningProof == 'POE' || runningProof == "POG") {
+      if (runningProof == 'POE'|| runningProof == 'poe' || runningProof == "POG"||runningProof == 'pog') {
         let id = `node-${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
         rec.style['stroke']='black'
@@ -1379,14 +1466,18 @@ export class ProofBotComponent implements OnInit {
         let productIndex = textContent.indexOf('Product:')
         this.currentBatch = textContent
         this.currentProduct = textContent.substring(productIndex + 8)
-      } else if (runningProof == 'POBL') {
+        this.currentId = id;
+        this.currentProofType= runningProof.toLowerCase();
+      } else if (runningProof == 'POBL'||runningProof == 'pobl') {
         const tL = trustLinks[0];
         let id = `arrow-` + tL[0] + `-` + tL[1];
+        this.currentId = id;
+        this.currentProof = this.commonServices.getProofName(runningProof);
+        this.currentProofType= runningProof.toLowerCase();
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
         node1.attr("stroke", "black");
-        this.currentProof = this.commonServices.getProofName(runningProof);
         let textContent1 = "";
         let textContent2 = "";
         let nodeText1 = d3.select(`#node-${tL[0]}`);
@@ -1563,12 +1654,16 @@ export class ProofBotComponent implements OnInit {
       let proofArr = id.split('-')
       if (!!proofArr[0] && proofArr[0] != "pobl") {
         let a1 = proofArr.slice(-1)
-        this.playProofDemoOfSelectedNode(stepIndex - 2, true, [a1], proofArr[0].toUpperCase())
+        this.globalData.splice(0, this.globalData.length);
+        this.refreshIframe();
+        this.playProofDemo(stepIndex - 2, true, [a1], proofArr[0].toUpperCase())
        // this.changeStrokeColor();
         
       } else {
         let a2 = proofArr.slice(-2)
-        this.playProofDemoOfSelectedNode(stepIndex - 2, true, [a2], proofArr[0].toUpperCase())
+        this.globalData.splice(0, this.globalData.length);
+        this.refreshIframe();
+        this.playProofDemo(stepIndex - 2, true, [a2], proofArr[0].toUpperCase())
        // this.changeStrokeColor();
       }
     }
@@ -1598,5 +1693,25 @@ export class ProofBotComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  setCompletedProofCountOfPOC(){
+    this.completedProofs.push({
+      CompletedProofType:this.currentProofType,
+      TxnHash:this.currentId
+    });
+  }
+  setSuccessedProofCountOfPoc(){
+    this.SuccessProofs.push({
+      SuccessProofType:this.currentProof,
+      TxnHash:this.currentId
+    })
+  }
+
+  setFailedProofCountOfPOC(){
+    this.FailedProofs.push({
+      FailedProofType:this.currentProof,
+      TxnHash:this.currentId
+    })
   }
 }

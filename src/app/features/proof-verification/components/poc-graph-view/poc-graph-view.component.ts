@@ -155,22 +155,22 @@ export class PocGraphViewComponent implements AfterViewInit {
     this.pocTreeHeight = height;
 
     //listeners
-    // d3.selectAll("g.edgePath").on('click', (d: any) => {
-    //   const from = Nodes[d.v].Data.TxnHash;
-    //   const to = Nodes[d.w].Data.TxnHash;
-    //   this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
-    // });
-    // d3.selectAll("g.edgeLabel").on('click', (d: any) => {
-    //   const from = Nodes[d.v].Data.TxnHash;
-    //   const to = Nodes[d.w].Data.TxnHash;
-    //   this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
-    // });
-    // d3.selectAll("g.node").on('click', (d: any) => {
-    //   if (Nodes[d].Data.TxnType == "0")
-    //     this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
-    //   else if (Nodes[d].Data.TxnType == "2")
-    //     this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
-    // });
+    d3.selectAll("g.edgePath").on('click', (d: any) => {
+      const from = Nodes[d.v].Data.TxnHash;
+      const to = Nodes[d.w].Data.TxnHash;
+      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
+    });
+    d3.selectAll("g.edgeLabel").on('click', (d: any) => {
+      const from = Nodes[d.v].Data.TxnHash;
+      const to = Nodes[d.w].Data.TxnHash;
+      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
+    });
+    d3.selectAll("g.node").on('click', (d: any) => {
+      if (Nodes[d].Data.TxnType == "0")
+        this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
+      else if (Nodes[d].Data.TxnType == "2")
+        this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
+    });
   }
 
   setGraphTitle(title: string){
@@ -262,7 +262,6 @@ export class PocGraphViewComponent implements AfterViewInit {
   getColorForTxnType(type) {
     var sColor : string, lColor : string, bColor : string;
     switch (type) {
-      //
       case "0":
         sColor = "#45B39D";
         bColor = "#45B39D";
@@ -286,11 +285,6 @@ export class PocGraphViewComponent implements AfterViewInit {
       case "5":
         sColor = "#A569BD";
         bColor = "#A569BD";
-        lColor = "white";
-        break
-      case "9":
-        sColor = "#d1b92e";
-        bColor = "#e6cb37";
         lColor = "white";
         break
       case "9":

@@ -2058,7 +2058,7 @@
           "CSS": "",
           "FormatType": "",
           "StorageData": [],
-          "Compare":{"t1":"MainTXNPreviousTXNDecoded","t2":"ExpectedPreviousTxnHash"}
+          "Compare":{"blockchainValue1":"MainTXNPreviousTXNDecoded","blockchainValue2":"MergeIDhasheDecoded","expectedValue1":"ExpectedPreviousTxnHash"}
         },
         "ActionResultVariable": "",
         "MetaData": []

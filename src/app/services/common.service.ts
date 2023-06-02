@@ -28,7 +28,7 @@ export class CommonService {
         proofName = "Proof of Continuity"
         break;
       case "pobl":
-        proofName = "Proof of Back-links"
+        proofName = "Proof of Backlinks"
         break;
       case "POBL":
         proofName = "Proof of Backlinks"
