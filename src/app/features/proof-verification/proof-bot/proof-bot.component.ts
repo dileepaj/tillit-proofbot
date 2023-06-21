@@ -197,7 +197,7 @@ export class ProofBotComponent implements OnInit {
               return
             } else {
               let dataJson = JSON.parse(data)
-              this.product = dataJson[0].ProductName
+              this.product = dataJson[0].Timestamp?this.commonServices.decodeFromBase64(dataJson[0].ProductName) : dataJson[0].ProductName
               this.batch = dataJson[0].Identifier
               this.tdpId = dataJson[0].TdpId
             }
@@ -1463,7 +1463,7 @@ export class ProofBotComponent implements OnInit {
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
-        let productIndex = textContent.indexOf('Product:')
+        let productIndex = textContent.indexOf(' Product: ')
         this.currentBatch = textContent
         this.currentProduct = textContent.substring(productIndex + 8)
         this.currentId = id;
