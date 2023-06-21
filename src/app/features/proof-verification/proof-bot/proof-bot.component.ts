@@ -148,12 +148,16 @@ export class ProofBotComponent implements OnInit {
   currentProduct2: string = "";
   @Input() isProofStart:Boolean;
   completedProofs: any[]=[];
-  startedProofs: any[]=[];
+  CurrentPlayingProof: any[]=[];
   currentId: string="";
   currentProofType: string="";
   TotalProofCountOfPOC: any;
   SuccessProofs: any[]=[];
   FailedProofs: any[]=[];
+  lastPlayedProof: any;
+  lastPlayedProofTrustlink: any;
+  lastPlayedProofType: string="";
+  selectednode: Boolean = false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -276,7 +280,7 @@ export class ProofBotComponent implements OnInit {
     await this.scrollToFrameById("proofHeaderTitle", 20);
     if(this.proofType=='poc'){
       this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
-      console.log("proofcount----",this.TotalProofCountOfPOC);
+      //console.log("proofcount----",this.TotalProofCountOfPOC);
     }
     this.isStartDemo = true;
     this.playProofDemo(0);
@@ -347,6 +351,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
+    console.log("data-",data);
     return JSON.parse(data);
   }
 
@@ -503,15 +508,15 @@ export class ProofBotComponent implements OnInit {
     this.StorageTitle = "Storage";
     this.ProofContainerTitle = "Proof Container";
     this.currentStep = 0;
-    this.lastCompletedStep = 0;
+    this.lastCompletedStep = this.currentStep;
     this.totalSteps = 0;
     this.gsHeightExpand = false;
     this.vsHeightExpand = false;
     this.isStartDemo = false;
     this.isPause = false;
     this.isReplay = false;
-    this.isLoading = false;
-    this.isPlayCompleted = false;
+    //this.isLoading = false;
+    //this.isPlayCompleted = false;
     this.variableStorage = {};
     this.proofJSON = {};
     this.globalData = [];
@@ -687,11 +692,14 @@ export class ProofBotComponent implements OnInit {
 
   // main proof actions
   async playProofDemo(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "") {
+    
+    try{  
     this.isReplay = false;
     this.isPlayCompleted = false;
     const { Header, Steps } = this.proofJSON;
     this.totalSteps = Steps.length;
     this.currentStep = step;
+    console.log("current---",this.currentStep);
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
     // //change the all nodes opacity
@@ -709,7 +717,7 @@ export class ProofBotComponent implements OnInit {
         ActionParameters
       } = Action;
       if(this.proofType=='poc'){
-        this.startedProofs.push({
+        this.CurrentPlayingProof.push({
           trustLink:ActionParameters.TrustLinks,
           type:ActionParameters.StartedProofType
         });
@@ -752,7 +760,7 @@ export class ProofBotComponent implements OnInit {
               this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
             } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
+              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLPOC);
             }
           }
           
@@ -842,6 +850,13 @@ export class ProofBotComponent implements OnInit {
     if (this.currentStep == Steps.length) {
       this.isPlayCompleted = true;
       this.isPause = true;
+    }
+    if(this.selectednode==true){
+      console.log
+      return;
+    }
+    }catch{
+
     }
   }
 
@@ -1013,7 +1028,7 @@ export class ProofBotComponent implements OnInit {
         case "BrowserScreen":
           var scRef: ComponentRef<SiteScreenComponent> = ds.ref;
           if (scRef && Query && ElProperty && ElPropertyValue) {
-            if (ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}')) {
+            if (ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}'&&this.proofType!='poc')) {
               ElPropertyValue = "TlVMTA=="
             }
             await scRef.instance.setData(
@@ -1198,16 +1213,20 @@ export class ProofBotComponent implements OnInit {
   async addDataToGlobalData(Id: number, Title: string, storageData: DataKeys[], givenDataToStorageData: DataKeys, actionVariable: string) {
     let Data = storageData
     for (let j = 0; j < Data.length; j++) {
-      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}")) {
+      if (Data[j].Value.startsWith("${") && Data[j].Value.endsWith("}"&&this.proofType!='poc')) {
         // if key can not find from website NULL= "TlVMTA==" replace by tracified as a value
         Data[j].Value = "TlVMTA=="
-      } else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
+      } else if(this.proofType='poc'){
+       // this.backToAction();
+      }
+        else if (this.proofType == "poe" && Data[j].CompareType == "notEmpty" && Data[j].Value == Data[j].CompareValue) {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
         this.openModal("Proof Verification Failed", 442, "Key Comparison error")
       } else { }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
+    console.log("index1216--",index)
     if (!!givenDataToStorageData) {
       switch (givenDataToStorageData.Type) {
         case "pobl":
@@ -1245,7 +1264,7 @@ export class ProofBotComponent implements OnInit {
         Title,
         Data
       });
-    } else {
+    }  else  {
       const curr: any = this.globalData[index];
       for (let j = 0; j < Data.length; j++) {
         const dataItem: any = Data[j];
@@ -1259,6 +1278,7 @@ export class ProofBotComponent implements OnInit {
         ...this.globalData.slice(index + 1)
       ];
     }
+    console.log("orginalgloo--",this.globalData)
     this.cdr.detectChanges();
     await new Promise(resolveTime => setTimeout(resolveTime, 400));
     await this.scrollIntoStorageView(Id);
@@ -1507,6 +1527,8 @@ export class ProofBotComponent implements OnInit {
   }
 
   clickedNode(event: string) {
+    this.selectednode=true;
+    this.togglePlayPauseFn() ;
     this.jumpToStep(event)
   }
 
@@ -1519,151 +1541,174 @@ export class ProofBotComponent implements OnInit {
     
   }
 
-  async playProofDemoOfSelectedNode(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "") {
-    this.globalData.splice(0,this. globalData.length);
-    this.refreshIframe();
-    this.isReplay = false;
-    this.isPlayCompleted = false;
-    const { Header, Steps } = this.proofJSON;
-    this.totalSteps = Steps.length;
-    this.currentStep = step;
-    this.cdr.detectChanges();
-    let currentBrowserScreen = "";
-    //change the all nodes opacity
-    this.changeNodesOpacity()
-    this.changeArrowsOpacity()
-    for (; this.currentStep < Steps.length;) {
-      this.isBackToStep = false;
-      if (this.isPause) return;
-      if (this.isReplay) return;
-      const stepData = this.parseActionData(Steps[this.currentStep]);
-      const { StepHeader, Action, Customizations } = stepData;
-      const {
-        ActionDescription,
-        ActionType,
-        ActionParameters
-      } = Action;
+  // async playProofDemoOfSelectedNode(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "") {
+  //   this.globalData.splice(0,this. globalData.length);
+  //   this.refreshIframe();
+  //   this.isReplay = false;
+  //   this.isPlayCompleted = false;
+  //   const { Header, Steps } = this.proofJSON;
+  //   this.totalSteps = Steps.length;
+  //   this.currentStep = step;
+  //   this.cdr.detectChanges();
+  //   let currentBrowserScreen = "";
+  //   //change the all nodes opacity
+  //   this.changeNodesOpacity()
+  //   this.changeArrowsOpacity()
+  //   for (; this.currentStep < Steps.length;) {
+  //     this.isBackToStep = false;
+  //     if (this.isPause) return;
+  //     if (this.isReplay) return;
+  //     const stepData = this.parseActionData(Steps[this.currentStep]);
+  //     const { StepHeader, Action, Customizations } = stepData;
+  //     const {
+  //       ActionDescription,
+  //       ActionType,
+  //       ActionParameters
+  //     } = Action;
 
-      // highlight the running nodes and back-links
-      if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
-        !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
-       this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
-      }
-      this.currentStep++;
-      this.ActionDescription = ActionDescription[this.lang];
-      if (StepHeader.SegmentNo) {
-        await this.toStepper(StepHeader.SegmentNo, Action._ID);
-      }
-      const frameID = StepHeader.FrameID;
-      this.cdr.detectChanges();
-      // set global values
-      this.setGlobalValuesOnFrames(Header, stepData);
-      switch (ActionType) {
-        case "BrowserScreen":
-          // await this.closeSteppers();
-          currentBrowserScreen = ActionParameters.ExternalURL
-          var scRef: ComponentRef<SiteScreenComponent>;
-          if (this.demoScreenChildRefs[frameID])
-            scRef = this.demoScreenChildRefs[frameID].ref;
-          else {
-            scRef = await this.createFrameInProofDemo(stepData);
-            scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
-          }
-          this.setGlobalValuesOnFrames(Header, stepData);
-          if (scRef && ActionParameters.InnerHTML) {
-            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
-              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
-              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
-            } else {
-              scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
-            }
-          } else if (scRef && ActionParameters.ExternalURL) {
-            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.setPage(ActionParameters.ExternalURL, ActionParameters.Translatable, this.lang);
-          }
-          break;
-        case "UpdateElementAttribute":
-          // await this.closeSteppers();
-          await this.handleFormatElementAttribute(stepData);
-          break;
-        case "FormatDOMText":
-          // await this.closeSteppers();
-          await this.handleTextStyle(stepData);
-          break;
-        case "UpdateElementProperty":
-          // await this.closeSteppers();
-          await this.handleSetData(stepData);
-          break;
-        case "TriggerElementFunction":
-          // await this.closeSteppers();
-          await this.handleTriggerFn(stepData);
-        case "GetElementAttributeData":
-          // await this.closeSteppers();
-          await this.handleGetDataFn(stepData);
-          break;
-        case "InformationStorage":
-          await this.handleSaveDataFn(stepData);
-          break;
-        case "FormatMetaData":
-          this.handleVariableFormat(stepData, currentBrowserScreen);
-          break;
-        default:
-          break;
-      }
+  //     // highlight the running nodes and back-links
+  //     if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
+  //       !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
+  //      this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+  //     }
+  //     this.currentStep++;
+  //     this.ActionDescription = ActionDescription[this.lang];
+  //     if (StepHeader.SegmentNo) {
+  //       await this.toStepper(StepHeader.SegmentNo, Action._ID);
+  //     }
+  //     const frameID = StepHeader.FrameID;
+  //     this.cdr.detectChanges();
+  //     // set global values
+  //     this.setGlobalValuesOnFrames(Header, stepData);
+  //     switch (ActionType) {
+  //       case "BrowserScreen":
+  //         // await this.closeSteppers();
+  //         currentBrowserScreen = ActionParameters.ExternalURL
+  //         var scRef: ComponentRef<SiteScreenComponent>;
+  //         if (this.demoScreenChildRefs[frameID])
+  //           scRef = this.demoScreenChildRefs[frameID].ref;
+  //         else {
+  //           scRef = await this.createFrameInProofDemo(stepData);
+  //           scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+  //         }
+  //         this.setGlobalValuesOnFrames(Header, stepData);
+  //         if (scRef && ActionParameters.InnerHTML) {
+  //           if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
+  //             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+  //             await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
+  //             this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
+  //           } else {
+  //             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+  //             await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
+  //           }
+  //         } else if (scRef && ActionParameters.ExternalURL) {
+  //           scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+  //           await scRef.instance.setPage(ActionParameters.ExternalURL, ActionParameters.Translatable, this.lang);
+  //         }
+  //         break;
+  //       case "UpdateElementAttribute":
+  //         // await this.closeSteppers();
+  //         await this.handleFormatElementAttribute(stepData);
+  //         break;
+  //       case "FormatDOMText":
+  //         // await this.closeSteppers();
+  //         await this.handleTextStyle(stepData);
+  //         break;
+  //       case "UpdateElementProperty":
+  //         // await this.closeSteppers();
+  //         await this.handleSetData(stepData);
+  //         break;
+  //       case "TriggerElementFunction":
+  //         // await this.closeSteppers();
+  //         await this.handleTriggerFn(stepData);
+  //       case "GetElementAttributeData":
+  //         // await this.closeSteppers();
+  //         await this.handleGetDataFn(stepData);
+  //         break;
+  //       case "InformationStorage":
+  //         await this.handleSaveDataFn(stepData);
+  //         break;
+  //       case "FormatMetaData":
+  //         this.handleVariableFormat(stepData, currentBrowserScreen);
+  //         break;
+  //       default:
+  //         break;
+  //     }
 
-      if (Customizations.ToastMessage) {
-        this.toastMSG = Customizations.ToastMessage[this.lang];
-        this.toastTop = Customizations.ToastPosition[0];
-        this.toastLeft = Customizations.ToastPosition[1];
-        this.isToast = true;
-      } else if (Customizations.ToastMessage1) {
-        this.toastMSG1 = Customizations.ToastMessage1[this.lang];
-        this.toastTop1 = Customizations.ToastPosition1[0];
-        this.toastLeft1 = Customizations.ToastPosition1[1];
-        this.isToast1 = true;
-      }
+  //     if (Customizations.ToastMessage) {
+  //       this.toastMSG = Customizations.ToastMessage[this.lang];
+  //       this.toastTop = Customizations.ToastPosition[0];
+  //       this.toastLeft = Customizations.ToastPosition[1];
+  //       this.isToast = true;
+  //     } else if (Customizations.ToastMessage1) {
+  //       this.toastMSG1 = Customizations.ToastMessage1[this.lang];
+  //       this.toastTop1 = Customizations.ToastPosition1[0];
+  //       this.toastLeft1 = Customizations.ToastPosition1[1];
+  //       this.isToast1 = true;
+  //     }
 
-      this.cdr.detectChanges();
-      await new Promise(resolveTime =>
-        setTimeout(
-          resolveTime,
-          (100 *
-            (Customizations.ActionDuration
-              ? Customizations.ActionDuration
-              : 1)) /
-          this.playbackSpeed
-        )
-      );
-      this.isToast = false;
-      this.isToast1 = false;
-      if (this.lastCompletedStep < this.currentStep)
-        this.lastCompletedStep = this.currentStep;
-    }
-    if (this.currentStep == Steps.length) {
-      this.isPlayCompleted = true;
-      this.isPause = true;
-    }
-  }
+  //     this.cdr.detectChanges();
+  //     await new Promise(resolveTime =>
+  //       setTimeout(
+  //         resolveTime,
+  //         (100 *
+  //           (Customizations.ActionDuration
+  //             ? Customizations.ActionDuration
+  //             : 1)) /
+  //         this.playbackSpeed
+  //       )
+  //     );
+  //     this.isToast = false;
+  //     this.isToast1 = false;
+  //     if (this.lastCompletedStep < this.currentStep)
+  //       this.lastCompletedStep = this.currentStep;
+  //   }
+  //   if (this.currentStep == Steps.length) {
+  //     this.isPlayCompleted = true;
+  //     this.isPause = true;
+  //   }
+  // }
   
   jumpToStep(id: string) {
-    let stepIndex = this.findStepByPathId(id, this.proofJSON.Steps)
-    var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.FrameID);
-    if (!!stepIndex) {
+    let count = this.CurrentPlayingProof.length
+    const lastElement = this.CurrentPlayingProof[this.CurrentPlayingProof.length - 1];
+    const trustLink = lastElement.trustLink;
+    const type = lastElement.type;
+    let stepIndex = this.findStepByPathId(id, this.proofJSON.Steps);
+    this.playbackSpeed = 1;
+    console.log("global11",this.globalData);
+    this.variableStorage={};
+    this.globalData.splice(0, this.globalData.length);
+    console.log("global221",this.globalData);
+    this.refreshIframe();
+    this.selectednode=false;
+    // var i: number = this.proofJSON.Steps.findIndex(
+    //   (cur: any) => cur.Action._ID == actionID
+    // );
+    var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.SegmentNo);
+   console.log("iiiii--",stepIndex);
+   console.log("json---",this.proofJSON);
+   //console.log("stepii--",this.findStepByPathId(id, this.proofJSON.Header.Steps[stepIndex].StepHeader.SegmentNo))
+   if (!!stepIndex) {
       let proofArr = id.split('-')
       if (!!proofArr[0] && proofArr[0] != "pobl") {
         let a1 = proofArr.slice(-1)
-        this.globalData.splice(0, this.globalData.length);
-        this.refreshIframe();
-        this.playProofDemo(stepIndex - 2, true, [a1], proofArr[0].toUpperCase())
+        this.CurrentPlayingProof.push({
+          trustLink:[a1],
+          type:proofArr[0]
+        });
+        this.togglePlayPauseFn(); 
+        this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase());
        // this.changeStrokeColor();
         
       } else {
         let a2 = proofArr.slice(-2)
-        this.globalData.splice(0, this.globalData.length);
-        this.refreshIframe();
-        this.playProofDemo(stepIndex - 2, true, [a2], proofArr[0].toUpperCase())
+        this.CurrentPlayingProof.push({
+          trustLink:[a2],
+          type:proofArr[0]
+        })
+        this.togglePlayPauseFn(); 
+        this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase());
        // this.changeStrokeColor();
       }
     }
