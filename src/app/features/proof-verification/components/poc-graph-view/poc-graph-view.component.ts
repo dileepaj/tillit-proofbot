@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-poc-graph-view',
@@ -33,7 +34,7 @@ export class PocGraphViewComponent implements AfterViewInit {
   @Input() dataWithMerkleTree: any;
   @Input() GraphTitle: string;
   @Output() clickedNodeEvent: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private _location: Location) { }
+  constructor(private _location: Location,private commonService: CommonService) { }
 
   ngAfterViewInit() {
     this.loadingComplete = true;
@@ -183,7 +184,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     if (node.Data.Identifier != "") {
       let label=`\n\nBatch ID : ${node.Data.Identifier}\n`
       if (!!node.Data.ProductName) {
-        label = label + `\nProduct : ${node.Data.ProductName}\n`
+        label = label + `Product : ${node.Data.Timestamp ? this.commonService.decodeFromBase64(node.Data.ProductName) : node.Data.ProductNam}\n`
       }
       if(!!node.Data.CurrentStage){
         label = label + `\nStage : ${node.Data.CurrentStage}\n`
