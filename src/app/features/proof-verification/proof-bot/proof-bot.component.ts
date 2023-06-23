@@ -1115,9 +1115,9 @@ export class ProofBotComponent implements OnInit {
         break;
       case "jsonKeyPicker":
         if (!!!this.jsonKeyPicker(val, MetaData[1], MetaData[2]) && this.proofType != 'poc') {
-          this.toastr.error(`Cannot find given key from the URL`, currentUrl);
-          break;
-        }
+            this.toastr.error(`Cannot find given key from the URL`, currentUrl);
+            break;
+          }
         var result = this.jsonKeyPicker(val, MetaData[1], MetaData[2])[1];
         if (MetaData[3])
           this.variableStorage[ActionResultVariable] = result[MetaData[3]];
@@ -1530,7 +1530,6 @@ export class ProofBotComponent implements OnInit {
     var botGlobalData = this.elRef.nativeElement.querySelector('gsFrames');
     var currentFrame = iframe.contentWindow;
     iframe.contentWindow.location.reload(true);  
-    botGlobalData.contentWindow.loadPage.reload(true);
   }
 
 
@@ -1544,8 +1543,8 @@ export class ProofBotComponent implements OnInit {
     const type = lastElement.type;
     let stepIndex = this.findStepByPathId(id, this.proofJSON.Steps);
     // console.log("global11",this.globalData);
-    // this.variableStorage={};
-    // this.globalData.splice(0 , this.globalData.length);
+    //this.variableStorage={};
+    this.globalData.splice(0 , this.globalData.length);
     // console.log("global221",this.globalData);
     this.playbackSpeed=1;
     
@@ -1562,7 +1561,7 @@ export class ProofBotComponent implements OnInit {
           trustLink:[a1],
           type:proofArr[0]
         });
-        this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase(),true);
+        await this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase(),true);
         this.selectednode=false;
         await this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase(),false);
 
@@ -1574,9 +1573,9 @@ export class ProofBotComponent implements OnInit {
           trustLink:[a2],
           type:proofArr[0]
         })
-        this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),true);
+        await this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),true);
         this.selectednode=false;
-        this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),false);
+        await this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),false);
        // this.changeStrokeColor();
       }
 
