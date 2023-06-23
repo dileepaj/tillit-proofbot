@@ -192,7 +192,7 @@
           "FrameScrollBars": "",
           "ToastMessage": "",
           "ToastPosition": null,
-          "ActionDuration": 2
+          "ActionDuration": 10
         }
       },
       {
@@ -412,7 +412,7 @@
           "FrameScrollBars": "",
           "ToastMessage": "",
           "ToastPosition": null,
-          "ActionDuration": 2
+          "ActionDuration": 10
         }
       },
       {
