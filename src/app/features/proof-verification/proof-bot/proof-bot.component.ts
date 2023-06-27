@@ -158,6 +158,8 @@ export class ProofBotComponent implements OnInit {
   lastPlayedProofTrustlink: any;
   lastPlayedProofType: string="";
   selectednode: Boolean = false;
+  SelectedproofJSON: any = {};
+  originalJson: any= {};
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -351,7 +353,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
-    console.log("data-",data);
+    //console.log("data-",data);
     return JSON.parse(data);
   }
 
@@ -693,9 +695,10 @@ export class ProofBotComponent implements OnInit {
   // main proof actions
   async playProofDemo(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "", selectednode: boolean = false) {  
     if(selectednode){
-      console.log('tttttt')
+      console.log("return")
       return;
     }
+    console.log("strattttt")
     this.isReplay = false;
     this.isPlayCompleted = false;
     const { Header, Steps } = this.proofJSON;
@@ -745,6 +748,7 @@ export class ProofBotComponent implements OnInit {
         case "BrowserScreen":
           // await this.closeSteppers();
           currentBrowserScreen = ActionParameters.ExternalURL
+          console.log("url--",currentBrowserScreen)
           var scRef: ComponentRef<SiteScreenComponent>;
           if (this.demoScreenChildRefs[frameID])
             scRef = this.demoScreenChildRefs[frameID].ref;
@@ -1532,7 +1536,6 @@ export class ProofBotComponent implements OnInit {
     iframe.contentWindow.location.reload(true);  
   }
 
-
   
   async jumpToStep(id: string) {
     this.selectednode=true;
@@ -1541,17 +1544,20 @@ export class ProofBotComponent implements OnInit {
     const lastElement = this.CurrentPlayingProof[this.CurrentPlayingProof.length - 1];
     const trustLink = lastElement.trustLink;
     const type = lastElement.type;
-    let stepIndex = this.findStepByPathId(id, this.proofJSON.Steps);
-    // console.log("global11",this.globalData);
+    let stepIndex = this.findStepByPathId(id,this.proofJSON.Steps);
+    let finalIndex = this.findStepByPathId(id +"-Final", this.proofJSON.Steps);
+    console.log("finaldes---",finalIndex);
     //this.variableStorage={};
-    this.globalData.splice(0 , this.globalData.length);
-    // console.log("global221",this.globalData);
+    console.log("global11",this.globalData);
+    //this.globalData.splice(0, this.globalData.length);
+    console.log("global221",this.globalData);
     this.playbackSpeed=1;
+    this.SelectedproofJSON = this.pocJsonService.extractSteps(this.proofJSON,stepIndex, finalIndex);
+    console.log("setey---",this.SelectedproofJSON);
     
-    
-    //var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.SegmentNo);
-   console.log("iiiii--",stepIndex);
-   console.log("json---",this.proofJSON);
+    var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.SegmentNo);
+   console.log("iiiii--",index);
+   
    //console.log("stepii--",this.findStepByPathId(id, this.proofJSON.Header.Steps[stepIndex].StepHeader.SegmentNo))
    if (!!stepIndex) {
       let proofArr = id.split('-')
@@ -1628,4 +1634,6 @@ export class ProofBotComponent implements OnInit {
       TxnHash:this.currentId
     })
   }
+
+  
 }

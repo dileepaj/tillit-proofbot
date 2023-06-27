@@ -296,7 +296,7 @@ export class BuildPOCJsonService {
                 "StepNo": numPog + 1,
                 "SegmentNo": segPog + 1,
                 "FrameID": 1,
-                "FrameTitle": "" 
+                "FrameTitle": "", 
               },
               "Action": {
                 "ActionTitle": "&{TextPog0}",
@@ -1484,7 +1484,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPog + 22,
                 "SegmentNo": segPog + 8,
                 "FrameID": 5,
-                "FrameTitle": "&{TextPog102}"
+                "FrameTitle": "&{TextPog102}",
+                "PathID":`pog-${node.Id}-Final`,
               },
               "Action": {
                 "ActionTitle": "&{TextPog103}",
@@ -3616,7 +3617,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPoe + 26,
                 "SegmentNo": segPoe + 6,
                 "FrameID": 8,
-                "FrameTitle": "&{TextPoe120}"
+                "FrameTitle": "&{TextPoe120}",
+                "PathID":`poe-${node.Id}-Final`,
               },
               "Action": {
                 "ActionTitle": "&{TextPoe121}",
@@ -6741,7 +6743,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPobl + 39,
                 "SegmentNo": segPobl + 14,
                 "FrameID": 13,
-                "FrameTitle": "&{TextPobl178}"
+                "FrameTitle": "&{TextPobl178}",
+                "PathID": `pobl-${node.PoblTDP.current}-${node.PoblTDP.previous}-Final`
               },
               "Action": {
                 "ActionTitle": "&{TextPobl179}",
@@ -8173,5 +8176,19 @@ export class BuildPOCJsonService {
     }
     return null; // Return null if no matching object is found
   }
-   
+
+  extractSteps(jsonData: any, startStepNo: number, endStepNo: number): any[] {
+    const steps = jsonData.Steps;
+    const starts = jsonData.Steps[startStepNo].StepHeader.StepNo;
+    const ends = jsonData.Steps[endStepNo].StepHeader.StepNo;
+    const extractedSteps = [];
+
+    for (const step of steps) {
+      const stepNo = step.StepHeader.StepNo;
+      if (stepNo >= starts && stepNo <= ends) {
+        extractedSteps.push(step);
+      }
+    }
+    return extractedSteps;
+  }
 }
