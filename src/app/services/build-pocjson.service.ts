@@ -4759,7 +4759,7 @@ export class BuildPOCJsonService {
                     "ToastMessage": "&{TextPobl27}",
                     "DecodeKeyName": "&{TextPobl237}",
                     "EncodedInputValue": `\${MainTXNCurentTXNHashPobl${variabelOfPobl}}`,
-                    "DecodedResultVariable": `var_currenttxn${variabelOfPobl}`,
+                    "DecodedResultVariable": `var_currenttxnPobl${variabelOfPobl}`,
                     "InformationStorageKey": "&{TextPobl226}"
                   }
                 },
@@ -5544,7 +5544,7 @@ export class BuildPOCJsonService {
                 },
                 "ActionResultVariable": `MainTXNPreviousTXNPobl${variabelOfPobl}`,
                 "MetaData": [
-                  `MainTXNData${variabelOfPobl}`,
+                  `MainTXNDataPobl${variabelOfPobl}`,
                   "PreviousTXN",
                   false,
                   "value"

@@ -1029,7 +1029,7 @@ export class ProofBotComponent implements OnInit {
         case "BrowserScreen":
           var scRef: ComponentRef<SiteScreenComponent> = ds.ref;
           if (scRef && Query && ElProperty && ElPropertyValue) {
-            if (ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}'&&this.proofType!='poc')) {
+            if (ElPropertyValue.startsWith('${') && ElPropertyValue.endsWith('}')) {
               ElPropertyValue = "TlVMTA=="
             }
             await scRef.instance.setData(
@@ -1547,9 +1547,9 @@ export class ProofBotComponent implements OnInit {
     let stepIndex = this.findStepByPathId(id,this.proofJSON.Steps);
     let finalIndex = this.findStepByPathId(id +"-Final", this.proofJSON.Steps);
     console.log("finaldes---",finalIndex);
-    //this.variableStorage={};
+    this.variableStorage={};
     console.log("global11",this.globalData);
-    //this.globalData.splice(0, this.globalData.length);
+    this.globalData.splice(0, this.globalData.length);
     console.log("global221",this.globalData);
     this.playbackSpeed=1;
     this.SelectedproofJSON = this.pocJsonService.extractSteps(this.proofJSON,stepIndex, finalIndex);
