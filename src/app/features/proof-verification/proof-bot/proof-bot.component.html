@@ -47,8 +47,10 @@
             </div>
           </div>
         </div>
+        <div>
         <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
           [data]="nodes" [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)"></app-poc-graph-view>
+        </div>
       </div>
       <!-- end poc view -->
       <!-- bot-segments header-->

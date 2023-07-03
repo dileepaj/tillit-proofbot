@@ -160,6 +160,8 @@ export class ProofBotComponent implements OnInit {
   selectednode: Boolean = false;
   SelectedproofJSON: any = {};
   originalJson: any= {};
+  stopFlag = false; // Flag to stop the execution of the loop
+  isJumping = false
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -285,6 +287,7 @@ export class ProofBotComponent implements OnInit {
       //console.log("proofcount----",this.TotalProofCountOfPOC);
     }
     this.isStartDemo = true;
+    this.stopFlag = false;
     this.playProofDemo(0);
   }
 
@@ -474,6 +477,7 @@ export class ProofBotComponent implements OnInit {
     if (this.isPause) {
       this.isPause = false;
       if (this.isPlayCompleted) this.currentStep = 0;
+      this.stopFlag = false;
       this.playProofDemo();
     } else {
       this.isPause = true;
@@ -569,6 +573,7 @@ export class ProofBotComponent implements OnInit {
       }
     }
     if (this.isPlayCompleted) {
+      this.isPause = false;
       this.playProofDemo();
     }
   }
@@ -585,6 +590,7 @@ export class ProofBotComponent implements OnInit {
         this.playProofDemo();
       }
     }
+    this.stopFlag = false;
     this.playProofDemo();
   }
 
@@ -693,126 +699,179 @@ export class ProofBotComponent implements OnInit {
   }
 
   // main proof actions
-  async playProofDemo(step: number = this.currentStep, highlightClickedNode: boolean = false, trustLinks: any[] = [], runningProof: string = "", selectednode: boolean = false) {  
-    if(selectednode){
-      console.log("return")
+  async playProofDemo(
+    step: number = this.currentStep,
+    highlightClickedNode: boolean = false,
+    trustLinks: any[] = [],
+    runningProof: string = "",
+    selectednode: boolean = false
+  ) {
+    if (this.stopFlag) {
+      console.log('----------------------------------------------------------------------------firs Play demot call stop falg')
       return;
     }
-    console.log("strattttt")
+    console.log("starttttt");
     this.isReplay = false;
     this.isPlayCompleted = false;
     const { Header, Steps } = this.proofJSON;
     this.totalSteps = Steps.length;
     this.currentStep = step;
-    console.log("current---",this.currentStep);
+    console.log("current---", this.currentStep);
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
-    // //change the all nodes opacity
-    // this.changeNodesOpacity("0.25")
-    // this.changeArrowsOpacity("0.25")
-    for (; this.currentStep < Steps.length;) {
+  
+    const executeStep = async () => {
+
+      console.log('---execute', this.stopFlag)
+      if (this.isPause || this.isReplay || this.currentStep >= Steps.length || this.stopFlag) {
+        console.log('-------------------------------------------------------------------------------first call stop falg')
+        return;
+      }
+  
       this.isBackToStep = false;
-      if (this.isPause) return;
-      if (this.isReplay) return;
       const stepData = this.parseActionData(Steps[this.currentStep]);
       const { StepHeader, Action, Customizations } = stepData;
       const {
         ActionDescription,
         ActionType,
-        ActionParameters
+        ActionParameters,
       } = Action;
-      if(this.proofType=='poc'){
+  
+      if (this.proofType === "poc") {
         this.CurrentPlayingProof.push({
-          trustLink:ActionParameters.TrustLinks,
-          type:ActionParameters.StartedProofType
+          trustLink: ActionParameters.TrustLinks,
+          type: ActionParameters.StartedProofType,
         });
       }
-      // highlight the running nodes and back-links
-      if (!!ActionParameters.StartedProofType && ActionParameters.StartedProofType != "" &&
-        !!ActionParameters.TrustLinks && ActionParameters.TrustLinks.length != 0) {
-        this.changeSpecificNodeOpacity(ActionParameters.TrustLinks, ActionParameters.StartedProofType)
+  
+      if (
+        !!ActionParameters.StartedProofType &&
+        ActionParameters.StartedProofType !== "" &&
+        !!ActionParameters.TrustLinks &&
+        ActionParameters.TrustLinks.length !== 0
+      ) {
+        this.changeSpecificNodeOpacity(
+          ActionParameters.TrustLinks,
+          ActionParameters.StartedProofType
+        );
       }
+  
       if (highlightClickedNode) {
-        this.changeSpecificNodeOpacity(trustLinks, runningProof)
+        this.changeSpecificNodeOpacity(trustLinks, runningProof);
       }
+  
       this.currentStep++;
       this.ActionDescription = ActionDescription[this.lang];
+  
       if (StepHeader.SegmentNo) {
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
       }
+  
       const frameID = StepHeader.FrameID;
       this.cdr.detectChanges();
-      // set global values
       this.setGlobalValuesOnFrames(Header, stepData);
+  
       switch (ActionType) {
         case "BrowserScreen":
-          // await this.closeSteppers();
-          currentBrowserScreen = ActionParameters.ExternalURL
-          console.log("url--",currentBrowserScreen)
-          var scRef: ComponentRef<SiteScreenComponent>;
-          if (this.demoScreenChildRefs[frameID])
+          currentBrowserScreen = ActionParameters.ExternalURL;
+          console.log("url--", currentBrowserScreen);
+          let scRef: ComponentRef<SiteScreenComponent>;
+          if (this.demoScreenChildRefs[frameID]) {
             scRef = this.demoScreenChildRefs[frameID].ref;
-          else {
+          } else {
             scRef = await this.createFrameInProofDemo(stepData);
-            scRef.instance.setFrameIndex(Object.keys(this.demoScreenChildRefs).length - 1);
+            scRef.instance.setFrameIndex(
+              Object.keys(this.demoScreenChildRefs).length - 1
+            );
           }
           this.setGlobalValuesOnFrames(Header, stepData);
-          
+  
           if (scRef && ActionParameters.InnerHTMLPOC) {
-            //verification for poc
-            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
+            if (
+              !!ActionParameters.Compare &&
+              !this.verificationStatus(ActionParameters.Compare)
+            ) {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLPOCError);
-              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
+              await scRef.instance.setPageHTML(
+                ActionParameters.ExternalURL,
+                ActionParameters.InnerHTMLPOCError
+              );
+              this.openModal(
+                `${this.commonServices.getProofName(
+                  this.proofType
+                )} Failed`,
+                0,
+                `Verification failed ${this.currentProof} for ${this.currentBatch}`
+              );
             } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLPOC);
+              await scRef.instance.setPageHTML(
+                ActionParameters.ExternalURL,
+                ActionParameters.InnerHTMLPOC
+              );
             }
           }
-          
+  
           if (scRef && ActionParameters.InnerHTML) {
-            //verification for poe,pog,pobl
-            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
-              if(this.proofType=='poc'){
+            if (
+              !!ActionParameters.Compare &&
+              !this.verificationStatus(ActionParameters.Compare)
+            ) {
+              if (this.proofType === "poc") {
                 this.setCompletedProofCountOfPOC();
                 this.setFailedProofCountOfPOC();
               }
-              console.log("comp",this.completedProofs);
+              console.log("comp", this.completedProofs);
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTMLError);
-              this.openModal(`${this.commonServices.getProofName(this.proofType)} Failed`, 0, `Verification failed ${this.currentProof} for ${this.currentBatch}`)
+              await scRef.instance.setPageHTML(
+                ActionParameters.ExternalURL,
+                ActionParameters.InnerHTMLError
+              );
+              this.openModal(
+                `${this.commonServices.getProofName(
+                  this.proofType
+                )} Failed`,
+                0,
+                `Verification failed ${this.currentProof} for ${this.currentBatch}`
+              );
             } else {
-              if(this.proofType=='poc'){
+              if (this.proofType === "poc") {
                 this.setCompletedProofCountOfPOC();
                 this.setSuccessedProofCountOfPoc();
-               }
-              console.log("comp",this.completedProofs);
-              console.log("comp and success",this.SuccessProofs);
+              }
+              console.log("comp", this.completedProofs);
+              console.log(
+                "comp and success",
+                this.SuccessProofs
+              );
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-              await scRef.instance.setPageHTML(ActionParameters.ExternalURL, ActionParameters.InnerHTML);
+              await scRef.instance.setPageHTML(
+                ActionParameters.ExternalURL,
+                ActionParameters.InnerHTML
+              );
             }
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
-            await scRef.instance.setPage(ActionParameters.ExternalURL, ActionParameters.Translatable, this.lang);
+            await scRef.instance.setPage(
+              ActionParameters.ExternalURL,
+              ActionParameters.Translatable,
+              this.lang
+            );
           }
           break;
         case "UpdateElementAttribute":
-          // await this.closeSteppers();
           await this.handleFormatElementAttribute(stepData);
           break;
         case "FormatDOMText":
-          // await this.closeSteppers();
           await this.handleTextStyle(stepData);
           break;
         case "UpdateElementProperty":
-          // await this.closeSteppers();
           await this.handleSetData(stepData);
           break;
         case "TriggerElementFunction":
-          // await this.closeSteppers();
           await this.handleTriggerFn(stepData);
+          break;
         case "GetElementAttributeData":
-          // await this.closeSteppers();
           await this.handleGetDataFn(stepData);
           break;
         case "InformationStorage":
@@ -824,7 +883,7 @@ export class ProofBotComponent implements OnInit {
         default:
           break;
       }
-
+  
       if (Customizations.ToastMessage) {
         this.toastMSG = Customizations.ToastMessage[this.lang];
         this.toastTop = Customizations.ToastPosition[0];
@@ -836,37 +895,53 @@ export class ProofBotComponent implements OnInit {
         this.toastLeft1 = Customizations.ToastPosition1[1];
         this.isToast1 = true;
       }
-
+  
       this.cdr.detectChanges();
-      await new Promise(resolveTime =>
+  
+      await new Promise((resolveTime) =>
         setTimeout(
           resolveTime,
           (100 *
             (Customizations.ActionDuration
               ? Customizations.ActionDuration
               : 1)) /
-          this.playbackSpeed
+            this.playbackSpeed
         )
       );
-
+  
       this.isToast = false;
       this.isToast1 = false;
-      if (this.lastCompletedStep < this.currentStep)
+  
+      if (this.lastCompletedStep < this.currentStep) {
         this.lastCompletedStep = this.currentStep;
+      }
+  
+      await executeStep();
+    };
+    await executeStep();
+    if (this.stopFlag) {
+      console.log('----------------------------------------------------------------------------firs Play demot call stop falg')
+      return;
     }
-    if (this.currentStep == Steps.length) {
+  
+    if (this.currentStep === Steps.length) {
       this.isPlayCompleted = true;
       this.isPause = true;
     }
-    
   }
+  
 
   parseActionData(action: any, storedData: any = this.variableStorage): any {
+    // console.log('action', action);
+    // console.log('firststoredData', this.variableStorage["TXNhash"]);
+    // console.log('this.variableStorage', this.variableStorage);
     var data = JSON.stringify(action).toString();
     [...data.matchAll(/"\${[^}]+}"|\${[^}]+}/g)].forEach(a => {
       try {
         let key = a[0].match(/\${([^}]+)}/g)[0].slice(2, -1);
+       // console.log('key', key)
         if (key && (storedData[key] != null || storedData[key] != undefined)) {
+         // console.log('storedData[key]', storedData[key])
           var replaceValue = storedData[key];
           var valueType = typeof replaceValue;
           if (valueType == "string" && a[0].match(/"\${[^}]+}"/g)) {
@@ -1526,6 +1601,7 @@ export class ProofBotComponent implements OnInit {
   }
 
   clickedNode(event: string) {
+    this.stopFlag = true;
     this.jumpToStep(event)
   }
 
@@ -1557,7 +1633,7 @@ export class ProofBotComponent implements OnInit {
     
     var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.SegmentNo);
    console.log("iiiii--",index);
-   
+   this.stopFlag = true;
    //console.log("stepii--",this.findStepByPathId(id, this.proofJSON.Header.Steps[stepIndex].StepHeader.SegmentNo))
    if (!!stepIndex) {
       let proofArr = id.split('-')
@@ -1567,10 +1643,13 @@ export class ProofBotComponent implements OnInit {
           trustLink:[a1],
           type:proofArr[0]
         });
-        await this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase(),true);
-        this.selectednode=false;
-        await this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase(),false);
 
+        setTimeout(()=>{
+          this.isStartDemo= true
+          this.stopFlag = false;
+          this.playProofDemo(stepIndex, true, [a1], proofArr[0].toUpperCase(),true);
+        }, 5000);
+        this.isStartDemo = false;
        // this.changeStrokeColor();
         
       } else {
@@ -1579,9 +1658,12 @@ export class ProofBotComponent implements OnInit {
           trustLink:[a2],
           type:proofArr[0]
         })
-        await this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),true);
-        this.selectednode=false;
-        await this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),false);
+        setTimeout(()=>{
+          this.isStartDemo= true
+          this.stopFlag = false;
+          this.playProofDemo(stepIndex, true, [a2], proofArr[0].toUpperCase(),true);
+        }, 5000);
+        this.isStartDemo = false;
        // this.changeStrokeColor();
       }
 
