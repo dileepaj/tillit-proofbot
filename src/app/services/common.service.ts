@@ -44,4 +44,26 @@ export class CommonService {
     const decodedText = decoder.decode(new Uint8Array([...decodedData].map(char => char.charCodeAt(0))));
     return decodedText;
   }
+
+  
+  public getProofNameByType(TxnType): string{
+    switch (TxnType) {
+      case "0":
+          return "Proof of Genesis";
+      case "2":
+        return "Proof of Existence";
+      case "6":
+          return "SPLIT";
+      case "7":
+          return "MERGE";
+      case "5":
+          return "SPLIT PARENT";
+      case "9":
+          return "STAGE TRANSFER";
+      case "10":
+          return "POCOC";
+      default:
+  }
+}
+  
 }

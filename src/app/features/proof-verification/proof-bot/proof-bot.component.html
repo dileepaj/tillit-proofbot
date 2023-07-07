@@ -21,7 +21,7 @@
         (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()" (stopFn)="stopFn()"
         (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
         (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
-        [tdpId]="tdpId"></app-bot-header>
+        [tdpId]="tdpId" (POCStatus)="POCStatus()"></app-bot-header>
       <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
         <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
           <img class="checked-small-img" src="../../../../assets/img/Vector.png">

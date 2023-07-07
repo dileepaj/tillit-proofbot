@@ -37,6 +37,7 @@ import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
 import { BotHeaderComponent } from "../components/bot-header/bot-header.component";
 import { CommonService } from "src/app/services/common.service";
+import { POCStatus } from "src/app/shared/components/poc-status/poc-status.component";
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -152,6 +153,7 @@ export class ProofBotComponent implements OnInit {
   currentId: string="";
   currentProofType: string="";
   TotalProofCountOfPOC: any;
+  allProofsOfPoc: any[]=[];
   SuccessProofs: any[]=[];
   FailedProofs: any[]=[];
   lastPlayedProof: any;
@@ -162,6 +164,7 @@ export class ProofBotComponent implements OnInit {
   originalJson: any= {};
   stopFlag = false; // Flag to stop the execution of the loop
   isJumping = false
+  missingProofs: any;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -284,7 +287,9 @@ export class ProofBotComponent implements OnInit {
     await this.scrollToFrameById("proofHeaderTitle", 20);
     if(this.proofType=='poc'){
       this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
-      //console.log("proofcount----",this.TotalProofCountOfPOC);
+      console.log("proofssssssss----",this.pocJsonService.getAlltheProofsOPOC());
+      
+     // this.missingProofsModal();
     }
     this.isStartDemo = true;
     this.stopFlag = false;
@@ -787,21 +792,18 @@ export class ProofBotComponent implements OnInit {
           this.setGlobalValuesOnFrames(Header, stepData);
   
           if (scRef && ActionParameters.InnerHTMLPOC) {
-            if (
-              !!ActionParameters.Compare &&
-              !this.verificationStatus(ActionParameters.Compare)
-            ) {
+            if (!this.verificationStatusForPOC()) {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+              const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+              this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
               await scRef.instance.setPageHTML(
                 ActionParameters.ExternalURL,
                 ActionParameters.InnerHTMLPOCError
               );
-              this.openModal(
-                `${this.commonServices.getProofName(
-                  this.proofType
-                )} Failed`,
-                0,
-                `Verification failed ${this.currentProof} for ${this.currentBatch}`
+              this.openPOCStatusModal(
+                this.SuccessProofs,
+                this.FailedProofs,
+                this.missingProofs
               );
             } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
@@ -810,9 +812,7 @@ export class ProofBotComponent implements OnInit {
                 ActionParameters.InnerHTMLPOC
               );
             }
-          }
-  
-          if (scRef && ActionParameters.InnerHTML) {
+          }else if (scRef && ActionParameters.InnerHTML) {
             if (
               !!ActionParameters.Compare &&
               !this.verificationStatus(ActionParameters.Compare)
@@ -1297,7 +1297,19 @@ export class ProofBotComponent implements OnInit {
         this.openModal("Proof of Existence Verification Failed", "442", Data[j].Error)
       } else if (Data[j].CompareType == "string" && Data[j].Value != Data[j].CompareValue) {
         this.openModal("Proof Verification Failed", 442, "Key Comparison error")
-      } else { }
+      } else if (this.proofType == "poc" && Data[j].CompareType == "POC"){
+        const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+
+          this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
+          if (this.missingProofs.length != 0) {
+            console.log(this.missingProofs)
+            this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
+          } else {
+            console.log("SuccessVall---", this.SuccessProofs);
+            console.log("Failedvall---", this.FailedProofs);
+          }
+      
+      }else { }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
     console.log("index1216--",index)
@@ -1447,17 +1459,9 @@ export class ProofBotComponent implements OnInit {
     let status = true
     switch (this.proofType) {
       case "pobl":
-        if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
-          if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
-            status = false
-            this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
-          }
-        }
-        if (this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
-          if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1]) {
-            status = false
-            this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
-          }
+        if (this.variableStorage[compare.blockchainValue1] != this.variableStorage[compare.expectedValue1] && this.variableStorage[compare.blockchainValue2] != this.variableStorage[compare.expectedValue1]) {
+          status = false
+          this.toastr.error("Blockchain and Tracified data hashes does not match.", "Backlinks Verification Failed")
         }
         break;
       case "poe":
@@ -1473,6 +1477,20 @@ export class ProofBotComponent implements OnInit {
         }
         break;
       case "poc":
+        if(this.variableStorage[compare.t1]=="POCEND"){
+          const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+
+          this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
+          if (this.missingProofs.length != 0) {
+            status = false;
+            console.log(this.missingProofs)
+            this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
+          } else {
+            status = true;
+            console.log("Success---", this.SuccessProofs);
+            console.log("Failed---", this.FailedProofs)
+          }
+        }
         if (this.TotalProofCountOfPOC != this.completedProofs.length) {
           if (this.currentProof == "Proof of Existence") {
             if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
@@ -1500,14 +1518,6 @@ export class ProofBotComponent implements OnInit {
             }
           }
         }
-        else if ((this.TotalProofCountOfPOC == this.completedProofs.length)) {
-          if (this.SuccessProofs.length == this.TotalProofCountOfPOC) {
-            status = true;
-          } else {
-            status = false;
-            this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
-          }
-        }
 
         break;
       default:
@@ -1515,6 +1525,23 @@ export class ProofBotComponent implements OnInit {
         break;
     }
     return status
+  }
+
+  public verificationStatusForPOC(): any {
+    let status = true;
+    const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+
+    this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
+    if (this.missingProofs.length != 0) {
+      status = false;
+      console.log("missed---", this.missingProofs)
+      this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
+    } else {
+      status = true;
+      console.log("Success---", this.SuccessProofs);
+      console.log("Failed---", this.FailedProofs)
+    }
+    return status;
   }
 
   openModal(errorTitle?, m1?, m2?) {
@@ -1698,24 +1725,114 @@ export class ProofBotComponent implements OnInit {
   }
 
   setCompletedProofCountOfPOC(){
-    this.completedProofs.push({
-      CompletedProofType:this.currentProofType,
-      TxnHash:this.currentId
-    });
+    let type = this.currentProofType
+    if(type =="pobl"||type=="POBL"){
+      this.completedProofs.push({
+        ProofType: this.currentProof,
+        ID: this.currentId,
+        Batch: this.currentBatch,
+        Batch2: this.currentBatch2
+      });
+      }else{
+        this.completedProofs.push({
+          ProofType:this.currentProof,
+          ID:this.currentId,
+          Batch:this.currentBatch,
+         }); 
+      }
   }
+  
   setSuccessedProofCountOfPoc(){
-    this.SuccessProofs.push({
-      SuccessProofType:this.currentProof,
-      TxnHash:this.currentId
-    })
+    let type = this.currentProofType
+    if(type =="pobl"||type=="POBL"){
+      this.SuccessProofs.push({
+        ProofType: this.currentProof,
+        ID: this.currentId,
+        Batch: this.currentBatch,
+        Batch2: this.currentBatch2
+      });
+      }else{
+        this.SuccessProofs.push({
+          ProofType:this.currentProof,
+          ID:this.currentId,
+          Batch:this.currentBatch,
+         }); 
+      }
   }
 
   setFailedProofCountOfPOC(){
-    this.FailedProofs.push({
-      FailedProofType:this.currentProof,
-      TxnHash:this.currentId
-    })
+    let type = this.currentProofType
+    if(type =="pobl"||type=="POBL"){
+      this.FailedProofs.push({
+        ProofType: this.currentProof,
+        ID: this.currentId,
+        Batch: this.currentBatch,
+        Batch2: this.currentBatch2
+      });
+      }else{
+        this.FailedProofs.push({
+          ProofType:this.currentProof,
+          ID:this.currentId,
+          Batch:this.currentBatch,
+         }); 
+      }
   }
 
+  filterMissingProofs(completed: any[], allProofs: any[]): any[] {
+    const completedHashes = completed.map((proof) => proof.ID);
+    
+    const missingProofs = allProofs.filter((proof) => !completedHashes.includes(proof.ID));
+    console.log("misse--",missingProofs)
+    return missingProofs;
+  }
+
+  openPOCStatusModal(successProofs?: any[], failedProofs?: any[], missedProofs?: any[]) {
+    this.togglePlayPauseFn();
+    
+    const initialState: ModalOptions = {
+      initialState: {
+        retry: this.onRetry,
+        successProofs: successProofs,
+        failedproofs: failedProofs,
+        missedProofs: missedProofs
+      }
+    };
+    this.modalService.show(POCStatus, {
+      ...initialState,
+      class: 'modal-xl'
+    });
+  }
+
+  POCStatus(){
+    const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+    console.log ("comple343453", this.completedProofs)
+    this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
+    
+    this.openPOCStatusModal(
+      this.SuccessProofs,
+      this.FailedProofs,
+      this.missingProofs
+    );
+  }
+  // missingProofsModal(){
+  //   const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+  //   this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
+
+  //   this.missingProofs.forEach(() => {
+  //     const strmissingProofType = JSON.stringify(this.missingProofs.ProofType);
+  //     const missingProofID = (this.missingProofs.ID);
+  //     let proofArr = missingProofID.split('-')
+  //     if (strmissingProofType == 'Proof of Backlinks') {
+  //       let a1 = proofArr.slice(-1)
+  //       let a2 = proofArr.slice(-2)
+  //       console.log('Missed Proof of backlink between ' + a1 + 'and' + a2 + `.`)
+  //       return 'Missed Proof of backlink between ' + a1 + 'and' + a2 + `.`
+  //     } else {
+  //       let a3 = proofArr.slice(-1)
+  //       console.log('Missed ' + strmissingProofType + 'of' + a3 + `.`)
+  //       return 'Missed ' + strmissingProofType + 'of' + a3 + `.`
+  //     }
+  //   });
+  // }
   
 }

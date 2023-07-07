@@ -184,7 +184,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     if (node.Data.Identifier != "") {
       let label=`\n\nBatch ID : ${node.Data.Identifier}\n`
       if (!!node.Data.ProductName) {
-        label = label + `Product : ${node.Data.Timestamp ? this.commonService.decodeFromBase64(node.Data.ProductName) : node.Data.ProductNam}\n`
+        label = label + `Product : ${node.Data.Timestamp ? this.commonService.decodeFromBase64(node.Data.ProductName) : node.Data.ProductName}\n`
       }
       if(!!node.Data.CurrentStage){
         label = label + `\nStage : ${node.Data.CurrentStage}\n`

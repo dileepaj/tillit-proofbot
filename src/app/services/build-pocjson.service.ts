@@ -1,6 +1,7 @@
 import { ComponentRef, Injectable } from '@angular/core';
 import { PocGraphViewComponent } from '../features/proof-verification/components/poc-graph-view/poc-graph-view.component';
-
+import { CommonService } from "src/app/services/common.service";
+import * as d3 from 'd3';
 @Injectable({
   providedIn: 'root'
 })
@@ -227,7 +228,10 @@ export class BuildPOCJsonService {
 
   orderedNodes = []; // Initialize an empty array to hold the matching LastTxnHash values
   TotalProofCount: number = 0;
-  constructor() { }
+  currentId: string;
+  currentBatch: string;
+  currentBatch2: string;
+  constructor(public commonServices: CommonService) { }
 
   async buildPOCJson(data: any): Promise<any> {
     let pocArray = await this.createPOCOrder(data)
@@ -8021,7 +8025,13 @@ export class BuildPOCJsonService {
             "SelectiveTextIndex": "",
             "CSS": "",
             "FormatType": "",
-            "StorageData": [],
+            "StorageData": [{
+              "CompareType":"POC"
+            }
+            ],
+            "Compare":{
+              "t1":"POCEND"
+            }
           },
           "ActionResultVariable": "",
           "MetaData": []
@@ -8086,7 +8096,7 @@ export class BuildPOCJsonService {
       // Check if the TrustLinks array contains the desired TxnHash value
       if (trustLinks.includes(txnHash)) {
         if (this.orderedNodes.includes(pocNode.Nodes[nodeId])) {
-          console.log("duplicate")
+          console.log("nodeeeee--",node)
         } else {
           if (node.Data.TxnType == '0' || node.Data.TxnType == '2') {
             this.orderedNodes.push(pocNode.Nodes[nodeId]); // If so, add the LastTxnHash value to the orderedNodes array
@@ -8112,12 +8122,16 @@ export class BuildPOCJsonService {
             const node = pocNode.Nodes[nodeId]; // Get the node object for this ID
             const trustLinks = node.TrustLinks || []; // Get the TrustLinks array, or an empty array if it's null
             const existingBacklink = this.findExistingBacklink(id, parent);
-            
             if (!existingBacklink) {
               const backLinkNode = {
                 "Id": "backlink",
                 "Data": {
                   "TxnType": "pobl",
+                  "Batch": pocNode.Nodes[id].Data.ProductName,
+                  "Stage":pocNode.Nodes[id].Data.CurrentStage,
+                  "Batch2": pocNode.Nodes[parent].Data.ProductName,
+                  "Stage2":pocNode.Nodes[parent].Data.CurrentStage,
+                  
                 },
                 "Parents": null,
                 "Children": null,
@@ -8138,6 +8152,7 @@ export class BuildPOCJsonService {
             
             if (!!node.Parents && node.Parents.length !== 0) {
               await this.checkParentsAndPush(pocNode, node.Parents, trustLinks[0], nodeId);
+            
             }
           }
         }
@@ -8157,6 +8172,31 @@ export class BuildPOCJsonService {
   getTotalOrderedNodesCount(): number {
     console.log("node order",this.orderedNodes)
     return this.orderedNodes.length;
+  }
+  
+  getAlltheProofsOPOC(): any{
+    const allproofs: any[] = this.orderedNodes.map((proof) => {
+      if (proof.Data.TxnType == "pobl") {
+        return {
+          ProofType: this.commonServices.getProofName(proof.Data.TxnType),
+          ID:`arrow-`+ proof.PoblTDP.current+`-`+ proof.PoblTDP.previous,
+          Batch:this.commonServices.decodeFromBase64(proof.Data.Batch),
+          Stage:proof.Data.Stage,
+          Batch2:this.commonServices.decodeFromBase64(proof.Data.Batch2),
+          Stage2:proof.Data.Stage2,
+        };
+      } else {
+        return {
+          ProofType: this.commonServices.getProofNameByType(proof.Data.TxnType),
+          ID: `node-`+ proof.Data.TxnHash,
+          Batch: this.commonServices.decodeFromBase64(proof.Data.ProductName),
+          Stage:proof.Data.CurrentStage
+        };
+      }
+    });
+    console.log("all",allproofs);
+    console.log("nodeeeee--",this.orderedNodes)
+    return allproofs;
   }
   getObjectById(id: string, arr: any[]): any | null {
     for (let i = 0; i < arr.length; i++) {
