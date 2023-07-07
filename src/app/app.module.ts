@@ -31,6 +31,7 @@ import { ErrorModalComponent } from "./shared/components/error-modal/error-modal
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BotWaitComponent } from "./features/proof-verification/components/bot-wait/bot-wait.component";
+import {POCStatus} from './shared/components/poc-status/poc-status.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { BotWaitComponent } from "./features/proof-verification/components/bot-w
     PocGraphViewComponent,
     ErrorModalComponent,
     BotWaitComponent,
+    POCStatus,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,7 @@ import { BotWaitComponent } from "./features/proof-verification/components/bot-w
     NgbModule,
     CollapseModule.forRoot(),
   ],
-  entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent],
+  entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent,POCStatus,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

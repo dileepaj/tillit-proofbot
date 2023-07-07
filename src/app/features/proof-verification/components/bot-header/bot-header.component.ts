@@ -23,6 +23,7 @@ export class BotHeaderComponent implements OnInit {
   @Output() setSpeedFn = new EventEmitter();
   @Output() theaterModeFn = new EventEmitter();
   @Output() resizeVerifyScreenFn = new EventEmitter();
+  @Output() POCStatus = new EventEmitter();
   @Input() proof1: string;
   @Input() proof2: string;
   @Input() product
@@ -60,5 +61,10 @@ export class BotHeaderComponent implements OnInit {
 
   emitResizeVerifyScreenFn() {
     this.resizeVerifyScreenFn.emit("");
+  }
+
+  emitPOCStatusFn(){
+    console.log("clickedd")
+    this.POCStatus.emit("");
   }
 }
