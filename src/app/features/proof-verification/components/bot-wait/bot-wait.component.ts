@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-bot-loader',
-  templateUrl: './bot-loader.component.html',
-  styleUrls: ['./bot-loader.component.css']
+  selector: 'app-bot-wait',
+  templateUrl: './bot-wait.component.html',
+  styleUrls: ['./bot-wait.component.css']
 })
-export class BotLoaderComponent implements OnInit {
+export class BotWaitComponent implements OnInit {
 
   @Input() isStartDemo: Boolean;
   @Input() initialHeight: string;
@@ -20,16 +20,17 @@ export class BotLoaderComponent implements OnInit {
   @Input() product
   @Input() batch
   @Input() tdpId
-  @Input() metric
   countdown: number = 1;
 
   constructor() { }
 
   ngOnInit() {
     //this.startDemoFn.emit('');
+    setInterval(() => {
+        if (this.countdown > 0) {
+          this.countdown--;
+        }
+      }, 1000);
    
-  }
-  emitStartDemoFn() {
-    this.startDemoFn.emit("");
   }
 }

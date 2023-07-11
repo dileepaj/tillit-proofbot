@@ -24,9 +24,8 @@ export class ErrorModalComponent implements OnInit {
     this.errorTitle = initialState.errorTitle;
     this.m1 = initialState.m1;
     this.m2 = initialState.m2;
-    console.log('initialState', initialState);
-
   }
+  
   emitBackToStepFn(NO: number) {
     this.backToStepFn.emit(NO);
   

@@ -30,6 +30,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorModalComponent } from "./shared/components/error-modal/error-modal.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BotWaitComponent } from "./features/proof-verification/components/bot-wait/bot-wait.component";
+import {POCStatus} from './shared/components/poc-status/poc-status.component';
 import { MetricProofComponent } from './features/proof-verification/metric-proof/metric-proof.component';
 import { MetricBatchHistoryComponent } from './features/proof-verification/components/metric-batch-history/metric-batch-history.component';
 @NgModule({
@@ -50,6 +52,8 @@ import { MetricBatchHistoryComponent } from './features/proof-verification/compo
     BotSegmentsComponent,
     PocGraphViewComponent,
     ErrorModalComponent,
+    BotWaitComponent,
+    POCStatus,
     MetricProofComponent,
     MetricBatchHistoryComponent,
   ],
@@ -79,7 +83,7 @@ import { MetricBatchHistoryComponent } from './features/proof-verification/compo
     NgbModule,
     CollapseModule.forRoot(),
   ],
-  entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent],
+  entryComponents: [SiteScreenComponent, ElementDividerComponent, ErrorModalComponent,POCStatus,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

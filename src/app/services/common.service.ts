@@ -28,7 +28,7 @@ export class CommonService {
         proofName = "Proof of Continuity"
         break;
       case "pobl":
-        proofName = "Proof of Back-links"
+        proofName = "Proof of Backlinks"
         break;
       case "POBL":
         proofName = "Proof of Backlinks"
@@ -38,4 +38,32 @@ export class CommonService {
     }
     return proofName
   }
+  decodeFromBase64(base64Text) {
+    const decodedData = atob(base64Text);
+    const decoder = new TextDecoder('utf-8');
+    const decodedText = decoder.decode(new Uint8Array([...decodedData].map(char => char.charCodeAt(0))));
+    return decodedText;
+  }
+
+  
+  public getProofNameByType(TxnType): string{
+    switch (TxnType) {
+      case "0":
+          return "Proof of Genesis";
+      case "2":
+        return "Proof of Existence";
+      case "6":
+          return "SPLIT";
+      case "7":
+          return "MERGE";
+      case "5":
+          return "SPLIT PARENT";
+      case "9":
+          return "STAGE TRANSFER";
+      case "10":
+          return "POCOC";
+      default:
+  }
+}
+  
 }

@@ -1,6 +1,7 @@
 import { ComponentRef, Injectable } from '@angular/core';
 import { PocGraphViewComponent } from '../features/proof-verification/components/poc-graph-view/poc-graph-view.component';
-
+import { CommonService } from "src/app/services/common.service";
+import * as d3 from 'd3';
 @Injectable({
   providedIn: 'root'
 })
@@ -118,7 +119,7 @@ export class BuildPOCJsonService {
       },
       "SegName10": {
         "ja": "TDPデータ取得",
-        "en": "Retrieve TDP Data"
+        "en": "Retrieve Traceability Data Data"
       },
       "SegName11": {
         "ja": "ブロックチェーントランザクションを取得",
@@ -146,7 +147,7 @@ export class BuildPOCJsonService {
       },
       "SegName17": {
         "ja": "現在のTXNHashをデコード",
-        "en": "Decode Current TXNHash"
+        "en": "Decode Current TXN Hash and Merge ID"
       },
       "SegName18": {
         "ja": "現在のトランザクションを取得",
@@ -226,7 +227,11 @@ export class BuildPOCJsonService {
   }
 
   orderedNodes = []; // Initialize an empty array to hold the matching LastTxnHash values
-  constructor() { }
+  TotalProofCount: number = 0;
+  currentId: string;
+  currentBatch: string;
+  currentBatch2: string;
+  constructor(public commonServices: CommonService) { }
 
   async buildPOCJson(data: any): Promise<any> {
     let pocArray = await this.createPOCOrder(data)
@@ -235,7 +240,7 @@ export class BuildPOCJsonService {
       return b
     }
   }
-
+ 
   async loopTheNodes(pocArray): Promise<any> {
     pocArray.forEach(node => {
       switch (node.Data.TxnType) {
@@ -290,7 +295,7 @@ export class BuildPOCJsonService {
                 "StepNo": numPog + 1,
                 "SegmentNo": segPog + 1,
                 "FrameID": 1,
-                "FrameTitle": ""
+                "FrameTitle": "" 
               },
               "Action": {
                 "ActionTitle": "&{TextPog0}",
@@ -324,6 +329,7 @@ export class BuildPOCJsonService {
                     "FrameTitle": "&{TextPog2}",
                     "ActionTitle": "&{TextPog3}",
                     "ActionDescription": "&{TextPog4}",
+                    "PathID":`pog-${node.Id}`,
                     "ActionTitle_1": "&{TextPog5}",
                     "ActionDescription_1": "&{TextPog6}",
                     "ActionTitle_2": "&{TextPog7}",
@@ -333,7 +339,7 @@ export class BuildPOCJsonService {
                     "ResponseVariable": "MainTXNDataString",
                     "JSONResultVariable": "MainTXNData",
                     "StartedProofType": "POG",
-                    "TrustLinks": [node.Id]
+                    "TrustLinks": [node.Id],
                   }
                 },
                 "ActionResultVariable": "",
@@ -612,6 +618,7 @@ export class BuildPOCJsonService {
                     "FrameTitle": "&{TextPog28}",
                     "ActionTitle": "&{TextPog29}",
                     "ActionDescription": "&{TextPog30}",
+                    "PathID":"",
                     "ActionTitle_1": "&{TextPog31}",
                     "ActionDescription_1": "&{TextPog32}",
                     "ActionTitle_2": "&{TextPog33}",
@@ -1476,7 +1483,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPog + 22,
                 "SegmentNo": segPog + 8,
                 "FrameID": 5,
-                "FrameTitle": "&{TextPog102}"
+                "FrameTitle": "&{TextPog102}",
+                "PathID":`pog-${node.Id}-Final`,
               },
               "Action": {
                 "ActionTitle": "&{TextPog103}",
@@ -1605,8 +1613,8 @@ export class BuildPOCJsonService {
                   "en": "Select the encoded Current TXN Hash from the transaction details"
                 },
                 "TextPog219": {
-                  "ja": "TXN2 CurrentTXN",
-                  "en": "TXN2 CurrentTXN"
+                  "ja": "CurrentTXN",
+                  "en": "CurrentTXN"
                 },
                 "TextPog115": {
                   "ja": "CurrentTXN ハッシュ",
@@ -1627,8 +1635,8 @@ export class BuildPOCJsonService {
                   "en": "Save the base64 encoded Current TXN Hash value for future usage."
                 },
                 "TextPog200": {
-                  "ja": "TXN2 CurrentTXN (base64)",
-                  "en": "TXN2 CurrentTXN (base64)"
+                  "ja": "CurrentTXN (base64)",
+                  "en": "CurrentTXN (base64)"
                 }
               }
             },
@@ -2196,7 +2204,7 @@ export class BuildPOCJsonService {
               },
               "Action": {
                 "ActionTitle": "Tracified API Request",
-                "ActionDescription": "Retrieve TDP data from Tracified Gateway.",
+                "ActionDescription": "Retrieve Traceability Data data from Tracified Gateway.",
                 "ActionType": "MultiStepAction",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2226,6 +2234,7 @@ export class BuildPOCJsonService {
                     "FrameTitle": "&{TextPoe0}",
                     "ActionTitle": "&{TextPoe149}",
                     "ActionDescription": "&{TextPoe2}",
+                    "PathID":`poe-${node.Id}`,
                     "FrameTitle_1": "&{TextPoe3}",
                     "ActionTitle_1": "&{TextPoe4}",
                     "ActionDescription_1": "&{TextPoe5}",
@@ -2238,10 +2247,10 @@ export class BuildPOCJsonService {
                     "JSONResultVariable": "MainTDPData",
                     "StartedProofType": "POE",
                     "TrustLinks": [node.Id],
-                  }
+                  },
                 },
                 "ActionResultVariable": "",
-                "MetaData": []
+                "MetaData": [],
               },
               "Customizations": {
                 "PointerData": "",
@@ -2344,8 +2353,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPoe16}",
                     "OperationKey": "Identifier",
                     "OperationValue": "TDPIdentifier",
-                    "OperationKeyName": "identifier from the TDP details",
-                    "OperationValueName": "identifier from the TDP details"
+                    "OperationKeyName": "identifier from the Traceability Data details",
+                    "OperationValueName": "identifier from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2502,8 +2511,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPoe27}",
                     "OperationKey": "DataHash",
                     "OperationValue": "TDPDatahash",
-                    "OperationKeyName": "Datahash from the TDP details",
-                    "OperationValueName": "Datahash from the TDP details"
+                    "OperationKeyName": "Datahash from the Traceability Data details",
+                    "OperationValueName": "Datahash from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2661,8 +2670,8 @@ export class BuildPOCJsonService {
                     "ActionDescription_1": "&{TextPoe38}",
                     "OperationKey": "Txnhash",
                     "OperationValue": "TDPTxnhash",
-                    "OperationKeyName": "txnhash from the TDP details",
-                    "OperationValueName": "txnhash from the TDP details"
+                    "OperationKeyName": "txnhash from the Traceability Data details",
+                    "OperationValueName": "txnhash from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2736,7 +2745,7 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "Retrieve TDP Transaction",
+                "ActionTitle": "Retrieve Traceability Data Transaction",
                 "ActionDescription": "",
                 "ActionType": "MultiStepAction",
                 "ActionParameters": {
@@ -2767,6 +2776,7 @@ export class BuildPOCJsonService {
                     "FrameTitle": "&{TextPoe42}",
                     "ActionTitle": "&{TextPoe43}",
                     "ActionDescription": "&{TextPoe44}",
+                    "PathID":"",
                     "ActionTitle_1": "&{TextPoe45}",
                     "ActionDescription_1": "&{TextPoe46}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
@@ -3054,6 +3064,7 @@ export class BuildPOCJsonService {
                     "FrameID": 4,
                     "ActionTitle": "&{TextPoe73}",
                     "ActionDescription": "&{TextPoe74}",
+                    "PathID":"",
                     "ActionTitle_1": "&{TextPoe76}",
                     "ActionDescription_1": "&{TextPoe77}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
@@ -3581,7 +3592,7 @@ export class BuildPOCJsonService {
                     "ActionDescription_3": "&{TextPoe148}",
                     "ToastMessage": "&{TextPoe154}",
                     "InputKeyName": "the base64 decoded Datahash values from the transactions.",
-                    "InputValue": "[{\"title\": \"Identifiers from the TDP and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
+                    "InputValue": "[{\"title\": \"Identifiers from the Traceability Data and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
                   }
                 },
                 "ActionResultVariable": "",
@@ -3602,7 +3613,8 @@ export class BuildPOCJsonService {
                 "StepNo": numPoe + 26,
                 "SegmentNo": segPoe + 6,
                 "FrameID": 8,
-                "FrameTitle": "&{TextPoe120}"
+                "FrameTitle": "&{TextPoe120}",
+                "PathID":`poe-${node.Id}-Final`,
               },
               "Action": {
                 "ActionTitle": "&{TextPoe121}",
@@ -3659,23 +3671,23 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe0": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
                 },
                 "TextPoe149": {
                   "ja": "TDPデータ要求",
-                  "en": "Request TDP Data"
+                  "en": "Request Traceability Data Data"
                 },
                 "TextPoe1": {
                   "ja": "現在のTDP",
-                  "en": "Current TDP"
+                  "en": "Current Traceability Data"
                 },
                 "TextPoe2": {
                   "ja": "Tracified GatewayからTDPデータを取得",
-                  "en": "Retrieve TDP data from Tracified Gateway."
+                  "en": "Retrieve Traceability Data data from Tracified Gateway."
                 },
                 "TextPoe3": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
                 },
                 "TextPoe4": {
                   "ja": "API レスポンスの保存",
@@ -3687,7 +3699,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe6": {
                   "ja": "ステップ1-TDPデータの取得",
-                  "en": "Step 1 - Retrieve TDP Data"
+                  "en": "Step 1 - Retrieve Traceability Data Data"
                 },
                 "TextPoe7": {
                   "ja": "フォーマットレスポンス（JSON）",
@@ -3705,11 +3717,11 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe9": {
                   "ja": "TDP識別子の選択",
-                  "en": "Select TDP identifier"
+                  "en": "Select Traceability Data identifier"
                 },
                 "TextPoe10": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from TDP details."
+                  "en": "Select the identifier from Traceability Data details."
                 }
               }
             },
@@ -3719,7 +3731,7 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe11": {
                   "ja": "TDPの詳細からの識別子",
-                  "en": "identifier from the TDP details"
+                  "en": "identifier from the Traceability Data details"
                 },
                 "TextPoe12": {
                   "ja": "識別子をハイライト表示",
@@ -3727,7 +3739,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe13": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
+                  "en": "Select the identifier from the Traceability Data details"
                 },
                 "TextPoe14": {
                   "ja": "テスト",
@@ -3739,7 +3751,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe16": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the TDP details"
+                  "en": "Select the identifier from the Traceability Data details"
                 }
               }
             },
@@ -3748,8 +3760,8 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 4,
               "Languages": {
                 "TextPoe17": {
-                  "ja": "TDP 識別子の保存",
-                  "en": "Save TDP Identifier"
+                  "ja": "Traceability Data 識別子の保存",
+                  "en": "Save Traceability Data Identifier"
                 },
                 "TextPoe18": {
                   "ja": "将来の使用のために識別子の値を保存する",
@@ -3757,7 +3769,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe205": {
                   "ja": "TDP識別子",
-                  "en": "TDP Identifier"
+                  "en": "Traceability Data Identifier"
                 }
               }
             },
@@ -3766,12 +3778,12 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 5,
               "Languages": {
                 "TextPoe20": {
-                  "ja": "TDP Data Hashの選択",
-                  "en": "Select TDP Data Hash"
+                  "ja": "Traceability Data Data Hashの選択",
+                  "en": "Select Traceability Data Data Hash"
                 },
                 "TextPoe21": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from TDP details."
+                  "en": "Select the Data Hash from Traceability Data details."
                 }
               }
             },
@@ -3781,7 +3793,7 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe22": {
                   "ja": "TDPの詳細からダータハッシュ",
-                  "en": "Data Hash from the TDP details"
+                  "en": "Data Hash from the Traceability Data details"
                 },
                 "TextPoe23": {
                   "ja": "ダータハッシュをハイライト表示",
@@ -3789,7 +3801,7 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe24": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
+                  "en": "Select the Data Hash from the Traceability Data details"
                 },
                 "TextPoe25": {
                   "ja": "テスト",
@@ -3797,11 +3809,11 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe26": {
                   "ja": "TDPデータハッシュのハイライト",
-                  "en": "Highlight the TDP Data Hash"
+                  "en": "Highlight the Traceability Data Data Hash"
                 },
                 "TextPoe27": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the TDP details"
+                  "en": "Select the Data Hash from the Traceability Data details"
                 }
               }
             },
@@ -3811,15 +3823,15 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe28": {
                   "ja": "TDPデータハッシュの保存",
-                  "en": "Save TDP Data Hash"
+                  "en": "Save Traceability Data Data Hash"
                 },
                 "TextPoe29": {
                   "ja": "将来の使用のためにデータハッシュ値の保存",
                   "en": "Save Data Hash value for future usage."
                 },
                 "TextPoe206": {
-                  "ja": "TDP データハッシュ",
-                  "en": "TDP Data Hash"
+                  "ja": "Traceability Data データハッシュ",
+                  "en": "Traceability Data Data Hash"
                 }
               }
             },
@@ -3828,12 +3840,12 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 8,
               "Languages": {
                 "TextPoe31": {
-                  "ja": "TDP Txn Hashを選択",
-                  "en": "Select TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select Traceability Data Txn Hash"
                 },
                 "TextPoe32": {
                   "ja": "TDPの詳細からTxn Hashを選択",
-                  "en": "Select the Txn Hash from TDP details."
+                  "en": "Select the Txn Hash from Traceability Data details."
                 }
               }
             },
@@ -3847,15 +3859,15 @@ export class BuildPOCJsonService {
                 },
                 "TextPoe35": {
                   "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
+                  "en": "Select the txn Hash from the Traceability Data details"
                 },
                 "TextPoe37": {
-                  "ja": "TDP Txn Hashをハイライト",
-                  "en": "Highlight the TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Traceability Data Txn Hash"
                 },
                 "TextPoe38": {
                   "ja": "TDPの詳細からtxn Hashを選択",
-                  "en": "Select the txn Hash from the TDP details"
+                  "en": "Select the txn Hash from the Traceability Data details"
                 }
               }
             },
@@ -3864,16 +3876,16 @@ export class BuildPOCJsonService {
               "StepNo": numPoe + 10,
               "Languages": {
                 "TextPoe39": {
-                  "ja": "TDP Txn Hashを保存",
-                  "en": "Save TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save Traceability Data Txn Hash"
                 },
                 "TextPoe40": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Txn Hash value for future usage."
                 },
                 "TextPoe207": {
-                  "ja": "TDP Txn Hash",
-                  "en": "TDP Txn Hash"
+                  "ja": "Traceability Data Txn Hash",
+                  "en": "Traceability Data Txn Hash"
                 }
               }
             },
@@ -3883,7 +3895,7 @@ export class BuildPOCJsonService {
               "Languages": {
                 "TextPoe42": {
                   "ja": "ステップ５ーTDPトランザクションの取得",
-                  "en": "Step 5 - Retrieve TDP Transaction"
+                  "en": "Step 5 - Retrieve Traceability Data Transaction"
                 },
                 "TextPoe43": {
                   "ja": "ステラホライズンAPIをリクエスト",
@@ -4507,6 +4519,7 @@ export class BuildPOCJsonService {
                     "FrameTitle": "&{TextPobl1}",
                     "ActionTitle": "&{TextPobl2}",
                     "ActionDescription": "&{TextPobl3}",
+                    "PathID": `pobl-${node.PoblTDP.current}-${node.PoblTDP.previous}`,
                     "ActionTitle_1": "&{TextPobl4}",
                     "ActionDescription_1": "&{TextPobl5}",
                     "ActionTitle_2": "&{TextPobl6}",
@@ -4614,7 +4627,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 6,
+                    "StepNo": numPobl + 10,
                     "SegmentNo": segPobl + 2,
                     "FrameID": 1,
                     "FrameTitle": "",
@@ -4760,6 +4773,226 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPobl + 6,
+                "SegmentNo": segPobl + 2,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{TextPobl250}",
+                "ActionDescription": "&{TextPobl251}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "body",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "jsonValueObjectPicker",
+                  "StorageData": []
+                },
+                "ActionResultVariable": "MainTXNMergeID",
+                "MetaData": ["MainTXNData", "MergeID", false, "value"]
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPobl + 7,
+                "SegmentNo": segPobl + 2,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "KeyValueHighlighter",
+                  "SubActionArguments": {
+                    "StepNo": numPobl + 7,
+                    "SegmentNo": segPobl + 2,
+                    "FrameID": 1,
+                    "FrameTitle": "",
+                    "ActionTitle": "&{TextPobl252}",
+                    "ActionDescription": "&{TextPobl253}",
+                    "ActionTitle_1": "&{TextPobl254}",
+                    "ActionDescription_1": "&{TextPobl255}",
+                    "OperationKey": "MergeID",
+                    "OperationValue": "MainTXNMergeID",
+                    "OperationKeyName": "encoded Merge Id Hash from the transaction details",
+                    "OperationValueName": "encoded Merge ID Hash from the transaction details"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPobl + 8,
+                "SegmentNo": segPobl + 2,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{TextPobl256}",
+                "ActionDescription": "&{TextPobl257}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "body",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": true,
+                  "SelectiveTextIndex": 0,
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [
+                    {
+                      "Key": "&{TextPobl258}",
+                      "Value": "${MainTXNMergeID}"
+                    }
+                  ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPobl + 9,
+                "SegmentNo": segPobl + 2,
+                "FrameID": 2,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "OnlineToolsDecoder",
+                  "SubActionArguments": {
+                    "StepNo": numPobl + 9,
+                    "SegmentNo": segPobl + 2,
+                    "FrameID": 2,
+                    "FrameTitle": "&{TextPobl259}",
+                    "ActionTitle":"&{TextPobl260}",
+                    "ActionDescription":"&{TextPobl261}",
+                    "ActionTitle_1":"&{TextPobl262}",
+                    "ActionDescription_1":"&{TextPobl263}",
+                    "ActionTitle_2":"&{TextPobl264}",
+                    "ActionDescription_2":"&{TextPobl265}",
+                    "ActionTitle_3":"&{TextPobl266}",
+                    "ActionDescription_3":"&{TextPobl267}",
+                    "ActionTitle_4":"&{TextPobl268}",
+                    "ActionDescription_4":"&{TextPobl269}",
+                    "ToastMessage":"&{TextPobl270}",
+                    "DecodeKeyName": "MergeID Hash",
+                    "EncodedInputValue": "${MainTXNMergeID}",
+                    "DecodedResultVariable": "MergeIDhasheDecoded",
+                    "InformationStorageKey": "&{TextPobl271}"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPobl + 10,
                 "SegmentNo": segPobl + 3,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -4789,12 +5022,13 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 6,
+                    "StepNo": numPobl + 10,
                     "SegmentNo": segPobl + 2,
                     "FrameID": 3,
                     "FrameTitle": "&{TextPobl28}",
                     "ActionTitle": "&{TextPobl29}",
                     "ActionDescription": "&{TextPobl30}",
+                    "PathID":"",
                     "ActionTitle_1": "&{TextPobl31}",
                     "ActionDescription_1": "&{TextPobl32}",
                     "ActionTitle_2": "&{TextPobl33}",
@@ -4822,7 +5056,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 7,
+                "StepNo": numPobl + 11,
                 "SegmentNo": segPobl + 4,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -4872,7 +5106,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 8,
+                "StepNo": numPobl + 12,
                 "SegmentNo": segPobl + 4,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -4902,7 +5136,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 8,
+                    "StepNo": numPobl + 12,
                     "SegmentNo": segPobl + 4,
                     "FrameID": 3,
                     "FrameTitle": "",
@@ -4931,7 +5165,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 9,
+                "StepNo": numPobl + 13,
                 "SegmentNo": segPobl + 4,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -4981,7 +5215,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 10,
+                "StepNo": numPobl + 14,
                 "SegmentNo": segPobl + 4,
                 "FrameID": 4,
                 "FrameTitle": ""
@@ -5011,7 +5245,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 10,
+                    "StepNo": numPobl + 14,
                     "SegmentNo": segPobl + 4,
                     "FrameID": 4,
                     "FrameTitle": "&{TextPobl43}",
@@ -5047,7 +5281,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 11,
+                "StepNo": numPobl + 15,
                 "SegmentNo": segPobl + 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -5097,7 +5331,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 12,
+                "StepNo": numPobl + 16,
                 "SegmentNo": segPobl + 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -5127,7 +5361,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 12,
+                    "StepNo": numPobl + 16,
                     "SegmentNo": segPobl + 5,
                     "FrameID": 3,
                     "FrameTitle": "",
@@ -5156,7 +5390,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 13,
+                "StepNo": numPobl + 17,
                 "SegmentNo": segPobl + 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -5206,7 +5440,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 14,
+                "StepNo": numPobl + 18,
                 "SegmentNo": segPobl + 5,
                 "FrameID": 3,
                 "FrameTitle": ""
@@ -5236,7 +5470,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 14,
+                    "StepNo": numPobl + 18,
                     "SegmentNo": segPobl + 5,
                     "FrameID": 3,
                     "FrameTitle": "&{TextPobl62}",
@@ -5272,7 +5506,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 15,
+                "StepNo": numPobl + 19,
                 "SegmentNo": segPobl + 6,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -5322,7 +5556,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 16,
+                "StepNo": numPobl + 20,
                 "SegmentNo": segPobl + 6,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -5352,7 +5586,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 16,
+                    "StepNo": numPobl + 20,
                     "SegmentNo": segPobl + 5,
                     "FrameID": 1,
                     "FrameTitle": "",
@@ -5381,7 +5615,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 17,
+                "StepNo": numPobl + 21,
                 "SegmentNo": segPobl + 6,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -5431,7 +5665,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 18,
+                "StepNo": numPobl + 22,
                 "SegmentNo": segPobl + 6,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -5461,7 +5695,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 18,
+                    "StepNo": numPobl + 22,
                     "SegmentNo": segPobl + 6,
                     "FrameID": 1,
                     "FrameTitle": "&{TextPobl82}",
@@ -5497,7 +5731,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 19,
+                "StepNo": numPobl + 23,
                 "SegmentNo": segPobl + 7,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -5527,12 +5761,13 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 19,
+                    "StepNo": numPobl + 23,
                     "SegmentNo": segPobl + 7,
                     "FrameID": 8,
                     "FrameTitle": "&{TextPobl94}",
                     "ActionTitle": "&{TextPobl95}",
                     "ActionDescription": "&{TextPobl96}",
+                    "PathID":"",
                     "ActionTitle_1": "&{TextPobl97}",
                     "ActionDescription_1": "&{TextPobl98}",
                     "ActionTitle_2": "&{TextPobl99}",
@@ -5560,7 +5795,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 20,
+                "StepNo": numPobl + 24,
                 "SegmentNo": segPobl + 8,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -5610,7 +5845,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 21,
+                "StepNo": numPobl + 25,
                 "SegmentNo": segPobl + 8,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -5640,7 +5875,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 21,
+                    "StepNo": numPobl + 25,
                     "SegmentNo": segPobl + 8,
                     "FrameID": 8,
                     "FrameTitle": "",
@@ -5669,7 +5904,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 22,
+                "StepNo": numPobl + 26,
                 "SegmentNo": segPobl + 8,
                 "FrameID": 8,
                 "FrameTitle": ""
@@ -5698,7 +5933,7 @@ export class BuildPOCJsonService {
                   "CSS": "",
                   "FormatType": "",
                   "GivenDataToStorageData": {
-                    "Type": "pobl",
+                    "Type": "poblOfPoc",
                     "Key": "&{TextPobl215}",
                     "Value": node.TrustLinks[1]
                   },
@@ -5724,7 +5959,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 23,
+                "StepNo": numPobl + 27,
                 "SegmentNo": segPobl + 8,
                 "FrameID": 9,
                 "FrameTitle": ""
@@ -5754,7 +5989,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 23,
+                    "StepNo": numPobl + 27,
                     "SegmentNo": segPobl + 8,
                     "FrameID": 9,
                     "FrameTitle": "&{TextPobl109}",
@@ -5790,7 +6025,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 24,
+                "StepNo": numPobl + 28,
                 "SegmentNo": segPobl + 9,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -5820,12 +6055,13 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 24,
+                    "StepNo": numPobl + 28,
                     "SegmentNo": segPobl + 9,
                     "FrameID": 10,
                     "FrameTitle": "&{TextPobl121}",
                     "ActionTitle": "&{TextPobl122}",
                     "ActionDescription": "&{TextPobl123}",
+                    "PathID":"",
                     "ActionTitle_1": "&{TextPobl124}",
                     "ActionDescription_1": "&{TextPobl125}",
                     "ActionTitle_2": "&{TextPobl126}",
@@ -5853,7 +6089,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 25,
+                "StepNo": numPobl + 29,
                 "SegmentNo": segPobl + 10,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -5903,7 +6139,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 26,
+                "StepNo": numPobl + 30,
                 "SegmentNo": segPobl + 10,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -5933,7 +6169,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 26,
+                    "StepNo": numPobl + 30,
                     "SegmentNo": segPobl + 10,
                     "FrameID": 10,
                     "FrameTitle": "",
@@ -5962,7 +6198,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 27,
+                "StepNo": numPobl + 31,
                 "SegmentNo": segPobl + 10,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -6012,7 +6248,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 28,
+                "StepNo": numPobl + 32,
                 "SegmentNo": segPobl + 10,
                 "FrameID": 11,
                 "FrameTitle": ""
@@ -6042,7 +6278,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 28,
+                    "StepNo": numPobl + 32,
                     "SegmentNo": segPobl + 10,
                     "FrameID": 11,
                     "FrameTitle": "&{TextPobl136}",
@@ -6078,7 +6314,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 29,
+                "StepNo": numPobl + 33,
                 "SegmentNo": segPobl + 11,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -6128,7 +6364,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 30,
+                "StepNo": numPobl + 34,
                 "SegmentNo": segPobl + 11,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -6158,7 +6394,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 30,
+                    "StepNo": numPobl + 34,
                     "SegmentNo": segPobl + 11,
                     "FrameID": 10,
                     "FrameTitle": "",
@@ -6187,7 +6423,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 31,
+                "StepNo": numPobl + 35,
                 "SegmentNo": segPobl + 11,
                 "FrameID": 10,
                 "FrameTitle": ""
@@ -6237,7 +6473,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 32,
+                "StepNo": numPobl + 36,
                 "SegmentNo": segPobl + 11,
                 "FrameID": 11,
                 "FrameTitle": ""
@@ -6267,7 +6503,7 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 32,
+                    "StepNo": numPobl + 36,
                     "SegmentNo": segPobl + 11,
                     "FrameID": 11,
                     "FrameTitle": "&{TextPobl156}",
@@ -6303,7 +6539,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 33,
+                "StepNo": numPobl + 37,
                 "SegmentNo": segPobl + 12,
                 "FrameID": 12,
                 "FrameTitle": ""
@@ -6333,9 +6569,9 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 33,
+                    "StepNo": numPobl + 37,
                     "SegmentNo": segPobl + 12,
-                    "FrameID": 12,
+                    "FrameID": 7,
                     "FrameTitle": "&{TextPobl168}",
                     "ActionTitle": "&{TextPobl169}",
                     "ActionDescription": "&{TextPobl170}",
@@ -6368,7 +6604,7 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 34,
+                "StepNo": numPobl + 38,
                 "SegmentNo": segPobl + 13,
                 "FrameID": 12,
                 "FrameTitle": ""
@@ -6398,9 +6634,9 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPobl + 34,
+                    "StepNo": numPobl + 38,
                     "SegmentNo": segPobl + 13,
-                    "FrameID": 12,
+                    "FrameID": 7,
                     "FrameTitle": "&{TextPobl168}",
                     "ActionTitle": "&{TextPobl169}",
                     "ActionDescription": "&{TextPobl170}",
@@ -6415,7 +6651,7 @@ export class BuildPOCJsonService {
                     "ActionDescription_3": "&{TextPobl176}",
                     "ToastMessage": "&{TextPobl177}",
                     "InputKeyName": "the base64 decoded Identifier values from the transactions.",
-                    "InputValue": '[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\":' + node.TrustLinks[1] + '"}]"'
+                    "InputValue": "[{\"title\": \" Merge ID   hash from main transaction & backlink transaction\", \"t1\": \"${MergeIDhasheDecoded}\", \"t2\": \"${ExpectedPreviousTxnHash}\"}]"
                   }
                 },
                 "ActionResultVariable": "",
@@ -6433,10 +6669,76 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPobl + 35,
+                "StepNo": numPobl + 38,
+                "SegmentNo": segPobl + 13,
+                "FrameID": 12,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "TextComparison",
+                  "SubActionArguments": {
+                    "StepNo": numPobl + 38,
+                    "SegmentNo": segPobl + 13,
+                    "FrameID": 12,
+                    "FrameTitle": "&{TextPobl168}",
+                    "ActionTitle": "&{TextPobl169}",
+                    "ActionDescription": "&{TextPobl170}",
+                    "FrameTitle_1": "&{TextPobl168}",
+                    "ActionTitle_1": "&{TextPobl171}",
+                    "ActionDescription_1": "&{TextPobl172}",
+                    "FrameTitle_2": "&{TextPobl168}",
+                    "ActionTitle_2": "&{TextPobl173}",
+                    "ActionDescription_2": "&{TextPobl174}",
+                    "FrameTitle_3": "&{TextPobl168}",
+                    "ActionTitle_3": "&{TextPobl175}",
+                    "ActionDescription_3": "&{TextPobl176}",
+                    "ToastMessage": "&{TextPobl177}",
+                    "InputKeyName": "the base64 decoded Identifier values from the transactions.",
+                    "InputValue": "[{\"title\": \"Previous Transaction hash from main transaction & backlink transaction\", \"t1\": \"${MainTXNPreviousTXNDecoded}\", \"t2\": \"${ExpectedPreviousTxnHash}\"}]"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPobl + 39,
                 "SegmentNo": segPobl + 14,
                 "FrameID": 13,
-                "FrameTitle": "&{TextPobl178}"
+                "FrameTitle": "&{TextPobl178}",
+                "PathID": `pobl-${node.PoblTDP.current}-${node.PoblTDP.previous}-Final`
               },
               "Action": {
                 "ActionTitle": "&{TextPobl179}",
@@ -6444,8 +6746,8 @@ export class BuildPOCJsonService {
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
-                  "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current TDP Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous TDP Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current Traceability Data Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Traceability Data Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF BACKLINK</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Current Traceability Data Transaction Hash</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Traceability Data Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${var_currenttxn}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNPreviousTXNCurrentTXNHashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
                   "PageURL": "&{TextPobl181}",
                   "Query": "",
                   "QueryIndex": "",
@@ -6465,8 +6767,9 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [],
                   "Compare": {
-                    "t1": "MainTXNPreviousTXNDecoded",
-                    "t2": node.TrustLinks[1]
+                    "blockchainValue1": "MainTXNPreviousTXNDecoded",
+                    "blockchainValue2":"MergeIDhasheDecoded",
+                    "expectedValue1": "ExpectedPreviousTxnHash"
                   }
                 },
                 "ActionResultVariable": "",
@@ -6642,8 +6945,120 @@ export class BuildPOCJsonService {
               }
             },
             {
-              "SegmentNo": segPobl + 3,
+              "SegmentNo": segPobl + 2,
               "StepNo": numPobl + 6,
+              "Languages": {
+                "TextPobl250": {
+                  "ja": "CurrentTXNハッシュの抽出",
+                  "en": "Extract Merge Id Hash"
+                },
+                "TextPobl251": {
+                  "ja": "トランザクションの詳細から、CurrentTXN Hash (base64 encoded)を選択",
+                  "en": "Select the Merge ID Hash (base64 encoded) from the transaction details."
+                }
+              }
+            },
+            {
+              "SegmentNo": segPobl + 2,
+              "StepNo": numPobl + 7,
+              "Languages": {
+                "TextPobl252": {
+                  "ja": "現在のTXNをハイライト表示",
+                  "en": "Highlight the Merge ID"
+                },
+                "TextPobl253": {
+                  "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+                  "en": "Select the  Merge Id  from the transaction details"
+                },
+                "TextPobl254": {
+                  "ja": "MainTXNCurrentTXNHashをハイライト表示",
+                  "en": "Highlight the Merge Id Hash"
+                },
+                "TextPobl255": {
+                  "ja": "トランザクションの詳細からエンコードされたCurrentTXNハッシュを選択",
+                  "en": "Select the encoded Merge Id Hash from the transaction details"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPobl + 2,
+              "StepNo": numPobl + 8,
+              "Languages": {
+                "TextPobl256": {
+                  "ja": "Base64エンコードされたCurrentTXNを保存",
+                  "en": "Save Base64Encoded Merge Id"
+                },
+                "TextPobl257": {
+                  "ja": "Base64でエンコードされたCurrentTXNハッシュ値を将来の使用のために保存",
+                  "en": "Save the base64 encoded Merge Id Hash value for future usage."
+                },
+                "TextPobl258": {
+                  "ja": "Merge Id (base64)",
+                  "en": "Merge Id (base64)"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPobl + 2,
+              "StepNo": numPobl + 9,
+              "Languages": {
+                "TextPobl259": {
+                  "ja": "ステップ２－現在のTXNをデコードする",
+                  "en": "Step 2 - Decode Merge Id"
+                },
+                "TextPobl260": {
+                  "ja": "Base64DecoderのWebページを読み込む",
+                  "en": "Load Base64Decoder Webpage"
+                },
+                "TextPobl261": {
+                  "ja": "Base64でエンコードされたCurrentTXNハッシュをデコード",
+                  "en": "Decode the base64 encoded Merge Id Hash"
+                },
+                "TextPobl262": {
+                  "ja": "Base64エンコードされたデータの入力",
+                  "en": "Input Base64Encoded Data"
+                },
+                "TextPobl263": {
+                  "ja": "Base64でエンコードされたCurrentTXNハッシュの入力",
+                  "en": "Input the base64 encoded Merge Id Hash"
+                },
+                "TextPobl264": {
+                  "ja": "デコードボタンをクリック",
+                  "en": "Click Decode Button"
+                },
+                "TextPobl265": {
+                  "ja": "デコードボタンをクリック",
+                  "en": "Click the decode button"
+                },
+                "TextPobl266": {
+                  "ja": "Base64デコードデータの表示",
+                  "en": "View Base64Decoded Data"
+                },
+                "TextPobl267": {
+                  "ja": "デコードされたCurrentTXNハッシュの出力を得る",
+                  "en": "Get the output of the decoded Merge Id Hash"
+                },
+                "TextPobl268": {
+                  "ja": "Base64デコードデータの保存",
+                  "en": "Save Base64Decoded Data"
+                },
+                "TextPobl269": {
+                  "ja": "将来の使用のためにデコードされたCurrentTXNハッシュを保存",
+                  "en": "Save the decoded Merge Id Hash for future usage"
+                },
+                "TextPobl270": {
+                  "ja": "デコードされたCurrentTXNハッシュ",
+                  "en": "Decoded Merge Id Hash"
+                },
+                "TextPobl271": {
+                  "ja": "Merge Id",
+                  "en": "Merge Id"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPobl + 3,
+              "StepNo": numPobl + 10,
               "Languages": {
                 "TextPobl28": {
                   "ja": "ステップ３－現在のトランザクションの取得",
@@ -6677,7 +7092,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 7,
+              "StepNo": numPobl + 11,
               "Languages": {
                 "TextPobl35": {
                   "ja": "Base64EncodedのIDを選択",
@@ -6691,7 +7106,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 8,
+              "StepNo": numPobl + 12,
               "Languages": {
                 "TextPobl37": {
                   "ja": "IDをハイライト表示",
@@ -6713,7 +7128,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 9,
+              "StepNo": numPobl + 13,
               "Languages": {
                 "TextPobl41": {
                   "ja": "Base64EncodeされたIDの保存",
@@ -6731,7 +7146,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 4,
-              "StepNo": numPobl + 10,
+              "StepNo": numPobl + 14,
               "Languages": {
                 "TextPobl43": {
                   "ja": "ステップ４－MainTXN IDのデコード",
@@ -6793,7 +7208,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 11,
+              "StepNo": numPobl + 15,
               "Languages": {
                 "TextPobl55": {
                   "ja": "Base64EncodedのProductIDを選択",
@@ -6807,7 +7222,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 12,
+              "StepNo": numPobl + 16,
               "Languages": {
                 "TextPobl57": {
                   "ja": "productIdをハイライト表示",
@@ -6829,7 +7244,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 13,
+              "StepNo": numPobl + 17,
               "Languages": {
                 "TextPobl60": {
                   "ja": "「Base64EncodedのProductIDを保存",
@@ -6847,7 +7262,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 5,
-              "StepNo": numPobl + 14,
+              "StepNo": numPobl + 18,
               "Languages": {
                 "TextPobl62": {
                   "ja": "ステップー５ーMainTXN ProductIDのデコード",
@@ -6909,7 +7324,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 15,
+              "StepNo": numPobl + 19,
               "Languages": {
                 "TextPobl74": {
                   "ja": "Base64EncodedのPreviousTXNを選択",
@@ -6923,7 +7338,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 16,
+              "StepNo": numPobl + 20,
               "Languages": {
                 "TextPobl76": {
                   "ja": "前のTXNをハイライト表示",
@@ -6945,7 +7360,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 17,
+              "StepNo": numPobl + 21,
               "Languages": {
                 "TextPobl80": {
                   "ja": "Base64Encoded で保存 PreviousTXN",
@@ -6963,7 +7378,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 6,
-              "StepNo": numPobl + 18,
+              "StepNo": numPobl + 22,
               "Languages": {
                 "TextPobl82": {
                   "ja": "ステップ５ーMainTXN のデコード 前のハッシュ",
@@ -7025,7 +7440,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 7,
-              "StepNo": numPobl + 19,
+              "StepNo": numPobl + 23,
               "Languages": {
                 "TextPobl94": {
                   "ja": "ステップ７－バックリンクのトランザクションを取得",
@@ -7059,7 +7474,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 20,
+              "StepNo": numPobl + 24,
               "Languages": {
                 "TextPobl101": {
                   "ja": "Base64EncodedのCurrentTXNを選択",
@@ -7073,7 +7488,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 21,
+              "StepNo": numPobl + 25,
               "Languages": {
                 "TextPobl103": {
                   "ja": "現在のTXNをハイライト表示",
@@ -7095,7 +7510,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 22,
+              "StepNo": numPobl + 26,
               "Languages": {
                 "TextPobl107": {
                   "ja": "Base64エンコードされたCurrentTXNを保存",
@@ -7117,7 +7532,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 8,
-              "StepNo": numPobl + 23,
+              "StepNo": numPobl + 27,
               "Languages": {
                 "TextPobl109": {
                   "ja": "ステップ９ーデコード PreviousTXN CurentTXN ハッシュ",
@@ -7179,7 +7594,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 9,
-              "StepNo": numPobl + 24,
+              "StepNo": numPobl + 28,
               "Languages": {
                 "TextPobl121": {
                   "ja": "ステップ１０－バックリンクの現在のトランザクションを取得",
@@ -7213,7 +7628,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 25,
+              "StepNo": numPobl + 29,
               "Languages": {
                 "TextPobl128": {
                   "ja": "Base64EncodedのIDを選択",
@@ -7227,7 +7642,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 26,
+              "StepNo": numPobl + 30,
               "Languages": {
                 "TextPobl130": {
                   "ja": "IDをハイライト表示",
@@ -7249,7 +7664,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 27,
+              "StepNo": numPobl + 31,
               "Languages": {
                 "TextPobl134": {
                   "ja": "Base64EncodeされたIDの保存",
@@ -7267,7 +7682,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 10,
-              "StepNo": numPobl + 28,
+              "StepNo": numPobl + 32,
               "Languages": {
                 "TextPobl136": {
                   "ja": "ステップ１１－PreviousTXN の CurrentTXN のIDをデコード",
@@ -7329,7 +7744,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 29,
+              "StepNo": numPobl + 33,
               "Languages": {
                 "TextPobl148": {
                   "ja": "Base64EncodedのProductIDを選択",
@@ -7343,7 +7758,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 30,
+              "StepNo": numPobl + 34,
               "Languages": {
                 "TextPobl150": {
                   "ja": "productIdをハイライト表示",
@@ -7365,7 +7780,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 31,
+              "StepNo": numPobl + 35,
               "Languages": {
                 "TextPobl154": {
                   "ja": "「Base64EncodedのProductIDを保存",
@@ -7383,7 +7798,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 11,
-              "StepNo": numPobl + 32,
+              "StepNo": numPobl + 36,
               "Languages": {
                 "TextPobl156": {
                   "ja": "ステップ１２－PreviousTXNとCurrentTXN の ProductID をデコード",
@@ -7445,7 +7860,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 12,
-              "StepNo": numPobl + 33,
+              "StepNo": numPobl + 37,
               "Languages": {
                 "TextPobl168": {
                   "ja": "ステップ１３－",
@@ -7491,7 +7906,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 13,
-              "StepNo": numPobl + 34,
+              "StepNo": numPobl + 38,
               "Languages": {
                 "TextPobl168": {
                   "ja": "ステップ１３－",
@@ -7537,7 +7952,7 @@ export class BuildPOCJsonService {
             },
             {
               "SegmentNo": segPobl + 14,
-              "StepNo": numPobl + 35,
+              "StepNo": numPobl + 39,
               "Languages": {
                 "TextPobl178": {
                   "ja": "ステップ１４－検証概要",
@@ -7562,7 +7977,7 @@ export class BuildPOCJsonService {
           this.pocProofJson.Steps.push(...poblSteps)
           this.pocLangJson.Actions.push(...poblLang)
           segPobl = segPobl + 14
-          numPobl = numPobl + 35
+          numPobl = numPobl + 39
           break;
         default:
           break;
@@ -7591,8 +8006,8 @@ export class BuildPOCJsonService {
           "ActionType": "BrowserScreen",
           "ActionParameters": {
             "ExternalURL": "",
-            "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
-            "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
+            "InnerHTMLPOC": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
+            "InnerHTMLPOCError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
             "PageURL": "&{TextPoc181}",
             "Query": "",
             "QueryIndex": "",
@@ -7610,7 +8025,13 @@ export class BuildPOCJsonService {
             "SelectiveTextIndex": "",
             "CSS": "",
             "FormatType": "",
-            "StorageData": [],
+            "StorageData": [{
+              "CompareType":"POC"
+            }
+            ],
+            "Compare":{
+              "t1":"POCEND"
+            }
           },
           "ActionResultVariable": "",
           "MetaData": []
@@ -7674,41 +8095,130 @@ export class BuildPOCJsonService {
       const parents = node.Parents || [];
       // Check if the TrustLinks array contains the desired TxnHash value
       if (trustLinks.includes(txnHash)) {
-        this.orderedNodes.push(pocNode.Nodes[nodeId]); // If so, add the LastTxnHash value to the orderedNodes array
-        // loop through the parents 
+        if (this.orderedNodes.includes(pocNode.Nodes[nodeId])) {
+          console.log("nodeeeee--",node)
+        } else {
+          if (node.Data.TxnType == '0' || node.Data.TxnType == '2') {
+            this.orderedNodes.push(pocNode.Nodes[nodeId]); // If so, add the LastTxnHash value to the orderedNodes array
+            // loop through the parents 
+          }
+
+        }
+
         await this.checkParentsAndPush(pocNode, parents, trustLinks[0], node.Id)
       }
     }
+    console.log("order",(this.orderedNodes));
+    
+    this.TotalProofCount= this.orderedNodes.length;
     return new Promise((resolve, reject) => { resolve(this.orderedNodes) })
   }
 
-  async checkParentsAndPush(pocNode, parents, trustLink, id) {
+  async checkParentsAndPush(pocNode: any, parents: string[], trustLink: any, id: string) {
     if (!!parents && parents.length !== 0) {
-      parents.forEach(parent => {
+      for (const parent of parents) {
         for (const nodeId in pocNode.Nodes) {
-          if (nodeId == parent) {
+          if (nodeId === parent) {
             const node = pocNode.Nodes[nodeId]; // Get the node object for this ID
             const trustLinks = node.TrustLinks || []; // Get the TrustLinks array, or an empty array if it's null
-            const parents = node.Parents || [];
-            let backLinkNode = {
-              "Id": "backlink",
-              "Data": {
-                "TxnType": "pobl",
-              },
-              "Parents": null,
-              "Children": null,
-              "Siblings": null,
-              "TrustLinks": [trustLink, trustLinks[0]],
-              "PoblTDP": { current: id, previous: parent }
+            const existingBacklink = this.findExistingBacklink(id, parent);
+            if (!existingBacklink) {
+              const backLinkNode = {
+                "Id": "backlink",
+                "Data": {
+                  "TxnType": "pobl",
+                  "Batch": pocNode.Nodes[id].Data.ProductName,
+                  "Stage":pocNode.Nodes[id].Data.CurrentStage,
+                  "Batch2": pocNode.Nodes[parent].Data.ProductName,
+                  "Stage2":pocNode.Nodes[parent].Data.CurrentStage,
+                  
+                },
+                "Parents": null,
+                "Children": null,
+                "Siblings": null,
+                "TrustLinks": [trustLink, trustLinks[0]],
+                "PoblTDP": { current: id, previous: parent }
+              };
+              
+              if (!this.orderedNodes.includes(backLinkNode)) {
+                this.orderedNodes.push(backLinkNode);
+              }
             }
-            this.orderedNodes.push(backLinkNode)
-            this.orderedNodes.push(pocNode.Nodes[nodeId])
-            if (!!parents && parents.length !== 0) {
-              this.checkParentsAndPush(pocNode, parents, trustLinks[0], nodeId)
+            
+            if (!this.orderedNodes.includes(node)) {
+              if(node.Data.TxnType=='0'||node.Data.TxnType=='2'){
+                this.orderedNodes.push(node);
+              }}
+            
+            if (!!node.Parents && node.Parents.length !== 0) {
+              await this.checkParentsAndPush(pocNode, node.Parents, trustLinks[0], nodeId);
+            
             }
           }
         }
-      })
+      }
     }
+  }
+  
+  findExistingBacklink(currentId: string, previousId: string): any {
+    for (const node of this.orderedNodes) {
+      if (node.Id === "backlink" && node.PoblTDP.current === currentId && node.PoblTDP.previous === previousId) {
+        return node;
+      }
+    }
+    return null;
+  }
+
+  getTotalOrderedNodesCount(): number {
+    console.log("node order",this.orderedNodes)
+    return this.orderedNodes.length;
+  }
+  
+  getAlltheProofsOPOC(): any{
+    const allproofs: any[] = this.orderedNodes.map((proof) => {
+      if (proof.Data.TxnType == "pobl") {
+        return {
+          ProofType: this.commonServices.getProofName(proof.Data.TxnType),
+          ID:`arrow-`+ proof.PoblTDP.current+`-`+ proof.PoblTDP.previous,
+          Batch:this.commonServices.decodeFromBase64(proof.Data.Batch),
+          Stage:proof.Data.Stage,
+          Batch2:this.commonServices.decodeFromBase64(proof.Data.Batch2),
+          Stage2:proof.Data.Stage2,
+        };
+      } else {
+        return {
+          ProofType: this.commonServices.getProofNameByType(proof.Data.TxnType),
+          ID: `node-`+ proof.Data.TxnHash,
+          Batch: this.commonServices.decodeFromBase64(proof.Data.ProductName),
+          Stage:proof.Data.CurrentStage
+        };
+      }
+    });
+    console.log("all",allproofs);
+    console.log("nodeeeee--",this.orderedNodes)
+    return allproofs;
+  }
+  getObjectById(id: string, arr: any[]): any | null {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].Id === id) {
+        return arr[i];
+      }
+    }
+    return null; // Return null if no matching object is found
+  }
+
+  extractSteps(jsonData: any, startStepNo: number, endStepNo: number): any[] {
+    const steps = jsonData.Steps;
+    const starts = jsonData.Steps[startStepNo].StepHeader.StepNo;
+    const ends = jsonData.Steps[endStepNo].StepHeader.StepNo;
+    const extractedSteps = [];
+
+    for (const step of steps) {
+      const stepNo = step.StepHeader.StepNo;
+      if (stepNo >= starts && stepNo <= ends) {
+        extractedSteps.push(step);
+      }
+    }
+    return extractedSteps;
   }
 }

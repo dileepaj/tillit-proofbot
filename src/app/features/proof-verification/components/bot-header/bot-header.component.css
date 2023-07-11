@@ -51,6 +51,10 @@
     background-color: #007bff;
     color: #fdfcfc;
   }
+  .statusBtn{
+    font-weight: 600;
+    font-family: Inter;
+  }
 
   
   /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -59,6 +63,9 @@
       float: none!important;
     }
     .lang-selector{
+      align-self: center;
+    }
+    .statusBtn{
       align-self: center;
     }
     .header-container{
@@ -101,6 +108,9 @@
     margin-right: 0px;
     padding-top:7px;
   }
+  .statusBtn{
+    align-self: center;
+  }
   
 }
 
@@ -111,6 +121,12 @@
   }
   .proofbot-header-img-container{
     margin-right: auto;
+  }
+  .statusBtn{
+    align-self: center;
+  }
+  .statusBtn{
+    align-self: center;
   }
   
   
@@ -124,6 +140,9 @@
   .proofbot-header-img-container{
     margin-right: auto;
   }
+  .statusBtn{
+    align-self: center;
+  }
   
 }
 
@@ -135,13 +154,18 @@
   .proofbot-header-img-container{
     margin-right: 0;
   }
+  .statusBtn{
+    align-self: center;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .lang-selector{
     align-self: center;
-    
+  } 
+  .statusBtn{
+    align-self: center;
   }
   .proofbot-header-img-container{
     margin-right: 0;
