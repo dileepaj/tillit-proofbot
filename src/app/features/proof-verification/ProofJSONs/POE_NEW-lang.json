@@ -1,0 +1,837 @@
+{
+    "Segments": {
+      "SegName1": {
+        "ja":"TDPデータ取得",
+        "en": "Retrieve Traceability Data Data"
+      },
+      "SegName2": {
+        "ja":"..",
+        "en": "Genarete Data Hash"
+      },
+      "SegName3": {
+        "ja":"ブロックチェーントランザクションを取得",
+        "en": "Retrieve blockchain transaction"
+      },
+      "SegName4": {
+        "ja":"Current TXN ハッシュのデコード",
+        "en": "Decode Current TXN Hash"
+      },
+      "SegName5": {
+        "ja":"ブロックチェーンCurrent TXNの取得",
+        "en": "Retrieve blockchain Current TXN"
+      },
+      "SegName6": {
+        "ja":"比較",
+        "en": "Comparison"
+      },
+      "SegName7": {
+        "ja":"概要",
+        "en": "Summary"
+      }
+    },
+    "Actions": [
+      {
+        "SegmentNo": 1,
+        "StepNo": 1,
+        "Languages": {
+          "Text0": {
+            "ja":"ステップ1-TDPデータの取得",
+            "en": "Step 1 - Retrieve Traceability Data Data"
+          },
+          "Text149": {
+            "ja":"TDPデータ要求",
+            "en":"Request Traceability Data Data"
+          },
+          "Text1": {
+            "ja":"現在のTDP",
+            "en": "Current Traceability Data"
+          },
+          "Text2": {
+            "ja":"Tracified GatewayからTDPデータを取得",
+            "en": "Retrieve Traceability Data data from Tracified Gateway."
+          },
+          "Text3": {
+            "ja":"ステップ1-TDPデータの取得",
+            "en": "Step 1 - Retrieve Traceability Data Data"
+          },
+          "Text4": {
+            "ja":"API レスポンスの保存",
+            "en": "Save API Response"
+          },
+          "Text5": {
+            "ja":"トランザクションのレスポンスデータの保存",
+            "en": "Save the response data of the transaction"
+          },
+          "Text6": {
+            "ja":"ステップ1-TDPデータの取得",
+            "en": "Step 1 - Retrieve Traceability Data Data"
+          },
+          "Text7": {
+            "ja":"フォーマットレスポンス（JSON）",
+            "en": "Format Response (JSON)"
+          },
+          "Text8": {
+            "ja":"トランザクションデータをJSONにフォーマット(Javascriptオブジェクト記法)",
+            "en": "Format transaction data to JSON (Javascript Object Notation)"
+          }
+          
+          
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 2,
+        "Languages": {
+          "Text9": {
+            "ja":"TDP識別子の選択",
+            "en": "Select Traceability Data identifier"
+          },
+          "Text10": {
+            "ja":"TDP詳細から識別子を選択",
+            "en": "Select the Traceability Data identifier from Traceability Data details."
+          }
+        }
+      },
+      
+      {
+        "SegmentNo": 1,
+        "StepNo": 3,
+        "Languages": {
+          "Text11": {
+            "ja":"TDPの詳細からの識別子",
+            "en": "TDP identifier from the Traceability Data details"
+          },
+          "Text12": {
+            "ja":"識別子をハイライト表示",
+            "en": "Highlight the TDP Identifier"
+          },
+          "Text13": {
+            "ja":"TDP詳細から識別子を選択",
+            "en": "Select the TDP identifier from the Traceability Data details"
+          },
+          "Text14": {
+            "ja":"TDP詳細から識別子を選択",
+            "en": "Select the TDP identifier from the Traceability Data details"
+          },
+          "Text15": {
+            "ja":"識別子をハイライト表示",
+            "en": "Highlight the value of TDP Identifier"
+          },
+          "Text16": {
+            "ja":"TDP詳細から識別子を選択",
+            "en": "Select the TDP identifier value from the Traceability Data details"
+          }
+         
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 4,
+        "Languages": {
+          "Text17": {
+            "ja":"Traceability Data 識別子の保存",
+            "en": "Save Traceability Data Identifier"
+          },
+          "Text18": {
+            "ja":"将来の使用のために識別子の値を保存する",
+            "en": "Save the Identifier value for future usage."
+          },
+          "Text19": {
+            "ja":"TDP識別子",
+            "en": "Traceability Data Identifier"
+          } 
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 5,
+        "Languages": {
+          "Text20": {
+            "ja":"Traceability Data の選択",
+            "en": "Select Traceability Data"
+          },
+          "Text21": {
+            "ja":"TDPの詳細からデータハッシュを選択",
+            "en": "Select the Traceability Data from Traceability Data details."
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 6,
+        "Languages": {
+          "Text22": {
+            "ja":"TDPの詳細からダータハッシュ",
+            "en": "Traceability Data from the Traceability Data details"
+          },
+          "Text23": {
+            "ja":"ダータハッシュをハイライト表示",
+            "en": "Highlight the Traceability Data "
+          },
+          "Text24": {
+            "ja":"TDPの詳細からデータハッシュを選択",
+            "en": "Select the Traceability Data from the Traceability Data details"
+          },
+          "Text25": {
+            "ja":"TDPの詳細からデータハッシュを選択",
+            "en": "Select the Traceability Data from the Traceability Data details"
+          },
+          "Text26": {
+            "ja":"TDPデータハッシュのハイライト",
+            "en":  "Highlight the Traceability Data value"
+          },
+          "Text27": {
+            "ja":"TDPの詳細からデータハッシュを選択",
+            "en": "Select the Tracibility Data value from the Traceability Data details"
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 7,
+        "Languages": {
+          "Text28": {
+            "ja":"TDPデータハッシュの保存",
+            "en": "Save Traceability Data"
+          },
+          "Text29": {
+            "ja":"将来の使用のためにデータハッシュ値の保存",
+            "en": "Save Data value for future usage."
+          },
+          "Text30": {
+            "ja":"Traceability Data データハッシュ",
+            "en": "Traceability Data "
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 8,
+        "Languages": {
+          "Text31": {
+            "ja":"Traceability Data Txn Hashを選択",
+            "en": "Select Traceability Data Txn Hash"
+          },
+          "Text32": {
+            "ja":"TDPの詳細からTxn Hashを選択",
+            "en": "Select the Txn Hash from Traceability Data details."
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 9,
+        "Languages": {
+          "Text34": {
+            "ja":"Txn Hashのハイライト",
+            "en": "Highlight the Txn Hash"
+          },
+          "Text35": {
+            "ja":"TDPの詳細からtxn Hashを選択",
+            "en": "Select the txn Hash from the Traceability Data details"
+          },
+          "Text37": {
+            "ja":"Traceability Data Txn Hashをハイライト",
+            "en": "Highlight the Traceability Data Txn Hash"
+          },
+          "Text38": {
+            "ja":"TDPの詳細からtxn Hashを選択",
+            "en": "Select the txn Hash from the Traceability Data details"
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 10,
+        "Languages": {
+          "Text39": {
+            "ja":"Traceability Data Txn Hashを保存",
+            "en": "Save Traceability Data Txn Hash"
+          },
+          "Text40": {
+            "ja":"将来の使用のためにTxn Hashの値を保存",
+            "en": "Save Txn Hash value for future usage."
+          },
+          "Text150":{
+            "ja":"Traceability Data Txn Hash",
+            "en":"Traceability Data Txn Hash"
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 8,
+        "Languages": {
+          "Text31": {
+            "ja":"Traceability Data Txn Hashを選択",
+            "en": "Select Traceability Data Txn Hash"
+          },
+          "Text32": {
+            "ja":"TDPの詳細からTxn Hashを選択",
+            "en": "Select the Txn Hash from Traceability Data details."
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 9,
+        "Languages": {
+          "Text34": {
+            "ja":"Txn Hashのハイライト",
+            "en": "Highlight the Txn Hash"
+          },
+          "Text35": {
+            "ja":"TDPの詳細からtxn Hashを選択",
+            "en": "Select the txn Hash from the Traceability Data details"
+          },
+          "Text37": {
+            "ja":"Traceability Data Txn Hashをハイライト",
+            "en": "Highlight the Traceability Data Txn Hash"
+          },
+          "Text38": {
+            "ja":"TDPの詳細からtxn Hashを選択",
+            "en": "Select the txn Hash from the Traceability Data details"
+          }
+        }
+      },
+      {
+        "SegmentNo": 1,
+        "StepNo": 10,
+        "Languages": {
+          "Text39": {
+            "ja":"Traceability Data Txn Hashを保存",
+            "en": "Save Traceability Data Txn Hash"
+          },
+          "Text40": {
+            "ja":"将来の使用のためにTxn Hashの値を保存",
+            "en": "Save Txn Hash value for future usage."
+          },
+          "Text150":{
+            "ja":"Traceability Data Txn Hash",
+            "en":"Traceability Data Txn Hash"
+          }
+        }
+      },
+      {
+        "SegmentNo": 2,
+        "StepNo": 11,
+        "Languages": {
+          "Text42": {
+            "ja":"ステップ５ーTDPトランザクションの取得",
+            "en": "Step 5 - Retrieve Traceability Data Transaction"
+          },
+          "Text43": {
+            "ja":"ステラホライズンAPIをリクエスト",
+            "en": "Request Stellar Horizon API"
+          },
+          "Text44": {
+            "ja":"ステラブロックチェーンから現在の取引を取得",
+            "en": "Retrieve the current transaction from Stellar Blockchain."
+          },
+          "Text45": {
+            "ja":"API レスポンスの保存",
+            "en": "Save API Response"
+          },
+          "Text46": {
+            "ja":"トランザクションのレスポンスデータを保存",
+            "en": "Save the response data of the transaction"
+          },
+          "Text47": {
+            "ja":"フォーマットレスポンス（JSON）",
+            "en": "Format Response (JSON)"
+          },
+          "Text48": {
+            "ja":"トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+            "en":  "Format transaction data to JSON (Javascript Object Notation)"
+          }
+        }
+      },
+      {
+        "SegmentNo": 2,
+        "StepNo": 12,
+        "Languages": {
+          "Text49": {
+            "ja":"Current TXNハッシュの選択",
+            "en": "Select Current TXN Hash"
+          },
+          "Text50": {
+            "ja":"トランザクションの詳細からCurrent TXNハッシュ（base64エンコード）を選択",
+            "en": "Select the Current TXN Hash (base64 encoded) from the transaction details."
+          }
+        }
+      },
+      {
+        "SegmentNo": 2,
+        "StepNo": 13,
+        "Languages": {
+          "Text51": {
+            "ja":"トランザクションの詳細からエンコードされたCurrent TXNハッシュをハイライト",
+            "en": "Highlight the encoded Current TXN Hash from the transaction details"
+          },
+          "Text52": {
+            "ja":"トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
+            "en": "Select the encoded Current TXN Hash from the transaction details"
+          },
+          "Text53": {
+            "ja":"トランザクションの詳細から、エンコードされたCurrent TXNハッシュ値をハイライト",
+            "en": "Highlight the encoded Current TXN Hash value from the transaction details"
+          },
+          "Text54": {
+            "ja":"トランザクションの詳細からエンコードされたCurrent TXNハッシュ値を選択",
+            "en": "Select the encoded Current TXN Hash value from the transaction details"
+          }
+        }
+      },
+      {
+        "SegmentNo": 3,
+        "StepNo": 14,
+        "Languages": {
+          "Text55": {
+            "ja":"Base64エンコードされたCurrent TXNの保存",
+            "en": "Save Base64 Encoded Current TXN"
+          },
+          "Text56": {
+            "ja":"将来の使用のためにBase64でエンコードされたCurrent TXNハッシュ値を保存",
+            "en": "Save the base64 encoded Current TXN Hash value for future usage."
+          },
+          "Text151":{
+            "ja":"Current TXN (ベース64)",
+            "en":"Current TXN (base64)"
+          }
+         
+        }
+      },
+      {
+        "SegmentNo": 3,
+        "StepNo": 15,
+        "Languages": {
+          "Text58": {
+            "ja":"ステップ１５ - 現在のTXNをデコード",
+            "en": "Step 15 - Decode Current TXN"
+          },
+          "Text59": {
+            "ja":"base64デコードのサイトを読み込む",
+            "en": "Load the base64 decode website"
+          },
+          "Text60": {
+            "ja":"Base64でエンコードされたCurrent TXNハッシュをデコードする",
+            "en": "Decode the base64 encoded Current TXN Hash"
+          },
+          "Text61": {
+            "ja":"Base64でエンコードされた現在のTXNハッシュを入力",
+            "en": "Input base64 encoded current txn hash"
+          },
+          "Text62": {
+            "ja":"Base64でエンコードされたCurrent TXNハッシュを入力する",
+            "en": "Input the base64 encoded Current TXN Hash"
+          },
+          "Text63": {
+            "ja":"デコードボタンをクリック",
+            "en": "Click decode button"
+          },
+          "Text64": {
+            "ja":"デコードボタンをクリック",
+            "en": "Click the decode button"
+          },
+          "Text65": {
+            "ja":"Base64デコードデータの表示",
+            "en": "View Base64 Decoded Data"
+          },
+          "Text66": {
+            "ja":"デコードされた現在のTXNハッシュの出力を取得",
+            "en": "Get the output of the decoded current txn hash"
+          },
+          "Text67": {
+            "ja":"デコードした値を情報ストレージに保存",
+            "en": "Save the decoded value in information storage"
+          },
+          "Text68": {
+            "ja":"将来の使用のためにデコードされたCurrent TXNハッシュを保存",
+            "en":"Save the decoded Current TXN Hash for future usage."
+          },
+          "Text69": {
+            "ja":"現TXNハッシュ（デコード済み）",
+            "en": "Current txn Hash (decoded)"
+          },
+          "Text70": {
+            "ja":"デコードされた現在のTXNハッシュ",
+            "en": "Decoded current txn hash"
+          }
+        }
+      },
+      {
+        "SegmentNo": 4,
+        "StepNo": 16,
+        "Languages": {
+          "Text71": {
+            "ja":"ステップ１６ー現在の取引の取得",
+            "en": "Step 16 - Retrieve Current Transaction"
+          },
+          "Text72": {
+            "ja":"ゲートウェイトランザクションの現在のトランザクション",
+            "en": "current transaction of the gateway transaction"
+          },
+          "Text73": {
+            "ja":"ステラホライズンAPIをリクエスト",
+            "en": "Request Stellar Horizon API"
+          },
+          "Text74": {
+            "ja":"ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
+            "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
+          },
+          "Text76": {
+            "ja":"API レスポンスの保存",
+            "en": "Save API Response"
+          },
+          "Text77": {
+            "ja":"トランザクションのレスポンスデータの保存",
+            "en": "Save the response data of the transaction"
+          },
+          "Text125": {
+            "ja":"フォーマットレスポンス（JSON）",
+            "en": "Format Response (JSON)"
+          },
+          "Text126": {
+            "ja":"トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
+            "en": "Format transaction data to JSON (Javascript Object Notation)"
+          }
+        }
+      },
+  
+      {
+        "SegmentNo": 5,
+        "StepNo": 17,
+        "Languages": {
+          "Text78": {
+            "ja":"Base64 Encoded Current Txn 識別子 を選択",
+            "en": "Select Base64 Encoded Current Txn Identifier"
+          },
+          "Text79": {
+            "ja":"トランザクションの詳細から、エンコードされたcurrent Txn Identifierを選択",
+            "en": "Select the encoded current Txn Identifier from the transaction details."
+          },
+          "Text80": {
+            "ja":"フォーマットメタデータ",
+            "en": "Format Meta Data"
+          }
+        }
+      },
+      
+      {
+        "SegmentNo": 5,
+        "StepNo": 18,
+        "Languages": {
+          "Text81": {
+            "ja":"トランザクションの詳細からエンコードされたIdentifierをハイライト",
+            "en": "Highlight the encoded Identifier from the transaction details"
+          },
+          "Text82": {
+            "ja":"トランザクションの詳細から、エンコードされたIdentifierの値を選択",
+            "en": "Select the encoded Identifier value from the transaction details"
+          },
+          "Text83":{
+            "ja":"テスト",
+           "en":"test" 
+          },
+          "Text84": {
+            "ja":"トランザクションの詳細からMainTXNCurrent TXNDataIdentifierをハイライト",
+            "en": "Highlight the MainTXNCurrent TXNDataIdentifier from the transaction details"
+          },
+          "Text85": {
+            "ja":"トランザクションの詳細から、エンコードされたIdentifierの値を選択",
+            "en": "Select the encoded Identifier value from the transaction details"
+          }
+          
+        }
+      },
+  
+      {
+        "SegmentNo": 5,
+        "StepNo": 19,
+        "Languages": {
+          "Text87": {
+            "ja":"Base64エンコードされたCurrent TXNの保存",
+            "en": "Save Base64 Encoded Current Txn Identifier"
+          },
+          "Text88": {
+            "ja":"将来の使用のためにbase64 エンコードされた Identifier 値を保存",
+            "en": "Save the base64 encoded Identifier value for future usage."
+          },
+          "Text89": {
+            "ja":"情報ストレージ",
+            "en": "InformationStorage"
+          },
+          "Text152": {
+            "ja":"識別子 (base64)",
+            "en" : "Identifier (base64)"
+          }
+         
+        }
+      },
+  
+    {
+      "SegmentNo": 5,
+        "StepNo": 20,
+        "Languages": {
+          "Text90": {
+            "ja":"ステップ５ー現在のTXN識別子のデコード",
+            "en": "Step 5 - Decode Current TXN Identifier"
+          },
+          "Text91": {
+            "ja":"Base64 Decoderのウェブページを読み込む",
+            "en": "Load Base64 Decoder Webpage"
+          },
+          "Text92": {
+            "ja":"base64 でエンコードされた Current TXN 識別子をデコード",
+            "en": "Decode the base64 encoded Current TXN Identifier"
+          },
+          "Text93": {
+            "ja":"Base64エンコードされたデータの入力",
+            "en":  "Input Base64 Encoded Data"
+          },
+          "Text94": {
+            "ja":"Base64 でエンコードされた Current TXN 識別子を入力",
+            "en": "Input the base64 encoded Current TXN Identifier"
+          },
+          "Text95": {
+            "ja":"デコードボタンをクリック",
+            "en": "Click the Decode Button"
+          },
+          "Text127": {
+            "ja":"デコードボタンをクリック",
+            "en": "Click the decode button"
+          },
+          "Text128": {
+            "ja":"Base64デコードデータの表示",
+            "en": "View Base64 Decoded Data"
+          },
+          "Text129": {
+            "ja":"デコードしたCurrent TXN識別子の出力を取得",
+            "en": "Get the output of the decoded Current TXN Identifier"
+          },
+          "Text130": {
+            "ja":"Base64デコードデータの保存",
+            "en": "Save Base64 Decoded Data"
+          },
+          "Text131": {
+            "ja":"将来の使用のためにデコードされたCurrent TXN識別子を保存",
+            "en": "Save the decoded Current TXN Identifier for future usage."
+          },
+          "Text132": {
+            "ja":"Current TXN識別子",
+            "en": "Current TXN Identifier"
+          },
+          "Text133": {
+            "ja":"デコードされた Current TXN 識別子",
+            "en":  "Decoded Current TXN Identifier"
+          }
+        }
+      },
+  
+      {
+        "SegmentNo": 5,
+          "StepNo": 21,
+          "Languages": {
+            "Text96": {
+              "ja":"Base64EncodeされたData Hashを選択",
+  
+              "en": "Select Base64 Encoded Data Hash"
+            },
+            "Text97": {
+              "ja":"トランザクションの詳細からエンコードされたデータハッシュを選択",
+              "en": "Select the encoded Data Hash from the transaction details."
+            }
+           
+          }
+        },
+  
+        {
+          "SegmentNo": 5,
+            "StepNo": 22,
+            "Languages": {
+              "Text100": {
+                "ja":"データハッシュをハイライト",
+                "en": "Highlight the Data Hash"
+              },
+              "Text101": {
+                "ja":"トランザクションの詳細からエンコードされたデータハッシュを選択",
+                "en": "Select the encoded Data Hash from the transaction details."
+              },
+              "Text102": {
+                "ja":"Main TXN Current TXNデータハッシュをハイライト",
+                "en": "Highlight the Main TXN Current TXN Data Data Hash"
+              },
+              "Text103": {
+                "ja":"トランザクションの詳細からエンコードされたデータハッシュの値を選択",
+                "en": "Select the encoded Data Hash value from the transaction details"
+              }
+            }
+          },
+  
+          {
+            "SegmentNo": 5,
+              "StepNo": 23,
+              "Languages": {
+                "Text106": {
+                  "ja":"Base64Encodeされたデータハッシュの保存",
+                  "en": "Save Base64 Encoded Data Hash"
+                },
+                "Text107": {
+                  "ja":"将来の使用のためにbase64でエンコードされたデータハッシュの値を保存",
+                  "en": "Save the base64 encoded Data Hash value for future usage."
+                },
+                "Text109": {
+                  "ja":"Current TXN データハッシュ（base64）。",
+                  "en":"Current TXN Data Hash (base64)"
+                }
+             
+              }
+            },
+  
+            {
+                "SegmentNo": 5,
+                  "StepNo": 24,
+                  "Languages": {
+                    "Text110": {
+                      "ja":"ステップ９－現在のTXNデータハッシュのデコード",
+                      "en": "Step 9 - Decode Current TXN Data Hash"
+                    },
+                    "Text111": {
+                      "ja":"Base64 Decoderのウェブページを読み込む",
+                      "en": "Load Base64 Decoder Webpage"
+                    },
+                    "Text112": {
+                      "ja":"Base64でエンコードされたCurrent TXNのData Hashをデコード",
+                      "en": "Decode the base64 encoded Current TXN Data Hash"
+                    },
+                    "Text113": {
+                      "ja":"Base64エンコードされたデータの入力",
+                      "en": "Input Base64 Encoded Data"
+                    }, 
+                    "Text134": {
+                      "ja":"Base64でエンコードされたCurrent TXN データハッシュを入力",
+                      "en": "Input the base64 encoded Current TXN Data Hash"
+                    }, 
+                    "Text135": {
+                      "ja":"デコードボタンをクリック",
+                      "en": "Click Decode Button"
+                    }, 
+                    "Text136": {
+                      "ja":"デコードボタンをクリック",
+                      "en": "Click the decode button"
+                    }, 
+                    "Text137": {
+                      "ja":"Base64デコードデータの表示",
+                      "en": "View Base64 Decoded Data"
+                    }, 
+                    "Text138": {
+                      "ja":"デコードされたCurrent TXNの出力を取得する データハッシュ",
+                      "en": "Get the output of the decoded Current TXN Data Hash"
+                    }, 
+                    "Text139": {
+                      "ja":"Base64デコードデータの保存",
+                      "en": "Save Base64 Decoded Data"
+                    }, 
+                    "Text140": {
+                      "ja":"将来の使用のためにデコードされたCurrent TXNデータハッシュ",
+                      "en": "Save the decoded Current TXN Data Hash for future usage."
+                    }, 
+                    "Text141": {
+                      "ja":"デコードされたCurrent TXN データハッシュ",
+                      "en": "Decoded Current TXN Data Hash"
+                    },
+                    "Text153": {
+                      "ja":"Current TXN データハッシュ",
+                      "en": "CurrentTXN data hash"
+                    }  
+                 
+                  }
+                },
+  
+                {
+                  "SegmentNo": 5,
+                    "StepNo": 25,
+                    "Languages": {
+                      "Text115": {
+                        "ja":"ステップ１０－データハッシュの比較",
+                        "en": "Step 10 - Compare Data Hash"
+                      },
+                      "Text116": {
+                        "ja":"オンラインテキスト比較のWebページ",
+                        "en": "Online Text Comparison Webpage"
+                      },
+                      "Text117": {
+                        "ja":"オンラインテキスト比較のウェブページを読み込む",
+                        "en": "Load the online text comparison webpage"
+                      }, 
+                      "Text118": {
+                        "ja":"ステップ１０－データハッシュの比較",
+                        "en": "Step 10 - Compare Data Hash"
+                      }, 
+                      "Text119": {
+                        "ja":"入力の比較値",
+                        "en": "Input comparison values"
+                      }, 
+                      "Text142": {
+                        "ja":"トランザクションからBase64デコードされたデータハッシュ値を入力",
+                        "en": "Input the base64 decoded Data Hash values from the transactions."
+                      },
+                      "Text143": {
+                        "ja":"ステップ１０－データハッシュの比較",
+                        "en": "Step 10 - Compare Data Hash"
+                      }, 
+                      "Text144": {
+                        "ja":"比較ボタンをクリック",
+                        "en": "Click the compare button"
+                      }, 
+                      "Text145": {
+                        "ja":"比較ボタンをクリック",
+                        "en": "Click the compare button"
+                      }, 
+                      "Text146": {
+                        "ja":"ステップ１０－データハッシュの比較",
+                        "en": "Step 10 - Compare Data Hash"
+                      },  
+                      "Text147": {
+                        "ja":"結果をスクロールする",
+                        "en": "Scroll to the result"
+                      }, 
+                      "Text148": {
+                        "ja":"結果をスクロールする",
+                        "en": "Scroll to the result"
+                      }, 
+                      "Text154": {
+                        "ja":"klll",
+                        "en": "Comparison Result"
+                      }
+                      } 
+                   
+                    },
+                   {
+                    "SegmentNo": 6,
+                      "StepNo": 26,
+                      "Languages": {
+                        "Text120": {
+                          "ja":"ステップ１１－検証の概要",
+                          "en": "Step 11 - Verification Summary"
+                        },
+                        "Text121": {
+                          "ja":"検証の概要",
+                          "en": "Verification Summary"
+                        },
+                        "Text123": {
+                          "ja":"検証の概要についてー存在の証明",
+                          "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
+                        },
+                        "Text124": {
+                          "ja":"検証は正常に終了",
+                          "en": "Verification Completed Successfully"
+                        }
+  
+                     
+                      }
+                    }
+          
+       
+    ]
+  }
