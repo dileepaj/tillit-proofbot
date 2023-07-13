@@ -8127,8 +8127,10 @@ export class BuildPOCJsonService {
                 "Id": "backlink",
                 "Data": {
                   "TxnType": "pobl",
+                  "Identifier":pocNode.Nodes[id].Data.Identifier,
                   "Batch": pocNode.Nodes[id].Data.ProductName,
                   "Stage":pocNode.Nodes[id].Data.CurrentStage,
+                  "Identifier2":pocNode.Nodes[parent].Data.Identifier,
                   "Batch2": pocNode.Nodes[parent].Data.ProductName,
                   "Stage2":pocNode.Nodes[parent].Data.CurrentStage,
                   
@@ -8180,8 +8182,10 @@ export class BuildPOCJsonService {
         return {
           ProofType: this.commonServices.getProofName(proof.Data.TxnType),
           ID:`arrow-`+ proof.PoblTDP.current+`-`+ proof.PoblTDP.previous,
+          BatchID:proof.Data.Identifier,
           Batch:this.commonServices.decodeFromBase64(proof.Data.Batch),
           Stage:proof.Data.Stage,
+          BatchID2:proof.Data.Identifier2,
           Batch2:this.commonServices.decodeFromBase64(proof.Data.Batch2),
           Stage2:proof.Data.Stage2,
         };
@@ -8189,6 +8193,7 @@ export class BuildPOCJsonService {
         return {
           ProofType: this.commonServices.getProofNameByType(proof.Data.TxnType),
           ID: `node-`+ proof.Data.TxnHash,
+          BatchID:proof.Data.Identifier,
           Batch: this.commonServices.decodeFromBase64(proof.Data.ProductName),
           Stage:proof.Data.CurrentStage
         };

@@ -165,6 +165,11 @@ export class ProofBotComponent implements OnInit {
   stopFlag = false; // Flag to stop the execution of the loop
   isJumping = false
   missingProofs: any;
+  AllTheProofs: any;
+  currentStage: any;
+  currentBatchID: any;
+  currentBatchID2: any;
+  currentStage2: any;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -287,9 +292,7 @@ export class ProofBotComponent implements OnInit {
     await this.scrollToFrameById("proofHeaderTitle", 20);
     if(this.proofType=='poc'){
       this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
-      console.log("proofssssssss----",this.pocJsonService.getAlltheProofsOPOC());
-      
-     // this.missingProofsModal();
+      this.AllTheProofs = this.pocJsonService.getAlltheProofsOPOC();
     }
     this.isStartDemo = true;
     this.stopFlag = false;
@@ -1589,6 +1592,15 @@ export class ProofBotComponent implements OnInit {
         this.currentProduct = textContent.substring(productIndex + 8)
         this.currentId = id;
         this.currentProofType= runningProof.toLowerCase();
+        let data = this.AllTheProofs;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].ID === id) {
+            this.currentProduct = data[i].Batch;
+            this.currentBatchID= data[i].BatchID;
+            this.currentStage= data[i].Stage;
+            break; // Exit the loop once a match is found
+          }
+        }
       } else if (runningProof == 'POBL'||runningProof == 'pobl') {
         const tL = trustLinks[0];
         let id = `arrow-` + tL[0] + `-` + tL[1];
@@ -1613,6 +1625,19 @@ export class ProofBotComponent implements OnInit {
         this.currentBatch2 = textContent2
         this.currentProduct = textContent1.substring(productIndex1 + 8);
         this.currentProduct2 = textContent2.substring(productIndex2 + 8);
+        let data = this.AllTheProofs;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].ID === id) {
+            this.currentProduct = data[i].Batch;
+            this.currentBatchID= data[i].BatchID;
+            this.currentStage= data[i].Stage;
+            this.currentProduct2 = data[i].Batch2;
+            this.currentBatchID2= data[i].BatchID2;
+            this.currentStage2= data[i].Stage2;
+            break; // Exit the loop once a match is found
+          }
+        }
+        console.log("tttttt-----",this.currentProduct)
       }
     }
   }
@@ -1814,25 +1839,5 @@ export class ProofBotComponent implements OnInit {
       this.missingProofs
     );
   }
-  // missingProofsModal(){
-  //   const allProofs = this.pocJsonService.getAlltheProofsOPOC();
-  //   this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
-
-  //   this.missingProofs.forEach(() => {
-  //     const strmissingProofType = JSON.stringify(this.missingProofs.ProofType);
-  //     const missingProofID = (this.missingProofs.ID);
-  //     let proofArr = missingProofID.split('-')
-  //     if (strmissingProofType == 'Proof of Backlinks') {
-  //       let a1 = proofArr.slice(-1)
-  //       let a2 = proofArr.slice(-2)
-  //       console.log('Missed Proof of backlink between ' + a1 + 'and' + a2 + `.`)
-  //       return 'Missed Proof of backlink between ' + a1 + 'and' + a2 + `.`
-  //     } else {
-  //       let a3 = proofArr.slice(-1)
-  //       console.log('Missed ' + strmissingProofType + 'of' + a3 + `.`)
-  //       return 'Missed ' + strmissingProofType + 'of' + a3 + `.`
-  //     }
-  //   });
-  // }
   
 }

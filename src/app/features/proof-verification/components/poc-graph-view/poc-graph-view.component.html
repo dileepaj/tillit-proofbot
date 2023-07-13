@@ -3,99 +3,22 @@
     <div class="col-12">
       <div class="label-bar row justify-content-center align-items-center lable-text mt-2 mb-2">
         <!--instuctions start-->
-        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3" *ngIf="!isMerkleTreeAvaible">
+        <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3">
           <div class="col-12 mt-2">
-            <div class="text-muted mb-2" style="font-size: 14px;">Click on a node&nbsp; <span
-                class="rectNode ml-1 mr-1"></span>
-              to verify it’s transaction information.&nbsp;</div>
-            <div class="text-muted" style="font-size: 14px;">Click on a edge&nbsp; <span class="ml-1 mr-1"><img
-                  src="../../../../assets/img/Arrow2.svg" alt=""></span> to verify it's associated backlink.&nbsp;
+            <div class="text-muted mb-2" style="font-size: 14px;">Click on a node&nbsp; 
+              <span class="rectNode ml-1 mr-1"></span>
+              to verify it’s transaction information.&nbsp;|&nbsp;Click on a edge&nbsp; 
+              <span class="ml-1 mr-1">
+                <img src="../../../../assets/img/Arrow2.svg" alt="">
+              </span> to verify it's associated backlink.&nbsp;
             </div>
           </div>
         </div>
-        <div class="label-bar row justify-content-around align-items-center  mt-2 mb-2" *ngIf="!isMerkleTreeAvaible">
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row justify-content-center align-item-center text-center">
-              <div class="dot genesis mr-2"></div> Genesis Batch &nbsp;&nbsp;
-            </div>
-          </div>
+      </div>  
+        <div class="label-bar row justify-content-around align-items-center  mt-1 mb-1">
           <div class="col-sm-12  col-md-auto  text-center">
             <div class="row">
-              <div class="dot tdp mr-2"></div> Batch&nbsp;&nbsp;
-            </div>
-          </div>
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row">
-              <div class="dot split mr-2"></div> Splitted Batch&nbsp;&nbsp;
-            </div>
-          </div>
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row">
-              <div class="dot parent mr-2"></div> Split Parent&nbsp;&nbsp;
-            </div>
-          </div>
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row">
-              <div class="dot merge mr-2"></div> Merged Batch&nbsp;&nbsp;
-            </div>
-          </div>
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row">
-              <div class="dot transfer mr-2"></div> Stage Transfer&nbsp;&nbsp;
-            </div>
-          </div>
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row">
-              <div class="dot pococ mr-2"></div> Change of Custody&nbsp;&nbsp;
-            </div>
-          </div>
-        </div>
-
-    <div *ngIf="data"  [style.opacity]="loadingComplete ? '1' : '0'" [style.min-height.px]="loadingComplete ? '260' : '0'" id="body"
-          style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
-          class="px-5 py-4 bg-white d-flex align-items-center">
-          <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-            <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-              <g id="pocTree" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-      <div class="col-12" *ngIf="isMerkleTreeAvaible">
-        <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
-          <div></div>
-          <div>Batch History With Merkle Tree
-            <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/" target="_blank">
-              <i class="bi bi-question-circle-fill helpIcon"></i>
-            </a>
-          </div>
-          <div class="mr-1">
-          </div>
-        </div>
-      </div>
-    
-    
-
-    <div class="col-12">
-      <div class="label-bar row justify-content-center align-items-center lable-text mt-2 mb-2">
-         <!--instuctions start2-->
-         <div class="col-sm-12  col-md-auto  text-center ml-3 mr-3" *ngIf="isMerkleTreeAvaible">
-          <div class="col-12 mt-2">
-            <div class="text-muted mb-2" style="font-size: 14px;">Click on a node <span
-                class="rectNode ml-1 mr-1"></span>
-              to verify it’s transaction information.</div>
-            <div class="text-muted" style="font-size: 14px;">Click on a edge <span class="ml-1 mr-1"><img
-                  src="../../../../assets/img/Arrow2.svg" alt=""></span> to verify it's associated backlink.
-            </div>
-          </div>
-        </div>
-        <div class="label-bar row justify-content-around align-items-center  mt-2 mb-2" *ngIf="isMerkleTreeAvaible">
-          <div class="col-sm-12  col-md-auto  text-center">
-            <div class="row justify-content-center align-item-center text-center">
-              <div class="dot genesis mr-2"></div> Genesis Batch
+              <div class="dot genesis mr-2"></div> Genesis Batch 
             </div>
           </div>
           <div class="col-sm-12  col-md-auto  text-center">
@@ -129,18 +52,46 @@
             </div>
           </div>
         </div>
-        <!--instuctions end2-->
 
-    <div [style.opacity]="loadingComplete ? '1' : '0'" [style.min-height.px]="loadingComplete ? '260' : '0'" id="body"
-      style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
+        <div *ngIf="data" [style.opacity]="loadingComplete ? '1' : '0'"
+          [style.min-height.px]="loadingComplete ? '260' : '0'" id="body"
+          style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
           class="px-5 py-4 bg-white d-flex align-items-center">
           <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
             <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-              <g id="pocTreeWithMerkleTree" />
+              <g id="pocTree" />
             </svg>
           </div>
         </div>
+    </div>
+
+
+
+
+
+   <div class="col-12">
+      <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
+        <div></div>
+        <div>Batch History With Merkle Tree
+          <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+            target="_blank">
+            <i class="bi bi-question-circle-fill helpIcon"></i>
+          </a>
+        </div>
+        <div class="mr-1">
+        </div>
       </div>
+      <div class="label-bar row justify-content-center align-items-center lable-text mt-2 mb-2">
+        <div [style.opacity]="loadingComplete ? '1' : '0'" [style.min-height.px]="loadingComplete ? '260' : '0'"
+          id="body" style="width: 100% !important;  border:1px solid #000;  overflow: scroll !important;"
+          class="px-5 py-4 bg-white d-flex align-items-center">
+          <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
+            <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
+              <g id="pocTreeWithMerkleTree"/>
+            </svg>
+          </div>
+        </div>
+      </div> 
     </div>
   </div>
 </div>
