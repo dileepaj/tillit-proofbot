@@ -322,6 +322,7 @@ export class ProofBotComponent implements OnInit {
         ...action.Languages
       };
     }
+    
     this.proofJSON = this.parseLangData(this.proofJSON, variables);
   }
 
