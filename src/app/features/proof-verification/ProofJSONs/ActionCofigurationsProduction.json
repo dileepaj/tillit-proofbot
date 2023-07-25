@@ -1109,7 +1109,7 @@
               "ElAttributeValue": "",
               "ElAttributeValueReplace": "",
               "ElProperty": "value",
-              "ElPropertyValue": "#{DecodedInputValue}",
+              "ElPropertyValue": "#{EcodedInputValue}",
               "ElFunction": "",
               "ElFunctionArguments": "",
               "SelectiveText": "",

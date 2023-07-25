@@ -154,6 +154,7 @@ export class ProofBotComponent implements OnInit {
   TotalProofCountOfPOC: any;
   SuccessProofs: any[]=[];
   FailedProofs: any[]=[];
+  isEncodedData: boolean = false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -781,6 +782,13 @@ export class ProofBotComponent implements OnInit {
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPage(ActionParameters.ExternalURL, ActionParameters.Translatable, this.lang);
+          }
+
+          if (scRef && ActionParameters.EncodedData) {
+            this.isEncodedData=true;
+            let Edata = ActionParameters.EncodedData;
+            scRef.instance.setEncodedData(Edata,true);
+            
           }
           break;
         case "UpdateElementAttribute":
