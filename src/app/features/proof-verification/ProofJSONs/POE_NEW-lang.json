@@ -22,7 +22,7 @@
       "en": "Decode Current TXN Hash"
     },
     "SegName6": {
-      "ja": "ブロックチェーンCurrent TXNの取得",
+      "ja": "ブロックチェーントランザクションの取得",
       "en": "Retrieve blockchain Current TXN"
     },
     "SegName7": {
@@ -44,7 +44,7 @@
           "en": "Step 1 - Retrieve Traceability Data Data"
         },
         "Text1": {
-          "ja": "TDPデータ要求",
+          "ja": "TDPデータの要求",
           "en": "Request Traceability Data Data"
         },
         "Text2": {
@@ -802,7 +802,7 @@
       "StepNo": 32,
       "Languages": {
         "Text128": {
-          "ja": "Base64 Encoded Current Txn 識別子 を選択",
+          "ja": "Base64 Encoded Current Txn ID を選択",
           "en": "Select Base64 Encoded Current Txn Identifier"
         },
         "Text129": {
@@ -858,7 +858,7 @@
           "en": "InformationStorage"
         },
         "Text140": {
-          "ja": "識別子 (base64)",
+          "ja": "ID (base64)",
           "en": "Identifier (base64)"
         }
       }
@@ -868,7 +868,7 @@
       "StepNo": 35,
       "Languages": {
         "Text141": {
-          "ja": "ステップ8ー現在のTXN識別子のデコード",
+          "ja": "ステップ8ー現在のTXNIDのデコード",
           "en": "Step 8 - Decode Current TXN Identifier"
         },
         "Text142": {
@@ -876,7 +876,7 @@
           "en": "Load Base64 Decoder Webpage"
         },
         "Text143": {
-          "ja": "base64 でエンコードされた Current TXN 識別子をデコード",
+          "ja": "base64 でエンコードされた Current TXN IDをデコード",
           "en": "Decode the base64 encoded Current TXN Identifier"
         },
         "Text144": {
@@ -884,7 +884,7 @@
           "en": "Input Base64 Encoded Data"
         },
         "Text145": {
-          "ja": "Base64 でエンコードされた Current TXN 識別子を入力",
+          "ja": "Base64 でエンコードされた Current TXN IDを入力",
           "en": "Input the base64 encoded Current TXN Identifier"
         },
         "Text146": {
@@ -900,7 +900,7 @@
           "en": "View Base64 Decoded Data"
         },
         "Text149": {
-          "ja": "デコードしたCurrent TXN識別子の出力を取得",
+          "ja": "デコードしたCurrent TXN　IDの出力を取得",
           "en": "Get the output of the decoded Current TXN Identifier"
         },
         "Text150": {
@@ -908,15 +908,15 @@
           "en": "Save Base64 Decoded Data"
         },
         "Text151": {
-          "ja": "将来の使用のためにデコードされたCurrent TXN識別子を保存",
+          "ja": "将来の使用のためにデコードされたCurrent TXN　IDを保存",
           "en": "Save the decoded Current TXN Identifier for future usage."
         },
         "Text152": {
-          "ja": "Current TXN識別子",
+          "ja": "Current TXN　ID",
           "en": "Current TXN Identifier"
         },
         "Text153": {
-          "ja": "デコードされた Current TXN 識別子",
+          "ja": "デコードされた Current TXN ID",
           "en": "Decoded Current TXN Identifier"
         }
       }
@@ -1109,11 +1109,11 @@
           "en": "Load the online text comparison webpage"
         },
         "Text196": {
-          "ja": "ステップ１０－データハッシュの比較",
+          "ja": "ステップ１１－IDの比較",
           "en": "Step 11 - Compare Identifier"
         },
         "Text197": {
-          "ja": "入力の比較値",
+          "ja": "比較値の入力",
           "en": "Input comparison values"
         },
         "Text198": {
@@ -1121,7 +1121,7 @@
           "en": "Input the identifier value from the transactions."
         },
         "Text199": {
-          "ja": "ステップ１０－データハッシュの比較",
+          "ja": "ステップ１１－IDの比較",
           "en": "Step 11 - Compare Identifier"
         },
         "Text200": {
@@ -1133,7 +1133,7 @@
           "en": "Click the compare button"
         },
         "Text202": {
-          "ja": "ステップ１1－データハッシュの比較",
+          "ja": "ステップ１１－IDの比較",
           "en": "Step 11 - Compare Identifier"
         },
         "Text203": {

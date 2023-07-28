@@ -20,10 +20,10 @@
           </span>
           <span *ngIf="isEncodedData" tabindex="0" data-toggle="tooltip" title="Copy to Clipboard" (click)="copyencodedHashToClipboard()">
             <ng-container *ngIf="isCopied; else notCopied">
-              <button style="color: blue;">Copied Encoded Hash</button>
+              <button class="CopyDatabtn" style="color: blue;">Copied Encoded Hash</button>
             </ng-container>
             <ng-template #notCopied>
-              <button  onclick="copyencodedHashToClipboard()">Copy Encoded Hash</button>
+              <button class="CopyDatabtn"  onclick="copyencodedHashToClipboard()">Copy Encoded Hash</button>
             </ng-template>
           </span>
         </div>
