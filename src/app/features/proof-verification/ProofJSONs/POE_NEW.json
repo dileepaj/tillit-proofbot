@@ -1289,17 +1289,17 @@
         "StepNo": 24,
         "SegmentNo": 3,
         "FrameID": 8,
-        "FrameTitle": "&{Text215}"
+        "FrameTitle": "&{Text210}"
       },
       "Action": {
-        "ActionTitle": "&{Text215}",
+        "ActionTitle": "&{Text210}",
         "ActionDescription": "&{Text211}",
         "ActionType": "BrowserScreen",
         "ActionParameters": {
           "ExternalURL": "",
           "EncodedData": "${TDPData}",
           "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items:center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><div><p class=\"size-12\"><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2;font-family:Inter; font-style:normal; font-size:12px; color:black ;text-transform: uppercase;\">\r\nBase64 encoded data and the TDP identifier received from the gateway are being combined.\r\n</b></center></p></div></center></div></div><div class=\"p-2\"><center><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;max-width: 450px; max-height: 50px;\"><strong><span class=\"size-14\">Base64 Encoded data</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\"><strong>TDP Identifier</strong></p></th></tr></thead><tbody><tr><td style=\"padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word; overflow:hidden;  word-break:break-word; overflow:hidden; max-width:400px; max-height:40px;  max-height:40px; \">\r\n ${TDPData}\r\n</p></td></td><td style=\"padding-left:2px; \"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word; max-height: 25px;\">\r\n + ${TDPIdentifier}\r\n</p></td></tr></tbody></table></center></div></div></body></html>",
-          "PageURL": "&{Text215}",
+          "PageURL": "&{Text210}",
           "Query": "",
           "QueryIndex": "",
           "YOffset": "",
