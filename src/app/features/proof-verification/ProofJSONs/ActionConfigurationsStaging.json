@@ -867,7 +867,7 @@
             "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
-              "ExternalURL": "https://staging.gateway.tracified.com/GetTransactions?txn=#{TXNHash}&page=1&perPage=10",
+              "ExternalURL": "https://staging.gateway.tracified.com/tdpdata/txnhash/?txn=#{TXNHash}&page=1&perPage=10",
               "InnerHTML": "",
               "Query": "",
               "QueryIndex": "",

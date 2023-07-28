@@ -549,7 +549,7 @@
           "ja": "Base64 でエンコードされたデータとゲートウェイから受信したトレーサビリティ データ識別子が結合されます。",
           "en": "Base64 encoded data and the Traceability Data Identifier received from the gateway are being combined."
         },
-        "Text215": {
+        "Text225": {
           "ja": "ステップ 3 - Base64 でエンコードされたデータとトレーサビリティ データ識別子を結合します。",
           "en": "Step 3 - Combine Base64 encoded data and Traceability Data Identifier."
         }
