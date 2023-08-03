@@ -13,7 +13,7 @@
       "en": "Decode Current TXN Hash"
     },
     "SegName4": {
-      "ja":"ブロックチェーンCurrent TXNの取得",
+      "ja":"ブロックチェーントランザクションの取得",
       "en": "Retrieve blockchain Current TXN"
     },
     "SegName5": {
@@ -35,7 +35,7 @@
           "en": "Step 1 - Retrieve Traceability Data Data"
         },
         "Text149": {
-          "ja":"TDPデータ要求",
+          "ja":"TDPデータの要求",
           "en":"Request Traceability Data Data"
         },
         "Text1": {
@@ -445,7 +445,7 @@
       "StepNo": 17,
       "Languages": {
         "Text78": {
-          "ja":"Base64 Encoded Current Txn 識別子 を選択",
+          "ja":"Base64 Encoded Current Txn ID を選択",
           "en": "Select Base64 Encoded Current Txn Identifier"
         },
         "Text79": {
@@ -504,7 +504,7 @@
           "en": "InformationStorage"
         },
         "Text152": {
-          "ja":"識別子 (base64)",
+          "ja":"ID (base64)",
           "en" : "Identifier (base64)"
         }
        
@@ -516,7 +516,7 @@
       "StepNo": 20,
       "Languages": {
         "Text90": {
-          "ja":"ステップ５ー現在のTXN識別子のデコード",
+          "ja":"ステップ５ー現在のTXNIDのデコード",
           "en": "Step 5 - Decode Current TXN Identifier"
         },
         "Text91": {
@@ -524,7 +524,7 @@
           "en": "Load Base64 Decoder Webpage"
         },
         "Text92": {
-          "ja":"base64 でエンコードされた Current TXN 識別子をデコード",
+          "ja":"base64 でエンコードされた Current TXN IDをデコード",
           "en": "Decode the base64 encoded Current TXN Identifier"
         },
         "Text93": {
@@ -532,7 +532,7 @@
           "en":  "Input Base64 Encoded Data"
         },
         "Text94": {
-          "ja":"Base64 でエンコードされた Current TXN 識別子を入力",
+          "ja":"Base64 でエンコードされた Current TXN IDを入力",
           "en": "Input the base64 encoded Current TXN Identifier"
         },
         "Text95": {
@@ -548,7 +548,7 @@
           "en": "View Base64 Decoded Data"
         },
         "Text129": {
-          "ja":"デコードしたCurrent TXN識別子の出力を取得",
+          "ja":"デコードしたCurrent TXN　IDの出力を取得",
           "en": "Get the output of the decoded Current TXN Identifier"
         },
         "Text130": {
@@ -556,15 +556,15 @@
           "en": "Save Base64 Decoded Data"
         },
         "Text131": {
-          "ja":"将来の使用のためにデコードされたCurrent TXN識別子を保存",
+          "ja":"将来の使用のためにデコードされたCurrent TXN　IDを保存",
           "en": "Save the decoded Current TXN Identifier for future usage."
         },
         "Text132": {
-          "ja":"Current TXN識別子",
+          "ja":"Current TXN　ID",
           "en": "Current TXN Identifier"
         },
         "Text133": {
-          "ja":"デコードされた Current TXN 識別子",
+          "ja":"デコードされた Current TXN ID",
           "en":  "Decoded Current TXN Identifier"
         }
       }

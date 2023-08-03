@@ -18,8 +18,8 @@ import { BotGlobaldataComponent } from "../components/bot-globaldata/bot-globald
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POBLMJSON from "../ProofJSONs/POBL-Merge.json";
 import * as POGJSON from "../ProofJSONs/POG.json";
-import * as POEJSON from "../ProofJSONs/POE.json";
-import * as POELangJSON from "../ProofJSONs/POE_lang.json";
+import * as POEJSON from "../ProofJSONs/POE_NEW.json";
+import * as POELangJSON from "../ProofJSONs/POE_NEW-lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
@@ -176,6 +176,7 @@ export class ProofBotComponent implements OnInit {
   pendingProofsCount: number = 0;
   TransactionType: any;
   isPOCcompleted: boolean=false;
+  isEncodedData: boolean = false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -347,6 +348,7 @@ export class ProofBotComponent implements OnInit {
         ...action.Languages
       };
     }
+    
     this.proofJSON = this.parseLangData(this.proofJSON, variables);
   }
 
@@ -896,6 +898,13 @@ export class ProofBotComponent implements OnInit {
               ActionParameters.Translatable,
               this.lang
             );
+          }
+
+          if (scRef && ActionParameters.EncodedData) {
+            this.isEncodedData=true;
+            let Edata = ActionParameters.EncodedData;
+            scRef.instance.setEncodedData(Edata,true);
+            
           }
           break;
         case "UpdateElementAttribute":
@@ -1499,7 +1508,7 @@ export class ProofBotComponent implements OnInit {
         }
         break;
       case "poe":
-        if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]) {
+        if (this.variableStorage[compare.t1] != this.variableStorage[compare.t2]||this.variableStorage[compare.t3] != this.variableStorage[compare.t4]) {
           status = false
           this.toastr.error("Blockchain and Tracified data hash are not equal", "POE Verification Failed")
         }
