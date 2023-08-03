@@ -51,7 +51,16 @@
     background-color: #007bff;
     color: #fdfcfc;
   }
-
+  .statusBtn{
+   background-color: #E9ECEF;
+   border-radius: 10px;
+  }
+  .pocStatusBtnTxt{
+    text-decoration: underline;
+    position: relative; /* Required for absolute positioning of the underline */
+    padding-bottom: 5px; /* Adjust the padding as needed */
+    border-bottom: 1px;
+    }
   
   /* Small devices (portrait tablets and large phones, 600px and up) */
   @media only screen and (max-width: 420px) {
@@ -59,6 +68,9 @@
       float: none!important;
     }
     .lang-selector{
+      align-self: center;
+    }
+    .statusBtn{
       align-self: center;
     }
     .header-container{
@@ -101,6 +113,9 @@
     margin-right: 0px;
     padding-top:7px;
   }
+  .statusBtn{
+    align-self: center;
+  }
   
 }
 
@@ -111,6 +126,12 @@
   }
   .proofbot-header-img-container{
     margin-right: auto;
+  }
+  .statusBtn{
+    align-self: center;
+  }
+  .statusBtn{
+    align-self: center;
   }
   
   
@@ -124,6 +145,9 @@
   .proofbot-header-img-container{
     margin-right: auto;
   }
+  .statusBtn{
+    align-self: center;
+  }
   
 }
 
@@ -135,16 +159,40 @@
   .proofbot-header-img-container{
     margin-right: 0;
   }
+  .statusBtn{
+    align-self: center;
+  }
 }
+
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .lang-selector{
     align-self: center;
-    
+  } 
+  .statusBtn{
+    align-self: center;
   }
   .proofbot-header-img-container{
     margin-right: 0;
+  }
+  .pocStatusDiv{
+    width:  max-content; 
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .lang-selector{
+    align-self: center;
+  } 
+  .statusBtn{
+    align-self: center;
+  }
+  .proofbot-header-img-container{
+    margin-right: 0;
+  }
+  .pocStatusDiv{
+    width:  auto; 
   }
 }
 

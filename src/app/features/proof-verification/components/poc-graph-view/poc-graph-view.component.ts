@@ -156,22 +156,22 @@ export class PocGraphViewComponent implements AfterViewInit {
     this.pocTreeHeight = height;
 
     //listeners
-    // d3.selectAll("g.edgePath").on('click', (d: any) => {
-    //   const from = Nodes[d.v].Data.TxnHash;
-    //   const to = Nodes[d.w].Data.TxnHash;
-    //   this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
-    // });
-    // d3.selectAll("g.edgeLabel").on('click', (d: any) => {
-    //   const from = Nodes[d.v].Data.TxnHash;
-    //   const to = Nodes[d.w].Data.TxnHash;
-    //   this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
-    // });
-    // d3.selectAll("g.node").on('click', (d: any) => {
-    //   if (Nodes[d].Data.TxnType == "0")
-    //     this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
-    //   else if (Nodes[d].Data.TxnType == "2")
-    //     this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
-    // });
+    d3.selectAll("g.edgePath").on('click', (d: any) => {
+      const from = Nodes[d.v].Data.TxnHash;
+      const to = Nodes[d.w].Data.TxnHash;
+      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
+    });
+    d3.selectAll("g.edgeLabel").on('click', (d: any) => {
+      const from = Nodes[d.v].Data.TxnHash;
+      const to = Nodes[d.w].Data.TxnHash;
+      this.clickedNodeEvent.emit(`pobl-${to}-${from}`)
+    });
+    d3.selectAll("g.node").on('click', (d: any) => {
+      if (Nodes[d].Data.TxnType == "0")
+        this.clickedNodeEvent.emit(`pog-${Nodes[d].Data.TxnHash}`)
+      else if (Nodes[d].Data.TxnType == "2")
+        this.clickedNodeEvent.emit(`poe-${Nodes[d].Data.TxnHash}`)
+    });
   }
 
   setGraphTitle(title: string){
@@ -184,7 +184,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     if (node.Data.Identifier != "") {
       let label=`\n\nBatch ID : ${node.Data.Identifier}\n`
       if (!!node.Data.ProductName) {
-        label = label + `Product : ${node.Data.Timestamp ? this.commonService.decodeFromBase64(node.Data.ProductName) : node.Data.ProductNam}\n`
+        label = label + `Product : ${node.Data.Timestamp ? this.commonService.decodeFromBase64(node.Data.ProductName) : node.Data.ProductName}\n`
       }
       if(!!node.Data.CurrentStage){
         label = label + `\nStage : ${node.Data.CurrentStage}\n`

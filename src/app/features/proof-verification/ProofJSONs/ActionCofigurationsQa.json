@@ -42,8 +42,12 @@
           "Type": "string",
           "Required": true,
           "Description": ""
+        },
+        "PathID":{
+          "Type": "string",
+          "Required": false,
+          "Description": ""
         }
-      
       },
       "Actions": [
         {
@@ -51,7 +55,8 @@
             "StepNo": "#{StepNo}",
             "SegmentNo": "#{SegmentNo}",
             "FrameID": "#{FrameID}",
-            "FrameTitle": "#{FrameTitle}"
+            "FrameTitle": "#{FrameTitle}",
+            "PathID":"#{PathID}"
           },
           "Action": {
             "ActionTitle": "#{ActionTitle}",
@@ -855,6 +860,11 @@
           "Type": "string",
           "Required": true,
           "Description": ""
+        },
+        "PathID":{
+          "Type": "string",
+          "Required": false,
+          "Description": ""
         }
       },
       "Actions": [
@@ -863,7 +873,8 @@
             "StepNo": "#{StepNo}",
             "SegmentNo": "#{SegmentNo}",
             "FrameID": "#{FrameID}",
-            "FrameTitle": "#{FrameTitle}"
+            "FrameTitle": "#{FrameTitle}",
+            "PathID":"#{PathID}"
           },
           "Action": {
             "ActionTitle": "#{ActionTitle}",

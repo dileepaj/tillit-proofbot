@@ -123,6 +123,7 @@
               "FrameID": 1,
               "FrameTitle": "&{Text1}",
               "ActionTitle": "&{Text2}",
+              "PathID":"",
               "ActionDescription": "&{Text3}",
               "ActionTitle_1": "&{Text4}",
               "ActionDescription_1": "&{Text5}",
@@ -191,7 +192,7 @@
           "FrameScrollBars": "",
           "ToastMessage": "",
           "ToastPosition": null,
-          "ActionDuration": 2
+          "ActionDuration": 10
         }
       },
       {
@@ -411,7 +412,7 @@
           "FrameScrollBars": "",
           "ToastMessage": "",
           "ToastPosition": null,
-          "ActionDuration": 2
+          "ActionDuration": 10
         }
       },
       {
@@ -627,6 +628,7 @@
               "FrameTitle": "&{Text28}",
               "ActionTitle": "&{Text29}",
               "ActionDescription": "&{Text30}",
+              "PathID":"",
               "ActionTitle_1": "&{Text31}",
               "ActionDescription_1": "&{Text32}",
               "ActionTitle_2": "&{Text33}",
@@ -1353,6 +1355,7 @@
               "FrameTitle": "&{Text94}",
               "ActionTitle": "&{Text95}",
               "ActionDescription": "&{Text96}",
+              "PathID":"",
               "ActionTitle_1": "&{Text97}",
               "ActionDescription_1": "&{Text98}",
               "ActionTitle_2": "&{Text99}",
@@ -1642,6 +1645,7 @@
               "FrameTitle": "&{Text121}",
               "ActionTitle": "&{Text122}",
               "ActionDescription": "&{Text123}",
+              "PathID":"",
               "ActionTitle_1": "&{Text124}",
               "ActionDescription_1": "&{Text125}",
               "ActionTitle_2": "&{Text126}",

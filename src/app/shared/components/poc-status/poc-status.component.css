@@ -1,0 +1,49 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.SProofHeader{
+    background-color: #E9ECEF;
+    height: 37px;
+    align-items: stretch;
+    height: 37px;
+    display: flex;
+    justify-content: center;
+}
+.SProofHeaderTxt{
+    text-align: center;
+    font-family: Inter; 
+    color: #2C9357; 
+    font-size: 18px;
+    padding-top: 7px;
+
+}
+.FProofHeader{
+    background-color: #E9ECEF;
+    height: 37px;
+    align-items: stretch;
+    height: 37px;
+    display: flex;
+    justify-content: center;
+}
+.FProofHeaderTxt{
+    text-align: center;
+    font-family: Inter; 
+    color: #C0392B; 
+    font-size: 18px;
+    padding-top: 7px;
+}
+.PProofHeader{
+    background-color: #E9ECEF;
+    height: 37px;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: stretch
+}
+.PProofHeaderTxt{
+    text-align: center;
+    font-family: Inter; 
+    color: #DC9427; 
+    font-size: 18px;
+    padding-top: 7px;
+}
+.capitalize-first-letter{
+    text-transform: capitalize;
+}
