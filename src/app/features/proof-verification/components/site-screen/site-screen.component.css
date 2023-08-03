@@ -158,8 +158,8 @@
 
 .CopyDatabtn {
   color: #090909;
-  padding: 0.5em 1.7em;
-  font-size: 18px;
+  /* padding: 0.5em 1.7em; */
+  font-size: 14px;
   border-radius: 0.5em;
   background: #e8e8e8;
   border: 1px solid #e8e8e8;

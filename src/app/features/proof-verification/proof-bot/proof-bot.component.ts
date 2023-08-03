@@ -882,6 +882,7 @@ export class ProofBotComponent implements OnInit {
 
             }
           } else if (scRef && ActionParameters.InnerHTMLPOE) {
+            
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPageHTML(
               ActionParameters.ExternalURL,
@@ -895,13 +896,17 @@ export class ProofBotComponent implements OnInit {
               this.lang
             );
           }
-
           if (scRef && ActionParameters.EncodedData) {
             this.isEncodedData=true;
             let Edata = ActionParameters.EncodedData;
-            scRef.instance.setEncodedData(Edata,true);
+            if(Edata=="false"){
+              scRef.instance.setEncodedData(Edata,false);
+            }else{
+              scRef.instance.setEncodedData(Edata,true);
+            }
             
           }
+          
           break;
         case "UpdateElementAttribute":
           await this.handleFormatElementAttribute(stepData);
