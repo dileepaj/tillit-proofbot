@@ -300,7 +300,6 @@ export class ProofBotComponent implements OnInit {
     if(this.proofType=='poc'){
       this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
       this.AllTheProofs = this.pocJsonService.getAlltheProofsOPOC();
-      console.log("Allpr---",this.AllTheProofs);
       this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
     }
     this.isStartDemo = true;
@@ -374,7 +373,6 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
-    //console.log("data-",data);
     return JSON.parse(data);
   }
 
@@ -725,7 +723,6 @@ export class ProofBotComponent implements OnInit {
     selectednode: boolean = false
   ) {
     if (this.stopFlag) {
-      console.log('----------------------------------------------------------------------------firs Play demot call stop falg')
       return;
     }
     this.isReplay = false;
@@ -739,7 +736,6 @@ export class ProofBotComponent implements OnInit {
     const executeStep = async () => {
 
       if (this.isPause || this.isReplay || this.currentStep >= Steps.length || this.stopFlag) {
-        console.log('-------------------------------------------------------------------------------first call stop falg')
         return;
       }
   
@@ -968,7 +964,6 @@ export class ProofBotComponent implements OnInit {
     };
     await executeStep();
     if (this.stopFlag) {
-      console.log('----------------------------------------------------------------------------firs Play demot call stop falg')
       return;
     }
   
@@ -1355,7 +1350,6 @@ export class ProofBotComponent implements OnInit {
       }else { }
     }
     var index = this.globalData.findIndex((curr: any) => curr.Id == Id);
-    console.log("index1216--",index)
     if (!!givenDataToStorageData) {
       switch (givenDataToStorageData.Type) {
         case "pobl":
@@ -1407,7 +1401,6 @@ export class ProofBotComponent implements OnInit {
         ...this.globalData.slice(index + 1)
       ];
     }
-    console.log("orginalgloo--",this.globalData)
     this.cdr.detectChanges();
     await new Promise(resolveTime => setTimeout(resolveTime, 400));
     await this.scrollIntoStorageView(Id);
@@ -1526,12 +1519,9 @@ export class ProofBotComponent implements OnInit {
           this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
           if (this.missingProofs.length != 0) {
             status = false;
-            console.log(this.missingProofs)
             this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
           } else {
             status = true;
-            console.log("Success---", this.SuccessProofs);
-            console.log("Failed---", this.FailedProofs)
           }
         }
         if (this.TotalProofCountOfPOC != this.completedProofs.length) {
@@ -1577,12 +1567,9 @@ export class ProofBotComponent implements OnInit {
     this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
     if (this.missingProofs.length != 0) {
       status = false;
-      console.log("missed---", this.missingProofs)
       this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
     } else {
       status = true;
-      console.log("Success---", this.SuccessProofs);
-      console.log("Failed---", this.FailedProofs)
     }
     return status;
   }
@@ -1679,7 +1666,6 @@ export class ProofBotComponent implements OnInit {
             break; // Exit the loop once a match is found
           }
         }
-        console.log("tttttt-----",this.currentProduct)
       }
     }
   }
@@ -1716,19 +1702,12 @@ export class ProofBotComponent implements OnInit {
     const type = lastElement.type;
     let stepIndex = this.findStepByPathId(id,this.proofJSON.Steps);
     let finalIndex = this.findStepByPathId(id +"-Final", this.proofJSON.Steps);
-    console.log("finaldes---",finalIndex);
     this.variableStorage={};
-    console.log("global11",this.globalData);
     this.globalData.splice(0, this.globalData.length);
-    console.log("global221",this.globalData);
     this.playbackSpeed=1;
-    this.SelectedproofJSON = this.pocJsonService.extractSteps(this.proofJSON,stepIndex, finalIndex);
-    console.log("setey---",this.SelectedproofJSON);
-    
+    this.SelectedproofJSON = this.pocJsonService.extractSteps(this.proofJSON,stepIndex, finalIndex);  
     var index = this.globalData.findIndex((curr: any) => curr.Id == this.proofJSON.Step.StepHeader.SegmentNo);
-   console.log("iiiii--",index);
    this.stopFlag = true;
-   //console.log("stepii--",this.findStepByPathId(id, this.proofJSON.Header.Steps[stepIndex].StepHeader.SegmentNo))
    if (!!stepIndex) {
       let proofArr = id.split('-')
       if (!!proofArr[0] && proofArr[0] != "pobl") {
@@ -1842,7 +1821,6 @@ export class ProofBotComponent implements OnInit {
       }
       this.SuccessedProofcount=this.SuccessProofs.length;  
       this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
-      console.log("this.SuccessProofs",this.SuccessProofs)
   }
 
   setFailedProofCountOfPOC(){
@@ -1898,7 +1876,6 @@ export class ProofBotComponent implements OnInit {
 
   POCStatus(){
     const allProofs = this.pocJsonService.getAlltheProofsOPOC();
-    console.log ("comple343453", this.completedProofs)
     this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
     
     this.openPOCStatusModal(

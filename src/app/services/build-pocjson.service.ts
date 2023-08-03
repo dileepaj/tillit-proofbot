@@ -242,10 +242,7 @@ export class BuildPOCJsonService {
   constructor(public commonServices: CommonService) { }
 
   async buildPOCJson(data: any): Promise<any> {
-    let pocArray = await this.createPOCOrder(data)
-    console.log("jj",data)
-    console.log("jj111",pocArray)
-    
+    let pocArray = await this.createPOCOrder(data)  
     if (!!pocArray) {
       let b = await this.loopTheNodes(pocArray)
       return b
