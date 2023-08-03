@@ -170,6 +170,12 @@ export class ProofBotComponent implements OnInit {
   currentBatchID: any;
   currentBatchID2: any;
   currentStage2: any;
+  completedProofcount: number = 0;
+  SuccessedProofcount: number = 0;
+  FailedProofcount: number = 0;
+  pendingProofsCount: number = 0;
+  TransactionType: any;
+  isPOCcompleted: boolean=false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -293,6 +299,8 @@ export class ProofBotComponent implements OnInit {
     if(this.proofType=='poc'){
       this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
       this.AllTheProofs = this.pocJsonService.getAlltheProofsOPOC();
+      console.log("Allpr---",this.AllTheProofs);
+      this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
     }
     this.isStartDemo = true;
     this.stopFlag = false;
@@ -718,19 +726,16 @@ export class ProofBotComponent implements OnInit {
       console.log('----------------------------------------------------------------------------firs Play demot call stop falg')
       return;
     }
-    console.log("starttttt");
     this.isReplay = false;
     this.isPlayCompleted = false;
     const { Header, Steps } = this.proofJSON;
     this.totalSteps = Steps.length;
     this.currentStep = step;
-    console.log("current---", this.currentStep);
     this.cdr.detectChanges();
     let currentBrowserScreen = "";
   
     const executeStep = async () => {
 
-      console.log('---execute', this.stopFlag)
       if (this.isPause || this.isReplay || this.currentStep >= Steps.length || this.stopFlag) {
         console.log('-------------------------------------------------------------------------------first call stop falg')
         return;
@@ -782,7 +787,6 @@ export class ProofBotComponent implements OnInit {
       switch (ActionType) {
         case "BrowserScreen":
           currentBrowserScreen = ActionParameters.ExternalURL;
-          console.log("url--", currentBrowserScreen);
           let scRef: ComponentRef<SiteScreenComponent>;
           if (this.demoScreenChildRefs[frameID]) {
             scRef = this.demoScreenChildRefs[frameID].ref;
@@ -806,7 +810,8 @@ export class ProofBotComponent implements OnInit {
               this.openPOCStatusModal(
                 this.SuccessProofs,
                 this.FailedProofs,
-                this.missingProofs
+                this.missingProofs,
+                this.isPOCcompleted
               );
             } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
@@ -815,16 +820,8 @@ export class ProofBotComponent implements OnInit {
                 ActionParameters.InnerHTMLPOC
               );
             }
-          }else if (scRef && ActionParameters.InnerHTML) {
-            if (
-              !!ActionParameters.Compare &&
-              !this.verificationStatus(ActionParameters.Compare)
-            ) {
-              if (this.proofType === "poc") {
-                this.setCompletedProofCountOfPOC();
-                this.setFailedProofCountOfPOC();
-              }
-              console.log("comp", this.completedProofs);
+          } else if (scRef && ActionParameters.InnerHTML) {
+            if (!!ActionParameters.Compare && !this.verificationStatus(ActionParameters.Compare)) {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(
                 ActionParameters.ExternalURL,
@@ -837,22 +834,61 @@ export class ProofBotComponent implements OnInit {
                 0,
                 `Verification failed ${this.currentProof} for ${this.currentBatch}`
               );
-            } else {
+
               if (this.proofType === "poc") {
                 this.setCompletedProofCountOfPOC();
-                this.setSuccessedProofCountOfPoc();
+                this.setFailedProofCountOfPOC();
+
+                //check if all the proofs of poc is verified.
+                if (this.TotalProofCountOfPOC == this.completedProofcount) {
+                  scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+                  this.openPOCStatusModal(
+                    this.SuccessProofs,
+                    this.FailedProofs,
+                    this.missingProofs,
+                    this.isPOCcompleted
+                  );
+                  this.openModal(
+                    `${this.commonServices.getProofName(
+                      this.proofType
+                    )} Failed`,
+                    0,
+                    `Verification failed Proof Of Countinuty.`
+                  );
+                }
               }
-              console.log("comp", this.completedProofs);
-              console.log(
-                "comp and success",
-                this.SuccessProofs
-              );
+
+
+            } else {
               scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
               await scRef.instance.setPageHTML(
                 ActionParameters.ExternalURL,
                 ActionParameters.InnerHTML
               );
+
+
+              if (this.proofType === "poc") {
+                this.setCompletedProofCountOfPOC();
+                this.setSuccessedProofCountOfPoc();
+
+                //check if all the proofs of poc is verified.
+                if (this.TotalProofCountOfPOC == this.completedProofcount) {
+                  this.openPOCStatusModal(
+                    this.SuccessProofs,
+                    this.FailedProofs,
+                    this.missingProofs,
+                    this.isPOCcompleted
+                  );
+                }
+              }
+
             }
+          } else if (scRef && ActionParameters.InnerHTMLPOE) {
+            scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
+            await scRef.instance.setPageHTML(
+              ActionParameters.ExternalURL,
+              ActionParameters.InnerHTMLPOE
+            );
           } else if (scRef && ActionParameters.ExternalURL) {
             scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
             await scRef.instance.setPage(
@@ -927,7 +963,10 @@ export class ProofBotComponent implements OnInit {
       return;
     }
   
-    if (this.currentStep === Steps.length) {
+    if (this.currentStep === Steps.length && this.proofType!='poc'){
+      this.isPlayCompleted = true;
+      this.isPause = true;
+    }else if(this.proofType=='poc' && this.TotalProofCountOfPOC==this.completedProofcount){
       this.isPlayCompleted = true;
       this.isPause = true;
     }
@@ -935,16 +974,11 @@ export class ProofBotComponent implements OnInit {
   
 
   parseActionData(action: any, storedData: any = this.variableStorage): any {
-    // console.log('action', action);
-    // console.log('firststoredData', this.variableStorage["TXNhash"]);
-    // console.log('this.variableStorage', this.variableStorage);
     var data = JSON.stringify(action).toString();
     [...data.matchAll(/"\${[^}]+}"|\${[^}]+}/g)].forEach(a => {
       try {
         let key = a[0].match(/\${([^}]+)}/g)[0].slice(2, -1);
-       // console.log('key', key)
         if (key && (storedData[key] != null || storedData[key] != undefined)) {
-         // console.log('storedData[key]', storedData[key])
           var replaceValue = storedData[key];
           var valueType = typeof replaceValue;
           if (valueType == "string" && a[0].match(/"\${[^}]+}"/g)) {
@@ -1305,11 +1339,8 @@ export class ProofBotComponent implements OnInit {
 
           this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
           if (this.missingProofs.length != 0) {
-            console.log(this.missingProofs)
             this.toastr.error("Blockchain  not have proper countinity ", "Proof Countinuity Verification Failed")
           } else {
-            console.log("SuccessVall---", this.SuccessProofs);
-            console.log("Failedvall---", this.FailedProofs);
           }
       
       }else { }
@@ -1598,6 +1629,7 @@ export class ProofBotComponent implements OnInit {
             this.currentProduct = data[i].Batch;
             this.currentBatchID= data[i].BatchID;
             this.currentStage= data[i].Stage;
+            this.TransactionType=data[i].TransactionType;
             break; // Exit the loop once a match is found
           }
         }
@@ -1634,6 +1666,7 @@ export class ProofBotComponent implements OnInit {
             this.currentProduct2 = data[i].Batch2;
             this.currentBatchID2= data[i].BatchID2;
             this.currentStage2= data[i].Stage2;
+            this.TransactionType=data[i].TransactionType;
             break; // Exit the loop once a match is found
           }
         }
@@ -1756,15 +1789,24 @@ export class ProofBotComponent implements OnInit {
         ProofType: this.currentProof,
         ID: this.currentId,
         Batch: this.currentBatch,
-        Batch2: this.currentBatch2
+        Batch2: this.currentBatch2,
+        TransactionType: this.TransactionType
       });
       }else{
         this.completedProofs.push({
           ProofType:this.currentProof,
           ID:this.currentId,
-          Batch:this.currentBatch,
+          Batch:this.currentProduct,
+          TransactionType: this.TransactionType
          }); 
       }
+    this.completedProofcount=this.completedProofs.length;
+    
+    if(this.completedProofcount == this.AllTheProofs.length){
+      this.isPOCcompleted=true;
+    }else{
+      this.isPOCcompleted=false;
+    }
   }
   
   setSuccessedProofCountOfPoc(){
@@ -1772,17 +1814,26 @@ export class ProofBotComponent implements OnInit {
     if(type =="pobl"||type=="POBL"){
       this.SuccessProofs.push({
         ProofType: this.currentProof,
-        ID: this.currentId,
-        Batch: this.currentBatch,
-        Batch2: this.currentBatch2
+        ID:this.currentBatchID,
+        Batch:this.currentProduct,
+        Stage:this.currentStage,
+        ID2:this.currentBatchID2,
+        Batch2:this.currentProduct2,
+        Stage2:this.currentStage2,
+        TransactionType: this.TransactionType
       });
       }else{
         this.SuccessProofs.push({
           ProofType:this.currentProof,
-          ID:this.currentId,
-          Batch:this.currentBatch,
+          ID:this.currentBatchID,
+          Batch:this.currentProduct,
+          Stage:this.currentStage,
+          TransactionType: this.TransactionType
          }); 
       }
+      this.SuccessedProofcount=this.SuccessProofs.length;  
+      this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
+      console.log("this.SuccessProofs",this.SuccessProofs)
   }
 
   setFailedProofCountOfPOC(){
@@ -1790,28 +1841,35 @@ export class ProofBotComponent implements OnInit {
     if(type =="pobl"||type=="POBL"){
       this.FailedProofs.push({
         ProofType: this.currentProof,
-        ID: this.currentId,
-        Batch: this.currentBatch,
-        Batch2: this.currentBatch2
+        ID:this.currentBatchID,
+        Batch:this.currentProduct,
+        Stage:this.currentStage,
+        ID2:this.currentBatchID2,
+        Batch2:this.currentProduct2,
+        Stage2:this.currentStage2,
+        TransactionType: this.TransactionType
       });
       }else{
         this.FailedProofs.push({
           ProofType:this.currentProof,
-          ID:this.currentId,
+          ID:this.currentBatchID,
           Batch:this.currentBatch,
+          Stage:this.currentStage,
+          TransactionType: this.TransactionType
          }); 
       }
+      this.FailedProofcount=this.FailedProofs.length;
+      this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
   }
 
   filterMissingProofs(completed: any[], allProofs: any[]): any[] {
     const completedHashes = completed.map((proof) => proof.ID);
     
     const missingProofs = allProofs.filter((proof) => !completedHashes.includes(proof.ID));
-    console.log("misse--",missingProofs)
     return missingProofs;
   }
 
-  openPOCStatusModal(successProofs?: any[], failedProofs?: any[], missedProofs?: any[]) {
+  openPOCStatusModal(successProofs?: any[], failedProofs?: any[], missedProofs?: any[], isPOCcompleted?: boolean) {
     this.togglePlayPauseFn();
     
     const initialState: ModalOptions = {
@@ -1819,7 +1877,8 @@ export class ProofBotComponent implements OnInit {
         retry: this.onRetry,
         successProofs: successProofs,
         failedproofs: failedProofs,
-        missedProofs: missedProofs
+        missedProofs: missedProofs,
+        isPOCcompleted: isPOCcompleted
       }
     };
     this.modalService.show(POCStatus, {
@@ -1836,7 +1895,8 @@ export class ProofBotComponent implements OnInit {
     this.openPOCStatusModal(
       this.SuccessProofs,
       this.FailedProofs,
-      this.missingProofs
+      this.missingProofs,
+      this.isPOCcompleted
     );
   }
   

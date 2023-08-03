@@ -2,9 +2,9 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { CommonService } from "src/app/services/common.service";
 @Component({
-  selector: 'app-poc-status',
-  templateUrl: './poc-status.component.html',
-  styleUrls: ['./poc-status.component.css']
+  selector: "app-poc-status",
+  templateUrl: "./poc-status.component.html",
+  styleUrls: ["./poc-status.component.css"]
 })
 export class POCStatus implements OnInit {
 
@@ -26,7 +26,9 @@ export class POCStatus implements OnInit {
   MStage: string;
   MBatch2:string;
   MStage2: string;
-  
+  TransactionType: any;
+  completedProofs: any;
+  isPOCcompleted: boolean;
 
   constructor(private modalService: BsModalService, public bsModalRef: BsModalRef,public commonServices: CommonService,) { }
 
@@ -35,6 +37,8 @@ export class POCStatus implements OnInit {
   this.successProofs = initialState.successProofs;
   this.failedproofs = initialState.failedproofs;
   this.missedProofs = initialState.missedProofs;
+  this.isPOCcompleted= initialState.isPOCcompleted;
+  
   
   // Extract the values from successProofs array
   for (const successProof of this.successProofs) {
@@ -57,16 +61,16 @@ export class POCStatus implements OnInit {
     this.MStage = missedProof.Stage;
     this.MBatch2 = missedProof.Batch2;
     this.MStage2 = missedProof.Stage2;
-    console.log("jjjjddd--",this.MProofName, this.MBatch,this.MStage, this.MBatch2,this.MStage2)
+    this.TransactionType =missedProof.TransactionType;
   }
 
-  console.log("jjjj--",this.successProofs, this.failedproofs, this.missedProofs);
+  console.log("jjjj--", this.missedProofs);
  
 
    
   }
   
-  
+ 
 
   retryClick() {
     this.retry()
