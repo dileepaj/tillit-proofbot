@@ -12,7 +12,7 @@ export class POCStatus implements OnInit {
   @Output() backToStepFn = new EventEmitter();
   @Input() steppers: any[];
   successProofs: any[];
-  failedProofs: any[];
+  failedproofs: any[];
   missedProofs: any[];
   SProofName: string;
   SBatch: string;
@@ -35,7 +35,7 @@ export class POCStatus implements OnInit {
   ngOnInit() {
     let initialState: any = this.modalService.config.initialState;
     this.successProofs = initialState.successProofs;
-    this.failedProofs = initialState.failedproofs;
+    this.failedproofs = initialState.failedproofs;
     this.missedProofs = initialState.missedProofs;
     this.isPOCcompleted = initialState.isPOCcompleted;
 
@@ -47,7 +47,7 @@ export class POCStatus implements OnInit {
     }
 
     // Extract the values from failedproofs array
-    for (const failedproof of this.failedProofs) {
+    for (const failedproof of this.failedproofs) {
       this.FProofName = failedproof.ProofType;
       this.FBatch = failedproof.Batch;
       this.FBatch2 = failedproof.Batch2;
