@@ -643,7 +643,6 @@ export class SiteScreenComponent {
 setEncodedData(TDPData: string,isEncodedData: boolean){
   this.EncodedData = TDPData;
   this.isEncodedData = isEncodedData;
-  console.log("99",this.isEncodedData)
 }
   
  copyencodedHashToClipboard(): void {

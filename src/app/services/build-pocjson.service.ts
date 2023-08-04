@@ -3600,7 +3600,7 @@ export class BuildPOCJsonService {
                     "ActionTitle_2": "&{Text96}",
                     "ActionDescription_2": "&{Text97}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
-                    "TXNHash": "${TXNhash}",
+                    "TXNHash": "${TDPTxnhash}",
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
                     "JSONResultVariable": "MainTXNData",
@@ -5601,7 +5601,7 @@ export class BuildPOCJsonService {
                   "en": "Scroll to the result"
                 },
                 "Text192": {
-                  "ja": "klll",
+                  "ja": "比較結果",
                   "en": "Comparison Result"
                 }
               }
@@ -5660,7 +5660,7 @@ export class BuildPOCJsonService {
                   "en": "Scroll to the result"
                 },
                 "Text205": {
-                  "ja": "klll",
+                  "ja": "比較結果",
                   "en": "Comparison Result"
                 }
               }

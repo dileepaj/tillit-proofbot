@@ -3,7 +3,11 @@
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
     <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="!isPOCcompleted">Proof of Continuity Status</p>
-    <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted" >Proof of Continuity Completed!</p>
+    <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted" >Proof of Continuity Verification 
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs.length == 0 && missedProofs.length == 0">Success!!</span>
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs?.length > 0">Failed!!</span>
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && missedProofs?.length > 0">Not Yet Completed!!</span>
+    </p>
   </div>
   <div class="modal-body" style="font-family: Inter; justify-content: center;">
     <!--completed proofs-->
@@ -31,7 +35,7 @@
           </div>
           <ng-template #otherProof>
             <div class="d-flex align-items-center mb-3 section-header">
-              <div *ngFor="let successProof of successProofs">
+              <div>
                 The <span class="font-weight-bold" *ngIf="successProof.ProofType">&nbsp;{{successProof.ProofType}}&nbsp;</span>
                 of <span class="font-weight-bold capitalize-first-letter" *ngIf="successProof.Batch">&nbsp;Product: {{successProof.Batch}}&nbsp;</span>
                 <span class="font-weight-bold" *ngIf="successProof.Stage">| Stage: {{successProof.Stage}}&nbsp;</span>
@@ -80,33 +84,35 @@
 
 
     <!--failed proof-->
-    <div class="FProofHeader" *ngIf="failedProofs?.length > 0"><p class="text-center font-weight-bold mb-4 FProofHeaderTxt"  *ngIf="failedProofs?.length > 0">Failed Proofs
+    <div class="FProofHeader" *ngIf="failedproofs?.length > 0"><p class="text-center font-weight-bold mb-4 FProofHeaderTxt"  *ngIf="failedproofs?.length > 0">Failed Proofs
     </p></div>
     <br>
     <div class="row">
-      <div class="col-12" *ngIf="failedProofs?.length > 0">
-        <div class="d-flex align-items-center mb-3 section-header" *ngFor="let failedProof of failedProofs">
-          <div *ngIf="failedProof.ProofType=='Proof of Backlinks'; else otherProof">
-            The <span class="font-weight-bold" *ngIf="failedProof.ProofType">&nbsp;{{failedProof.ProofType}}&nbsp;</span> for
-              <span class="font-weight-bold capitalize-first-letter" *ngIf="failedProof.TransactionType">&nbsp;{{failedProof.TransactionType}}&nbsp;</span>between
-              <span class="font-weight-bold" *ngIf="failedProof.Batch">Product: {{failedProof.Batch}}&nbsp;</span>
-              <span class="font-weight-bold" *ngIf="failedProof.Stage">| Stage: {{failedProof.Stage}}&nbsp;</span>
+      <div class="col-12" *ngIf="failedproofs?.length > 0">
+        <div *ngFor="let failedproof of failedproofs">
+        <div class="d-flex align-items-center mb-3 section-header" >
+          <div *ngIf="failedproof.ProofType=='Proof of Backlinks'; else otherProof">
+            The <span class="font-weight-bold" *ngIf="failedproof.ProofType">&nbsp;{{failedproof.ProofType}}&nbsp;</span> for
+              <span class="font-weight-bold capitalize-first-letter" *ngIf="failedproof.TransactionType">&nbsp;{{failedproof.TransactionType}}&nbsp;</span>between
+              <span class="font-weight-bold" *ngIf="failedproof.Batch">Product: {{failedproof.Batch}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="failedproof.Stage">| Stage: {{failedproof.Stage}}&nbsp;</span>
               and
-              <span class="font-weight-bold" *ngIf="failedProof.Batch2">Product: {{failedProof.Batch2}}&nbsp;</span>
-              <span class="font-weight-bold" *ngIf="failedProof.Stage2">| Stage: {{failedProof.Stage2}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="failedproof.Batch2">Product: {{failedproof.Batch2}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="failedproof.Stage2">| Stage: {{failedproof.Stage2}}&nbsp;</span>
               failed.
           </div>
         </div>
         <ng-template #otherProof>
-          <div class="d-flex align-items-center mb-3 section-header" *ngFor="let failedProof of failedProofs">
+          <div class="d-flex align-items-center mb-3 section-header">
             <div>
-              The <span class="font-weight-bold" *ngIf="failedProof.ProofType">&nbsp;{{failedProof.ProofType}}&nbsp;</span>
-                of <span class="font-weight-bold capitalize-first-letter" *ngIf="failedProof.Batch">&nbsp;Product: {{failedProof.Batch}}&nbsp;</span>
-                <span class="font-weight-bold" *ngIf="failedProof.Stage">| Stage: {{failedProof.Stage}}&nbsp;</span>
+              The <span class="font-weight-bold" *ngIf="failedproof.ProofType">&nbsp;{{failedproof.ProofType}}&nbsp;</span>
+                of <span class="font-weight-bold capitalize-first-letter" *ngIf="failedproof.Batch">&nbsp;Product: {{failedproof.Batch}}&nbsp;</span>
+                <span class="font-weight-bold" *ngIf="failedproof.Stage">| Stage: {{failedproof.Stage}}&nbsp;</span>
                 failed.
             </div>
           </div>
         </ng-template>
+      </div>
       </div>
     </div>
 

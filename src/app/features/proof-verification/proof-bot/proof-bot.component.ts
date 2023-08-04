@@ -836,7 +836,8 @@ export class ProofBotComponent implements OnInit {
               if (this.proofType === "poc") {
                 this.setCompletedProofCountOfPOC();
                 this.setFailedProofCountOfPOC();
-
+                const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+                this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
                 //check if all the proofs of poc is verified.
                 if (this.TotalProofCountOfPOC == this.completedProofcount) {
                   scRef.instance.setFrameTitle(StepHeader.FrameTitle[this.lang]);
@@ -846,13 +847,7 @@ export class ProofBotComponent implements OnInit {
                     this.missingProofs,
                     this.isPOCcompleted
                   );
-                  this.openModal(
-                    `${this.commonServices.getProofName(
-                      this.proofType
-                    )} Failed`,
-                    0,
-                    `Verification failed Proof Of Countinuty.`
-                  );
+                  
                 }
               }
 
@@ -868,7 +863,8 @@ export class ProofBotComponent implements OnInit {
               if (this.proofType === "poc") {
                 this.setCompletedProofCountOfPOC();
                 this.setSuccessedProofCountOfPoc();
-
+                const allProofs = this.pocJsonService.getAlltheProofsOPOC();
+                this.missingProofs = this.filterMissingProofs(this.completedProofs, allProofs);
                 //check if all the proofs of poc is verified.
                 if (this.TotalProofCountOfPOC == this.completedProofcount) {
                   this.openPOCStatusModal(
@@ -1852,6 +1848,7 @@ export class ProofBotComponent implements OnInit {
       }
       this.FailedProofcount=this.FailedProofs.length;
       this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
+      console.log("failed",this.FailedProofs)
   }
 
   filterMissingProofs(completed: any[], allProofs: any[]): any[] {
