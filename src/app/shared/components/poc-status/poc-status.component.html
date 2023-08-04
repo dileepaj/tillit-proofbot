@@ -4,9 +4,9 @@
     </button>
     <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="!isPOCcompleted">Proof of Continuity Status</p>
     <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted" >Proof of Continuity Verification 
-      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs?.length == 0 && missedProofs?.length == 0">Success!!</span>
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs.length == 0 && missedProofs.length == 0">Success!!</span>
       <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs?.length > 0">Failed!!</span>
-      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && missedProofs?.length > 0 > 0">Not Yet Compeleted!!</span>
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && missedProofs?.length > 0">Not Yet Completed!!</span>
     </p>
   </div>
   <div class="modal-body" style="font-family: Inter; justify-content: center;">
@@ -89,7 +89,8 @@
     <br>
     <div class="row">
       <div class="col-12" *ngIf="failedproofs?.length > 0">
-        <div class="d-flex align-items-center mb-3 section-header" *ngFor="let failedproof of failedproofs">
+        <div *ngFor="let failedproof of failedproofs">
+        <div class="d-flex align-items-center mb-3 section-header" >
           <div *ngIf="failedproof.ProofType=='Proof of Backlinks'; else otherProof">
             The <span class="font-weight-bold" *ngIf="failedproof.ProofType">&nbsp;{{failedproof.ProofType}}&nbsp;</span> for
               <span class="font-weight-bold capitalize-first-letter" *ngIf="failedproof.TransactionType">&nbsp;{{failedproof.TransactionType}}&nbsp;</span>between
@@ -111,6 +112,7 @@
             </div>
           </div>
         </ng-template>
+      </div>
       </div>
     </div>
 
