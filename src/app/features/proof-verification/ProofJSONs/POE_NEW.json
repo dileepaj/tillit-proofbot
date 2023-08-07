@@ -2332,11 +2332,11 @@
         "StepNo": 42,
         "SegmentNo": 8,
         "FrameID": 8,
-        "FrameTitle": "&{Text120}"
+        "FrameTitle": "&{Text206}"
       },
       "Action": {
-        "ActionTitle": "&{Text121}",
-        "ActionDescription": "&{Text121}",
+        "ActionTitle": "&{Text207}",
+        "ActionDescription": "&{Text208}",
         "ActionType": "BrowserScreen",
         "ActionParameters": {
           "ExternalURL": "",
@@ -2376,7 +2376,7 @@
         "ScrollToPointer": false,
         "FrameAutoScroll": true,
         "FrameScrollBars": "",
-        "ToastMessage1": "&{Text124}",
+        "ToastMessage1": "&{Text209}",
         "ToastPosition1": [
           "6%",
           "80%"
