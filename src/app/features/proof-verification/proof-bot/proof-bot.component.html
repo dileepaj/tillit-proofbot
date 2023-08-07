@@ -60,14 +60,14 @@
           <div class="col-12">
             <div class="d-flex justify-content-between section-header">
               <div></div>
-              <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
+              <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof"><span>Current Proof: <span
                   class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> 
-                between <span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span> 
+                between <strong>(</strong><span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span> 
                 <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span> 
-                <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span> 
-                and <span class="bold-f" *ngIf="currentBatchID2">&nbsp;Batch ID : {{currentBatchID2}}&nbsp;</span>
+                <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span><strong>)</strong>
+                and <strong>(</strong><span class="bold-f" *ngIf="currentBatchID2">&nbsp;Batch ID : {{currentBatchID2}}&nbsp;</span>
                 <span class="bold-f" *ngIf="currentProduct2">&nbsp;| Product : {{currentProduct2}}&nbsp;</span> 
-                <span class="bold-f" *ngIf="currentStage2">&nbsp;| Stage : {{currentStage2}}&nbsp;</span> 
+                <span class="bold-f" *ngIf="currentStage2">&nbsp;| Stage : {{currentStage2}}&nbsp;</span><strong>)</strong></span>
                 <a class="ml-1"
                   href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                   target="_blank">
@@ -75,10 +75,10 @@
                 </a>
               </div>
               <ng-template #otherProof>
-                <div>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> of
+                <div><span>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> of <strong>(</strong>
                   <span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span>
                   <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span>
-                  <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span> 
+                  <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span><strong>)</strong></span>
                   
                   <a class="ml-1"
                     href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
