@@ -1633,7 +1633,6 @@ export class ProofBotComponent implements OnInit {
         this.currentProduct = textContent.substring(productIndex + 8)
         this.currentId = id;
         this.currentProofType= runningProof.toLowerCase();
-        console.log("other--",this.currentProofType)
         let data = this.AllTheProofs;
         for (let i = 0; i < data.length; i++) {
           if (data[i].ID === id) {
@@ -1650,7 +1649,6 @@ export class ProofBotComponent implements OnInit {
         this.currentId = id;
         this.currentProof = this.commonServices.getProofName(runningProof);
         this.currentProofType= runningProof.toLowerCase();
-        console.log("poblii--",this.currentProofType)
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
@@ -1808,7 +1806,6 @@ export class ProofBotComponent implements OnInit {
     }
 
     this.completedProofcount = this.completedProofs.length;
-    console.log("1--",this.completedProofs)
     if (this.completedProofcount == this.AllTheProofs.length) {
       this.isPOCcompleted = true;
     } else {
@@ -1842,7 +1839,6 @@ export class ProofBotComponent implements OnInit {
            }); 
         }
     }
-      console.log("2--",this.SuccessProofs)
       this.SuccessedProofcount=this.SuccessProofs.length;  
       this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
   }
@@ -1875,7 +1871,6 @@ export class ProofBotComponent implements OnInit {
     }
       this.FailedProofcount=this.FailedProofs.length;
       this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
-      console.log("failed",this.FailedProofs)
   }
 
   filterMissingProofs(completed: any[], allProofs: any[]): any[] {
@@ -1883,7 +1878,6 @@ export class ProofBotComponent implements OnInit {
     
     const missingProofs = allProofs.filter((proof) => !completedHashes.includes(proof.ID));
     
-    console.log("pending--",missingProofs)
     return missingProofs;
   }
 
