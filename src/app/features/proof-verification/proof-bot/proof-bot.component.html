@@ -4,7 +4,7 @@
       justifyContent: justifyContent,
       alignItems: alignItems
     }" [class]="isTheater ? 'p-3' : 'p-0'">
-    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
+    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading" [isProofTypeAvailable]="isProofTypeAvailable"
       [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"
       (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isProofStart" style="width: 100%;" [ngStyle]="{
         height: initialHeight,

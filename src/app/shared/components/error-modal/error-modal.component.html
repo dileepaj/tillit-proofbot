@@ -1,17 +1,17 @@
-<div class="modal-lg">
-    <div class="modal-header" style="align-items: stretch; flex-direction: column;">
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide();retryClick()">
-            <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
-        <h4 class="modal-title pull-left" style="font-family: Inter; text-align: center;">{{errorTitle}}</h4>
-        
-    </div>
-    <div class="modal-body" style="font-family: Inter; justify-content: center;">
-        <h6 class="text-wrap" style="text-align: center;">Error Code : {{m1}} </h6>
-        <p class="text-wrap" style="text-align: center; color:#CA180E; font-size: 12px; font-family: Inter; word-break: break-word; ">{{m2}}</p>
-    </div>
-    <div class="modal-footer" style="font-family: Inter; justify-content: center;">
-        <button type="button" class="btn btn-outline-success" 
-            (click)="bsModalRef.hide();retryClick()">{{'Retry'}}</button>
-    </div>
+<div class="modal-header" style="align-items: stretch; flex-direction: column;">
+    <button type="button" class="btn-close close pull-right" aria-label="Close"
+        (click)="bsModalRef.hide();retryClick()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+    <h4 class="modal-title pull-left" style="font-family: Inter; text-align: center;">{{errorTitle}}</h4>
+
+</div>
+<div class="modal-body" style="font-family: Inter; justify-content: center;">
+    <h6 class="text-wrap" style="text-align: center; word-break: break-word;">Error Code : {{m1}} </h6>
+    <p class="text-wrap"
+        style="text-align: center; color:#CA180E; font-size: 12px; font-family: Inter; word-break: break-word;">{{m2}}
+    </p>
+</div>
+<div class="modal-footer" style="font-family: Inter; justify-content: center;">
+    <button type="button" class="btn btn-outline-success" (click)="bsModalRef.hide();retryClick()">{{'Retry'}}</button>
 </div>

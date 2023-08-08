@@ -626,7 +626,10 @@ export class SiteScreenComponent {
         title: 'Error Message'
       }
     };
-    this.modalService.show(ErrorModalComponent, initialState);
+    this.modalService.show(ErrorModalComponent, {
+      ...initialState,
+      class: 'modal-lg'
+    });
     
   }
 

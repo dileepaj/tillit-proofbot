@@ -177,6 +177,7 @@ export class ProofBotComponent implements OnInit {
   TransactionType: any;
   isPOCcompleted: boolean=false;
   isEncodedData: boolean = false;
+  isProofTypeAvailable: boolean = false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -195,12 +196,15 @@ export class ProofBotComponent implements OnInit {
     this.route.queryParamMap.subscribe(params => {
       if (!params.get("txn") || !params.get("type")) {
         this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
+        this.isProofTypeAvailable=false;
         return
       } else if (!this.availableProofs.includes(params.get("type"))) {
-        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL",404,"The proof type you've requested is not yet available in ProofBot.\n"+ environment.blockchain.domailUrl + this.router.url)
+        this.isProofTypeAvailable=false;
         return
       } else if (params.get("type") == 'pobl' && !params.get("txn2")) {
-        this.openModal("Invalid URL", 404, environment.blockchain.domailUrl + this.router.url)
+        this.openModal("Invalid URL", 404,"The requested proof-type parameters are absent.Kindly review the details and provide the necessary information.\n"+ environment.blockchain.domailUrl + this.router.url)
+        this.isProofTypeAvailable=false;
         return
       } else {
       }
@@ -216,7 +220,8 @@ export class ProofBotComponent implements OnInit {
         async data => {
           try {
             if (!data) {
-              this.openModal("Invalid URL", 204)
+              this.openModal("Invalid URL", 204,"Apologies, but there are no transaction details available in the database for the provided transaction hash.")
+              this.isProofTypeAvailable=false;
               return
             } else {
               let dataJson = JSON.parse(data)
@@ -237,6 +242,7 @@ export class ProofBotComponent implements OnInit {
     this.proofType = this.proofBotParams.params.type;
     this.LoadingProofType = this.commonServices.getProofName(this.proofType)
     this.TXNhash = this.proofBotParams.params.txn;
+    this.isProofTypeAvailable=true;
   }
 
   async ngAfterViewInit() {
