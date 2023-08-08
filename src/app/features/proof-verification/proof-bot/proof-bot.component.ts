@@ -126,7 +126,7 @@ export class ProofBotComponent implements OnInit {
   LoadingProofType: string;
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe", "pog", "pobl", "poc"];
+  availableProofs: any[] = ["poe", "pog", "pobl"];
   proofType: string;
   lang: string = "en";
   Name: string = "";
