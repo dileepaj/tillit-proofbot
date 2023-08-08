@@ -18,7 +18,7 @@
               <i class="bi bi-clipboard"></i>
             </ng-template>
           </span>
-          <span *ngIf="isEncodedData" tabindex="0" data-toggle="tooltip" title="Copy to Clipboard" (click)="copyencodedHashToClipboard()">
+          <span *ngIf="isEncodedData==true" tabindex="0" data-toggle="tooltip" title="Copy to Clipboard" (click)="copyencodedHashToClipboard()">
             <ng-container *ngIf="isCopied; else notCopied">
               <button class="CopyDatabtn" style="color: blue;">Copied Encoded Hash</button>
             </ng-container>

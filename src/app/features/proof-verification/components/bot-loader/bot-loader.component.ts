@@ -20,6 +20,7 @@ export class BotLoaderComponent implements OnInit {
   @Input() product
   @Input() batch
   @Input() tdpId
+  @Input() isProofTypeAvailable: Boolean;
   countdown: number = 1;
 
   constructor() { }
