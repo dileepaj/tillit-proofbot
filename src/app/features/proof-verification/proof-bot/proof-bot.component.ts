@@ -225,8 +225,8 @@ export class ProofBotComponent implements OnInit {
               return
             } else {
               let dataJson = JSON.parse(data)
-              this.product = dataJson[0].Timestamp?this.commonServices.decodeFromBase64(dataJson[0].ProductName) : dataJson[0].ProductName
-              this.batch = dataJson[0].Identifier
+             this.product = !!dataJson[0].CreatedAt?this.commonServices.decodeFromBase64(dataJson[0].ProductName) : dataJson[0].ProductName;
+             this.batch = dataJson[0].Identifier
               this.tdpId = dataJson[0].TdpId
             }
           } catch (error) {
