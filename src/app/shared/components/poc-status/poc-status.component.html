@@ -23,9 +23,9 @@
         <ng-container *ngFor="let successProof of successProofs">
           <div class="d-flex align-items-center mb-3 section-header">
             <div *ngIf="successProof.ProofType=='Proof of Backlinks'; else otherProof">
-              The <span class="font-weight-bold" *ngIf="successProof.ProofType">&nbsp;{{successProof.ProofType}}&nbsp;</span> for <strong>(</strong>
+              The <span class="font-weight-bold" *ngIf="successProof.ProofType">&nbsp;{{successProof.ProofType}}&nbsp;</span> for
               <span class="font-weight-bold capitalize-first-letter" *ngIf="successProof.TransactionType">&nbsp;{{successProof.TransactionType}}&nbsp;</span>between
-              <span class="font-weight-bold" *ngIf="successProof.Batch">Product: {{successProof.Batch}}&nbsp;</span>
+              <strong>(</strong> <span class="font-weight-bold" *ngIf="successProof.Batch">Product: {{successProof.Batch}}&nbsp;</span>
               <span class="font-weight-bold" *ngIf="successProof.Stage">| Stage: {{successProof.Stage}}&nbsp;</span><strong>)</strong>
               and <strong>(</strong>
               <span class="font-weight-bold" *ngIf="successProof.Batch2">Product: {{successProof.Batch2}}&nbsp;</span>
@@ -56,9 +56,9 @@
           <div class="d-flex justify-content-start mb-3">
             <div></div>
             <div *ngIf="missedProof.ProofType=='Proof of Backlinks'; else otherProof">
-              The <span class="font-weight-bold" *ngIf="missedProof.ProofType">&nbsp;{{missedProof.ProofType}}&nbsp;</span> for <strong>(</strong>
+              The <span class="font-weight-bold" *ngIf="missedProof.ProofType">&nbsp;{{missedProof.ProofType}}&nbsp;</span> for 
               <span class="font-weight-bold capitalize-first-letter" *ngIf="missedProof.TransactionType">&nbsp;{{missedProof.TransactionType}}&nbsp;</span>between
-              <span class="font-weight-bold" *ngIf="missedProof.Batch">Product: {{missedProof.Batch}}&nbsp;</span>
+              <strong>(</strong> <span class="font-weight-bold" *ngIf="missedProof.Batch">Product: {{missedProof.Batch}}&nbsp;</span>
               <span class="font-weight-bold" *ngIf="missedProof.Stage">| Stage: {{missedProof.Stage}}&nbsp;</span><strong>)</strong>
               and <strong>(</strong>
               <span class="font-weight-bold" *ngIf="missedProof.Batch2">Product: {{missedProof.Batch2}}&nbsp;</span>
