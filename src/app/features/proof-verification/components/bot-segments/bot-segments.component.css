@@ -115,19 +115,16 @@
   
   #segments .success .bs-stepper-circle {
     background-color: #0E5E46;
-    /* cursor: pointer; */
-    cursor: default;
+    cursor: pointer;
   }
 
   #subSteppers .success .bs-stepper-circle {
     background-color: #395971;
-    /* cursor: pointer; */
-    cursor: default;
+    cursor: pointer;
   }
 
   .success .bs-stepper-label{
-    /* cursor: pointer; */
-    cursor: default;
+    cursor: pointer;
   }
 
   .cs-stepper-label{

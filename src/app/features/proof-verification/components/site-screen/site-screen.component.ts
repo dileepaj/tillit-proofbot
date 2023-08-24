@@ -63,6 +63,7 @@ export class SiteScreenComponent {
   pointerIcon: string = "";
   isScrollToElement: boolean = true;
   isPointToElement: boolean = true;
+  SegNo: number = 0 ;
   @Input() lang: string = "en";
   @Input() isEncodedData: boolean = false;
   @ViewChild("iframe", { read: ElementRef, static: false }) iframe: ElementRef;
@@ -663,5 +664,18 @@ setEncodedData(TDPData: string,isEncodedData: boolean){
    this.isCopied = true;
    setTimeout(() => (this.isCopied = false), 2000);
    }
+  
+setSegmentNo(segmentNo: number){
+  this.SegNo=segmentNo;
+  console.log("num--",this.SegNo);
+}
+
+scrollToDiv(divId: string): void {
+  const element = document.getElementById(divId);
+
+  if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 
 }

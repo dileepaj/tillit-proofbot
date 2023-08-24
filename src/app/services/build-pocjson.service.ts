@@ -82,7 +82,7 @@ export class BuildPOCJsonService {
   pocLangJson: any = {
     "Segments": {
       "SegName1": {
-        "ja": "aa",
+        "ja": "POC ツリー ビューを取得します。",
         "en": "Get The POC Tree View."
       },
       "SegName2": {
@@ -216,15 +216,15 @@ export class BuildPOCJsonService {
         "StepNo": 1,
         "Languages": {
           "TextPoc0": {
-            "ja": "aa",
+            "ja": "ロードグラフビュー",
             "en": "Load Graph View"
           },
           "TextPoc1": {
-            "ja": "aa",
+            "ja": "POC ツリー ビューをロードします",
             "en": "Load the POC tree view "
           },
           "TextPoc2": {
-            "ja": "aa",
+            "ja": "POC ツリー ビューを取得します。",
             "en": "Retrieve POC Tree View ."
           }
         }
@@ -2250,18 +2250,18 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 1,
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
-                    "FrameTitle": "&{Text0}",
-                    "ActionTitle": "&{Text1}",
-                    "ActionDescription": "&{Text3}",
+                    "FrameTitle": "&{TextPOE0}",
+                    "ActionTitle": "&{TextPOE1}",
+                    "ActionDescription": "&{TextPOE3}",
                     "PathID":`poe-${node.Id}`,
-                    "FrameTitle_1": "&{Text4}",
-                    "ActionTitle_1": "&{Text5}",
-                    "ActionDescription_1": "&{Text6}",
-                    "FrameTitle_2": "&{Text7}",
-                    "ActionTitle_2": "&{Text8}",
-                    "ActionDescription_2": "&{Text9}",
+                    "FrameTitle_1": "&{TextPOE4}",
+                    "ActionTitle_1": "&{TextPOE5}",
+                    "ActionDescription_1": "&{TextPOE6}",
+                    "FrameTitle_2": "&{TextPOE7}",
+                    "ActionTitle_2": "&{TextPOE8}",
+                    "ActionDescription_2": "&{TextPOE9}",
                     "TXNHash": node.TrustLinks[0],
-                    "OperationName": "&{Text2}",
+                    "OperationName": "&{TextPOE2}",
                     "ResponseVariable": "MainTDPDataString",
                     "JSONResultVariable": "MainTDPData",
                     "StartedProofType": "POE",
@@ -2289,8 +2289,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text10}",
-                "ActionDescription": "&{Text11}",
+                "ActionTitle": "&{TextPOE10}",
+                "ActionDescription": "&{TextPOE11}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2365,11 +2365,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text13}",
-                    "ActionDescription": "&{Text14}",
-                    "FrameTitle_1": "&{Text15}",
-                    "ActionTitle_1": "&{Text16}",
-                    "ActionDescription_1": "&{Text17}",
+                    "ActionTitle": "&{TextPOE13}",
+                    "ActionDescription": "&{TextPOE14}",
+                    "FrameTitle_1": "&{TextPOE15}",
+                    "ActionTitle_1": "&{TextPOE16}",
+                    "ActionDescription_1": "&{TextPOE17}",
                     "OperationKey": "TDPIdentifier",
                     "OperationValue": "TDPIdentifier",
                     "OperationKeyName": "TDP identifier from the Traceability Data details",
@@ -2397,8 +2397,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text19}",
-                "ActionDescription": "&{Text20}",
+                "ActionTitle": "&{TextPOE19}",
+                "ActionDescription": "&{TextPOE20}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2421,7 +2421,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text21}",
+                      "Key": "&{TextPOE21}",
                       "Value": "${TDPIdentifier}"
                     }
                   ]
@@ -2442,13 +2442,13 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 5,
-                "SegmentNo": 1,
+                "SegmentNo": segPoe + 1,
                 "FrameID": 1,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text22}",
-                "ActionDescription": "&{Text23}",
+                "ActionTitle": "&{TextPOE22}",
+                "ActionDescription": "&{TextPOE23}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2523,11 +2523,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text23}",
-                    "ActionDescription": "&{Text25}",
-                    "FrameTitle_1": "&{Text26}",
-                    "ActionTitle_1": "&{Text27}",
-                    "ActionDescription_1": "&{Text28}",
+                    "ActionTitle": "&{TextPOE23}",
+                    "ActionDescription": "&{TextPOE25}",
+                    "FrameTitle_1": "&{TextPOE26}",
+                    "ActionTitle_1": "&{TextPOE27}",
+                    "ActionDescription_1": "&{TextPOE28}",
                     "OperationKey": "TDPData",
                     "OperationValue": "TDPData",
                     "OperationKeyName": "TDP Data from the Traceability Data details",
@@ -2555,8 +2555,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text30}",
-                "ActionDescription": "&{Text31}",
+                "ActionTitle": "&{TextPOE30}",
+                "ActionDescription": "&{TextPOE31}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2579,7 +2579,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text32}",
+                      "Key": "&{TextPOE32}",
                       "Value": "${TDPData}",
                       "CompareType": "notEmpty",
                       "CompareValue": "",
@@ -2608,8 +2608,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text33}",
-                "ActionDescription": "&{Text34}",
+                "ActionTitle": "&{TextPOE33}",
+                "ActionDescription": "&{TextPOE34}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2683,10 +2683,10 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 9,
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
-                    "ActionTitle": "&{Text35}",
-                    "ActionDescription": "&{Text36}",
-                    "ActionTitle_1": "&{Text37}",
-                    "ActionDescription_1": "&{Text38}",
+                    "ActionTitle": "&{TextPOE35}",
+                    "ActionDescription": "&{TextPOE36}",
+                    "ActionTitle_1": "&{TextPOE37}",
+                    "ActionDescription_1": "&{TextPOE38}",
                     "OperationKey": "Txnhash",
                     "OperationValue": "TDPTxnhash",
                     "OperationKeyName": "txnhash from the Traceability Data details",
@@ -2709,13 +2709,13 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 10,
-                "SegmentNo": 1,
+                "SegmentNo": segPoe + 1,
                 "FrameID": 1,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text39}",
-                "ActionDescription": "&{Text40}",
+                "ActionTitle": "&{TextPOE39}",
+                "ActionDescription": "&{TextPOE40}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2738,7 +2738,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text41}",
+                      "Key": "&{TextPOE41}",
                       "Value": "${TDPTxnhash}"
                     }
                   ]
@@ -2764,8 +2764,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text42}",
-                "ActionDescription": "&{Text43}",
+                "ActionTitle": "&{TextPOE42}",
+                "ActionDescription": "&{TextPOE43}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2840,11 +2840,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text44}",
-                    "ActionDescription": "&{Text45}",
-                    "FrameTitle_1": "&{Text47}",
-                    "ActionTitle_1": "&{Text46}",
-                    "ActionDescription_1": "&{Text47}",
+                    "ActionTitle": "&{TextPOE44}",
+                    "ActionDescription": "&{TextPOE45}",
+                    "FrameTitle_1": "&{TextPOE47}",
+                    "ActionTitle_1": "&{TextPOE46}",
+                    "ActionDescription_1": "&{TextPOE47}",
                     "OperationKey": "TdpId",
                     "OperationValue": "TdpId",
                     "OperationKeyName": "Tdp ID from the Traceability Data details",
@@ -2872,8 +2872,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text48}",
-                "ActionDescription": "&{Text49}",
+                "ActionTitle": "&{TextPOE48}",
+                "ActionDescription": "&{TextPOE49}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2896,7 +2896,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text50}",
+                      "Key": "&{TextPOE50}",
                       "Value": "${TdpId}"
                     }
                   ]
@@ -2922,8 +2922,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text51}",
-                "ActionDescription": "&{Text52}",
+                "ActionTitle": "&{TextPOE51}",
+                "ActionDescription": "&{TextPOE52}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2998,11 +2998,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text53}",
-                    "ActionDescription": "&{Text54}",
-                    "FrameTitle_1": "&{Text56}",
-                    "ActionTitle_1": "&{Text55}",
-                    "ActionDescription_1": "&{Text56}",
+                    "ActionTitle": "&{TextPOE53}",
+                    "ActionDescription": "&{TextPOE54}",
+                    "FrameTitle_1": "&{TextPOE56}",
+                    "ActionTitle_1": "&{TextPOE55}",
+                    "ActionDescription_1": "&{TextPOE56}",
                     "OperationKey": "ProfileID",
                     "OperationValue": "ProfileID",
                     "OperationKeyName": "Profile ID from the Traceability Data details",
@@ -3030,8 +3030,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text57}",
-                "ActionDescription": "&{Text58}",
+                "ActionTitle": "&{TextPOE57}",
+                "ActionDescription": "&{TextPOE58}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3054,7 +3054,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text59}",
+                      "Key": "&{TextPOE59}",
                       "Value": "${ProfileID}"
                     }
                   ]
@@ -3080,8 +3080,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text60}",
-                "ActionDescription": "&{Text61}",
+                "ActionTitle": "&{TextPOE60}",
+                "ActionDescription": "&{TextPOE61}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3156,11 +3156,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text62}",
-                    "ActionDescription": "&{Text63}",
-                    "FrameTitle_1": "&{Text65}",
-                    "ActionTitle_1": "&{Text64}",
-                    "ActionDescription_1": "&{Text65}",
+                    "ActionTitle": "&{TextPOE62}",
+                    "ActionDescription": "&{TextPOE63}",
+                    "FrameTitle_1": "&{TextPOE65}",
+                    "ActionTitle_1": "&{TextPOE64}",
+                    "ActionDescription_1": "&{TextPOE65}",
                     "OperationKey": "Identifier",
                     "OperationValue": "Identifier",
                     "OperationKeyName": "identifier from the Traceability Data details",
@@ -3188,8 +3188,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text66}",
-                "ActionDescription": "&{Text67}",
+                "ActionTitle": "&{TextPOE66}",
+                "ActionDescription": "&{TextPOE67}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3212,7 +3212,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text68}",
+                      "Key": "&{TextPOE68}",
                       "Value": "${Identifier}"
                     }
                   ]
@@ -3238,8 +3238,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text69}",
-                "ActionDescription": "&{Text70}",
+                "ActionTitle": "&{TextPOE69}",
+                "ActionDescription": "&{TextPOE70}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3314,11 +3314,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text71}",
-                    "ActionDescription": "&{Text72}",
-                    "FrameTitle_1": "&{Text74}",
-                    "ActionTitle_1": "&{Text73}",
-                    "ActionDescription_1": "&{Text74}",
+                    "ActionTitle": "&{TextPOE71}",
+                    "ActionDescription": "&{TextPOE72}",
+                    "FrameTitle_1": "&{TextPOE74}",
+                    "ActionTitle_1": "&{TextPOE73}",
+                    "ActionDescription_1": "&{TextPOE74}",
                     "OperationKey": "MapIdentifier",
                     "OperationValue": "MapIdentifier",
                     "OperationKeyName": "Map identifier from the Traceability Data details",
@@ -3346,8 +3346,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text75}",
-                "ActionDescription": "&{Text76}",
+                "ActionTitle": "&{TextPOE75}",
+                "ActionDescription": "&{TextPOE76}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3370,7 +3370,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text77}",
+                      "Key": "&{TextPOE77}",
                       "Value": "${MapIdentifier}"
                     }
                   ]
@@ -3423,19 +3423,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 23,
                     "SegmentNo": segPoe + 2,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text212}",
-                    "ActionTitle": "&{Text213}",
-                    "ActionDescription": "&{Text214}",
-                    "ActionTitle_1": "&{Text215}",
-                    "ActionDescription_1": "&{Text216}",
-                    "ActionTitle_2": "&{Text217}",
-                    "ActionDescription_2": "&{Text218}",
-                    "ActionTitle_3": "&{Text219}",
-                    "ActionDescription_3": "&{Text220}",
-                    "ActionTitle_4": "&{Text221}",
-                    "ActionDescription_4": "&{Text222}",
-                    "InformationStorageKey": "&{Text223}",
-                    "ToastMessage": "&{Text224}",
+                    "FrameTitle": "&{TextPOE212}",
+                    "ActionTitle": "&{TextPOE213}",
+                    "ActionDescription": "&{TextPOE214}",
+                    "ActionTitle_1": "&{TextPOE215}",
+                    "ActionDescription_1": "&{TextPOE216}",
+                    "ActionTitle_2": "&{TextPOE217}",
+                    "ActionDescription_2": "&{TextPOE218}",
+                    "ActionTitle_3": "&{TextPOE219}",
+                    "ActionDescription_3": "&{TextPOE220}",
+                    "ActionTitle_4": "&{TextPOE221}",
+                    "ActionDescription_4": "&{TextPOE222}",
+                    "InformationStorageKey": "&{TextPOE223}",
+                    "ToastMessage": "&{TextPOE224}",
                     "EncodedInputValue": "${TDPData}",
                     "DecodedResultVariable": "DecodedTDPData"
                   }
@@ -3458,17 +3458,17 @@ export class BuildPOCJsonService {
                 "StepNo": numPoe + 24,
                 "SegmentNo": segPoe + 3,
                 "FrameID": 8,
-                "FrameTitle": "&{Text210}"
+                "FrameTitle": "&{TextPOE210}"
               },
               "Action": {
-                "ActionTitle": "&{Text210}",
-                "ActionDescription": "&{Text211}",
+                "ActionTitle": "&{TextPOE210}",
+                "ActionDescription": "&{TextPOE211}",
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
                   "EncodedData": "${TDPData}",
                   "InnerHTMLPOE": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items:center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><div><p class=\"size-12\"><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2;font-family:Inter; font-style:normal; font-size:12px; color:black ;text-transform: uppercase;\">\r\nBase64 encoded data and the TDP identifier received from the gateway are being combined.\r\n</b></center></p></div></center></div></div><div class=\"p-2\"><center><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;max-width: 450px; max-height: 50px;\"><strong><span class=\"size-14\">Base64 Encoded data</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\"><strong>TDP Identifier</strong></p></th></tr></thead><tbody><tr><td style=\"padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word; overflow:hidden;  word-break:break-word; overflow:hidden; max-width:400px; max-height:40px;  max-height:40px; \">\r\n ${TDPData}\r\n</p></td></td><td style=\"padding-left:2px; \"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word; max-height: 25px;\">\r\n + ${TDPIdentifier}\r\n</p></td></tr></tbody></table></center></div></div></body></html>",
-                  "PageURL": "&{Text210}",
+                  "PageURL": "&{TextPOE210}",
                   "Query": "",
                   "QueryIndex": "",
                   "YOffset": "",
@@ -3522,19 +3522,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 25,
                     "SegmentNo": segPoe + 3,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text210}",
-                    "ActionTitle": "&{Text79}",
-                    "ActionDescription": "&{Text80}",
-                    "ActionTitle_1": "&{Text81}",
-                    "ActionDescription_1": "&{Text82}",
-                    "ActionTitle_2": "&{Text83}",
-                    "ActionDescription_2": "&{Text84}",
-                    "ActionTitle_3": "&{Text85}",
-                    "ActionDescription_3": "&{Text86}",
-                    "ActionTitle_4": "&{Text87}",
-                    "ActionDescription_4": "&{Text88}",
-                    "InformationStorageKey": "&{Text89}",
-                    "ToastMessage": "&{Text90}",
+                    "FrameTitle": "&{TextPOE210}",
+                    "ActionTitle": "&{TextPOE79}",
+                    "ActionDescription": "&{TextPOE80}",
+                    "ActionTitle_1": "&{TextPOE81}",
+                    "ActionDescription_1": "&{TextPOE82}",
+                    "ActionTitle_2": "&{TextPOE83}",
+                    "ActionDescription_2": "&{TextPOE84}",
+                    "ActionTitle_3": "&{TextPOE85}",
+                    "ActionDescription_3": "&{TextPOE86}",
+                    "ActionTitle_4": "&{TextPOE87}",
+                    "ActionDescription_4": "&{TextPOE88}",
+                    "InformationStorageKey": "&{TextPOE89}",
+                    "ToastMessage": "&{TextPOE90}",
                     "EcodedInputValue": "${TDPData}${TDPIdentifier}",
                     "TDPDataFirst100": "${TDPData.substring(0, 100)}",
                     "TDPDataLast100": "${TDPData.substring(TDPData.length - 100)}",
@@ -3590,15 +3590,15 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 26,
                     "SegmentNo": segPoe + 4,
                     "FrameID": 2,
-                    "FrameTitle": "&{Text91}",
-                    "ActionTitle": "&{Text92}",
-                    "ActionDescription": "&{Text93}",
+                    "FrameTitle": "&{TextPOE91}",
+                    "ActionTitle": "&{TextPOE92}",
+                    "ActionDescription": "&{TextPOE93}",
                     "PathID":"",
-                    "ActionTitle_1": "&{Text94}",
-                    "ActionDescription_1": "&{Text95}",
+                    "ActionTitle_1": "&{TextPOE94}",
+                    "ActionDescription_1": "&{TextPOE95}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
-                    "ActionTitle_2": "&{Text96}",
-                    "ActionDescription_2": "&{Text97}",
+                    "ActionTitle_2": "&{TextPOE96}",
+                    "ActionDescription_2": "&{TextPOE97}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
                     "TXNHash": "${TDPTxnhash}",
                     "ResponseVariable": "MainTXNDataString",
@@ -3629,8 +3629,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text98}",
-                "ActionDescription": "&{Text99}",
+                "ActionTitle": "&{TextPOE98}",
+                "ActionDescription": "&{TextPOE99}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3706,10 +3706,10 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 28,
                     "SegmentNo": segPoe + 4,
                     "FrameID": 2,
-                    "ActionTitle": "&{Text100}",
-                    "ActionDescription": "&{Text101}",
-                    "ActionTitle_1": "&{Text102}",
-                    "ActionDescription_1": "&{Text103}",
+                    "ActionTitle": "&{TextPOE100}",
+                    "ActionDescription": "&{TextPOE101}",
+                    "ActionTitle_1": "&{TextPOE102}",
+                    "ActionDescription_1": "&{TextPOE103}",
                     "OperationKey": "CurrentTXN",
                     "OperationValue": "MainTXNCurentTXNHash",
                     "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
@@ -3737,8 +3737,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text104}",
-                "ActionDescription": "&{Text105}",
+                "ActionTitle": "&{TextPOE104}",
+                "ActionDescription": "&{TextPOE105}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3761,7 +3761,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text106}",
+                      "Key": "&{TextPOE106}",
                       "Value": "${MainTXNCurentTXNHash}"
                     }
                   ]
@@ -3814,19 +3814,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 30,
                     "SegmentNo": segPoe + 5,
                     "FrameID": 3,
-                    "FrameTitle": "&{Text107}",
-                    "ActionTitle": "&{Text108}",
-                    "ActionDescription": "&{Text109}",
-                    "ActionTitle_1": "&{Text110}",
-                    "ActionDescription_1": "&{Text111}",
-                    "ActionTitle_2": "&{Text112}",
-                    "ActionDescription_2": "&{Text113}",
-                    "ActionTitle_3": "&{Text114}",
-                    "ActionDescription_3": "&{Text115}",
-                    "ActionTitle_4": "&{Text116}",
-                    "ActionDescription_4": "&{Text117}",
-                    "InformationStorageKey": "&{Text118}",
-                    "ToastMessage": "&{Text119}",
+                    "FrameTitle": "&{TextPOE107}",
+                    "ActionTitle": "&{TextPOE108}",
+                    "ActionDescription": "&{TextPOE109}",
+                    "ActionTitle_1": "&{TextPOE110}",
+                    "ActionDescription_1": "&{TextPOE111}",
+                    "ActionTitle_2": "&{TextPOE112}",
+                    "ActionDescription_2": "&{TextPOE113}",
+                    "ActionTitle_3": "&{TextPOE114}",
+                    "ActionDescription_3": "&{TextPOE115}",
+                    "ActionTitle_4": "&{TextPOE116}",
+                    "ActionDescription_4": "&{TextPOE117}",
+                    "InformationStorageKey": "&{TextPOE118}",
+                    "ToastMessage": "&{TextPOE119}",
                     "EncodedInputValue": "${MainTXNCurentTXNHash}",
                     "DecodedResultVariable": "var_currenttxn"
                   }
@@ -3879,18 +3879,18 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 31,
                     "SegmentNo": segPoe + 6,
                     "FrameID": 4,
-                    "ActionTitle": "&{Text120}",
-                    "ActionDescription": "&{Text121}",
-                    "ActionTitle_1": "&{Text122}",
-                    "ActionDescription_1": "&{Text123}",
+                    "ActionTitle": "&{TextPOE120}",
+                    "ActionDescription": "&{TextPOE121}",
+                    "ActionTitle_1": "&{TextPOE122}",
+                    "ActionDescription_1": "&{TextPOE123}",
                     "PathID":"",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
-                    "ActionTitle_2": "&{Text124}",
-                    "ActionDescription_2": "&{Text125}",
+                    "ActionTitle_2": "&{TextPOE124}",
+                    "ActionDescription_2": "&{TextPOE125}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
-                    "FrameTitle": "&{Text126}",
+                    "FrameTitle": "&{TextPOE126}",
                     "TXNHash": "${var_currenttxn}",
-                    "OperationName": "&{Text127}",
+                    "OperationName": "&{TextPOE127}",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
                     "JSONResultVariable": "MainTXNCurentTXNData",
                     "StartedProofType": "",
@@ -3918,8 +3918,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text128}",
-                "ActionDescription": "&{Text129}",
+                "ActionTitle": "&{TextPOE128}",
+                "ActionDescription": "&{TextPOE129}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3996,11 +3996,11 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 7,
                     "FrameID": 4,
                     "FrameTitle": "",
-                    "ActionTitle": "&{Text131}",
-                    "ActionDescription": "&{Text132}",
-                    "FrameTitle_1": "&{Text133}",
-                    "ActionTitle_1": "&{Text134}",
-                    "ActionDescription_1": "&{Text135}",
+                    "ActionTitle": "&{TextPOE131}",
+                    "ActionDescription": "&{TextPOE132}",
+                    "FrameTitle_1": "&{TextPOE133}",
+                    "ActionTitle_1": "&{TextPOE134}",
+                    "ActionDescription_1": "&{TextPOE135}",
                     "OperationKey": "Identifier",
                     "OperationValue": "MainTXNCurentTXNDataIdentifier",
                     "OperationKeyName": "encoded Identifier from the transaction details",
@@ -4028,8 +4028,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text136}",
-                "ActionDescription": "&{Text137}",
+                "ActionTitle": "&{TextPOE136}",
+                "ActionDescription": "&{TextPOE137}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4052,7 +4052,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text140}",
+                      "Key": "&{TextPOE140}",
                       "Value": "${MainTXNCurentTXNDataIdentifier}"
                     }
                   ]
@@ -4105,19 +4105,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 35,
                     "SegmentNo": segPoe + 7,
                     "FrameID": 5,
-                    "FrameTitle": "&{Text141}",
-                    "ActionTitle": "&{Text142}",
-                    "ActionDescription": "&{Text143}",
-                    "ActionTitle_1": "&{Text144}",
-                    "ActionDescription_1": "&{Text145}",
-                    "ActionTitle_2": "&{Text146}",
-                    "ActionDescription_2": "&{Text147}",
-                    "ActionTitle_3": "&{Text148}",
-                    "ActionDescription_3": "&{Text149}",
-                    "ActionTitle_4": "&{Text150}",
-                    "ActionDescription_4": "&{Text151}",
-                    "InformationStorageKey": "&{Text152}",
-                    "ToastMessage": "&{Text153}",
+                    "FrameTitle": "&{TextPOE141}",
+                    "ActionTitle": "&{TextPOE142}",
+                    "ActionDescription": "&{TextPOE143}",
+                    "ActionTitle_1": "&{TextPOE144}",
+                    "ActionDescription_1": "&{TextPOE145}",
+                    "ActionTitle_2": "&{TextPOE146}",
+                    "ActionDescription_2": "&{TextPOE147}",
+                    "ActionTitle_3": "&{TextPOE148}",
+                    "ActionDescription_3": "&{TextPOE149}",
+                    "ActionTitle_4": "&{TextPOE150}",
+                    "ActionDescription_4": "&{TextPOE151}",
+                    "InformationStorageKey": "&{TextPOE152}",
+                    "ToastMessage": "&{TextPOE153}",
                     "DecodeKeyName": "CurrentTXN Identifier",
                     "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded"
@@ -4144,8 +4144,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text154}",
-                "ActionDescription": "&{Text155}",
+                "ActionTitle": "&{TextPOE154}",
+                "ActionDescription": "&{TextPOE155}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4221,10 +4221,10 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 37,
                     "SegmentNo": segPoe + 7,
                     "FrameID": 4,
-                    "ActionTitle": "&{Text160}",
-                    "ActionDescription": "&{Text161}",
-                    "ActionTitle_1": "&{Text162}",
-                    "ActionDescription_1": "&{Text163}",
+                    "ActionTitle": "&{TextPOE160}",
+                    "ActionDescription": "&{TextPOE161}",
+                    "ActionTitle_1": "&{TextPOE162}",
+                    "ActionDescription_1": "&{TextPOE163}",
                     "OperationKey": "dataHash",
                     "OperationValue": "MainTXNCurentTXNDatadatahash",
                     "OperationKeyName": "encoded datahash from the transaction details.",
@@ -4252,8 +4252,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{Text164}",
-                "ActionDescription": "&{Text165}",
+                "ActionTitle": "&{TextPOE164}",
+                "ActionDescription": "&{TextPOE165}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -4276,7 +4276,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{Text166}",
+                      "Key": "&{TextPOE166}",
                       "Value": "${MainTXNCurentTXNDatadatahash}"
                     }
                   ]
@@ -4329,22 +4329,22 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 39,
                     "SegmentNo": segPoe + 7,
                     "FrameID": 6,
-                    "FrameTitle": "&{Text180}",
-                    "ActionTitle": "&{Text181}",
-                    "ActionDescription": "&{Text182}",
-                    "ActionTitle_1": "&{Text183}",
-                    "ActionDescription_1": "&{Text184}",
-                    "ActionTitle_2": "&{Text185}",
-                    "ActionDescription_2": "&{Text186}",
-                    "ActionTitle_3": "&{Text187}",
-                    "ActionDescription_3": "&{Text188}",
-                    "ActionTitle_4": "&{Text189}",
-                    "ActionDescription_4": "&{Text190}",
-                    "ToastMessage": "&{Text191}",
+                    "FrameTitle": "&{TextPOE180}",
+                    "ActionTitle": "&{TextPOE181}",
+                    "ActionDescription": "&{TextPOE182}",
+                    "ActionTitle_1": "&{TextPOE183}",
+                    "ActionDescription_1": "&{TextPOE184}",
+                    "ActionTitle_2": "&{TextPOE185}",
+                    "ActionDescription_2": "&{TextPOE186}",
+                    "ActionTitle_3": "&{TextPOE187}",
+                    "ActionDescription_3": "&{TextPOE188}",
+                    "ActionTitle_4": "&{TextPOE189}",
+                    "ActionDescription_4": "&{TextPOE190}",
+                    "ToastMessage": "&{TextPOE191}",
                     "EncodedInputValue": "${MainTXNCurentTXNDatadatahash}",
                     "DecodedResultVariable": "MainTXNCurentTXNDatadatahashDecoded",
-                    "InformationStorageKey": "&{Text192}",
-                    "DecodeKeyName": "&{Text192}"
+                    "InformationStorageKey": "&{TextPOE192}",
+                    "DecodeKeyName": "&{TextPOE192}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -4395,19 +4395,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 40,
                     "SegmentNo": segPoe + 7,
                     "FrameID": 7,
-                    "FrameTitle": "&{Text180}",
-                    "ActionTitle": "&{Text181}",
-                    "ActionDescription": "&{Text182}",
-                    "FrameTitle_1": "&{Text183}",
-                    "ActionTitle_1": "&{Text184}",
-                    "ActionDescription_1": "&{Text185}",
-                    "FrameTitle_2": "&{Text186}",
-                    "ActionTitle_2": "&{Text187}",
-                    "ActionDescription_2": "&{Text188}",
-                    "FrameTitle_3": "&{Text189}",
-                    "ActionTitle_3": "&{Text190}",
-                    "ActionDescription_3": "&{Text191}",
-                    "ToastMessage": "&{Text192}",
+                    "FrameTitle": "&{TextPOE180}",
+                    "ActionTitle": "&{TextPOE181}",
+                    "ActionDescription": "&{TextPOE182}",
+                    "FrameTitle_1": "&{TextPOE183}",
+                    "ActionTitle_1": "&{TextPOE184}",
+                    "ActionDescription_1": "&{TextPOE185}",
+                    "FrameTitle_2": "&{TextPOE186}",
+                    "ActionTitle_2": "&{TextPOE187}",
+                    "ActionDescription_2": "&{TextPOE188}",
+                    "FrameTitle_3": "&{TextPOE189}",
+                    "ActionTitle_3": "&{TextPOE190}",
+                    "ActionDescription_3": "&{TextPOE191}",
+                    "ToastMessage": "&{TextPOE192}",
                     "InputKeyName": "The base64 decoded Datahash values from the transactions.",
                     "InputValue": "[{\"title\": \"Datahashes from the Traceability Data and Blockchain transaction\", \"t1\": \"${data_hash}\", \"t2\": \"${MainTXNCurentTXNDatadatahashDecoded}\"}]"
                   }
@@ -4460,19 +4460,19 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 41,
                     "SegmentNo": segPoe + 7,
                     "FrameID": 7,
-                    "FrameTitle": "&{Text193}",
-                    "ActionTitle": "&{Text194}",
-                    "ActionDescription": "&{Text195}",
-                    "FrameTitle_1": "&{Text196}",
-                    "ActionTitle_1": "&{Text197}",
-                    "ActionDescription_1": "&{Text198}",
-                    "FrameTitle_2": "&{Text199}",
-                    "ActionTitle_2": "&{Text200}",
-                    "ActionDescription_2": "&{Text201}",
-                    "FrameTitle_3": "&{Text202}",
-                    "ActionTitle_3": "&{Text203}",
-                    "ActionDescription_3": "&{Text204}",
-                    "ToastMessage": "&{Text205}",
+                    "FrameTitle": "&{TextPOE193}",
+                    "ActionTitle": "&{TextPOE194}",
+                    "ActionDescription": "&{TextPOE195}",
+                    "FrameTitle_1": "&{TextPOE196}",
+                    "ActionTitle_1": "&{TextPOE197}",
+                    "ActionDescription_1": "&{TextPOE198}",
+                    "FrameTitle_2": "&{TextPOE199}",
+                    "ActionTitle_2": "&{TextPOE200}",
+                    "ActionDescription_2": "&{TextPOE201}",
+                    "FrameTitle_3": "&{TextPOE202}",
+                    "ActionTitle_3": "&{TextPOE203}",
+                    "ActionDescription_3": "&{TextPOE204}",
+                    "ToastMessage": "&{TextPOE205}",
                     "InputKeyName": "The base64 decoded identifer values from the transactions.",
                     "InputValue": "[{\"title\": \"Identifier from the Traceability Data and Blockchain transaction\", \"t1\": \"${Identifier}\", \"t2\": \"${MainTXNCurentTXNDataIdentifierDecoded}\"}]"
                   }
@@ -4495,19 +4495,19 @@ export class BuildPOCJsonService {
                 "StepNo": numPoe + 42,
                 "SegmentNo": segPoe + 8,
                 "FrameID": 8,
-                "FrameTitle": "&{Text206}",
+                "FrameTitle": "&{TextPOE206}",
                 "PathID":`poe-${node.Id}-Final`,
               },
               "Action": {
-                "ActionTitle": "&{Text207}",
-                "ActionDescription": "&{Text208}",
+                "ActionTitle": "&{TextPOE207}",
+                "ActionDescription": "&{TextPOE208}",
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
                   "EncodedData": "false",
                   "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n {visibility: hidden;}\r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal;font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing:0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0;font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\"><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2;font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF;text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\">Batch ID</span></strong></p></th><td scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\">\r\n${TDPIdentifier}\r\n</p></td></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Transaction Hash from Field Officer</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Tracified</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${data_hash}\r\n </p></td></tr><tr> <td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Blockchain</span></strong></p></td> <td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n${MainTXNCurentTXNDatadatahashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
                   "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px; margin-top:5px;\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\">Batch ID</span></strong></p></th><td scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\">\r\n${TDPIdentifier}\r\n</p></td></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Transaction Hash from Field Officer</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Tracified</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${data_hash}\r\n </p></td></tr><tr> <td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Blockchain</span></strong></p></td> <td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n${MainTXNCurentTXNDatadatahashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "PageURL": "&{Text123}",
+                  "PageURL": "&{TextPOE123}",
                   "Query": "",
                   "QueryIndex": "",
                   "YOffset": "",
@@ -4540,7 +4540,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{Text209}",
+                "ToastMessage1": "&{TextPOE209}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -4554,43 +4554,43 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 1,
               "Languages": {
-                "Text0": {
+                "TextPOE0": {
                   "ja": "ステップ1-TDPデータの取得",
                   "en": "Step 1 - Retrieve Traceability Data Data"
                 },
-                "Text1": {
+                "TextPOE1": {
                   "ja": "TDPデータの要求",
                   "en": "Request Traceability Data Data"
                 },
-                "Text2": {
+                "TextPOE2": {
                   "ja": "現在のTDP",
                   "en": "Current Traceability Data"
                 },
-                "Text3": {
+                "TextPOE3": {
                   "ja": "Tracified GatewayからTDPデータを取得",
                   "en": "Retrieve Traceability Data data from Tracified Gateway."
                 },
-                "Text4": {
+                "TextPOE4": {
                   "ja": "ステップ1-TDPデータの取得",
                   "en": "Step 1 - Retrieve Traceability Data Data"
                 },
-                "Text5": {
+                "TextPOE5": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "Text6": {
+                "TextPOE6": {
                   "ja": "トランザクションのレスポンスデータの保存",
                   "en": "Save the response data of the transaction"
                 },
-                "Text7": {
+                "TextPOE7": {
                   "ja": "ステップ1-TDPデータの取得",
                   "en": "Step 1 - Retrieve Traceability Data Data"
                 },
-                "Text8": {
+                "TextPOE8": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "Text9": {
+                "TextPOE9": {
                   "ja": "トランザクションデータをJSONにフォーマット(Javascriptオブジェクト記法)",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
@@ -4600,11 +4600,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 2,
               "Languages": {
-                "Text10": {
+                "TextPOE10": {
                   "ja": "TDP識別子の選択",
                   "en": "Select Traceability Data identifier"
                 },
-                "Text11": {
+                "TextPOE11": {
                   "ja": "TDP詳細から識別子を選択",
                   "en": "Select the Traceability Data identifier from Traceability Data details."
                 }
@@ -4614,31 +4614,31 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 3,
               "Languages": {
-                  "Text12": {
+                  "TextPOE12": {
                     "ja":"TDPの詳細からの識別子",
                   "en": "TDP identifier from the Traceability Data details"
                 },
-                  "Text13": {
+                  "TextPOE13": {
                     "ja":"識別子をハイライト表示",
                   "en": "Highlight the TDP Identifier"
                 },
-                  "Text14": {
+                  "TextPOE14": {
                     "ja":"TDP詳細から識別子を選択",
                     "en": "Select the TDP identifier from the Traceability Data details"
                   },
-                "Text15": {
+                "TextPOE15": {
                     "ja":"TDP詳細から識別子を選択",
                   "en": "Select the TDP identifier from the Traceability Data details"
                 },
-                "Text16": {
+                "TextPOE16": {
                   "ja": "TDP詳細から識別子を選択",
                   "en": "Select the TDP identifier from the Traceability Data details"
                 },
-                "Text17": {
+                "TextPOE17": {
                   "ja": "識別子をハイライト表示",
                   "en": "Highlight the value of TDP Identifier"
                 },
-                "Text18": {
+                "TextPOE18": {
                   "ja": "TDP詳細から識別子を選択",
                   "en": "Select the TDP identifier value from the Traceability Data details"
                 }
@@ -4648,15 +4648,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 4,
               "Languages": {
-                "Text19": {
+                "TextPOE19": {
                   "ja": "Traceability Data 識別子の保存",
                   "en": "Save Traceability Data Identifier"
                 },
-                "Text20": {
+                "TextPOE20": {
                   "ja": "将来の使用のために識別子の値を保存する",
                   "en": "Save the Identifier value for future usage."
                 },
-                "Text21": {
+                "TextPOE21": {
                   "ja": "TDP識別子",
                   "en": "Traceability Data Identifier"
                 }
@@ -4666,11 +4666,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 5,
               "Languages": {
-                "Text22": {
+                "TextPOE22": {
                   "ja": "Traceability Data の選択",
                   "en": "Select base64 encoded Traceability Data"
                 },
-                "Text23": {
+                "TextPOE23": {
                   "ja": "TDPの詳細からデータハッシュを選択",
                   "en": "Select the base64 encoded Traceability Data from Traceability Data details."
                 }
@@ -4680,27 +4680,27 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 6,
               "Languages": {
-                "Text24": {
+                "TextPOE24": {
                   "ja": "TDPの詳細からダータハッシュ",
                   "en": "Traceability Data from the base64 encoded Traceability Data details"
                 },
-                "Text25": {
+                "TextPOE25": {
                   "ja": "ダータハッシュをハイライト表示",
                   "en": "Highlight the base64 encoded Traceability Data "
                 },
-                "Text26": {
+                "TextPOE26": {
                   "ja": "TDPの詳細からデータハッシュを選択",
                   "en": "Select the base64 encoded Traceability Data from the Traceability Data details"
                 },
-                "Text27": {
+                "TextPOE27": {
                   "ja": "TDPの詳細からデータハッシュを選択",
                   "en": "Select the base64 encoded Traceability Data from the Traceability Data details"
                 },
-                "Text28": {
+                "TextPOE28": {
                   "ja": "TDPデータハッシュのハイライト",
                   "en": "Highlight the base64 encoded Traceability Data value"
                 },
-                "Text29": {
+                "TextPOE29": {
                   "ja": "TDPの詳細からデータハッシュを選択",
                   "en": "Select the base64 encoded Traceability Data value from the Traceability Data details"
                 }
@@ -4710,15 +4710,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 7,
               "Languages": {
-                "Text30": {
+                "TextPOE30": {
                   "ja": "TDPデータハッシュの保存",
                   "en": "Save base64 encoded Traceability Data"
                 },
-                "Text31": {
+                "TextPOE31": {
                   "ja": "将来の使用のためにデータハッシュ値の保存",
                   "en": "Save base64 encoded Traceability Data value for future usage."
                 },
-                "Text32": {
+                "TextPOE32": {
                   "ja": "Traceability Data データハッシュ",
                   "en": "base64 encoded Traceability Data "
                 }
@@ -4728,11 +4728,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 8,
               "Languages": {
-                "Text33": {
+                "TextPOE33": {
                   "ja": "Traceability Data Txn Hashを選択",
                   "en": "Select Traceability Data Txn Hash"
                 },
-                "Text34": {
+                "TextPOE34": {
                   "ja": "TDPの詳細からTxn Hashを選択",
                   "en": "Select the Txn Hash from Traceability Data details."
                 }
@@ -4742,19 +4742,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 9,
               "Languages": {
-                "Text35": {
+                "TextPOE35": {
                   "ja": "Txn Hashのハイライト",
                   "en": "Highlight the Txn Hash"
                 },
-                "Text36": {
+                "TextPOE36": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the txn Hash from the Traceability Data details"
                 },
-                "Text37": {
+                "TextPOE37": {
                   "ja": "Traceability Data Txn Hashをハイライト",
                   "en": "Highlight the Traceability Data Txn Hash"
                 },
-                "Text38": {
+                "TextPOE38": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the txn Hash from the Traceability Data details"
                 }
@@ -4764,15 +4764,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 10,
               "Languages": {
-                "Text39": {
+                "TextPOE39": {
                   "ja": "Traceability Data Txn Hashを保存",
                   "en": "Save Traceability Data Txn Hash"
                 },
-                "Text40": {
+                "TextPOE40": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Txn Hash value for future usage."
                 },
-                "Text41": {
+                "TextPOE41": {
                   "ja": "Traceability Data Txn Hash",
                   "en": "Traceability Data Txn Hash"
                 }
@@ -4782,11 +4782,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 11,
               "Languages": {
-                "Text42": {
+                "TextPOE42": {
                   "ja": "Traceability Data Txn Hashを選択",
                   "en": "Select Traceability Data ID"
                 },
-                "Text43": {
+                "TextPOE43": {
                   "ja": "TDPの詳細からTxn Hashを選択",
                   "en": "Select the TDP ID from Traceability Data details."
                 }
@@ -4796,19 +4796,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 12,
               "Languages": {
-                "Text44": {
+                "TextPOE44": {
                   "ja": "Txn Hashのハイライト",
                   "en": "Highlight the Tracicebility Data ID"
                 },
-                "Text45": {
+                "TextPOE45": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Traceability Data ID from the Traceability Data details"
                 },
-                "Text46": {
+                "TextPOE46": {
                   "ja": "Traceability Data Txn Hashをハイライト",
                   "en": "Highlight the Traceability Data ID"
                 },
-                "Text47": {
+                "TextPOE47": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Traceability Data ID from the Traceability Data details"
                 }
@@ -4818,15 +4818,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 13,
               "Languages": {
-                "Text48": {
+                "TextPOE48": {
                   "ja": "Traceability Data Txn Hashを保存",
                   "en": "Save Traceability Data Traceability Data ID"
                 },
-                "Text49": {
+                "TextPOE49": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Traceability Data ID value for future usage."
                 },
-                "Text50": {
+                "TextPOE50": {
                   "ja": "Traceability Data ID",
                   "en": "Traceability Data ID"
                 }
@@ -4836,11 +4836,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 14,
               "Languages": {
-                "Text51": {
+                "TextPOE51": {
                   "ja": "Traceability Data Txn Hashを選択",
                   "en": "Select Traceability Profile ID"
                 },
-                "Text52": {
+                "TextPOE52": {
                   "ja": "TDPの詳細からTxn Hashを選択",
                   "en": "Select the Profile ID from Traceability Data details."
                 }
@@ -4850,19 +4850,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 15,
               "Languages": {
-                "Text53": {
+                "TextPOE53": {
                   "ja": "Txn Hashのハイライト",
                   "en": "Highlight the Profile ID"
                 },
-                "Text54": {
+                "TextPOE54": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Profile ID from the Traceability Data details"
                 },
-                "Text55": {
+                "TextPOE55": {
                   "ja": "Traceability Data Txn Hashをハイライト",
                   "en": "Highlight the Proflie ID"
                 },
-                "Text56": {
+                "TextPOE56": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Profile ID from the Traceability Data details"
                 }
@@ -4872,15 +4872,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 16,
               "Languages": {
-                "Text57": {
+                "TextPOE57": {
                   "ja": "Traceability Data Txn Hashを保存",
                   "en": "Save Traceability Data Profile ID"
                 },
-                "Text58": {
+                "TextPOE58": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Profile ID value for future usage."
                 },
-                "Text59": {
+                "TextPOE59": {
                   "ja": "Traceability Data Profile ID",
                   "en": "Traceability Data Profile ID"
                 }
@@ -4890,11 +4890,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 17,
               "Languages": {
-                "Text60": {
+                "TextPOE60": {
                   "ja": "Traceability Data Txn Hashを選択",
                   "en": "Select the Identifier."
                 },
-                "Text61": {
+                "TextPOE61": {
                   "ja": "TDPの詳細からTxn Hashを選択",
                   "en": "Select the Identifier from Traceability Data details."
                 }
@@ -4904,19 +4904,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 18,
               "Languages": {
-                "Text62": {
+                "TextPOE62": {
                   "ja": "Txn Hashのハイライト",
                   "en": "Highlight the Identifier."
                 },
-                "Text63": {
+                "TextPOE63": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Identifier from the Traceability Data details."
                 },
-                "Text64": {
+                "TextPOE64": {
                   "ja": "Traceability Data Txn Hashをハイライト",
                   "en": "Highlight the Identifier."
                 },
-                "Text65": {
+                "TextPOE65": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Identifier from the Traceability Data details"
                 }
@@ -4926,15 +4926,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 19,
               "Languages": {
-                "Text66": {
+                "TextPOE66": {
                   "ja": "Traceability Data Txn Hashを保存",
                   "en": "Save the Identifier"
                 },
-                "Text67": {
+                "TextPOE67": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Identifier value for future usage."
                 },
-                "Text68": {
+                "TextPOE68": {
                   "ja": "Traceability Data Identifier",
                   "en": "Traceability Data Identifier"
                 }
@@ -4944,11 +4944,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 20,
               "Languages": {
-                "Text69": {
+                "TextPOE69": {
                   "ja": "Traceability Data Txn Hashを選択",
                   "en": "Select the Map Identifier."
                 },
-                "Text70": {
+                "TextPOE70": {
                   "ja": "TDPの詳細からTxn Hashを選択",
                   "en": "Select the Map Identifier from Traceability Data details."
                 }
@@ -4958,19 +4958,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo":numPoe + 21,
               "Languages": {
-                "Text71": {
+                "TextPOE71": {
                   "ja": "Txn Hashのハイライト",
                   "en": "Highlight the Map Identifier."
                 },
-                "Text72": {
+                "TextPOE72": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Map Identifier from the Traceability Data details."
                 },
-                "Text73": {
+                "TextPOE73": {
                   "ja": "Traceability Data Txn Hashをハイライト",
                   "en": "Highlight the Map Identifier."
                 },
-                "Text74": {
+                "TextPOE74": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the Map Identifier from the Traceability Data details"
                 }
@@ -4980,15 +4980,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 22,
               "Languages": {
-                "Text75": {
+                "TextPOE75": {
                   "ja": "Traceability Data Txn Hashを保存",
                   "en": "Save the Map Identifier"
                 },
-                "Text76": {
+                "TextPOE76": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Map Identifier value for future usage."
                 },
-                "Text77": {
+                "TextPOE77": {
                   "ja": "Traceability Data Map Identifier",
                   "en": "Traceability Data Map Identifier"
                 }
@@ -4998,55 +4998,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 2,
               "StepNo": numPoe + 23,
               "Languages": {
-                "Text212": {
+                "TextPOE212": {
                   "ja": "ステップ 2 - トレーサビリティ データのデコード",
                   "en": "Step 2 - Decode Traceability Data"
                 },
-                "Text213": {
+                "TextPOE213": {
                   "ja": "base64デコードのサイトを読み込む",
                   "en": "Load the base64 decode website"
                 },
-                "Text214": {
+                "TextPOE214": {
                   "ja": "Base64 でエンコードされたトレーサビリティ データをデコードする",
                   "en": "Decode the base64 encoded Traceability Data"
                 },
-                "Text215": {
+                "TextPOE215": {
                   "ja": "Base64 でエンコードされたトレーサビリティ データを入力",
                   "en": "Input base64 encoded Traceability Data"
                 },
-                "Text216": {
+                "TextPOE216": {
                   "ja": "Base64 でエンコードされたトレーサビリティ データを入力します",
                   "en": "Input the base64 encoded Traceability Data"
                 },
-                "Text217": {
+                "TextPOE217": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click decode button"
                 },
-                "Text218": {
+                "TextPOE218": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text219": {
+                "TextPOE219": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text220": {
+                "TextPOE220": {
                   "ja": "デコードされたトレーサビリティ データの出力を取得します",
                   "en": "Get the output of the decoded Traceability Data"
                 },
-                "Text221": {
+                "TextPOE221": {
                   "ja": "デコードされた値を情報ストレージに保存します",
                   "en": "Save the decoded value in information storage"
                 },
-                "Text222": {
+                "TextPOE222": {
                   "ja": "デコードされたトレーサビリティ データを将来の使用のために保存します。",
                   "en": "Save the decoded Traceability Data for future usage."
                 },
-                "Text223": {
+                "TextPOE223": {
                   "ja": "トレーサビリティデータ（デコード済み）",
                   "en": "Traceability Data (decoded)"
                 },
-                "Text224": {
+                "TextPOE224": {
                   "ja": "デコードされたトレーサビリティ データ",
                   "en": "Decoded Traceability Data"
                 }
@@ -5056,15 +5056,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 3,
               "StepNo": numPoe + 24,
               "Languages": {
-                "Text210": {
+                "TextPOE210": {
                   "ja": "ステップ 3 - Base64 でエンコードされたデータとトレーサビリティ データ識別子を結合します。",
                   "en": "Step 3 - Combine Base64 encoded data and Traceability Data Identifier."
                 },
-                "Text211": {
+                "TextPOE211": {
                   "ja": "Base64 でエンコードされたデータとゲートウェイから受信したトレーサビリティ データ識別子が結合されます。",
                   "en": "Base64 encoded data and the Traceability Data Identifier received from the gateway are being combined."
                 },
-                "Text225": {
+                "TextPOE225": {
                   "ja": "ステップ 3 - Base64 でエンコードされたデータとトレーサビリティ データ識別子を結合します。",
                   "en": "Step 3 - Combine Base64 encoded data and Traceability Data Identifier."
                 }
@@ -5074,55 +5074,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 3,
               "StepNo": numPoe + 25,
               "Languages": {
-                "Text78": {
+                "TextPOE78": {
                   "ja": "ステップ１５ - 現在のTXNをデコード",
                   "en": "Step 4 - Genarate Data Hash"
                 },
-                "Text79": {
+                "TextPOE79": {
                   "ja": "base64デコードのサイトを読み込む",
                   "en": "Load the SHA256 converter website."
                 },
-                "Text80": {
+                "TextPOE80": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュをデコードする",
                   "en": "Genarate Data Hash"
                 },
-                "Text81": {
+                "TextPOE81": {
                   "ja": "Base64でエンコードされた現在のTXNハッシュを入力",
                   "en": "Input base64 encoded Data Hash and Traceability Data Identifer."
                 },
-                "Text82": {
+                "TextPOE82": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュを入力する",
                   "en": "Input base64 encoded Data Hash and Traceability Data Identifer."
                 },
-                "Text83": {
+                "TextPOE83": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the Hash button."
                 },
-                "Text84": {
+                "TextPOE84": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the Hash button."
                 },
-                "Text85": {
+                "TextPOE85": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View SHA256 converted Hash."
                 },
-                "Text86": {
+                "TextPOE86": {
                   "ja": "デコードされた現在のTXNハッシュの出力を取得",
                   "en": "Get the SHA256 converted Hash."
                 },
-                "Text87": {
+                "TextPOE87": {
                   "ja": "デコードした値を情報ストレージに保存",
                   "en": "Save the SHA256 converted Hash in the informatio storage."
                 },
-                "Text88": {
+                "TextPOE88": {
                   "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
                   "en": "Save the SHA256 converted Hash for future usage."
                 },
-                "Text89": {
+                "TextPOE89": {
                   "ja": "現TXNハッシュ（デコード済み）",
                   "en": "Genarated Data Hash"
                 },
-                "Text90": {
+                "TextPOE90": {
                   "ja": "デコードされた現在のTXNハッシュ",
                   "en": "Genarated Data Hash"
                 }
@@ -5132,31 +5132,31 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 4,
               "StepNo": numPoe + 26,
               "Languages": {
-                "Text91": {
+                "TextPOE91": {
                   "ja": "ステップ５ーTDPトランザクションの取得",
                   "en": "Step 5 - Retrieve Traceability Data Transaction"
                 },
-                "Text92": {
+                "TextPOE92": {
                   "ja": "ステラホライズンAPIをリクエスト",
                   "en": "Request Stellar Horizon API"
                 },
-                "Text93": {
+                "TextPOE93": {
                   "ja": "ステラブロックチェーンから現在の取引を取得",
                   "en": "Retrieve the current transaction from Stellar Blockchain."
                 },
-                "Text94": {
+                "TextPOE94": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "Text95": {
+                "TextPOE95": {
                   "ja": "トランザクションのレスポンスデータを保存",
                   "en": "Save the response data of the transaction"
                 },
-                "Text96": {
+                "TextPOE96": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "Text97": {
+                "TextPOE97": {
                   "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
@@ -5166,11 +5166,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 4,
               "StepNo": numPoe + 27,
               "Languages": {
-                "Text98": {
+                "TextPOE98": {
                   "ja": "Current TXNハッシュの選択",
                   "en": "Select Current TXN Hash"
                 },
-                "Text99": {
+                "TextPOE99": {
                   "ja": "トランザクションの詳細からCurrent TXNハッシュ（base64エンコード）を選択",
                   "en": "Select the Current TXN Hash (base64 encoded) from the transaction details."
                 }
@@ -5180,19 +5180,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 4,
               "StepNo": numPoe + 28,
               "Languages": {
-                "Text100": {
+                "TextPOE100": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュをハイライト",
                   "en": "Highlight the encoded Current TXN Hash from the transaction details"
                 },
-                "Text101": {
+                "TextPOE101": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
                   "en": "Select the encoded Current TXN Hash from the transaction details"
                 },
-                "Text102": {
+                "TextPOE102": {
                   "ja": "トランザクションの詳細から、エンコードされたCurrent TXNハッシュ値をハイライト",
                   "en": "Highlight the encoded Current TXN Hash value from the transaction details"
                 },
-                "Text103": {
+                "TextPOE103": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュ値を選択",
                   "en": "Select the encoded Current TXN Hash value from the transaction details"
                 }
@@ -5202,15 +5202,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 4,
               "StepNo": numPoe + 29,
               "Languages": {
-                "Text104": {
+                "TextPOE104": {
                   "ja": "Base64エンコードされたCurrent TXNの保存",
                   "en": "Save Base64 Encoded Current TXN"
                 },
-                "Text105": {
+                "TextPOE105": {
                   "ja": "将来の使用のためにBase64でエンコードされたCurrent TXNハッシュ値を保存",
                   "en": "Save the base64 encoded Current TXN Hash value for future usage."
                 },
-                "Text106": {
+                "TextPOE106": {
                   "ja": "Current TXN (ベース64)",
                   "en": "Current TXN (base64)"
                 }
@@ -5220,55 +5220,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 5,
               "StepNo": numPoe + 30,
               "Languages": {
-                "Text107": {
+                "TextPOE107": {
                   "ja": "ステップ 6 - 現在のTXNをデコード",
                   "en": "Step 6 - Decode Current TXN"
                 },
-                "Text108": {
+                "TextPOE108": {
                   "ja": "base64デコードのサイトを読み込む",
                   "en": "Load the base64 decode website"
                 },
-                "Text109": {
+                "TextPOE109": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュをデコードする",
                   "en": "Decode the base64 encoded Current TXN Hash"
                 },
-                "Text110": {
+                "TextPOE110": {
                   "ja": "Base64でエンコードされた現在のTXNハッシュを入力",
                   "en": "Input base64 encoded current txn hash"
                 },
-                "Text111": {
+                "TextPOE111": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュを入力する",
                   "en": "Input the base64 encoded Current TXN Hash"
                 },
-                "Text112": {
+                "TextPOE112": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click decode button"
                 },
-                "Text113": {
+                "TextPOE113": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text114": {
+                "TextPOE114": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text115": {
+                "TextPOE115": {
                   "ja": "デコードされた現在のTXNハッシュの出力を取得",
                   "en": "Get the output of the decoded current txn hash"
                 },
-                "Text116": {
+                "TextPOE116": {
                   "ja": "デコードした値を情報ストレージに保存",
                   "en": "Save the decoded value in information storage"
                 },
-                "Text117": {
+                "TextPOE117": {
                   "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
                   "en": "Save the decoded Current TXN Hash for future usage."
                 },
-                "Text118": {
+                "TextPOE118": {
                   "ja": "現TXNハッシュ（デコード済み）",
                   "en": "Current txn Hash (decoded)"
                 },
-                "Text119": {
+                "TextPOE119": {
                   "ja": "デコードされた現在のTXNハッシュ",
                   "en": "Decoded current txn hash"
                 }
@@ -5278,35 +5278,35 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 6,
               "StepNo": numPoe + 31,
               "Languages": {
-                "Text120": {
+                "TextPOE120": {
                   "ja": "ステップ7ー現在の取引の取得",
                   "en": "Step 7 - Retrieve Current Transaction"
                 },
-                "Text121": {
+                "TextPOE121": {
                   "ja": "ゲートウェイトランザクションの現在のトランザクション",
                   "en": "current transaction of the gateway transaction"
                 },
-                "Text122": {
+                "TextPOE122": {
                   "ja": "ステラホライズンAPIをリクエスト",
                   "en": "Request Stellar Horizon API"
                 },
-                "Text123": {
+                "TextPOE123": {
                   "ja": "ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
                   "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
                 },
-                "Text124": {
+                "TextPOE124": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "Text125": {
+                "TextPOE125": {
                   "ja": "トランザクションのレスポンスデータの保存",
                   "en": "Save the response data of the transaction"
                 },
-                "Text126": {
+                "TextPOE126": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "Text127": {
+                "TextPOE127": {
                   "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
@@ -5316,15 +5316,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 32,
               "Languages": {
-                "Text128": {
+                "TextPOE128": {
                   "ja": "Base64 Encoded Current Txn ID を選択",
                   "en": "Select Base64 Encoded Current Txn Identifier"
                 },
-                "Text129": {
+                "TextPOE129": {
                   "ja": "トランザクションの詳細から、エンコードされたcurrent Txn Identifierを選択",
                   "en": "Select the encoded current Txn Identifier from the transaction details."
                 },
-                "Text130": {
+                "TextPOE130": {
                   "ja": "フォーマットメタデータ",
                   "en": "Format Meta Data"
                 }
@@ -5334,23 +5334,23 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 33,
               "Languages": {
-                "Text131": {
+                "TextPOE131": {
                   "ja": "トランザクションの詳細からエンコードされたIdentifierをハイライト",
                   "en": "Highlight the encoded Identifier from the transaction details"
                 },
-                "Text132": {
+                "TextPOE132": {
                   "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
                   "en": "Select the encoded Identifier value from the transaction details"
                 },
-                "Text133": {
+                "TextPOE133": {
                   "ja": "テスト",
                   "en": "test"
                 },
-                "Text134": {
+                "TextPOE134": {
                   "ja": "トランザクションの詳細からMainTXNCurrent TXNDataIdentifierをハイライト",
                   "en": "Highlight the MainTXNCurrent TXNDataIdentifier from the transaction details"
                 },
-                "Text135": {
+                "TextPOE135": {
                   "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
                   "en": "Select the encoded Identifier value from the transaction details"
                 }
@@ -5360,19 +5360,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 34,
               "Languages": {
-                "Text136": {
+                "TextPOE136": {
                   "ja": "Base64エンコードされたCurrent TXNの保存",
                   "en": "Save Base64 Encoded Current Txn Identifier"
                 },
-                "Text137": {
+                "TextPOE137": {
                   "ja": "将来の使用のためにbase64 エンコードされた Identifier 値を保存",
                   "en": "Save the base64 encoded Identifier value for future usage."
                 },
-                "Text138": {
+                "TextPOE138": {
                   "ja": "情報ストレージ",
                   "en": "InformationStorage"
                 },
-                "Text140": {
+                "TextPOE140": {
                   "ja": "ID (base64)",
                   "en": "Identifier (base64)"
                 }
@@ -5382,55 +5382,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 35,
               "Languages": {
-                "Text141": {
+                "TextPOE141": {
                   "ja": "ステップ8ー現在のTXNIDのデコード",
                   "en": "Step 8 - Decode Current TXN Identifier"
                 },
-                "Text142": {
+                "TextPOE142": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "Text143": {
+                "TextPOE143": {
                   "ja": "base64 でエンコードされた Current TXN IDをデコード",
                   "en": "Decode the base64 encoded Current TXN Identifier"
                 },
-                "Text144": {
+                "TextPOE144": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "Text145": {
+                "TextPOE145": {
                   "ja": "Base64 でエンコードされた Current TXN IDを入力",
                   "en": "Input the base64 encoded Current TXN Identifier"
                 },
-                "Text146": {
+                "TextPOE146": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the Decode Button"
                 },
-                "Text147": {
+                "TextPOE147": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text148": {
+                "TextPOE148": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text149": {
+                "TextPOE149": {
                   "ja": "デコードしたCurrent TXN　IDの出力を取得",
                   "en": "Get the output of the decoded Current TXN Identifier"
                 },
-                "Text150": {
+                "TextPOE150": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "Text151": {
+                "TextPOE151": {
                   "ja": "将来の使用のためにデコードされたCurrent TXN　IDを保存",
                   "en": "Save the decoded Current TXN Identifier for future usage."
                 },
-                "Text152": {
+                "TextPOE152": {
                   "ja": "Current TXN　ID",
                   "en": "Current TXN Identifier"
                 },
-                "Text153": {
+                "TextPOE153": {
                   "ja": "デコードされた Current TXN ID",
                   "en": "Decoded Current TXN Identifier"
                 }
@@ -5440,11 +5440,11 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 36,
               "Languages": {
-                "Text154": {
+                "TextPOE154": {
                   "ja": "Base64EncodeされたData Hashを選択",
                   "en": "Select Base64 Encoded Data Hash"
                 },
-                "Text155": {
+                "TextPOE155": {
                   "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
                   "en": "Select the encoded Data Hash from the transaction details."
                 }
@@ -5454,19 +5454,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 37,
               "Languages": {
-                "Text160": {
+                "TextPOE160": {
                   "ja": "データハッシュをハイライト",
                   "en": "Highlight the Data Hash"
                 },
-                "Text161": {
+                "TextPOE161": {
                   "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
                   "en": "Select the encoded Data Hash from the transaction details."
                 },
-                "Text162": {
+                "TextPOE162": {
                   "ja": "Main TXN Current TXNデータハッシュをハイライト",
                   "en": "Highlight the Main TXN Current TXN Data Data Hash"
                 },
-                "Text163": {
+                "TextPOE163": {
                   "ja": "トランザクションの詳細からエンコードされたデータハッシュの値を選択",
                   "en": "Select the encoded Data Hash value from the transaction details"
                 }
@@ -5476,15 +5476,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 38,
               "Languages": {
-                "Text164": {
+                "TextPOE164": {
                   "ja": "Base64Encodeされたデータハッシュの保存",
                   "en": "Save Base64 Encoded Data Hash"
                 },
-                "Text165": {
+                "TextPOE165": {
                   "ja": "将来の使用のためにbase64でエンコードされたデータハッシュの値を保存",
                   "en": "Save the base64 encoded Data Hash value for future usage."
                 },
-                "Text166": {
+                "TextPOE166": {
                   "ja": "Current TXN データハッシュ（base64）。",
                   "en": "Current TXN Data Hash (base64)"
                 }
@@ -5494,55 +5494,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 39,
               "Languages": {
-                "Text167": {
+                "TextPOE167": {
                   "ja": "ステップ9－現在のTXNデータハッシュのデコード",
                   "en": "Step 9 - Decode Current TXN Data Hash"
                 },
-                "Text168": {
+                "TextPOE168": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "Text169": {
+                "TextPOE169": {
                   "ja": "Base64でエンコードされたCurrent TXNのData Hashをデコード",
                   "en": "Decode the base64 encoded Current TXN Data Hash"
                 },
-                "Text170": {
+                "TextPOE170": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "Text171": {
+                "TextPOE171": {
                   "ja": "Base64でエンコードされたCurrent TXN データハッシュを入力",
                   "en": "Input the base64 encoded Current TXN Data Hash"
                 },
-                "Text172": {
+                "TextPOE172": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click Decode Button"
                 },
-                "Text173": {
+                "TextPOE173": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "Text174": {
+                "TextPOE174": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "Text175": {
+                "TextPOE175": {
                   "ja": "デコードされたCurrent TXNの出力を取得する データハッシュ",
                   "en": "Get the output of the decoded Current TXN Data Hash"
                 },
-                "Text176": {
+                "TextPOE176": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "Text177": {
+                "TextPOE177": {
                   "ja": "将来の使用のためにデコードされたCurrent TXNデータハッシュ",
                   "en": "Save the decoded Current TXN Data Hash for future usage."
                 },
-                "Text178": {
+                "TextPOE178": {
                   "ja": "デコードされたCurrent TXN データハッシュ",
                   "en": "Decoded Current TXN Data Hash"
                 },
-                "Text179": {
+                "TextPOE179": {
                   "ja": "Current TXN データハッシュ",
                   "en": "CurrentTXN data hash"
                 }
@@ -5552,55 +5552,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 40,
               "Languages": {
-                "Text180": {
+                "TextPOE180": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Compare Data Hash"
                 },
-                "Text181": {
+                "TextPOE181": {
                   "ja": "オンラインテキスト比較のWebページ",
                   "en": "Online Text Comparison Webpage"
                 },
-                "Text182": {
+                "TextPOE182": {
                   "ja": "オンラインテキスト比較のウェブページを読み込む",
                   "en": "Load the online text comparison webpage"
                 },
-                "Text183": {
+                "TextPOE183": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Compare Data Hash"
                 },
-                "Text184": {
+                "TextPOE184": {
                   "ja": "入力の比較値",
                   "en": "Input comparison values"
                 },
-                "Text185": {
+                "TextPOE185": {
                   "ja": "トランザクションからBase64デコードされたデータハッシュ値を入力",
                   "en": "Input the base64 decoded Data Hash values from the transactions."
                 },
-                "Text186": {
+                "TextPOE186": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Step 10 - Compare Data Hash"
                 },
-                "Text187": {
+                "TextPOE187": {
                   "ja": "比較ボタンをクリック",
                   "en": "Click the compare button"
                 },
-                "Text188": {
+                "TextPOE188": {
                   "ja": "比較ボタンをクリック",
                   "en": "Click the compare button"
                 },
-                "Text189": {
+                "TextPOE189": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Step 10 - Compare Data Hash"
                 },
-                "Text190": {
+                "TextPOE190": {
                   "ja": "結果をスクロールする",
                   "en": "Scroll to the result"
                 },
-                "Text191": {
+                "TextPOE191": {
                   "ja": "結果をスクロールする",
                   "en": "Scroll to the result"
                 },
-                "Text192": {
+                "TextPOE192": {
                   "ja": "比較結果",
                   "en": "Comparison Result"
                 }
@@ -5611,55 +5611,55 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 7,
               "StepNo": numPoe + 41,
               "Languages": {
-                "Text193": {
+                "TextPOE193": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Compare Identifier"
                 },
-                "Text194": {
+                "TextPOE194": {
                   "ja": "オンラインテキスト比較のWebページ",
                   "en": "Online Text Comparison Webpage"
                 },
-                "Text195": {
+                "TextPOE195": {
                   "ja": "オンラインテキスト比較のウェブページを読み込む",
                   "en": "Load the online text comparison webpage"
                 },
-                "Text196": {
+                "TextPOE196": {
                   "ja": "ステップ１１－IDの比較",
                   "en": "Step 11 - Compare Identifier"
                 },
-                "Text197": {
+                "TextPOE197": {
                   "ja": "比較値の入力",
                   "en": "Input comparison values"
                 },
-                "Text198": {
+                "TextPOE198": {
                   "ja": "トランザクションからBase64デコードされたデータハッシュ値を入力",
                   "en": "Input the identifier value from the transactions."
                 },
-                "Text199": {
+                "TextPOE199": {
                   "ja": "ステップ１１－IDの比較",
                   "en": "Step 11 - Compare Identifier"
                 },
-                "Text200": {
+                "TextPOE200": {
                   "ja": "比較ボタンをクリック",
                   "en": "Click the compare button"
                 },
-                "Text201": {
+                "TextPOE201": {
                   "ja": "比較ボタンをクリック",
                   "en": "Click the compare button"
                 },
-                "Text202": {
+                "TextPOE202": {
                   "ja": "ステップ１１－IDの比較",
                   "en": "Step 11 - Compare Identifier"
                 },
-                "Text203": {
+                "TextPOE203": {
                   "ja": "結果をスクロールする",
                   "en": "Scroll to the result"
                 },
-                "Text204": {
+                "TextPOE204": {
                   "ja": "結果をスクロールする",
                   "en": "Scroll to the result"
                 },
-                "Text205": {
+                "TextPOE205": {
                   "ja": "比較結果",
                   "en": "Comparison Result"
                 }
@@ -5669,19 +5669,19 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 8,
               "StepNo": numPoe + 42,
               "Languages": {
-                "Text206": {
+                "TextPOE206": {
                   "ja": "ステップ１2－検証の概要",
                   "en": "Step 12 - Verification Summary"
                 },
-                "Text207": {
+                "TextPOE207": {
                   "ja": "検証の概要",
                   "en": "Verification Summary"
                 },
-                "Text208": {
+                "TextPOE208": {
                   "ja": "検証の概要についてー存在の証明",
                   "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
                 },
-                "Text209": {
+                "TextPOE209": {
                   "ja": "検証は正常に終了",
                   "en": "Verification Completed Successfully"
                 }

@@ -178,6 +178,7 @@ export class ProofBotComponent implements OnInit {
   isPOCcompleted: boolean=false;
   isEncodedData: boolean = false;
   isProofTypeAvailable: boolean = false;
+  CompletedSegments: any[]=[];
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -609,15 +610,22 @@ export class ProofBotComponent implements OnInit {
       this.currentStep = i;
       if (this.isPause) {
         this.isPause = false;
-        this.playProofDemo();
+        let scRef: ComponentRef<SiteScreenComponent>; 
+        let divId = "sitescreen"+i;
+        if (scRef && scRef.instance) {
+          scRef.instance.scrollToDiv(divId);
+        } else {
+          console.error("scRef or scRef.instance is undefined");
+        }  
       }
     }
     this.stopFlag = false;
-    this.playProofDemo();
+    //this.playProofDemo();
   }
 
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
+    
     try {
       document
         .querySelectorAll("#steppersFrame")[0]
@@ -644,17 +652,35 @@ export class ProofBotComponent implements OnInit {
         behavior: "smooth"
       });
       el.classList.add("glow");
-      for (let i = 0; i < no - 1; i++) {
-        allSteps[i].classList.remove("glow");
-        allSteps[i].classList.add("success");
-        allSegmentLines[i].classList.add("bg-success");
-      }
-      for (let j = no; j < allSteps.length; j++) {
-        allSteps[j].classList.remove("glow");
-        allSteps[j].classList.remove("success");
-        allSegmentLines[j].classList.remove("bg-success");
-      }
-      await this.toSubStepper(no, _ID);
+      if(this.proofType='poc'){
+        if(this.filterCompletedStep(no)){
+          for (let i = 0; i < no - 1; i++) {
+            allSteps[i].classList.remove("glow");
+            allSteps[i].classList.add("success");
+            allSegmentLines[i].classList.add("bg-success");
+          }
+          for (let j = no; j < allSteps.length; j++) {
+            allSteps[j].classList.remove("glow");
+            allSteps[j].classList.remove("success");
+            allSegmentLines[j].classList.remove("bg-success");
+          }
+        }
+        await this.toSubStepper(no, _ID);
+       }else{
+        for (let i = 0; i < no - 1; i++) {
+          allSteps[i].classList.remove("glow");
+          allSteps[i].classList.add("success");
+          allSegmentLines[i].classList.add("bg-success");
+        }
+        for (let j = no; j < allSteps.length; j++) {
+          allSteps[j].classList.remove("glow");
+          allSteps[j].classList.remove("success");
+          allSegmentLines[j].classList.remove("bg-success");
+        }
+        await this.toSubStepper(no, _ID);
+       }
+      
+     
       await new Promise(resolveTime =>
         setTimeout(resolveTime, 1000 / this.playbackSpeed)
       );
@@ -755,6 +781,9 @@ export class ProofBotComponent implements OnInit {
       } = Action;
   
       if (this.proofType === "poc") {
+        this.CompletedSegments.push({
+          SegmentNo: this.currentStep
+        });
         this.CurrentPlayingProof.push({
           trustLink: ActionParameters.TrustLinks,
           type: ActionParameters.StartedProofType,
@@ -791,7 +820,8 @@ export class ProofBotComponent implements OnInit {
       switch (ActionType) {
         case "BrowserScreen":
           currentBrowserScreen = ActionParameters.ExternalURL;
-          let scRef: ComponentRef<SiteScreenComponent>;
+          let scRef: ComponentRef<SiteScreenComponent>;  
+          
           if (this.demoScreenChildRefs[frameID]) {
             scRef = this.demoScreenChildRefs[frameID].ref;
           } else {
@@ -918,7 +948,11 @@ export class ProofBotComponent implements OnInit {
             }
             
           }
-          
+          if (scRef && scRef.instance) {
+            scRef.instance.setSegmentNo(this.SegmentNumber);
+          } else {
+            console.error("scRef or scRef.instance is undefined");
+          }
           break;
         case "UpdateElementAttribute":
           await this.handleFormatElementAttribute(stepData);
@@ -1916,5 +1950,20 @@ export class ProofBotComponent implements OnInit {
       this.isPOCcompleted
     );
   }
-  
+  filterCompletedStep(step: number) {
+    let stepstatus = false;
+    const completedSteps = this.CompletedSegments.map((seg) => seg.SegmentNo);
+    console.log("Completed Segments:", completedSteps);
+    console.log("Step to check:", step);
+    if (completedSteps.includes(step)) {
+      console.log("Step found in completedSegments");
+      stepstatus = true;  
+    } else {
+      console.log("Step not found in completedSegments");
+    }
+    console.log("Status:", stepstatus);
+    return stepstatus;
+}
+
+
 }
