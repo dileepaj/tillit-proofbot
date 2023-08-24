@@ -65,8 +65,8 @@
   .cs-stepper-circle {
     font-size: 10px !important;
     border-color: #FFFFFF !important;
-    border: 1px solid !important;
-    width: 22px !important;
+    border: 1px solid !important; 
+    width: 22px !important; 
     height: 22px !important;
     padding: 0 !important;
     display: flex !important;

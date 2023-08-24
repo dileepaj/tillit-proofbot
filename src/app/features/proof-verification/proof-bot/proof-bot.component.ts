@@ -614,6 +614,7 @@ export class ProofBotComponent implements OnInit {
         let divId = "sitescreen"+i;
         if (scRef && scRef.instance) {
           scRef.instance.scrollToDiv(divId);
+          //this.playProofDemo();
         } else {
           console.error("scRef or scRef.instance is undefined");
         }  
@@ -652,7 +653,7 @@ export class ProofBotComponent implements OnInit {
         behavior: "smooth"
       });
       el.classList.add("glow");
-      if(this.proofType='poc'){
+      if(this.proofType=='poc'){
         if(this.filterCompletedStep(no)){
           for (let i = 0; i < no - 1; i++) {
             allSteps[i].classList.remove("glow");
@@ -1953,15 +1954,10 @@ export class ProofBotComponent implements OnInit {
   filterCompletedStep(step: number) {
     let stepstatus = false;
     const completedSteps = this.CompletedSegments.map((seg) => seg.SegmentNo);
-    console.log("Completed Segments:", completedSteps);
-    console.log("Step to check:", step);
     if (completedSteps.includes(step)) {
-      console.log("Step found in completedSegments");
       stepstatus = true;  
     } else {
-      console.log("Step not found in completedSegments");
     }
-    console.log("Status:", stepstatus);
     return stepstatus;
 }
 

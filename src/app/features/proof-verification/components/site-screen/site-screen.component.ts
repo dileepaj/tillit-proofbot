@@ -667,7 +667,6 @@ setEncodedData(TDPData: string,isEncodedData: boolean){
   
 setSegmentNo(segmentNo: number){
   this.SegNo=segmentNo;
-  console.log("num--",this.SegNo);
 }
 
 scrollToDiv(divId: string): void {
