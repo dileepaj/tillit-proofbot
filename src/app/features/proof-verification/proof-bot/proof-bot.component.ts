@@ -178,6 +178,7 @@ export class ProofBotComponent implements OnInit {
   isPOCcompleted: boolean=false;
   isEncodedData: boolean = false;
   isProofTypeAvailable: boolean = false;
+  CompletedSteps: any[]=[];
   CompletedSegments: any[]=[];
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -605,21 +606,46 @@ export class ProofBotComponent implements OnInit {
     var i: number = this.proofJSON.Steps.findIndex(
       (cur: any) => cur.StepHeader.SegmentNo == stepNo
     );
-    if (this.lastCompletedStep >= i) {
-      this.isBackToStep = true;
-      this.currentStep = i;
-      if (this.isPause) {
-        this.isPause = false;
-        let scRef: ComponentRef<SiteScreenComponent>; 
-        let divId = "sitescreen"+i;
-        if (scRef && scRef.instance) {
-          scRef.instance.scrollToDiv(divId);
-          //this.playProofDemo();
-        } else {
-          console.error("scRef or scRef.instance is undefined");
-        }  
+    if(this.proofType=='poc'){
+      if(this.filterCompletedSegments(stepNo)){
+        if (this.lastCompletedStep >= i) {
+          this.isBackToStep = true;
+          this.currentStep = i;
+          if (this.isPause) {
+            this.isPause = false;
+            let scRef: ComponentRef<SiteScreenComponent>; 
+            let divId = "sitescreen"+i;
+            if (scRef && scRef.instance) {
+              scRef.instance.scrollToDiv(divId);
+              console.log("complete")
+              this.playProofDemo();
+            } else {
+              console.error("scRef or scRef.instance is undefined");
+            }  
+          }
+        }
+      }else{
+        console.log("not complete")
+      }
+    }else{
+      if (this.lastCompletedStep >= i) {
+        this.isBackToStep = true;
+        this.currentStep = i;
+        if (this.isPause) {
+          this.isPause = false;
+          let scRef: ComponentRef<SiteScreenComponent>; 
+          let divId = "sitescreen"+i;
+          if (scRef && scRef.instance) {
+            scRef.instance.scrollToDiv(divId);
+            //this.playProofDemo();
+          } else {
+            console.error("scRef or scRef.instance is undefined");
+          }  
+        }
       }
     }
+
+    
     this.stopFlag = false;
     //this.playProofDemo();
   }
@@ -662,10 +688,15 @@ export class ProofBotComponent implements OnInit {
           }
           for (let j = no; j < allSteps.length; j++) {
             allSteps[j].classList.remove("glow");
+          }
+        }else{
+          for (let j = no; j < allSteps.length; j++) {
+            allSteps[j].classList.remove("glow");
             allSteps[j].classList.remove("success");
             allSegmentLines[j].classList.remove("bg-success");
           }
         }
+        
         await this.toSubStepper(no, _ID);
        }else{
         for (let i = 0; i < no - 1; i++) {
@@ -782,8 +813,8 @@ export class ProofBotComponent implements OnInit {
       } = Action;
   
       if (this.proofType === "poc") {
-        this.CompletedSegments.push({
-          SegmentNo: this.currentStep
+        this.CompletedSteps.push({
+          StepNo: this.currentStep
         });
         this.CurrentPlayingProof.push({
           trustLink: ActionParameters.TrustLinks,
@@ -811,6 +842,10 @@ export class ProofBotComponent implements OnInit {
       this.ActionDescription = ActionDescription[this.lang];
   
       if (StepHeader.SegmentNo) {
+        if (this.proofType === "poc") {
+          this.CompletedSegments.push({
+            SegNo: StepHeader.SegmentNo
+          });}
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
       }
   
@@ -1953,12 +1988,23 @@ export class ProofBotComponent implements OnInit {
   }
   filterCompletedStep(step: number) {
     let stepstatus = false;
-    const completedSteps = this.CompletedSegments.map((seg) => seg.SegmentNo);
+    const completedSteps = this.CompletedSteps.map((seg) => seg.StepNo);
+   
     if (completedSteps.includes(step)) {
       stepstatus = true;  
     } else {
     }
     return stepstatus;
+}
+filterCompletedSegments(step: number) {
+  let stepstatus = false;
+  const completedSegments = this.CompletedSegments.map((seg) => seg.SegNo);
+ 
+  if (completedSegments.includes(step)) {
+    stepstatus = true;  
+  } else {
+  }
+  return stepstatus;
 }
 
 

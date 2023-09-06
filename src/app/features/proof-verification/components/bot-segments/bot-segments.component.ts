@@ -14,6 +14,7 @@ export class BotSegmentsComponent implements OnInit {
   @Output() backToActionFn = new EventEmitter();
   @Input() lang: string = "en";
   @Input() proofType: string;
+  @Input() CompletedSteps: any[]
 
   constructor() {}
 
@@ -28,12 +29,23 @@ export class BotSegmentsComponent implements OnInit {
   }
   
   emitBackToStepFn(NO: number) {
-    if (this.proofType != 'poc') {
-      this.backToStepFn.emit(NO);
+    if(this.proofType=='poc'){
+      const completedSteps = this.CompletedSteps.map((seg) => seg.StepNo);
+     if (completedSteps.includes(NO)) {
+      this.backToStepFn.emit(NO);  
     }
+  }
+    
+    this.backToStepFn.emit(NO);
   }
   
   emitBackToActionFn(NO: number) {
+    if(this.proofType=='poc'){
+      const completedSteps = this.CompletedSteps.map((seg) => seg.StepNo);
+     if (completedSteps.includes(NO)) {
+      this.backToActionFn.emit(NO);  
+    }
+  }
     this.backToActionFn.emit(NO);
   }
 

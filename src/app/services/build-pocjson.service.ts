@@ -6313,7 +6313,7 @@ export class BuildPOCJsonService {
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
                     "StepNo": numPobl + 10,
-                    "SegmentNo": segPobl + 2,
+                    "SegmentNo": segPobl + 3,
                     "FrameID": 3,
                     "FrameTitle": "&{TextPobl28}",
                     "ActionTitle": "&{TextPobl29}",
@@ -6877,7 +6877,7 @@ export class BuildPOCJsonService {
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
                     "StepNo": numPobl + 20,
-                    "SegmentNo": segPobl + 5,
+                    "SegmentNo": segPobl + 6,
                     "FrameID": 1,
                     "FrameTitle": "",
                     "ActionTitle": "&{TextPobl76}",

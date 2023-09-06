@@ -22,6 +22,7 @@
     background-color: #098260;
     color: #FFFFFF;
     border-radius: 8px;
+    cursor: pointer;
   }
   
   #subSteppers .success.step {
@@ -408,6 +409,7 @@
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
     padding: 5px;
+    cursor:pointer;
     }
   .glow .segment-source{
     background-color: #0E5E46;
