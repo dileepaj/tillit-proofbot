@@ -180,6 +180,9 @@ export class ProofBotComponent implements OnInit {
   isProofTypeAvailable: boolean = false;
   CompletedSteps: any[]=[];
   CompletedSegments: any[]=[];
+  CurrenyRunningProof: any[]=[];
+  CurrentPathID: string;
+  POCSteppers: any;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -309,7 +312,11 @@ export class ProofBotComponent implements OnInit {
       this.TotalProofCountOfPOC = this.pocJsonService.getTotalOrderedNodesCount();
       this.AllTheProofs = this.pocJsonService.getAlltheProofsOPOC();
       this.pendingProofsCount= this.TotalProofCountOfPOC- this.completedProofcount;
+      this.POCSteppers = this.filterSegmentsAndActions(Header.Segments);
     }
+  //  else{
+  //   this.steppers = this.filterSegmentsAndActions(Header.Segments);
+  //   }
     this.isStartDemo = true;
     this.stopFlag = false;
     this.playProofDemo(0);
@@ -617,8 +624,8 @@ export class ProofBotComponent implements OnInit {
             let divId = "sitescreen"+i;
             if (scRef && scRef.instance) {
               scRef.instance.scrollToDiv(divId);
-              console.log("complete")
-              this.playProofDemo();
+              
+              //this.playProofDemo();
             } else {
               console.error("scRef or scRef.instance is undefined");
             }  
@@ -652,7 +659,7 @@ export class ProofBotComponent implements OnInit {
 
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
-    
+    console.log("segmentNo",this.SegmentNumber, _ID)
     try {
       document
         .querySelectorAll("#steppersFrame")[0]
@@ -679,26 +686,33 @@ export class ProofBotComponent implements OnInit {
         behavior: "smooth"
       });
       el.classList.add("glow");
-      if(this.proofType=='poc'){
-        if(this.filterCompletedStep(no)){
-          for (let i = 0; i < no - 1; i++) {
-            allSteps[i].classList.remove("glow");
-            allSteps[i].classList.add("success");
-            allSegmentLines[i].classList.add("bg-success");
-          }
-          for (let j = no; j < allSteps.length; j++) {
-            allSteps[j].classList.remove("glow");
-          }
-        }else{
-          for (let j = no; j < allSteps.length; j++) {
-            allSteps[j].classList.remove("glow");
-            allSteps[j].classList.remove("success");
-            allSegmentLines[j].classList.remove("bg-success");
-          }
-        }
+      
+      // if(this.proofType=='poc'){
+      //   if(this.filterCompletedStep(no)){
+      //     let othersteps = this.CurrenyRunningProof[2];
+      //     let no_other = othersteps[0].NO;
+      //     console.log("no_other",no_other)
+      //     for (let m = no_other; m < othersteps.length; m++) {
+      //       allSteps[m].classList.remove("glow");
+      //       allSteps[m].classList.remove("success");
+      //       console.log("m--",m)
+      //       //allSegmentLines[m].classList.remove("bg-success");
+
+      //     }
+      //     for (let i = 0; i < no - 1; i++) {
+      //       allSteps[i].classList.remove("glow");
+      //       allSteps[i].classList.add("success");
+      //       allSegmentLines[i].classList.add("bg-success");
+      //     }
+      //     for (let j = no; j < allSteps.length; j++) {
+      //       allSteps[j].classList.remove("glow");
+      //       allSteps[j].classList.remove("success");
+      //       allSegmentLines[j].classList.remove("bg-success");
+      //     }
+      //     await this.toSubStepper(no, _ID);
+      //   }
         
-        await this.toSubStepper(no, _ID);
-       }else{
+      //  }else{
         for (let i = 0; i < no - 1; i++) {
           allSteps[i].classList.remove("glow");
           allSteps[i].classList.add("success");
@@ -710,7 +724,7 @@ export class ProofBotComponent implements OnInit {
           allSegmentLines[j].classList.remove("bg-success");
         }
         await this.toSubStepper(no, _ID);
-       }
+     //}
       
      
       await new Promise(resolveTime =>
@@ -826,12 +840,20 @@ export class ProofBotComponent implements OnInit {
         !!ActionParameters.StartedProofType &&
         ActionParameters.StartedProofType !== "" &&
         !!ActionParameters.TrustLinks &&
-        ActionParameters.TrustLinks.length !== 0
+        ActionParameters.TrustLinks.length !== 0 ||
+        !!this.isBackToStep && this.isBackToStep==true
       ) {
         this.changeSpecificNodeOpacity(
           ActionParameters.TrustLinks,
           ActionParameters.StartedProofType
         );
+       //this.steppers=[];
+       this.CurrenyRunningProof=[];
+       this.CurrenyRunningProof= this.divideArrayByPathIDs(this.POCSteppers,this.proofJSON.Steps,this.CurrentPathID)
+       this.steppers=this.CurrenyRunningProof[1];
+        console.log("hhhhh",this.CurrenyRunningProof)
+        console.log("tttt",this.proofJSON.Header,this.CurrentPathID)
+        console.log("kkkkk",this.steppers)
       }
   
       if (highlightClickedNode) {
@@ -1698,6 +1720,7 @@ export class ProofBotComponent implements OnInit {
     if (this.proofType == 'poc') {
       if (runningProof == 'POE'|| runningProof == 'poe' || runningProof == "POG"||runningProof == 'pog') {
         let id = `node-${trustLinks[0]}`;
+        this.CurrentPathID=`${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
         rec.style['stroke']='black'
         rec.style['stroke-width']='4'
@@ -1722,6 +1745,7 @@ export class ProofBotComponent implements OnInit {
       } else if (runningProof == 'POBL'||runningProof == 'pobl') {
         const tL = trustLinks[0];
         let id = `arrow-` + tL[0] + `-` + tL[1];
+        this.CurrentPathID= tL[0] + `-` + tL[1]
         this.currentId = id;
         this.currentProof = this.commonServices.getProofName(runningProof);
         this.currentProofType= runningProof.toLowerCase();
@@ -1988,8 +2012,8 @@ export class ProofBotComponent implements OnInit {
   }
   filterCompletedStep(step: number) {
     let stepstatus = false;
-    const completedSteps = this.CompletedSteps.map((seg) => seg.StepNo);
-   
+    const completedSteps = this.CurrenyRunningProof[1].map((seg) => seg.NO);
+    
     if (completedSteps.includes(step)) {
       stepstatus = true;  
     } else {
@@ -1998,13 +2022,77 @@ export class ProofBotComponent implements OnInit {
 }
 filterCompletedSegments(step: number) {
   let stepstatus = false;
-  const completedSegments = this.CompletedSegments.map((seg) => seg.SegNo);
+  const completedSegments = this.CurrenyRunningProof[1].map((seg) => seg.NO);
  
   if (completedSegments.includes(step)) {
     stepstatus = true;  
   } else {
   }
   return stepstatus;
+}
+
+// filterActualProofSteps(other: any[], current: any[]){
+//   const steps = this.CurrenyRunningProof[1].map((seg) => seg.NO);
+ 
+//   if (completedSegments.includes(step)) {
+//     stepstatus = true;  
+//   } else {
+//   }
+//   return stepstatus;
+// }
+
+divideArrayByPathIDs(steppers: any[], steps: any[],id: String): any[][] {
+  const result: any[][] = [];
+  const otherSteppers = [];
+  let currentArray: any[] = [];
+  let currentSteppers: any[] = [];
+  let startingSegment: String;
+  let finalSegment: String;
+  let stepIndex = this.currentProofType+"-"+id
+  
+  let finalIndex = this.currentProofType+"-"+id+"-Final"
+  for (const step of steps) {
+   
+    if (step.StepHeader.PathID === stepIndex) {
+      startingSegment = step.StepHeader.SegmentNo;
+      currentArray = [];
+    }
+
+    currentArray.push(step);
+
+    if (step.StepHeader.PathID === finalIndex) {
+      finalSegment = step.StepHeader.SegmentNo;
+      if (currentArray.length > 0) {
+        result.push(currentArray.slice());
+      }
+    }
+  }
+  let i:number=0
+    
+  for (const stepper of steppers) {
+    
+    if (stepper.NO === startingSegment) {
+      currentSteppers = [];
+    }
+    
+    currentSteppers.push({ ...stepper, NO:i})
+    i++
+    if (stepper.NO === finalSegment) {
+      if (currentSteppers.length > 0) {
+        result.push([...currentSteppers]);
+        
+      }
+    }
+  }
+  // Check if there are any steppers left in the steppers array
+// that were not included in currentSteppers
+const remainingSteppers = steppers.filter((stepper) => !currentSteppers.includes(stepper));
+
+// Push the remaining steppers into the otherproof array
+otherSteppers.push(...remainingSteppers);
+result.push([...otherSteppers]);
+
+  return result;
 }
 
 
