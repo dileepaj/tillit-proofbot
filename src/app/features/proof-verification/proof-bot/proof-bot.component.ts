@@ -183,6 +183,7 @@ export class ProofBotComponent implements OnInit {
   CurrenyRunningProof: any[]=[];
   CurrentPathID: string;
   POCSteppers: any;
+  otherSteps: any[]=[];
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -614,6 +615,7 @@ export class ProofBotComponent implements OnInit {
       (cur: any) => cur.StepHeader.SegmentNo == stepNo
     );
     if(this.proofType=='poc'){
+      console.log("this.filterCompletedSegments(stepNo)",this.filterCompletedSegments(stepNo))
       if(this.filterCompletedSegments(stepNo)){
         if (this.lastCompletedStep >= i) {
           this.isBackToStep = true;
@@ -656,7 +658,51 @@ export class ProofBotComponent implements OnInit {
     this.stopFlag = false;
     //this.playProofDemo();
   }
-
+  // async toStepperPOC(no: number) {
+  //   //this.SegmentNumber = no;
+  //   //console.log("segmentNo",this.SegmentNumber, _ID)
+  //   try {
+  //     document
+  //       .querySelectorAll("#steppersFrame")[0]
+  //       .classList.add("steppersShow");
+  //     const steppersFrame = document.querySelectorAll(
+  //       "#steppersFrame #segments #stepWrapper"
+  //     )[0];
+  //     const allSteps = document.querySelectorAll(
+  //       "#segments .bs-stepper-header.cs-stepper-header .step"
+  //     );
+  //     var allSegmentLines = document.querySelectorAll(
+  //       "#segments .bs-stepper-header.cs-stepper-header .line"
+  //     );
+  //     const el: any = allSteps[no - 1];
+  //     steppersFrame.scroll({
+  //       top:
+  //         el.offsetTop -
+  //         steppersFrame.getBoundingClientRect().height +
+  //         el.getBoundingClientRect().height,
+  //       left:
+  //         el.offsetLeft -
+  //         steppersFrame.getBoundingClientRect().width +
+  //         el.getBoundingClientRect().width,
+  //       behavior: "smooth"
+  //     });
+  //     el.classList.add("glow");
+      
+  //     let num=this.CurrenyRunningProof[2].map((seg) => seg.NO);
+  //     console.log("numm-----",num[0])
+  //     for (let j = num[0]; j < num.length; j++) {
+  //       allSteps[j].classList.remove("glow");
+  //       allSteps[j].classList.remove("success");
+  //       allSegmentLines[j].classList.remove("bg-success");
+  //       console.log("ii-----",j)
+  //     }
+        
+  //     await new Promise(resolveTime =>
+  //       setTimeout(resolveTime, 1000 / this.playbackSpeed)
+  //     );
+  //   } catch (error) {
+  //   }
+  // }
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
     console.log("segmentNo",this.SegmentNumber, _ID)
@@ -687,32 +733,6 @@ export class ProofBotComponent implements OnInit {
       });
       el.classList.add("glow");
       
-      // if(this.proofType=='poc'){
-      //   if(this.filterCompletedStep(no)){
-      //     let othersteps = this.CurrenyRunningProof[2];
-      //     let no_other = othersteps[0].NO;
-      //     console.log("no_other",no_other)
-      //     for (let m = no_other; m < othersteps.length; m++) {
-      //       allSteps[m].classList.remove("glow");
-      //       allSteps[m].classList.remove("success");
-      //       console.log("m--",m)
-      //       //allSegmentLines[m].classList.remove("bg-success");
-
-      //     }
-      //     for (let i = 0; i < no - 1; i++) {
-      //       allSteps[i].classList.remove("glow");
-      //       allSteps[i].classList.add("success");
-      //       allSegmentLines[i].classList.add("bg-success");
-      //     }
-      //     for (let j = no; j < allSteps.length; j++) {
-      //       allSteps[j].classList.remove("glow");
-      //       allSteps[j].classList.remove("success");
-      //       allSegmentLines[j].classList.remove("bg-success");
-      //     }
-      //     await this.toSubStepper(no, _ID);
-      //   }
-        
-      //  }else{
         for (let i = 0; i < no - 1; i++) {
           allSteps[i].classList.remove("glow");
           allSteps[i].classList.add("success");
@@ -723,10 +743,18 @@ export class ProofBotComponent implements OnInit {
           allSteps[j].classList.remove("success");
           allSegmentLines[j].classList.remove("bg-success");
         }
+        if(this.proofType=='poc'){
+          let num=this.CurrenyRunningProof[2].map((seg) => seg.NO);
+          console.log("numm-----",num[0])
+          for (let j = num[0]; j < num.length; j++) {
+            allSteps[j].classList.remove("glow");
+            allSteps[j].classList.remove("success");
+            allSegmentLines[j].classList.remove("bg-success");
+            console.log("ii-----",j)
+          }
+          }
         await this.toSubStepper(no, _ID);
-     //}
       
-     
       await new Promise(resolveTime =>
         setTimeout(resolveTime, 1000 / this.playbackSpeed)
       );
@@ -847,13 +875,10 @@ export class ProofBotComponent implements OnInit {
           ActionParameters.TrustLinks,
           ActionParameters.StartedProofType
         );
-       //this.steppers=[];
        this.CurrenyRunningProof=[];
        this.CurrenyRunningProof= this.divideArrayByPathIDs(this.POCSteppers,this.proofJSON.Steps,this.CurrentPathID)
-       this.steppers=this.CurrenyRunningProof[1];
-        console.log("hhhhh",this.CurrenyRunningProof)
-        console.log("tttt",this.proofJSON.Header,this.CurrentPathID)
-        console.log("kkkkk",this.steppers)
+       
+        
       }
   
       if (highlightClickedNode) {
@@ -867,8 +892,10 @@ export class ProofBotComponent implements OnInit {
         if (this.proofType === "poc") {
           this.CompletedSegments.push({
             SegNo: StepHeader.SegmentNo
-          });}
+          });
+        }
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
+        
       }
   
       const frameID = StepHeader.FrameID;
@@ -2022,24 +2049,15 @@ export class ProofBotComponent implements OnInit {
 }
 filterCompletedSegments(step: number) {
   let stepstatus = false;
-  const completedSegments = this.CurrenyRunningProof[1].map((seg) => seg.NO);
+  const completedSegments = this.CurrenyRunningProof[2].map((seg) => seg.NO);
  
-  if (completedSegments.includes(step)) {
+  if (!completedSegments.includes(step)) {
     stepstatus = true;  
   } else {
   }
   return stepstatus;
 }
 
-// filterActualProofSteps(other: any[], current: any[]){
-//   const steps = this.CurrenyRunningProof[1].map((seg) => seg.NO);
- 
-//   if (completedSegments.includes(step)) {
-//     stepstatus = true;  
-//   } else {
-//   }
-//   return stepstatus;
-// }
 
 divideArrayByPathIDs(steppers: any[], steps: any[],id: String): any[][] {
   const result: any[][] = [];
@@ -2067,16 +2085,14 @@ divideArrayByPathIDs(steppers: any[], steps: any[],id: String): any[][] {
       }
     }
   }
-  let i:number=0
-    
   for (const stepper of steppers) {
     
     if (stepper.NO === startingSegment) {
       currentSteppers = [];
     }
     
-    currentSteppers.push({ ...stepper, NO:i})
-    i++
+    currentSteppers.push(stepper)
+    
     if (stepper.NO === finalSegment) {
       if (currentSteppers.length > 0) {
         result.push([...currentSteppers]);
