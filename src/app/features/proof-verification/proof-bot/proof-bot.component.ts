@@ -658,51 +658,7 @@ export class ProofBotComponent implements OnInit {
     this.stopFlag = false;
     //this.playProofDemo();
   }
-  // async toStepperPOC(no: number) {
-  //   //this.SegmentNumber = no;
-  //   //console.log("segmentNo",this.SegmentNumber, _ID)
-  //   try {
-  //     document
-  //       .querySelectorAll("#steppersFrame")[0]
-  //       .classList.add("steppersShow");
-  //     const steppersFrame = document.querySelectorAll(
-  //       "#steppersFrame #segments #stepWrapper"
-  //     )[0];
-  //     const allSteps = document.querySelectorAll(
-  //       "#segments .bs-stepper-header.cs-stepper-header .step"
-  //     );
-  //     var allSegmentLines = document.querySelectorAll(
-  //       "#segments .bs-stepper-header.cs-stepper-header .line"
-  //     );
-  //     const el: any = allSteps[no - 1];
-  //     steppersFrame.scroll({
-  //       top:
-  //         el.offsetTop -
-  //         steppersFrame.getBoundingClientRect().height +
-  //         el.getBoundingClientRect().height,
-  //       left:
-  //         el.offsetLeft -
-  //         steppersFrame.getBoundingClientRect().width +
-  //         el.getBoundingClientRect().width,
-  //       behavior: "smooth"
-  //     });
-  //     el.classList.add("glow");
-      
-  //     let num=this.CurrenyRunningProof[2].map((seg) => seg.NO);
-  //     console.log("numm-----",num[0])
-  //     for (let j = num[0]; j < num.length; j++) {
-  //       allSteps[j].classList.remove("glow");
-  //       allSteps[j].classList.remove("success");
-  //       allSegmentLines[j].classList.remove("bg-success");
-  //       console.log("ii-----",j)
-  //     }
-        
-  //     await new Promise(resolveTime =>
-  //       setTimeout(resolveTime, 1000 / this.playbackSpeed)
-  //     );
-  //   } catch (error) {
-  //   }
-  // }
+  
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
     console.log("segmentNo",this.SegmentNumber, _ID)
@@ -868,8 +824,7 @@ export class ProofBotComponent implements OnInit {
         !!ActionParameters.StartedProofType &&
         ActionParameters.StartedProofType !== "" &&
         !!ActionParameters.TrustLinks &&
-        ActionParameters.TrustLinks.length !== 0 ||
-        !!this.isBackToStep && this.isBackToStep==true
+        ActionParameters.TrustLinks.length !== 0 
       ) {
         this.changeSpecificNodeOpacity(
           ActionParameters.TrustLinks,
