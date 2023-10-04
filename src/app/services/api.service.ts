@@ -16,6 +16,13 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
+
+  getPocTreeData(id: string): Observable<any> {
+    return this.http.get(environment.blockchain.getPocTreeDataWithMerkletree + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   handleError(err: HttpErrorResponse) {
     return throwError('test');
   }

@@ -184,6 +184,7 @@ export class ProofBotComponent implements OnInit {
   CurrentPathID: string;
   POCSteppers: any;
   otherSteps: any[]=[];
+  pocData: any = {};
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -266,29 +267,83 @@ export class ProofBotComponent implements OnInit {
         await new Promise(resolveTime => setTimeout(resolveTime, 4200));
         // start demo (not -verifing)
         if (this.proofType == "poc") {
-          let url = environment.blockchain.getPocTreeDataWithMerkletree + "/" + this.proofBotParams.params.txn
-          this.apiService.getData(url).subscribe((data1) => {
-            this.nodesWithMerkleTree = data1
-            if (this.hasTxnTypeMerge(data1.Nodes)) {
-              let url2 = environment.blockchain.getPocTreeData + "/" + this.proofBotParams.params.txn
-              this.apiService.getData(url2).subscribe((data2) => {
-                this.nodes = data2
-                this.initiateProofDemo();
-              }, (err) => {
-                this.openModal("Invalid URL", err.status, err.message)
-              })
-            } else {
-              this.initiateProofDemo();
-            }
-          }, (err) => {
-            this.openModal("Invalid URL", err.status, err.message)
-          })
-
+          try {
+            await this.getProofTree(this.proofBotParams.params.txn)
+          } catch (error) {
+            // Handle the error here
+            this.openModal("Invalid URL", error.status, error.message)
+          }
         } else
           this.initiateProofDemo();
       } else
         return
   }
+
+  async getProofTree(id: string) {
+    await this.getProofTreeOne(id);
+    this.updateChildren();
+    this.nodesWithMerkleTree = this.pocData;
+    this.nodes = this.pocData;
+    this.initiateProofDemo();
+  }
+
+  async getProofTreeOne(id: string) {
+    let data = await this.apiService.getPocTreeData(id).toPromise()
+    if (this.isEmptyObject(this.pocData)) {
+      this.pocData = data;
+    } else {
+      this.pocData.LastTxnHash = data.LastTxnHash;
+      for (const nodeId in data.Nodes) {
+        if (!this.pocData.Nodes.hasOwnProperty(nodeId)) {
+          this.pocData.Nodes[nodeId] = data.Nodes[nodeId];
+        }
+      }
+    }
+
+    for (const nodeId in data.Nodes) {
+      this.pocData.LastTxnHash = data.LastTxnHash;
+      if (data.BackLinkParents != undefined && data.BackLinkParents != null) {
+        for (let index = 0; index < data.BackLinkParents.length; index++) {
+          let foundHash = false;
+          for (const nodeIdPoc in this.pocData.Nodes) {
+            if (this.pocData.Nodes[nodeIdPoc].TrustLinks[0] == data.BackLinkParents[index]) {
+              foundHash = true;
+            }
+          }
+          if (!foundHash && !!data.BackLinkParents[index]) {
+            await this.getProofTreeOne(data.BackLinkParents[index]);
+          }
+        }
+
+      }
+    }
+  }
+
+  updateChildren() {
+    for (const nodeId in this.pocData.Nodes) {
+      if (this.pocData.Nodes[nodeId].Parents != null) {
+        for (let i = 0; i < this.pocData.Nodes[nodeId].Parents.length; i++) {
+          const parentNodeId = this.pocData.Nodes[nodeId].Parents[i];
+          if (this.pocData.Nodes[parentNodeId] != undefined && this.pocData.Nodes[parentNodeId].Children != null
+            && !this.pocData.Nodes[parentNodeId].Children.includes(nodeId)) {
+            this.pocData.Nodes[parentNodeId].Children.push(nodeId);
+          } else {
+            this.pocData.Nodes[parentNodeId].Children = [nodeId];
+          }
+        }
+      }
+    }
+  }
+
+  isEmptyObject(obj) {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 
   async initiateProofDemo() {
     const { protocolJson, langJson } = await this.getProtocolJSON();
