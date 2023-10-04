@@ -111,7 +111,7 @@
       <app-bot-wait *ngIf="!isStartDemo"></app-bot-wait>
       <!-- bot-segments header-->
       <app-bot-segments *ngIf="isStartDemo" id="steppersFrame" [collapse]="isCollapsedSegment" [SegmentNumber]="SegmentNumber" [icon]="icon"
-        [steppers]="steppers" [subSteppers]="subSteppers" [lang]="lang" (backToStepFn)="backToStep($event)"
+        [steppers]="steppers" [subSteppers]="subSteppers" [lang]="lang" [proofType]="proofType" [CompletedSteps]="CompletedSteps" (backToStepFn)="backToStep($event)"
         (backToActionFn)="backToAction($event)">
       </app-bot-segments>
       <!--end bot-segments header-->

@@ -14,28 +14,25 @@
           <!-- your steps here -->
           <ng-container *ngFor="let stepper of steppers">
             <div class="step">
-              <div
-              type="button"
-              class="step-trigger stepBtn"
-              role="tab"
-            >
-              <!-- <div
-                type="button"
-                class="step-trigger stepBtn"
-                role="tab"
-                (click)="emitBackToStepFn(stepper.NO)"
-              > -->
-              
-              <span class="bs-stepper-circle cs-stepper-circle">{{
-                stepper.NO
-              }}</span>
-              <span class="bs-stepper-label cs-stepper-label" style="font-family: Inter;">{{
-                stepper.Name[lang]
-              }}</span>
-              <span class="bs-stepper-label cs-stepper-label segment-source" style="margin:0px; font-family: Inter;" *ngIf="stepper.Source.length">
-                <img class="source" src={{stepper.Source}}>
-              </span>
-             </div>
+              <div type="button" class="step-trigger stepBtn" role="tab" (click)="emitBackToStepFn(stepper.NO)">
+                <!-- <div
+                          type="button"
+                          class="step-trigger stepBtn"
+                          role="tab"
+                          (click)="emitBackToStepFn(stepper.NO)"
+                        > -->
+          
+                <span class="bs-stepper-circle cs-stepper-circle">{{
+                  stepper.NO
+                  }}</span>
+                <span class="bs-stepper-label cs-stepper-label" style="font-family: Inter;">{{
+                  stepper.Name[lang]
+                  }}</span>
+                <span class="bs-stepper-label cs-stepper-label segment-source" style="margin:0px; font-family: Inter;"
+                  *ngIf="stepper.Source.length">
+                  <img class="source" src={{stepper.Source}}>
+                </span>
+              </div>
             </div>
             <div class="line"></div>
           </ng-container>
@@ -65,6 +62,7 @@
                 type="button"
                 class="step-trigger stepBtn"
                 role="tab"
+                (click)="emitBackToActionFn(subStepper.ActionID)"
               >
                 <span class="bs-stepper-circle cs-stepper-circle" style="font-family: Inter;"
                   >{{ SegmentNumber }}.{{ index + 1 }}</span
@@ -77,7 +75,7 @@
                   <img class="source" src={{subStepper.icon}}></span>
               
               </div>
-            </div>
+          </div>
           
             <div class="line"></div>
           </ng-container>

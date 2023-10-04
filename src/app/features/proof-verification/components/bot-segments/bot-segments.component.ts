@@ -13,17 +13,51 @@ export class BotSegmentsComponent implements OnInit {
   @Output() backToStepFn = new EventEmitter();
   @Output() backToActionFn = new EventEmitter();
   @Input() lang: string = "en";
+  @Input() proofType: string;
+  @Input() CompletedSteps: any[]
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Get a reference to the element
+    const element1 = document.getElementById('step-circle');
+    const element2 = document.getElementById('substep-circle');
+    // Set the element's width to max-content
+    // this.setWidthToHeight(element1);
+    // this.setWidthToHeight(element2);
+    
+  }
   
   emitBackToStepFn(NO: number) {
+    if(this.proofType=='poc'){
+      const completedSteps = this.CompletedSteps.map((seg) => seg.StepNo);
+     if (completedSteps.includes(NO)) {
+      this.backToStepFn.emit(NO);  
+    }
+  }
+    
     this.backToStepFn.emit(NO);
-  
   }
   
   emitBackToActionFn(NO: number) {
+    if(this.proofType=='poc'){
+      const completedSteps = this.CompletedSteps.map((seg) => seg.StepNo);
+     if (completedSteps.includes(NO)) {
+      this.backToActionFn.emit(NO);  
+    }
+  }
     this.backToActionFn.emit(NO);
   }
+
+  setWidthToHeight(element: HTMLElement | null) {
+    if (element) {
+        element.style.width = 'max-content';
+
+        // Retrieve the computed width
+        const computedWidth = window.getComputedStyle(element).width;
+
+        // Assign the computed width to the element's height
+        element.style.height = computedWidth;
+    }
+}
 }
