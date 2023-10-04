@@ -30,6 +30,11 @@ export class BotHeaderComponent implements OnInit {
   @Input() batch
   @Input() tdpId
   @Input() isStartDemo: Boolean;
+  @Input() completedProofs : any[];
+  @Input() TotalProofCountOfPOC: number;
+  @Input() pendingProofsCount:number;
+  @Input() SuccessedProofcount: number;
+  @Input() FailedProofcount: number;
 
   constructor(public commonServices: CommonService) { }
 
@@ -64,7 +69,6 @@ export class BotHeaderComponent implements OnInit {
   }
 
   emitPOCStatusFn(){
-    console.log("clickedd")
     this.POCStatus.emit("");
   }
 }

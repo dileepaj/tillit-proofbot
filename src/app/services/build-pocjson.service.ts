@@ -122,82 +122,90 @@ export class BuildPOCJsonService {
         "en": "Retrieve Traceability Data Data"
       },
       "SegName11": {
+        "ja": "トレーサビリティデータのデコード",
+        "en": "Decode Traceability Data"
+      },
+      "SegName12": {
+        "ja": "データハッシュ生成",
+        "en": "Data hash generation"
+      },
+      "SegName13": {
         "ja": "ブロックチェーントランザクションを取得",
         "en": "Retrieve blockchain transaction"
       },
-      "SegName12": {
+      "SegName14": {
         "ja": "Current TXN ハッシュのデコード",
         "en": "Decode Current TXN Hash"
       },
-      "SegName13": {
-        "ja": "ブロックチェーンCurrent TXNの取得",
+      "SegName15": {
+        "ja": "ブロックチェーントランザクションの取得",
         "en": "Retrieve blockchain Current TXN"
       },
-      "SegName14": {
+      "SegName16": {
         "ja": "比較",
         "en": "Comparison"
-      },
-      "SegName15": {
-        "ja": "概要",
-        "en": "POE Summary"
-      },
-      "SegName16": {
-        "ja": "ステラ・トランザクションを取得",
-        "en": "GET Stellar Transaction"
       },
       "SegName17": {
-        "ja": "現在のTXNHashをデコード",
-        "en": "Decode Current TXN Hash and Merge ID"
-      },
-      "SegName18": {
-        "ja": "現在のトランザクションを取得",
-        "en": "GET Current Transaction"
-      },
-      "SegName19": {
-        "ja": "IDを解読",
-        "en": "Decode Identifier"
-      },
-      "SegName20": {
-        "ja": "プロダクトIDを解読",
-        "en": "Decode Product ID"
-      },
-      "SegName21": {
-        "ja": "バックリンクTXNHashの解読",
-        "en": "Decode Backlink TXNHash"
-      },
-      "SegName22": {
-        "ja": "バックリンクトランザクションの取得",
-        "en": "GET Backlink Transaction"
-      },
-      "SegName23": {
-        "ja": "現在のトランザクションのデコード",
-        "en": "Decode Current Transaction"
-      },
-      "SegName24": {
-        "ja": "現在のトランザクションを取得",
-        "en": "GET Current Transaction"
-      },
-      "SegName25": {
-        "ja": "IDをデコード",
-        "en": "Decode Identifier"
-      },
-      "SegName26": {
-        "ja": "プロダクトIDを解読",
-        "en": "Decode Product ID"
-      },
-      "SegName27": {
-        "ja": "比較",
-        "en": "Comparison"
-      },
-      "SegName28": {
-        "ja": "比較",
-        "en": "Comparison"
-      },
-      "SegName29": {
         "ja": "概要",
         "en": "Summary"
       },
+      "SegName18": {
+        "ja": "ステラ・トランザクションを取得",
+        "en": "GET Stellar Transaction"
+      },
+      "SegName19": {
+        "ja": "現在のTXNHashをデコード",
+        "en": "Decode Current TXN Hash and Merge ID"
+      },
+      "SegName20": {
+        "ja": "現在のトランザクションを取得",
+        "en": "GET Current Transaction"
+      },
+      "SegName21": {
+        "ja": "IDを解読",
+        "en": "Decode Identifier"
+      },
+      "SegName22": {
+        "ja": "プロダクトIDを解読",
+        "en": "Decode Product ID"
+      },
+      "SegName23": {
+        "ja": "バックリンクTXNHashの解読",
+        "en": "Decode Backlink TXNHash"
+      },
+      "SegName24": {
+        "ja": "バックリンクトランザクションの取得",
+        "en": "GET Backlink Transaction"
+      },
+      "SegName25": {
+        "ja": "現在のトランザクションのデコード",
+        "en": "Decode Current Transaction"
+      },
+      "SegName26": {
+        "ja": "現在のトランザクションを取得",
+        "en": "GET Current Transaction"
+      },
+      "SegName27": {
+        "ja": "IDをデコード",
+        "en": "Decode Identifier"
+      },
+      "SegName28": {
+        "ja": "プロダクトIDを解読",
+        "en": "Decode Product ID"
+      },
+      "SegName29": {
+        "ja": "比較",
+        "en": "Comparison"
+      },
       "SegName30": {
+        "ja": "比較",
+        "en": "Comparison"
+      },
+      "SegName31": {
+        "ja": "概要",
+        "en": "Summary"
+      },
+      "SegName32": {
         "ja": "概要",
         "en": "Summary"
       }
@@ -234,7 +242,7 @@ export class BuildPOCJsonService {
   constructor(public commonServices: CommonService) { }
 
   async buildPOCJson(data: any): Promise<any> {
-    let pocArray = await this.createPOCOrder(data)
+    let pocArray = await this.createPOCOrder(data)  
     if (!!pocArray) {
       let b = await this.loopTheNodes(pocArray)
       return b
@@ -2171,28 +2179,39 @@ export class BuildPOCJsonService {
             {
               "NO": segPoe + 2,
               "Name": "&{SegName11}",
-              "Source": "../../../../assets/img/blockchain2.png"
+              "Source": "../../../../assets/img/database.png"
             },
             {
               "NO": segPoe + 3,
               "Name": "&{SegName12}",
-              "Source": ""
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPoe + 4,
               "Name": "&{SegName13}",
-              "Source": "../../../../assets/img/blockchain2.png"
+              "Source": ""
             },
             {
               "NO": segPoe + 5,
               "Name": "&{SegName14}",
-              "Source": ""
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
               "NO": segPoe + 6,
               "Name": "&{SegName15}",
               "Source": ""
+            },
+            {
+              "NO": segPoe + 7,
+              "Name": "&{SegName16}",
+              "Source": ""
+            },
+            {
+              "NO": segPoe + 8,
+              "Name": "&{SegName17}",
+              "Source": ""
             }
+          
           ]
           let poeSteps = [
             {
@@ -2231,26 +2250,26 @@ export class BuildPOCJsonService {
                     "StepNo": numPoe + 1,
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
-                    "FrameTitle": "&{TextPoe0}",
-                    "ActionTitle": "&{TextPoe149}",
-                    "ActionDescription": "&{TextPoe2}",
+                    "FrameTitle": "&{Text0}",
+                    "ActionTitle": "&{Text1}",
+                    "ActionDescription": "&{Text3}",
                     "PathID":`poe-${node.Id}`,
-                    "FrameTitle_1": "&{TextPoe3}",
-                    "ActionTitle_1": "&{TextPoe4}",
-                    "ActionDescription_1": "&{TextPoe5}",
-                    "FrameTitle_2": "&{TextPoe6}",
-                    "ActionTitle_2": "&{TextPoe7}",
-                    "ActionDescription_2": "&{TextPoe8}",
+                    "FrameTitle_1": "&{Text4}",
+                    "ActionTitle_1": "&{Text5}",
+                    "ActionDescription_1": "&{Text6}",
+                    "FrameTitle_2": "&{Text7}",
+                    "ActionTitle_2": "&{Text8}",
+                    "ActionDescription_2": "&{Text9}",
                     "TXNHash": node.TrustLinks[0],
-                    "OperationName": "&{TextPoe1}",
+                    "OperationName": "&{Text2}",
                     "ResponseVariable": "MainTDPDataString",
                     "JSONResultVariable": "MainTDPData",
                     "StartedProofType": "POE",
                     "TrustLinks": [node.Id],
-                  },
+                  }
                 },
                 "ActionResultVariable": "",
-                "MetaData": [],
+                "MetaData": []
               },
               "Customizations": {
                 "PointerData": "",
@@ -2270,8 +2289,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe9}",
-                "ActionDescription": "&{TextPoe10}",
+                "ActionTitle": "&{Text10}",
+                "ActionDescription": "&{Text11}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2297,7 +2316,7 @@ export class BuildPOCJsonService {
                 "ActionResultVariable": "TDPIdentifier",
                 "MetaData": [
                   "MainTDPData",
-                  "Identifier"
+                  "TDPIdentifier"
                 ]
               },
               "Customizations": {
@@ -2346,15 +2365,15 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{TextPoe12}",
-                    "ActionDescription": "&{TextPoe13}",
-                    "FrameTitle_1": "&{TextPoe14}",
-                    "ActionTitle_1": "&{TextPoe15}",
-                    "ActionDescription_1": "&{TextPoe16}",
-                    "OperationKey": "Identifier",
+                    "ActionTitle": "&{Text13}",
+                    "ActionDescription": "&{Text14}",
+                    "FrameTitle_1": "&{Text15}",
+                    "ActionTitle_1": "&{Text16}",
+                    "ActionDescription_1": "&{Text17}",
+                    "OperationKey": "TDPIdentifier",
                     "OperationValue": "TDPIdentifier",
-                    "OperationKeyName": "identifier from the Traceability Data details",
-                    "OperationValueName": "identifier from the Traceability Data details"
+                    "OperationKeyName": "TDP identifier from the Traceability Data details",
+                    "OperationValueName": "TDP identifier from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2378,8 +2397,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe17}",
-                "ActionDescription": "&{TextPoe18}",
+                "ActionTitle": "&{Text19}",
+                "ActionDescription": "&{Text20}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2402,7 +2421,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{TextPoe205}",
+                      "Key": "&{Text21}",
                       "Value": "${TDPIdentifier}"
                     }
                   ]
@@ -2423,13 +2442,13 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 5,
-                "SegmentNo": segPoe + 1,
+                "SegmentNo": 1,
                 "FrameID": 1,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe20}",
-                "ActionDescription": "&{TextPoe21}",
+                "ActionTitle": "&{Text22}",
+                "ActionDescription": "&{Text23}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2452,10 +2471,10 @@ export class BuildPOCJsonService {
                   "FormatType": "jsonKeyPicker",
                   "StorageData": []
                 },
-                "ActionResultVariable": "TDPDatahash",
+                "ActionResultVariable": "TDPData",
                 "MetaData": [
                   "MainTDPData",
-                  "DataHash"
+                  "TDPData"
                 ]
               },
               "Customizations": {
@@ -2504,15 +2523,15 @@ export class BuildPOCJsonService {
                     "SegmentNo": segPoe + 1,
                     "FrameID": 1,
                     "FrameTitle": "",
-                    "ActionTitle": "&{TextPoe23}",
-                    "ActionDescription": "&{TextPoe24}",
-                    "FrameTitle_1": "&{TextPoe25}",
-                    "ActionTitle_1": "&{TextPoe26}",
-                    "ActionDescription_1": "&{TextPoe27}",
-                    "OperationKey": "DataHash",
-                    "OperationValue": "TDPDatahash",
-                    "OperationKeyName": "Datahash from the Traceability Data details",
-                    "OperationValueName": "Datahash from the Traceability Data details"
+                    "ActionTitle": "&{Text23}",
+                    "ActionDescription": "&{Text25}",
+                    "FrameTitle_1": "&{Text26}",
+                    "ActionTitle_1": "&{Text27}",
+                    "ActionDescription_1": "&{Text28}",
+                    "OperationKey": "TDPData",
+                    "OperationValue": "TDPData",
+                    "OperationKeyName": "TDP Data from the Traceability Data details",
+                    "OperationValueName": "TDP Data from the Traceability Data details"
                   }
                 },
                 "ActionResultVariable": "",
@@ -2536,8 +2555,8 @@ export class BuildPOCJsonService {
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe28}",
-                "ActionDescription": "&{TextPoe29}",
+                "ActionTitle": "&{Text30}",
+                "ActionDescription": "&{Text31}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2560,11 +2579,11 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{TextPoe206}",
-                      "Value": "${TDPDatahash}",
+                      "Key": "&{Text32}",
+                      "Value": "${TDPData}",
                       "CompareType": "notEmpty",
                       "CompareValue": "",
-                      "Error": "Cannot find the datahash from Tracifed for the given transaction"
+                      "Error": "Cannot find the Traceability data from Tracifed for the given transaction"
                     }
                   ]
                 },
@@ -2584,13 +2603,13 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 8,
-                "SegmentNo": segPoe + 2,
+                "SegmentNo": segPoe + 1,
                 "FrameID": 1,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe31}",
-                "ActionDescription": "&{TextPoe32}",
+                "ActionTitle": "&{Text33}",
+                "ActionDescription": "&{Text34}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2632,7 +2651,7 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 9,
-                "SegmentNo": segPoe + 2,
+                "SegmentNo": segPoe + 1,
                 "FrameID": 1,
                 "FrameTitle": ""
               },
@@ -2662,12 +2681,12 @@ export class BuildPOCJsonService {
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
                     "StepNo": numPoe + 9,
-                    "SegmentNo": segPoe + 2,
+                    "SegmentNo": segPoe + 1,
                     "FrameID": 1,
-                    "ActionTitle": "&{TextPoe34}",
-                    "ActionDescription": "&{TextPoe35}",
-                    "ActionTitle_1": "&{TextPoe37}",
-                    "ActionDescription_1": "&{TextPoe38}",
+                    "ActionTitle": "&{Text35}",
+                    "ActionDescription": "&{Text36}",
+                    "ActionTitle_1": "&{Text37}",
+                    "ActionDescription_1": "&{Text38}",
                     "OperationKey": "Txnhash",
                     "OperationValue": "TDPTxnhash",
                     "OperationKeyName": "txnhash from the Traceability Data details",
@@ -2690,13 +2709,13 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 10,
-                "SegmentNo": segPoe + 2,
+                "SegmentNo": 1,
                 "FrameID": 1,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe39}",
-                "ActionDescription": "&{TextPoe40}",
+                "ActionTitle": "&{Text39}",
+                "ActionDescription": "&{Text40}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2719,7 +2738,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{TextPoe207}",
+                      "Key": "&{Text41}",
                       "Value": "${TDPTxnhash}"
                     }
                   ]
@@ -2740,7 +2759,805 @@ export class BuildPOCJsonService {
             {
               "StepHeader": {
                 "StepNo": numPoe + 11,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text42}",
+                "ActionDescription": "&{Text43}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "body",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "jsonKeyPicker",
+                  "StorageData": []
+                },
+                "ActionResultVariable": "TdpId",
+                "MetaData": [
+                  "MainTDPData",
+                  "TdpId"
+                ]
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 12,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "KeyValueHighlighter",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 12,
+                    "SegmentNo": segPoe + 1,
+                    "FrameID": 1,
+                    "FrameTitle": "",
+                    "ActionTitle": "&{Text44}",
+                    "ActionDescription": "&{Text45}",
+                    "FrameTitle_1": "&{Text47}",
+                    "ActionTitle_1": "&{Text46}",
+                    "ActionDescription_1": "&{Text47}",
+                    "OperationKey": "TdpId",
+                    "OperationValue": "TdpId",
+                    "OperationKeyName": "Tdp ID from the Traceability Data details",
+                    "OperationValueName": "Tdp ID from the Traceability Data details"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 13,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text48}",
+                "ActionDescription": "&{Text49}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": true,
+                  "SelectiveTextIndex": 0,
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [
+                    {
+                      "Key": "&{Text50}",
+                      "Value": "${TdpId}"
+                    }
+                  ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 14,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text51}",
+                "ActionDescription": "&{Text52}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "body",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "jsonKeyPicker",
+                  "StorageData": []
+                },
+                "ActionResultVariable": "ProfileID",
+                "MetaData": [
+                  "MainTDPData",
+                  "ProfileID"
+                ]
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 15,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "KeyValueHighlighter",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 15,
+                    "SegmentNo": segPoe + 1,
+                    "FrameID": 1,
+                    "FrameTitle": "",
+                    "ActionTitle": "&{Text53}",
+                    "ActionDescription": "&{Text54}",
+                    "FrameTitle_1": "&{Text56}",
+                    "ActionTitle_1": "&{Text55}",
+                    "ActionDescription_1": "&{Text56}",
+                    "OperationKey": "ProfileID",
+                    "OperationValue": "ProfileID",
+                    "OperationKeyName": "Profile ID from the Traceability Data details",
+                    "OperationValueName": "Profile ID from the Traceability Data details"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 16,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text57}",
+                "ActionDescription": "&{Text58}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": true,
+                  "SelectiveTextIndex": 0,
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [
+                    {
+                      "Key": "&{Text59}",
+                      "Value": "${ProfileID}"
+                    }
+                  ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 17,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text60}",
+                "ActionDescription": "&{Text61}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "body",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "jsonKeyPicker",
+                  "StorageData": []
+                },
+                "ActionResultVariable": "Identifier",
+                "MetaData": [
+                  "MainTDPData",
+                  "Identifier"
+                ]
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 18,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "KeyValueHighlighter",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 18,
+                    "SegmentNo": segPoe + 1,
+                    "FrameID": 1,
+                    "FrameTitle": "",
+                    "ActionTitle": "&{Text62}",
+                    "ActionDescription": "&{Text63}",
+                    "FrameTitle_1": "&{Text65}",
+                    "ActionTitle_1": "&{Text64}",
+                    "ActionDescription_1": "&{Text65}",
+                    "OperationKey": "Identifier",
+                    "OperationValue": "Identifier",
+                    "OperationKeyName": "identifier from the Traceability Data details",
+                    "OperationValueName": "identifier from the Traceability Data details"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 19,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text66}",
+                "ActionDescription": "&{Text67}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": true,
+                  "SelectiveTextIndex": 0,
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [
+                    {
+                      "Key": "&{Text68}",
+                      "Value": "${Identifier}"
+                    }
+                  ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 20,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text69}",
+                "ActionDescription": "&{Text70}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "body",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "jsonKeyPicker",
+                  "StorageData": []
+                },
+                "ActionResultVariable": "MapIdentifier",
+                "MetaData": [
+                  "MainTDPData",
+                  "MapIdentifier"
+                ]
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 21,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "KeyValueHighlighter",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 21,
+                    "SegmentNo": segPoe + 1,
+                    "FrameID": 1,
+                    "FrameTitle": "",
+                    "ActionTitle": "&{Text71}",
+                    "ActionDescription": "&{Text72}",
+                    "FrameTitle_1": "&{Text74}",
+                    "ActionTitle_1": "&{Text73}",
+                    "ActionDescription_1": "&{Text74}",
+                    "OperationKey": "MapIdentifier",
+                    "OperationValue": "MapIdentifier",
+                    "OperationKeyName": "Map identifier from the Traceability Data details",
+                    "OperationValueName": "Map identifier from the Traceability Data details"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 22,
+                "SegmentNo": segPoe + 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionTitle": "&{Text75}",
+                "ActionDescription": "&{Text76}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": 0,
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": true,
+                  "SelectiveTextIndex": 0,
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [
+                    {
+                      "Key": "&{Text77}",
+                      "Value": "${MapIdentifier}"
+                    }
+                  ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 23,
                 "SegmentNo": segPoe + 2,
+                "FrameID": 3,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "OnlineToolsDecoder",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 23,
+                    "SegmentNo": segPoe + 2,
+                    "FrameID": 3,
+                    "FrameTitle": "&{Text212}",
+                    "ActionTitle": "&{Text213}",
+                    "ActionDescription": "&{Text214}",
+                    "ActionTitle_1": "&{Text215}",
+                    "ActionDescription_1": "&{Text216}",
+                    "ActionTitle_2": "&{Text217}",
+                    "ActionDescription_2": "&{Text218}",
+                    "ActionTitle_3": "&{Text219}",
+                    "ActionDescription_3": "&{Text220}",
+                    "ActionTitle_4": "&{Text221}",
+                    "ActionDescription_4": "&{Text222}",
+                    "InformationStorageKey": "&{Text223}",
+                    "ToastMessage": "&{Text224}",
+                    "EncodedInputValue": "${TDPData}",
+                    "DecodedResultVariable": "DecodedTDPData"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 24,
+                "SegmentNo": segPoe + 3,
+                "FrameID": 8,
+                "FrameTitle": "&{Text210}"
+              },
+              "Action": {
+                "ActionTitle": "&{Text210}",
+                "ActionDescription": "&{Text211}",
+                "ActionType": "BrowserScreen",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "EncodedData": "${TDPData}",
+                  "InnerHTMLPOE": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items:center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><div><p class=\"size-12\"><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2;font-family:Inter; font-style:normal; font-size:12px; color:black ;text-transform: uppercase;\">\r\nBase64 encoded data and the TDP identifier received from the gateway are being combined.\r\n</b></center></p></div></center></div></div><div class=\"p-2\"><center><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;max-width: 450px; max-height: 50px;\"><strong><span class=\"size-14\">Base64 Encoded data</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\"><strong>TDP Identifier</strong></p></th></tr></thead><tbody><tr><td style=\"padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word; overflow:hidden;  word-break:break-word; overflow:hidden; max-width:400px; max-height:40px;  max-height:40px; \">\r\n ${TDPData}\r\n</p></td></td><td style=\"padding-left:2px; \"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word; max-height: 25px;\">\r\n + ${TDPIdentifier}\r\n</p></td></tr></tbody></table></center></div></div></body></html>",
+                  "PageURL": "&{Text210}",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionResultVariable": "",
+                  "MetaData": [],
+                  "Compare":{}
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": [],
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 25,
+                "SegmentNo": segPoe + 3,
+                "FrameID": 3,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "EncodedData": "false",
+                  "ActionConfigurationID": "OnlineToolsEncoder",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 25,
+                    "SegmentNo": segPoe + 3,
+                    "FrameID": 3,
+                    "FrameTitle": "&{Text210}",
+                    "ActionTitle": "&{Text79}",
+                    "ActionDescription": "&{Text80}",
+                    "ActionTitle_1": "&{Text81}",
+                    "ActionDescription_1": "&{Text82}",
+                    "ActionTitle_2": "&{Text83}",
+                    "ActionDescription_2": "&{Text84}",
+                    "ActionTitle_3": "&{Text85}",
+                    "ActionDescription_3": "&{Text86}",
+                    "ActionTitle_4": "&{Text87}",
+                    "ActionDescription_4": "&{Text88}",
+                    "InformationStorageKey": "&{Text89}",
+                    "ToastMessage": "&{Text90}",
+                    "EcodedInputValue": "${TDPData}${TDPIdentifier}",
+                    "TDPDataFirst100": "${TDPData.substring(0, 100)}",
+                    "TDPDataLast100": "${TDPData.substring(TDPData.length - 100)}",
+                    "EncodedResultVariable": "data_hash"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 26,
+                "SegmentNo": segPoe + 4,
                 "FrameID": 2,
                 "FrameTitle": ""
               },
@@ -2770,20 +3587,20 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 11,
-                    "SegmentNo": segPoe + 2,
+                    "StepNo": numPoe + 26,
+                    "SegmentNo": segPoe + 4,
                     "FrameID": 2,
-                    "FrameTitle": "&{TextPoe42}",
-                    "ActionTitle": "&{TextPoe43}",
-                    "ActionDescription": "&{TextPoe44}",
+                    "FrameTitle": "&{Text91}",
+                    "ActionTitle": "&{Text92}",
+                    "ActionDescription": "&{Text93}",
                     "PathID":"",
-                    "ActionTitle_1": "&{TextPoe45}",
-                    "ActionDescription_1": "&{TextPoe46}",
+                    "ActionTitle_1": "&{Text94}",
+                    "ActionDescription_1": "&{Text95}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
-                    "ActionTitle_2": "&{TextPoe47}",
-                    "ActionDescription_2": "&{TextPoe48}",
+                    "ActionTitle_2": "&{Text96}",
+                    "ActionDescription_2": "&{Text97}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
-                    "TXNHash": node.TrustLinks[0],
+                    "TXNHash": "${TDPTxnhash}",
                     "ResponseVariable": "MainTXNDataString",
                     "OperationName": "current transaction",
                     "JSONResultVariable": "MainTXNData",
@@ -2806,14 +3623,14 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 12,
-                "SegmentNo": segPoe + 2,
+                "StepNo": numPoe + 27,
+                "SegmentNo": segPoe + 4,
                 "FrameID": 2,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe49}",
-                "ActionDescription": "&{TextPoe50}",
+                "ActionTitle": "&{Text98}",
+                "ActionDescription": "&{Text99}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2856,8 +3673,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 13,
-                "SegmentNo": segPoe + 2,
+                "StepNo": numPoe + 28,
+                "SegmentNo": segPoe + 4,
                 "FrameID": 2,
                 "FrameTitle": ""
               },
@@ -2886,13 +3703,13 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 13,
-                    "SegmentNo": segPoe + 2,
+                    "StepNo": numPoe + 28,
+                    "SegmentNo": segPoe + 4,
                     "FrameID": 2,
-                    "ActionTitle": "&{TextPoe51}",
-                    "ActionDescription": "&{TextPoe52}",
-                    "ActionTitle_1": "&{TextPoe53}",
-                    "ActionDescription_1": "&{TextPoe54}",
+                    "ActionTitle": "&{Text100}",
+                    "ActionDescription": "&{Text101}",
+                    "ActionTitle_1": "&{Text102}",
+                    "ActionDescription_1": "&{Text103}",
                     "OperationKey": "CurrentTXN",
                     "OperationValue": "MainTXNCurentTXNHash",
                     "OperationKeyName": "encoded CurrentTXN Hash from the transaction details",
@@ -2914,14 +3731,14 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 14,
-                "SegmentNo": segPoe + 3,
+                "StepNo": numPoe + 29,
+                "SegmentNo": segPoe + 5,
                 "FrameID": 2,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe55}",
-                "ActionDescription": "&{TextPoe56}",
+                "ActionTitle": "&{Text104}",
+                "ActionDescription": "&{Text105}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -2944,7 +3761,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{TextPoe208}",
+                      "Key": "&{Text106}",
                       "Value": "${MainTXNCurentTXNHash}"
                     }
                   ]
@@ -2964,8 +3781,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 15,
-                "SegmentNo": segPoe + 3,
+                "StepNo": numPoe + 30,
+                "SegmentNo": segPoe + 5,
                 "FrameID": 3,
                 "FrameTitle": ""
               },
@@ -2994,22 +3811,22 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 15,
-                    "SegmentNo": segPoe + 3,
+                    "StepNo": numPoe + 30,
+                    "SegmentNo": segPoe + 5,
                     "FrameID": 3,
-                    "FrameTitle": "&{TextPoe58}",
-                    "ActionTitle": "&{TextPoe59}",
-                    "ActionDescription": "&{TextPoe60}",
-                    "ActionTitle_1": "&{TextPoe61}",
-                    "ActionDescription_1": "&{TextPoe62}",
-                    "ActionTitle_2": "&{TextPoe63}",
-                    "ActionDescription_2": "&{TextPoe64}",
-                    "ActionTitle_3": "&{TextPoe65}",
-                    "ActionDescription_3": "&{TextPoe66}",
-                    "ActionTitle_4": "&{TextPoe67}",
-                    "ActionDescription_4": "&{TextPoe68}",
-                    "InformationStorageKey": "&{TextPoe223}",
-                    "ToastMessage": "&{TextPoe70}",
+                    "FrameTitle": "&{Text107}",
+                    "ActionTitle": "&{Text108}",
+                    "ActionDescription": "&{Text109}",
+                    "ActionTitle_1": "&{Text110}",
+                    "ActionDescription_1": "&{Text111}",
+                    "ActionTitle_2": "&{Text112}",
+                    "ActionDescription_2": "&{Text113}",
+                    "ActionTitle_3": "&{Text114}",
+                    "ActionDescription_3": "&{Text115}",
+                    "ActionTitle_4": "&{Text116}",
+                    "ActionDescription_4": "&{Text117}",
+                    "InformationStorageKey": "&{Text118}",
+                    "ToastMessage": "&{Text119}",
                     "EncodedInputValue": "${MainTXNCurentTXNHash}",
                     "DecodedResultVariable": "var_currenttxn"
                   }
@@ -3029,8 +3846,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 16,
-                "SegmentNo": segPoe + 4,
+                "StepNo": numPoe + 31,
+                "SegmentNo": segPoe + 6,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
@@ -3059,21 +3876,21 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "StellarOperationViewer",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 16,
-                    "SegmentNo": segPoe + 4,
+                    "StepNo": numPoe + 31,
+                    "SegmentNo": segPoe + 6,
                     "FrameID": 4,
-                    "ActionTitle": "&{TextPoe73}",
-                    "ActionDescription": "&{TextPoe74}",
+                    "ActionTitle": "&{Text120}",
+                    "ActionDescription": "&{Text121}",
+                    "ActionTitle_1": "&{Text122}",
+                    "ActionDescription_1": "&{Text123}",
                     "PathID":"",
-                    "ActionTitle_1": "&{TextPoe76}",
-                    "ActionDescription_1": "&{TextPoe77}",
                     "SegmentSource_1": "../../../../assets/img/blockchain2.png",
-                    "ActionTitle_2": "&{TextPoe125}",
-                    "ActionDescription_2": "&{TextPoe125}",
+                    "ActionTitle_2": "&{Text124}",
+                    "ActionDescription_2": "&{Text125}",
                     "SegmentSource_2": "../../../../assets/img/blockchain2.png",
-                    "FrameTitle": "&{TextPoe71}",
+                    "FrameTitle": "&{Text126}",
                     "TXNHash": "${var_currenttxn}",
-                    "OperationName": "&{TextPoe72}",
+                    "OperationName": "&{Text127}",
                     "ResponseVariable": "MainTXNCurentTXNDataString",
                     "JSONResultVariable": "MainTXNCurentTXNData",
                     "StartedProofType": "",
@@ -3095,14 +3912,14 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 17,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 32,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe78}",
-                "ActionDescription": "&{TextPoe79}",
+                "ActionTitle": "&{Text128}",
+                "ActionDescription": "&{Text129}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3145,8 +3962,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 18,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 33,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
@@ -3175,16 +3992,16 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 18,
-                    "SegmentNo": segPoe + 5,
+                    "StepNo": numPoe + 33,
+                    "SegmentNo": segPoe + 7,
                     "FrameID": 4,
                     "FrameTitle": "",
-                    "ActionTitle": "&{TextPoe81}",
-                    "ActionDescription": "&{TextPoe82}",
-                    "FrameTitle_1": "&{TextPoe83}",
-                    "ActionTitle_1": "&{TextPoe84}",
-                    "ActionDescription_1": "&{TextPoe85}",
-                    "OperationKey": "identifier",
+                    "ActionTitle": "&{Text131}",
+                    "ActionDescription": "&{Text132}",
+                    "FrameTitle_1": "&{Text133}",
+                    "ActionTitle_1": "&{Text134}",
+                    "ActionDescription_1": "&{Text135}",
+                    "OperationKey": "Identifier",
                     "OperationValue": "MainTXNCurentTXNDataIdentifier",
                     "OperationKeyName": "encoded Identifier from the transaction details",
                     "OperationValueName": "encoded Identifier value from the transaction details"
@@ -3205,14 +4022,14 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 19,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 34,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe87}",
-                "ActionDescription": "&{TextPoe88}",
+                "ActionTitle": "&{Text136}",
+                "ActionDescription": "&{Text137}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3235,7 +4052,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{TextPoe209}",
+                      "Key": "&{Text140}",
                       "Value": "${MainTXNCurentTXNDataIdentifier}"
                     }
                   ]
@@ -3255,8 +4072,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 20,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 35,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
@@ -3285,23 +4102,23 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 20,
-                    "SegmentNo": segPoe + 5,
+                    "StepNo": numPoe + 35,
+                    "SegmentNo": segPoe + 7,
                     "FrameID": 5,
-                    "FrameTitle": "&{TextPoe90}",
-                    "ActionTitle": "&{TextPoe91}",
-                    "ActionDescription": "&{TextPoe92}",
-                    "ActionTitle_1": "&{TextPoe93}",
-                    "ActionDescription_1": "&{TextPoe94}",
-                    "ActionTitle_2": "&{TextPoe95}",
-                    "ActionDescription_2": "&{TextPoe127}",
-                    "ActionTitle_3": "&{TextPoe128}",
-                    "ActionDescription_3": "&{TextPoe129}",
-                    "ActionTitle_4": "&{TextPoe130}",
-                    "ActionDescription_4": "&{TextPoe131}",
-                    "InformationStorageKey": "&{TextPoe224}",
-                    "ToastMessage": "&{TextPoe133}",
-                    "DecodeKeyName": "&{TextPoe246}",
+                    "FrameTitle": "&{Text141}",
+                    "ActionTitle": "&{Text142}",
+                    "ActionDescription": "&{Text143}",
+                    "ActionTitle_1": "&{Text144}",
+                    "ActionDescription_1": "&{Text145}",
+                    "ActionTitle_2": "&{Text146}",
+                    "ActionDescription_2": "&{Text147}",
+                    "ActionTitle_3": "&{Text148}",
+                    "ActionDescription_3": "&{Text149}",
+                    "ActionTitle_4": "&{Text150}",
+                    "ActionDescription_4": "&{Text151}",
+                    "InformationStorageKey": "&{Text152}",
+                    "ToastMessage": "&{Text153}",
+                    "DecodeKeyName": "CurrentTXN Identifier",
                     "EncodedInputValue": "${MainTXNCurentTXNDataIdentifier}",
                     "DecodedResultVariable": "MainTXNCurentTXNDataIdentifierDecoded"
                   }
@@ -3321,14 +4138,14 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 21,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 36,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe96}",
-                "ActionDescription": "&{TextPoe97}",
+                "ActionTitle": "&{Text154}",
+                "ActionDescription": "&{Text155}",
                 "ActionType": "FormatMetaData",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3371,8 +4188,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 22,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 37,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
@@ -3401,13 +4218,13 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "KeyValueHighlighter",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 22,
-                    "SegmentNo": segPoe + 5,
+                    "StepNo": numPoe + 37,
+                    "SegmentNo": segPoe + 7,
                     "FrameID": 4,
-                    "ActionTitle": "&{TextPoe100}",
-                    "ActionDescription": "&{TextPoe101}",
-                    "ActionTitle_1": "&{TextPoe300}",
-                    "ActionDescription_1": "&{TextPoe103}",
+                    "ActionTitle": "&{Text160}",
+                    "ActionDescription": "&{Text161}",
+                    "ActionTitle_1": "&{Text162}",
+                    "ActionDescription_1": "&{Text163}",
                     "OperationKey": "dataHash",
                     "OperationValue": "MainTXNCurentTXNDatadatahash",
                     "OperationKeyName": "encoded datahash from the transaction details.",
@@ -3429,14 +4246,14 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 23,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 38,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 4,
                 "FrameTitle": ""
               },
               "Action": {
-                "ActionTitle": "&{TextPoe106}",
-                "ActionDescription": "&{TextPoe107}",
+                "ActionTitle": "&{Text164}",
+                "ActionDescription": "&{Text165}",
                 "ActionType": "InformationStorage",
                 "ActionParameters": {
                   "ExternalURL": "",
@@ -3459,7 +4276,7 @@ export class BuildPOCJsonService {
                   "FormatType": "",
                   "StorageData": [
                     {
-                      "Key": "&{TextPoe210}",
+                      "Key": "&{Text166}",
                       "Value": "${MainTXNCurentTXNDatadatahash}"
                     }
                   ]
@@ -3479,8 +4296,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 24,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 39,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 6,
                 "FrameTitle": ""
               },
@@ -3509,25 +4326,25 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "OnlineToolsDecoder",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 24,
-                    "SegmentNo": segPoe + 5,
+                    "StepNo": numPoe + 39,
+                    "SegmentNo": segPoe + 7,
                     "FrameID": 6,
-                    "FrameTitle": "&{TextPoe110}",
-                    "ActionTitle": "&{TextPoe111}",
-                    "ActionDescription": "&{TextPoe112}",
-                    "ActionTitle_1": "&{TextPoe113}",
-                    "ActionDescription_1": "&{TextPoe134}",
-                    "ActionTitle_2": "&{TextPoe135}",
-                    "ActionDescription_2": "&{TextPoe136}",
-                    "ActionTitle_3": "&{TextPoe137}",
-                    "ActionDescription_3": "&{TextPoe138}",
-                    "ActionTitle_4": "&{TextPoe139}",
-                    "ActionDescription_4": "&{TextPoe140}",
-                    "ToastMessage": "&{TextPoe141}",
+                    "FrameTitle": "&{Text180}",
+                    "ActionTitle": "&{Text181}",
+                    "ActionDescription": "&{Text182}",
+                    "ActionTitle_1": "&{Text183}",
+                    "ActionDescription_1": "&{Text184}",
+                    "ActionTitle_2": "&{Text185}",
+                    "ActionDescription_2": "&{Text186}",
+                    "ActionTitle_3": "&{Text187}",
+                    "ActionDescription_3": "&{Text188}",
+                    "ActionTitle_4": "&{Text189}",
+                    "ActionDescription_4": "&{Text190}",
+                    "ToastMessage": "&{Text191}",
                     "EncodedInputValue": "${MainTXNCurentTXNDatadatahash}",
                     "DecodedResultVariable": "MainTXNCurentTXNDatadatahashDecoded",
-                    "InformationStorageKey": "&{TextPoe225}",
-                    "DecodeKeyName": "&{TextPoe247}"
+                    "InformationStorageKey": "&{Text192}",
+                    "DecodeKeyName": "&{Text192}"
                   }
                 },
                 "ActionResultVariable": "",
@@ -3545,8 +4362,8 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 25,
-                "SegmentNo": segPoe + 5,
+                "StepNo": numPoe + 40,
+                "SegmentNo": segPoe + 7,
                 "FrameID": 7,
                 "FrameTitle": ""
               },
@@ -3575,24 +4392,24 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "ActionConfigurationID": "TextComparison",
                   "SubActionArguments": {
-                    "StepNo": numPoe + 25,
-                    "SegmentNo": segPoe + 5,
+                    "StepNo": numPoe + 40,
+                    "SegmentNo": segPoe + 7,
                     "FrameID": 7,
-                    "FrameTitle": "&{TextPoe115}",
-                    "ActionTitle": "&{TextPoe116}",
-                    "ActionDescription": "&{TextPoe117}",
-                    "FrameTitle_1": "&{TextPoe118}",
-                    "ActionTitle_1": "&{TextPoe119}",
-                    "ActionDescription_1": "&{TextPoe142}",
-                    "FrameTitle_2": "&{TextPoe143}",
-                    "ActionTitle_2": "&{TextPoe144}",
-                    "ActionDescription_2": "&{TextPoe145}",
-                    "FrameTitle_3": "&{TextPoe146}",
-                    "ActionTitle_3": "&{TextPoe147}",
-                    "ActionDescription_3": "&{TextPoe148}",
-                    "ToastMessage": "&{TextPoe154}",
-                    "InputKeyName": "the base64 decoded Datahash values from the transactions.",
-                    "InputValue": "[{\"title\": \"Identifiers from the Traceability Data and Blockchain transaction\", \"t1\": \"${MainTXNCurentTXNDatadatahashDecoded}\", \"t2\": \"${TDPDatahash}\"}]"
+                    "FrameTitle": "&{Text180}",
+                    "ActionTitle": "&{Text181}",
+                    "ActionDescription": "&{Text182}",
+                    "FrameTitle_1": "&{Text183}",
+                    "ActionTitle_1": "&{Text184}",
+                    "ActionDescription_1": "&{Text185}",
+                    "FrameTitle_2": "&{Text186}",
+                    "ActionTitle_2": "&{Text187}",
+                    "ActionDescription_2": "&{Text188}",
+                    "FrameTitle_3": "&{Text189}",
+                    "ActionTitle_3": "&{Text190}",
+                    "ActionDescription_3": "&{Text191}",
+                    "ToastMessage": "&{Text192}",
+                    "InputKeyName": "The base64 decoded Datahash values from the transactions.",
+                    "InputValue": "[{\"title\": \"Datahashes from the Traceability Data and Blockchain transaction\", \"t1\": \"${data_hash}\", \"t2\": \"${MainTXNCurentTXNDatadatahashDecoded}\"}]"
                   }
                 },
                 "ActionResultVariable": "",
@@ -3610,21 +4427,87 @@ export class BuildPOCJsonService {
             },
             {
               "StepHeader": {
-                "StepNo": numPoe + 26,
-                "SegmentNo": segPoe + 6,
+                "StepNo": numPoe + 41,
+                "SegmentNo": segPoe + 7,
+                "FrameID": 7,
+                "FrameTitle": ""
+              },
+              "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                  "ExternalURL": "",
+                  "InnerHTML": "",
+                  "Query": "",
+                  "QueryIndex": "",
+                  "YOffset": "",
+                  "XOffset": "",
+                  "ElAttributeName": "",
+                  "ElAttributeValue": "",
+                  "ElAttributeValueReplace": "",
+                  "ElProperty": "",
+                  "ElPropertyValue": "",
+                  "ElFunction": "",
+                  "ElFunctionArguments": "",
+                  "SelectiveText": "",
+                  "CaseSensitivity": "",
+                  "SelectiveTextIndex": "",
+                  "CSS": "",
+                  "FormatType": "",
+                  "StorageData": [],
+                  "ActionConfigurationID": "TextComparison",
+                  "SubActionArguments": {
+                    "StepNo": numPoe + 41,
+                    "SegmentNo": segPoe + 7,
+                    "FrameID": 7,
+                    "FrameTitle": "&{Text193}",
+                    "ActionTitle": "&{Text194}",
+                    "ActionDescription": "&{Text195}",
+                    "FrameTitle_1": "&{Text196}",
+                    "ActionTitle_1": "&{Text197}",
+                    "ActionDescription_1": "&{Text198}",
+                    "FrameTitle_2": "&{Text199}",
+                    "ActionTitle_2": "&{Text200}",
+                    "ActionDescription_2": "&{Text201}",
+                    "FrameTitle_3": "&{Text202}",
+                    "ActionTitle_3": "&{Text203}",
+                    "ActionDescription_3": "&{Text204}",
+                    "ToastMessage": "&{Text205}",
+                    "InputKeyName": "The base64 decoded identifer values from the transactions.",
+                    "InputValue": "[{\"title\": \"Identifier from the Traceability Data and Blockchain transaction\", \"t1\": \"${Identifier}\", \"t2\": \"${MainTXNCurentTXNDataIdentifierDecoded}\"}]"
+                  }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+              },
+              "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+              }
+            },
+            {
+              "StepHeader": {
+                "StepNo": numPoe + 42,
+                "SegmentNo": segPoe + 8,
                 "FrameID": 8,
-                "FrameTitle": "&{TextPoe120}",
+                "FrameTitle": "&{Text206}",
                 "PathID":`poe-${node.Id}-Final`,
               },
               "Action": {
-                "ActionTitle": "&{TextPoe121}",
-                "ActionDescription": "&{TextPoe121}",
+                "ActionTitle": "&{Text207}",
+                "ActionDescription": "&{Text208}",
                 "ActionType": "BrowserScreen",
                 "ActionParameters": {
                   "ExternalURL": "",
-                  "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Identifier</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${TDPIdentifier}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px; margin-top:5px;\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Identifier</span></strong></p></th><th scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n${TDPIdentifier}\r\n </p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr></tbody></table></div></div></body></html>",
-                  "PageURL": "&{TextPoe123}",
+                  "EncodedData": "false",
+                  "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n {visibility: hidden;}\r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal;font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing:0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0;font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\"><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2;font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF;text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\">Batch ID</span></strong></p></th><td scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\">\r\n${TDPIdentifier}\r\n</p></td></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Transaction Hash from Field Officer</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Tracified</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${data_hash}\r\n </p></td></tr><tr> <td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Blockchain</span></strong></p></td> <td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n${MainTXNCurentTXNDatadatahashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px; margin-top:5px;\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF EXISTENCE</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\">Batch ID</span></strong></p></th><td scope=\"col\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal;text-align: start; color:#000000;\">\r\n${TDPIdentifier}\r\n</p></td></tr></thead><tbody><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Transaction Hash from Field Officer</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${var_currenttxn}\r\n </p></td></tr><tr><td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Tracified</span></strong></p></td><td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n ${data_hash}\r\n </p></td></tr><tr> <td style=\"border-right: 1px solid #E3E3E3; padding-right: 22px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal;word-break:break-word;\"><strong><span class=\"size-14\">Data Hash From Blockchain</span></strong></p></td> <td style=\"padding-left:2px;\"><p class=\"size-14\" style=\"text-align: strat; font-family:Inter; font-style:normal;word-break:break-word;\">\r\n${MainTXNCurentTXNDatadatahashDecoded}\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                  "PageURL": "&{Text123}",
                   "Query": "",
                   "QueryIndex": "",
                   "YOffset": "",
@@ -3644,7 +4527,9 @@ export class BuildPOCJsonService {
                   "StorageData": [],
                   "Compare": {
                     "t1": "MainTXNCurentTXNDatadatahashDecoded",
-                    "t2": "TDPDatahash"
+                    "t2": "data_hash",
+                    "t3": "MainTXNCurentTXNDataIdentifierDecoded",
+                    "t4": "Identifier"
                   }
                 },
                 "ActionResultVariable": "",
@@ -3655,7 +4540,7 @@ export class BuildPOCJsonService {
                 "ScrollToPointer": false,
                 "FrameAutoScroll": true,
                 "FrameScrollBars": "",
-                "ToastMessage1": "&{TextPoe234}",
+                "ToastMessage1": "&{Text209}",
                 "ToastPosition1": [
                   "6%",
                   "80%"
@@ -3664,48 +4549,48 @@ export class BuildPOCJsonService {
               }
             },
           ]
-          let poeLang = [
+          let poeLang=[
             {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 1,
               "Languages": {
-                "TextPoe0": {
+                "Text0": {
                   "ja": "ステップ1-TDPデータの取得",
                   "en": "Step 1 - Retrieve Traceability Data Data"
                 },
-                "TextPoe149": {
-                  "ja": "TDPデータ要求",
+                "Text1": {
+                  "ja": "TDPデータの要求",
                   "en": "Request Traceability Data Data"
                 },
-                "TextPoe1": {
+                "Text2": {
                   "ja": "現在のTDP",
                   "en": "Current Traceability Data"
                 },
-                "TextPoe2": {
+                "Text3": {
                   "ja": "Tracified GatewayからTDPデータを取得",
                   "en": "Retrieve Traceability Data data from Tracified Gateway."
                 },
-                "TextPoe3": {
+                "Text4": {
                   "ja": "ステップ1-TDPデータの取得",
                   "en": "Step 1 - Retrieve Traceability Data Data"
                 },
-                "TextPoe4": {
+                "Text5": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "TextPoe5": {
+                "Text6": {
                   "ja": "トランザクションのレスポンスデータの保存",
                   "en": "Save the response data of the transaction"
                 },
-                "TextPoe6": {
+                "Text7": {
                   "ja": "ステップ1-TDPデータの取得",
                   "en": "Step 1 - Retrieve Traceability Data Data"
                 },
-                "TextPoe7": {
+                "Text8": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "TextPoe8": {
+                "Text9": {
                   "ja": "トランザクションデータをJSONにフォーマット(Javascriptオブジェクト記法)",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
@@ -3715,13 +4600,13 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 2,
               "Languages": {
-                "TextPoe9": {
+                "Text10": {
                   "ja": "TDP識別子の選択",
                   "en": "Select Traceability Data identifier"
                 },
-                "TextPoe10": {
+                "Text11": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from Traceability Data details."
+                  "en": "Select the Traceability Data identifier from Traceability Data details."
                 }
               }
             },
@@ -3729,29 +4614,33 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 3,
               "Languages": {
-                "TextPoe11": {
-                  "ja": "TDPの詳細からの識別子",
-                  "en": "identifier from the Traceability Data details"
+                  "Text12": {
+                    "ja":"TDPの詳細からの識別子",
+                  "en": "TDP identifier from the Traceability Data details"
                 },
-                "TextPoe12": {
-                  "ja": "識別子をハイライト表示",
-                  "en": "Highlight the Identifier"
+                  "Text13": {
+                    "ja":"識別子をハイライト表示",
+                  "en": "Highlight the TDP Identifier"
                 },
-                "TextPoe13": {
+                  "Text14": {
+                    "ja":"TDP詳細から識別子を選択",
+                    "en": "Select the TDP identifier from the Traceability Data details"
+                  },
+                "Text15": {
+                    "ja":"TDP詳細から識別子を選択",
+                  "en": "Select the TDP identifier from the Traceability Data details"
+                },
+                "Text16": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the Traceability Data details"
+                  "en": "Select the TDP identifier from the Traceability Data details"
                 },
-                "TextPoe14": {
-                  "ja": "テスト",
-                  "en": "test"
-                },
-                "TextPoe15": {
+                "Text17": {
                   "ja": "識別子をハイライト表示",
-                  "en": "Highlight the TDPIdentifier"
+                  "en": "Highlight the value of TDP Identifier"
                 },
-                "TextPoe16": {
+                "Text18": {
                   "ja": "TDP詳細から識別子を選択",
-                  "en": "Select the identifier from the Traceability Data details"
+                  "en": "Select the TDP identifier value from the Traceability Data details"
                 }
               }
             },
@@ -3759,15 +4648,15 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 4,
               "Languages": {
-                "TextPoe17": {
+                "Text19": {
                   "ja": "Traceability Data 識別子の保存",
                   "en": "Save Traceability Data Identifier"
                 },
-                "TextPoe18": {
+                "Text20": {
                   "ja": "将来の使用のために識別子の値を保存する",
                   "en": "Save the Identifier value for future usage."
                 },
-                "TextPoe205": {
+                "Text21": {
                   "ja": "TDP識別子",
                   "en": "Traceability Data Identifier"
                 }
@@ -3777,13 +4666,13 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 5,
               "Languages": {
-                "TextPoe20": {
-                  "ja": "Traceability Data Data Hashの選択",
-                  "en": "Select Traceability Data Data Hash"
+                "Text22": {
+                  "ja": "Traceability Data の選択",
+                  "en": "Select base64 encoded Traceability Data"
                 },
-                "TextPoe21": {
+                "Text23": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from Traceability Data details."
+                  "en": "Select the base64 encoded Traceability Data from Traceability Data details."
                 }
               }
             },
@@ -3791,29 +4680,29 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 6,
               "Languages": {
-                "TextPoe22": {
+                "Text24": {
                   "ja": "TDPの詳細からダータハッシュ",
-                  "en": "Data Hash from the Traceability Data details"
+                  "en": "Traceability Data from the base64 encoded Traceability Data details"
                 },
-                "TextPoe23": {
+                "Text25": {
                   "ja": "ダータハッシュをハイライト表示",
-                  "en": "Highlight the Data Hash"
+                  "en": "Highlight the base64 encoded Traceability Data "
                 },
-                "TextPoe24": {
+                "Text26": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the Traceability Data details"
+                  "en": "Select the base64 encoded Traceability Data from the Traceability Data details"
                 },
-                "TextPoe25": {
-                  "ja": "テスト",
-                  "en": "test"
+                "Text27": {
+                  "ja": "TDPの詳細からデータハッシュを選択",
+                  "en": "Select the base64 encoded Traceability Data from the Traceability Data details"
                 },
-                "TextPoe26": {
+                "Text28": {
                   "ja": "TDPデータハッシュのハイライト",
-                  "en": "Highlight the Traceability Data Data Hash"
+                  "en": "Highlight the base64 encoded Traceability Data value"
                 },
-                "TextPoe27": {
+                "Text29": {
                   "ja": "TDPの詳細からデータハッシュを選択",
-                  "en": "Select the Data Hash from the Traceability Data details"
+                  "en": "Select the base64 encoded Traceability Data value from the Traceability Data details"
                 }
               }
             },
@@ -3821,577 +4710,978 @@ export class BuildPOCJsonService {
               "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 7,
               "Languages": {
-                "TextPoe28": {
+                "Text30": {
                   "ja": "TDPデータハッシュの保存",
-                  "en": "Save Traceability Data Data Hash"
+                  "en": "Save base64 encoded Traceability Data"
                 },
-                "TextPoe29": {
+                "Text31": {
                   "ja": "将来の使用のためにデータハッシュ値の保存",
-                  "en": "Save Data Hash value for future usage."
+                  "en": "Save base64 encoded Traceability Data value for future usage."
                 },
-                "TextPoe206": {
+                "Text32": {
                   "ja": "Traceability Data データハッシュ",
-                  "en": "Traceability Data Data Hash"
+                  "en": "base64 encoded Traceability Data "
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 2,
+              "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 8,
               "Languages": {
-                "TextPoe31": {
+                "Text33": {
                   "ja": "Traceability Data Txn Hashを選択",
                   "en": "Select Traceability Data Txn Hash"
                 },
-                "TextPoe32": {
+                "Text34": {
                   "ja": "TDPの詳細からTxn Hashを選択",
                   "en": "Select the Txn Hash from Traceability Data details."
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 2,
+              "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 9,
               "Languages": {
-                "TextPoe34": {
+                "Text35": {
                   "ja": "Txn Hashのハイライト",
                   "en": "Highlight the Txn Hash"
                 },
-                "TextPoe35": {
+                "Text36": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the txn Hash from the Traceability Data details"
                 },
-                "TextPoe37": {
+                "Text37": {
                   "ja": "Traceability Data Txn Hashをハイライト",
                   "en": "Highlight the Traceability Data Txn Hash"
                 },
-                "TextPoe38": {
+                "Text38": {
                   "ja": "TDPの詳細からtxn Hashを選択",
                   "en": "Select the txn Hash from the Traceability Data details"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 2,
+              "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 10,
               "Languages": {
-                "TextPoe39": {
+                "Text39": {
                   "ja": "Traceability Data Txn Hashを保存",
                   "en": "Save Traceability Data Txn Hash"
                 },
-                "TextPoe40": {
+                "Text40": {
                   "ja": "将来の使用のためにTxn Hashの値を保存",
                   "en": "Save Txn Hash value for future usage."
                 },
-                "TextPoe207": {
+                "Text41": {
                   "ja": "Traceability Data Txn Hash",
                   "en": "Traceability Data Txn Hash"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 2,
+              "SegmentNo": segPoe + 1,
               "StepNo": numPoe + 11,
               "Languages": {
-                "TextPoe42": {
+                "Text42": {
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select Traceability Data ID"
+                },
+                "Text43": {
+                  "ja": "TDPの詳細からTxn Hashを選択",
+                  "en": "Select the TDP ID from Traceability Data details."
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 12,
+              "Languages": {
+                "Text44": {
+                  "ja": "Txn Hashのハイライト",
+                  "en": "Highlight the Tracicebility Data ID"
+                },
+                "Text45": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Traceability Data ID from the Traceability Data details"
+                },
+                "Text46": {
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Traceability Data ID"
+                },
+                "Text47": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Traceability Data ID from the Traceability Data details"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 13,
+              "Languages": {
+                "Text48": {
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save Traceability Data Traceability Data ID"
+                },
+                "Text49": {
+                  "ja": "将来の使用のためにTxn Hashの値を保存",
+                  "en": "Save Traceability Data ID value for future usage."
+                },
+                "Text50": {
+                  "ja": "Traceability Data ID",
+                  "en": "Traceability Data ID"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 14,
+              "Languages": {
+                "Text51": {
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select Traceability Profile ID"
+                },
+                "Text52": {
+                  "ja": "TDPの詳細からTxn Hashを選択",
+                  "en": "Select the Profile ID from Traceability Data details."
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 15,
+              "Languages": {
+                "Text53": {
+                  "ja": "Txn Hashのハイライト",
+                  "en": "Highlight the Profile ID"
+                },
+                "Text54": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Profile ID from the Traceability Data details"
+                },
+                "Text55": {
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Proflie ID"
+                },
+                "Text56": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Profile ID from the Traceability Data details"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 16,
+              "Languages": {
+                "Text57": {
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save Traceability Data Profile ID"
+                },
+                "Text58": {
+                  "ja": "将来の使用のためにTxn Hashの値を保存",
+                  "en": "Save Profile ID value for future usage."
+                },
+                "Text59": {
+                  "ja": "Traceability Data Profile ID",
+                  "en": "Traceability Data Profile ID"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 17,
+              "Languages": {
+                "Text60": {
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select the Identifier."
+                },
+                "Text61": {
+                  "ja": "TDPの詳細からTxn Hashを選択",
+                  "en": "Select the Identifier from Traceability Data details."
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 18,
+              "Languages": {
+                "Text62": {
+                  "ja": "Txn Hashのハイライト",
+                  "en": "Highlight the Identifier."
+                },
+                "Text63": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Identifier from the Traceability Data details."
+                },
+                "Text64": {
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Identifier."
+                },
+                "Text65": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Identifier from the Traceability Data details"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 19,
+              "Languages": {
+                "Text66": {
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save the Identifier"
+                },
+                "Text67": {
+                  "ja": "将来の使用のためにTxn Hashの値を保存",
+                  "en": "Save Identifier value for future usage."
+                },
+                "Text68": {
+                  "ja": "Traceability Data Identifier",
+                  "en": "Traceability Data Identifier"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 20,
+              "Languages": {
+                "Text69": {
+                  "ja": "Traceability Data Txn Hashを選択",
+                  "en": "Select the Map Identifier."
+                },
+                "Text70": {
+                  "ja": "TDPの詳細からTxn Hashを選択",
+                  "en": "Select the Map Identifier from Traceability Data details."
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo":numPoe + 21,
+              "Languages": {
+                "Text71": {
+                  "ja": "Txn Hashのハイライト",
+                  "en": "Highlight the Map Identifier."
+                },
+                "Text72": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Map Identifier from the Traceability Data details."
+                },
+                "Text73": {
+                  "ja": "Traceability Data Txn Hashをハイライト",
+                  "en": "Highlight the Map Identifier."
+                },
+                "Text74": {
+                  "ja": "TDPの詳細からtxn Hashを選択",
+                  "en": "Select the Map Identifier from the Traceability Data details"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 1,
+              "StepNo": numPoe + 22,
+              "Languages": {
+                "Text75": {
+                  "ja": "Traceability Data Txn Hashを保存",
+                  "en": "Save the Map Identifier"
+                },
+                "Text76": {
+                  "ja": "将来の使用のためにTxn Hashの値を保存",
+                  "en": "Save Map Identifier value for future usage."
+                },
+                "Text77": {
+                  "ja": "Traceability Data Map Identifier",
+                  "en": "Traceability Data Map Identifier"
+                }
+              }
+            },
+           {
+              "SegmentNo": segPoe + 2,
+              "StepNo": numPoe + 23,
+              "Languages": {
+                "Text212": {
+                  "ja": "ステップ 2 - トレーサビリティ データのデコード",
+                  "en": "Step 2 - Decode Traceability Data"
+                },
+                "Text213": {
+                  "ja": "base64デコードのサイトを読み込む",
+                  "en": "Load the base64 decode website"
+                },
+                "Text214": {
+                  "ja": "Base64 でエンコードされたトレーサビリティ データをデコードする",
+                  "en": "Decode the base64 encoded Traceability Data"
+                },
+                "Text215": {
+                  "ja": "Base64 でエンコードされたトレーサビリティ データを入力",
+                  "en": "Input base64 encoded Traceability Data"
+                },
+                "Text216": {
+                  "ja": "Base64 でエンコードされたトレーサビリティ データを入力します",
+                  "en": "Input the base64 encoded Traceability Data"
+                },
+                "Text217": {
+                  "ja": "デコードボタンをクリック",
+                  "en": "Click decode button"
+                },
+                "Text218": {
+                  "ja": "デコードボタンをクリック",
+                  "en": "Click the decode button"
+                },
+                "Text219": {
+                  "ja": "Base64デコードデータの表示",
+                  "en": "View Base64 Decoded Data"
+                },
+                "Text220": {
+                  "ja": "デコードされたトレーサビリティ データの出力を取得します",
+                  "en": "Get the output of the decoded Traceability Data"
+                },
+                "Text221": {
+                  "ja": "デコードされた値を情報ストレージに保存します",
+                  "en": "Save the decoded value in information storage"
+                },
+                "Text222": {
+                  "ja": "デコードされたトレーサビリティ データを将来の使用のために保存します。",
+                  "en": "Save the decoded Traceability Data for future usage."
+                },
+                "Text223": {
+                  "ja": "トレーサビリティデータ（デコード済み）",
+                  "en": "Traceability Data (decoded)"
+                },
+                "Text224": {
+                  "ja": "デコードされたトレーサビリティ データ",
+                  "en": "Decoded Traceability Data"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 3,
+              "StepNo": numPoe + 24,
+              "Languages": {
+                "Text210": {
+                  "ja": "ステップ 3 - Base64 でエンコードされたデータとトレーサビリティ データ識別子を結合します。",
+                  "en": "Step 3 - Combine Base64 encoded data and Traceability Data Identifier."
+                },
+                "Text211": {
+                  "ja": "Base64 でエンコードされたデータとゲートウェイから受信したトレーサビリティ データ識別子が結合されます。",
+                  "en": "Base64 encoded data and the Traceability Data Identifier received from the gateway are being combined."
+                },
+                "Text225": {
+                  "ja": "ステップ 3 - Base64 でエンコードされたデータとトレーサビリティ データ識別子を結合します。",
+                  "en": "Step 3 - Combine Base64 encoded data and Traceability Data Identifier."
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 3,
+              "StepNo": numPoe + 25,
+              "Languages": {
+                "Text78": {
+                  "ja": "ステップ１５ - 現在のTXNをデコード",
+                  "en": "Step 4 - Genarate Data Hash"
+                },
+                "Text79": {
+                  "ja": "base64デコードのサイトを読み込む",
+                  "en": "Load the SHA256 converter website."
+                },
+                "Text80": {
+                  "ja": "Base64でエンコードされたCurrent TXNハッシュをデコードする",
+                  "en": "Genarate Data Hash"
+                },
+                "Text81": {
+                  "ja": "Base64でエンコードされた現在のTXNハッシュを入力",
+                  "en": "Input base64 encoded Data Hash and Traceability Data Identifer."
+                },
+                "Text82": {
+                  "ja": "Base64でエンコードされたCurrent TXNハッシュを入力する",
+                  "en": "Input base64 encoded Data Hash and Traceability Data Identifer."
+                },
+                "Text83": {
+                  "ja": "デコードボタンをクリック",
+                  "en": "Click the Hash button."
+                },
+                "Text84": {
+                  "ja": "デコードボタンをクリック",
+                  "en": "Click the Hash button."
+                },
+                "Text85": {
+                  "ja": "Base64デコードデータの表示",
+                  "en": "View SHA256 converted Hash."
+                },
+                "Text86": {
+                  "ja": "デコードされた現在のTXNハッシュの出力を取得",
+                  "en": "Get the SHA256 converted Hash."
+                },
+                "Text87": {
+                  "ja": "デコードした値を情報ストレージに保存",
+                  "en": "Save the SHA256 converted Hash in the informatio storage."
+                },
+                "Text88": {
+                  "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
+                  "en": "Save the SHA256 converted Hash for future usage."
+                },
+                "Text89": {
+                  "ja": "現TXNハッシュ（デコード済み）",
+                  "en": "Genarated Data Hash"
+                },
+                "Text90": {
+                  "ja": "デコードされた現在のTXNハッシュ",
+                  "en": "Genarated Data Hash"
+                }
+              }
+            },
+            {
+              "SegmentNo": segPoe + 4,
+              "StepNo": numPoe + 26,
+              "Languages": {
+                "Text91": {
                   "ja": "ステップ５ーTDPトランザクションの取得",
                   "en": "Step 5 - Retrieve Traceability Data Transaction"
                 },
-                "TextPoe43": {
+                "Text92": {
                   "ja": "ステラホライズンAPIをリクエスト",
                   "en": "Request Stellar Horizon API"
                 },
-                "TextPoe44": {
+                "Text93": {
                   "ja": "ステラブロックチェーンから現在の取引を取得",
                   "en": "Retrieve the current transaction from Stellar Blockchain."
                 },
-                "TextPoe45": {
+                "Text94": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "TextPoe46": {
+                "Text95": {
                   "ja": "トランザクションのレスポンスデータを保存",
                   "en": "Save the response data of the transaction"
                 },
-                "TextPoe47": {
+                "Text96": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "TextPoe48": {
+                "Text97": {
                   "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 12,
+              "SegmentNo": segPoe + 4,
+              "StepNo": numPoe + 27,
               "Languages": {
-                "TextPoe49": {
+                "Text98": {
                   "ja": "Current TXNハッシュの選択",
                   "en": "Select Current TXN Hash"
                 },
-                "TextPoe50": {
+                "Text99": {
                   "ja": "トランザクションの詳細からCurrent TXNハッシュ（base64エンコード）を選択",
                   "en": "Select the Current TXN Hash (base64 encoded) from the transaction details."
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 2,
-              "StepNo": numPoe + 13,
+              "SegmentNo": segPoe + 4,
+              "StepNo": numPoe + 28,
               "Languages": {
-                "TextPoe51": {
+                "Text100": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュをハイライト",
                   "en": "Highlight the encoded Current TXN Hash from the transaction details"
                 },
-                "TextPoe52": {
+                "Text101": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュを選択",
                   "en": "Select the encoded Current TXN Hash from the transaction details"
                 },
-                "TextPoe53": {
+                "Text102": {
                   "ja": "トランザクションの詳細から、エンコードされたCurrent TXNハッシュ値をハイライト",
                   "en": "Highlight the encoded Current TXN Hash value from the transaction details"
                 },
-                "TextPoe54": {
+                "Text103": {
                   "ja": "トランザクションの詳細からエンコードされたCurrent TXNハッシュ値を選択",
                   "en": "Select the encoded Current TXN Hash value from the transaction details"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 3,
-              "StepNo": numPoe + 14,
+              "SegmentNo": segPoe + 4,
+              "StepNo": numPoe + 29,
               "Languages": {
-                "TextPoe55": {
+                "Text104": {
                   "ja": "Base64エンコードされたCurrent TXNの保存",
                   "en": "Save Base64 Encoded Current TXN"
                 },
-                "TextPoe56": {
+                "Text105": {
                   "ja": "将来の使用のためにBase64でエンコードされたCurrent TXNハッシュ値を保存",
                   "en": "Save the base64 encoded Current TXN Hash value for future usage."
                 },
-                "TextPoe208": {
+                "Text106": {
                   "ja": "Current TXN (ベース64)",
                   "en": "Current TXN (base64)"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 3,
-              "StepNo": numPoe + 15,
+              "SegmentNo": segPoe + 5,
+              "StepNo": numPoe + 30,
               "Languages": {
-                "TextPoe58": {
-                  "ja": "ステップ１５ - 現在のTXNをデコード",
-                  "en": "Step 15 - Decode Current TXN"
+                "Text107": {
+                  "ja": "ステップ 6 - 現在のTXNをデコード",
+                  "en": "Step 6 - Decode Current TXN"
                 },
-                "TextPoe59": {
+                "Text108": {
                   "ja": "base64デコードのサイトを読み込む",
                   "en": "Load the base64 decode website"
                 },
-                "TextPoe60": {
+                "Text109": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュをデコードする",
                   "en": "Decode the base64 encoded Current TXN Hash"
                 },
-                "TextPoe61": {
+                "Text110": {
                   "ja": "Base64でエンコードされた現在のTXNハッシュを入力",
                   "en": "Input base64 encoded current txn hash"
                 },
-                "TextPoe62": {
+                "Text111": {
                   "ja": "Base64でエンコードされたCurrent TXNハッシュを入力する",
                   "en": "Input the base64 encoded Current TXN Hash"
                 },
-                "TextPoe63": {
+                "Text112": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click decode button"
                 },
-                "TextPoe64": {
+                "Text113": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "TextPoe65": {
+                "Text114": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "TextPoe66": {
+                "Text115": {
                   "ja": "デコードされた現在のTXNハッシュの出力を取得",
                   "en": "Get the output of the decoded current txn hash"
                 },
-                "TextPoe67": {
+                "Text116": {
                   "ja": "デコードした値を情報ストレージに保存",
                   "en": "Save the decoded value in information storage"
                 },
-                "TextPoe68": {
+                "Text117": {
                   "ja": "将来の使用のためにデコードされたCurrent TXNハッシュを保存",
                   "en": "Save the decoded Current TXN Hash for future usage."
                 },
-                "TextPoe223": {
+                "Text118": {
                   "ja": "現TXNハッシュ（デコード済み）",
                   "en": "Current txn Hash (decoded)"
                 },
-                "TextPoe70": {
+                "Text119": {
                   "ja": "デコードされた現在のTXNハッシュ",
                   "en": "Decoded current txn hash"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 4,
-              "StepNo": numPoe + 16,
+              "SegmentNo": segPoe + 6,
+              "StepNo": numPoe + 31,
               "Languages": {
-                "TextPoe71": {
-                  "ja": "ステップ１６ー現在の取引の取得",
-                  "en": "Step 16 - Retrieve Current Transaction"
+                "Text120": {
+                  "ja": "ステップ7ー現在の取引の取得",
+                  "en": "Step 7 - Retrieve Current Transaction"
                 },
-                "TextPoe72": {
+                "Text121": {
                   "ja": "ゲートウェイトランザクションの現在のトランザクション",
                   "en": "current transaction of the gateway transaction"
                 },
-                "TextPoe73": {
+                "Text122": {
                   "ja": "ステラホライズンAPIをリクエスト",
                   "en": "Request Stellar Horizon API"
                 },
-                "TextPoe74": {
+                "Text123": {
                   "ja": "ゲートウェイトランザクションの現在のトランザクションをStellar Blockchainから取得",
                   "en": "Retrieve the current transaction of the gateway transaction from Stellar Blockchain."
                 },
-                "TextPoe76": {
+                "Text124": {
                   "ja": "API レスポンスの保存",
                   "en": "Save API Response"
                 },
-                "TextPoe77": {
+                "Text125": {
                   "ja": "トランザクションのレスポンスデータの保存",
                   "en": "Save the response data of the transaction"
                 },
-                "TextPoe125": {
+                "Text126": {
                   "ja": "フォーマットレスポンス（JSON）",
                   "en": "Format Response (JSON)"
                 },
-                "TextPoe126": {
+                "Text127": {
                   "ja": "トランザクションデータをJSON（Javascript Object Notation）にフォーマットする",
                   "en": "Format transaction data to JSON (Javascript Object Notation)"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 17,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 32,
               "Languages": {
-                "TextPoe78": {
-                  "ja": "Base64 Encoded Current Txn 識別子 を選択",
+                "Text128": {
+                  "ja": "Base64 Encoded Current Txn ID を選択",
                   "en": "Select Base64 Encoded Current Txn Identifier"
                 },
-                "TextPoe79": {
+                "Text129": {
                   "ja": "トランザクションの詳細から、エンコードされたcurrent Txn Identifierを選択",
                   "en": "Select the encoded current Txn Identifier from the transaction details."
                 },
-                "TextPoe80": {
+                "Text130": {
                   "ja": "フォーマットメタデータ",
                   "en": "Format Meta Data"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 18,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 33,
               "Languages": {
-                "TextPoe81": {
+                "Text131": {
                   "ja": "トランザクションの詳細からエンコードされたIdentifierをハイライト",
                   "en": "Highlight the encoded Identifier from the transaction details"
                 },
-                "TextPoe82": {
+                "Text132": {
                   "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
                   "en": "Select the encoded Identifier value from the transaction details"
                 },
-                "TextPoe83": {
+                "Text133": {
                   "ja": "テスト",
                   "en": "test"
                 },
-                "TextPoe84": {
+                "Text134": {
                   "ja": "トランザクションの詳細からMainTXNCurrent TXNDataIdentifierをハイライト",
                   "en": "Highlight the MainTXNCurrent TXNDataIdentifier from the transaction details"
                 },
-                "TextPoe85": {
+                "Text135": {
                   "ja": "トランザクションの詳細から、エンコードされたIdentifierの値を選択",
                   "en": "Select the encoded Identifier value from the transaction details"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 19,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 34,
               "Languages": {
-                "TextPoe87": {
+                "Text136": {
                   "ja": "Base64エンコードされたCurrent TXNの保存",
                   "en": "Save Base64 Encoded Current Txn Identifier"
                 },
-                "TextPoe88": {
+                "Text137": {
                   "ja": "将来の使用のためにbase64 エンコードされた Identifier 値を保存",
                   "en": "Save the base64 encoded Identifier value for future usage."
                 },
-                "TextPoe89": {
+                "Text138": {
                   "ja": "情報ストレージ",
                   "en": "InformationStorage"
                 },
-                "TextPoe209": {
-                  "ja": "識別子 (base64)",
+                "Text140": {
+                  "ja": "ID (base64)",
                   "en": "Identifier (base64)"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 20,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 35,
               "Languages": {
-                "TextPoe90": {
-                  "ja": "ステップ５ー現在のTXN識別子のデコード",
-                  "en": "Step 5 - Decode Current TXN Identifier"
+                "Text141": {
+                  "ja": "ステップ8ー現在のTXNIDのデコード",
+                  "en": "Step 8 - Decode Current TXN Identifier"
                 },
-                "TextPoe91": {
+                "Text142": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "TextPoe92": {
-                  "ja": "base64 でエンコードされた Current TXN 識別子をデコード",
+                "Text143": {
+                  "ja": "base64 でエンコードされた Current TXN IDをデコード",
                   "en": "Decode the base64 encoded Current TXN Identifier"
                 },
-                "TextPoe93": {
+                "Text144": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "TextPoe94": {
-                  "ja": "Base64 でエンコードされた Current TXN 識別子を入力",
+                "Text145": {
+                  "ja": "Base64 でエンコードされた Current TXN IDを入力",
                   "en": "Input the base64 encoded Current TXN Identifier"
                 },
-                "TextPoe95": {
+                "Text146": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the Decode Button"
                 },
-                "TextPoe127": {
+                "Text147": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "TextPoe128": {
+                "Text148": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "TextPoe129": {
-                  "ja": "デコードしたCurrent TXN識別子の出力を取得",
+                "Text149": {
+                  "ja": "デコードしたCurrent TXN　IDの出力を取得",
                   "en": "Get the output of the decoded Current TXN Identifier"
                 },
-                "TextPoe130": {
+                "Text150": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "TextPoe131": {
-                  "ja": "将来の使用のためにデコードされたCurrent TXN識別子を保存",
+                "Text151": {
+                  "ja": "将来の使用のためにデコードされたCurrent TXN　IDを保存",
                   "en": "Save the decoded Current TXN Identifier for future usage."
                 },
-                "TextPoe224": {
-                  "ja": "Current TXN識別子",
+                "Text152": {
+                  "ja": "Current TXN　ID",
                   "en": "Current TXN Identifier"
                 },
-                "TextPoe133": {
-                  "ja": "デコードされた Current TXN 識別子",
+                "Text153": {
+                  "ja": "デコードされた Current TXN ID",
                   "en": "Decoded Current TXN Identifier"
-                },
-                "TextPoe246": {
-                  "ja": "Current TXN識別子",
-                  "en": "Current TXN Identifier"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 21,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 36,
               "Languages": {
-                "TextPoe96": {
+                "Text154": {
                   "ja": "Base64EncodeされたData Hashを選択",
                   "en": "Select Base64 Encoded Data Hash"
                 },
-                "TextPoe97": {
+                "Text155": {
                   "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
                   "en": "Select the encoded Data Hash from the transaction details."
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 22,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 37,
               "Languages": {
-                "TextPoe100": {
+                "Text160": {
                   "ja": "データハッシュをハイライト",
                   "en": "Highlight the Data Hash"
                 },
-                "TextPoe101": {
+                "Text161": {
                   "ja": "トランザクションの詳細からエンコードされたデータハッシュを選択",
                   "en": "Select the encoded Data Hash from the transaction details."
                 },
-                "TextPoe300": {
+                "Text162": {
                   "ja": "Main TXN Current TXNデータハッシュをハイライト",
                   "en": "Highlight the Main TXN Current TXN Data Data Hash"
                 },
-                "TextPoe103": {
+                "Text163": {
                   "ja": "トランザクションの詳細からエンコードされたデータハッシュの値を選択",
                   "en": "Select the encoded Data Hash value from the transaction details"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 23,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 38,
               "Languages": {
-                "TextPoe106": {
+                "Text164": {
                   "ja": "Base64Encodeされたデータハッシュの保存",
                   "en": "Save Base64 Encoded Data Hash"
                 },
-                "TextPoe107": {
+                "Text165": {
                   "ja": "将来の使用のためにbase64でエンコードされたデータハッシュの値を保存",
                   "en": "Save the base64 encoded Data Hash value for future usage."
                 },
-                "TextPoe210": {
+                "Text166": {
                   "ja": "Current TXN データハッシュ（base64）。",
                   "en": "Current TXN Data Hash (base64)"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 24,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 39,
               "Languages": {
-                "TextPoe110": {
-                  "ja": "ステップ９－現在のTXNデータハッシュのデコード",
+                "Text167": {
+                  "ja": "ステップ9－現在のTXNデータハッシュのデコード",
                   "en": "Step 9 - Decode Current TXN Data Hash"
                 },
-                "TextPoe111": {
+                "Text168": {
                   "ja": "Base64 Decoderのウェブページを読み込む",
                   "en": "Load Base64 Decoder Webpage"
                 },
-                "TextPoe112": {
+                "Text169": {
                   "ja": "Base64でエンコードされたCurrent TXNのData Hashをデコード",
                   "en": "Decode the base64 encoded Current TXN Data Hash"
                 },
-                "TextPoe113": {
+                "Text170": {
                   "ja": "Base64エンコードされたデータの入力",
                   "en": "Input Base64 Encoded Data"
                 },
-                "TextPoe134": {
+                "Text171": {
                   "ja": "Base64でエンコードされたCurrent TXN データハッシュを入力",
                   "en": "Input the base64 encoded Current TXN Data Hash"
                 },
-                "TextPoe135": {
+                "Text172": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click Decode Button"
                 },
-                "TextPoe136": {
+                "Text173": {
                   "ja": "デコードボタンをクリック",
                   "en": "Click the decode button"
                 },
-                "TextPoe137": {
+                "Text174": {
                   "ja": "Base64デコードデータの表示",
                   "en": "View Base64 Decoded Data"
                 },
-                "TextPoe138": {
+                "Text175": {
                   "ja": "デコードされたCurrent TXNの出力を取得する データハッシュ",
                   "en": "Get the output of the decoded Current TXN Data Hash"
                 },
-                "TextPoe139": {
+                "Text176": {
                   "ja": "Base64デコードデータの保存",
                   "en": "Save Base64 Decoded Data"
                 },
-                "TextPoe140": {
+                "Text177": {
                   "ja": "将来の使用のためにデコードされたCurrent TXNデータハッシュ",
                   "en": "Save the decoded Current TXN Data Hash for future usage."
                 },
-                "TextPoe141": {
+                "Text178": {
                   "ja": "デコードされたCurrent TXN データハッシュ",
                   "en": "Decoded Current TXN Data Hash"
                 },
-                "TextPoe225": {
-                  "ja": "Current TXN データハッシュ",
-                  "en": "CurrentTXN data hash"
-                },
-                "TextPoe247": {
+                "Text179": {
                   "ja": "Current TXN データハッシュ",
                   "en": "CurrentTXN data hash"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 5,
-              "StepNo": numPoe + 25,
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 40,
               "Languages": {
-                "TextPoe115": {
+                "Text180": {
                   "ja": "ステップ１０－データハッシュの比較",
-                  "en": "Step 10 - Compare Data Hash"
+                  "en": "Compare Data Hash"
                 },
-                "TextPoe116": {
+                "Text181": {
                   "ja": "オンラインテキスト比較のWebページ",
                   "en": "Online Text Comparison Webpage"
                 },
-                "TextPoe117": {
+                "Text182": {
                   "ja": "オンラインテキスト比較のウェブページを読み込む",
                   "en": "Load the online text comparison webpage"
                 },
-                "TextPoe118": {
+                "Text183": {
                   "ja": "ステップ１０－データハッシュの比較",
-                  "en": "Step 10 - Compare Data Hash"
+                  "en": "Compare Data Hash"
                 },
-                "TextPoe119": {
+                "Text184": {
                   "ja": "入力の比較値",
                   "en": "Input comparison values"
                 },
-                "TextPoe142": {
+                "Text185": {
                   "ja": "トランザクションからBase64デコードされたデータハッシュ値を入力",
                   "en": "Input the base64 decoded Data Hash values from the transactions."
                 },
-                "TextPoe143": {
+                "Text186": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Step 10 - Compare Data Hash"
                 },
-                "TextPoe144": {
+                "Text187": {
                   "ja": "比較ボタンをクリック",
                   "en": "Click the compare button"
                 },
-                "TextPoe145": {
+                "Text188": {
                   "ja": "比較ボタンをクリック",
                   "en": "Click the compare button"
                 },
-                "TextPoe146": {
+                "Text189": {
                   "ja": "ステップ１０－データハッシュの比較",
                   "en": "Step 10 - Compare Data Hash"
                 },
-                "TextPoe147": {
+                "Text190": {
                   "ja": "結果をスクロールする",
                   "en": "Scroll to the result"
                 },
-                "TextPoe148": {
+                "Text191": {
                   "ja": "結果をスクロールする",
                   "en": "Scroll to the result"
                 },
-                "TextPoe154": {
-                  "ja": "klll",
+                "Text192": {
+                  "ja": "比較結果",
+                  "en": "Comparison Result"
+                }
+              }
+            },
+            
+            {
+              "SegmentNo": segPoe + 7,
+              "StepNo": numPoe + 41,
+              "Languages": {
+                "Text193": {
+                  "ja": "ステップ１０－データハッシュの比較",
+                  "en": "Compare Identifier"
+                },
+                "Text194": {
+                  "ja": "オンラインテキスト比較のWebページ",
+                  "en": "Online Text Comparison Webpage"
+                },
+                "Text195": {
+                  "ja": "オンラインテキスト比較のウェブページを読み込む",
+                  "en": "Load the online text comparison webpage"
+                },
+                "Text196": {
+                  "ja": "ステップ１１－IDの比較",
+                  "en": "Step 11 - Compare Identifier"
+                },
+                "Text197": {
+                  "ja": "比較値の入力",
+                  "en": "Input comparison values"
+                },
+                "Text198": {
+                  "ja": "トランザクションからBase64デコードされたデータハッシュ値を入力",
+                  "en": "Input the identifier value from the transactions."
+                },
+                "Text199": {
+                  "ja": "ステップ１１－IDの比較",
+                  "en": "Step 11 - Compare Identifier"
+                },
+                "Text200": {
+                  "ja": "比較ボタンをクリック",
+                  "en": "Click the compare button"
+                },
+                "Text201": {
+                  "ja": "比較ボタンをクリック",
+                  "en": "Click the compare button"
+                },
+                "Text202": {
+                  "ja": "ステップ１１－IDの比較",
+                  "en": "Step 11 - Compare Identifier"
+                },
+                "Text203": {
+                  "ja": "結果をスクロールする",
+                  "en": "Scroll to the result"
+                },
+                "Text204": {
+                  "ja": "結果をスクロールする",
+                  "en": "Scroll to the result"
+                },
+                "Text205": {
+                  "ja": "比較結果",
                   "en": "Comparison Result"
                 }
               }
             },
             {
-              "SegmentNo": segPoe + 6,
-              "StepNo": numPoe + 26,
+              "SegmentNo": segPoe + 8,
+              "StepNo": numPoe + 42,
               "Languages": {
-                "TextPoe120": {
-                  "ja": "ステップ１１－検証の概要",
-                  "en": "Step 11 - Verification Summary"
+                "Text206": {
+                  "ja": "ステップ１2－検証の概要",
+                  "en": "Step 12 - Verification Summary"
                 },
-                "TextPoe121": {
+                "Text207": {
                   "ja": "検証の概要",
                   "en": "Verification Summary"
                 },
-                "TextPoe123": {
+                "Text208": {
                   "ja": "検証の概要についてー存在の証明",
                   "en": "about: Verification Summary - PROOF OF THE EXISTENCE"
                 },
-                "TextPoe234": {
+                "Text209": {
                   "ja": "検証は正常に終了",
                   "en": "Verification Completed Successfully"
                 }
@@ -4401,8 +5691,8 @@ export class BuildPOCJsonService {
           this.pocProofJson.Header.Segments.push(...poeSegments)
           this.pocProofJson.Steps.push(...poeSteps)
           this.pocLangJson.Actions.push(...poeLang)
-          segPoe = segPoe + 6
-          numPoe = numPoe + 26
+          segPoe = segPoe + 8
+          numPoe = numPoe + 42
           break;
         case "pobl":
           let segPobl = this.pocProofJson.Header.Segments[this.pocProofJson.Header.Segments.length - 1].NO
@@ -4410,72 +5700,72 @@ export class BuildPOCJsonService {
           let poblSegments = [
             {
               "NO": segPobl + 1,
-              "Name": "&{SegName16}",
-              "Source": "../../../../assets/img/blockchain2.png"
-            },
-            {
-              "NO": segPobl + 2,
-              "Name": "&{SegName17}",
-              "Source": ""
-            },
-            {
-              "NO": segPobl + 3,
               "Name": "&{SegName18}",
               "Source": "../../../../assets/img/blockchain2.png"
             },
             {
-              "NO": segPobl + 4,
+              "NO": segPobl + 2,
               "Name": "&{SegName19}",
               "Source": ""
             },
             {
-              "NO": segPobl + 5,
+              "NO": segPobl + 3,
               "Name": "&{SegName20}",
-              "Source": ""
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
-              "NO": segPobl + 6,
+              "NO": segPobl + 4,
               "Name": "&{SegName21}",
               "Source": ""
             },
             {
-              "NO": segPobl + 7,
+              "NO": segPobl + 5,
               "Name": "&{SegName22}",
-              "Source": "../../../../assets/img/blockchain2.png"
+              "Source": ""
             },
             {
-              "NO": segPobl + 8,
+              "NO": segPobl + 6,
               "Name": "&{SegName23}",
               "Source": ""
             },
             {
-              "NO": segPobl + 9,
+              "NO": segPobl + 7,
               "Name": "&{SegName24}",
               "Source": "../../../../assets/img/blockchain2.png"
             },
             {
-              "NO": segPobl + 10,
+              "NO": segPobl + 8,
               "Name": "&{SegName25}",
               "Source": ""
             },
             {
-              "NO": segPobl + 11,
+              "NO": segPobl + 9,
               "Name": "&{SegName26}",
-              "Source": ""
+              "Source": "../../../../assets/img/blockchain2.png"
             },
             {
-              "NO": segPobl + 12,
+              "NO": segPobl + 10,
               "Name": "&{SegName27}",
               "Source": ""
             },
             {
-              "NO": segPobl + 13,
+              "NO": segPobl + 11,
               "Name": "&{SegName28}",
               "Source": ""
             },
             {
-              "NO": segPobl + 14,
+              "NO": segPobl + 12,
               "Name": "&{SegName29}",
+              "Source": ""
+            },
+            {
+              "NO": segPobl + 13,
+              "Name": "&{SegName30}",
+              "Source": ""
+            },
+            {
+              "NO": segPobl + 14,
+              "Name": "&{SegName31}",
               "Source": ""
             }
           ]
@@ -8008,6 +9298,7 @@ export class BuildPOCJsonService {
             "ExternalURL": "",
             "InnerHTMLPOC": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
             "InnerHTMLPOCError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
+            "InnerHTMLPOCNotCompelete": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18 header\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; margin:3px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Not Yet Completed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF CONTINUITY</b></center></p></div></center></div></div><div class=\"p-2\"></div></div></body></html>",
             "PageURL": "&{TextPoc181}",
             "Query": "",
             "QueryIndex": "",
@@ -8096,7 +9387,6 @@ export class BuildPOCJsonService {
       // Check if the TrustLinks array contains the desired TxnHash value
       if (trustLinks.includes(txnHash)) {
         if (this.orderedNodes.includes(pocNode.Nodes[nodeId])) {
-          console.log("nodeeeee--",node)
         } else {
           if (node.Data.TxnType == '0' || node.Data.TxnType == '2') {
             this.orderedNodes.push(pocNode.Nodes[nodeId]); // If so, add the LastTxnHash value to the orderedNodes array
@@ -8108,7 +9398,6 @@ export class BuildPOCJsonService {
         await this.checkParentsAndPush(pocNode, parents, trustLinks[0], node.Id)
       }
     }
-    console.log("order",(this.orderedNodes));
     
     this.TotalProofCount= this.orderedNodes.length;
     return new Promise((resolve, reject) => { resolve(this.orderedNodes) })
@@ -8127,11 +9416,13 @@ export class BuildPOCJsonService {
                 "Id": "backlink",
                 "Data": {
                   "TxnType": "pobl",
+                  "Identifier":pocNode.Nodes[id].Data.Identifier,
                   "Batch": pocNode.Nodes[id].Data.ProductName,
                   "Stage":pocNode.Nodes[id].Data.CurrentStage,
+                  "Identifier2":pocNode.Nodes[parent].Data.Identifier,
                   "Batch2": pocNode.Nodes[parent].Data.ProductName,
                   "Stage2":pocNode.Nodes[parent].Data.CurrentStage,
-                  
+                  "TXNTypeNo":pocNode.Nodes[id].Data.TxnType 
                 },
                 "Parents": null,
                 "Children": null,
@@ -8170,7 +9461,6 @@ export class BuildPOCJsonService {
   }
 
   getTotalOrderedNodesCount(): number {
-    console.log("node order",this.orderedNodes)
     return this.orderedNodes.length;
   }
   
@@ -8180,22 +9470,25 @@ export class BuildPOCJsonService {
         return {
           ProofType: this.commonServices.getProofName(proof.Data.TxnType),
           ID:`arrow-`+ proof.PoblTDP.current+`-`+ proof.PoblTDP.previous,
+          BatchID:proof.Data.Identifier,
           Batch:this.commonServices.decodeFromBase64(proof.Data.Batch),
           Stage:proof.Data.Stage,
+          BatchID2:proof.Data.Identifier2,
           Batch2:this.commonServices.decodeFromBase64(proof.Data.Batch2),
           Stage2:proof.Data.Stage2,
+          TransactionType:this.commonServices.getTransactionByType(proof.Data.TXNTypeNo)
         };
       } else {
         return {
           ProofType: this.commonServices.getProofNameByType(proof.Data.TxnType),
           ID: `node-`+ proof.Data.TxnHash,
+          BatchID:proof.Data.Identifier,
           Batch: this.commonServices.decodeFromBase64(proof.Data.ProductName),
-          Stage:proof.Data.CurrentStage
+          Stage:proof.Data.CurrentStage,
+          TransactionType:this.commonServices.getTransactionByType(proof.Data.TXNTypeNo)
         };
       }
     });
-    console.log("all",allproofs);
-    console.log("nodeeeee--",this.orderedNodes)
     return allproofs;
   }
   getObjectById(id: string, arr: any[]): any | null {

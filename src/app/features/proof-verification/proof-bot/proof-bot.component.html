@@ -4,7 +4,7 @@
       justifyContent: justifyContent,
       alignItems: alignItems
     }" [class]="isTheater ? 'p-3' : 'p-0'">
-    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
+    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading" [isProofTypeAvailable]="isProofTypeAvailable"
       [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"
       (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isProofStart" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
@@ -21,7 +21,8 @@
         (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()" (stopFn)="stopFn()"
         (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
         (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
-        [tdpId]="tdpId" (POCStatus)="POCStatus()"></app-bot-header>
+        [tdpId]="tdpId" [completedProofs]="completedProofs" [TotalProofCountOfPOC]="TotalProofCountOfPOC" (POCStatus)="POCStatus()"
+        [SuccessedProofcount]="SuccessedProofcount" [FailedProofcount]="FailedProofcount" [pendingProofsCount]="pendingProofsCount"></app-bot-header>
       <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
         <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
           <img class="checked-small-img" src="../../../../assets/img/Vector.png">
@@ -59,10 +60,14 @@
           <div class="col-12">
             <div class="d-flex justify-content-between section-header">
               <div></div>
-              <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof">Current Proof: <span
-                  class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> for
-                between <span class="bold-f">&nbsp;{{currentBatch}}&nbsp;</span> 
-                and <span class="bold-f">&nbsp;{{currentBatch2}}&nbsp;</span>
+              <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof"><span>Current Proof: <span
+                  class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> 
+                between <strong>(</strong><span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span> 
+                <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span> 
+                <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span><strong>)</strong>
+                and <strong>(</strong><span class="bold-f" *ngIf="currentBatchID2">&nbsp;Batch ID : {{currentBatchID2}}&nbsp;</span>
+                <span class="bold-f" *ngIf="currentProduct2">&nbsp;| Product : {{currentProduct2}}&nbsp;</span> 
+                <span class="bold-f" *ngIf="currentStage2">&nbsp;| Stage : {{currentStage2}}&nbsp;</span><strong>)</strong></span>
                 <a class="ml-1"
                   href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                   target="_blank">
@@ -70,8 +75,11 @@
                 </a>
               </div>
               <ng-template #otherProof>
-                <div>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> 
-                  <span class="bold-f">&nbsp;{{currentBatch}}&nbsp;</span>
+                <div><span>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> of <strong>(</strong>
+                  <span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span>
+                  <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span>
+                  <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span><strong>)</strong></span>
+                  
                   <a class="ml-1"
                     href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                     target="_blank">

@@ -42,7 +42,7 @@
     </table>
   
   </div>
-  <button class="btn" (click)="emitStartDemoFn()" *ngIf="!isLoading">
+  <button class="btn" (click)="emitStartDemoFn()" *ngIf="!isLoading && isProofTypeAvailable">
     <i class="fa fa-youtube-play" aria-hidden="true"></i>
   </button>
   

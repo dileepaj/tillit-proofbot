@@ -64,8 +64,10 @@ export class SiteScreenComponent {
   isScrollToElement: boolean = true;
   isPointToElement: boolean = true;
   @Input() lang: string = "en";
+  @Input() isEncodedData: boolean = false;
   @ViewChild("iframe", { read: ElementRef, static: false }) iframe: ElementRef;
   @Input() isCollapsedSegment = false;
+  EncodedData: string;
   constructor(
     private verificationHttpService: VerificationServiceService,
     private sanitizer: DomSanitizer,
@@ -624,7 +626,10 @@ export class SiteScreenComponent {
         title: 'Error Message'
       }
     };
-    this.modalService.show(ErrorModalComponent, initialState);
+    this.modalService.show(ErrorModalComponent, {
+      ...initialState,
+      class: 'modal-lg'
+    });
     
   }
 
@@ -637,5 +642,26 @@ export class SiteScreenComponent {
     var currentFrame = iframe.contentWindow;
     iframe.contentWindow.location.reload(true);
   }
+
+setEncodedData(TDPData: string,isEncodedData: boolean){
+  this.EncodedData = TDPData;
+  this.isEncodedData = isEncodedData;
+}
+  
+ copyencodedHashToClipboard(): void {
+   const selBox = document.createElement("textarea");
+   selBox.style.position = "fixed";
+   selBox.style.left = "0";
+   selBox.style.top = "0";
+   selBox.style.opacity = "0";
+   selBox.value = this.EncodedData;
+   document.body.appendChild(selBox);
+   selBox.focus();
+   selBox.select();
+   document.execCommand("copy");
+   document.body.removeChild(selBox);
+   this.isCopied = true;
+   setTimeout(() => (this.isCopied = false), 2000);
+   }
 
 }

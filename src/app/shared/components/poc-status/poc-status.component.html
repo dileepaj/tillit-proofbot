@@ -1,41 +1,45 @@
-<div class="modal-xl ">
-  <div class="modal-header " style="align-items: stretch; flex-direction: column;">
+<div class="modal-header " style="align-items: stretch; flex-direction: column;">
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
-    <h3 class="modal-title pull-left" style="font-family: Inter; text-align: center;">POC Status</h3>
-
+    <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="!isPOCcompleted">Proof of Continuity Status</p>
+    <p class="modal-title pull-left" style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted" >Proof of Continuity Verification 
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs.length == 0 && missedProofs.length == 0">Success!!</span>
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && failedproofs?.length > 0">Failed!!</span>
+      <span style="font-family: Inter; font-size: 24px; font-weight: 400; text-align: center;" *ngIf="isPOCcompleted && missedProofs?.length > 0">Not Yet Completed!!</span>
+    </p>
   </div>
   <div class="modal-body" style="font-family: Inter; justify-content: center;">
     <!--completed proofs-->
     <!-- <h5 class="text-wrap" style="text-align: center;">Completed Proofs</h5> -->
 
     <!--Success proof-->
-    <h6 class="text-center font-weight-bold mb-4" style="font-family: Inter; color: green; font-size: 18px;" *ngIf="successProofs?.length > 0">Success
+    <div class="SProofHeader" *ngIf="successProofs?.length > 0"><p class="text-center font-weight-bold mb-4 SProofHeaderTxt"  *ngIf="successProofs?.length > 0">Success
       Proofs
-    </h6>
+    </p></div>
     <br>
     <div class="row">
       <div class="col-12" *ngIf="successProofs?.length > 0">
         <ng-container *ngFor="let successProof of successProofs">
           <div class="d-flex align-items-center mb-3 section-header">
-            <div>
-              <span class="bold-f" style="font-size: 16px;">Successfully Completed the</span>
-              <span class="bold-f" style="font-size: 16px; color: #333;">{{successProof.ProofType}}</span>
-              <span class="bold-f" style="font-size: 16px;">for between</span>
-              <span class="bold-f" *ngIf="successProof.Batch"
-                style="font-size: 16px; color: #333;">{{successProof.Batch}}</span>
-              <span class="bold-f" *ngIf="successProof.Batch2"
-                style="font-size: 16px; color: #333;">{{successProof.Batch2}}</span>
+            <div *ngIf="successProof.ProofType=='Proof of Backlinks'; else otherProof">
+              The <span class="font-weight-bold" *ngIf="successProof.ProofType">&nbsp;{{successProof.ProofType}}&nbsp;</span> for
+              <span class="font-weight-bold capitalize-first-letter" *ngIf="successProof.TransactionType">&nbsp;{{successProof.TransactionType}}&nbsp;</span>between
+              <strong>(</strong> <span class="font-weight-bold" *ngIf="successProof.Batch">Product: {{successProof.Batch}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="successProof.Stage">| Stage: {{successProof.Stage}}&nbsp;</span><strong>)</strong>
+              and <strong>(</strong>
+              <span class="font-weight-bold" *ngIf="successProof.Batch2">Product: {{successProof.Batch2}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="successProof.Stage2">| Stage: {{successProof.Stage2}}&nbsp;</span><strong>)</strong>
+              completed successfully.
             </div>
           </div>
           <ng-template #otherProof>
             <div class="d-flex align-items-center mb-3 section-header">
               <div>
-                <span class="bold-f" style="font-size: 16px;">Successfully Completed the</span>
-                <span class="bold-f" style="font-size: 16px; color: #333;">{{successProof.ProofName}}</span>
-                <span class="bold-f" *ngIf="successProof.Batch"
-                  style="font-size: 16px; color: #333;">{{successProof.Batch}}</span>
+              <span>The<span class="font-weight-bold" *ngIf="successProof.ProofType">&nbsp;{{successProof.ProofType}}&nbsp;</span>
+                of <strong>(</strong><span class="font-weight-bold capitalize-first-letter" *ngIf="successProof.Batch">&nbsp;Product: {{successProof.Batch}}&nbsp;</span>
+                <span class="font-weight-bold" *ngIf="successProof.Stage">| Stage: {{successProof.Stage}}&nbsp;</span><strong>)</strong>
+                completed successfully.</span> 
               </div>
             </div>
           </ng-template>
@@ -43,64 +47,77 @@
       </div>
     </div>
 
-
-    <!--failed proof-->
-    <h6 class="text-center font-weight-bold mb-4" style="font-family: Inter; color: green; font-size: 18px;" *ngIf="failedProofs?.length > 0">Failed Proofs
-    </h6>
+    <!--missed proofs-->
+    <div class="PProofHeader" *ngIf="missedProofs?.length > 0"><p class="text-center font-weight-bold mb-4 PProofHeaderTxt" *ngIf="missedProofs?.length > 0">Pending Proofs</p></div>
     <br>
     <div class="row">
-      <div class="col-12" *ngIf="failedProofs?.length > 0">
-        <div class="d-flex align-items-center mb-3 section-header" *ngFor="let failedProof of failedProofs">
-          <div>
-            <span class="bold-f" style="font-size: 16px;">Failed the</span>
-            <span class="bold-f" style="font-size: 16px; color: #333;">{{failedProof.ProofType}}</span>
-            <span class="bold-f" style="font-size: 16px;">for between</span>
-            <span class="bold-f" *ngIf="failedProof.Batch"
-              style="font-size: 16px; color: #333;">{{failedProof.Batch}}</span>
-            <span class="bold-f" *ngIf="failedProof.Batch2"
-              style="font-size: 16px; color: #333;">{{failedProof.Batch2}}</span>
+      <div class="col-12" *ngIf="missedProofs?.length > 0">
+        <ng-container  *ngFor="let missedProof of missedProofs">
+          <div class="d-flex justify-content-start mb-3">
+            <div></div>
+            <div *ngIf="missedProof.ProofType=='Proof of Backlinks'; else otherProof">
+              The <span class="font-weight-bold" *ngIf="missedProof.ProofType">&nbsp;{{missedProof.ProofType}}&nbsp;</span> for 
+              <span class="font-weight-bold capitalize-first-letter" *ngIf="missedProof.TransactionType">&nbsp;{{missedProof.TransactionType}}&nbsp;</span>between
+              <strong>(</strong> <span class="font-weight-bold" *ngIf="missedProof.Batch">Product: {{missedProof.Batch}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="missedProof.Stage">| Stage: {{missedProof.Stage}}&nbsp;</span><strong>)</strong>
+              and <strong>(</strong>
+              <span class="font-weight-bold" *ngIf="missedProof.Batch2">Product: {{missedProof.Batch2}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="missedProof.Stage2">| Stage: {{missedProof.Stage2}}&nbsp;</span><strong>)</strong>
+              not yet completed.
+            </div>
+            <ng-template #otherProof>
+              <div>
+                <span>
+                  The <span class="font-weight-bold" *ngIf="missedProof.ProofType">&nbsp;{{missedProof.ProofType}}&nbsp;</span>
+                of <strong>(</strong><span class="font-weight-bold capitalize-first-letter" *ngIf="missedProof.Batch">&nbsp;Product: {{missedProof.Batch}}&nbsp;</span>
+                <span class="font-weight-bold" *ngIf="missedProof.Stage">| Stage: {{missedProof.Stage}}&nbsp;</span><strong>)</strong>
+                is not yet completed.
+              </span> 
+              </div>
+            </ng-template>
+          </div>
+        </ng-container> 
+        
+      </div>
+    </div>
+
+
+    
+
+
+    <!--failed proof-->
+    <div class="FProofHeader" *ngIf="failedproofs?.length > 0"><p class="text-center font-weight-bold mb-4 FProofHeaderTxt"  *ngIf="failedproofs?.length > 0">Failed Proofs
+    </p></div>
+    <br>
+    <div class="row">
+      <div class="col-12" *ngIf="failedproofs?.length > 0">
+      <div *ngFor="let failedproof of failedproofs">
+        <div class="d-flex align-items-center mb-3 section-header" >
+          <div *ngIf="failedproof.ProofType=='Proof of Backlinks'; else otherProof">
+            The <span class="font-weight-bold" *ngIf="failedproof.ProofType">&nbsp;{{failedproof.ProofType}}&nbsp;</span> for <strong>(</strong> 
+              <span class="font-weight-bold capitalize-first-letter" *ngIf="failedproof.TransactionType">&nbsp;{{failedproof.TransactionType}}&nbsp;</span>between
+              <span class="font-weight-bold" *ngIf="failedproof.Batch">Product: {{failedproof.Batch}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="failedproof.Stage">| Stage: {{failedproof.Stage}}&nbsp;</span><strong>)</strong>
+              and <strong>(</strong>
+              <span class="font-weight-bold" *ngIf="failedproof.Batch2">Product: {{failedproof.Batch2}}&nbsp;</span>
+              <span class="font-weight-bold" *ngIf="failedproof.Stage2">| Stage: {{failedproof.Stage2}}&nbsp;</span><strong>)</strong>
+              failed.
           </div>
         </div>
         <ng-template #otherProof>
-          <div class="d-flex align-items-center mb-3 section-header" *ngFor="let failedProof of failedProofs">
+          <div class="d-flex align-items-center mb-3 section-header">
             <div>
-              <span class="bold-f" style="font-size: 16px;">Failed the</span>
-              <span class="bold-f" style="font-size: 16px; color: #333;">{{failedProof.ProofType}}</span>
-              <span class="bold-f" *ngIf="failedProof.Batch"
-                style="font-size: 16px; color: #333;">{{failedProof.Batch}}</span>
+              <span>The<span class="font-weight-bold" *ngIf="failedproof.ProofType">&nbsp;{{failedproof.ProofType}}&nbsp;</span>
+                of <strong>(</strong><span class="font-weight-bold capitalize-first-letter" *ngIf="failedproof.Batch">&nbsp;Product: {{failedproof.Batch}}&nbsp;</span>
+                <span class="font-weight-bold" *ngIf="failedproof.Stage">| Stage: {{failedproof.Stage}}&nbsp;</span><strong>)</strong>
+                failed.</span>
             </div>
           </div>
         </ng-template>
       </div>
-    </div>
-
-    <!--missed proofs-->
-    <h6 class="text-center font-weight-bold mb-4" style="font-family: Inter; color: red; font-size: 18px;"*ngIf="missedProofs?.length > 0">Missed Proofs</h6>
-    <br>
-    <div class="row">
-      <div class="col-12" *ngIf="missedProofs?.length > 0">
-        <div class="d-flex justify-content-start mb-3" *ngFor="let missedProof of missedProofs">
-          <div></div>
-          <div *ngIf="missedProof.ProofType=='Proof of Backlinks'; else otherProof">
-            The <span class="font-weight-bold" *ngIf="missedProof.ProofType">{{missedProof.ProofType}}</span> for
-            between
-            <span class="font-weight-bold" *ngIf="missedProof.Batch">Product: {{missedProof.Batch}}</span>
-            <span class="font-weight-bold" *ngIf="missedProof.Stage">Stage: {{missedProof.Stage}}</span>
-            and
-            <span class="font-weight-bold" *ngIf="missedProof.Batch2">Product: {{missedProof.Batch2}}</span>
-            <span class="font-weight-bold" *ngIf="missedProof.Stage2">Stage: {{missedProof.Stage2}}</span>
-            not yet completed.
-          </div>
-          <ng-template #otherProof>
-            <div>
-              The <span class="font-weight-bold" *ngIf="missedProof.ProofType">{{missedProof.ProofType}}</span>
-              of <span class="font-weight-bold" *ngIf="missedProof.Batch">Product: {{missedProof.Batch}}</span>,
-              <span class="font-weight-bold" *ngIf="missedProof.Stage">Stage: {{missedProof.Stage}}</span>
-              is not yet completed.
-            </div>
-          </ng-template>
-        </div>
       </div>
     </div>
+
+    <!--modal-footer-->
     <div class="modal-footer" style="font-family: Inter; justify-content: center;"></div>
-  </div>
+ 

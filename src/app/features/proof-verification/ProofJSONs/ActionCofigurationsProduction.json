@@ -881,7 +881,7 @@
             "ActionDescription": "#{ActionDescription}",
             "ActionType": "BrowserScreen",
             "ActionParameters": {
-              "ExternalURL": "https://gateway.tracified.com/GetTransactions?txn=#{TXNHash}&page=1&perPage=10",
+              "ExternalURL": "https://gateway.tracified.com/tdpdata/txnhash/?txn=#{TXNHash}&page=1&perPage=10",
               "InnerHTML": "",
               "Query": "",
               "QueryIndex": "",
@@ -1004,6 +1004,281 @@
             "ToastMessage": "",
             "ToastPosition": null,
             "ActionDuration": 2
+          }
+        }
+      ]
+    },
+    "OnlineToolsEncoder": {
+      "Title": "OnlineToolsEncoder",
+      "Description": "",
+      "Parameters": {
+        "StepNo": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "SegmentNo": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "FrameID": {
+          "Type": "uint",
+          "Required": true,
+          "Description": ""
+        },
+        "FrameTitle": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        },
+        "DecodeKeyName": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        },
+        "EncodedInputValue": {
+          "Type": "any",
+          "Required": true,
+          "Description": ""
+        },
+        "DecodedResultVariable": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+        },
+        "InformationStorageKey": {
+          "Type": "string",
+          "Required": true,
+          "Description": ""
+    }
+      },
+      "Actions": [
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}",
+            "FrameTitle": "#{FrameTitle}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle}",
+            "ActionDescription": "#{ActionDescription}",
+            "ActionType": "BrowserScreen",
+            "ActionParameters": {
+              "ExternalURL": "https://emn178.github.io/online-tools/sha256.html",
+              "Translatable": true,
+              "InnerHTML": "",
+              "Query": "",
+              "QueryIndex": "",
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 10
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_1}",
+            "ActionDescription": "#{ActionDescription_1}",
+            "ActionType": "UpdateElementProperty",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "InnerHTML": "",
+              "Query": ".input textarea",
+              "QueryIndex": 0,
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "value",
+              "ElPropertyValue": "#{EcodedInputValue}",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": true,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 10
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_2}",
+            "ActionDescription": "#{ActionDescription_2}",
+            "ActionType": "TriggerElementFunction",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "InnerHTML": "",
+              "Query": ".btn.btn-default",
+              "QueryIndex": 0,
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "click",
+              "ElFunctionArguments": [],
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": true,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": ["20%", "40%"],
+            "ActionDuration": 10
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_3}",
+            "ActionDescription": "#{ActionDescription_3}",
+            "ActionType": "GetElementAttributeData",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "InnerHTML": "",
+              "Query": ".output textarea",
+              "QueryIndex": 0,
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "value",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": "",
+              "SelectiveTextIndex": "",
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": []
+            },
+            "ActionResultVariable": "#{EncodedResultVariable}",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": true,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "#{ToastMessage}",
+            "ToastPosition": ["60%", "10%"],
+            "ActionDuration": 10
+          }
+        },
+        {
+          "StepHeader": {
+            "StepNo": "#{StepNo}",
+            "SegmentNo": "#{SegmentNo}",
+            "FrameID": "#{FrameID}"
+          },
+          "Action": {
+            "ActionTitle": "#{ActionTitle_4}",
+            "ActionDescription": "#{ActionDescription_4}",
+            "ActionType": "InformationStorage",
+            "ActionParameters": {
+              "ExternalURL": "",
+              "InnerHTML": "",
+              "Query": "body",
+              "QueryIndex": 0,
+              "YOffset": "",
+              "XOffset": "",
+              "ElAttributeName": "",
+              "ElAttributeValue": "",
+              "ElAttributeValueReplace": "",
+              "ElProperty": "",
+              "ElPropertyValue": "",
+              "ElFunction": "",
+              "ElFunctionArguments": "",
+              "SelectiveText": "",
+              "CaseSensitivity": true,
+              "SelectiveTextIndex": 0,
+              "CSS": "",
+              "FormatType": "",
+              "StorageData": [
+                {
+                  "Key": "#{InformationStorageKey}",
+                  "Value": "${#{EncodedResultVariable}}"
+                }
+              ]
+            },
+            "ActionResultVariable": "",
+            "MetaData": []
+          },
+          "Customizations": {
+            "PointerData": "",
+            "ScrollToPointer": false,
+            "FrameAutoScroll": true,
+            "FrameScrollBars": "",
+            "ToastMessage": "",
+            "ToastPosition": null,
+            "ActionDuration": 30
           }
         }
       ]

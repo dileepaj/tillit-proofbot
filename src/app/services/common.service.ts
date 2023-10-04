@@ -65,5 +65,25 @@ export class CommonService {
       default:
   }
 }
+
+public getTransactionByType(TxnType): string{
+  switch (TxnType) {
+    case "0":
+        return "Proof of Genesis";
+    case "2":
+      return "Tracibility Data";
+    case "6":
+        return "Split";
+    case "7":
+        return "Merge";
+    case "5":
+        return "Split Parent";
+    case "9":
+        return "Stage Transfer";
+    case "10":
+        return "POCOC";
+    default:
+}
+}
   
 }
