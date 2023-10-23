@@ -329,11 +329,22 @@ export class MetricProofComponent implements OnInit {
                     let dataMetricJson = JSON.parse(data)
                    // if(dataMetricJson.)
                     let idToIndexTable = {};
-                    let availableMetrics ={};
+                    const availableMetrics =[];
+                    const availableMerticNames=[];
                     for (let i = 0; i <dataMetricJson.length; i++) {
                       if (dataMetricJson[i].total>0){
                         idToIndexTable[data[i]] = i;
-                        console.log("kkkkkk")}
+                        availableMetrics.push(dataMetricJson[i])
+                        for(let j = 0;j<availableMetrics.length; j++){
+                        const MerticNames = availableMetrics.map((metric) => metric.name);
+                        if(MerticNames.filter((name) => !MerticNames.includes(name))){
+                            availableMerticNames.push(dataJson[j].name);
+                        }
+                      }
+                        console.log("kkkkkk")
+                        console.log("availablenames",availableMerticNames)
+                        console.log("availableMetrics",availableMetrics)
+                      }
                     }
                   
                     console.log("data----",dataMetricJson);
