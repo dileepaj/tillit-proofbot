@@ -9461,6 +9461,7 @@ export class BuildPOCJsonService {
   }
 
   getTotalOrderedNodesCount(): number {
+    console.log("poc",this.orderedNodes);
     return this.orderedNodes.length;
   }
   

@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as d3 from 'd3';
 import * as dagreD3 from 'dagre-d3';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/app/services/api.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-metric-batch-history',
@@ -26,14 +27,18 @@ export class MetricBatchHistoryComponent implements OnInit {
   mode = "indeterminate";
   value = 10;
   @Input() data: any;
+  @Output() clickedNodeEvent: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private _location: Location) { }
+  constructor(private route: ActivatedRoute, 
+    private apiService: ApiService, 
+    private _location: Location,
+    private commonService: CommonService) { }
 
   ngOnInit() {
     this.loadingComplete = true;
     this.pocTransactions = this.data;
     this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
-    this.renderGraph(this.data.Nodes);
+    this. renderGraph(this.data.Nodes);
   }
 
   goBack(): void {
@@ -96,8 +101,13 @@ export class MetricBatchHistoryComponent implements OnInit {
         //window.open(environment.blockchain.domailUrl+`/?type=pobl&txn=${to}&txn2=${from}`);
       } else alert("At the moment, proof verification is only available for TDPs.")
     });
-    d3.selectAll("g.node").on('click', function (d: any) {
-      //window.open(environment.blockchain.domailUrl+"/?type=poe"+"&txn=" + Nodes[d].TrustLinks[0])
+    d3.selectAll("g.node").on('click', (d: any) => {
+      if (Nodes[d].Data.TxnType == "2"){
+        console.log("clicked--",Nodes[d].TrustLinks[0])
+        this.clickedNodeEvent.emit(Nodes[d].TrustLinks[0])
+      }
+      else 
+      alert("Metric queries are only available for TDPs.")
     });
   }
 
@@ -106,7 +116,7 @@ export class MetricBatchHistoryComponent implements OnInit {
     if (doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier != "") {
       g.setNode(node.Data.TxnHash, {
-        label: !!node.Data.ProductName ? `Batch ID:\n${node.Data.Identifier}\nProduct: \n${node.Data.ProductName}` : `Batch ID\n${node.Data.Identifier}`,
+        label: !!node.Data.ProductName ? `Batch ID: ${node.Data.Identifier}\nProduct: ${node.Data.Timestamp ? this.commonService.decodeFromBase64(node.Data.ProductName) : node.Data.ProductName}\nStage : ${node.Data.CurrentStage}\n` : `Batch ID\n${node.Data.Identifier}`,
         shape: 'rect',
         id: `node-${node.Data.TxnHash}`,
         style: `stroke: #969696; stroke-width: 3px; fill: #FFFFFF`,
