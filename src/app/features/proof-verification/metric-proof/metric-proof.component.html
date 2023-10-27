@@ -104,20 +104,23 @@
         </div>
         <!-- Stage Name -->
         <!-- Activity Table -->
-        <div class="container">
+        <div class="container"*ngIf="MetricNames?.length > 0">
             <div class="row">
                 <div class="col-sm-12 col-md-10 col-lg-10 col-xl-12 mx-auto">
                     <div class="table-responsive">
-                        <table class="table table-border">
+                        <table class="table table-border" *ngFor="let MerticName of MetricNames;">
                             <thead>
-                                <tr>
-                                    <th colspan="3">Column 1</th>
+                                <tr >
+                                    <th colspan="3" style="background-color: #DFDFDF; text-align: center;">{{MerticName.MetricActivityName}}</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="2"><span class="bold-f">0.5 C02e</span> Emission from national water supply</td>
-                                    <td><span class="view-proof">View Proof</span></td>
+                            <tbody *ngFor="let Mertic of AvailableMetrics;">
+                                <tr *ngIf="Mertic.name == MerticName.MetricActivityName" style="text-align: left; " >
+                                    <td *ngFor="let Result of Mertic.metricResults;">
+                                        <span class="bold-f" >
+                                        {{Result.value | number:'1.3-3'}} C02e</span></td>
+                                        <td>Emission from {{Mertic.name}}</td>  
+                                    <td><a *ngIf="!!currettxn"[href]="proofbotDomain + '/?type=pocf&txn=' + currettxn + '&tdpId='+ tdpId +'&batchId='+ batch " target="_blank"><span class="view-proof"style="color: #FFFFFF;">View Proof</span></a></td>
                                 </tr>
                             </tbody>
                         </table>

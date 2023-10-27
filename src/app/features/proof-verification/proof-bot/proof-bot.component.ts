@@ -22,6 +22,8 @@ import * as POEJSON from "../ProofJSONs/POE_NEW.json";
 import * as POELangJSON from "../ProofJSONs/POE_NEW-lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json";
+import * as SocialImpactJSON from "../ProofJSONs/Social-impact.json";
+import * as SocialImpactLangJSON from "../ProofJSONs/Social-impact-lang.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
 import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
 import * as ActionConfigurationsProduction from "../ProofJSONs/ActionCofigurationsProduction.json";
@@ -126,7 +128,7 @@ export class ProofBotComponent implements OnInit {
   LoadingProofType: string;
   ActionConfigurations: any;
   SegmentNumber: number;
-  availableProofs: any[] = ["poe", "pog", "pobl","poc"];
+  availableProofs: any[] = ["poe", "pog", "pobl","poc","pocf"];
   proofType: string;
   lang: string = "en";
   Name: string = "";
@@ -388,6 +390,10 @@ export class ProofBotComponent implements OnInit {
         let poc = await this.pocJsonService.buildPOCJson(this.nodesWithMerkleTree)
         protocolJson = poc.pocProofJson;
         langJson = poc.pocLangJson;
+        break;
+      case "pocf":
+        protocolJson = SocialImpactJSON;
+        langJson = SocialImpactLangJSON;
         break;
       default:
         break;

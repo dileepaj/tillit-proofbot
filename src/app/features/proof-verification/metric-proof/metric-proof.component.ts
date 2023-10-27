@@ -75,8 +75,12 @@ export class MetricProofComponent implements OnInit {
   enableSlider: boolean;
   nodesWithMerkleTree: any;
   pocData: any= {};
+  MetricNames: any={};
+  AvailableMetrics: any={};
   tenantId: string;
   stage: string;
+  currettxn: any;
+  proofbotDomain = environment.blockchain.proofbot;
   constructor(
     private route: ActivatedRoute,
     public commonServices: CommonService,
@@ -295,9 +299,13 @@ export class MetricProofComponent implements OnInit {
     return true;
   }
 
-  clickedNode(event: string) {
-    this.getTransactionMetricQueries(event)
-    console.log("this.pocData",this.pocData)
+  clickedNode(event: any) {
+    console.log("this.pocData",event)
+    this.stage=event.Data.CurrentStage;
+    this.currettxn = event.TrustLinks[0];
+    console.log("this.stage",this.stage)
+    this.getTransactionMetricQueries(event.TrustLinks[0])
+    
   }
   getTransactionMetricQueries(txn: string) {
     console.log("txn passed to getTransaction",txn)
@@ -318,7 +326,7 @@ export class MetricProofComponent implements OnInit {
             console.log("tenantId",this.tenantId);
             console.log("data----",dataJson);
 
-            this.verificationHttpService.loadPage(environment.backend.getMetricQueryDetails + "?tenantId="+this.tenantId+"&tdpId="+this.tdpId).subscribe(
+            this.verificationHttpService.loadPage(environment.backend.getMetricQueryDetails + "?tenantId="+this.tenantId+"&batchId="+this.batch+"&tdpId="+this.tdpId).subscribe(
               async data => {
                 try {
                   if (!data) {
@@ -332,22 +340,29 @@ export class MetricProofComponent implements OnInit {
                     const availableMetrics =[];
                     const availableMerticNames=[];
                     for (let i = 0; i <dataMetricJson.length; i++) {
-                      if (dataMetricJson[i].total>0){
-                        idToIndexTable[data[i]] = i;
-                        availableMetrics.push(dataMetricJson[i])
-                        for(let j = 0;j<availableMetrics.length; j++){
-                        const MerticNames = availableMetrics.map((metric) => metric.name);
-                        if(MerticNames.filter((name) => !MerticNames.includes(name))){
-                            availableMerticNames.push(dataJson[j].name);
+                      for(let j=0; j< dataMetricJson[i].metricActivities.length; j++){
+                        if (dataMetricJson[i].metricActivities[j].metricResults.length>0){
+                          idToIndexTable[data[i]] = i;
+                          availableMetrics.push(dataMetricJson[i].metricActivities[j])
+                          this.AvailableMetrics=availableMetrics;
                         }
+                      
+                        for(let j = 0;j<availableMetrics.length; j++){
+                          if (!availableMerticNames.some(obj => obj.MetricActivityName === availableMetrics[j].name)) {
+                            availableMerticNames.push({
+                              MetricActivityID:availableMetrics[j].id,
+                              MetricActivityName:availableMetrics[j].name
+                            })
+                            this.MetricNames=availableMerticNames;
+                          }
                       }
-                        console.log("kkkkkk")
-                        console.log("availablenames",availableMerticNames)
-                        console.log("availableMetrics",availableMetrics)
+                        console.log("kkkkkk", dataMetricJson[i].metricActivities.metricResults)
+                        console.log("availablenames",this.MetricNames)
+                        console.log("availableMetrics",this.AvailableMetrics)
                       }
                     }
                   
-                    console.log("data----",dataMetricJson);
+                    console.log("dataMetric----",dataMetricJson);
                   }
                 } catch (error) {
                   this.openModal("Invalid URL", 404, error.message)

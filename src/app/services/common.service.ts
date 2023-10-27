@@ -33,6 +33,9 @@ export class CommonService {
       case "POBL":
         proofName = "Proof of Backlinks"
         break;
+      case "pocf":
+          proofName = "Proof of Carbon Footprint"
+          break;
       default:
         break;
     }

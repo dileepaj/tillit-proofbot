@@ -28,6 +28,30 @@
           <img class="checked-small-img" src="../../../../assets/img/Vector.png">
         </p>
       </div>
+      <!-- metric activity view-->
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='pocf' && isStartDemo">
+        <div class="row ">
+          <div class="col-12">
+            <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
+              <div></div>
+              <div> Metrics and Activities
+                <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+                  target="_blank">
+                  <i class="bi bi-question-circle-fill helpIcon"></i>
+                </a>
+              </div>
+              <div class="mr-1 "> <span (click)="isCollapsedPocTree = !isCollapsedPocTree"
+                  [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic"><i
+                    class="bi bi-chevron-down"></i>
+                </span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- <app-metric-activity-view id="metricActivityView" [collapse]="isCollapsedMainValues" [lang]="lang"> </app-metric-activity-view> -->
+        </div>
+      </div>
+      <!--end metric activity view-->
 
       <!-- poc view -->
       <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc' && isStartDemo">

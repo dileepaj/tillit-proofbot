@@ -104,7 +104,7 @@ export class MetricBatchHistoryComponent implements OnInit {
     d3.selectAll("g.node").on('click', (d: any) => {
       if (Nodes[d].Data.TxnType == "2"){
         console.log("clicked--",Nodes[d].TrustLinks[0])
-        this.clickedNodeEvent.emit(Nodes[d].TrustLinks[0])
+        this.clickedNodeEvent.emit(Nodes[d])
       }
       else 
       alert("Metric queries are only available for TDPs.")
