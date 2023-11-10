@@ -104,6 +104,8 @@ export class MetricProofComponent implements OnInit {
     if (sessionStorage.getItem(`${txnId}`)) {
       this.txnItem = JSON.parse(sessionStorage.getItem(`${txnId}`))
       this.loadingComplete = true;
+      
+      console.log("hihi--",sessionStorage)
     } else {
       this.loadingComplete = false;
       this.getTransactionDetails(txnId)
@@ -356,7 +358,6 @@ export class MetricProofComponent implements OnInit {
                             this.MetricNames=availableMerticNames;
                           }
                       }
-                        console.log("kkkkkk", dataMetricJson[i].metricActivities.metricResults)
                         console.log("availablenames",this.MetricNames)
                         console.log("availableMetrics",this.AvailableMetrics)
                       }
@@ -384,6 +385,18 @@ export class MetricProofComponent implements OnInit {
 
     
     
+  }
+
+  startProof(activity: any){
+    const dataToPass = {
+      tdpId: this.tdpId,
+      batchId: this.batch,
+      stage: this.stage,
+      activityDetails:activity,
+    };
+    const dataString = (JSON.stringify(dataToPass));
+    const url = `${this.proofbotDomain}/?type=pocf&txn=${this.currettxn}&data=${dataString}`;
+    window.open(url, '_blank');
   }
   
  

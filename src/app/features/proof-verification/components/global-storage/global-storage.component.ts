@@ -13,6 +13,7 @@ export class GlobalStorageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
-
+ 
 }

@@ -1,242 +1,353 @@
 {
-    "Segments": {
-        "SegName1": {
+  "Segments": {
+    "SegName1": {
+      "ja": "japanese",
+      "en": "Retrieve Tracsaction details from gateway"
+    },
+    "SegName2": {
+      "ja": "japanese",
+      "en": "Get the relavant formula ID"
+    },"SegName3": {
+      "ja": "japanese",
+      "en": "Get base64 encoded memo"
+    },
+    "SegName4": {
+      "ja": "japanese",
+      "en": "Get formula details"
+    }
+  },
+  "Actions": [
+    {
+      "SegmentNo": 1,
+      "StepNo": 1,
+      "Languages": {
+        "Text0": {
           "ja": "japanese",
-          "en": "Retrieve Metric Activity details"
-        }
-      },
-      "Actions": [
-        {
-          "SegmentNo": 1,
-          "StepNo": 1,
-          "Languages": {
-            "Text0": {
-              "ja": "japanese",
-              "en": "Step 1 - Retrieve Metric Activity details"
-            },
-            "Text1": {
-              "ja": "japanese",
-              "en": "Request Metric Activity details"
-            },
-            "Text2": {
-              "ja": "japanese",
-              "en": "Current Metric Activity details"
-            },
-            "Text3": {
-              "ja": "japanese",
-              "en": "Retrieve Metric Activity details from Tracified Gateway."
-            },
-            "Text4": {
-              "ja": "japanese",
-              "en": "Step 1 - Retrieve Metric Activity details"
-            },
-            "Text5": {
-              "ja": "japanese",
-              "en": "Save API Response"
-            },
-            "Text6": {
-              "ja": "japanese",
-              "en": "Save the response data of the transaction"
-            },
-            "Text7": {
-              "ja": "japanese",
-              "en": "Step 1 - Retrieve Traceability Data Data"
-            },
-            "Text8": {
-              "ja": "japanese",
-              "en": "Format Response (JSON)"
-            },
-            "Text9": {
-              "ja": "japanese",
-              "en": "Format transaction data to JSON (Javascript Object Notation)"
-            }
-          }
+          "en": "Step 1 - Retrieve Traceability Data Data"
         },
-        {
-            "SegmentNo": 1,
-            "StepNo": 2,
-            "Languages": {
-              "Text10": {
-                "ja": "japanese",
-                "en": "Select Formula Id"
-              },
-              "Text11": {
-                "ja": "japanese",
-                "en": "Select the Formula Id from API Request."
-              }
-            }
-          },
-          {
-            "SegmentNo": 1,
-            "StepNo": 3,
-            "Languages": {
-                "Text12": {
-                  "ja":"japanese",
-                "en": "Formula Id from the Traceafied gateway."
-              },
-                "Text13": {
-                  "ja":"japanese",
-                "en": "Highlight the Formula Id"
-              },
-                "Text14": {
-                  "ja":"japanese",
-                  "en": "Select the Formula Id from the Traceafied gateway."
-                },
-                "Text15": {
-                  "ja": "japanese",
-                  "en": "Highlight the value of Formula Id"
-                },
-              "Text16": {
-                "ja": "japanese",
-                "en": "Select the Formula Id value from the Traceafied gateway."
-              },
-              "Text17": {
-                "ja": "japanese",
-                "en": "Select the Formula Id from the Traceafied gateway."
-              }
-            }
-          },
-          {
-            "SegmentNo": 1,
-            "StepNo": 4,
-            "Languages": {
-              "Text19": {
-                "ja": "japanese",
-                "en": "Save Formula Id"
-              },
-              "Text20": {
-                "ja": "japanese",
-                "en": "Save the Formula Id for future usage."
-              },
-              "Text21": {
-                "ja": "japanese",
-                "en": "Formula Id"
-              }
-            }
-          },
-          {
-              "SegmentNo": 1,
-              "StepNo": 5,
-              "Languages": {
-                "Text22": {
-                  "ja": "japanese",
-                  "en": "Select Carbon Footprint."
-                },
-                "Text23": {
-                  "ja": "japanese",
-                  "en": "Select the Carbon Footprint from API Request."
-                }
-              }
-            },
-            {
-              "SegmentNo": 1,
-              "StepNo": 6,
-              "Languages": {
-                  "Text24": {
-                    "ja":"japanese",
-                  "en": "Carbon Footprint from the Traceafied gateway."
-                },
-                  "Text25": {
-                    "ja":"japanese",
-                  "en": "Highlight the Carbon Footprint"
-                },
-                  "Text26": {
-                    "ja":"japanese",
-                    "en": "Select the Carbon Footprint from the Traceafied gateway."
-                  },
-                "Text27": {
-                    "ja":"japanese",
-                  "en": "Highlight the value of Carbon Footprint"
-                },
-                "Text28": {
-                  "ja": "japanese",
-                  "en": "Select the Carbon Footprint value from the Traceafied gateway."
-                }
-              }
-            },
-            {
-              "SegmentNo": 1,
-              "StepNo": 7,
-              "Languages": {
-                "Text31": {
-                  "ja": "japanese",
-                  "en": "Save Carbon Footprint value"
-                },
-                "Text32": {
-                  "ja": "japanese",
-                  "en": "Save the Carbon Footprint value for future usage."
-                },
-                "Text33": {
-                  "ja": "japanese",
-                  "en": "Carbon Footprint Value"
-                }
-              }
-            },
-            {
-                "SegmentNo": 1,
-                "StepNo": 8,
-                "Languages": {
-                  "Text34": {
-                    "ja": "japanese",
-                    "en": "Select Formula Id"
-                  },
-                  "Text35": {
-                    "ja": "japanese",
-                    "en": "Select the Formula Id from API Request."
-                  }
-                }
-              },
-              {
-                "SegmentNo": 1,
-                "StepNo": 9,
-                "Languages": {
-                    "Text36": {
-                      "ja":"japanese",
-                    "en": "Formula Id from the Traceafied gateway."
-                  },
-                    "Text37": {
-                      "ja":"japanese",
-                    "en": "Highlight the Formula Id"
-                  },
-                    "Text38": {
-                      "ja":"japanese",
-                      "en": "Select the Formula Id from the Traceafied gateway."
-                    },
-                  "Text39": {
-                      "ja":"japanese",
-                    "en": "Select the Formula Id from the Traceafied gateway."
-                  },
-                  "Text40": {
-                    "ja": "japanese",
-                    "en": "Select the Formula Id from the Traceafied gateway."
-                  },
-                  "Text41": {
-                    "ja": "japanese",
-                    "en": "Highlight the value of Formula Id"
-                  },
-                  "Text42": {
-                    "ja": "japanese",
-                    "en": "Select the Formula Id from the Traceafied gateway."
-                  }
-                }
-              },
-              {
-                "SegmentNo": 1,
-                "StepNo": 10,
-                "Languages": {
-                  "Text43": {
-                    "ja": "japanese",
-                    "en": "Save Formula Id"
-                  },
-                  "Text44": {
-                    "ja": "japanese",
-                    "en": "Save the Formula Id for future usage."
-                  },
-                  "Text45": {
-                    "ja": "japanese",
-                    "en": "Formula Id"
-                  }
-                }
-              }
-    ]
+        "Text149": {
+          "ja": "japanese",
+          "en": "Request Traceability Data Data"
+        },
+        "Text1": {
+          "ja": "japanese",
+          "en": "Current Traceability Data"
+        },
+        "Text2": {
+          "ja": "japanese",
+          "en": "Retrieve Traceability Data data from Tracified Gateway."
+        },
+        "Text3": {
+          "ja": "japanese",
+          "en": "Step 1 - Retrieve Traceability Data Data"
+        },
+        "Text4": {
+          "ja": "japanese",
+          "en": "Save API Response"
+        },
+        "Text5": {
+          "ja": "japanese",
+          "en": "Save the response data of the transaction"
+        },
+        "Text6": {
+          "ja": "japanese",
+          "en": "Step 1 - Retrieve Traceability Data Data"
+        },
+        "Text7": {
+          "ja": "japanese",
+          "en": "Format Response (JSON)"
+        },
+        "Text8": {
+          "ja": "japanese",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 2,
+      "Languages": {
+        "Text9": {
+          "ja": "japanese",
+          "en": "Select Traceability Data identifier"
+        },
+        "Text10": {
+          "ja": "japanese",
+          "en": "Select the identifier from Traceability Data details."
+        }
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 3,
+      "Languages": {
+        "Text11": {
+          "ja": "japanese",
+          "en": "Traceability Data Packet ID from the Traceability Data details"
+        },
+        "Text12": {
+          "ja": "japanese",
+          "en": "Highlight the Traceability Data Packet ID"
+        },
+        "Text13": {
+          "ja": "japanese",
+          "en": "Select the Traceability Data Packet ID from the Traceability Data details"
+        },
+        "Text14": {
+          "ja": "japanese",
+          "en": "test"
+        },
+        "Text15": {
+          "ja": "japanese",
+          "en": "Highlight the Traceability Data Packet ID"
+        },
+        "Text16": {
+          "ja": "japanese",
+          "en": "Select the Traceability Data Packet ID from the Traceability Data details"
+        }
+      }
+    },
+    {
+      "SegmentNo": 1,
+      "StepNo": 4,
+      "Languages": {
+        "Text17": {
+          "ja": "japanese",
+          "en": "Save Traceability Data Packet ID"
+        },
+        "Text18": {
+          "ja": "japanese",
+          "en": "Save the Traceability Data Packet ID value for future usage."
+        },
+        "Text19": {
+          "ja": "japanese",
+          "en": "Traceability Data Packet ID"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 5,
+      "Languages": {
+        "Text20": {
+          "ja": "japanese",
+          "en": "Step 1 - Retrieve Metric Activity details"
+        },
+        "Text21": {
+          "ja": "japanese",
+          "en": "Request Metric Activity details"
+        },
+        "Text22": {
+          "ja": "japanese",
+          "en": "Current Metric Activity details"
+        },
+        "Text23": {
+          "ja": "japanese",
+          "en": "Retrieve Metric Activity details from Tracified Gateway."
+        },
+        "Text24": {
+          "ja": "japanese",
+          "en": "Step 1 - Retrieve Metric Activity details"
+        },
+        "Text25": {
+          "ja": "japanese",
+          "en": "Save API Response"
+        },
+        "Text26": {
+          "ja": "japanese",
+          "en": "Save the response data of the transaction"
+        },
+        "Text27": {
+          "ja": "japanese",
+          "en": "Step 1 - Retrieve Traceability Data Data"
+        },
+        "Text28": {
+          "ja": "japanese",
+          "en": "Format Response (JSON)"
+        },
+        "Text29": {
+          "ja": "japanese",
+          "en": "Format transaction data to JSON (Javascript Object Notation)"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 6,
+      "Languages": {
+        "Text30": {
+          "ja": "japanese",
+          "en": "Select Formula Id"
+        },
+        "Text31": {
+          "ja": "japanese",
+          "en": "Select the Formula Id from API Request."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 7,
+      "Languages": {
+        "Text32": {
+          "ja": "japanese",
+          "en": "Formula Id from the Traceafied gateway."
+        },
+        "Text33": {
+          "ja": "japanese",
+          "en": "Highlight the Formula Id"
+        },
+        "Text34": {
+          "ja": "japanese",
+          "en": "Select the Formula Id from the Traceafied gateway."
+        },
+        "Text35": {
+          "ja": "japanese",
+          "en": "Highlight the value of Formula Id"
+        },
+        "Text36": {
+          "ja": "japanese",
+          "en": "Select the Formula Id value from the Traceafied gateway."
+        },
+        "Text37": {
+          "ja": "japanese",
+          "en": "Select the Formula Id from the Traceafied gateway."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 8,
+      "Languages": {
+        "Text39": {
+          "ja": "japanese",
+          "en": "Save Formula Id"
+        },
+        "Text40": {
+          "ja": "japanese",
+          "en": "Save the Formula Id for future usage."
+        },
+        "Text41": {
+          "ja": "japanese",
+          "en": "Formula Id"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 9,
+      "Languages": {
+        "Text42": {
+          "ja": "japanese",
+          "en": "Select Carbon Footprint."
+        },
+        "Text43": {
+          "ja": "japanese",
+          "en": "Select the Carbon Footprint from API Request."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 10,
+      "Languages": {
+        "Text44": {
+          "ja": "japanese",
+          "en": "Carbon Footprint from the Traceafied gateway."
+        },
+        "Text45": {
+          "ja": "japanese",
+          "en": "Highlight the Carbon Footprint"
+        },
+        "Text46": {
+          "ja": "japanese",
+          "en": "Select the Carbon Footprint from the Traceafied gateway."
+        },
+        "Text47": {
+          "ja": "japanese",
+          "en": "Highlight the value of Carbon Footprint"
+        },
+        "Text48": {
+          "ja": "japanese",
+          "en": "Select the Carbon Footprint value from the Traceafied gateway."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 11,
+      "Languages": {
+        "Text49": {
+          "ja": "japanese",
+          "en": "Save Carbon Footprint value"
+        },
+        "Text50": {
+          "ja": "japanese",
+          "en": "Save the Carbon Footprint value for future usage."
+        },
+        "Text51": {
+          "ja": "japanese",
+          "en": "Carbon Footprint Value"
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 12,
+      "Languages": {
+        "Text52": {
+          "ja": "japanese",
+          "en": "Select Formula Id"
+        },
+        "Text53": {
+          "ja": "japanese",
+          "en": "Select the Formula Id from API Request."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 13,
+      "Languages": {
+        "Text54": {
+          "ja": "japanese",
+          "en": "Formula Id from the Traceafied gateway."
+        },
+        "Text55": {
+          "ja": "japanese",
+          "en": "Highlight the Formula Id"
+        },
+        "Text56": {
+          "ja": "japanese",
+          "en": "Select the Formula Id from the Traceafied gateway."
+        },
+        "Text57": {
+          "ja": "japanese",
+          "en": "Highlight the value of Formula Id"
+        },
+        "Text58": {
+          "ja": "japanese",
+          "en": "Select the Formula Id value from the Traceafied gateway."
+        }
+      }
+    },
+    {
+      "SegmentNo": 2,
+      "StepNo": 14,
+      "Languages": {
+        "Text59": {
+          "ja": "japanese",
+          "en": "Save Formula Id"
+        },
+        "Text60": {
+          "ja": "japanese",
+          "en": "Save the Formula Id for future usage."
+        },
+        "Text61": {
+          "ja": "japanese",
+          "en": "Formula Id"
+        }
+      }
+    }
+  ]
 }

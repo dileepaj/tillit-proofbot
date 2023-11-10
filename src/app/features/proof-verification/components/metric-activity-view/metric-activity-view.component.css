@@ -1,0 +1,37 @@
+.bold{
+    font-weight: 700;
+}
+
+.formula-view{
+  border: 1px solid #DFDFDF;
+  width: 100%;
+  /* text-align: center; */
+ 
+}
+
+.current-view{
+    padding: 20px;
+}
+
+.formula-description{
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: #DFDFDF;
+  width: fit-content;
+}
+
+.column {
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+.image-column {
+  text-align: center;
+  
+}

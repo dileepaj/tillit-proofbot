@@ -5,7 +5,7 @@
       alignItems: alignItems
     }" [class]="isTheater ? 'p-3' : 'p-0'">
     <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading" [isProofTypeAvailable]="isProofTypeAvailable"
-      [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"
+      [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash" [MetricId]="MetricId" [ActivityId]="ActivityId" 
       (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isProofStart" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
         maxWidth: initialWidth
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div>
-          <!-- <app-metric-activity-view id="metricActivityView" [collapse]="isCollapsedMainValues" [lang]="lang"> </app-metric-activity-view> -->
+          <app-metric-activity-view id="metricActivityView" [collapse]="isCollapsedMainValues" [lang]="lang" [activity]="Activity"> </app-metric-activity-view>
         </div>
       </div>
       <!--end metric activity view-->
@@ -120,6 +120,34 @@
         </div>
       </div>
       <!--end bot-segments header-->
+      <!--bot segment header for pocf-->
+      <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='pocf' && isStartDemo">
+        <div class="row ">
+          <div class="col-12">
+            <div class="d-flex justify-content-between section-header">
+              <div></div>
+              <div>
+                <span>Current Proof: 
+                <span class="bold-f">&nbsp;Proof Of Carbon Footprint&nbsp;</span> 
+                for 
+                <span class="bold-f" *ngIf="ActiviyName">&nbsp;{{ActiviyName}}&nbsp;</span> 
+              </span>
+                <a class="ml-1"
+                  href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+                  target="_blank">
+                  <i class="bi bi-question-circle-fill helpIcon"></i>
+                </a>
+              </div>
+              
+              <div class="mr-1 "> <span (click)="isCollapsedSegment = !isCollapsedSegment"
+                  [attr.aria-expanded]="!isCollapsedSegment" aria-controls="steppersFrame"><i
+                    class="bi bi-chevron-down"></i>
+                </span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end of bot segment header for pocf-->
       <!-- description -->
       <div class="mb-2" [collapse]="isCollapsedSegment" *ngIf="isStartDemo">
         <div class="row justify-content-center align-item-center text-center">

@@ -34,6 +34,7 @@ import { BotWaitComponent } from "./features/proof-verification/components/bot-w
 import {POCStatus} from './shared/components/poc-status/poc-status.component';
 import { MetricProofComponent } from './features/proof-verification/metric-proof/metric-proof.component';
 import { MetricBatchHistoryComponent } from './features/proof-verification/components/metric-batch-history/metric-batch-history.component';
+import {MetricActivityViewComponent} from './features/proof-verification/components/metric-activity-view/metric-activity-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { MetricBatchHistoryComponent } from './features/proof-verification/compo
     POCStatus,
     MetricProofComponent,
     MetricBatchHistoryComponent,
+    MetricActivityViewComponent,
   ],
   imports: [
     BrowserModule,

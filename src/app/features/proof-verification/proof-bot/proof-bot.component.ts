@@ -181,6 +181,11 @@ export class ProofBotComponent implements OnInit {
   isEncodedData: boolean = false;
   isProofTypeAvailable: boolean = false;
   pocData: any = {};
+  Stage: any;
+  ActiviyName: any;
+  Activity: any = {};
+  ActivityId: any;
+  MetricId: any;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -215,9 +220,12 @@ export class ProofBotComponent implements OnInit {
         params: {
           txn: params.get("txn"),
           type: params.get("type"),
-          txn2: params.get("txn2")
+          txn2: params.get("txn2"),
+          data: params.get("data")
         }
+        
       };
+      
 
       this.verificationHttpService.loadPage(environment.blockchain.getTransactionData + "?txn=" + this.proofBotParams.params.txn + "&page=1&perPage=10").subscribe(
         async data => {
@@ -246,6 +254,15 @@ export class ProofBotComponent implements OnInit {
     this.LoadingProofType = this.commonServices.getProofName(this.proofType)
     this.TXNhash = this.proofBotParams.params.txn;
     this.isProofTypeAvailable=true;
+    if(this.proofBotParams.params.data){
+      this.Activity = JSON.parse(this.proofBotParams.params.data);
+      this.Stage=this.Activity.stage;
+      this.ActiviyName=this.Activity.activityDetails.name;
+      this.ActivityId=this.Activity.activityDetails.id;
+      this.MetricId=this.Activity.activityDetails.metricId;
+    }
+      
+    
   }
 
   async ngAfterViewInit() {
@@ -254,10 +271,13 @@ export class ProofBotComponent implements OnInit {
 
   async startDemoFn() {
     this.isProofStart=true;
+    console.log("activitydata",this.Activity);
     if (!!this.proofType && this.availableProofs.includes(this.proofType))
       if (!!this.proofBotParams.params.type) {
         this.TXNhash = this.proofBotParams.params.txn;
         this.variableStorage["TXNhash"] = this.proofBotParams.params.txn;
+        this.variableStorage["MetricId"]=this.MetricId;
+        this.variableStorage["ActivityId"]=this.ActivityId;
         this.isLoading = true;
         // backend call
         await new Promise(resolveTime => setTimeout(resolveTime, 4200));
@@ -414,7 +434,6 @@ export class ProofBotComponent implements OnInit {
         ...action.Languages
       };
     }
-    
     this.proofJSON = this.parseLangData(this.proofJSON, variables);
   }
 
@@ -1372,21 +1391,23 @@ export class ProofBotComponent implements OnInit {
   }
 
   jsonValueObjectPicker(obj: any, v: string, caseSensitive: boolean = false) {
+    console.log("obj",obj,v);
     for (var key in obj) {
       v = !caseSensitive ? v.toLowerCase() : v;
       var value = obj[key];
       if (typeof value === "object" && !Array.isArray(value)) {
         var r = this.jsonValueObjectPicker(value, v, caseSensitive);
-        if (Object.keys(r).length > 0) return r;
+        if (Object.keys(r).length > 0) console.log("r1",r); return r;
+        
       } else if (Array.isArray(value)) {
         for (var i = 0; i < value.length; ++i) {
           var r = this.jsonValueObjectPicker(value[i], v, caseSensitive);
-          if (Object.keys(r).length > 0) return r;
+          if (Object.keys(r).length > 0) console.log("r2",r); return r;
         }
       } else {
         value = value.toString();
         value = !caseSensitive && value.toLowerCase();
-        if (v == value) return obj;
+        if (v == value) console.log("obj",obj);return obj;
       }
     }
     return {};
@@ -1465,6 +1486,7 @@ export class ProofBotComponent implements OnInit {
         Title,
         Data
       });
+      console.log("global",this.globalData)
     }  else  {
       const curr: any = this.globalData[index];
       for (let j = 0; j < Data.length; j++) {

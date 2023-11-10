@@ -17,11 +17,13 @@ export class BotLoaderComponent implements OnInit {
   @Output() startDemoFn = new EventEmitter();
   @Input() LoadingProofType: string;
   @Input() TXNhash: string;
-  @Input() product
-  @Input() batch
-  @Input() tdpId
+  @Input() product;
+  @Input() batch;
+  @Input() tdpId;
   @Input() isProofTypeAvailable: Boolean;
   @Input() metric
+  @Input() MetricId;
+  @Input() ActivityId;
   countdown: number = 1;
 
   constructor() { }
