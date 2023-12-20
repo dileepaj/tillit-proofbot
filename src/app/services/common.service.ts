@@ -34,8 +34,8 @@ export class CommonService {
         proofName = "Proof of Backlinks"
         break;
       case "pocf":
-          proofName = "Proof of Carbon Footprint"
-          break;
+        proofName = "Proof of Carbon Footprint"
+        break;
       default:
         break;
     }
@@ -48,45 +48,54 @@ export class CommonService {
     return decodedText;
   }
 
-  
-  public getProofNameByType(TxnType): string{
+
+  public getProofNameByType(TxnType): string {
     switch (TxnType) {
       case "0":
-          return "Proof of Genesis";
+        return "Proof of Genesis";
       case "2":
         return "Proof of Existence";
       case "6":
-          return "SPLIT";
+        return "SPLIT";
       case "7":
-          return "MERGE";
+        return "MERGE";
       case "5":
-          return "SPLIT PARENT";
+        return "SPLIT PARENT";
       case "9":
-          return "STAGE TRANSFER";
+        return "STAGE TRANSFER";
       case "10":
-          return "POCOC";
-      default:
-  }
-}
-
-public getTransactionByType(TxnType): string{
-  switch (TxnType) {
-    case "0":
-        return "Proof of Genesis";
-    case "2":
-      return "Tracibility Data";
-    case "6":
-        return "Split";
-    case "7":
-        return "Merge";
-    case "5":
-        return "Split Parent";
-    case "9":
-        return "Stage Transfer";
-    case "10":
         return "POCOC";
-    default:
-}
-}
-  
+      default:
+    }
+  }
+
+  public getTransactionByType(TxnType): string {
+    switch (TxnType) {
+      case "0":
+        return "Proof of Genesis";
+      case "2":
+        return "Tracibility Data";
+      case "6":
+        return "Split";
+      case "7":
+        return "Merge";
+      case "5":
+        return "Split Parent";
+      case "9":
+        return "Stage Transfer";
+      case "10":
+        return "POCOC";
+      default:
+    }
+  }
+
+  public isJSONString(str) {
+    try {
+      JSON.parse(str);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
 }

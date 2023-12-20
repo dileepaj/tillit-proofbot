@@ -1,0 +1,404 @@
+{
+    "Header": {
+        "StorageTitle": "Information storage",
+        "ProofContainerTitle": "",
+        "GSHeightExpand": false,
+        "GSOverflowX": "hidden",
+        "VSOverflowX": "hidden",
+        "PlaybackSpeed": 1,
+        "ScrollToPointer": true,
+        "Segments": [
+            {
+                "NO": 1,
+                "Name": "&{SegName1}",
+                "Source": "../../../../assets/img/database.png"
+            }
+        ]
+    },
+    "Steps": [
+        {
+            "StepHeader": {
+                "StepNo": 1,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "Tracified API Request",
+                "ActionDescription": "Retrieve formula details from Tracified Gateway.",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "",
+                    "QueryIndex": "",
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": [],
+                    "ActionConfigurationID": "GetTransactionDetails",
+                    "SubActionArguments": {
+                        "StepNo": 1,
+                        "SegmentNo": 1,
+                        "FrameID": 1,
+                        "FrameTitle": "&{Text20}",
+                        "ActionTitle": "&{Text21}",
+                        "ActionDescription": "&{Text22}",
+                        "ExternalURL": "https://horizon.stellar.org/transactions/7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3/operations",
+                        "PathID": "",
+                        "FrameTitle_1": "&{Text23}",
+                        "ActionTitle_1": "&{Text24}",
+                        "ActionDescription_1": "&{Text25}",
+                        "FrameTitle_2": "&{Text26}",
+                        "ActionTitle_2": "&{Text27}",
+                        "ActionDescription_2": "&{Text28}",
+                        "TXNHash": "${TXNhash}",
+                        "OperationName": "&{Text29}",
+                        "ResponseVariable": "ManageDataString",
+                        "JSONResultVariable": "ManageData",
+                        "StartedProofType": "",
+                        "TrustLinks": []
+                    }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 2,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "&{Text30}",
+                "ActionDescription": "&{Text31}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "body",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "jsonRepetitiveKeyPicker",
+                    "StorageData": []
+                },
+                "ActionResultVariable": "name1",
+                "MetaData": [
+                    "ManageData",
+                    "name"
+                ]
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 3,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "",
+                    "QueryIndex": "",
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": [],
+                    "ActionConfigurationID": "KeyValueHighlighter",
+                    "SubActionArguments": {
+                        "StepNo": 3,
+                        "SegmentNo": 1,
+                        "FrameID": 1,
+                        "FrameTitle": "&{Text32}",
+                        "ActionTitle": "&{Text33}",
+                        "ActionDescription": "&{Text34}",
+                        "FrameTitle_1": "&{Text32}",
+                        "ActionTitle_1": "&{Text36}",
+                        "ActionDescription_1": "&{Text37}",
+                        "OperationKey": "name",
+                        "OperationValue": "name1",
+                        "OperationKeyName": "Formula Id from the Traceafied gateway.",
+                        "OperationValueName": "Formula Id from the Traceafied gateway."
+                    }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 4,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "&{Text39}",
+                "ActionDescription": "&{Text40}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": true,
+                    "SelectiveTextIndex": 0,
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": [
+                        {
+                            "Key": "&{Text41}",
+                            "Value": "${name1}"
+                        }
+                    ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 5,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "&{Text30}",
+                "ActionDescription": "&{Text31}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "body",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "jsonRepetitiveKeyPicker",
+                    "StorageData": []
+                },
+                "ActionResultVariable": "value1",
+                "MetaData": [
+                    "ManageData",
+                    "value"
+                ]
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 6,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "",
+                    "QueryIndex": "",
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": [],
+                    "ActionConfigurationID": "KeyValueHighlighter",
+                    "SubActionArguments": {
+                        "StepNo": 31,
+                        "SegmentNo": 4,
+                        "FrameID": 1,
+                        "FrameTitle": "&{Text32}",
+                        "ActionTitle": "&{Text33}",
+                        "ActionDescription": "&{Text34}",
+                        "FrameTitle_1": "&{Text32}",
+                        "ActionTitle_1": "&{Text36}",
+                        "ActionDescription_1": "&{Text37}",
+                        "OperationKey": "value",
+                        "OperationValue": "value1",
+                        "OperationKeyName": "Formula Id from the Traceafied gateway.",
+                        "OperationValueName": "Formula Id from the Traceafied gateway."
+                    }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 7,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "&{Text39}",
+                "ActionDescription": "&{Text40}",
+                "ActionType": "InformationStorage",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": true,
+                    "SelectiveTextIndex": 0,
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": [
+                        {
+                            "Key": "&{Text41}",
+                            "Value": "${value1}"
+                        }
+                    ]
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 30
+            }
+        }
+    ]
+}

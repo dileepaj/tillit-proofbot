@@ -22,7 +22,7 @@ import * as POEJSON from "../ProofJSONs/POE_NEW.json";
 import * as POELangJSON from "../ProofJSONs/POE_NEW-lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
 import * as POBLLangJSON from "../ProofJSONs/POBL_lang.json";
-import * as SocialImpactJSON from "../ProofJSONs/Social-impact.json";
+import * as SocialImpactJSON from "../ProofJSONs/testS.json";
 import * as SocialImpactLangJSON from "../ProofJSONs/Social-impact-lang.json";
 import * as ActionConfigurationsQa from "../ProofJSONs/ActionCofigurationsQa.json";
 import * as ActionConfigurationsStaging from "../ProofJSONs/ActionConfigurationsStaging.json";
@@ -1004,6 +1004,7 @@ export class ProofBotComponent implements OnInit {
           await this.handleFormatElementAttribute(stepData);
           break;
         case "FormatDOMText":
+          console.log('stepData', stepData)
           await this.handleTextStyle(stepData);
           break;
         case "UpdateElementProperty":
@@ -1218,6 +1219,7 @@ export class ProofBotComponent implements OnInit {
         case "BrowserScreen":
           var scRef: ComponentRef<SiteScreenComponent> = ds.ref;
           if (scRef && SelectiveText)
+          if (!this.commonServices.isJSONString(SelectiveText)){
             await scRef.instance.styleText(
               SelectiveText,
               CaseSensitivity,
@@ -1225,6 +1227,18 @@ export class ProofBotComponent implements OnInit {
               CSS
             );
           break;
+          }else{
+            let seletectiveTextJson = JSON.parse(SelectiveText)
+            for (const item of seletectiveTextJson) {
+              await scRef.instance.styleText(
+                item,
+                CaseSensitivity,
+                SelectiveTextIndex,
+                CSS
+              );
+            }
+            break;
+          }
         default:
           break;
       }
@@ -1340,6 +1354,17 @@ export class ProofBotComponent implements OnInit {
           this.variableStorage[ActionResultVariable] = result[MetaData[3]];
         else this.variableStorage[ActionResultVariable] = result;
         break;
+      case "jsonRepetitiveKeyPicker":
+        console.log('MetaData[1]', MetaData[1])
+        if (!!!this.jsonRepetitiveKeyPicker(val, MetaData[1]) && this.proofType != 'poc') {
+            this.toastr.error(`Cannot find given key from the URL`, currentUrl);
+            break;
+          }
+       console.log('this.jsonRepetitiveKeyPicker(val, MetaData[1])', this.jsonRepetitiveKeyPicker(val, MetaData[1]))
+        var result:any = JSON.stringify(this.jsonRepetitiveKeyPicker(val, MetaData[1]));
+        console.log('result', result)
+        this.variableStorage[ActionResultVariable] = result;
+        break;
       case "jsonValueObjectPicker":
 
         this.variableStorage[ActionResultVariable] = this.jsonValueObjectPicker(
@@ -1389,6 +1414,44 @@ export class ProofBotComponent implements OnInit {
     }
     return selfReturn ? obj : null;
   }
+
+  jsonRepetitiveKeyPicker(obj, k) {
+    var result = [];
+  
+    function search(obj, k) {
+      if (typeof obj !== 'object' || obj === null) {
+        return;
+      }
+  
+      for (var key in obj) {
+        var value = obj[key];
+  
+        if (k == key) {
+          // If the key matches, add the corresponding value to the result array
+          result.push(value);
+        }
+  
+        if (typeof value === "object" && !Array.isArray(value)) {
+          // If the value is an object, recursively call the search function
+          search(value, k);
+        }
+  
+        if (Array.isArray(value)) {
+          // If the value is an array, iterate through its elements and recursively call the search function
+          for (var i = 0; i < value.length; ++i) {
+            search(value[i], k);
+          }
+        }
+      }
+    }
+  
+    // Call the search function to populate the result array
+    search(obj, k);
+  
+    // Return the array of values
+    return result.length > 0 ? result : null;
+  }
+  
 
   jsonValueObjectPicker(obj: any, v: string, caseSensitive: boolean = false) {
     console.log("obj",obj,v);
