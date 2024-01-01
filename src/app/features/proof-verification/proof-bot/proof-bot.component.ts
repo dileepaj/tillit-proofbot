@@ -1022,6 +1022,9 @@ export class ProofBotComponent implements OnInit {
         case "FormatMetaData":
           this.handleVariableFormat(stepData, currentBrowserScreen);
           break;
+        case "LoopBacksteps":
+          this.hadleLoopBacksteps(stepData);
+          break;
         default:
           break;
       }
@@ -1326,6 +1329,31 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
+  async hadleLoopBacksteps(stepData: any){
+    const { StepHeader, Action, Customizations } = stepData;
+    const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
+    const { ActionParameters, ActionResultVariable, MetaData } = Action;
+    const { FormatType } = ActionParameters;
+    var val = this.variableStorage[MetaData[0]];
+    var val2 = this.variableStorage[MetaData[1]];
+    var array:any =JSON.stringify(this.variableStorage[MetaData[2]]) ;
+    this.isBackToStep=true;
+    console.log("array",MetaData[2])
+    console.log("type",typeof(MetaData[2]))
+    
+      for (var i in array){
+        console.log("mm")
+        //this.toStepper(MetaData[0],Action._ID);
+        this.isPause=false;
+        this.backToStep(val);
+        this.variableStorage[ActionResultVariable] = array[i];
+      }
+    
+    
+    
+
+  }
+
   handleVariableFormat(stepData: any, currentUrl: any) {
     const { StepHeader, Action, Customizations } = stepData;
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
@@ -1377,6 +1405,8 @@ export class ProofBotComponent implements OnInit {
         break;
     }
   }
+
+  
 
   findAllValuesOfAKey(obj: any, key: string, caseSensitive: boolean = true) {
     var values = [];

@@ -322,7 +322,7 @@
                     "StorageData": [],
                     "ActionConfigurationID": "KeyValueHighlighter",
                     "SubActionArguments": {
-                        "StepNo": 31,
+                        "StepNo": 6,
                         "SegmentNo": 4,
                         "FrameID": 1,
                         "FrameTitle": "&{Text32}",
@@ -398,6 +398,55 @@
                 "ToastMessage": "",
                 "ToastPosition": null,
                 "ActionDuration": 30
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 8,
+                "SegmentNo": 1,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "&{Text30}",
+                "ActionDescription": "&{Text31}",
+                "ActionType": "LoopBacksteps",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "body",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": []
+                },
+                "ActionResultVariable": "TXNhash",
+                "MetaData": [
+                    "2",
+                    "6",
+                    ["7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3","7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3"]
+                ]
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
             }
         }
     ]
