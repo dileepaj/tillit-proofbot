@@ -12,6 +12,11 @@
                 "NO": 1,
                 "Name": "&{SegName1}",
                 "Source": "../../../../assets/img/database.png"
+            },
+            {
+                "NO": 2,
+                "Name": "&{SegName2}",
+                "Source": "../../../../assets/img/database.png"
             }
         ]
     },
@@ -403,7 +408,7 @@
         {
             "StepHeader": {
                 "StepNo": 8,
-                "SegmentNo": 1,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -434,8 +439,8 @@
                 },
                 "ActionResultVariable": "TXNhash",
                 "MetaData": [
-                    "2",
-                    "6",
+                    "1",
+                    "1",
                     ["7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3","7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3"]
                 ]
             },

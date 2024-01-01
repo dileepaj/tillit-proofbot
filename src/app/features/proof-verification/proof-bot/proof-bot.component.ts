@@ -741,7 +741,6 @@ export class ProofBotComponent implements OnInit {
   
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
-    console.log("segmentNo",this.SegmentNumber, _ID)
     try {
       document
         .querySelectorAll("#steppersFrame")[0]
@@ -781,12 +780,10 @@ export class ProofBotComponent implements OnInit {
         }
         if(this.proofType=='poc'){
           let num=this.CurrenyRunningProof[2].map((seg) => seg.NO);
-          console.log("numm-----",num[0])
           for (let j = num[0]; j < num.length; j++) {
             allSteps[j].classList.remove("glow");
             allSteps[j].classList.remove("success");
             allSegmentLines[j].classList.remove("bg-success");
-            console.log("ii-----",j)
           }
           }
         await this.toSubStepper(no, _ID);
@@ -1097,7 +1094,7 @@ export class ProofBotComponent implements OnInit {
           this.handleVariableFormat(stepData, currentBrowserScreen);
           break;
         case "LoopBacksteps":
-          this.hadleLoopBacksteps(stepData);
+          this.handleLoopBacksteps(stepData);
           break;
         default:
           break;
@@ -1403,28 +1400,21 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
-  async hadleLoopBacksteps(stepData: any){
+  async handleLoopBacksteps(stepData: any){
     const { StepHeader, Action, Customizations } = stepData;
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
     const { ActionParameters, ActionResultVariable, MetaData } = Action;
     const { FormatType } = ActionParameters;
-    var val = this.variableStorage[MetaData[0]];
+    var val1 = this.variableStorage[MetaData[0]];
     var val2 = this.variableStorage[MetaData[1]];
     var array:any =JSON.stringify(this.variableStorage[MetaData[2]]) ;
-    this.isBackToStep=true;
+    
+    this.isPause=false;
     console.log("array",MetaData[2])
     console.log("type",typeof(MetaData[2]))
-    
-      for (var i in array){
-        console.log("mm")
-        //this.toStepper(MetaData[0],Action._ID);
-        this.isPause=false;
-        this.backToStep(val);
-        this.variableStorage[ActionResultVariable] = array[i];
-      }
-    
-    
-    
+    this.toStepper(val1,val2);
+       //console.log("action_id",Action.ID)
+       this.variableStorage[ActionResultVariable] = array[0];
 
   }
 
