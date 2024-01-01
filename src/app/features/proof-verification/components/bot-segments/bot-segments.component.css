@@ -22,6 +22,10 @@
     background-color: #098260;
     color: #FFFFFF;
     border-radius: 8px;
+    cursor: pointer;
+  }
+  #segment .disable.step{
+    opacity: 0.1;
   }
   
   #subSteppers .success.step {
@@ -65,8 +69,8 @@
   .cs-stepper-circle {
     font-size: 10px !important;
     border-color: #FFFFFF !important;
-    border: 1px solid !important;
-    width: 22px !important;
+    border: 1px solid !important; 
+    width: 22px !important; 
     height: 22px !important;
     padding: 0 !important;
     display: flex !important;
@@ -115,19 +119,16 @@
   
   #segments .success .bs-stepper-circle {
     background-color: #0E5E46;
-    /* cursor: pointer; */
-    cursor: default;
+    cursor: pointer;
   }
 
   #subSteppers .success .bs-stepper-circle {
     background-color: #395971;
-    /* cursor: pointer; */
-    cursor: default;
+    cursor: pointer;
   }
 
   .success .bs-stepper-label{
-    /* cursor: pointer; */
-    cursor: default;
+    cursor: pointer;
   }
 
   .cs-stepper-label{
@@ -411,6 +412,7 @@
     border-top-right-radius: 14%;
     border-bottom-right-radius: 14%;
     padding: 5px;
+    cursor:pointer;
     }
   .glow .segment-source{
     background-color: #0E5E46;

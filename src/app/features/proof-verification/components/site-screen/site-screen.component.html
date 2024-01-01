@@ -1,6 +1,7 @@
-<div id="siteScreen" class=" mt-2" [@screenAnimation] style="min-height: 400px;">
+<!-- <div [attr.id]="'sitescreen' + SegNo" class=" mt-2" [@screenAnimation] style="min-height: 400px;"> -->
   <!-- Browser window start -->
-  <div id="browser">
+<div [attr.id]="'sitescreen' + SegNo" class="siteScreen mt-2" [@screenAnimation] style="min-height: 400px;">
+  <div id="browser" class="browser">
     <!-- browser controlls start -->
     <div class="header">
       <div class="input-group">
@@ -48,8 +49,9 @@
   <!-- Browser window end -->
 
   <!-- Frame title start -->
-  <!-- <div id="title">
+  <!-- <div id="title" class="title">
     <input type="text" [value]="FrameTitle" aria-label="url" disabled aria-describedby="basic-addon1" />
   </div> -->
   <!-- Frame title end -->
 </div>
+<!-- </div> -->

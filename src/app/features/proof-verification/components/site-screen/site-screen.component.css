@@ -23,7 +23,7 @@
   right: 0;
 }
 
-#siteScreen {
+.siteScreen {
   height: 100%;
   width: 100%;
   border: solid rgba(204, 202, 202, 0.473) 2px;
@@ -89,7 +89,7 @@
   cursor: pointer;
 }
 
-#siteScreen #browser .content {
+.siteScreen .browser .content {
   height: 100%;
   width: 100%;
   font-size: 12px;
@@ -99,7 +99,7 @@
   position: relative;
 }
 
-#siteScreen #title input {
+.siteScreen .title input {
   background: #bdc3c7; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
