@@ -192,6 +192,7 @@ export class ProofBotComponent implements OnInit {
   Activity: any = {};
   ActivityId: any;
   MetricId: any;
+  loopdone: boolean;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -1094,7 +1095,9 @@ export class ProofBotComponent implements OnInit {
           this.handleVariableFormat(stepData, currentBrowserScreen);
           break;
         case "LoopBacksteps":
+          if(!this.loopdone){ 
           this.handleLoopBacksteps(stepData);
+          }
           break;
         default:
           break;
@@ -1405,16 +1408,35 @@ export class ProofBotComponent implements OnInit {
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
     const { ActionParameters, ActionResultVariable, MetaData } = Action;
     const { FormatType } = ActionParameters;
-    var val1 = this.variableStorage[MetaData[0]];
-    var val2 = this.variableStorage[MetaData[1]];
-    var array:any =JSON.stringify(this.variableStorage[MetaData[2]]) ;
-    
+    var val1 = MetaData[0];
+    var val2 = MetaData[1];
+    var obj:any =[MetaData[2]];
+    const jsonArray = Object.keys(obj).map(key => ({ key: key, value: obj[key] }));
+    this.loopdone=true;
     this.isPause=false;
-    console.log("array",MetaData[2])
+    console.log("vl1",MetaData[0])
+    console.log("array",obj)
+    console.log("len",jsonArray.length)
     console.log("type",typeof(MetaData[2]))
-    this.toStepper(val1,val2);
-       //console.log("action_id",Action.ID)
-       this.variableStorage[ActionResultVariable] = array[0];
+    for (var i = 0; i < obj.length; i++) {
+      var currentObj = obj[i];
+  
+      for (var key in currentObj) {
+          if (currentObj.hasOwnProperty(key)) {
+              var value = currentObj[key];
+              // Do something with each key-value pair
+              this.backToStep(val1);
+              console.log("value--", value)
+              this.variableStorage[ActionResultVariable] = value;
+          }
+      }
+      
+      // Break the loop after accessing all properties of the current object
+      // Remove this line if you want to continue iterating through all objects
+      break;
+  }
+  
+    
 
   }
 
