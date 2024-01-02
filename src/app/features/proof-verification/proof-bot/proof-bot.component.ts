@@ -1418,23 +1418,23 @@ export class ProofBotComponent implements OnInit {
     console.log("array",obj)
     console.log("len",jsonArray.length)
     console.log("type",typeof(MetaData[2]))
-    for (var i = 0; i < obj.length; i++) {
-      var currentObj = obj[i];
+  //   for (var i = 0; i < obj.length; i++) {
+  //     var currentObj = obj[i];
   
-      for (var key in currentObj) {
-          if (currentObj.hasOwnProperty(key)) {
-              var value = currentObj[key];
-              // Do something with each key-value pair
-              this.backToStep(val1);
-              console.log("value--", value)
-              this.variableStorage[ActionResultVariable] = value;
-          }
-      }
+  //     for (var key in currentObj) {
+  //         if (currentObj.hasOwnProperty(key)) {
+  //             var value = currentObj[key];
+  //             // Do something with each key-value pair
+  //             this.backToStep(val1);
+  //             console.log("value--", value)
+  //             this.variableStorage[ActionResultVariable] = value;
+  //         }
+  //     }
       
-      // Break the loop after accessing all properties of the current object
-      // Remove this line if you want to continue iterating through all objects
-      break;
-  }
+  //     // Break the loop after accessing all properties of the current object
+  //     // Remove this line if you want to continue iterating through all objects
+  //     break;
+  // }
   
     
 
@@ -2254,5 +2254,13 @@ result.push([...otherSteppers]);
   return result;
 }
 
+setLocalStorageData(key: string, data: any) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+getLocalStorageData(key: string) {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+}
 
 }

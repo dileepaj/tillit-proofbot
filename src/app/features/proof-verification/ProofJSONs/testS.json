@@ -29,6 +29,55 @@
                 "FrameTitle": ""
             },
             "Action": {
+                "ActionTitle": "&{Text30}",
+                "ActionDescription": "&{Text31}",
+                "ActionType": "LoopBacksteps",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "body",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": []
+                },
+                "ActionResultVariable": "TXNhash",
+                "MetaData": [
+                    2,
+                    8,
+                    ["7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3","7fd3f79626ab92b286dc7a8d94021d3d73e654850edf6a8091a6c4b0231d25a3"]
+                ]
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 2,
+                "SegmentNo": 2,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
                 "ActionTitle": "Tracified API Request",
                 "ActionDescription": "Retrieve formula details from Tracified Gateway.",
                 "ActionType": "MultiStepAction",
@@ -54,8 +103,8 @@
                     "StorageData": [],
                     "ActionConfigurationID": "GetTransactionDetails",
                     "SubActionArguments": {
-                        "StepNo": 1,
-                        "SegmentNo": 1,
+                        "StepNo": 2,
+                        "SegmentNo": 2,
                         "FrameID": 1,
                         "FrameTitle": "&{Text20}",
                         "ActionTitle": "&{Text21}",
@@ -91,8 +140,8 @@
         },
         {
             "StepHeader": {
-                "StepNo": 2,
-                "SegmentNo": 1,
+                "StepNo": 3,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -139,8 +188,8 @@
         },
         {
             "StepHeader": {
-                "StepNo": 3,
-                "SegmentNo": 1,
+                "StepNo": 4,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -169,8 +218,8 @@
                     "StorageData": [],
                     "ActionConfigurationID": "KeyValueHighlighter",
                     "SubActionArguments": {
-                        "StepNo": 3,
-                        "SegmentNo": 1,
+                        "StepNo": 4,
+                        "SegmentNo": 2,
                         "FrameID": 1,
                         "FrameTitle": "&{Text32}",
                         "ActionTitle": "&{Text33}",
@@ -199,8 +248,8 @@
         },
         {
             "StepHeader": {
-                "StepNo": 4,
-                "SegmentNo": 1,
+                "StepNo": 5,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -249,8 +298,8 @@
         },
         {
             "StepHeader": {
-                "StepNo": 5,
-                "SegmentNo": 1,
+                "StepNo": 6,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -297,8 +346,8 @@
         },
         {
             "StepHeader": {
-                "StepNo": 6,
-                "SegmentNo": 1,
+                "StepNo": 7,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -327,8 +376,8 @@
                     "StorageData": [],
                     "ActionConfigurationID": "KeyValueHighlighter",
                     "SubActionArguments": {
-                        "StepNo": 6,
-                        "SegmentNo": 4,
+                        "StepNo": 7,
+                        "SegmentNo": 2,
                         "FrameID": 1,
                         "FrameTitle": "&{Text32}",
                         "ActionTitle": "&{Text33}",
@@ -357,8 +406,8 @@
         },
         {
             "StepHeader": {
-                "StepNo": 7,
-                "SegmentNo": 1,
+                "StepNo": 8,
+                "SegmentNo": 2,
                 "FrameID": 1,
                 "FrameTitle": ""
             },
@@ -404,55 +453,7 @@
                 "ToastPosition": null,
                 "ActionDuration": 30
             }
-        },
-        {
-            "StepHeader": {
-                "StepNo": 8,
-                "SegmentNo": 2,
-                "FrameID": 1,
-                "FrameTitle": ""
-            },
-            "Action": {
-                "ActionTitle": "&{Text30}",
-                "ActionDescription": "&{Text31}",
-                "ActionType": "LoopBacksteps",
-                "ActionParameters": {
-                    "ExternalURL": "",
-                    "InnerHTML": "",
-                    "Query": "body",
-                    "QueryIndex": 0,
-                    "YOffset": "",
-                    "XOffset": "",
-                    "ElAttributeName": "",
-                    "ElAttributeValue": "",
-                    "ElAttributeValueReplace": "",
-                    "ElProperty": "",
-                    "ElPropertyValue": "",
-                    "ElFunction": "",
-                    "ElFunctionArguments": "",
-                    "SelectiveText": "",
-                    "CaseSensitivity": "",
-                    "SelectiveTextIndex": "",
-                    "CSS": "",
-                    "FormatType": "",
-                    "StorageData": []
-                },
-                "ActionResultVariable": "TXNhash",
-                "MetaData": [
-                    1,
-                    1,
-                    ["hash1","hash2"]
-                ]
-            },
-            "Customizations": {
-                "PointerData": "",
-                "ScrollToPointer": false,
-                "FrameAutoScroll": true,
-                "FrameScrollBars": "",
-                "ToastMessage": "",
-                "ToastPosition": null,
-                "ActionDuration": 2
-            }
         }
+        
     ]
 }
