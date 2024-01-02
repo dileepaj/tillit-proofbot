@@ -17,6 +17,11 @@
                 "NO": 2,
                 "Name": "&{SegName2}",
                 "Source": "../../../../assets/img/database.png"
+            },
+            {
+                "NO": 3,
+                "Name": "&{SegName2}",
+                "Source": "../../../../assets/img/database.png"
             }
         ]
     },
