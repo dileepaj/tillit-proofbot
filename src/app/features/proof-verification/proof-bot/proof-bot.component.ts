@@ -40,6 +40,7 @@ import * as dagreD3 from 'dagre-d3';
 import { BotHeaderComponent } from "../components/bot-header/bot-header.component";
 import { CommonService } from "src/app/services/common.service";
 import { POCStatus } from "src/app/shared/components/poc-status/poc-status.component";
+import { Meta } from "@angular/platform-browser";
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -278,7 +279,6 @@ export class ProofBotComponent implements OnInit {
 
   async startDemoFn() {
     this.isProofStart=true;
-    console.log("activitydata",this.Activity);
     if (!!this.proofType && this.availableProofs.includes(this.proofType))
       if (!!this.proofBotParams.params.type) {
         this.TXNhash = this.proofBotParams.params.txn;
@@ -470,6 +470,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
+    console.log("datata-",data)
     return JSON.parse(data);
   }
 
@@ -696,7 +697,6 @@ export class ProofBotComponent implements OnInit {
       (cur: any) => cur.StepHeader.SegmentNo == stepNo
     );
     if(this.proofType=='poc'){
-      console.log("this.filterCompletedSegments(stepNo)",this.filterCompletedSegments(stepNo))
       if(this.filterCompletedSegments(stepNo)){
         if (this.lastCompletedStep >= i) {
           this.isBackToStep = true;
@@ -715,7 +715,7 @@ export class ProofBotComponent implements OnInit {
           }
         }
       }else{
-        console.log("not complete")
+        console.error("can not go back since this step still not done.");
       }
     }else{
       if (this.lastCompletedStep >= i) {
@@ -864,6 +864,9 @@ export class ProofBotComponent implements OnInit {
   ) {
     if (this.stopFlag) {
       return;
+    }
+    if(this.getLocalStorageData("loopSteps")){
+      console.log("looooooo")
     }
     this.isReplay = false;
     this.isPlayCompleted = false;
@@ -1076,7 +1079,6 @@ export class ProofBotComponent implements OnInit {
           await this.handleFormatElementAttribute(stepData);
           break;
         case "FormatDOMText":
-          console.log('stepData', stepData)
           await this.handleTextStyle(stepData);
           break;
         case "UpdateElementProperty":
@@ -1095,9 +1097,7 @@ export class ProofBotComponent implements OnInit {
           this.handleVariableFormat(stepData, currentBrowserScreen);
           break;
         case "LoopBacksteps":
-          if(!this.loopdone){ 
           this.handleLoopBacksteps(stepData);
-          }
           break;
         default:
           break;
@@ -1408,16 +1408,26 @@ export class ProofBotComponent implements OnInit {
     const { StepNo, SegmentNo, FrameID, FrameTitle } = StepHeader;
     const { ActionParameters, ActionResultVariable, MetaData } = Action;
     const { FormatType } = ActionParameters;
+    
+    var obj:any = MetaData[2];
     var val1 = MetaData[0];
-    var val2 = MetaData[1];
-    var obj:any =[MetaData[2]];
-    const jsonArray = Object.keys(obj).map(key => ({ key: key, value: obj[key] }));
-    this.loopdone=true;
-    this.isPause=false;
-    console.log("vl1",MetaData[0])
-    console.log("array",obj)
-    console.log("len",jsonArray.length)
-    console.log("type",typeof(MetaData[2]))
+    // this.setLocalStorageData('loopSteps',true);
+    // this.setLocalStorageData('loopFrom',MetaData[0]);
+    // this.setLocalStorageData('loopTo',MetaData[1]);
+    // this.setLocalStorageData('hashArray',obj);
+    
+    // if(MetaData.length>2){
+    //   for (var i = 3; i < MetaData.length; i += 2) {
+    //     this.setLocalStorageData(MetaData[i - 1], MetaData[i]);
+    // }
+    
+    // }
+    // console.log("loopSteps--",this.getLocalStorageData("loopSteps"));
+    // console.log("loopFrom--",this.getLocalStorageData("loopFrom"));
+    // console.log("loopTo--",this.getLocalStorageData("loopTo"));
+    // console.log("hashArray--",this.getLocalStorageData("hashArray"));
+    //var data = this.getAllLocalStorageData();
+    //console.log("hddf--",JSON.stringify(data));
   //   for (var i = 0; i < obj.length; i++) {
   //     var currentObj = obj[i];
   
@@ -1426,7 +1436,6 @@ export class ProofBotComponent implements OnInit {
   //             var value = currentObj[key];
   //             // Do something with each key-value pair
   //             this.backToStep(val1);
-  //             console.log("value--", value)
   //             this.variableStorage[ActionResultVariable] = value;
   //         }
   //     }
@@ -1469,14 +1478,11 @@ export class ProofBotComponent implements OnInit {
         else this.variableStorage[ActionResultVariable] = result;
         break;
       case "jsonRepetitiveKeyPicker":
-        console.log('MetaData[1]', MetaData[1])
         if (!!!this.jsonRepetitiveKeyPicker(val, MetaData[1]) && this.proofType != 'poc') {
             this.toastr.error(`Cannot find given key from the URL`, currentUrl);
             break;
           }
-       console.log('this.jsonRepetitiveKeyPicker(val, MetaData[1])', this.jsonRepetitiveKeyPicker(val, MetaData[1]))
         var result:any = JSON.stringify(this.jsonRepetitiveKeyPicker(val, MetaData[1]));
-        console.log('result', result)
         this.variableStorage[ActionResultVariable] = result;
         break;
       case "jsonValueObjectPicker":
@@ -1570,7 +1576,6 @@ export class ProofBotComponent implements OnInit {
   
 
   jsonValueObjectPicker(obj: any, v: string, caseSensitive: boolean = false) {
-    console.log("obj",obj,v);
     for (var key in obj) {
       v = !caseSensitive ? v.toLowerCase() : v;
       var value = obj[key];
@@ -1665,7 +1670,6 @@ export class ProofBotComponent implements OnInit {
         Title,
         Data
       });
-      console.log("global",this.globalData)
     }  else  {
       const curr: any = this.globalData[index];
       for (let j = 0; j < Data.length; j++) {
@@ -2255,12 +2259,50 @@ result.push([...otherSteppers]);
 }
 
 setLocalStorageData(key: string, data: any) {
-  localStorage.setItem(key, JSON.stringify(data));
+  try {
+    if (typeof data === 'object') {
+      // If the data is an object or array, stringify it
+      localStorage.setItem(key, JSON.stringify(data));
+    } else {
+      // If the data is not an object or array, save it as is
+      localStorage.setItem(key, JSON.stringify(data));
+    }
+  } catch (error) {
+    console.error('Error storing data:', error);
+  }
 }
 
+
+
 getLocalStorageData(key: string) {
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : null;
+  try {
+    const data = localStorage.getItem(key);
+    if (data) {
+      return JSON.parse(data);
+    }
+    return null;
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    return null;
+  }
 }
+getAllLocalStorageData() {
+  const allData = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const data = localStorage.getItem(key);
+    try {
+      allData[key] = data ? JSON.parse(data) : null;
+    } catch (error) {
+      console.error(`Error parsing data for key '${key}':`, error);
+      allData[key] = null; // Handle the error by assigning null for this key
+    }
+  }
+  return allData;
+}
+
+
+
+
 
 }

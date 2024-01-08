@@ -124,7 +124,7 @@
                     "CaseSensitivity": "",
                     "SelectiveTextIndex": "",
                     "CSS": "",
-                    "FormatType": "jsonKeyPicker",
+                    "FormatType": "jsonRepetitiveKeyPicker",
                     "StorageData": []
                 },
                 "ActionResultVariable": "expertFormulaTxnHash",
