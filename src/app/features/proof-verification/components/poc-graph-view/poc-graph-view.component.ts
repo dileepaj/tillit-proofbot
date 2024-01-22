@@ -33,6 +33,7 @@ export class PocGraphViewComponent implements AfterViewInit {
   @Input() data: any;
   @Input() dataWithMerkleTree: any;
   @Input() GraphTitle: string;
+  @Input() isMergeAvailable: any = false
   @Output() clickedNodeEvent: EventEmitter<string> = new EventEmitter<string>();
   constructor(private _location: Location,private commonService: CommonService) { }
 
@@ -40,7 +41,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     this.loadingComplete = true;
     this.pocTransactions = this.dataWithMerkleTree;
     this.selectedItem = this.pocTransactions[this.pocTransactions.length - 1];
-    if (!!this.data) {
+    if (!!this.data && this.isMergeAvailable ) {
       this.renderGraph(this.data.Nodes);
     }
       this.renderGraphWithMerkleTree(this.dataWithMerkleTree.Nodes);
@@ -82,7 +83,7 @@ export class PocGraphViewComponent implements AfterViewInit {
       var max = edgeValues.reduce(function (a, b) {
         return Math.max(a, b);
       }, 98);
-      this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, genesisNodes[key], max + 1, 0, 0, 'normal-node', 'normal-arrow');
+      this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, genesisNodes[key], max + 1, 0, 0, 'normal-node', 'normal-arrow',false);
     }
 
     // var svg = d3.select('svg');
@@ -112,6 +113,7 @@ export class PocGraphViewComponent implements AfterViewInit {
       //window.open(environment.blockchain.domailUrl+"/?type=poe"+"&txn=" + Nodes[d].TrustLinks[0])
     });
   }
+
   renderGraphWithMerkleTree(Nodes: Object) {
     // Create a new directed graph
     var g: any = new dagreD3.graphlib.Graph({ directed: true });
@@ -141,7 +143,7 @@ export class PocGraphViewComponent implements AfterViewInit {
       var max = edgeValues.reduce(function (a, b) {
         return Math.max(a, b);
       }, 98);
-      this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, genesisNodes[key], max + 1, 0, 0, 'node', 'arrow');
+      this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, genesisNodes[key], max + 1, 0, 0, 'node', 'arrow', true);
     }
 
     // var svg = d3.select('svg');
@@ -178,7 +180,7 @@ export class PocGraphViewComponent implements AfterViewInit {
     this.GraphTitle = title;
   }
 
-  addNodesAndEdges(g: any, Nodes: any, doneNodes: Array<string>, edgeValues: Array<number>, node: any, mainIndex: number, depth: number, type, nodeIdName: string, arrowIdName: string) {
+  addNodesAndEdges(g: any, Nodes: any, doneNodes: Array<string>, edgeValues: Array<number>, node: any, mainIndex: number, depth: number, type, nodeIdName: string, arrowIdName: string, nodeClickable: boolean) {
     const { sColor, lColor, bColor } = this.getColorForTxnType(node.Data.TxnType);
     if (doneNodes.includes(node.Data.TxnHash)) return;
     if (node.Data.Identifier != "") {
@@ -189,15 +191,28 @@ export class PocGraphViewComponent implements AfterViewInit {
       if(!!node.Data.CurrentStage){
         label = label + `\nStage : ${node.Data.CurrentStage}\n`
       }
-      g.setNode(node.Data.TxnHash, {
-        label: label ,
-        shape: 'rect',
-        id: `${nodeIdName}-${node.Data.TxnHash}`,
-        style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
-        labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer; font-weight: bold`,
-        rx: 15, // set the x-axis radius of the rectangle
-        ry: 15, // set the y-axis radius of the rectangle
-      });
+      if (nodeClickable) {
+        g.setNode(node.Data.TxnHash, {
+          label: label ,
+          shape: 'rect',
+          id: `${nodeIdName}-${node.Data.TxnHash}`,
+          style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
+          labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer; font-weight: bold`,
+          rx: 15, // set the x-axis radius of the rectangle
+          ry: 15, // set the y-axis radius of the rectangle
+        });
+      } else {
+        g.setNode(node.Data.TxnHash, {
+          label: label ,
+          shape: 'rect',
+          id: `${nodeIdName}-${node.Data.TxnHash}`,
+          style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
+          labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; font-weight: bold`,
+          rx: 15, // set the x-axis radius of the rectangle
+          ry: 15, // set the y-axis radius of the rectangle
+        });
+      }
+
     }
     var lastSplitNodeIndex = null;
     if (node.Children) {
@@ -224,7 +239,7 @@ export class PocGraphViewComponent implements AfterViewInit {
           arrowheadStyle: `fill: ${colors.sColor}`,
         });
         edgeValues.push(nodeIndex);
-        this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth, type, nodeIdName, arrowIdName);
+        this.addNodesAndEdges(g, Nodes, doneNodes, edgeValues, childNode, nodeIndex, nodeDepth, type, nodeIdName, arrowIdName, nodeClickable);
       }
     }
     doneNodes.push(node.Data.TxnHash);

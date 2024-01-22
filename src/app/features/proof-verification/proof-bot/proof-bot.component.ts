@@ -185,6 +185,8 @@ export class ProofBotComponent implements OnInit {
   POCSteppers: any;
   otherSteps: any[]=[];
   pocData: any = {};
+  pocDataWithoutMerkelTree:any = {};
+  isMergePresent =  false;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -267,8 +269,10 @@ export class ProofBotComponent implements OnInit {
         await new Promise(resolveTime => setTimeout(resolveTime, 4200));
         // start demo (not -verifing)
         if (this.proofType == "poc") {
-          try {
+          try {    
             await this.getProofTree(this.proofBotParams.params.txn)
+            await this.getProofTreeWithoutMerkelTree(this.proofBotParams.params.txn) 
+            this.initiateProofDemo();
           } catch (error) {
             // Handle the error here
             this.openModal("Invalid URL", error.status, error.message)
@@ -283,12 +287,24 @@ export class ProofBotComponent implements OnInit {
     await this.getProofTreeOne(id);
     this.updateChildren();
     this.nodesWithMerkleTree = this.pocData;
-    this.nodes = this.pocData;
-    this.initiateProofDemo();
+  }
+
+  async getProofTreeWithoutMerkelTree(id: string) {
+    if (this.isMergePresent){
+      await this.getProofTreeOneWithoutMerkelTree(id);
+      this.updateChildrenWithoutMerkelTree();
+      this.nodes = this.pocDataWithoutMerkelTree;
+    }else{
+      this.nodes = this.pocData
+    }
   }
 
   async getProofTreeOne(id: string) {
-    let data = await this.apiService.getPocTreeData(id).toPromise()
+    let data = await this.apiService.getPocTreeDataWithMerkelTree(id).toPromise()
+    
+    if(this.isTxnType7Present(data)){
+      this.isMergePresent =  true
+    }
     if (this.isEmptyObject(this.pocData)) {
       this.pocData = data;
     } else {
@@ -319,6 +335,38 @@ export class ProofBotComponent implements OnInit {
     }
   }
 
+  async getProofTreeOneWithoutMerkelTree(id: string) {
+    let data = await this.apiService.getPocTreeData(id).toPromise()
+    if (this.isEmptyObject(this.pocDataWithoutMerkelTree)) {
+      this.pocDataWithoutMerkelTree = data;
+    } else {
+      this.pocDataWithoutMerkelTree.LastTxnHash = data.LastTxnHash;
+      for (const nodeId in data.Nodes) {
+        if (!this.pocDataWithoutMerkelTree.Nodes.hasOwnProperty(nodeId)) {
+          this.pocDataWithoutMerkelTree.Nodes[nodeId] = data.Nodes[nodeId];
+        }
+      }
+    }
+
+    for (const nodeId in data.Nodes) {
+      this.pocDataWithoutMerkelTree.LastTxnHash = data.LastTxnHash;
+      if (data.BackLinkParents != undefined && data.BackLinkParents != null) {
+        for (let index = 0; index < data.BackLinkParents.length; index++) {
+          let foundHash = false;
+          for (const nodeIdPoc in this.pocDataWithoutMerkelTree.Nodes) {
+            if (this.pocDataWithoutMerkelTree.Nodes[nodeIdPoc].TrustLinks[0] == data.BackLinkParents[index]) {
+              foundHash = true;
+            }
+          }
+          if (!foundHash && !!data.BackLinkParents[index]) {
+            await this.getProofTreeOneWithoutMerkelTree(data.BackLinkParents[index]);
+          }
+        }
+
+      }
+    }
+  }
+
   updateChildren() {
     for (const nodeId in this.pocData.Nodes) {
       if (this.pocData.Nodes[nodeId].Parents != null) {
@@ -329,6 +377,22 @@ export class ProofBotComponent implements OnInit {
             this.pocData.Nodes[parentNodeId].Children.push(nodeId);
           } else {
             this.pocData.Nodes[parentNodeId].Children = [nodeId];
+          }
+        }
+      }
+    }
+  }
+
+  updateChildrenWithoutMerkelTree() {
+    for (const nodeId in this.pocDataWithoutMerkelTree.Nodes) {
+      if (this.pocDataWithoutMerkelTree.Nodes[nodeId].Parents != null) {
+        for (let i = 0; i < this.pocDataWithoutMerkelTree.Nodes[nodeId].Parents.length; i++) {
+          const parentNodeId = this.pocDataWithoutMerkelTree.Nodes[nodeId].Parents[i];
+          if (this.pocDataWithoutMerkelTree.Nodes[parentNodeId] != undefined && this.pocDataWithoutMerkelTree.Nodes[parentNodeId].Children != null
+            && !this.pocDataWithoutMerkelTree.Nodes[parentNodeId].Children.includes(nodeId)) {
+            this.pocDataWithoutMerkelTree.Nodes[parentNodeId].Children.push(nodeId);
+          } else {
+            this.pocDataWithoutMerkelTree.Nodes[parentNodeId].Children = [nodeId];
           }
         }
       }
@@ -2119,6 +2183,27 @@ otherSteppers.push(...remainingSteppers);
 result.push([...otherSteppers]);
 
   return result;
+}
+
+public isTxnType7Present(obj) {
+  // Check if the object has a property named "Nodes"
+  if (obj && obj.Nodes) {
+    // Loop through the Nodes property
+    for (const nodeKey in obj.Nodes) {
+      // Check if the node has a property named "Data" and "TxnType" equals "8"
+      if (
+        obj.Nodes[nodeKey].Data &&
+        obj.Nodes[nodeKey].Data.TxnType &&
+        obj.Nodes[nodeKey].Data.TxnType === "7"
+      ) {
+        // Transaction type "7" found, return true
+        return true;
+      }
+    }
+  }
+  
+  // Transaction type "7" not found, return false
+  return false;
 }
 
 
