@@ -41,6 +41,7 @@ import { BotHeaderComponent } from "../components/bot-header/bot-header.componen
 import { CommonService } from "src/app/services/common.service";
 import { POCStatus } from "src/app/shared/components/poc-status/poc-status.component";
 import { Meta } from "@angular/platform-browser";
+import { json } from "d3";
 @Component({
   selector: "proof-bot",
   templateUrl: "./proof-bot.component.html",
@@ -194,6 +195,7 @@ export class ProofBotComponent implements OnInit {
   ActivityId: any;
   MetricId: any;
   loopdone: boolean;
+  loop_count: number=0;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -470,7 +472,7 @@ export class ProofBotComponent implements OnInit {
         }
       } catch (error) { }
     });
-    console.log("datata-",data)
+    //console.log("datata-",data)
     return JSON.parse(data);
   }
 
@@ -515,6 +517,7 @@ export class ProofBotComponent implements OnInit {
       }
     }
     this.proofJSON.Steps = proofJSONSteps;
+    console.log("steps-",proofJSONSteps)
   }
 
   parseSubActionData(action: any, storedData: any = this.variableStorage): any {
@@ -854,6 +857,30 @@ export class ProofBotComponent implements OnInit {
       .classList.toggle("steppersShow");
   }
 
+  loopStepsfn(){
+    for (let i = 0; i < this.loop_count; i++){
+        var loop_firstStep = this.getSessionStorageData("loopFrom");
+        var loop_finalStep = this.getSessionStorageData("loopTo");
+        var array = this.getSessionStorageData("expertFormulaTxnHash");
+        console.log("expertFormulahash--",array[i],"/n i--",i)
+      if(this.currentStep < loop_firstStep && this.currentStep > loop_finalStep){
+        console.log("inside loop")
+        this.playProofDemo(this.currentStep);
+      }else {
+        console.log("call the loop")
+        this.backToStep(loop_firstStep);
+        
+      }
+      this.loop_count= this.loop_count-1;
+      if(this.loop_count==0){
+        sessionStorage.clear();
+        this.setSessionStorageData('loopSteps',false);
+      }
+      
+    }
+    
+    
+  }
   // main proof actions
   async playProofDemo(
     step: number = this.currentStep,
@@ -864,9 +891,6 @@ export class ProofBotComponent implements OnInit {
   ) {
     if (this.stopFlag) {
       return;
-    }
-    if(this.getLocalStorageData("loopSteps")){
-      console.log("looooooo")
     }
     this.isReplay = false;
     this.isPlayCompleted = false;
@@ -880,8 +904,11 @@ export class ProofBotComponent implements OnInit {
 
       if (this.isPause || this.isReplay || this.currentStep >= Steps.length || this.stopFlag) {
         return;
+      } 
+      if(this.getSessionStorageData("loopSteps")==true){
+          this.loopStepsfn();
       }
-  
+      
       this.isBackToStep = false;
       const stepData = this.parseActionData(Steps[this.currentStep]);
       const { StepHeader, Action, Customizations } = stepData;
@@ -1136,6 +1163,7 @@ export class ProofBotComponent implements OnInit {
       }
   
       await executeStep();
+    
     };
     await executeStep();
     if (this.stopFlag) {
@@ -1409,16 +1437,23 @@ export class ProofBotComponent implements OnInit {
     const { ActionParameters, ActionResultVariable, MetaData } = Action;
     const { FormatType } = ActionParameters;
     
-    var obj:any = MetaData[2];
+    var obj:any = JSON.parse(MetaData[3])
     var val1 = MetaData[0];
-    // this.setLocalStorageData('loopSteps',true);
-    // this.setLocalStorageData('loopFrom',MetaData[0]);
-    // this.setLocalStorageData('loopTo',MetaData[1]);
-    // this.setLocalStorageData('hashArray',obj);
+    this.setSessionStorageData('loopSteps',true);
+    this.setSessionStorageData('loopFrom',MetaData[0]);
+    this.setSessionStorageData('loopTo',MetaData[1]);
+    var data = this.extractStringsFromArray(obj);
+    console.log("data--",data)
+    this.setSessionStorageData('expertFormulaTxnHash',data);
+
+    var array = this.getSessionStorageData("expertFormulaTxnHash")
+    this.loop_count = array.length;
     
     // if(MetaData.length>2){
     //   for (var i = 3; i < MetaData.length; i += 2) {
-    //     this.setLocalStorageData(MetaData[i - 1], MetaData[i]);
+    //     var key = MetaData[i-1];
+    //     var data = MetaData[i];
+    //     this.setLocalStorageData(key,data);
     // }
     
     // }
@@ -2258,14 +2293,14 @@ result.push([...otherSteppers]);
   return result;
 }
 
-setLocalStorageData(key: string, data: any) {
+setSessionStorageData(key: string, data: any) {
   try {
     if (typeof data === 'object') {
       // If the data is an object or array, stringify it
-      localStorage.setItem(key, JSON.stringify(data));
+      sessionStorage.setItem(key, JSON.stringify(data));
     } else {
       // If the data is not an object or array, save it as is
-      localStorage.setItem(key, JSON.stringify(data));
+      sessionStorage.setItem(key, JSON.stringify(data));
     }
   } catch (error) {
     console.error('Error storing data:', error);
@@ -2274,9 +2309,9 @@ setLocalStorageData(key: string, data: any) {
 
 
 
-getLocalStorageData(key: string) {
+getSessionStorageData(key: string) {
   try {
-    const data = localStorage.getItem(key);
+    const data = sessionStorage.getItem(key);
     if (data) {
       return JSON.parse(data);
     }
@@ -2286,11 +2321,11 @@ getLocalStorageData(key: string) {
     return null;
   }
 }
-getAllLocalStorageData() {
+getAllSessionStorageData() {
   const allData = {};
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    const data = localStorage.getItem(key);
+  for (let i = 0; i < sessionStorage.length; i++) {
+    const key = sessionStorage.key(i);
+    const data = sessionStorage.getItem(key);
     try {
       allData[key] = data ? JSON.parse(data) : null;
     } catch (error) {
@@ -2299,6 +2334,13 @@ getAllLocalStorageData() {
     }
   }
   return allData;
+}
+
+extractStringsFromArray(input: string[]): string[] {
+  return input.map((item) => {
+    // Remove the backslashes and quotes from the strings
+    return item.replace(/\\/g, '').replace(/"/g, '');
+  });
 }
 
 
