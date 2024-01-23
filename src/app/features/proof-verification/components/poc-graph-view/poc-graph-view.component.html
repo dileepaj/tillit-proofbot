@@ -59,7 +59,7 @@
           class="px-5 py-4 bg-white d-flex align-items-center">
           <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
             <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-              <g id="pocTree" />
+              <g id="pocTreeWithMerkleTree"/>
             </svg>
           </div>
         </div>
@@ -69,10 +69,10 @@
 
 
 
-   <div class="col-12">
+   <div class="col-12"  *ngIf="isMergeAvailable" >
       <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
         <div></div>
-        <div>Batch History With Merkle Tree
+        <div>Batch History
           <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
             target="_blank">
             <i class="bi bi-question-circle-fill helpIcon"></i>
@@ -87,7 +87,7 @@
           class="px-5 py-4 bg-white d-flex align-items-center">
           <div [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
             <svg [attr.width.px]="pocTreeWidth" [attr.height.px]="pocTreeHeight">
-              <g id="pocTreeWithMerkleTree"/>
+              <g id="pocTree" />
             </svg>
           </div>
         </div>

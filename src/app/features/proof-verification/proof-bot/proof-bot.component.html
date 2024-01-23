@@ -35,7 +35,7 @@
           <div class="col-12">
             <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
               <div></div>
-              <div> Batch History
+              <div> {{isMergePresent?'Batch History With Merkle Tree':'Batch History'}}
                 <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
                   target="_blank">
                   <i class="bi bi-question-circle-fill helpIcon"></i>
@@ -50,7 +50,7 @@
         </div>
         <div>
         <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
-          [data]="nodes" [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)"></app-poc-graph-view>
+          [data]="nodes" [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)" [isMergeAvailable]="isMergePresent" ></app-poc-graph-view>
         </div>
       </div>
       <!-- end poc view -->

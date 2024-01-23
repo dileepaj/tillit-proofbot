@@ -17,8 +17,14 @@ export class ApiService {
     );
   }
 
-  getPocTreeData(id: string): Observable<any> {
+  getPocTreeDataWithMerkelTree(id: string): Observable<any> {
     return this.http.get(environment.blockchain.getPocTreeDataWithMerkletree + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPocTreeData(id: string): Observable<any> {
+    return this.http.get(environment.blockchain.getPocTreeData + id).pipe(
       catchError(this.handleError)
     );
   }
