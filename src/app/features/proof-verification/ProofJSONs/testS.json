@@ -23,6 +23,12 @@
                 "Name": "&{SegName3}",
                 "Source": "../../../../assets/img/database.png"
             }
+            ,
+            {
+                "NO": 4,
+                "Name": "&{SegName3}",
+                "Source": "../../../../assets/img/database.png"
+            }
         ]
     },
     "Steps": [
@@ -287,9 +293,11 @@
                 "ActionResultVariable": "TXNhash",
                 "MetaData": [
                     8,
-                    9,
+                    13,
                     "ExpertFomulaTXNHash",
-                    "${expertFormulaTxnHash}"
+                    "${expertFormulaTxnHash}",
+                    6,
+                    8
                 ]
             },
             "Customizations": {
@@ -304,7 +312,56 @@
         },
         {
             "StepHeader": {
-                "StepNo": 6,
+              "StepNo": 6,
+              "SegmentNo": 3,
+              "FrameID": 5,
+              "FrameTitle": "&{Text32}"
+            },
+            "Action": {
+              "ActionTitle": "&{Text33}",
+              "ActionDescription": "&{Text34}",
+              "FrameTitle": "&{Text35}",
+              "ActionType": "BrowserScreen",
+              "ActionParameters": {
+                "ExternalURL": "",
+                "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNTXTypeDecoded}\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNTXTypeDecoded}\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Non Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                "PageURL": "about: Verification Summary - PROOF OF GENESIS",
+                "Query": "",
+                "QueryIndex": "",
+                "YOffset": "",
+                "XOffset": "",
+                "ElAttributeName": "",
+                "ElAttributeValue": "",
+                "ElAttributeValueReplace": "",
+                "ElProperty": "",
+                "ElPropertyValue": "",
+                "ElFunction": "",
+                "ElFunctionArguments": "",
+                "SelectiveText": "",
+                "CaseSensitivity": "",
+                "SelectiveTextIndex": "",
+                "CSS": "",
+                "FormatType": "",
+                "StorageData": [],
+                "Compare":{"t1":"MainTXNPreviousTXN","t2":""}
+              },
+              "ActionResultVariable": "",
+              "MetaData": []
+            },
+            "Customizations": {
+              "PointerData": "",
+              "ScrollToPointer": false,
+              "FrameAutoScroll": true,
+              "FrameScrollBars": "",
+              "ToastMessage1": "",
+              "ToastPosition1": ["6%", "80%"],
+              "ActionDuration": 10
+            }
+          },
+        {
+            "StepHeader": {
+                "StepNo": 7,
                 "SegmentNo": 3,
                 "FrameID": 1,
                 "FrameTitle": ""
@@ -369,7 +426,164 @@
                 "ToastPosition": null,
                 "ActionDuration": 10
             }
-        }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 8,
+                "SegmentNo": 3,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionTitle": "&{Text30}",
+                "ActionDescription": "&{Text31}",
+                "ActionType": "FormatMetaData",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "body",
+                    "QueryIndex": 0,
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "jsonKeyPicker",
+                    "StorageData": []
+                },
+                "ActionResultVariable": "name",
+                "MetaData": [
+                    "name",
+                    "name"
+                ]
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 2
+            }
+        },
+        {
+            "StepHeader": {
+                "StepNo": 9,
+                "SegmentNo": 3,
+                "FrameID": 1,
+                "FrameTitle": ""
+            },
+            "Action": {
+                "ActionDescription": "",
+                "ActionType": "MultiStepAction",
+                "ActionParameters": {
+                    "ExternalURL": "",
+                    "InnerHTML": "",
+                    "Query": "",
+                    "QueryIndex": "",
+                    "YOffset": "",
+                    "XOffset": "",
+                    "ElAttributeName": "",
+                    "ElAttributeValue": "",
+                    "ElAttributeValueReplace": "",
+                    "ElProperty": "",
+                    "ElPropertyValue": "",
+                    "ElFunction": "",
+                    "ElFunctionArguments": "",
+                    "SelectiveText": "",
+                    "CaseSensitivity": "",
+                    "SelectiveTextIndex": "",
+                    "CSS": "",
+                    "FormatType": "",
+                    "StorageData": [],
+                    "ActionConfigurationID": "KeyValueHighlighter",
+                    "SubActionArguments": {
+                        "StepNo": 9,
+                        "SegmentNo": 3,
+                        "FrameID": 1,
+                        "FrameTitle": "&{Text32}",
+                        "ActionTitle": "&{Text33}",
+                        "ActionDescription": "&{Text34}",
+                        "FrameTitle_1": "&{Text32}",
+                        "ActionTitle_1": "&{Text36}",
+                        "ActionDescription_1": "&{Text37}",
+                        "OperationKey": "name",
+                        "OperationValue": "name",
+                        "OperationKeyName": "Formula Id from the Traceafied gateway.",
+                        "OperationValueName": "Formula Id from the Traceafied gateway."
+                    }
+                },
+                "ActionResultVariable": "",
+                "MetaData": []
+            },
+            "Customizations": {
+                "PointerData": "",
+                "ScrollToPointer": false,
+                "FrameAutoScroll": true,
+                "FrameScrollBars": "",
+                "ToastMessage": "",
+                "ToastPosition": null,
+                "ActionDuration": 10
+            }
+        },
+        {
+            "StepHeader": {
+              "StepNo": 10,
+              "SegmentNo": 4,
+              "FrameID": 5,
+              "FrameTitle": "&{Text32}"
+            },
+            "Action": {
+              "ActionTitle": "&{Text33}",
+              "ActionDescription": "&{Text34}",
+              "FrameTitle": "&{Text35}",
+              "ActionType": "BrowserScreen",
+              "ActionParameters": {
+                "ExternalURL": "",
+                "InnerHTML": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><center><img src=\"../../../../assets/img/checked.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#098260; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Completed Successfully!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">donee</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNTXTypeDecoded}\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                "InnerHTMLError": "<?xml version=\"1.0\"?>\r\n<!DOCTYPE html>\r\n<html><head><style>\r\n #mousePointer \r\n{visibility: hidden;} \r\n</style></head><body style=\"height: 100vh; display: flex; justify-content: center; align-items: center;\"><div class=\"d-flex flex-column\"><div class=\"p-2\"><div class=\"d-flex justify-content-center mt-2\"><center><img src=\"../../../../assets/img/cancel.png\" style=\"width:50px\"></center></div></div><div class=\"p-2\"><div class=\"d-flex justify-content-center\"><h2 class=\"size-18\" style=\"font-weight: 800; font-family:Inter; font-style:normal; font-size:20px; line-height:18px; color:#F15249; text-align: center; letter-spacing: 0.20em; text-transform:uppercase;\">\r\n Verification Failed!\r\n</h2></div></div><div class=\"p-2\" style=\"padding-bottom:12px;\"><div class=\"d-flex justify-content-center\"><center><p class=\"size-12\"><b style=\"text-align: center; letter-spacing: 3px; line-height:0; font-family:Inter;font-style:normal; font-size:12.8px; color:#333333\">Summary</b></p><div style=\"background-color:#333333; border-radius:10px; width:258px; height:24px;\"><p class=\"size-12\" ><center><b style=\"text-align: center; letter-spacing: 3px; line-height:2; font-family:Inter; font-style:normal; font-size:12px; color: #FFFFFF; text-transform: uppercase; background-color: #333333\">PROOF OF GENESIS</b></center></p></div></center></div></div><div class=\"p-2\"><table class=\"table table-bordered table-sm\" style=\"padding:9px; border-top: 1px solid #E3E3E3;\"><thead><tr><th scope=\"col\" style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p style=\"text-align: start; font-family:Inter; font-style:normal; color:#000000;\"><strong><span class=\"size-14\" >Transaction Type</span></strong></p></th><th scope=\"col\" style=\"width:200px\"><p class=\"size-14\" style=\"word-break:break-word; font-family:Inter; font-style:normal; text-align: start; color:#000000;\"><strong>Previous Transaction Hash</strong></p></th></tr></thead><tbody><tr><td style=\"width:200px; border-right: 1px solid #E3E3E3;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n ${MainTXNTXTypeDecoded}\r\n </p></td><td style=\"width:200px;\"><p class=\"size-14\" style=\"text-align: start; font-family:Inter; font-style:normal; word-break:break-word;\">\r\n Non Genesis\r\n </p></td></tr></tbody></table></div></div></body></html>",
+                "PageURL": "about: Verification Summary - PROOF OF GENESIS",
+                "Query": "",
+                "QueryIndex": "",
+                "YOffset": "",
+                "XOffset": "",
+                "ElAttributeName": "",
+                "ElAttributeValue": "",
+                "ElAttributeValueReplace": "",
+                "ElProperty": "",
+                "ElPropertyValue": "",
+                "ElFunction": "",
+                "ElFunctionArguments": "",
+                "SelectiveText": "",
+                "CaseSensitivity": "",
+                "SelectiveTextIndex": "",
+                "CSS": "",
+                "FormatType": "",
+                "StorageData": [],
+                "Compare":{"t1":"MainTXNPreviousTXN","t2":""}
+              },
+              "ActionResultVariable": "",
+              "MetaData": []
+            },
+            "Customizations": {
+              "PointerData": "",
+              "ScrollToPointer": false,
+              "FrameAutoScroll": true,
+              "FrameScrollBars": "",
+              "ToastMessage1": "",
+              "ToastPosition1": ["6%", "80%"],
+              "ActionDuration": 10
+            }
+          }
         
     ]
 }

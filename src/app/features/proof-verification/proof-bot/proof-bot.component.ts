@@ -858,20 +858,37 @@ export class ProofBotComponent implements OnInit {
   }
 
   loopStepsfn(){
-    for (let i = 0; i < this.loop_count; i++){
+        var loop_firstStep = this.getSessionStorageData("firstStepNoInJson");
         var loop_firstStep = this.getSessionStorageData("loopFrom");
         var loop_finalStep = this.getSessionStorageData("loopTo");
         var array = this.getSessionStorageData("expertFormulaTxnHash");
-        console.log("expertFormulahash--",array[i],"/n i--",i)
-      if(this.currentStep < loop_firstStep && this.currentStep > loop_finalStep){
-        console.log("inside loop")
-        this.playProofDemo(this.currentStep);
-      }else {
-        console.log("call the loop")
-        this.backToStep(loop_firstStep);
+    // while(this.loop_count!=0){
+    //     console.log("this.currentstep",this.currentStep)
+    //     console.log("loop 1st-",loop_firstStep)
+    //     console.log("loop final--",loop_finalStep)
+    //   if(this.currentStep > loop_finalStep){
+    //     console.log("this.currentStep > loop_finalStep")
         
+    //     this.backToStep(loop_firstStep)
+    //    // this.playProofDemo(this.currentStep);
+    //   }else if(this.currentStep==loop_finalStep){
+    //     this.loop_count=this.loop_count-1;
+        
+    //   }
+    // }
+    for (let i = 0; i < this.loop_count; i++){
+      console.log("this.currentstep",this.currentStep)
+      console.log("loop 1st-",loop_firstStep)
+      console.log("loop final--",loop_finalStep)
+      if(this.currentStep > loop_finalStep){
+        console.log("this.currentStep > loop_finalStep")
+        
+        this.backToAction(8)
+      }else if(this.currentStep==loop_finalStep){
+             this.loop_count=this.loop_count-1;
+             console.log("one loop done")
       }
-      this.loop_count= this.loop_count-1;
+      
       if(this.loop_count==0){
         sessionStorage.clear();
         this.setSessionStorageData('loopSteps',false);
@@ -1442,10 +1459,11 @@ export class ProofBotComponent implements OnInit {
     this.setSessionStorageData('loopSteps',true);
     this.setSessionStorageData('loopFrom',MetaData[0]);
     this.setSessionStorageData('loopTo',MetaData[1]);
+    this.setSessionStorageData('i',0);
     var data = this.extractStringsFromArray(obj);
-    console.log("data--",data)
     this.setSessionStorageData('expertFormulaTxnHash',data);
-
+    this.setSessionStorageData('firstStepNoInJson',MetaData[4]);
+    this.setSessionStorageData('finalStepNoInJson',MetaData[5]);
     var array = this.getSessionStorageData("expertFormulaTxnHash")
     this.loop_count = array.length;
     
