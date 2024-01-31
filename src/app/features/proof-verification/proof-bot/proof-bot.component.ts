@@ -17,7 +17,7 @@ import { SiteScreenComponent } from "../components/site-screen/site-screen.compo
 import { BotGlobaldataComponent } from "../components/bot-globaldata/bot-globaldata.component";
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POBLMJSON from "../ProofJSONs/POBL-Merge.json";
-import * as POGJSON from "../ProofJSONs/POG.json";
+import * as POGJSON from "../ProofJSONs/Test.json";
 import * as POEJSON from "../ProofJSONs/POE_NEW.json";
 import * as POELangJSON from "../ProofJSONs/POE_NEW-lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
@@ -825,7 +825,6 @@ export class ProofBotComponent implements OnInit {
             allSteps[j].classList.remove("glow");
             allSteps[j].classList.remove("success");
             allSegmentLines[j].classList.remove("bg-success");
-            console.log("ii-----",j)
           }
           }
         await this.toSubStepper(no, _ID);
@@ -1823,8 +1822,8 @@ export class ProofBotComponent implements OnInit {
         let id = `node-${trustLinks[0]}`;
         this.CurrentPathID=`${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
-        rec.style['stroke']='black'
-        rec.style['stroke-width']='4'
+        rec.style['stroke']='#F4B400'
+        rec.style['stroke-width']='8'
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
@@ -1853,7 +1852,7 @@ export class ProofBotComponent implements OnInit {
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
-        node1.attr("stroke", "black");
+        node1.attr("stroke", "#F4B400");
         let textContent1 = "";
         let textContent2 = "";
         let nodeText1 = d3.select(`#node-${tL[0]}`);
