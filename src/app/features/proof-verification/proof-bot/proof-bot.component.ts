@@ -757,7 +757,7 @@ export class ProofBotComponent implements OnInit {
           }
         }
       }else{
-        console.log("not complete")
+        console.error("not complete")
       }
     }else{
       if (this.lastCompletedStep >= i) {
@@ -784,7 +784,6 @@ export class ProofBotComponent implements OnInit {
   
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
-    console.log("segmentNo",this.SegmentNumber, _ID)
     try {
       document
         .querySelectorAll("#steppersFrame")[0]
@@ -824,7 +823,7 @@ export class ProofBotComponent implements OnInit {
         }
         if(this.proofType=='poc'){
           let num=this.CurrenyRunningProof[2].map((seg) => seg.NO);
-          console.log("numm-----",num[0])
+        
           for (let j = num[0]; j < num.length; j++) {
             allSteps[j].classList.remove("glow");
             allSteps[j].classList.remove("success");
@@ -980,9 +979,7 @@ export class ProofBotComponent implements OnInit {
           
           this.TotalStepCountofCurrentProof=this.CurrentProofSegNo.length
           this.CompletedStepCountOfCurrentProof=this.CompletedStepsOfCurrentProof.length
-          console.log("mm-",this.CurrenyRunningProof[1])
-          console.log("nii--",this.TotalStepCountofCurrentProof)
-          console.log("gii--",this.CompletedStepCountOfCurrentProof)
+          
           
         }
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
@@ -1838,6 +1835,7 @@ export class ProofBotComponent implements OnInit {
     if (this.proofType == 'poc') {
       if (runningProof == 'POE'|| runningProof == 'poe' || runningProof == "POG"||runningProof == 'pog') {
         let id = `node-${trustLinks[0]}`;
+        this.CompletedSegments=[];
         this.CurrentPathID=`${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
         rec.style['stroke']='#F4B400'
@@ -1864,6 +1862,7 @@ export class ProofBotComponent implements OnInit {
         const tL = trustLinks[0];
         let id = `arrow-` + tL[0] + `-` + tL[1];
         this.CurrentPathID= tL[0] + `-` + tL[1]
+        this.CompletedSegments=[];
         this.currentId = id;
         this.currentProof = this.commonServices.getProofName(runningProof);
         this.currentProofType= runningProof.toLowerCase();
