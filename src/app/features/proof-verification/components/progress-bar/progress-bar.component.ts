@@ -8,7 +8,9 @@ import { CommonService } from "src/app/services/common.service";
 })
 export class ProgressBarComponent implements OnInit {
 
+  @Input() lang: string;
   @Input() isPause: Boolean;
+  @Input() ProofContainerTitle: string;
   @Input() isPlayCompleted: Boolean;
   @Input() currentStep: number;
   @Input() totalSteps: number;
@@ -23,8 +25,17 @@ export class ProgressBarComponent implements OnInit {
   @Output() theaterModeFn = new EventEmitter();
   @Output() resizeVerifyScreenFn = new EventEmitter();
   @Output() POCStatus = new EventEmitter();
+  @Input() proof1: string;
+  @Input() proof2: string;
+  @Input() product
+  @Input() batch
+  @Input() tdpId
   @Input() isStartDemo: Boolean;
-
+  @Input() completedProofs : any[];
+  @Input() TotalProofCountOfPOC: number;
+  @Input() pendingProofsCount:number;
+  @Input() SuccessedProofcount: number;
+  @Input() FailedProofcount: number;
 
   constructor(public commonServices: CommonService) { }
 

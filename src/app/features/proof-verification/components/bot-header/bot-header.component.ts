@@ -7,6 +7,7 @@ import { CommonService } from "src/app/services/common.service";
   styleUrls: ["./bot-header.component.css"]
 })
 export class BotHeaderComponent implements OnInit {
+
   @Input() lang: string;
   @Input() isPause: Boolean;
   @Input() ProofContainerTitle: string;

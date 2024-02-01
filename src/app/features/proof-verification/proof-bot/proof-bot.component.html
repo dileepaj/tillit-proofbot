@@ -58,11 +58,15 @@
       </div>
       <!-- end poc view -->
       <!-- srart progress-bar -->
-      <app-progress-bar *ngIf="isProofStart" [lang]="lang" [isPause]="isPause" [isPlayCompleted]="isPlayCompleted"
-        [currentStep]="currentStep" [totalSteps]="totalSteps" [playbackSpeed]="playbackSpeed" [isTheater]="isTheater"
+      <app-progress-bar *ngIf="isProofStart" [lang]="lang" [isPause]="isPause"
+        [ProofContainerTitle]="ProofContainerTitle" [isPlayCompleted]="isPlayCompleted" [currentStep]="currentStep"
+        [totalSteps]="totalSteps" [playbackSpeed]="playbackSpeed" [isTheater]="isTheater"
         [vsHeightExpand]="vsHeightExpand" (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()"
         (stopFn)="stopFn()" (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
-        (resizeVerifyScreenFn)="resizeVerifyScreen()" (POCStatus)="POCStatus()"></app-progress-bar>
+        (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
+        [tdpId]="tdpId" [completedProofs]="completedProofs" [TotalProofCountOfPOC]="TotalProofCountOfPOC"
+        (POCStatus)="POCStatus()" [SuccessedProofcount]="SuccessedProofcount" [FailedProofcount]="FailedProofcount"
+        [pendingProofsCount]="pendingProofsCount"></app-progress-bar>
       <!-- end progress-bar -->
       <!-- bot-segments header-->
       <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc' && isStartDemo">
