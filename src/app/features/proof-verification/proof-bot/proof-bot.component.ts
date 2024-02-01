@@ -17,7 +17,7 @@ import { SiteScreenComponent } from "../components/site-screen/site-screen.compo
 import { BotGlobaldataComponent } from "../components/bot-globaldata/bot-globaldata.component";
 import * as POBLJSON from "../ProofJSONs/POBL.json";
 import * as POBLMJSON from "../ProofJSONs/POBL-Merge.json";
-import * as POGJSON from "../ProofJSONs/POG.json";
+import * as POGJSON from "../ProofJSONs/Test.json";
 import * as POEJSON from "../ProofJSONs/POE_NEW.json";
 import * as POELangJSON from "../ProofJSONs/POE_NEW-lang.json";
 import * as POGLangJSON from "../ProofJSONs/POG_lang.json";
@@ -187,6 +187,11 @@ export class ProofBotComponent implements OnInit {
   pocData: any = {};
   pocDataWithoutMerkelTree:any = {};
   isMergePresent =  false;
+  CurrentRunningProofStepCount: any;
+  CompletedStepsOfCurrentProof: any[];
+  CurrentProofSegNo: number[]=[];
+  TotalStepCountofCurrentProof: number=0;
+  CompletedStepCountOfCurrentProof: number=0;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -734,7 +739,6 @@ export class ProofBotComponent implements OnInit {
       (cur: any) => cur.StepHeader.SegmentNo == stepNo
     );
     if(this.proofType=='poc'){
-      console.log("this.filterCompletedSegments(stepNo)",this.filterCompletedSegments(stepNo))
       if(this.filterCompletedSegments(stepNo)){
         if (this.lastCompletedStep >= i) {
           this.isBackToStep = true;
@@ -753,7 +757,7 @@ export class ProofBotComponent implements OnInit {
           }
         }
       }else{
-        console.log("not complete")
+        //console.log("not complete")
       }
     }else{
       if (this.lastCompletedStep >= i) {
@@ -780,7 +784,7 @@ export class ProofBotComponent implements OnInit {
   
   async toStepper(no: number, _ID: number) {
     this.SegmentNumber = no;
-    console.log("segmentNo",this.SegmentNumber, _ID)
+    
     try {
       document
         .querySelectorAll("#steppersFrame")[0]
@@ -820,12 +824,10 @@ export class ProofBotComponent implements OnInit {
         }
         if(this.proofType=='poc'){
           let num=this.CurrenyRunningProof[2].map((seg) => seg.NO);
-          console.log("numm-----",num[0])
           for (let j = num[0]; j < num.length; j++) {
             allSteps[j].classList.remove("glow");
             allSteps[j].classList.remove("success");
             allSegmentLines[j].classList.remove("bg-success");
-            console.log("ii-----",j)
           }
           }
         await this.toSubStepper(no, _ID);
@@ -964,9 +966,24 @@ export class ProofBotComponent implements OnInit {
   
       if (StepHeader.SegmentNo) {
         if (this.proofType === "poc") {
-          this.CompletedSegments.push({
-            SegNo: StepHeader.SegmentNo
-          });
+          if (!this.CompletedSegments.some((segment) => segment.SegNo === StepHeader.SegmentNo)) {
+            this.CompletedSegments.push({ SegNo: StepHeader.SegmentNo });
+          }
+          if (this.CurrenyRunningProof[1]) {
+            this.CurrentProofSegNo= this.CurrenyRunningProof[1].map(item => item.NO);
+            
+          } else {
+            console.error("Current Running Proof is undefined");
+          }
+          this.CompletedStepsOfCurrentProof = this.CompletedSegments.filter((proof) => this. CurrentProofSegNo.includes(proof.SegNo));
+          
+          this.TotalStepCountofCurrentProof=this.CurrentProofSegNo.length
+          this.CompletedStepCountOfCurrentProof=this.CompletedStepsOfCurrentProof.length
+          if(this.TotalStepCountofCurrentProof==this.CompletedStepCountOfCurrentProof){
+            this.CompletedSegments = [];
+          }
+         
+          
         }
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
         
@@ -1823,8 +1840,8 @@ export class ProofBotComponent implements OnInit {
         let id = `node-${trustLinks[0]}`;
         this.CurrentPathID=`${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
-        rec.style['stroke']='black'
-        rec.style['stroke-width']='4'
+        rec.style['stroke']='#F4B400'
+        rec.style['stroke-width']='8'
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
@@ -1853,7 +1870,7 @@ export class ProofBotComponent implements OnInit {
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
-        node1.attr("stroke", "black");
+        node1.attr("stroke", "#F4B400");
         let textContent1 = "";
         let textContent2 = "";
         let nodeText1 = d3.select(`#node-${tL[0]}`);
@@ -1897,6 +1914,7 @@ export class ProofBotComponent implements OnInit {
 
   clickedNode(event: string) {
     this.stopFlag = true;
+    this.CompletedSegments = [];
     this.jumpToStep(event)
   }
 

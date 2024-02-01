@@ -32,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BotWaitComponent } from "./features/proof-verification/components/bot-wait/bot-wait.component";
 import {POCStatus} from './shared/components/poc-status/poc-status.component';
+import { ProgressBarComponent } from './features/proof-verification/components/progress-bar/progress-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import {POCStatus} from './shared/components/poc-status/poc-status.component';
     ErrorModalComponent,
     BotWaitComponent,
     POCStatus,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,

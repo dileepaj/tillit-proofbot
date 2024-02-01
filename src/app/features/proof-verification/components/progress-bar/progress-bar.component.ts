@@ -2,11 +2,11 @@ import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
 import { CommonService } from "src/app/services/common.service";
 
 @Component({
-  selector: "app-bot-header",
-  templateUrl: "./bot-header.component.html",
-  styleUrls: ["./bot-header.component.css"]
+  selector: 'app-progress-bar',
+  templateUrl: './progress-bar.component.html',
+  styleUrls: ['./progress-bar.component.css']
 })
-export class BotHeaderComponent implements OnInit {
+export class ProgressBarComponent implements OnInit {
 
   @Input() lang: string;
   @Input() isPause: Boolean;
@@ -36,7 +36,8 @@ export class BotHeaderComponent implements OnInit {
   @Input() pendingProofsCount:number;
   @Input() SuccessedProofcount: number;
   @Input() FailedProofcount: number;
-
+  @Input() TotalStepCountofCurrentProof: number;
+  @Input() CompletedStepCountOfCurrentProof: number
   constructor(public commonServices: CommonService) { }
 
   ngOnInit() { }
@@ -73,3 +74,4 @@ export class BotHeaderComponent implements OnInit {
     this.POCStatus.emit("");
   }
 }
+

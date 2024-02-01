@@ -4,9 +4,10 @@
       justifyContent: justifyContent,
       alignItems: alignItems
     }" [class]="isTheater ? 'p-3' : 'p-0'">
-    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading" [isProofTypeAvailable]="isProofTypeAvailable"
-      [color]="color" [mode]="mode" [value]="value" [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash"
-      (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame" *ngIf="!isProofStart" style="width: 100%;" [ngStyle]="{
+    <app-bot-loader [initialHeight]="initialHeight" [initialWidth]="initialWidth" [isLoading]="isLoading"
+      [isProofTypeAvailable]="isProofTypeAvailable" [color]="color" [mode]="mode" [value]="value"
+      [LoadingProofType]="LoadingProofType" [TXNhash]="TXNhash" (startDemoFn)="startDemoFn()" id="proofDemoLoaderFrame"
+      *ngIf="!isProofStart" style="width: 100%;" [ngStyle]="{
         height: initialHeight,
         maxWidth: initialWidth
       }" [product]="product" [batch]="batch" [tdpId]="tdpId"></app-bot-loader>
@@ -21,8 +22,9 @@
         (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()" (stopFn)="stopFn()"
         (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
         (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
-        [tdpId]="tdpId" [completedProofs]="completedProofs" [TotalProofCountOfPOC]="TotalProofCountOfPOC" (POCStatus)="POCStatus()"
-        [SuccessedProofcount]="SuccessedProofcount" [FailedProofcount]="FailedProofcount" [pendingProofsCount]="pendingProofsCount"></app-bot-header>
+        [tdpId]="tdpId" [completedProofs]="completedProofs" [TotalProofCountOfPOC]="TotalProofCountOfPOC"
+        (POCStatus)="POCStatus()" [SuccessedProofcount]="SuccessedProofcount" [FailedProofcount]="FailedProofcount"
+        [pendingProofsCount]="pendingProofsCount"></app-bot-header>
       <div *ngIf="isToast1" class="toast-notification1 float-right px-2" [@inOutAnimation]>
         <p class="m-0 toast-notification1-mob">{{ toastMSG1 }}
           <img class="checked-small-img" src="../../../../assets/img/Vector.png">
@@ -36,7 +38,7 @@
             <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
               <div></div>
               <div> {{isMergePresent?'Batch History With Merkle Tree':'Batch History'}}
-                <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+                <a href="https://help.tracified.com/docs/BlockchainWiki/BaseProofModel/Proofs/POContinuity"
                   target="_blank">
                   <i class="bi bi-question-circle-fill helpIcon"></i>
                 </a>
@@ -49,11 +51,24 @@
           </div>
         </div>
         <div>
-        <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2"
-          [data]="nodes" [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)" [isMergeAvailable]="isMergePresent" ></app-poc-graph-view>
+          <app-poc-graph-view id="collapseBasic" [collapse]="isCollapsedPocTree" class="m-2" [data]="nodes"
+            [dataWithMerkleTree]="nodesWithMerkleTree" (clickedNodeEvent)="clickedNode($event)"
+            [isMergeAvailable]="isMergePresent"></app-poc-graph-view>
         </div>
       </div>
       <!-- end poc view -->
+      <!-- srart progress-bar -->
+      <app-progress-bar *ngIf="isProofStart" [lang]="lang" [isPause]="isPause"
+       [CompletedStepCountOfCurrentProof]="CompletedStepCountOfCurrentProof" [TotalStepCountofCurrentProof]="TotalStepCountofCurrentProof"
+        [ProofContainerTitle]="ProofContainerTitle" [isPlayCompleted]="isPlayCompleted" [currentStep]="currentStep"
+        [totalSteps]="totalSteps" [playbackSpeed]="playbackSpeed" [isTheater]="isTheater"
+        [vsHeightExpand]="vsHeightExpand" (setLangFn)="setLangFn($event)" (togglePlayPauseFn)="togglePlayPauseFn()"
+        (stopFn)="stopFn()" (replayFn)="replayFn()" (setSpeedFn)="setSpeed($event)" (theaterModeFn)="theaterMode()"
+        (resizeVerifyScreenFn)="resizeVerifyScreen()" [proof1]="proofType" [product]="product" [batch]="batch"
+        [tdpId]="tdpId" [completedProofs]="completedProofs" [TotalProofCountOfPOC]="TotalProofCountOfPOC"
+        (POCStatus)="POCStatus()" [SuccessedProofcount]="SuccessedProofcount" [FailedProofcount]="FailedProofcount"
+        [pendingProofsCount]="pendingProofsCount" ></app-progress-bar>
+      <!-- end progress-bar -->
       <!-- bot-segments header-->
       <div class="poc-graph-view mt-3 mb-1" *ngIf="proofType=='poc' && isStartDemo">
         <div class="row ">
@@ -61,27 +76,31 @@
             <div class="d-flex justify-content-between section-header">
               <div></div>
               <div *ngIf="currentProof=='Proof of Backlinks'; else otherProof"><span>Current Proof: <span
-                  class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> 
-                between <strong>(</strong><span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span> 
-                <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span> 
-                <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span><strong>)</strong>
-                and <strong>(</strong><span class="bold-f" *ngIf="currentBatchID2">&nbsp;Batch ID : {{currentBatchID2}}&nbsp;</span>
-                <span class="bold-f" *ngIf="currentProduct2">&nbsp;| Product : {{currentProduct2}}&nbsp;</span> 
-                <span class="bold-f" *ngIf="currentStage2">&nbsp;| Stage : {{currentStage2}}&nbsp;</span><strong>)</strong></span>
-                <a class="ml-1"
-                  href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+                    class="bold-f">&nbsp;{{currentProof}}&nbsp;</span>
+                  between <strong>(</strong><span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID :
+                    {{currentBatchID}}&nbsp;</span>
+                  <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span>
+                  <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage :
+                    {{currentStage}}&nbsp;</span><strong>)</strong>
+                  and <strong>(</strong><span class="bold-f" *ngIf="currentBatchID2">&nbsp;Batch ID :
+                    {{currentBatchID2}}&nbsp;</span>
+                  <span class="bold-f" *ngIf="currentProduct2">&nbsp;| Product : {{currentProduct2}}&nbsp;</span>
+                  <span class="bold-f" *ngIf="currentStage2">&nbsp;| Stage :
+                    {{currentStage2}}&nbsp;</span><strong>)</strong></span>
+                <a class="ml-1" href="https://help.tracified.com/docs/BlockchainWiki/BaseProofModel/Proofs/POContinuity"
                   target="_blank">
                   <i class="bi bi-question-circle-fill helpIcon"></i>
                 </a>
               </div>
               <ng-template #otherProof>
                 <div><span>Current Proof: <span class="bold-f">&nbsp;{{currentProof}}&nbsp;</span> of <strong>(</strong>
-                  <span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span>
-                  <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span>
-                  <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage : {{currentStage}}&nbsp;</span><strong>)</strong></span>
-                  
+                    <span class="bold-f" *ngIf="currentBatchID">&nbsp;Batch ID : {{currentBatchID}}&nbsp;</span>
+                    <span class="bold-f" *ngIf="currentProduct">&nbsp;| Product : {{currentProduct}}&nbsp;</span>
+                    <span class="bold-f" *ngIf="currentStage">&nbsp;| Stage :
+                      {{currentStage}}&nbsp;</span><strong>)</strong></span>
+
                   <a class="ml-1"
-                    href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+                    href="https://help.tracified.com/docs/BlockchainWiki/BaseProofModel/Proofs/POContinuity"
                     target="_blank">
                     <i class="bi bi-question-circle-fill helpIcon"></i>
                   </a>
@@ -110,14 +129,15 @@
       <!-- end description -->
       <app-bot-wait *ngIf="!isStartDemo"></app-bot-wait>
       <!-- bot-segments header-->
-      <app-bot-segments *ngIf="isStartDemo" id="steppersFrame" [collapse]="isCollapsedSegment" [SegmentNumber]="SegmentNumber" [icon]="icon"
-        [steppers]="steppers" [subSteppers]="subSteppers" [lang]="lang" [proofType]="proofType" [CompletedSteps]="CompletedSteps" (backToStepFn)="backToStep($event)"
+      <app-bot-segments *ngIf="isStartDemo" id="steppersFrame" [collapse]="isCollapsedSegment"
+        [SegmentNumber]="SegmentNumber" [icon]="icon" [steppers]="steppers" [subSteppers]="subSteppers" [lang]="lang"
+        [proofType]="proofType" [CompletedSteps]="CompletedSteps" (backToStepFn)="backToStep($event)"
         (backToActionFn)="backToAction($event)">
       </app-bot-segments>
       <!--end bot-segments header-->
 
       <!-- bot screen -->
-      <div  style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px; font-family: Inter;">
+      <div style="overflow: visible;position: relative;height: 100%;width: 100%; margin-top: 4px; font-family: Inter;">
         <div *ngIf="isToast" class="toast-notification float-right px-2" [ngStyle]="{ top: toastTop, left: toastLeft }"
           [@inOutAnimation]>
           <p class="m-0">{{ toastMSG }}</p>
@@ -140,7 +160,7 @@
             <div class="d-flex justify-content-between section-header bold-f" style="font-size: 16px;">
               <div></div>
               <div> Main Values
-                <a href="https://tracified.com/2022/09/29/introducing-the-worlds-first-solution-for-automated-blockchain-proof-verification-proofbot-by-tracified/"
+                <a href="https://help.tracified.com/docs/BlockchainWiki/BaseProofModel/Proofs/POContinuity"
                   target="_blank">
                   <i class="bi bi-question-circle-fill helpIcon"></i>
                 </a>

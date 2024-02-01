@@ -366,6 +366,7 @@
   }
   #stepWrapper{
     overflow-x: hidden;
+    white-space: nowrap; 
    }
   /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
@@ -458,3 +459,11 @@
   
 }
 
+
+
+
+/* Enable scrolling when needed */
+#stepWrapper:hover {
+  overflow-x: auto;
+  
+}
