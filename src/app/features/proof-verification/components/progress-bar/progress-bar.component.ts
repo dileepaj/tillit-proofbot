@@ -36,10 +36,8 @@ export class ProgressBarComponent implements OnInit {
   @Input() pendingProofsCount:number;
   @Input() SuccessedProofcount: number;
   @Input() FailedProofcount: number;
-  @Input() CompletedStepCountOfCurrentProof: number;
   @Input() TotalStepCountofCurrentProof: number;
-
-
+  @Input() CompletedStepCountOfCurrentProof: number
   constructor(public commonServices: CommonService) { }
 
   ngOnInit() { }
