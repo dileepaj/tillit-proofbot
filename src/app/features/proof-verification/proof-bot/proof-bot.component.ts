@@ -187,6 +187,11 @@ export class ProofBotComponent implements OnInit {
   pocData: any = {};
   pocDataWithoutMerkelTree:any = {};
   isMergePresent =  false;
+  CurrentRunningProofStepCount: any;
+  CompletedStepsOfCurrentProof: any[];
+  CurrentProofSegNo: number[]=[];
+  TotalStepCountofCurrentProof: number=0;
+  CompletedStepCountOfCurrentProof: number=0;
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
@@ -734,7 +739,6 @@ export class ProofBotComponent implements OnInit {
       (cur: any) => cur.StepHeader.SegmentNo == stepNo
     );
     if(this.proofType=='poc'){
-      console.log("this.filterCompletedSegments(stepNo)",this.filterCompletedSegments(stepNo))
       if(this.filterCompletedSegments(stepNo)){
         if (this.lastCompletedStep >= i) {
           this.isBackToStep = true;
@@ -963,9 +967,23 @@ export class ProofBotComponent implements OnInit {
   
       if (StepHeader.SegmentNo) {
         if (this.proofType === "poc") {
-          this.CompletedSegments.push({
-            SegNo: StepHeader.SegmentNo
-          });
+          if (!this.CompletedSegments.some((segment) => segment.SegNo === StepHeader.SegmentNo)) {
+            this.CompletedSegments.push({ SegNo: StepHeader.SegmentNo });
+          }
+          if (this.CurrenyRunningProof[1]) {
+            this.CurrentProofSegNo= this.CurrenyRunningProof[1].map(item => item.NO);
+            
+          } else {
+            console.error("Current Running Proof is undefined");
+          }
+          this.CompletedStepsOfCurrentProof = this.CompletedSegments.filter((proof) => this. CurrentProofSegNo.includes(proof.SegNo));
+          
+          this.TotalStepCountofCurrentProof=this.CurrentProofSegNo.length
+          this.CompletedStepCountOfCurrentProof=this.CompletedStepsOfCurrentProof.length
+          console.log("mm-",this.CurrenyRunningProof[1])
+          console.log("nii--",this.TotalStepCountofCurrentProof)
+          console.log("gii--",this.CompletedStepCountOfCurrentProof)
+          
         }
         await this.toStepper(StepHeader.SegmentNo, Action._ID);
         
