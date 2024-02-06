@@ -21,7 +21,7 @@
     <div class="row mb-1 justify-content-center align-item-center pocStatusDiv" >
        <button class="statusBtn btn btn-light col-lg " style="line-height: 19.36px;" (click)="emitPOCStatusFn()"
           title="POC Status" *ngIf="commonServices.getProofName(proof1)=='Proof of Continuity'">
-          <span class="col-sm-12" style="padding-right: 2px; padding-left: 11px; color:#000000; font-size:16px; font-weight: 700; font-family: Inter;"> Proof of Continuity Status: </span>
+          <span class="col-sm-12" style="padding-right: 2px; padding-left: 11px; color:#000000; font-size:15px; font-weight: 700; font-family: Inter;"> Proof of Continuity Status: </span>
           <span class="col-sm-12 pocStatusBtnTxt" style="padding-right: 2px; padding-left: 11px; color: #2C9357; font-weight: 500;">
             Successful ({{    (SuccessedProofcount === 0 ) ? '0' : (SuccessedProofcount)}})
           </span>

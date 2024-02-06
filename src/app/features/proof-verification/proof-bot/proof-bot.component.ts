@@ -1840,8 +1840,8 @@ export class ProofBotComponent implements OnInit {
         let id = `node-${trustLinks[0]}`;
         this.CurrentPathID=`${trustLinks[0]}`;
         let rec:any= document.querySelector(`#${id} > rect`)
-        rec.style['stroke']='#F4B400'
-        rec.style['stroke-width']='8'
+        rec.style['stroke']='#FFD86B'
+        rec.style['stroke-width']='4.5'
         this.currentProof = this.commonServices.getProofName(runningProof);
         let nodeText = d3.select(`#${id}`);
         let textContent = nodeText.text();
@@ -1870,7 +1870,7 @@ export class ProofBotComponent implements OnInit {
         let node: any = document.getElementById(id);
         node.style = "opacity:1;";
         const node1 = d3.select(`#${id}`);
-        node1.attr("stroke", "#F4B400");
+        node1.attr("stroke", "#FFD86B");
         let textContent1 = "";
         let textContent2 = "";
         let nodeText1 = d3.select(`#node-${tL[0]}`);
