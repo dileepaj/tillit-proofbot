@@ -198,8 +198,8 @@ export class PocGraphViewComponent implements AfterViewInit {
           id: `${nodeIdName}-${node.Data.TxnHash}`,
           style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
           labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; cursor: pointer; font-weight: bold`,
-          rx: 15, // set the x-axis radius of the rectangle
-          ry: 15, // set the y-axis radius of the rectangle
+          rx: 2, // set the x-axis radius of the rectangle
+          ry: 2, // set the y-axis radius of the rectangle
         });
       } else {
         g.setNode(node.Data.TxnHash, {
@@ -208,8 +208,8 @@ export class PocGraphViewComponent implements AfterViewInit {
           id: `${nodeIdName}-${node.Data.TxnHash}`,
           style: `stroke: ${bColor}; stroke-width: 1.5px; fill: ${sColor}`,
           labelStyle: `font: 300 14px 'Helvetica Neue', Helvetica;fill: ${lColor}; font-weight: bold`,
-          rx: 15, // set the x-axis radius of the rectangle
-          ry: 15, // set the y-axis radius of the rectangle
+          rx: 2, // set the x-axis radius of the rectangle
+          ry: 2, // set the y-axis radius of the rectangle
         });
       }
 
@@ -304,8 +304,8 @@ export class PocGraphViewComponent implements AfterViewInit {
         lColor = "white";
         break
       case "9":
-        sColor = "#CD8F55";
-        bColor = "#CD8F55";
+        sColor = "#A66540";
+        bColor = "#A66540";
         lColor = "white";
         break
       case "10":

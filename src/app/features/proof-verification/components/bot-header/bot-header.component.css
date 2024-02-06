@@ -177,7 +177,7 @@
     margin-right: 0;
   }
   .pocStatusDiv{
-    width:  max-content; 
+    width:  inherit; 
   }
 }
 

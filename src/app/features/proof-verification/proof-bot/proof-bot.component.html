@@ -44,8 +44,9 @@
                 </a>
               </div>
               <div class="mr-1 "> <span (click)="isCollapsedPocTree = !isCollapsedPocTree"
-                  [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic"><i
-                    class="bi bi-chevron-down"></i>
+                  [attr.aria-expanded]="!isCollapsedPocTree" aria-controls="collapseBasic">
+                  <i *ngIf="isCollapsedPocTree" class="bi bi-chevron-up"></i>
+                  <i *ngIf="!isCollapsedPocTree" class="bi bi-chevron-down"></i>
                 </span></div>
             </div>
           </div>
@@ -107,8 +108,9 @@
                 </div>
               </ng-template>
               <div class="mr-1 "> <span (click)="isCollapsedSegment = !isCollapsedSegment"
-                  [attr.aria-expanded]="!isCollapsedSegment" aria-controls="steppersFrame"><i
-                    class="bi bi-chevron-down"></i>
+                  [attr.aria-expanded]="!isCollapsedSegment" aria-controls="steppersFrame">
+                  <i *ngIf="isCollapsedSegment" class="bi bi-chevron-up"></i>
+                  <i *ngIf="!isCollapsedSegment" class="bi bi-chevron-down"></i>
                 </span></div>
             </div>
           </div>
@@ -166,8 +168,9 @@
                 </a>
               </div>
               <div class="mr-1 "> <span (click)="isCollapsedMainValues= !isCollapsedMainValues"
-                  [attr.aria-expanded]="!isCollapsedMainValues" aria-controls="globalInformation"><i
-                    class="bi bi-chevron-down"></i>
+                  [attr.aria-expanded]="!isCollapsedMainValues" aria-controls="globalInformation">
+                  <i *ngIf="isCollapsedMainValues" class="bi bi-chevron-up"></i>
+                  <i *ngIf="!isCollapsedMainValues" class="bi bi-chevron-down"></i>
                 </span></div>
             </div>
           </div>
